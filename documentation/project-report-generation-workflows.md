@@ -2,6 +2,10 @@
 
 *Last updated: 2025-06-18*
 
+> **⚠️ DEPRECATION NOTICE**: The `project-report-camara-api-releases.yml` workflow described in this document is maintained for backward compatibility only. 
+> For new features and meta-release support (Fall25, Spring25, etc.), please use the new `meta-release-reporting.yml` workflow.
+> See [Meta-Release Reporting Documentation](meta-release-reporting-workflow.md) for details.
+
 ## Table of Contents
 1. [Overview](#overview)
 2. [Quick Start](#quick-start)

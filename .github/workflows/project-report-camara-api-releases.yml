@@ -1,6 +1,10 @@
 # =========================================================================================
 # CAMARA Project - API Releases Report Workflow
 #
+# NOTE: This workflow is maintained for backward compatibility only.
+#       For new features and meta-release support, use meta-release-reporting.yml
+#       This workflow will be deprecated in the future.
+#
 # This GitHub Actions workflow analyzes API releases across CAMARA repositories with
 # parallel processing, meta-release categorization, and consistency validation.
 #
