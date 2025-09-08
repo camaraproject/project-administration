@@ -997,15 +997,9 @@ jobs:
             
             report += `**Generated**: ${new Date().toISOString()}\n`;
             
-            // Add report-specific metadata
-            if (filters.reportType !== 'full') {
-              report += `**Report Type**: ${filters.reportType.charAt(0).toUpperCase() + filters.reportType.slice(1).replace('-', ' ')}\n`;
-              
-              if (filters.reportType === 'fall25') {
-                report += '**Pre-release Window**: 2025-07-10 to 2025-08-13\n';
-              }
-              
-              report += `**Filtered Repositories**: ${filteredRepositories.length} of ${allRepositories.length}\n`;
+            // Add report-specific metadata for Fall25 pre-release window
+            if (filters.reportType === 'fall25') {
+              report += '**Fall25 Pre-release Window**: 2025-07-10 to 2025-08-13\n';
             }
             
             // Basic metadata - details will be in Executive Summary
