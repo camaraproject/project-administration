@@ -55,18 +55,18 @@ on:
         required: true
         type: choice
         options:
-          - 'full'
-          - 'full-no-legacy'
           - 'fall25'
           - 'spring25'
           - 'fall24'
-        default: 'full'
+          - 'full'
+          - 'full-no-legacy'
+        default: 'fall25'
       
       include_prerelease:
         description: 'Include pre-releases in the report'
         required: false
         type: boolean
-        default: false
+        default: true
       
       include_consistency_analysis:
         description: 'Include consistency analysis (checks for historic release issues)'
@@ -82,6 +82,18 @@ on:
       
       show_repository_details:
         description: 'Include detailed repository analysis section'
+        required: false
+        type: boolean
+        default: false
+      
+      show_prerelease_only_repos:
+        description: 'Show repositories with only pre-releases (no public releases)'
+        required: false
+        type: boolean
+        default: false
+      
+      show_repos_without_releases:
+        description: 'Show repositories without any releases'
         required: false
         type: boolean
         default: false
@@ -237,7 +249,9 @@ jobs:
             const includePrerelease = '${{ github.event.inputs.include_prerelease }}' === 'true';
             const includeConsistencyAnalysis = '${{ github.event.inputs.include_consistency_analysis }}' === 'true';
             let recentDaysWindow = parseInt('${{ github.event.inputs.recent_days_window }}') || 30;
-            const showRepositoryDetails = '${{ github.event.inputs.show_repository_details }}' !== 'false';
+            const showRepositoryDetails = '${{ github.event.inputs.show_repository_details }}' === 'true';
+            const showPrereleaseOnlyRepos = '${{ github.event.inputs.show_prerelease_only_repos }}' === 'true';
+            const showReposWithoutReleases = '${{ github.event.inputs.show_repos_without_releases }}' === 'true';
             
             // Configuration from environment
             const config = {
@@ -296,6 +310,31 @@ jobs:
               isFall25Public: (date) => {
                 const d = new Date(date);
                 return d.getFullYear() === 2025 && (d.getMonth() === 7 || d.getMonth() === 8);
+              },
+              
+              // Validate kebab-case API names
+              isValidApiName: (name) => {
+                return /^[a-z]+(-[a-z]+)*$/.test(name);
+              },
+              
+              // Strip pre-release suffix (e.g., "1.0.0-rc.1" → "1.0.0")
+              getBaseVersion: (version) => {
+                return version.replace(/-.*$/, '');
+              },
+              
+              // Determine if API is initial (0.x) or stable (x.y where x≥1)
+              getApiMaturity: (version) => {
+                return version.startsWith('0.') ? 'initial' : 'stable';
+              },
+              
+              // Helper for consistent Markdown table generation
+              generateMarkdownTable: (headers, rows) => {
+                let table = `| ${headers.join(' | ')} |\n`;
+                table += `|${headers.map(() => '---').join('|')}|\n`;
+                rows.forEach(row => {
+                  table += `| ${row.join(' | ')} |\n`;
+                });
+                return table;
               }
             };
             
@@ -510,7 +549,9 @@ jobs:
                 includePrerelease: includePrerelease,
                 includeConsistencyAnalysis: includeConsistencyAnalysis,
                 recentDaysWindow: recentDaysWindow,
-                showRepositoryDetails: showRepositoryDetails
+                showRepositoryDetails: showRepositoryDetails,
+                showPrereleaseOnlyRepos: showPrereleaseOnlyRepos,
+                showReposWithoutReleases: showReposWithoutReleases
               }
             };
             
@@ -1134,23 +1175,47 @@ jobs:
               stats.apis.forEach(a => totals.apis.add(a));
             });
             
-            // Build the table
-            report += '| Metric | Fall24 | Spring25 | Fall25 | Other | Total |\n';
-            report += '|--------|--------|----------|--------|-------|-------|\n';
-            
-            // Repository count row
-            report += `| **Repositories** | ${metaReleaseStats['Fall24'].repos.size} | ${metaReleaseStats['Spring25'].repos.size} | ${metaReleaseStats['Fall25'].repos.size} | ${metaReleaseStats['Other'].repos.size} | ${totals.repos.size} |\n`;
-            
-            // Release type rows
-            report += `| **Pre-releases** | ${metaReleaseStats['Fall24'].preReleases} | ${metaReleaseStats['Spring25'].preReleases} | ${metaReleaseStats['Fall25'].preReleases} | ${metaReleaseStats['Other'].preReleases} | ${totals.preReleases} |\n`;
-            report += `| **Public Releases** | ${metaReleaseStats['Fall24'].publicReleases} | ${metaReleaseStats['Spring25'].publicReleases} | ${metaReleaseStats['Fall25'].publicReleases} | ${metaReleaseStats['Other'].publicReleases} | ${totals.publicReleases} |\n`;
-            report += `| **Patch Releases** | ${metaReleaseStats['Fall24'].patchReleases} | ${metaReleaseStats['Spring25'].patchReleases} | ${metaReleaseStats['Fall25'].patchReleases} | ${metaReleaseStats['Other'].patchReleases} | ${totals.patchReleases} |\n`;
-            
-            // Single API row showing unique APIs (with equivalence handling)
-            report += `| **Unique APIs** | ${countUniqueAPIs(metaReleaseStats['Fall24'].apis)} | ${countUniqueAPIs(metaReleaseStats['Spring25'].apis)} | ${countUniqueAPIs(metaReleaseStats['Fall25'].apis)} | ${countUniqueAPIs(metaReleaseStats['Other'].apis)} | ${countUniqueAPIs(totals.apis)} |\n`;
-            
-            // Cumulative APIs row (with equivalence handling)
-            report += `| **Cumulative APIs** | ${countUniqueAPIs(cumulativeAPIs['Fall24'])} | ${countUniqueAPIs(cumulativeAPIs['Spring25'])} | ${countUniqueAPIs(cumulativeAPIs['Fall25'])} | ${countUniqueAPIs(cumulativeAPIs['Other'])} | - |\n`;
+            // Build the Meta-Release Summary table using the utility function
+            const metaReleaseHeaders = ['Metric', 'Fall24', 'Spring25', 'Fall25', 'Other', 'Total'];
+            const metaReleaseRows = [
+              ['**Repositories**', 
+                metaReleaseStats['Fall24'].repos.size, 
+                metaReleaseStats['Spring25'].repos.size, 
+                metaReleaseStats['Fall25'].repos.size, 
+                metaReleaseStats['Other'].repos.size, 
+                totals.repos.size],
+              ['**Pre-releases**', 
+                metaReleaseStats['Fall24'].preReleases, 
+                metaReleaseStats['Spring25'].preReleases, 
+                metaReleaseStats['Fall25'].preReleases, 
+                metaReleaseStats['Other'].preReleases, 
+                totals.preReleases],
+              ['**Public Releases**', 
+                metaReleaseStats['Fall24'].publicReleases, 
+                metaReleaseStats['Spring25'].publicReleases, 
+                metaReleaseStats['Fall25'].publicReleases, 
+                metaReleaseStats['Other'].publicReleases, 
+                totals.publicReleases],
+              ['**Patch Releases**', 
+                metaReleaseStats['Fall24'].patchReleases, 
+                metaReleaseStats['Spring25'].patchReleases, 
+                metaReleaseStats['Fall25'].patchReleases, 
+                metaReleaseStats['Other'].patchReleases, 
+                totals.patchReleases],
+              ['**Unique APIs**', 
+                countUniqueAPIs(metaReleaseStats['Fall24'].apis), 
+                countUniqueAPIs(metaReleaseStats['Spring25'].apis), 
+                countUniqueAPIs(metaReleaseStats['Fall25'].apis), 
+                countUniqueAPIs(metaReleaseStats['Other'].apis), 
+                countUniqueAPIs(totals.apis)],
+              ['**Cumulative APIs**', 
+                countUniqueAPIs(cumulativeAPIs['Fall24']), 
+                countUniqueAPIs(cumulativeAPIs['Spring25']), 
+                countUniqueAPIs(cumulativeAPIs['Fall25']), 
+                countUniqueAPIs(cumulativeAPIs['Other']), 
+                '-']
+            ];
+            report += utils.generateMarkdownTable(metaReleaseHeaders, metaReleaseRows);
             
             report += '\n';
             report += '*Note: Legacy releases and pre-releases are excluded from API counts, except for Fall25*\n';
@@ -1204,7 +1269,7 @@ jobs:
                 targetReleases.forEach(release => {
                   release.api_definitions.forEach(api => {
                     // Skip non-kebab-case API names (they're likely old/incorrect naming)
-                    if (!api.name.match(/^[a-z]+(-[a-z]+)*$/)) return;
+                    if (!utils.isValidApiName(api.name)) return;
                     
                     // Only process each API once per repository (use latest data)
                     if (seenAPIs.has(api.name)) return;
@@ -1222,14 +1287,14 @@ jobs:
                         // Strip pre-release suffix to get target version
                         const preAPI = latestPreRelease.api_definitions.find(a => a.name === api.name);
                         if (preAPI) {
-                          targetVersion = preAPI.version.replace(/-.*$/, '');
+                          targetVersion = utils.getBaseVersion(preAPI.version);
                         } else {
-                          targetVersion = api.version.replace(/-.*$/, '');
+                          targetVersion = utils.getBaseVersion(api.version);
                         }
                       }
                       
                       // Determine maturity
-                      const maturity = targetVersion.startsWith('0.') ? 'initial' : 'stable';
+                      const maturity = utils.getApiMaturity(targetVersion);
                       
                       // Get current version (from latest release)
                       const currentAPI = latestRelease.api_definitions.find(a => a.name === api.name);
@@ -1243,7 +1308,7 @@ jobs:
                         const preAPI = latestPreRelease.api_definitions.find(a => a.name === api.name);
                         if (preAPI && preAPI.version.includes('-')) {
                           preReleaseTag = latestPreRelease.tag_name;
-                          preReleaseDate = new Date(latestPreRelease.published_at).toISOString().split('T')[0];
+                          preReleaseDate = utils.formatDate(latestPreRelease.published_at);
                           preReleaseUrl = latestPreRelease.html_url;
                         }
                       }
@@ -1256,7 +1321,7 @@ jobs:
                         new Date(a.published_at) - new Date(b.published_at))[0];
                       if (firstPublic) {
                         m4ReleaseTag = firstPublic.tag_name;
-                        m4ReleaseDate = new Date(firstPublic.published_at).toISOString().split('T')[0];
+                        m4ReleaseDate = utils.formatDate(firstPublic.published_at);
                         m4ReleaseUrl = firstPublic.html_url;
                       }
                       
@@ -1421,11 +1486,20 @@ jobs:
               }
             }
             
-            // Recent releases section - FIXED
+            // ============================================
+            // REPORT SECTION GENERATION - Phase 3 Reordered
+            // Order: Header -> Executive Summary -> Main Report (API Status or Meta-Release Summary)
+            //        -> Recent Releases -> Repository Details -> Pre-release Only -> Without Releases -> Consistency
+            // ============================================
+            
+            // Prepare all sections first, then assemble in the correct order
+            
+            // Section 4: Recent Releases (conditional)
+            let recentReleasesSection = '';
             if (recentReleases.length > 0 && filters.recentDaysWindow > 0) {
-              report += `## Recent Releases (Last ${filters.recentDaysWindow} Days)\n\n`;
-              report += '| Repository | Repo Type | Release | Type | APIs | Date | Meta-Release |\n';
-              report += '|------------|-----------|---------|------|------|------|-------------|\n';
+              recentReleasesSection += `## Recent Releases (Last ${filters.recentDaysWindow} Days)\n\n`;
+              recentReleasesSection += '| Repository | Repo Type | Release | Type | APIs | Date | Meta-Release |\n';
+              recentReleasesSection += '|------------|-----------|---------|------|------|------|-------------|\n';
               
               recentReleases.sort((a, b) => new Date(b.published_at) - new Date(a.published_at));
               
@@ -1447,20 +1521,21 @@ jobs:
                 const metaRelease = release.meta_release.cycle;
                 
                 // FIXED: Use the stored repository information instead of trying to find it
-                report += `| [${release.repository_name}](${release.repository_html_url}) | ${release.repository_type} | [${name}](${release.html_url}) | ${typeDisplay} | ${apiList} | ${date} | ${metaRelease} |\n`;
+                recentReleasesSection += `| [${release.repository_name}](${release.repository_html_url}) | ${release.repository_type} | [${name}](${release.html_url}) | ${typeDisplay} | ${apiList} | ${date} | ${metaRelease} |\n`;
               }
-              report += '\n';
+              recentReleasesSection += '\n';
             }
             
-            // Consistency analysis (only if requested)
+            // Section 8: Consistency Analysis (conditional - moved to end in Phase 3)
             const consistencyIssues = [];
+            let consistencySection = '';
             
             if (filters.includeConsistencyAnalysis) {
-              report += '## Consistency Analysis\n\n';
+              consistencySection += '## Consistency Analysis\n\n';
               if (filters.reportType !== 'full') {
-                report += `*Note: This analysis is filtered to ${filters.reportType} repositories only*\n\n`;
+                consistencySection += `*Note: This analysis is filtered to ${filters.reportType} repositories only*\n\n`;
               } else if (!filters.includePrerelease) {
-                report += '*Note: This analysis reflects applied filters - pre-releases are excluded*\n\n';
+                consistencySection += '*Note: This analysis reflects applied filters - pre-releases are excluded*\n\n';
               }
             
             // Use filtered repositories based on report type
@@ -1531,38 +1606,39 @@ jobs:
             }
             
             if (consistencyIssues.length > 0) {
-              report += '### Consistency Issues Found\n\n';
-              report += '| Repository | Issue Type | Description |\n';
-              report += '|------------|------------|-------------|\n';
+              consistencySection += '### Consistency Issues Found\n\n';
+              consistencySection += '| Repository | Issue Type | Description |\n';
+              consistencySection += '|------------|------------|-------------|\n';
               
               for (const issue of consistencyIssues.slice(0, 20)) {
-                report += `| ${issue.repo} | ${issue.type} | ${issue.description} |\n`;
+                consistencySection += `| ${issue.repo} | ${issue.type} | ${issue.description} |\n`;
               }
               
               if (consistencyIssues.length > 20) {
-                report += `\n*Showing first 20 of ${consistencyIssues.length} issues*\n`;
+                consistencySection += `\n*Showing first 20 of ${consistencyIssues.length} issues*\n`;
               }
-              report += '\n';
+              consistencySection += '\n';
             } else {
-              report += '✅ No consistency issues found!\n\n';
+              consistencySection += '✅ No consistency issues found!\n\n';
             }
             } // End of consistency analysis if block
             
-            // Detailed repository analysis (optional)
+            // Section 5: Detailed Repository Analysis (conditional)
+            let repositoryDetailsSection = '';
             if (filters.showRepositoryDetails) {
-              report += '## Detailed Repository Analysis\n\n';
+              repositoryDetailsSection += '## Detailed Repository Analysis\n\n';
             
             // Add filter note if not showing everything
             if (filters.reportType !== 'full' || !filters.includePrerelease) {
-              report += '*Note: ';
+              repositoryDetailsSection += '*Note: ';
               if (filters.reportType !== 'full') {
-                report += `Showing ${filters.reportType} repositories`;
+                repositoryDetailsSection += `Showing ${filters.reportType} repositories`;
               }
               if (!filters.includePrerelease) {
-                if (filters.reportType !== 'full') report += ' and ';
-                report += 'pre-releases are excluded';
+                if (filters.reportType !== 'full') repositoryDetailsSection += ' and ';
+                repositoryDetailsSection += 'pre-releases are excluded';
               }
-              report += '*\n\n';
+              repositoryDetailsSection += '*\n\n';
             }
             
             // Use filtered repositories for details
@@ -1591,19 +1667,19 @@ jobs:
               if (filteredReleases.length === 0) continue;
               
               // Don't show type (Sandbox/Incubating) in title for cleaner output
-              report += `### [${repo.name}](${repo.html_url})\n\n`;
+              repositoryDetailsSection += `### [${repo.name}](${repo.html_url})\n\n`;
               
               if (repo.main_branch_apis.length > 0) {
-                report += '**Main Branch APIs:**\n';
+                repositoryDetailsSection += '**Main Branch APIs:**\n';
                 for (const api of repo.main_branch_apis) {
-                  report += `- ${api.name}: v${api.version}\n`;
+                  repositoryDetailsSection += `- ${api.name}: v${api.version}\n`;
                 }
-                report += '\n';
+                repositoryDetailsSection += '\n';
               }
               
-              report += '**Release History:**\n';
-              report += '| Release | Date | Type | Meta-Release | APIs |\n';
-              report += '|---------|------|------|--------------|------|\n';
+              repositoryDetailsSection += '**Release History:**\n';
+              repositoryDetailsSection += '| Release | Date | Type | Meta-Release | APIs |\n';
+              repositoryDetailsSection += '|---------|------|------|--------------|------|\n';
               
               for (const release of filteredReleases.slice(0, 5)) {
                 const date = new Date(release.published_at).toLocaleDateString();
@@ -1621,15 +1697,16 @@ jobs:
                 
                 const apiList = release.api_definitions.map(api => `${api.name} v${api.version}`).join('<br>');
                 
-                report += `| [${release.tag_name}](${release.html_url}) | ${date} | ${typeDisplay} | ${metaRelease} | ${apiList} |\n`;
+                repositoryDetailsSection += `| [${release.tag_name}](${release.html_url}) | ${date} | ${typeDisplay} | ${metaRelease} | ${apiList} |\n`;
               }
-              report += '\n';
+              repositoryDetailsSection += '\n';
             }
             
             } // End of showRepositoryDetails conditional
             
-            // Repositories with pre-releases only - show when pre-releases are included
-            if (filters.includePrerelease && allRepositoriesWithPrereleasesOnly.length > 0) {
+            // Section 6: Pre-release Only Repositories (conditional - new position in Phase 3)
+            let prereleaseOnlySection = '';
+            if (filters.showPrereleaseOnlyRepos && allRepositoriesWithPrereleasesOnly.length > 0) {
               // Filter pre-release-only repos based on report type
               let filteredPreReleaseRepos = allRepositoriesWithPrereleasesOnly;
               
@@ -1669,33 +1746,65 @@ jobs:
               }
               
               if (filteredPreReleaseRepos.length > 0) {
-                report += '## API Repositories with Pre-releases Only\n\n';
-                report += '*These repositories have releases but only pre-releases, no public releases yet.*\n\n';
-                report += '| Repository | Type | Pre-releases | Main Branch APIs | Pre-release APIs |\n';
-                report += '|------------|------|--------------|------------------|-----------------|\n';
+                prereleaseOnlySection += '## API Repositories with Pre-releases Only\n\n';
+                prereleaseOnlySection += '*These repositories have releases but only pre-releases, no public releases yet.*\n\n';
+                prereleaseOnlySection += '| Repository | Type | Pre-releases | Main Branch APIs | Pre-release APIs |\n';
+                prereleaseOnlySection += '|------------|------|--------------|------------------|-----------------|\n';
                 
                 for (const repo of filteredPreReleaseRepos.sort((a, b) => a.name.localeCompare(b.name))) {
                   const mainAPIs = repo.api_definitions.map(api => `${api.name} v${api.version}`).join('<br>');
                   const prereleaseAPIs = repo.prerelease_apis.join('<br>');
                   
-                  report += `| [${repo.name}](${repo.html_url}) | ${repo.repo_type} | ${repo.prerelease_count} | ${mainAPIs} | ${prereleaseAPIs} |\n`;
+                  prereleaseOnlySection += `| [${repo.name}](${repo.html_url}) | ${repo.repo_type} | ${repo.prerelease_count} | ${mainAPIs} | ${prereleaseAPIs} |\n`;
                 }
-                report += '\n';
+                prereleaseOnlySection += '\n';
               }
             }
             
-            // Repositories without releases
-            if (allRepositoriesWithoutReleases.length > 0) {
-              report += '## API Repositories Without Releases\n\n';
-              report += '| Repository | Type | API Definitions Found |\n';
-              report += '|------------|------|-----------------------|\n';
+            // Section 7: Repositories Without Releases (conditional - new position in Phase 3)
+            let reposWithoutReleasesSection = '';
+            if (filters.showReposWithoutReleases && allRepositoriesWithoutReleases.length > 0) {
+              reposWithoutReleasesSection += '## API Repositories Without Releases\n\n';
+              reposWithoutReleasesSection += '| Repository | Type | API Definitions Found |\n';
+              reposWithoutReleasesSection += '|------------|------|-----------------------|\n';
               
               for (const repo of allRepositoriesWithoutReleases.sort((a, b) => a.name.localeCompare(b.name))) {
                 const apiList = repo.api_definitions.map(api => `${api.name} v${api.version}`).join('<br>');
                 
-                report += `| [${repo.name}](${repo.html_url}) | ${repo.repo_type} | ${apiList} |\n`;
+                reposWithoutReleasesSection += `| [${repo.name}](${repo.html_url}) | ${repo.repo_type} | ${apiList} |\n`;
               }
-              report += '\n';
+              reposWithoutReleasesSection += '\n';
+            }
+            
+            // ============================================
+            // FINAL REPORT ASSEMBLY - Phase 3 Order
+            // ============================================
+            // Sections 1-3 are already in 'report' variable (Header, Executive Summary, Main Report)
+            // Now append the conditional sections in the new order:
+            
+            // Section 4: Recent Releases
+            if (recentReleasesSection) {
+              report += recentReleasesSection;
+            }
+            
+            // Section 5: Repository Details
+            if (repositoryDetailsSection) {
+              report += repositoryDetailsSection;
+            }
+            
+            // Section 6: Pre-release Only Repos
+            if (prereleaseOnlySection) {
+              report += prereleaseOnlySection;
+            }
+            
+            // Section 7: Repos Without Releases
+            if (reposWithoutReleasesSection) {
+              report += reposWithoutReleasesSection;
+            }
+            
+            // Section 8: Consistency Analysis (moved to end)
+            if (consistencySection) {
+              report += consistencySection;
             }
             
             // Save final report
