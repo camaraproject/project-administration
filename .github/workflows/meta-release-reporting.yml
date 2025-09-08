@@ -884,13 +884,9 @@ jobs:
             // Repositories with public releases (never includes pre-release-only repos)
             const reposWithPublicReleases = allRepositories.filter(repo => repo.has_public_releases);
             
-            // Repositories with ONLY pre-releases (no public releases)
-            const reposWithOnlyPreReleases = allRepositories.filter(repo => 
-              !repo.has_public_releases && repo.has_prereleases
-            );
-            
-            // Combine pre-release-only repos from both sources
-            const allPreReleaseOnlyRepos = [...reposWithOnlyPreReleases, ...allRepositoriesWithPrereleasesOnly];
+            // allRepositoriesWithPrereleasesOnly already contains all repos with only pre-releases
+            // No need to filter or combine - it's already complete from parallel processing
+            const allPreReleaseOnlyRepos = allRepositoriesWithPrereleasesOnly;
             
             // Deduplicate all repositories for total count
             const allRepoNames = new Set();
@@ -1012,11 +1008,8 @@ jobs:
               report += `**Filtered Repositories**: ${filteredRepositories.length} of ${allRepositories.length}\n`;
             }
             
+            // Basic metadata - details will be in Executive Summary
             report += `**API Repositories Analyzed**: ${totalApiRepos}\n`;
-            report += `**Repositories with Releases**: ${reposWithPublicReleases.length}\n`;
-            
-            report += `**Repositories with Pre-releases Only**: ${allPreReleaseOnlyRepos.length}\n`;
-            report += `**Repositories without Releases**: ${allRepositoriesWithoutReleases.length}\n`;
             
             if (allProcessingErrors.length > 0) {
               report += `**Processing Errors**: ${allProcessingErrors.length}\n`;
