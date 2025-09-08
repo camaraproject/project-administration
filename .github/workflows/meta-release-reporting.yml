@@ -64,38 +64,38 @@ on:
           - 'full-no-legacy'
         default: 'fall25'
       
-      include_prerelease:
-        description: 'Include pre-releases in the report'
-        required: false
-        type: boolean
-        default: true
-      
       recent_days_window:
-        description: 'Number of days for recent releases section (0 to exclude, max 365)'
+        description: 'Recent releases in last X days (0 to exclude)'
         required: false
         type: number
         default: 30
       
       show_repository_details:
-        description: 'Include detailed repository analysis section'
+        description: 'Detailed repository analysis'
         required: false
         type: boolean
         default: false
       
       show_prerelease_only_repos:
-        description: 'Show repositories with only pre-releases (no public releases)'
+        description: 'Repositories with only pre-releases'
         required: false
         type: boolean
         default: false
       
       show_repos_without_releases:
-        description: 'Show repositories without any releases'
+        description: 'Repositories without any releases'
         required: false
         type: boolean
         default: false
       
       include_consistency_analysis:
-        description: 'Include consistency analysis (checks for historic release issues)'
+        description: 'Consistency analysis (mainly historic)'
+        required: false
+        type: boolean
+        default: false
+      
+      exclude_prereleases:
+        description: 'Exclude pre-releases from repository details and consistency analysis'
         required: false
         type: boolean
         default: false
@@ -248,7 +248,7 @@ jobs:
             const groupId = ${{ matrix.group.id }};
             const repositories = ${{ toJson(matrix.group.repositories) }};
             const reportType = '${{ github.event.inputs.report_type }}' || 'full';
-            const includePrerelease = '${{ github.event.inputs.include_prerelease }}' === 'true';
+            const includePrerelease = '${{ github.event.inputs.exclude_prereleases }}' !== 'true';
             const includeConsistencyAnalysis = '${{ github.event.inputs.include_consistency_analysis }}' === 'true';
             let recentDaysWindow = parseInt('${{ github.event.inputs.recent_days_window }}') || 30;
             const showRepositoryDetails = '${{ github.event.inputs.show_repository_details }}' === 'true';
@@ -765,7 +765,7 @@ jobs:
       consistency_issues: ${{ steps.combine-results.outputs.consistency_issues }}
       unique_apis: ${{ steps.combine-results.outputs.unique_apis }}
       report_type: ${{ steps.combine-results.outputs.report_type }}
-      include_prerelease: ${{ steps.combine-results.outputs.include_prerelease }}
+      exclude_prereleases: ${{ steps.combine-results.outputs.exclude_prereleases }}
     steps:
       - name: Download All Group Results
         uses: actions/download-artifact@v4
@@ -1808,7 +1808,7 @@ jobs:
             core.setOutput('consistency_issues', consistencyIssues.length);
             core.setOutput('unique_apis', totals.apis.size);
             core.setOutput('report_type', filters.reportType);
-            core.setOutput('include_prerelease', filters.includePrerelease);
+            core.setOutput('exclude_prereleases', !filters.includePrerelease);
             
             console.log(`✅ Parallel API releases report saved as ${filename}`);
             console.log('📊 Final Statistics:');
@@ -1911,7 +1911,7 @@ jobs:
             echo "## ⚙️ Analysis Configuration" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
             echo "- **Report Type**: ${{ needs.combine-api-analysis.outputs.report_type }}" >> $GITHUB_STEP_SUMMARY
-            echo "- **Include Pre-releases**: ${{ needs.combine-api-analysis.outputs.include_prerelease == 'true' && '✅ Enabled' || '❌ Disabled' }}" >> $GITHUB_STEP_SUMMARY
+            echo "- **Exclude Pre-releases**: ${{ needs.combine-api-analysis.outputs.exclude_prereleases == 'true' && '✅ Yes (from details/consistency)' || '❌ No (included everywhere)' }}" >> $GITHUB_STEP_SUMMARY
             echo "- **Meta-release Analysis**: ✅ Fall24, Spring25, Fall25 categorization" >> $GITHUB_STEP_SUMMARY
             echo "- **API Definitions**: ✅ Extracted from releases and main branch" >> $GITHUB_STEP_SUMMARY
             echo "- **Consistency Checks**: ✅ Main branch vs release comparison" >> $GITHUB_STEP_SUMMARY
