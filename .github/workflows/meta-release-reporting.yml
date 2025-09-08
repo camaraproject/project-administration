@@ -250,7 +250,10 @@ jobs:
             const reportType = '${{ github.event.inputs.report_type }}' || 'full';
             const includePrerelease = '${{ github.event.inputs.exclude_prereleases }}' !== 'true';
             const includeConsistencyAnalysis = '${{ github.event.inputs.include_consistency_analysis }}' === 'true';
-            let recentDaysWindow = parseInt('${{ github.event.inputs.recent_days_window }}') || 30;
+            let recentDaysWindow = parseInt('${{ github.event.inputs.recent_days_window }}');
+            if (isNaN(recentDaysWindow)) {
+              recentDaysWindow = 30;
+            }
             const showRepositoryDetails = '${{ github.event.inputs.show_repository_details }}' === 'true';
             const showPrereleaseOnlyRepos = '${{ github.event.inputs.show_prerelease_only_repos }}' === 'true';
             const showReposWithoutReleases = '${{ github.event.inputs.show_repos_without_releases }}' === 'true';
