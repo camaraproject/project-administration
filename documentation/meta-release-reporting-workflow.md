@@ -53,6 +53,14 @@ show_repository_details:
   description: 'Include detailed repository analysis'
   default: false
 
+show_prerelease_only_repos:
+  description: 'Show repositories with only pre-releases'
+  default: false
+
+show_repos_without_releases:
+  description: 'Show repositories without any releases'
+  default: false
+
 include_consistency_analysis:
   description: 'Include consistency analysis'
   default: false
@@ -82,11 +90,13 @@ For meta-release reports (Fall25, Spring25, Fall24), displays:
 ### 4. Optional Sections
 - **Recent Releases**: Releases within specified days window
 - **Repository Details**: Detailed per-repository analysis
+- **Pre-release Only Repos**: Repositories with only pre-releases (no public releases)
+- **Repos Without Releases**: Repositories without any releases
 - **Consistency Analysis**: Version and release consistency checks
 
 ## JSON Export Format
 
-The workflow exports structured JSON for visualization:
+The workflow exports structured JSON for meta-release reports (Fall25, Spring25, Fall24) to enable visualization:
 
 ```json
 {
@@ -126,8 +136,10 @@ The workflow exports structured JSON for visualization:
 
 The JSON export can be visualized using the CAMARA API Status Viewer:
 1. Download the JSON artifact from the workflow run
-2. Open the viewer (will be at https://camaraproject.github.io/release-management/api-status-viewer.html)
+2. Open the viewer at https://camaraproject.github.io/api-status-viewer (coming soon)
 3. Load the JSON file to see an interactive table with sorting and CSV export
+
+Note: JSON export is currently only available for meta-release reports (Fall25, Spring25, Fall24), not for Full reports.
 
 ## Configuration
 

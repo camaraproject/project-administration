@@ -1,23 +1,25 @@
 # =========================================================================================
-# CAMARA Project - API Releases Report Workflow
+# CAMARA Project - Meta-Release Reporting Workflow v2
 #
-# This GitHub Actions workflow analyzes API releases across CAMARA repositories with
-# parallel processing, meta-release categorization, and consistency validation.
+# This enhanced GitHub Actions workflow provides comprehensive API release tracking
+# aligned with CAMARA meta-release milestones (Fall25, Spring25, Fall24) with
+# parallel processing, consistency validation, and JSON export capabilities.
 #
 # CHANGELOG:
-# - 2025-07-26: Initial version for r1.1 release
+# - 2025-09-08: v2 - Meta-release support, enhanced reporting, JSON export
+# - 2025-07-26: v1 - Initial version for r1.1 release
 #
 # USAGE:
 # - Manually triggered via workflow_dispatch
-# - Options: include pre-releases, include legacy releases
-# - Uses parallel processing for 70% faster execution (3-5 minutes)
+# - Default: Fall25 meta-release report with pre-releases included
+# - Uses parallel processing for fast execution (3-5 minutes)
 # - Requires CAMARA_REPORT_TOKEN for cross-repository access
 #
 # DOCUMENTATION:
-# see https://github.com/camaraproject/project-administration/blob/main/documentation/project-report-generation-workflows.md
+# see https://github.com/camaraproject/project-administration/blob/main/documentation/meta-release-reporting-workflow.md
 # =========================================================================================
 
-name: CAMARA API Releases
+name: Meta-Release Reporting v2
 
 env:
   # =========================================================================================
@@ -68,12 +70,6 @@ on:
         type: boolean
         default: true
       
-      include_consistency_analysis:
-        description: 'Include consistency analysis (checks for historic release issues)'
-        required: false
-        type: boolean
-        default: false
-      
       recent_days_window:
         description: 'Number of days for recent releases section (0 to exclude, max 365)'
         required: false
@@ -94,6 +90,12 @@ on:
       
       show_repos_without_releases:
         description: 'Show repositories without any releases'
+        required: false
+        type: boolean
+        default: false
+      
+      include_consistency_analysis:
+        description: 'Include consistency analysis (checks for historic release issues)'
         required: false
         type: boolean
         default: false
@@ -278,21 +280,10 @@ jobs:
             // UTILITY FUNCTIONS
             // ============================================
             
-            // Common utility functions used throughout the workflow
+            // Utility functions used in analyze-api-repositories job
             const utils = {
               // Delay execution for rate limiting
               delay: (ms) => new Promise(resolve => setTimeout(resolve, ms)),
-              
-              // Check if a date falls within a window
-              isInDateWindow: (date, startStr, endStr) => {
-                const d = new Date(date);
-                const start = new Date(startStr);
-                const end = new Date(endStr);
-                return d >= start && d <= end;
-              },
-              
-              // Format date to YYYY-MM-DD
-              formatDate: (date) => new Date(date).toISOString().split('T')[0],
               
               // Check if date is in Fall24 window
               isFall24: (date) => {
@@ -310,31 +301,6 @@ jobs:
               isFall25Public: (date) => {
                 const d = new Date(date);
                 return d.getFullYear() === 2025 && (d.getMonth() === 7 || d.getMonth() === 8);
-              },
-              
-              // Validate kebab-case API names
-              isValidApiName: (name) => {
-                return /^[a-z]+(-[a-z]+)*$/.test(name);
-              },
-              
-              // Strip pre-release suffix (e.g., "1.0.0-rc.1" → "1.0.0")
-              getBaseVersion: (version) => {
-                return version.replace(/-.*$/, '');
-              },
-              
-              // Determine if API is initial (0.x) or stable (x.y where x≥1)
-              getApiMaturity: (version) => {
-                return version.startsWith('0.') ? 'initial' : 'stable';
-              },
-              
-              // Helper for consistent Markdown table generation
-              generateMarkdownTable: (headers, rows) => {
-                let table = `| ${headers.join(' | ')} |\n`;
-                table += `|${headers.map(() => '---').join('|')}|\n`;
-                rows.forEach(row => {
-                  table += `| ${row.join(' | ')} |\n`;
-                });
-                return table;
               }
             };
             
@@ -800,7 +766,6 @@ jobs:
       unique_apis: ${{ steps.combine-results.outputs.unique_apis }}
       report_type: ${{ steps.combine-results.outputs.report_type }}
       include_prerelease: ${{ steps.combine-results.outputs.include_prerelease }}
-      include_dev_status: ${{ steps.combine-results.outputs.include_dev_status }}
     steps:
       - name: Download All Group Results
         uses: actions/download-artifact@v4
@@ -820,6 +785,37 @@ jobs:
             // Parse API equivalences from environment variable
             const API_EQUIVALENCES = JSON.parse(process.env.API_EQUIVALENCES || '[]');
             console.log('📊 API Equivalences loaded:', API_EQUIVALENCES);
+            
+            // Utility functions used in combine-api-analysis job
+            const utils = {
+              // Helper for consistent Markdown table generation
+              generateMarkdownTable: (headers, rows) => {
+                let table = `| ${headers.join(' | ')} |\n`;
+                table += `|${headers.map(() => '---').join('|')}|\n`;
+                rows.forEach(row => {
+                  table += `| ${row.join(' | ')} |\n`;
+                });
+                return table;
+              },
+              
+              // Validate kebab-case API names
+              isValidApiName: (name) => {
+                return /^[a-z]+(-[a-z]+)*$/.test(name);
+              },
+              
+              // Strip pre-release suffix (e.g., "1.0.0-rc.1" → "1.0.0")
+              getBaseVersion: (version) => {
+                return version.replace(/-.*$/, '');
+              },
+              
+              // Determine if API is initial (0.x) or stable (x.y where x≥1)
+              getApiMaturity: (version) => {
+                return version.startsWith('0.') ? 'initial' : 'stable';
+              },
+              
+              // Format date to YYYY-MM-DD
+              formatDate: (date) => new Date(date).toISOString().split('T')[0]
+            };
             
             // Helper function to count unique APIs considering name equivalences
             function countUniqueAPIs(apiSet) {
@@ -1048,7 +1044,7 @@ jobs:
             
             // Show applied filters
             report += `**Filters Applied**: `;
-            report += `Include Pre-releases: ${filters.includePrerelease ? 'Yes' : 'No'}, `;
+            report += `Include Pre-releases: ${filters.includePrerelease ? 'Yes' : 'No'}\n\n`;
             
             // Executive Summary Table
             report += '## Executive Summary\n\n';
@@ -1117,8 +1113,7 @@ jobs:
               });
             });
             
-            const legacyIncluded = filters.reportType !== 'full-no-legacy';
-            report += `| **Total Releases Analyzed** | ${totalReleasesAnalyzed} | ${filters.includePrerelease ? 'Including' : 'Excluding'} pre-releases, ${legacyIncluded ? 'including' : 'excluding'} legacy |\n`;
+            report += `| **Total Releases Analyzed** | ${totalReleasesAnalyzed} | ${filters.includePrerelease ? 'Including' : 'Excluding'} pre-releases, ${filters.reportType !== 'full-no-legacy' ? 'including' : 'excluding'} legacy |\n`;
             
             if (allProcessingErrors.length > 0) {
               report += `| **Processing Errors** | ${allProcessingErrors.length} | Repositories with analysis errors |\n`;
@@ -1532,7 +1527,9 @@ jobs:
             
             if (filters.includeConsistencyAnalysis) {
               consistencySection += '## Consistency Analysis\n\n';
-              if (filters.reportType !== 'full') {
+              if (filters.reportType === 'full-no-legacy') {
+                consistencySection += '*Note: This analysis excludes legacy releases before Fall24*\n\n';
+              } else if (filters.reportType !== 'full') {
                 consistencySection += `*Note: This analysis is filtered to ${filters.reportType} repositories only*\n\n`;
               } else if (!filters.includePrerelease) {
                 consistencySection += '*Note: This analysis reflects applied filters - pre-releases are excluded*\n\n';
@@ -1631,7 +1628,9 @@ jobs:
             // Add filter note if not showing everything
             if (filters.reportType !== 'full' || !filters.includePrerelease) {
               repositoryDetailsSection += '*Note: ';
-              if (filters.reportType !== 'full') {
+              if (filters.reportType === 'full-no-legacy') {
+                repositoryDetailsSection += 'Legacy releases before Fall24 excluded';
+              } else if (filters.reportType !== 'full') {
                 repositoryDetailsSection += `Showing ${filters.reportType} repositories`;
               }
               if (!filters.includePrerelease) {
@@ -1816,7 +1815,7 @@ jobs:
             core.setOutput('total_api_repos', totalApiRepos);
             core.setOutput('repos_with_releases', allRepositories.length);
             core.setOutput('repos_without_releases', allRepositoriesWithoutReleases.length);
-            core.setOutput('repos_prerelease_only', allRepositoriesWithPrereleasesOnly.length);
+            core.setOutput('repos_prerelease_only', allPreReleaseOnlyRepos.length);
             core.setOutput('total_releases', totalReleasesAnalyzed);
             core.setOutput('recent_releases', recentReleases.length);
             core.setOutput('consistency_issues', consistencyIssues.length);
@@ -1849,20 +1848,26 @@ jobs:
             
             console.log('🎉 Parallel CAMARA API releases report generation completed!');
 
-      - name: Upload Final API Releases Report
+      - name: Upload Markdown Report
         uses: actions/upload-artifact@v4
         with:
-          name: camara-api-releases-${{ github.run_number }}
-          path: |
-            *.md
-            api-status-*.json
+          name: camara-api-releases-report-${{ github.run_number }}
+          path: '*.md'
+          retention-days: 90
+      
+      - name: Upload JSON Data
+        if: ${{ contains('fall25,spring25,fall24', github.event.inputs.report_type) }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: camara-api-releases-json-${{ github.run_number }}
+          path: 'api-status-*.json'
           retention-days: 90
 
   # ============================================
   # JOB 4: WORKFLOW SUMMARY
   # Purpose: Generate final execution summary for GitHub Actions UI
   # ============================================
-  final-summary:
+  workflow-summary:
     if: always()
     needs: [generate-report, combine-api-analysis]
     runs-on: ubuntu-latest
@@ -1877,44 +1882,60 @@ jobs:
           echo "" >> $GITHUB_STEP_SUMMARY
           
           if [ "${{ needs.combine-api-analysis.result }}" = "success" ]; then
-            echo "## 📊 API Release Statistics" >> $GITHUB_STEP_SUMMARY
+            echo "## 📥 Download Artifacts" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
-            echo "| Metric | Count |" >> $GITHUB_STEP_SUMMARY
-            echo "|--------|-------|" >> $GITHUB_STEP_SUMMARY
-            echo "| **API Repositories Analyzed** | ${{ needs.combine-api-analysis.outputs.total_api_repos }} |" >> $GITHUB_STEP_SUMMARY
-            echo "| **Repositories with Releases** | ${{ needs.combine-api-analysis.outputs.repos_with_releases }} |" >> $GITHUB_STEP_SUMMARY
-            echo "| **Repositories with Pre-releases Only** | ${{ needs.combine-api-analysis.outputs.repos_prerelease_only }} |" >> $GITHUB_STEP_SUMMARY
-            echo "| **Repositories without Releases** | ${{ needs.combine-api-analysis.outputs.repos_without_releases }} |" >> $GITHUB_STEP_SUMMARY
-            echo "| **Total Releases Analyzed** | ${{ needs.combine-api-analysis.outputs.total_releases }} |" >> $GITHUB_STEP_SUMMARY
-            echo "| **Recent Releases (${{ github.event.inputs.recent_days_window || '30' }} days)** | ${{ needs.combine-api-analysis.outputs.recent_releases }} |" >> $GITHUB_STEP_SUMMARY
-            echo "| **Unique APIs Found** | ${{ needs.combine-api-analysis.outputs.unique_apis }} |" >> $GITHUB_STEP_SUMMARY
-            echo "| **Consistency Issues** | ${{ needs.combine-api-analysis.outputs.consistency_issues }} |" >> $GITHUB_STEP_SUMMARY
+            
+            # Check if JSON is available (only for meta-release reports)
+            if [[ "${{ github.event.inputs.report_type }}" == "fall25" ]] || \
+               [[ "${{ github.event.inputs.report_type }}" == "spring25" ]] || \
+               [[ "${{ github.event.inputs.report_type }}" == "fall24" ]]; then
+              echo "### Available Artifacts:" >> $GITHUB_STEP_SUMMARY
+              echo "" >> $GITHUB_STEP_SUMMARY
+              echo "| Artifact | Description | Direct Link |" >> $GITHUB_STEP_SUMMARY
+              echo "|----------|-------------|------------|" >> $GITHUB_STEP_SUMMARY
+              echo "| **Markdown Report** | Complete detailed analysis report | [📄 Download Report](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}#artifacts) |" >> $GITHUB_STEP_SUMMARY
+              echo "| **JSON Data** | Machine-readable API status data for visualization | [📊 Download JSON](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}#artifacts) |" >> $GITHUB_STEP_SUMMARY
+              echo "" >> $GITHUB_STEP_SUMMARY
+              echo "**Artifact Names:**" >> $GITHUB_STEP_SUMMARY
+              echo "- Report: \`camara-api-releases-report-${{ github.run_number }}\`" >> $GITHUB_STEP_SUMMARY
+              echo "- JSON: \`camara-api-releases-json-${{ github.run_number }}\`" >> $GITHUB_STEP_SUMMARY
+              echo "" >> $GITHUB_STEP_SUMMARY
+              echo "### 🔗 Viewer Integration" >> $GITHUB_STEP_SUMMARY
+              echo "" >> $GITHUB_STEP_SUMMARY
+              echo "To use the JSON data in the API Status Viewer:" >> $GITHUB_STEP_SUMMARY
+              echo "1. Download the JSON artifact (\`camara-api-releases-json-${{ github.run_number }}\`)" >> $GITHUB_STEP_SUMMARY
+              echo "2. Open the [API Status Viewer](https://camaraproject.github.io/api-status-viewer/)" >> $GITHUB_STEP_SUMMARY
+              echo "3. Upload or paste the JSON file content" >> $GITHUB_STEP_SUMMARY
+              echo "" >> $GITHUB_STEP_SUMMARY
+              echo "**Direct Viewer Link:** *(will come soon)*" >> $GITHUB_STEP_SUMMARY
+            else
+              echo "### Available Artifact:" >> $GITHUB_STEP_SUMMARY
+              echo "" >> $GITHUB_STEP_SUMMARY
+              echo "| Artifact | Description | Direct Link |" >> $GITHUB_STEP_SUMMARY
+              echo "|----------|-------------|------------|" >> $GITHUB_STEP_SUMMARY
+              echo "| **Markdown Report** | Complete detailed analysis report | [📄 Download Report](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}#artifacts) |" >> $GITHUB_STEP_SUMMARY
+              echo "" >> $GITHUB_STEP_SUMMARY
+              echo "**Artifact Name:** \`camara-api-releases-report-${{ github.run_number }}\`" >> $GITHUB_STEP_SUMMARY
+              echo "" >> $GITHUB_STEP_SUMMARY
+              echo "*Note: JSON export is only available for meta-release reports (Fall25, Spring25, Fall24)*" >> $GITHUB_STEP_SUMMARY
+            fi
             echo "" >> $GITHUB_STEP_SUMMARY
             
             echo "## ⚙️ Analysis Configuration" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
-            
             echo "- **Report Type**: ${{ needs.combine-api-analysis.outputs.report_type }}" >> $GITHUB_STEP_SUMMARY
             echo "- **Include Pre-releases**: ${{ needs.combine-api-analysis.outputs.include_prerelease == 'true' && '✅ Enabled' || '❌ Disabled' }}" >> $GITHUB_STEP_SUMMARY
-            echo "- **Include Dev Status**: ${{ needs.combine-api-analysis.outputs.include_dev_status == 'true' && '✅ Enabled' || '❌ Disabled' }}" >> $GITHUB_STEP_SUMMARY
-            
             echo "- **Meta-release Analysis**: ✅ Fall24, Spring25, Fall25 categorization" >> $GITHUB_STEP_SUMMARY
             echo "- **API Definitions**: ✅ Extracted from releases and main branch" >> $GITHUB_STEP_SUMMARY
             echo "- **Consistency Checks**: ✅ Main branch vs release comparison" >> $GITHUB_STEP_SUMMARY
-            
             echo "" >> $GITHUB_STEP_SUMMARY
+            
             echo "## ⚡ Performance" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
             echo "- **Processing Time**: ~3-5 minutes (vs 15-20 minutes sequential)" >> $GITHUB_STEP_SUMMARY
             echo "- **Parallel Groups**: ${{ needs.generate-report.outputs.total_groups }}" >> $GITHUB_STEP_SUMMARY
             echo "- **Repositories per Group**: 8" >> $GITHUB_STEP_SUMMARY
             echo "- **Max Parallel**: 6 groups simultaneously" >> $GITHUB_STEP_SUMMARY
-            
-            echo "" >> $GITHUB_STEP_SUMMARY
-            echo "## 📥 Download Report" >> $GITHUB_STEP_SUMMARY
-            echo "" >> $GITHUB_STEP_SUMMARY
-            echo "The complete detailed report is available in the **Artifacts** section below." >> $GITHUB_STEP_SUMMARY
-            echo "Look for: \`camara-api-releases-${{ github.run_number }}\`" >> $GITHUB_STEP_SUMMARY
             
           else
             echo "## ❌ Workflow Failed" >> $GITHUB_STEP_SUMMARY
