@@ -1203,7 +1203,11 @@ jobs:
             report += utils.generateMarkdownTable(metaReleaseHeaders, metaReleaseRows);
             
             report += '\n';
-            report += '*Note: Legacy releases and pre-releases are excluded from API counts, except for Fall25*\n';
+            if (filters.reportType === 'full-no-legacy') {
+              report += '*Note: Legacy releases before Fall24 are excluded. Pre-releases are excluded from API counts, except for Fall25*\n';
+            } else {
+              report += '*Note: Legacy releases and pre-releases are excluded from API counts, except for Fall25*\n';
+            }
             if (allProcessingErrors.length > 0) {
               report += `*⚠️ Warning: ${allProcessingErrors.length} repositories could not be analyzed - numbers may be incomplete*\n`;
             }
