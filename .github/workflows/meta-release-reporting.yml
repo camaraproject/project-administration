@@ -1517,12 +1517,20 @@ jobs:
             
             if (filters.includeConsistencyAnalysis) {
               consistencySection += '## Consistency Analysis\n\n';
+              
+              // Build note based on active filters
+              let notes = [];
               if (filters.reportType === 'full-no-legacy') {
-                consistencySection += '*Note: This analysis excludes legacy releases before Fall24*\n\n';
+                notes.push('This analysis excludes legacy releases before Fall24');
               } else if (filters.reportType !== 'full') {
-                consistencySection += `*Note: This analysis is filtered to ${filters.reportType} repositories only*\n\n`;
-              } else if (!filters.includePrerelease) {
-                consistencySection += '*Note: This analysis reflects applied filters - pre-releases are excluded*\n\n';
+                notes.push(`This analysis is filtered to ${filters.reportType} repositories only`);
+              }
+              if (!filters.includePrerelease) {
+                notes.push('pre-releases are excluded');
+              }
+              
+              if (notes.length > 0) {
+                consistencySection += `*Note: ${notes.join(' and ')}*\n\n`;
               }
             
             // Use filtered repositories based on report type
