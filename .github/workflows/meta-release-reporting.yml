@@ -1,18 +1,18 @@
 # =========================================================================================
 # CAMARA Project - Meta-Release Reporting Workflow v2
 #
-# This enhanced GitHub Actions workflow provides comprehensive API release tracking
-# aligned with CAMARA meta-release milestones (Fall25, Spring25, Fall24) with
-# parallel processing, consistency validation, and JSON export capabilities.
+# GitHub Actions workflow for API release tracking aligned with CAMARA meta-release 
+# milestones (Fall25, Spring25, Fall24) with parallel processing, consistency 
+# validation, and JSON export.
 #
 # CHANGELOG:
-# - 2025-09-08: v2 - Meta-release support, enhanced reporting, JSON export
+# - 2025-09-08: v2 - Meta-release support, additional reporting sections, JSON export
 # - 2025-07-26: v1 - Initial version for r1.1 release
 #
 # USAGE:
 # - Manually triggered via workflow_dispatch
 # - Default: Fall25 meta-release report with pre-releases included
-# - Uses parallel processing for fast execution (3-5 minutes)
+# - Uses parallel processing (execution time: ~2 minutes)
 # - Requires CAMARA_REPORT_TOKEN for cross-repository access
 #
 # DOCUMENTATION:

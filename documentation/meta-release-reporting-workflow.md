@@ -4,7 +4,7 @@
 
 ## Overview
 
-The `meta-release-reporting.yml` workflow is a comprehensive GitHub Actions workflow for tracking and reporting on CAMARA API releases across meta-release cycles (Fall24, Spring25, Fall25, etc.). This v2 workflow replaces the original `project-report-camara-api-releases.yml` with significant enhancements.
+The `meta-release-reporting.yml` workflow is a GitHub Actions workflow for tracking and reporting on CAMARA API releases across meta-release cycles (Fall24, Spring25, Fall25, etc.). This v2 workflow replaces the original `project-report-camara-api-releases.yml`.
 
 ## Key Features
 
@@ -25,7 +25,7 @@ The `meta-release-reporting.yml` workflow is a comprehensive GitHub Actions work
 ### Data Export
 - Generates structured JSON for external visualization
 - Compatible with the CAMARA API Status Viewer
-- Includes comprehensive metadata and versioning
+- Includes metadata and versioning
 - Enables trend analysis and reporting dashboards
 
 ## Workflow Inputs
@@ -75,7 +75,7 @@ Always displayed, showing:
 - Processing errors if any
 
 ### 2. Meta-Release Summary
-For full reports, shows comprehensive statistics by meta-release
+For full reports, shows statistics by meta-release
 
 ### 3. API Version Release Status
 For meta-release reports (Fall25, Spring25, Fall24), displays:
