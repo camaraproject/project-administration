@@ -481,10 +481,24 @@ jobs:
                     
                     const content = Buffer.from(fileContent.data.content, 'base64').toString('utf8');
                     
-                    // Extract version using regex for YAML format
-                    const versionMatch = content.match(/^\s*version:\s*['"]?([^'"\s]+)['"]?$/m);
+                    // Extract version and strip 'v' prefix if present (Fix 3)
+                    const versionMatch = content.match(/^\s*version:\s*['"]?v?([^'"\s]+)['"]?$/m);
                     const version = versionMatch ? versionMatch[1] : 'Unknown';
-                    const apiName = file.name.replace(/\.(yaml|yml)$/, '');
+                    
+                    // Extract API name from server URL
+                    const serverMatch = content.match(/^\s*servers:\s*\n\s*-\s*url:\s*["']?\{[^}]+\}\/([^\/]+)/m);
+                    const serverApiName = serverMatch ? serverMatch[1] : null;
+                    
+                    // Determine final API name and track mismatches
+                    const filenameApiName = file.name.replace(/\.(yaml|yml)$/, '');
+                    let apiName = filenameApiName;
+                    let hasNameMismatch = false;
+                    
+                    if (serverApiName && serverApiName !== filenameApiName) {
+                      console.log(`      ⚠️ API name mismatch: filename='${filenameApiName}' vs server='${serverApiName}' - using server URL`);
+                      apiName = serverApiName;
+                      hasNameMismatch = true;
+                    }
                     
                     console.log(`      ✅ ${apiName}: v${version}`);
                     
@@ -492,7 +506,10 @@ jobs:
                       name: apiName,
                       version: version,
                       filename: file.name,
-                      path: file.path
+                      path: file.path,
+                      hasNameMismatch: hasNameMismatch,
+                      filenameApiName: hasNameMismatch ? filenameApiName : null,
+                      serverApiName: hasNameMismatch ? serverApiName : null
                     });
                   } catch (error) {
                     console.log(`      ⚠️ Could not read ${file.name}: ${error.message}`);
@@ -1248,14 +1265,40 @@ jobs:
                 // Sort releases by date (newest first)
                 targetReleases.sort((a, b) => new Date(b.published_at) - new Date(a.published_at));
                 
-                // Find the latest public release and latest pre-release
+                // Determine which releases to use for API collection:
+                // - If public release exists: use only the public release
+                // - If only pre-releases exist: use only the highest r.Y pre-release
                 const latestPublic = targetReleases.find(r => !r.prerelease);
-                const latestPreRelease = targetReleases.find(r => r.prerelease);
-                const latestRelease = targetReleases[0];
                 
-                // Process APIs from this repository
+                // Find the highest pre-release (by r.Y value) if no public release
+                let highestPreRelease = null;
+                if (!latestPublic) {
+                  const preReleases = targetReleases.filter(r => r.prerelease);
+                  if (preReleases.length > 0) {
+                    // Sort by r.Y value (extract Y from rX.Y tag)
+                    preReleases.sort((a, b) => {
+                      const aMatch = a.tag_name.match(/^r\d+\.(\d+)/);
+                      const bMatch = b.tag_name.match(/^r\d+\.(\d+)/);
+                      const aY = aMatch ? parseInt(aMatch[1]) : 0;
+                      const bY = bMatch ? parseInt(bMatch[1]) : 0;
+                      return bY - aY; // Descending order
+                    });
+                    highestPreRelease = preReleases[0];
+                  }
+                }
+                
+                // Determine which release(s) to use for API collection
+                const releasesToProcess = latestPublic 
+                  ? [latestPublic]  // Only the public release
+                  : (highestPreRelease ? [highestPreRelease] : []);  // Only the highest pre-release
+                
+                // For backwards compatibility, keep these variables
+                const latestPreRelease = highestPreRelease;
+                const latestRelease = latestPublic || highestPreRelease;
+                
+                // Process APIs from selected releases only
                 const seenAPIs = new Set();
-                targetReleases.forEach(release => {
+                releasesToProcess.forEach(release => {
                   release.api_definitions.forEach(api => {
                     // Skip non-kebab-case API names (they're likely old/incorrect naming)
                     if (!utils.isValidApiName(api.name)) return;
@@ -1541,6 +1584,32 @@ jobs:
             const reposToAnalyze = filteredRepositories;
             
             for (const repo of reposToAnalyze) {
+              // Check for API name mismatches in all releases
+              repo.releases.forEach(release => {
+                release.api_definitions.forEach(api => {
+                  if (api.hasNameMismatch) {
+                    consistencyIssues.push({
+                      repo: repo.name,
+                      type: 'API Name Mismatch',
+                      description: `${release.tag_name}: filename '${api.filenameApiName}' ≠ server URL '${api.serverApiName}'`
+                    });
+                  }
+                });
+              });
+              
+              // Also check main branch APIs for name mismatches
+              if (repo.main_branch_apis) {
+                repo.main_branch_apis.forEach(api => {
+                  if (api.hasNameMismatch) {
+                    consistencyIssues.push({
+                      repo: repo.name,
+                      type: 'API Name Mismatch',
+                      description: `main branch: filename '${api.filenameApiName}' ≠ server URL '${api.serverApiName}'`
+                    });
+                  }
+                });
+              }
+              
               // Filter releases for consistency analysis based on report type
               const filteredReleases = repo.releases.filter(release => {
                 const cycle = release.meta_release.cycle;
