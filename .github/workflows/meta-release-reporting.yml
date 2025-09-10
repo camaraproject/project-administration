@@ -485,8 +485,8 @@ jobs:
                     const versionMatch = content.match(/^\s*version:\s*['"]?v?([^'"\s]+)['"]?$/m);
                     const version = versionMatch ? versionMatch[1] : 'Unknown';
                     
-                    // Extract API name from server URL
-                    const serverMatch = content.match(/^\s*servers:\s*\n\s*-\s*url:\s*["']?\{[^}]+\}\/([^\/]+)/m);
+                    // Extract API name from server URL (only for direct path format)
+                    const serverMatch = content.match(/^\s*servers:\s*\n\s*-\s*url:\s*["']?\{[^}]+\}\/([a-z0-9-]+)/m);
                     const serverApiName = serverMatch ? serverMatch[1] : null;
                     
                     // Determine final API name and track mismatches
@@ -494,7 +494,8 @@ jobs:
                     let apiName = filenameApiName;
                     let hasNameMismatch = false;
                     
-                    if (serverApiName && serverApiName !== filenameApiName) {
+                    // Only use server URL if we have a clear match (ignore complex formats like {basePath})
+                    if (serverApiName && serverApiName !== filenameApiName && !serverApiName.includes('{')) {
                       console.log(`      ⚠️ API name mismatch: filename='${filenameApiName}' vs server='${serverApiName}' - using server URL`);
                       apiName = serverApiName;
                       hasNameMismatch = true;
