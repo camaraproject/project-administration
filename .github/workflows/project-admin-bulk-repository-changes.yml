@@ -7,6 +7,7 @@
 # CHANGELOG:
 # - 2025-07-26: Initial version as is for r1.1 release of camaraproject/project-administration
 # - 2025-07-28: Removed disable-wiki, add-changelog-codeowners, update-api-readiness-checklist; Added centralize-linting-workflows
+# - 2025-10-15: Removed centralize-linting-workflows (roll-out completed)
 #
 # USAGE:
 # - Manually triggered via workflow_dispatch
@@ -35,8 +36,7 @@ on:
           - 'add-changelog-file'
           - 'update-swagger-links'
           - 'update-swagger-links-releases'
-          - 'centralize-linting-workflows'
-        default: 'centralize-linting-workflows'
+        default: 'add-changelog-file'
       
       dry_run:
         description: 'Run in dry-run mode (no actual changes)'
@@ -244,17 +244,6 @@ jobs:
             let results = [];
             let resultTypeCounts = {};
             
-            // Special counters for centralize-linting operation
-            let lintingStats = {
-              newLintingSetup: 0,
-              migratedFromLocal: 0,
-              alreadyCentralized: 0,
-              totalLegacyArtifactsRemoved: 0,
-              workflowFiles: { megalinter: 0, spectral: 0 },
-              configFiles: { spectral: 0, yamllint: 0, gherkin: 0 },
-              lintFunctionDirs: 0
-            };
-            
             // Read result files from artifacts
             try {
               const artifactsDir = 'artifacts';
@@ -284,33 +273,7 @@ jobs:
                       if (resultData.pr_number && resultData.pr_url) {
                         detailsWithLinks += ` [PR #${resultData.pr_number}](${resultData.pr_url})`;
                       }
-                      
-                      // Process linting-specific statistics
-                      if (operation === 'centralize-linting-workflows') {
-                        const opStatus = resultData.operation_status || '';
-                        if (opStatus === 'already-centralized' || opStatus === 'no-change') {
-                          lintingStats.alreadyCentralized++;
-                        } else if (opStatus === 'add-completed' || (opStatus === 'would-add' && !resultData.had_prior_linting)) {
-                          lintingStats.newLintingSetup++;
-                        } else if (opStatus === 'migrate-completed' || (opStatus === 'would-migrate' && resultData.had_prior_linting)) {
-                          lintingStats.migratedFromLocal++;
-                        }
-                        
-                        // Count legacy artifacts
-                        if (resultData.legacy_artifacts && Array.isArray(resultData.legacy_artifacts)) {
-                          lintingStats.totalLegacyArtifactsRemoved += resultData.legacy_artifacts.length;
-                          
-                          resultData.legacy_artifacts.forEach(artifact => {
-                            if (artifact.includes('megalinter.yml')) lintingStats.workflowFiles.megalinter++;
-                            if (artifact.includes('spectral_oas_lint.yml')) lintingStats.workflowFiles.spectral++;
-                            if (artifact.includes('.spectral.yml')) lintingStats.configFiles.spectral++;
-                            if (artifact.includes('.yamllint.yaml')) lintingStats.configFiles.yamllint++;
-                            if (artifact.includes('.gherkin-lintrc')) lintingStats.configFiles.gherkin++;
-                            if (artifact === 'lint_function') lintingStats.lintFunctionDirs++;
-                          });
-                        }
-                      }
-                      
+
                       results.push({
                         repository: resultData.repository,
                         category: category,
@@ -322,11 +285,7 @@ jobs:
                         action_taken: resultData.action_taken || 'unknown',
                         pr_url: resultData.pr_url || '',
                         pr_number: resultData.pr_number || '',
-                        commit_sha: resultData.commit_sha || '',
-                        // Linting-specific data
-                        had_prior_linting: resultData.had_prior_linting || false,
-                        legacy_artifacts_count: resultData.legacy_artifacts_count || 0,
-                        legacy_artifacts: resultData.legacy_artifacts || []
+                        commit_sha: resultData.commit_sha || ''
                       });
                       
                     } catch (parseError) {
@@ -383,42 +342,7 @@ jobs:
             }
             
             reportLines.push('');
-            
-            // Add linting-specific summary if applicable
-            if (operation === 'centralize-linting-workflows') {
-              reportLines.push('## Linting Migration Summary');
-              reportLines.push('');
-              reportLines.push(`**Mode**: ${dryRun ? 'DRY RUN' : 'LIVE EXECUTION'}`);
-              reportLines.push(`**Total API Repositories Processed**: ${totalRepos}`);
-              reportLines.push(`**Successful Migrations**: ${resultTypeCounts['success'] || 0}`);
-              reportLines.push(`**Failed Operations**: ${resultTypeCounts['error'] || 0}`);
-              reportLines.push('');
-              reportLines.push('### Migration Categories:');
-              reportLines.push(`- **New Linting Setup**: ${lintingStats.newLintingSetup} repositories (no previous linting)`);
-              reportLines.push(`- **Migrated from Local**: ${lintingStats.migratedFromLocal} repositories (replaced existing linting)`);
-              reportLines.push(`- **Already Centralized**: ${lintingStats.alreadyCentralized} repositories (skipped - already using centralized workflows)`);
-              reportLines.push(`- **Failed**: ${resultTypeCounts['error'] || 0} repositories (errors during migration)`);
-              reportLines.push('');
-              
-              if (lintingStats.totalLegacyArtifactsRemoved > 0 || dryRun) {
-                reportLines.push(`### Files ${dryRun ? 'To Be Removed' : 'Removed'} (across all repositories):`);
-                reportLines.push(`- Workflow files: ${lintingStats.workflowFiles.megalinter} instances of megalinter.yml, ${lintingStats.workflowFiles.spectral} instances of spectral_oas_lint.yml`);
-                reportLines.push(`- Lint functions: ${lintingStats.lintFunctionDirs} repositories had lint_function/ directories ${dryRun ? 'to be removed' : 'removed'}`);
-                reportLines.push(`- Config files: ${lintingStats.configFiles.spectral} .spectral.yml, ${lintingStats.configFiles.yamllint} .yamllint.yaml, ${lintingStats.configFiles.gherkin} .gherkin-lintrc files ${dryRun ? 'to be removed' : 'removed'}`);
-                reportLines.push('');
-                reportLines.push(`### Files ${dryRun ? 'To Be Added' : 'Added'}:`);
-                reportLines.push(`- spectral-oas-caller.yml: ${lintingStats.newLintingSetup + lintingStats.migratedFromLocal} repositories`);
-                reportLines.push(`- pr_validation_caller.yml: ${lintingStats.newLintingSetup + lintingStats.migratedFromLocal} repositories`);
-                reportLines.push('');
-                
-                if (dryRun) {
-                  reportLines.push('**Note**: In dry-run mode, these numbers show what WOULD be changed. No actual PRs are created.');
-                }
-              }
-              
-              reportLines.push('');
-            }
-            
+
             reportLines.push('## Repository Results');
             reportLines.push('');
             reportLines.push('| Repository | Category | Result | Details |');
@@ -436,68 +360,7 @@ jobs:
             }
             
             reportLines.push('');
-            
-            // Add detailed linting results if applicable
-            if (operation === 'centralize-linting-workflows') {
-              const successfulMigrations = results.filter(r => 
-                (r.operation_status === 'migrate-completed' || r.operation_status === 'would-migrate') && r.had_prior_linting
-              );
-              const newSetups = results.filter(r => 
-                (r.operation_status === 'add-completed' || r.operation_status === 'would-add') && !r.had_prior_linting
-              );
-              const alreadyCentralized = results.filter(r => 
-                r.operation_status === 'already-centralized' || (r.result_type === 'no-change' && r.details.includes('centralized'))
-              );
-              
-              if (successfulMigrations.length > 0) {
-                reportLines.push(`### ✅ Successfully ${dryRun ? 'Would Migrate' : 'Migrated'} from Local Linting (${successfulMigrations.length} repositories)`);
-                reportLines.push('');
-                reportLines.push('| Repository | Removed Files | Added Workflows | PR |');
-                reportLines.push('|------------|---------------|-----------------|-----|');
-                
-                for (const result of successfulMigrations) {
-                  const removedFiles = result.legacy_artifacts.map(a => {
-                    if (a.includes('megalinter.yml')) return 'megalinter.yml';
-                    if (a.includes('spectral_oas_lint.yml')) return 'spectral_oas_lint.yml';
-                    if (a === 'lint_function') return 'lint_function/';
-                    if (a.includes('.spectral.yml')) return '.spectral.yml';
-                    if (a.includes('.yamllint.yaml')) return '.yamllint.yaml';
-                    if (a.includes('.gherkin-lintrc')) return '.gherkin-lintrc';
-                    return a;
-                  }).join(', ');
-                  
-                  const prInfo = result.pr_number ? `#${result.pr_number}` : (dryRun ? '-' : 'N/A');
-                  reportLines.push(`| ${result.repository} | ${removedFiles} | ✅ Both workflows | ${prInfo} |`);
-                }
-                reportLines.push('');
-              }
-              
-              if (newSetups.length > 0) {
-                reportLines.push(`### 🆕 New Linting Setup (${newSetups.length} repositories)`);
-                reportLines.push('');
-                reportLines.push('| Repository | Previous State | Added Workflows | PR |');
-                reportLines.push('|------------|----------------|-----------------|-----|');
-                
-                for (const result of newSetups) {
-                  const prInfo = result.pr_number ? `#${result.pr_number}` : (dryRun ? '-' : 'N/A');
-                  reportLines.push(`| ${result.repository} | No linting | ✅ Both workflows | ${prInfo} |`);
-                }
-                reportLines.push('');
-              }
-              
-              if (alreadyCentralized.length > 0) {
-                reportLines.push(`### ⏭️ Already Centralized (${alreadyCentralized.length} repositories)`);
-                reportLines.push('');
-                reportLines.push('| Repository | Status | Reason |');
-                reportLines.push('|------------|--------|---------|');
-                
-                for (const result of alreadyCentralized) {
-                  reportLines.push(`| ${result.repository} | Skipped | Already has centralized workflows |`);
-                }
-                reportLines.push('');
-              }
-            }
-            
+
             // Add attention section if there are items requiring attention
             const attentionItems = results.filter(r => r.requires_attention);
             if (attentionItems.length > 0) {
@@ -516,19 +379,13 @@ jobs:
             
             // Create CSV and JSON data
             let csvLines = ['Repository,Category,Result Type,Details,Operation Status,Action Taken,PR Number,PR URL,Commit SHA,Requires Attention'];
-            if (operation === 'centralize-linting-workflows') {
-              csvLines[0] += ',Had Prior Linting,Legacy Artifacts Count';
-            }
-            
+
             for (const result of results) {
               let csvLine = `"${result.repository}","${result.category}","${result.result_type}","${result.details}","${result.operation_status}","${result.action_taken}","${result.pr_number}","${result.pr_url}","${result.commit_sha}","${result.requires_attention}"`;
-              if (operation === 'centralize-linting-workflows') {
-                csvLine += `,"${result.had_prior_linting}","${result.legacy_artifacts_count}"`;
-              }
               csvLines.push(csvLine);
             }
             const csvData = csvLines.join('\n');
-            
+
             const jsonReport = {
               metadata: {
                 timestamp: timestamp,
@@ -543,10 +400,6 @@ jobs:
               },
               results: results
             };
-            
-            if (operation === 'centralize-linting-workflows') {
-              jsonReport.linting_statistics = lintingStats;
-            }
             
             // Write files
             if (!fs.existsSync('results')) {

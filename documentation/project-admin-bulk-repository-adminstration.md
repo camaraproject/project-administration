@@ -36,7 +36,6 @@ The system consists of three core workflows that work together:
 - **add-changelog-file**: Adds template CHANGELOG.md file to repositories that have neither changelog nor releases
 - **update-swagger-links**: Migrates swagger editor links to CAMARA's dedicated swagger-ui instance (in files)
 - **update-swagger-links-releases**: Migrates swagger editor links to CAMARA's dedicated swagger-ui instance (in release descriptions)
-- **centralize-linting-workflows**: Migrates repositories from local linting configurations to centralized workflows managed in the tooling repository
 
 ### Operation Details
 
@@ -70,41 +69,6 @@ The system consists of three core workflows that work together:
 - ✅ **Safe operation**: Only modifies URLs that match the specific swagger editor hosts
 - ✅ **Permission validation**: Requires `Contents: Write` permission for release modifications
 - ✅ **CAMARA branding**: Migrates to `https://camaraproject.github.io/swagger-ui/` for consistent experience
-
-**centralize-linting-workflows:**
-
-👉 There is a [**quick usage guide**](/documentation/project-admin-quick-usage-guide-centralized-linting.md) for this workflow available.
-
-- ✅ **Smart migration**: Detects existing linting setup and migrates appropriately
-- ✅ **Comprehensive cleanup**: Removes legacy workflow files, lint functions, and config files
-- ✅ **Centralized management**: Adds workflows that reference the tooling repository
-- ✅ **Category detection**: 
-  - Skips repositories already using centralized workflows
-  - Migrates repositories with local linting (removes old, adds new)
-  - Sets up new linting for repositories without any linting
-- ✅ **Detailed reporting**: Shows what files were removed/added per repository
-- ✅ **Dry-run support**: Full analysis and statistics collection in dry-run mode
-- ✅ **PR guidance**: Includes next steps for codeowners to test and adopt smoothly
-- ⚠️ Repositories without prior linting get additional warning about potential issues
-
-**Files Removed (if present):**
-- `.github/workflows/megalinter.yml`
-- `.github/workflows/spectral_oas_lint.yml`
-- `lint_function/` directory and all contents
-- `.spectral.yml`
-- `.yamllint.yaml`
-- `.gherkin-lintrc`
-
-**Files Added:**
-- `.github/workflows/spectral-oas-caller.yml` - Spectral linting with CAMARA ruleset
-- `.github/workflows/pr_validation_caller.yml` - Comprehensive PR validation
-
-**Next Steps for Codeowners (included in PR):**
-1. Review and merge the PR
-2. Test workflows manually via Actions tab
-3. Address any linting errors found
-4. Create cleanup PR if needed
-5. Monitor initial PRs after merge
 
 **Host Replacement Approach:**
 ```
@@ -172,7 +136,6 @@ Single Repo Test (Dry Run) → Single Repo Test (Live) → Bulk Dry Run → Live
    - **add-changelog-file**: For adding CHANGELOG.md template (file-based)
    - **update-swagger-links**: For swagger editor migration in files (file-based)
    - **update-swagger-links-releases**: For swagger editor migration in releases (API-based)
-   - **centralize-linting-workflows**: For migrating to centralized linting (file-based)
 4. Enable dry-run mode
 5. **Review structured results** with detailed feedback and next steps guidance
 

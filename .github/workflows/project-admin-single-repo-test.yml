@@ -7,6 +7,7 @@
 # CHANGELOG:
 # - 2025-07-26: Initial version as is for r1.1 release of camaraproject/project-administration
 # - 2025-07-28: Removed disable-wiki, add-changelog-codeowners, update-api-readiness-checklist; Added centralize-linting-workflows
+# - 2025-10-15: Removed centralize-linting-workflows (roll-out completed)
 #
 # USAGE:
 # - Manually triggered via workflow_dispatch
@@ -39,8 +40,7 @@ on:
           - 'add-changelog-file'
           - 'update-swagger-links'
           - 'update-swagger-links-releases'
-          - 'centralize-linting-workflows'
-        default: 'centralize-linting-workflows'
+        default: 'add-changelog-file'
       
       dry_run:
         description: 'Run in dry-run mode (recommended for testing)'
@@ -220,10 +220,10 @@ jobs:
             summary += `**Action Taken**: ${actionTaken}\n`;
             
             // Add operation-specific details
-            if (['add-changelog-file', 'update-swagger-links', 'centralize-linting-workflows'].includes(operation)) {
+            if (['add-changelog-file', 'update-swagger-links'].includes(operation)) {
               summary += `**Commit Strategy**: ${commitStrategy}\n`;
             }
-            
+
             // Add PR/commit information if available
             if (resultData.pr_number && resultData.pr_url) {
               summary += `**Pull Request**: [#${resultData.pr_number}](${resultData.pr_url})\n`;
@@ -231,22 +231,7 @@ jobs:
             if (resultData.commit_sha) {
               summary += `**Commit**: ${resultData.commit_sha}\n`;
             }
-            
-            // Add linting-specific information if available
-            if (operation === 'centralize-linting-workflows' && resultData.had_prior_linting !== undefined) {
-              summary += `\n### Linting Migration Details\n`;
-              summary += `**Had Prior Linting**: ${resultData.had_prior_linting ? 'Yes' : 'No'}\n`;
-              if (resultData.legacy_artifacts_count > 0) {
-                summary += `**Legacy Artifacts Found**: ${resultData.legacy_artifacts_count}\n`;
-                if (resultData.legacy_artifacts && resultData.legacy_artifacts.length > 0) {
-                  summary += `**Removed Artifacts**:\n`;
-                  resultData.legacy_artifacts.forEach(artifact => {
-                    summary += `- ${artifact}\n`;
-                  });
-                }
-              }
-            }
-            
+
             summary += `\n`;
             
             // Add attention notice if needed

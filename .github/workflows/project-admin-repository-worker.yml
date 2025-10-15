@@ -7,10 +7,11 @@
 # CHANGELOG:
 # - 2025-07-26: Initial version as is for r1.1 release of camaraproject/project-administration
 # - 2025-07-28: Removed disable-wiki, add-changelog-codeowners, update-api-readiness-checklist; Added centralize-linting-workflows
+# - 2025-10-15: Removed centralize-linting-workflows (roll-out completed)
 #
 # USAGE:
 # - Called via workflow_call from other workflows
-# - Supports multiple operations: add-changelog-file, update-swagger-links, centralize-linting-workflows, etc.
+# - Supports multiple operations: add-changelog-file, update-swagger-links, etc.
 # - Handles both API-based and file-based operations with git/PR support
 #
 # DOCUMENTATION:
@@ -79,7 +80,7 @@ jobs:
               console.log(`✅ Repository access confirmed: ${repoResponse.data.full_name}`);
               
               // For file-based operations, verify write access
-              if (['add-changelog-file', 'update-swagger-links', 'centralize-linting-workflows'].includes(operation)) {
+              if (['add-changelog-file', 'update-swagger-links'].includes(operation)) {
                 console.log('✅ File-based operation - write permissions will be tested during git operations');
               }
               
@@ -495,339 +496,6 @@ jobs:
           EOF
           fi
 
-      - name: Execute Operation - Centralize Linting Workflows
-        if: inputs.operation == 'centralize-linting-workflows'
-        uses: actions/github-script@v7
-        with:
-          github-token: ${{ secrets.CAMARA_BULK_CHANGE_TOKEN }}
-          script: |
-            const [owner, repo] = '${{ inputs.repository_full_name }}'.split('/');
-            const fs = require('fs');
-            const path = require('path');
-            
-            try {
-              console.log('🔍 Analyzing current linting configuration...');
-              
-              // Set operation type flag
-              core.exportVariable('needs_git_workflow', 'true');
-              
-              // Define files to check/remove
-              const lintingArtifacts = {
-                workflows: [
-                  '.github/workflows/megalinter.yml',
-                  '.github/workflows/spectral_oas_lint.yml'
-                ],
-                configs: [
-                  '.spectral.yml',
-                  '.yamllint.yaml',
-                  '.gherkin-lintrc'
-                ],
-                directory: 'lint_function'
-              };
-              
-              // Define new workflows to add
-              const newWorkflows = [
-                'spectral-oas-caller.yml',
-                'pr_validation_caller.yml'
-              ];
-              
-              // Check if already has centralized workflows
-              let hasCentralizedWorkflows = true;
-              for (const workflow of newWorkflows) {
-                if (!fs.existsSync(path.join('.github', 'workflows', workflow))) {
-                  hasCentralizedWorkflows = false;
-                  break;
-                }
-              }
-              
-              if (hasCentralizedWorkflows) {
-                console.log('✅ Repository already has centralized workflows');
-                core.exportVariable('operation_status', 'already-centralized');
-                core.exportVariable('result_type', 'no-change');
-                core.exportVariable('details', 'Repository already uses centralized linting workflows');
-                core.exportVariable('action_taken', 'none');
-                core.exportVariable('has_changes', 'false');
-                return;
-              }
-              
-              // Check for existing linting artifacts
-              const foundArtifacts = [];
-              let hasLegacyLinting = false;
-              
-              // Check workflow files
-              for (const workflow of lintingArtifacts.workflows) {
-                if (fs.existsSync(workflow)) {
-                  foundArtifacts.push(workflow);
-                  hasLegacyLinting = true;
-                  console.log(`📋 Found legacy workflow: ${workflow}`);
-                }
-              }
-              
-              // Check config files
-              for (const config of lintingArtifacts.configs) {
-                if (fs.existsSync(config)) {
-                  foundArtifacts.push(config);
-                  hasLegacyLinting = true;
-                  console.log(`📋 Found legacy config: ${config}`);
-                }
-              }
-              
-              // Check lint_function directory
-              if (fs.existsSync(lintingArtifacts.directory)) {
-                foundArtifacts.push(lintingArtifacts.directory);
-                hasLegacyLinting = true;
-                console.log(`📋 Found legacy directory: ${lintingArtifacts.directory}/`);
-              }
-              
-              console.log(`🔍 Legacy linting artifacts found: ${foundArtifacts.length}`);
-              
-              // Dry run mode - just report what would be done
-              if (${{ inputs.dry_run }}) {
-                const action = hasLegacyLinting ? 'migrate' : 'add';
-                const details = hasLegacyLinting 
-                  ? `Would migrate from local linting (remove ${foundArtifacts.length} artifacts, add 2 workflows)`
-                  : 'Would add centralized linting workflows (no prior linting)';
-                
-                console.log(`🧪 DRY RUN: ${details}`);
-                core.exportVariable('operation_status', `would-${action}`);
-                core.exportVariable('result_type', 'would-action');
-                core.exportVariable('details', `Dry run: ${details}`);
-                core.exportVariable('action_taken', 'dry-run');
-                core.exportVariable('has_changes', 'false');
-                
-                // Export statistics for reporting
-                core.exportVariable('legacy_artifacts_count', foundArtifacts.length);
-                // Write artifacts to file to avoid JSON escaping issues in env vars
-                fs.writeFileSync('/tmp/legacy_artifacts.json', JSON.stringify(foundArtifacts));
-                core.exportVariable('had_prior_linting', hasLegacyLinting);
-                return;
-              }
-              
-              // Download new workflows from tooling repository
-              console.log('📥 Downloading centralized workflows from tooling repository...');
-              
-              const workflowsDir = '.github/workflows';
-              if (!fs.existsSync(workflowsDir)) {
-                fs.mkdirSync(workflowsDir, { recursive: true });
-                console.log('📁 Created .github/workflows directory');
-              }
-              
-              const downloadedWorkflows = [];
-              for (const workflow of newWorkflows) {
-                try {
-                  console.log(`  📥 Downloading ${workflow}...`);
-                  const response = await github.rest.repos.getContent({
-                    owner: 'camaraproject',
-                    repo: 'tooling',
-                    path: `linting/workflows/${workflow}`
-                  });
-                  
-                  const content = Buffer.from(response.data.content, 'base64').toString('utf8');
-                  fs.writeFileSync(path.join(workflowsDir, workflow), content);
-                  downloadedWorkflows.push(workflow);
-                  console.log(`  ✅ Downloaded ${workflow}`);
-                } catch (downloadError) {
-                  console.log(`  ❌ Failed to download ${workflow}: ${downloadError.message}`);
-                  throw new Error(`Failed to download workflow ${workflow}: ${downloadError.message}`);
-                }
-              }
-              
-              // Remove legacy artifacts
-              const removedArtifacts = [];
-              if (hasLegacyLinting) {
-                console.log('🧹 Removing legacy linting artifacts...');
-                
-                for (const artifact of foundArtifacts) {
-                  try {
-                    if (artifact === lintingArtifacts.directory) {
-                      // Remove directory recursively
-                      fs.rmSync(artifact, { recursive: true, force: true });
-                      console.log(`  ✅ Removed directory: ${artifact}/`);
-                    } else {
-                      // Remove file
-                      fs.unlinkSync(artifact);
-                      console.log(`  ✅ Removed file: ${artifact}`);
-                    }
-                    removedArtifacts.push(artifact);
-                  } catch (removeError) {
-                    console.log(`  ⚠️ Could not remove ${artifact}: ${removeError.message}`);
-                  }
-                }
-              }
-              
-              // Prepare commit message and PR body
-              const action = hasLegacyLinting ? 'migrate' : 'add';
-              const commitMessage = 'admin: migrate to centralized linting workflows';
-              const prTitle = 'admin: migrate to centralized linting workflows';
-              
-              // Common next steps text
-              const nextSteps = `### 👥 Next Steps for Codeowners
-
-              ⚠️ **Important**: This PR introduces linting workflows that will validate repository content.
-
-              **Note on Linting Checks**: The linting workflows are currently **not blocking** - they will not prevent this PR (or future PRs) from being merged. However, it is **highly recommended** to:
-              - Fix all linting errors before merging
-              - Establish a practice of only merging PRs that pass linting checks successfully
-              - **All linting errors must be addressed before creating a release**
-
-              This approach maintains code quality while allowing flexibility during the transition period.
-
-              #### Before Merging This PR:
-
-              1. **Review linting results in PR checks**:
-                  - Check the "Checks" tab for workflow results
-                  - Note any linting errors or warnings reported
-
-              2. **Fix linting errors (strongly recommended)**:
-                  - Address all OpenAPI specification issues (Spectral and yamllint errors)
-                  - Address all test definitions issues (gherkin-lint errors)
-                  - Push fixes to this PR branch to re-trigger validation
-                  - While not required for merge, fixing issues now prevents accumulation of technical debt
-
-              3. **Approve and merge this PR** 🚀
-
-              #### After Merge:
-
-              1. **Establish linting best practices**:
-                  - Although checks are not blocking, treat linting errors as issues to fix
-                  - Aim to merge only PRs where linting checks pass successfully
-                  - This maintains code quality standards and prevents regression
-                  - **Remember: Linting errors must be fixed before any release can be created**
-
-              2. **Test with additional rules** (optional):
-                  - Verify OpenAPI specification with lower severity rules (warnings, hints, info)
-                  - Go to Actions tab → "Caller for Spectral linting with CAMARA ruleset" → Run workflow
-                  - Check workflow logs - if needed create an issue to improve your API specification
-
-              3. **Monitor future PRs**:
-                  - Provide guidance to contributors on fixing linting issues
-                  - First PRs after this may reveal new edge cases
-                  - The Release Management team can assist with complex issues
-
-              💡**Pro tip**: Running the Spectral workflow manually NOW is highly recommended. This allows you to identify and fix issues proactively rather than discovering them when submitting your next feature PR!`;
-              
-              let prBody;
-              if (hasLegacyLinting) {
-                // Build list of removed artifacts for PR body
-                const removedList = removedArtifacts.map(a => {
-                  if (a.includes('megalinter.yml')) return '`megalinter.yml`';
-                  if (a.includes('spectral_oas_lint.yml')) return '`spectral_oas_lint.yml`';
-                  if (a === lintingArtifacts.directory) return 'Lint function scripts in `/lint_function/`';
-                  if (a.includes('.spectral.yml')) return '`.spectral.yml`';
-                  if (a.includes('.yamllint.yaml')) return '`.yamllint.yaml`';
-                  if (a.includes('.gherkin-lintrc')) return '`.gherkin-lintrc`';
-                  return `\`${a}\``;
-                });
-                
-                prBody = `## CAMARA Project Admin Update - Linting Migration
-
-            This pull request migrates this repository from local linting configuration to centralized linting workflows managed by the CAMARA project.
-
-            ### 🔄 Migration Summary
-
-            **Removed local linting artifacts:**
-            ${removedList.map(item => `- ${item}`).join('\n')}
-
-            **Added centralized workflows:**
-            - \`spectral-oas-caller.yml\` - Spectral linting with CAMARA ruleset
-            - \`pr_validation_caller.yml\` - Comprehensive PR validation
-
-            ### ✨ Benefits of Centralized Linting
-
-            1. **Always Up-to-Date**: Linting rules and workflows are automatically updated across all repositories
-            2. **Consistent Standards**: Ensures uniform code quality checks across all CAMARA APIs
-            3. **Reduced Maintenance**: No need to maintain linting configurations locally
-            4. **Enhanced Features**: Access to latest tooling improvements without manual updates
-            5. **Simplified Configuration**: Workflows reference the centralized tooling repository
-
-            ### 📋 What This Means for You
-
-            - **No action required** for basic operation - workflows will run automatically
-            - **All existing checks continue** with improved reliability
-            - **Custom configurations** can be discussed with the Release Management team if needed
-
-            ### 🔧 Technical Details
-
-            The new workflows reference reusable workflows from:
-            \`camaraproject/tooling/.github/workflows/\`
-
-            This ensures all repositories benefit from:
-            - Latest Spectral rules for OpenAPI validation
-            - Consistent PR validation checks
-            - Centralized rule management
-            - Automated tooling updates
-
-            ${nextSteps}`;
-              } else {
-                // No prior linting - prepend warning
-                prBody = `## CAMARA Project Admin Update - Linting Setup
-
-            This pull request adds centralized linting workflows to ensure code quality and API specification compliance.
-
-            ### ✅ Added Workflows
-
-            - \`spectral-oas-caller.yml\` - Spectral linting with CAMARA ruleset for OpenAPI validation
-            - \`pr_validation_caller.yml\` - Comprehensive PR validation checks
-
-            ### ✨ Benefits
-
-            1. **Automated Quality Checks**: Ensures API specifications meet CAMARA standards
-            2. **PR Validation**: Automatic checks on all pull requests
-            3. **Always Current**: Workflows reference centralized tooling for latest updates
-            4. **Zero Maintenance**: No local configuration needed
-
-            ### 📋 What This Means for You
-
-            - **Automated validation** on all pull requests to main branch
-            - **Immediate feedback** on API specification compliance
-            - **No local setup required** - everything is managed centrally
-
-            ### 🔧 Technical Details
-
-            The new workflows reference reusable workflows from:
-            \`camaraproject/tooling/.github/workflows/\`
-
-            This ensures all repositories benefit from:
-            - Latest Spectral rules for OpenAPI validation
-            - Consistent PR validation checks
-            - Centralized rule management
-            - Automated tooling updates
-
-            ### 👥 Next Steps for Codeowners
-
-            ⚠️ Since this repository had no prior linting, there may be existing issues to address.
-
-            ${nextSteps.split('\n').slice(1).join('\n')}`; // Skip the first line (header) to avoid duplication
-              }
-              
-              // Set result
-              console.log(`✅ Successfully ${action}d centralized linting workflows`);
-              core.exportVariable('operation_status', `${action}-completed`);
-              core.exportVariable('result_type', 'success');
-              core.exportVariable('details', hasLegacyLinting 
-                ? `Migrated from local linting (removed ${removedArtifacts.length} artifacts, added 2 workflows)`
-                : 'Added centralized linting workflows (no prior linting)');
-              core.exportVariable('action_taken', 'file-modification');
-              core.exportVariable('has_changes', 'true');
-              core.exportVariable('commit_message', commitMessage);
-              core.exportVariable('pr_title', prTitle);
-              core.exportVariable('pr_body', prBody);
-              
-              // Export statistics for reporting
-              core.exportVariable('legacy_artifacts_count', removedArtifacts.length);
-              // Write artifacts to file to avoid JSON escaping issues in env vars
-              fs.writeFileSync('/tmp/legacy_artifacts.json', JSON.stringify(removedArtifacts));
-              core.exportVariable('had_prior_linting', hasLegacyLinting);
-              
-            } catch (error) {
-              console.log(`❌ Operation failed: ${error.message}`);
-              core.exportVariable('operation_status', 'unexpected-error');
-              core.exportVariable('result_type', 'error');
-              core.exportVariable('details', `Operation failed: ${error.message}`);
-              core.exportVariable('action_taken', 'failed');
-              core.exportVariable('has_changes', 'false');
-            }
-
       - name: Setup Git Configuration
         if: env.needs_git_workflow == 'true'
         uses: actions/github-script@v7
@@ -1018,18 +686,7 @@ jobs:
           PR_NUMBER="${{ env.pr_number }}"
           PR_URL="${{ env.pr_url }}"
           COMMIT_SHA="${{ env.commit_sha }}"
-          
-          # Additional data for centralize-linting operation
-          LEGACY_ARTIFACTS_COUNT="${{ env.legacy_artifacts_count }}"
-          HAD_PRIOR_LINTING="${{ env.had_prior_linting }}"
-          
-          # Read legacy artifacts from file if it exists
-          if [ -f "/tmp/legacy_artifacts.json" ]; then
-            LEGACY_ARTIFACTS=$(cat /tmp/legacy_artifacts.json)
-          else
-            LEGACY_ARTIFACTS="[]"
-          fi
-          
+
           cat > /tmp/results/result-${{ inputs.repository_name }}.json << EOF
           {
             "repository": "${{ inputs.repository_name }}",
@@ -1043,9 +700,6 @@ jobs:
             "pr_number": "${PR_NUMBER:-}",
             "pr_url": "${PR_URL:-}",
             "commit_sha": "${COMMIT_SHA:-}",
-            "legacy_artifacts_count": "${LEGACY_ARTIFACTS_COUNT:-0}",
-            "legacy_artifacts": ${LEGACY_ARTIFACTS},
-            "had_prior_linting": ${HAD_PRIOR_LINTING:-false},
             "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
           }
           EOF
