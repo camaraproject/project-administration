@@ -15,7 +15,7 @@ concurrency:
 
 env:
   MODE: ${{ inputs.dry_run && 'plan' || 'apply' }}
-  ORG: hdamker
+  ORG: camaraproject
   RELEASES_FILE: data/releases-master.yaml
   INCLUDE: "QualityOnDemand,QoSBooking,SimSwap"
   BRANCH: bulk/release-info-sync-${{ github.run_id }}
