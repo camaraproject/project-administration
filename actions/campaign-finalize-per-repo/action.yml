@@ -213,8 +213,8 @@ runs:
       shell: bash
       working-directory: repo
       run: |
-        git config user.name "github-actions[bot]"
-        git config user.email "github-actions[bot]@users.noreply.github.com"
+        git config user.name "hdamker-bot"
+        git config user.email "hdamker-bot@users.noreply.github.com"
         git checkout -B "${{ inputs.branch }}"
         git add README.md
         git commit -m "${{ steps.pr_title.outputs.pr_title }}" || echo "No changes to commit"
