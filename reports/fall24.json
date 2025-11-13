@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "generated": "2025-11-13T01:41:58.585Z",
+    "generated": "2025-11-13T17:06:05.456Z",
     "meta_release": "Fall24",
-    "source": "Meta-release Collector v3",
+    "source": "Release Collector v3",
     "landscape_version": "1.1.0"
   },
   "statistics": {
@@ -23,7 +23,7 @@
     "categories": {
       "Authentication and Fraud Prevention": 14,
       "Payments and Charging": 4,
-      "Communication Quality": 9,
+      "Communication Quality": 10,
       "Location Services": 4,
       "Device Information": 8,
       "Computing Services": 1
@@ -345,20 +345,20 @@
           "isNew": true
         },
         {
-          "api_name": "v0.4",
+          "api_name": "connectivity-insights-subscriptions",
           "file_name": "connectivity-insights-subscriptions",
           "version": "0.4.0",
-          "title": "Connectivity Insights",
+          "title": "Connectivity Insights Subscriptions",
           "commonalities": "0.4",
           "maturity": "initial",
-          "portfolio_category": null,
-          "website_url": null,
-          "tooltip": null,
-          "display_name": "Connectivity Insights",
+          "portfolio_category": "Communication Quality",
+          "website_url": "https://camaraproject.org/connectivity-insights-subscriptions/",
+          "tooltip": "Alerts the consumers if and when the QoS threshold has breached",
+          "display_name": "Connectivity Insights Subscriptions",
           "published": true,
-          "canonical_name": "v0.4",
-          "first_release": "Sandbox",
-          "isNew": null
+          "canonical_name": "connectivity-insights-subscriptions",
+          "first_release": "Fall24",
+          "isNew": true
         },
         {
           "api_name": "connectivity-insights",
@@ -1206,20 +1206,20 @@
       "github_url": "https://github.com/camaraproject/ConnectivityInsights/releases/tag/r1.2"
     },
     {
-      "api_name": "v0.4",
+      "api_name": "connectivity-insights-subscriptions",
       "file_name": "connectivity-insights-subscriptions",
       "version": "0.4.0",
-      "title": "Connectivity Insights",
+      "title": "Connectivity Insights Subscriptions",
       "commonalities": "0.4",
       "maturity": "initial",
-      "portfolio_category": null,
-      "website_url": null,
-      "tooltip": null,
-      "display_name": "Connectivity Insights",
+      "portfolio_category": "Communication Quality",
+      "website_url": "https://camaraproject.org/connectivity-insights-subscriptions/",
+      "tooltip": "Alerts the consumers if and when the QoS threshold has breached",
+      "display_name": "Connectivity Insights Subscriptions",
       "published": true,
-      "canonical_name": "v0.4",
-      "first_release": "Sandbox",
-      "isNew": null,
+      "canonical_name": "connectivity-insights-subscriptions",
+      "first_release": "Fall24",
+      "isNew": true,
       "repository": "ConnectivityInsights",
       "release_tag": "r1.2",
       "release_date": "2024-09-11T03:30:01Z",
