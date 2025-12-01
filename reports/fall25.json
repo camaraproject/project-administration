@@ -1,18 +1,18 @@
 {
   "metadata": {
-    "generated": "2025-11-13T17:06:05.458Z",
+    "generated": "2025-12-01T18:37:09.779Z",
     "meta_release": "Fall25",
     "source": "Release Collector v3",
     "landscape_version": "1.1.0"
   },
   "statistics": {
     "repositories_count": 40,
-    "api_versions_count": 60,
+    "api_versions_count": 62,
     "unique_api_names_count": 60,
     "unique_apis_count": 60,
     "api_version_maturity": {
-      "stable": 10,
-      "initial": 50,
+      "stable": 11,
+      "initial": 51,
       "rc": 0
     },
     "unique_api_maturity": {
@@ -24,7 +24,7 @@
       "Computing Services": 8,
       "Communication Quality": 16,
       "Payments and Charging": 4,
-      "Authentication and Fraud Prevention": 13,
+      "Authentication and Fraud Prevention": 15,
       "Service Management": 1,
       "Device Information": 7,
       "Location Services": 6,
@@ -413,12 +413,17 @@
     "SimSwap": {
       "releases": [
         {
+          "tag": "r3.3",
+          "date": "2025-12-01T10:30:21Z",
+          "apis_count": 2
+        },
+        {
           "tag": "r3.2",
           "date": "2025-09-17T15:10:21Z",
           "apis_count": 2
         }
       ],
-      "total_apis": 2,
+      "total_apis": 4,
       "unique_apis_count": 2
     },
     "SubscriptionStatus": {
@@ -1593,6 +1598,47 @@
       "release_date": "2025-09-17T15:10:21Z",
       "meta_release": "Fall25",
       "github_url": "https://github.com/camaraproject/SimSwap/releases/tag/r3.2",
+      "apis": [
+        {
+          "api_name": "sim-swap-subscriptions",
+          "file_name": "sim-swap-subscriptions",
+          "version": "0.3.0",
+          "title": "Sim Swap Subscriptions",
+          "commonalities": "0.6",
+          "maturity": "initial",
+          "portfolio_category": "Authentication and Fraud Prevention",
+          "website_url": "https://camaraproject.org/sim-swap-subscriptions/",
+          "tooltip": "Get notifications if a SIM changes",
+          "display_name": "Sim Swap Subscriptions",
+          "published": true,
+          "canonical_name": "sim-swap-subscriptions",
+          "first_release": "Fall24",
+          "isNew": false
+        },
+        {
+          "api_name": "sim-swap",
+          "file_name": "sim-swap",
+          "version": "2.1.0",
+          "title": "SIM Swap",
+          "commonalities": "0.6",
+          "maturity": "stable",
+          "portfolio_category": "Authentication and Fraud Prevention",
+          "website_url": "https://camaraproject.org/sim-swap/",
+          "tooltip": "Allows users to get information on SIM pairing changes",
+          "display_name": "SIM Swap",
+          "published": true,
+          "canonical_name": "sim-swap",
+          "first_release": "PreFall24",
+          "isNew": false
+        }
+      ]
+    },
+    {
+      "repository": "SimSwap",
+      "release_tag": "r3.3",
+      "release_date": "2025-12-01T10:30:21Z",
+      "meta_release": "Fall25",
+      "github_url": "https://github.com/camaraproject/SimSwap/releases/tag/r3.3",
       "apis": [
         {
           "api_name": "sim-swap-subscriptions",
@@ -2878,6 +2924,27 @@
       "github_url": "https://github.com/camaraproject/SimSwap/releases/tag/r3.2"
     },
     {
+      "api_name": "sim-swap",
+      "file_name": "sim-swap",
+      "version": "2.1.0",
+      "title": "SIM Swap",
+      "commonalities": "0.6",
+      "maturity": "stable",
+      "portfolio_category": "Authentication and Fraud Prevention",
+      "website_url": "https://camaraproject.org/sim-swap/",
+      "tooltip": "Allows users to get information on SIM pairing changes",
+      "display_name": "SIM Swap",
+      "published": true,
+      "canonical_name": "sim-swap",
+      "first_release": "PreFall24",
+      "isNew": false,
+      "repository": "SimSwap",
+      "release_tag": "r3.3",
+      "release_date": "2025-12-01T10:30:21Z",
+      "meta_release": "Fall25",
+      "github_url": "https://github.com/camaraproject/SimSwap/releases/tag/r3.3"
+    },
+    {
       "api_name": "sim-swap-subscriptions",
       "file_name": "sim-swap-subscriptions",
       "version": "0.3.0",
@@ -2897,6 +2964,27 @@
       "release_date": "2025-09-17T15:10:21Z",
       "meta_release": "Fall25",
       "github_url": "https://github.com/camaraproject/SimSwap/releases/tag/r3.2"
+    },
+    {
+      "api_name": "sim-swap-subscriptions",
+      "file_name": "sim-swap-subscriptions",
+      "version": "0.3.0",
+      "title": "Sim Swap Subscriptions",
+      "commonalities": "0.6",
+      "maturity": "initial",
+      "portfolio_category": "Authentication and Fraud Prevention",
+      "website_url": "https://camaraproject.org/sim-swap-subscriptions/",
+      "tooltip": "Get notifications if a SIM changes",
+      "display_name": "Sim Swap Subscriptions",
+      "published": true,
+      "canonical_name": "sim-swap-subscriptions",
+      "first_release": "Fall24",
+      "isNew": false,
+      "repository": "SimSwap",
+      "release_tag": "r3.3",
+      "release_date": "2025-12-01T10:30:21Z",
+      "meta_release": "Fall25",
+      "github_url": "https://github.com/camaraproject/SimSwap/releases/tag/r3.3"
     },
     {
       "api_name": "subscription-status",
