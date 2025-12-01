@@ -1,6 +1,6 @@
 metadata:
-  last_updated: '2025-11-13T17:06:05.305Z'
-  last_checked: '2025-11-13T17:06:05.305Z'
+  last_updated: '2025-12-01T15:57:28.483Z'
+  last_checked: '2025-12-01T15:57:28.483Z'
   workflow_version: 3.0.0
   schema_version: 1.0.0
 releases:
@@ -1100,6 +1100,22 @@ releases:
     release_date: '2025-09-17T15:10:21Z'
     meta_release: Fall25
     github_url: https://github.com/camaraproject/SimSwap/releases/tag/r3.2
+    apis:
+      - api_name: sim-swap-subscriptions
+        file_name: sim-swap-subscriptions
+        version: 0.3.0
+        title: Sim Swap Subscriptions
+        commonalities: '0.6'
+      - api_name: sim-swap
+        file_name: sim-swap
+        version: 2.1.0
+        title: SIM Swap
+        commonalities: '0.6'
+  - repository: SimSwap
+    release_tag: r3.3
+    release_date: '2025-12-01T10:30:21Z'
+    meta_release: Fall25
+    github_url: https://github.com/camaraproject/SimSwap/releases/tag/r3.3
     apis:
       - api_name: sim-swap-subscriptions
         file_name: sim-swap-subscriptions
