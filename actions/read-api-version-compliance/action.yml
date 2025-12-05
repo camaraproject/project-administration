@@ -1,0 +1,25 @@
+name: read-api-version-compliance
+description: Check API version compliance (wip versions) in OpenAPI YAML and Gherkin test files
+inputs:
+  repo_path:
+    description: 'Path to checked-out repository'
+    required: true
+  repo_slug:
+    description: 'Repository slug (org/repo)'
+    required: true
+outputs:
+  json:
+    description: 'Full JSON payload for Mustache templates'
+  summary:
+    description: 'Compact JSON for JSONL records'
+  is_compliant:
+    description: 'Whether all files use wip versions (true/false)'
+  file_count:
+    description: 'Total number of files with issues'
+  yaml_files_checked:
+    description: 'Number of YAML files checked'
+  feature_files_checked:
+    description: 'Number of feature files checked'
+runs:
+  using: node20
+  main: dist/index.js

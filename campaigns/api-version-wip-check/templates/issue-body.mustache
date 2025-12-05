@@ -1,0 +1,29 @@
+**Problem description**
+
+The main branch of this repository contains API definitions and/or test files with version references that are not yet reset to `wip`. According to CAMARA guidelines, all version fields on the main branch must use work-in-progress (`wip`) versions between releases.
+
+**Files affected:**
+
+{{formatted_yaml_files}}
+
+{{formatted_feature_files}}
+
+**Expected action**
+
+Codeowners should create a PR to update the affected files to use `wip` versions:
+- Set `info.version` to `"wip"` in OpenAPI YAML files
+- Set `servers[].url` to use `/vwip` path segment (e.g., `{apiRoot}/api-name/vwip`)
+- Update Feature lines in test files to reference `vwip`
+- Update resource URLs in test files to use `/vwip/` path segment
+
+**Additional context**
+
+This is a standard post-release procedure. It won't be necessary within the new CAMARA Release Workflow. The main branch will always stay in work-in-progress state, with version fields only updated to specific versions on dedicated release branches. Therefore the requested PR will prepare the repository for the next development cycle and aligns with the new CAMARA Release Workflow.
+
+References:
+- [CAMARA API Design Guide - Versioning](https://github.com/camaraproject/Commonalities/blob/main/documentation/CAMARA-API-Design-Guide.md#7-versioning)
+- [Original discussion: ReleaseManagement#328](https://github.com/camaraproject/ReleaseManagement/issues/328)
+- [CAMARA Release Workflow and Metadata Concept](https://github.com/camaraproject/ReleaseManagement/blob/main/documentation/SupportingDocuments/CAMARA-Release-Workflow-and-Metadata-Concept.md)
+
+---
+*Automated check by CAMARA project-administration — checked {{yaml_files_checked}} API definitions and {{feature_files_checked}} test files*

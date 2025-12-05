@@ -1,0 +1,306 @@
+name: campaign-api-version-wip-check
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry run mode (plan only, no issues created)'
+        required: true
+        type: boolean
+        default: true
+      include_sandbox:
+        description: 'Include sandbox API repositories'
+        type: boolean
+        default: true
+      include_incubating:
+        description: 'Include incubating API repositories'
+        type: boolean
+        default: true
+      repository_filter:
+        description: 'Filter to specific repo name (for testing, e.g. "QualityOnDemand")'
+        type: string
+        default: ''
+
+concurrency:
+  group: campaign-api-version-wip-check-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  MODE: ${{ inputs.dry_run && 'plan' || 'apply' }}
+  ORG: camaraproject
+  ISSUE_TITLE: "Reset API and test code version information in main branch to wip"
+  ISSUE_LABELS: "automated"
+  # Read-only repositories that should be excluded from compliance checks
+  EXCLUDE_REPOS: "DeviceStatus,KnowYourCustomer"
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  select:
+    runs-on: ubuntu-latest
+    outputs:
+      repos: ${{ steps.sel.outputs.repos }}
+    steps:
+      - name: Build repo list from GitHub API
+        id: sel
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const org = process.env.ORG;
+            const includeSandbox = '${{ inputs.include_sandbox }}' === 'true';
+            const includeIncubating = '${{ inputs.include_incubating }}' === 'true';
+            const repoFilter = '${{ inputs.repository_filter }}'.trim();
+            const excludeRepos = process.env.EXCLUDE_REPOS.split(',').map(r => r.trim()).filter(r => r);
+
+            console.log(`Fetching repositories from ${org}`);
+            console.log(`Include sandbox: ${includeSandbox}`);
+            console.log(`Include incubating: ${includeIncubating}`);
+            console.log(`Exclude repos: ${excludeRepos.join(', ')}`);
+            if (repoFilter) {
+              console.log(`Filter: ${repoFilter}`);
+            }
+
+            // Fetch all repos in organization
+            const repos = await github.paginate(github.rest.repos.listForOrg, {
+              org,
+              per_page: 100,
+              type: 'public'
+            });
+
+            console.log(`Found ${repos.length} total repositories`);
+
+            // Filter by topics
+            const targetTopics = [];
+            if (includeSandbox) targetTopics.push('sandbox-api-repository');
+            if (includeIncubating) targetTopics.push('incubating-api-repository');
+
+            const filteredRepos = repos.filter(repo => {
+              // Skip archived repos
+              if (repo.archived) return false;
+
+              // Skip excluded repos (read-only repositories)
+              if (excludeRepos.includes(repo.name)) return false;
+
+              // Check if repo has any of the target topics
+              const repoTopics = repo.topics || [];
+              const hasTargetTopic = targetTopics.some(t => repoTopics.includes(t));
+              if (!hasTargetTopic) return false;
+
+              // Apply repository filter if specified
+              if (repoFilter && repo.name !== repoFilter) return false;
+
+              return true;
+            });
+
+            const repoList = filteredRepos.map(r => `${org}/${r.name}`);
+            console.log(`Selected ${repoList.length} repositories:`);
+            repoList.forEach(r => console.log(`  - ${r}`));
+
+            core.setOutput('repos', JSON.stringify(repoList));
+
+  run:
+    needs: select
+    if: ${{ needs.select.outputs.repos != '[]' }}
+    runs-on: ubuntu-latest
+    outputs:
+      mode: ${{ env.MODE }}
+    strategy:
+      fail-fast: false
+      matrix:
+        repo: ${{ fromJson(needs.select.outputs.repos) }}
+
+    steps:
+      - name: Checkout admin repo (self)
+        uses: actions/checkout@v4
+        with:
+          path: admin
+
+      - name: Checkout target repo
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ matrix.repo }}
+          path: repo
+
+      - name: Check API version compliance
+        id: check
+        uses: ./admin/actions/read-api-version-compliance
+        with:
+          repo_path: repo
+          repo_slug: ${{ matrix.repo }}
+
+      - name: Format file lists
+        id: format
+        if: steps.check.outputs.is_compliant == 'false'
+        uses: actions/github-script@v7
+        env:
+          CHECK_JSON: ${{ steps.check.outputs.json }}
+        with:
+          script: |
+            const data = JSON.parse(process.env.CHECK_JSON);
+
+            // Format YAML files section
+            if (data.yaml_files && data.yaml_files.length > 0) {
+              const lines = data.yaml_files.map(f => {
+                const checkLabels = {
+                  'info_version': 'info.version',
+                  'server_url': 'server URL version',
+                  'server_url_format': 'server URL format',
+                  'yaml_parse_error': 'parse error'
+                };
+                const label = checkLabels[f.check_type] || f.check_type;
+                return `- \`${f.file}\`: ${label} — currently \`${f.actual}\`, should be \`${f.expected}\``;
+              });
+              data.formatted_yaml_files = '*OpenAPI Definition Files:*\n' + lines.join('\n');
+            } else {
+              data.formatted_yaml_files = '';
+            }
+
+            // Format feature files section
+            if (data.feature_files && data.feature_files.length > 0) {
+              const lines = data.feature_files.map(f => {
+                const checkLabels = {
+                  'feature_header': 'Feature header',
+                  'resource_url': 'resource URL'
+                };
+                const label = checkLabels[f.check_type] || f.check_type;
+                return `- \`${f.file}\` (line ${f.line_number}): ${label} — currently \`${f.actual}\`, should be \`${f.expected}\``;
+              });
+              data.formatted_feature_files = '*Test Definition Files:*\n' + lines.join('\n');
+            } else {
+              data.formatted_feature_files = '';
+            }
+
+            core.setOutput('enhanced_json', JSON.stringify(data));
+
+      - name: Render issue body template
+        id: render
+        if: steps.check.outputs.is_compliant == 'false'
+        uses: ./admin/actions/render-mustache
+        with:
+          template: ${{ github.workspace }}/admin/campaigns/api-version-wip-check/templates/issue-body.mustache
+          data_json: ${{ steps.format.outputs.enhanced_json }}
+          out_file: /tmp/issue-body.md
+
+      - name: Finalize campaign per repo
+        if: always()
+        uses: ./admin/actions/campaign-finalize-issue-per-repo
+        with:
+          mode: ${{ env.MODE }}
+          repo: ${{ matrix.repo }}
+          should_create_issue: ${{ steps.check.outputs.is_compliant == 'false' }}
+          campaign_data: ${{ steps.check.outputs.summary }}
+          issue_title: ${{ env.ISSUE_TITLE }}
+          issue_body_file: /tmp/issue-body.md
+          issue_labels: ${{ env.ISSUE_LABELS }}
+          github_token: ${{ secrets.BULK_CAMPAIGN_TOKEN }}
+
+  aggregate:
+    needs: run
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Determine artifact pattern
+        id: pattern
+        run: |
+          MODE="${{ needs.run.outputs.mode }}"
+          if [ "$MODE" = "plan" ]; then
+            echo "pattern=plan-*" >> $GITHUB_OUTPUT
+            echo "output_name=plan" >> $GITHUB_OUTPUT
+            echo "dir_name=plans" >> $GITHUB_OUTPUT
+          else
+            echo "pattern=results-*" >> $GITHUB_OUTPUT
+            echo "output_name=results" >> $GITHUB_OUTPUT
+            echo "dir_name=results" >> $GITHUB_OUTPUT
+          fi
+
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: ${{ steps.pattern.outputs.pattern }}
+          path: ${{ steps.pattern.outputs.dir_name }}
+
+      - name: Merge artifacts
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const p = '${{ steps.pattern.outputs.dir_name }}';
+            const outputName = '${{ steps.pattern.outputs.output_name }}';
+
+            if (!fs.existsSync(p)) {
+              console.log(`No ${p} directory found, no artifacts were downloaded`);
+              fs.writeFileSync(`${outputName}.md`, `# No ${outputName} artifacts found\n`);
+              fs.writeFileSync(`${outputName}.jsonl`, '');
+              return;
+            }
+
+            const md = [];
+            const lines = [];
+            const dirs = fs.readdirSync(p);
+
+            if (dirs.length === 0) {
+              console.log(`${p} directory is empty, no artifacts were downloaded`);
+              fs.writeFileSync(`${outputName}.md`, `# No ${outputName} artifacts found\n`);
+              fs.writeFileSync(`${outputName}.jsonl`, '');
+              return;
+            }
+
+            // Collect stats
+            let compliant = 0;
+            let wouldCreate = 0;
+            let created = 0;
+            let skipped = 0;
+
+            for (const d of dirs) {
+              const dir = `${p}/${d}`;
+              if (fs.existsSync(`${dir}/${outputName}.md`)) {
+                md.push(fs.readFileSync(`${dir}/${outputName}.md`, 'utf8'));
+              }
+              if (fs.existsSync(`${dir}/${outputName}.jsonl`)) {
+                const jsonlContent = fs.readFileSync(`${dir}/${outputName}.jsonl`, 'utf8');
+                lines.push(jsonlContent);
+                // Parse for stats
+                try {
+                  const record = JSON.parse(jsonlContent.trim());
+                  if (record.status === 'compliant') compliant++;
+                  else if (record.status === 'would_create') wouldCreate++;
+                  else if (record.status === 'created') created++;
+                  else if (record.status === 'issue_exists') skipped++;
+                } catch (e) {}
+              }
+            }
+
+            // Build summary header
+            const total = compliant + wouldCreate + created + skipped;
+            let header = `# API Version Compliance Check - ${outputName === 'plan' ? 'Plan' : 'Results'}\n\n`;
+            header += `**Mode:** ${outputName === 'plan' ? 'PLAN (dry run)' : 'APPLY'}\n`;
+            header += `**Repositories checked:** ${total}\n\n`;
+            header += `## Summary\n\n`;
+            header += `| Status | Count |\n`;
+            header += `|--------|-------|\n`;
+            header += `| Compliant | ${compliant} |\n`;
+            if (outputName === 'plan') {
+              header += `| Would create issue | ${wouldCreate} |\n`;
+            } else {
+              header += `| Issue created | ${created} |\n`;
+            }
+            header += `| Issue already exists | ${skipped} |\n`;
+            header += `\n## Details\n\n`;
+
+            fs.writeFileSync(`${outputName}.md`, header + md.join('\n'));
+            fs.writeFileSync(`${outputName}.jsonl`, lines.join(''));
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.pattern.outputs.output_name }}
+          path: |
+            ${{ steps.pattern.outputs.output_name }}.md
+            ${{ steps.pattern.outputs.output_name }}.jsonl
+
+      - name: Summary
+        run: |
+          OUTPUT_NAME="${{ steps.pattern.outputs.output_name }}"
+          echo "## API Version Compliance Check - ${OUTPUT_NAME^}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          cat "${OUTPUT_NAME}.md" >> $GITHUB_STEP_SUMMARY

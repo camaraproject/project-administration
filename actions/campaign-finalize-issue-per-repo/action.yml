@@ -1,0 +1,157 @@
+name: 'Campaign Finalize Issue Per Repo'
+description: 'Generic finalization for issue-based campaign workflows: issue creation, deduplication, record, upload'
+inputs:
+  mode:
+    description: 'Workflow mode (plan or apply)'
+    required: true
+  repo:
+    description: 'Repository name (org/repo)'
+    required: true
+  should_create_issue:
+    description: 'Whether an issue should be created (true/false)'
+    required: true
+  campaign_data:
+    description: 'JSON with campaign-specific data'
+    required: false
+    default: '{}'
+  issue_title:
+    description: 'Issue title'
+    required: false
+    default: ''
+  issue_body_file:
+    description: 'Path to rendered issue body file (apply mode only)'
+    required: false
+    default: ''
+  issue_labels:
+    description: 'Comma-separated labels for the issue'
+    required: false
+    default: 'automated'
+  github_token:
+    description: 'GitHub token for issue creation (apply mode only)'
+    required: false
+    default: ''
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Detect existing issue
+      id: detect
+      if: ${{ inputs.should_create_issue == 'true' }}
+      shell: bash
+      run: |
+        # Search for open issues with matching title
+        ISSUE_DATA=$(gh issue list \
+          --repo "${{ inputs.repo }}" \
+          --search "in:title \"${{ inputs.issue_title }}\" is:open" \
+          --json number,url,title,createdAt \
+          --jq 'sort_by(.createdAt) | reverse | .[0]' 2>/dev/null || echo "{}")
+
+        ISSUE_NUMBER=$(echo "$ISSUE_DATA" | jq -r '.number // empty')
+        ISSUE_URL=$(echo "$ISSUE_DATA" | jq -r '.url // empty')
+
+        if [ -n "$ISSUE_NUMBER" ]; then
+          echo "issue_exists=true" >> $GITHUB_OUTPUT
+          echo "issue_number=$ISSUE_NUMBER" >> $GITHUB_OUTPUT
+          echo "issue_url=$ISSUE_URL" >> $GITHUB_OUTPUT
+          echo "Detected existing issue #$ISSUE_NUMBER: $ISSUE_URL"
+        else
+          echo "issue_exists=false" >> $GITHUB_OUTPUT
+          echo "issue_number=" >> $GITHUB_OUTPUT
+          echo "issue_url=" >> $GITHUB_OUTPUT
+          echo "No existing open issue found"
+        fi
+      env:
+        GH_TOKEN: ${{ inputs.github_token }}
+
+    - name: Determine action
+      id: action
+      shell: bash
+      run: |
+        SHOULD_CREATE="${{ inputs.should_create_issue }}"
+        ISSUE_EXISTS="${{ steps.detect.outputs.issue_exists }}"
+
+        if [ "$SHOULD_CREATE" != "true" ]; then
+          echo "action=skip" >> $GITHUB_OUTPUT
+          echo "reason=compliant" >> $GITHUB_OUTPUT
+          echo "Action: Skip (repository is compliant)"
+        elif [ "$ISSUE_EXISTS" = "true" ]; then
+          echo "action=skip" >> $GITHUB_OUTPUT
+          echo "reason=issue_exists" >> $GITHUB_OUTPUT
+          echo "Action: Skip (issue already exists)"
+        else
+          echo "action=create" >> $GITHUB_OUTPUT
+          echo "reason=new_issue" >> $GITHUB_OUTPUT
+          echo "Action: Create new issue"
+        fi
+
+    - name: APPLY - Ensure automated label exists
+      if: ${{ inputs.mode == 'apply' && steps.action.outputs.action == 'create' }}
+      shell: bash
+      run: |
+        # Check if automated label exists, create if not
+        if ! gh label list --repo "${{ inputs.repo }}" --json name --jq '.[].name' | grep -q "^automated$"; then
+          echo "Creating 'automated' label..."
+          gh label create automated \
+            --repo "${{ inputs.repo }}" \
+            --description "Automated bulk operations from project-administration" \
+            --color d1d5db
+          echo "Label created"
+        else
+          echo "Label 'automated' already exists"
+        fi
+      env:
+        GH_TOKEN: ${{ inputs.github_token }}
+
+    - name: APPLY - Create issue
+      id: create_issue
+      if: ${{ inputs.mode == 'apply' && steps.action.outputs.action == 'create' }}
+      shell: bash
+      run: |
+        echo "Creating issue in ${{ inputs.repo }}..."
+        ISSUE_URL=$(gh issue create \
+          --repo "${{ inputs.repo }}" \
+          --title "${{ inputs.issue_title }}" \
+          --body-file "${{ inputs.issue_body_file }}" \
+          --label "${{ inputs.issue_labels }}")
+
+        ISSUE_NUMBER=$(echo "$ISSUE_URL" | grep -oE '[0-9]+$')
+        echo "created_issue_url=$ISSUE_URL" >> $GITHUB_OUTPUT
+        echo "created_issue_number=$ISSUE_NUMBER" >> $GITHUB_OUTPUT
+        echo "Created issue #$ISSUE_NUMBER: $ISSUE_URL"
+      env:
+        GH_TOKEN: ${{ inputs.github_token }}
+
+    - name: Record outcome
+      if: always()
+      shell: bash
+      run: |
+        node "${{ github.action_path }}/dist/index.js"
+      env:
+        INPUT_REPO: ${{ inputs.repo }}
+        INPUT_MODE: ${{ inputs.mode }}
+        INPUT_SHOULD_CREATE_ISSUE: ${{ inputs.should_create_issue }}
+        INPUT_CAMPAIGN_DATA: ${{ inputs.campaign_data }}
+        INPUT_ACTION: ${{ steps.action.outputs.action }}
+        INPUT_REASON: ${{ steps.action.outputs.reason }}
+        INPUT_EXISTING_ISSUE_NUMBER: ${{ steps.detect.outputs.issue_number }}
+        INPUT_EXISTING_ISSUE_URL: ${{ steps.detect.outputs.issue_url }}
+        INPUT_CREATED_ISSUE_NUMBER: ${{ steps.create_issue.outputs.created_issue_number }}
+        INPUT_CREATED_ISSUE_URL: ${{ steps.create_issue.outputs.created_issue_url }}
+
+    - name: Copy issue body for artifact
+      if: ${{ inputs.issue_body_file != '' }}
+      shell: bash
+      run: |
+        if [ -f "${{ inputs.issue_body_file }}" ]; then
+          cp "${{ inputs.issue_body_file }}" issue-body.md
+          echo "Copied issue body to artifact"
+        fi
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ inputs.mode == 'plan' && format('plan-{0}-{1}', github.run_id, strategy.job-index) || format('results-{0}-{1}', github.run_id, strategy.job-index) }}
+        path: |
+          ${{ inputs.mode == 'plan' && 'plan' || 'results' }}.md
+          ${{ inputs.mode == 'plan' && 'plan' || 'results' }}.jsonl
+          issue-body.md
