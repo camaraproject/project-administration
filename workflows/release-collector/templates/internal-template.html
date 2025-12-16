@@ -1046,7 +1046,7 @@
           <td>${api.published ? '✓' : '✗'}</td>
           <td>${api.portfolio_category || '<em>Missing</em>'}</td>
           <td>${api.first_release || '-'}</td>
-          <td><button class="debug-btn" onclick='showDebug(${JSON.stringify(api.api_name)})'>🔍</button></td>
+          <td><button class="debug-btn" onclick='showDebug(${JSON.stringify(api.api_name)}, ${JSON.stringify(api.version)}, ${JSON.stringify(api.release_tag)})'>🔍</button></td>
         `;
 
         tbody.appendChild(row);
@@ -1143,8 +1143,12 @@
     /**
      * Show debug modal for specific API
      */
-    function showDebug(apiName) {
-      const api = filteredData.find(a => a.api_name === apiName);
+    function showDebug(apiName, version, releaseTag) {
+      const api = filteredData.find(a =>
+        a.api_name === apiName &&
+        a.version === version &&
+        a.release_tag === releaseTag
+      );
       if (!api) return;
 
       const modal = document.getElementById('debug-modal');
