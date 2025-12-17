@@ -13,7 +13,7 @@
 # - Supports dry-run mode for testing without creating resources
 #
 # DOCUMENTATION:
-# see https://github.com/camaraproject/project-administration/blob/main/documentation/project-admin-api-repository-creation.md
+# see https://github.com/camaraproject/project-administration/blob/main/workflows/api-repository-creation/docs/README.md
 # =========================================================================================
 #
 # Prerequisites:

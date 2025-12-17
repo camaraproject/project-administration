@@ -5,53 +5,123 @@
 <a href="https://github.com/camaraproject/project-administration" title="Repo Size"><img src="https://img.shields.io/github/repo-size/camaraproject/project-administration?style=plastic"></a>
 <a href="https://github.com/camaraproject/project-administration/blob/main/LICENSE" title="License"><img src="https://img.shields.io/badge/License-Apache%202.0-green.svg?style=plastic"></a>
 <a href="https://github.com/camaraproject/Governance/blob/main/ProjectStructureAndRoles.md" title="Working Group"><img src="https://img.shields.io/badge/Working%20Group-red?style=plastic"></a>
-<!-- Choose one of the above four alternative badges and then delete the remaining ones including this task -->
 
 # project-administration
 
-Repository to develop and provide tooling and workflows to support the administration of CAMARA. Maintained under the supervision of TSC and the Release Management working group.
+This repository is the **Control Plane** for CAMARA project administration. It hosts project-wide automation that operates across the CAMARA repository landscape.
+
+Maintained under the supervision of TSC and the Release Management working group.
 
 * CAMARA Governance: https://github.com/camaraproject/Governance
 * Release Management repository: https://github.com/camaraproject/ReleaseManagement
 
+## Purpose
+
+This repository provides:
+* Project-wide campaigns for coordinated changes across repositories
+* Long-lived project systems (e.g. Release Collector)
+* Orchestration workflows for administrative tasks
+* Authoritative project-level data (e.g. collected release metadata, api-landscape config input)
+* Derived reports and interactive viewers
+
 ## Scope
 
-* Tooling for CAMARA Admin team to automated recurring and buld tasks across the repositories of CAMARA.
-* The repository provides the admin team initially with:
-  * A workflow to create new (Sandbox) API Repositories
-  * A set of workflows which allows bulk changes across the repositories of CAMARA
-  * Reporting workflows to support the administration of repositories and releases
-* Started: May 2025
+**Belongs here:**
+* Project-wide campaigns
+* Long-lived project systems
+* Orchestration workflows
+* Authoritative project-level data
+* Derived, regenerable reports
 
-## (Release) Information
+**Does not belong here:**
+* Reusable CI workflows for API repositories (see [tooling](https://github.com/camaraproject/tooling))
+* Shared actions or generic tooling
 
-The repository has no regular releases, the workflows are continously updated based on current needs, tested versions are in `main` branch, versions under test are in other branches.
+## Current Content
 
-* Workflows are deployed within `.github/workflows`
-* Documentation of the workflows is within /documentation
+### Release Collector
 
-Current available workflows:
+Automated collection and tracking of CAMARA API releases.
 
-* **[API Repository Creation](documentation/project-admin-api-repository-creation.md)**
-  * Please read the [documentation](documentation/project-admin-api-repository-creation.md) first
-  * Requires environment `repository-creation` and a token `GH_REPO_CREATE_TOKEN` within that environment
-* **[Project Bulk Repository Administration](documentation/project-admin-bulk-repository-adminstration.md)**
-  * Set of three workflows which allows to develop, test and apply operations across all or a subset of CAMARA repositories
-  * Please read the [documentation](documentation/project-admin-bulk-repository-adminstration.md) first
-  * Requires an appropriate token within `CAMARA_BULK_CHANGE_TOKEN` (use of bot account recommended for git/PR operations)
-* **[Project Reporting workflows](documentation/project-report-generation-workflows.md)**
-  * Currently two different reporting workflows: "Repository Overview" and "API Releases"
-  * Requires token `CAMARA_REPORT_TOKEN`, see [documentation](documentation/project-report-generation-workflows.md)
-* **[Release Collector](workflows/release-collector/docs/README.md)**
-  * Automated collection and tracking of CAMARA API releases
-  * Generates meta-release reports (Fall24, Spring25, Fall25) and interactive HTML viewers
-  * Runs weekly to detect new releases and update metadata
-  * Please read the [documentation](workflows/release-collector/docs/README.md) first
+* **Location**: [workflows/release-collector/](workflows/release-collector/)
+* **Features**: Daily automated incremental updates, data enrichment for reports, interactive HTML viewers for meta-releases (Fall24, Spring25, Fall25) and complete API portfolio
+* **Documentation**: [workflows/release-collector/docs/README.md](workflows/release-collector/docs/README.md)
+* **Workflows**: `release-collector.yml`, `release-collector-production.yml`
+
+#### Release Collector Outputs
+
+Generated and maintained by the Release Collector system:
+
+* **Data**: [data/releases-master.yaml](data/releases-master.yaml) - Master release metadata for all CAMARA API releases
+* **Reports**: [reports/](reports/) - JSON files (all-releases, fall24, spring25, fall25)
+* **Viewers**: Interactive HTML viewers are not committed, but deployed to https://camaraproject.github.io/project-administration/
+
+### Campaigns
+
+Goal-oriented, time-bound initiatives for coordinated changes across repositories (with idempotent execution and dry-run feature)
+
+* **Location**: [campaigns/](campaigns/)
+* **Available campaigns**:
+  * [release-info/](campaigns/release-info/) - Updates "Release Information" sections in API repository READMEs
+  * [api-version-wip-check/](campaigns/api-version-wip-check/) - Verifies wip versions in API files after releases
+* **Workflows**: `campaign-release-info.yml`, `campaign-api-version-wip-check.yml`
+
+### API Repository Creation
+
+Automates setup of new API repositories from [Template_API_Repository](https://github.com/camaraproject/Template_API_Repository).
+
+* **Location**: [workflows/api-repository-creation/](workflows/api-repository-creation/)
+* **Documentation**: [workflows/api-repository-creation/docs/README.md](workflows/api-repository-creation/docs/README.md)
+* **Workflow**: `project-admin-api-repository-creation.yml`
+* **Requirements**: Environment `repository-creation` with `GH_REPO_CREATE_TOKEN`
+
+### Legacy Reporting (to be replaced)
+
+* **Workflow**: `project-report-camara-repository-overview.yml` - Repository overview reporting (legacy, will be replaced)
+
+### Reusable Actions
+
+Supporting GitHub Actions for campaigns and workflows.
+
+* **Location**: [actions/](actions/)
+* **Actions**: render-mustache, replace-delimited-content, ensure-delimited-section, campaign-finalize-per-repo, and others
+
+## Repository Structure
+
+```text
+project-administration/
+├── .github/workflows/           # Workflow entry points
+├── actions/                     # Reusable GitHub Actions for campaigns
+├── campaigns/                   # Goal-oriented initiatives
+│   ├── api-version-wip-check/   # API version compliance checks
+│   └── release-info/            # README release info updates
+├── data/                        # Release Collector outputs (master data)
+│   └── releases-master.yaml     # Master release metadata
+├── reports/                     # Release Collector outputs (JSON reports)
+└── workflows/
+    ├── api-repository-creation/ # Repository creation system
+    │   └── docs/README.md
+    └── release-collector/       # Release tracking system
+        ├── config/              # API landscape, meta-release mappings
+        ├── docs/                # Documentation
+        ├── schemas/             # YAML schemas
+        ├── scripts/             # Processing scripts
+        └── templates/           # HTML/viewer templates
+```
+
+## Release Information
+
+This repository has no regular release schedule. Workflows are continuously updated based on current needs:
+* Tested versions are in the `main` branch
+* Versions under test are in other branches or individual forks
 
 ## Contributing
- 
-* Issues and PRs for this repositories will be discussed within the meetings of the [Release Management working group](https://github.com/camaraproject/ReleaseManagement).
-* Larger changes impacting multiple or all repositories will be discussed with issues in the Governance repository and approved by the [Technical Steering Committee (TSC)](https://lf-camaraproject.atlassian.net/wiki/x/0RDe).
-  
-* Mailing List (of CAMARA's admin team)
-  * A message to the admin team CAMARA can be sent to <adm@lists.camaraproject.org>
+
+Maintained by **Release Management WG / TSC**.
+
+* Issues and PRs are discussed in [Release Management working group](https://github.com/camaraproject/ReleaseManagement) meetings
+* Larger changes impacting multiple repositories are discussed in the Governance repository and approved by [TSC](https://lf-camaraproject.atlassian.net/wiki/x/0RDe)
+
+**Contact**:
+* Admin team: <adm@lists.camaraproject.org>
+* Release Management WG: <release-management@lists.camaraproject.org>
