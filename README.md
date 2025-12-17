@@ -48,6 +48,13 @@ Automated collection and tracking of CAMARA API releases.
 * **Documentation**: [workflows/release-collector/docs/README.md](workflows/release-collector/docs/README.md)
 * **Workflows**: `release-collector.yml`, `release-collector-production.yml`
 
+#### Release Collector Configuration
+
+Configuration files used by the Release Collector (at repository root level):
+
+* **API Landscape**: [config/api-landscape.yaml](config/api-landscape.yaml) - Portfolio metadata (categories, URLs, tooltips) for API enrichment
+* **Meta-Release Mappings**: [config/meta-release-mappings.yaml](config/meta-release-mappings.yaml) - Maps repository release cycles (r1, r2, r3) to meta-releases (Fall24, Spring25, Fall25)
+
 #### Release Collector Outputs
 
 Generated and maintained by the Release Collector system:
@@ -72,12 +79,12 @@ Automates setup of new API repositories from [Template_API_Repository](https://g
 
 * **Location**: [workflows/api-repository-creation/](workflows/api-repository-creation/)
 * **Documentation**: [workflows/api-repository-creation/docs/README.md](workflows/api-repository-creation/docs/README.md)
-* **Workflow**: `project-admin-api-repository-creation.yml`
+* **Workflow**: `admin-api-repository-creation.yml`
 * **Requirements**: Environment `repository-creation` with `GH_REPO_CREATE_TOKEN`
 
 ### Legacy Reporting (to be replaced)
 
-* **Workflow**: `project-report-camara-repository-overview.yml` - Repository overview reporting (legacy, will be replaced)
+* **Workflow**: `report-repository-overview.yml` - Repository overview reporting (legacy, will be replaced)
 
 ### Reusable Actions
 
@@ -95,6 +102,9 @@ project-administration/
 ├── campaigns/                   # Goal-oriented initiatives
 │   ├── api-version-wip-check/   # API version compliance checks
 │   └── release-info/            # README release info updates
+├── config/                      # Shared configuration files
+│   ├── api-landscape.yaml       # API portfolio metadata
+│   └── meta-release-mappings.yaml
 ├── data/                        # Release Collector outputs (master data)
 │   └── releases-master.yaml     # Master release metadata
 ├── reports/                     # Release Collector outputs (JSON reports)
@@ -102,7 +112,6 @@ project-administration/
     ├── api-repository-creation/ # Repository creation system
     │   └── docs/README.md
     └── release-collector/       # Release tracking system
-        ├── config/              # API landscape, meta-release mappings
         ├── docs/                # Documentation
         ├── schemas/             # YAML schemas
         ├── scripts/             # Processing scripts
