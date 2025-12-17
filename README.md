@@ -22,7 +22,7 @@ This repository provides:
 * Long-lived project support systems (e.g. Release Collector)
 * Orchestration workflows for administrative tasks
 * Authoritative project-level data (e.g. collected release metadata, api-landscape config input)
-* Derived reports and interactive viewers
+* Derived reports and interactive viewers (e.g. meta-release tables)
 
 ## Scope
 
