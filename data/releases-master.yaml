@@ -1,6 +1,6 @@
 metadata:
-  last_updated: '2025-12-09T17:38:25.244Z'
-  last_checked: '2025-12-09T17:38:25.244Z'
+  last_updated: '2025-12-17T04:56:13.781Z'
+  last_checked: '2025-12-17T04:56:13.781Z'
   workflow_version: 3.0.0
   schema_version: 1.0.0
 releases:
@@ -649,6 +649,17 @@ releases:
       - api_name: kyc-fill-in
         file_name: kyc-fill-in
         version: 0.4.0
+        title: Know Your Customer Fill-in
+        commonalities: '0.6'
+  - repository: KnowYourCustomerFill-in
+    release_tag: r1.3
+    release_date: '2025-12-15T09:02:43Z'
+    meta_release: Fall25
+    github_url: https://github.com/camaraproject/KnowYourCustomerFill-in/releases/tag/r1.3
+    apis:
+      - api_name: kyc-fill-in
+        file_name: kyc-fill-in
+        version: 0.4.1
         title: Know Your Customer Fill-in
         commonalities: '0.6'
   - repository: KnowYourCustomerMatch

@@ -1,18 +1,18 @@
 {
   "metadata": {
-    "generated": "2025-12-09T17:38:25.381Z",
+    "generated": "2025-12-17T04:56:13.901Z",
     "meta_release": "Fall25",
     "source": "Release Collector v3",
     "landscape_version": "1.1.0"
   },
   "statistics": {
     "repositories_count": 40,
-    "api_versions_count": 62,
+    "api_versions_count": 63,
     "unique_api_names_count": 60,
     "unique_apis_count": 60,
     "api_version_maturity": {
       "stable": 11,
-      "initial": 51,
+      "initial": 52,
       "rc": 0
     },
     "unique_api_maturity": {
@@ -24,7 +24,7 @@
       "Computing Services": 8,
       "Communication Quality": 16,
       "Payments and Charging": 4,
-      "Authentication and Fraud Prevention": 15,
+      "Authentication and Fraud Prevention": 16,
       "Service Management": 1,
       "Device Information": 7,
       "Location Services": 6,
@@ -248,12 +248,17 @@
     "KnowYourCustomerFill-in": {
       "releases": [
         {
+          "tag": "r1.3",
+          "date": "2025-12-15T09:02:43Z",
+          "apis_count": 1
+        },
+        {
           "tag": "r1.2",
           "date": "2025-09-15T02:58:21Z",
           "apis_count": 1
         }
       ],
-      "total_apis": 1,
+      "total_apis": 2,
       "unique_apis_count": 1
     },
     "KnowYourCustomerMatch": {
@@ -1145,6 +1150,31 @@
           "api_name": "kyc-fill-in",
           "file_name": "kyc-fill-in",
           "version": "0.4.0",
+          "title": "Know Your Customer Fill-in",
+          "commonalities": "0.6",
+          "maturity": "initial",
+          "portfolio_category": "Authentication and Fraud Prevention",
+          "website_url": "https://camaraproject.org/know-your-customer-fill-in/",
+          "tooltip": "Fill in web dialogues using operator data",
+          "display_name": "Know Your Customer Fill-in",
+          "published": true,
+          "canonical_name": "kyc-fill-in",
+          "first_release": "PreFall24",
+          "isNew": false
+        }
+      ]
+    },
+    {
+      "repository": "KnowYourCustomerFill-in",
+      "release_tag": "r1.3",
+      "release_date": "2025-12-15T09:02:43Z",
+      "meta_release": "Fall25",
+      "github_url": "https://github.com/camaraproject/KnowYourCustomerFill-in/releases/tag/r1.3",
+      "apis": [
+        {
+          "api_name": "kyc-fill-in",
+          "file_name": "kyc-fill-in",
+          "version": "0.4.1",
           "title": "Know Your Customer Fill-in",
           "commonalities": "0.6",
           "maturity": "initial",
@@ -2499,6 +2529,27 @@
       "release_date": "2025-09-15T02:58:21Z",
       "meta_release": "Fall25",
       "github_url": "https://github.com/camaraproject/KnowYourCustomerFill-in/releases/tag/r1.2"
+    },
+    {
+      "api_name": "kyc-fill-in",
+      "file_name": "kyc-fill-in",
+      "version": "0.4.1",
+      "title": "Know Your Customer Fill-in",
+      "commonalities": "0.6",
+      "maturity": "initial",
+      "portfolio_category": "Authentication and Fraud Prevention",
+      "website_url": "https://camaraproject.org/know-your-customer-fill-in/",
+      "tooltip": "Fill in web dialogues using operator data",
+      "display_name": "Know Your Customer Fill-in",
+      "published": true,
+      "canonical_name": "kyc-fill-in",
+      "first_release": "PreFall24",
+      "isNew": false,
+      "repository": "KnowYourCustomerFill-in",
+      "release_tag": "r1.3",
+      "release_date": "2025-12-15T09:02:43Z",
+      "meta_release": "Fall25",
+      "github_url": "https://github.com/camaraproject/KnowYourCustomerFill-in/releases/tag/r1.3"
     },
     {
       "api_name": "kyc-match",
