@@ -19,7 +19,7 @@ Maintained under the supervision of TSC and the Release Management working group
 
 This repository provides:
 * Project-wide campaigns for coordinated changes across repositories
-* Long-lived project systems (e.g. Release Collector)
+* Long-lived project support systems (e.g. Release Collector)
 * Orchestration workflows for administrative tasks
 * Authoritative project-level data (e.g. collected release metadata, api-landscape config input)
 * Derived reports and interactive viewers
