@@ -20,7 +20,7 @@ const execAsync = promisify(exec);
 
 // Configuration
 const GITHUB_ORG = process.env.GITHUB_ORG || 'camaraproject';
-const CONFIG_PATH = path.join(__dirname, '..', 'config'); // workflows/release-collector/config
+const CONFIG_PATH = path.join(__dirname, '..', '..', '..', 'config'); // /config at repository root
 
 // Initialize GitHub API client
 const octokit = new Octokit({

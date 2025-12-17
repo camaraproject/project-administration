@@ -1,4 +1,22 @@
-name: campaign-release-info
+# =========================================================================================
+# CAMARA Project - Campaign: Release Info Sync
+#
+# Synchronizes Release Information sections in API repository READMEs based on data
+# from releases-master.yaml. Creates PRs to update release tables across repositories.
+#
+# PREREQUISITES:
+# - Secret BULK_CAMPAIGN_TOKEN: Fine-grained PAT with the following permissions:
+#   - Contents: Read and write (create branches, commit changes)
+#   - Pull requests: Read and write (create PRs in target repos)
+#
+# CHANGELOG:
+# - 2024-12-17: Standardized header format
+#
+# DOCUMENTATION:
+# https://github.com/camaraproject/project-administration/blob/main/campaigns/release-info/docs/README.md
+# =========================================================================================
+
+name: Campaign - Release Info Sync
 
 on:
   workflow_dispatch:

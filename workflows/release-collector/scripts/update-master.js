@@ -20,7 +20,7 @@ const yaml = require('js-yaml');
 // Paths (relative to repository root)
 const REPO_ROOT = path.join(__dirname, '..', '..', '..');
 const DATA_PATH = path.join(REPO_ROOT, 'data');
-const CONFIG_PATH = path.join(__dirname, '..', 'config'); // workflows/release-collector/config
+const CONFIG_PATH = path.join(__dirname, '..', '..', '..', 'config'); // /config at repository root
 const MASTER_FILE = path.join(DATA_PATH, 'releases-master.yaml');
 
 /**

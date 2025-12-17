@@ -12,7 +12,7 @@ const yaml = require('js-yaml');
 
 // Configuration
 // Paths (relative to workflow directory)
-const CONFIG_PATH = path.join(__dirname, '..', 'config'); // workflows/release-collector/config
+const CONFIG_PATH = path.join(__dirname, '..', '..', '..', 'config'); // /config at repository root
 const LANDSCAPE_FILE = path.join(CONFIG_PATH, 'api-landscape.yaml');
 
 // Allowed categories as defined in the schema

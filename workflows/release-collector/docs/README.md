@@ -251,7 +251,7 @@ generate-viewers.js → Embeds data in HTML templates, creates self-contained vi
 - **Source of truth**: Basis for all reports and viewers
 - **Format corrections applied**: v-prefix removal, commonalities normalization
 
-#### API Landscape (config/api-landscape.yaml)
+#### API Landscape (/config/api-landscape.yaml)
 - **Portfolio metadata**: Categories, URLs, tooltips, display names
 - **Applied at runtime**: During report generation only
 - **Not stored in master**: Keeps master clean and factual
@@ -308,7 +308,7 @@ Result: Artifact download for testing
 
 **Solution**:
 1. Note the exact API name from error logs
-2. Add it to config/api-landscape.yaml (see Maintenance section)
+2. Add it to /config/api-landscape.yaml (see Maintenance section)
 3. Run full re-analysis to enrich all reports
 
 **Note**: This is a warning, workflow continues but API won't have category/tooltip
@@ -406,17 +406,17 @@ These corrections are hardcoded and applied to all releases automatically. No co
 ## Maintenance
 
 ### Adding New Meta-Releases
-1. Update `config/meta-release-mappings.yaml`
+1. Update `/config/meta-release-mappings.yaml`
 2. Update `scripts/generate-reports.js` (add meta-release to list)
 3. Update `scripts/generate-viewers.js` (add template generation)
 4. Run full re-analysis
 
 ### Adding New APIs
-1. Add to `config/api-landscape.yaml`
+1. Add to `/config/api-landscape.yaml`
 2. Run full re-analysis to enrich existing releases
 
 ### Updating Categories or URLs
-1. Update `config/api-landscape.yaml`
+1. Update `/config/api-landscape.yaml`
 2. Run full re-analysis to regenerate reports
 
 ## Migration Notes

@@ -13,7 +13,7 @@ This directory contains JSON Schema definitions for the data files used by the M
   - Historical facts preserved (API names, titles)
 
 ### api-landscape-schema.yaml
-- **File**: `config/api-landscape.yaml`
+- **File**: `/config/api-landscape.yaml` (at repository root)
 - **Purpose**: Defines structure for API enrichment data
 - **Key Points**:
   - Portfolio categories, URLs, tooltips

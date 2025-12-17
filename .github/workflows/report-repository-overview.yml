@@ -1,23 +1,21 @@
 # =========================================================================================
-# CAMARA Project - Repository Overview Report Workflow
+# CAMARA Project - Report: Repository Overview
 #
-# This GitHub Actions workflow generates comprehensive reports on CAMARA repository health,
-# activity patterns, and template compliance for API repositories.
+# Generates comprehensive reports on CAMARA repository health, activity patterns,
+# and template compliance for API repositories.
+#
+# PREREQUISITES:
+# - GITHUB_TOKEN (automatic) for API access to public repositories
 #
 # CHANGELOG:
-# - 2025-07-26: Initial version as is for r1.1 release of camaraproject/project-administration
-#
-# USAGE:
-# - Runs automatically weekly on Mondays at 07:35 UTC
-# - Can be triggered manually via workflow_dispatch
-# - Options: include archived repos, detailed activity analysis, template compliance
-# - Requires CAMARA_REPORT_TOKEN for cross-repository access
+# - 2024-12-17: Standardized header format, renamed workflow file
+# - 2025-07-26: Initial version for r1.1 release
 #
 # DOCUMENTATION:
-# see https://github.com/camaraproject/project-administration/blob/main/documentation/project-report-generation-workflows.md
+# https://github.com/camaraproject/project-administration/blob/main/documentation/project-report-generation-workflows.md
 # =========================================================================================
 
-name: CAMARA Repository Overview
+name: Report - Repository Overview
 
 on:
   workflow_dispatch:

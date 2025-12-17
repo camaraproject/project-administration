@@ -79,8 +79,8 @@ After merging the PR, deploy viewers to the public site:
 ## When to Use Full Re-analysis
 
 Run **full** analysis when:
-- You updated [api-landscape.yaml](config/api-landscape.yaml) (API categories, URLs, tooltips)
-- You changed [meta-release-mappings.yaml](config/meta-release-mappings.yaml)
+- You updated [api-landscape.yaml](../../config/api-landscape.yaml) (API categories, URLs, tooltips)
+- You changed [meta-release-mappings.yaml](../../config/meta-release-mappings.yaml)
 - You suspect data quality issues
 - Templates were modified (force viewers also needed)
 

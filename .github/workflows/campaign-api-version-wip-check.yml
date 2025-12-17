@@ -1,4 +1,20 @@
-name: campaign-api-version-wip-check
+# =========================================================================================
+# CAMARA Project - Campaign: API Version WIP Check
+#
+# Creates issues in API repositories to remind maintainers to reset API version information
+# to "wip" in main branch after a release. Checks for non-wip versions in OpenAPI files.
+#
+# PREREQUISITES:
+# - Requires write access to issues in target repositories
+#
+# CHANGELOG:
+# - 2024-12-17: Standardized header format
+#
+# DOCUMENTATION:
+# https://github.com/camaraproject/project-administration/blob/main/campaigns/api-version-wip-check/README.md
+# =========================================================================================
+
+name: Campaign - API Version WIP Check
 
 on:
   workflow_dispatch:

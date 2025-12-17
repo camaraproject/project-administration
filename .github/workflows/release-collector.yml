@@ -1,8 +1,8 @@
 # =========================================================================================
-# CAMARA Project - Release Collector Workflow v3
+# CAMARA Project - Release Collector: Analysis & Staging
 #
-# Interim solution for collecting and reporting release metadata across all CAMARA API
-# repositories until Spring 2026 when native release-metadata.yaml files become standard.
+# Collects and reports release metadata across all CAMARA API repositories. Interim
+# solution until Spring 2026 when native release-metadata.yaml files become standard.
 #
 # Key Features:
 # - Incremental updates (detect and analyze only new releases)
@@ -10,9 +10,18 @@
 # - Focus on public releases with API-name centric viewing
 # - Enhanced HTML viewers with sorting, filtering, and statistics
 #
+# PREREQUISITES:
+# - GITHUB_TOKEN (automatic) for API access
+# - GitHub Pages enabled on this repository for staging deployment
+#
+# CHANGELOG:
+# - 2024-12-17: Standardized header format, moved config to /config
+#
+# DOCUMENTATION:
+# https://github.com/camaraproject/project-administration/blob/main/workflows/release-collector/docs/README.md
 # =========================================================================================
 
-name: Release Collector v3
+name: Release Collector - Analysis & Staging
 
 on:
   workflow_dispatch:
@@ -69,7 +78,7 @@ env:
 
   # Data Locations
   MASTER_METADATA_PATH: 'data/releases-master.yaml'
-  CONFIG_PATH: 'workflows/release-collector/config'
+  CONFIG_PATH: 'config'
   REPORTS_PATH: 'reports'
   VIEWERS_PATH: 'viewers'
 

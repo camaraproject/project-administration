@@ -42,7 +42,7 @@ The workflow implements a clean separation of concerns:
 - **Purpose**: Generates JSON reports for each meta-release
 - **Used by**: GitHub workflow (Phase 4)
 - **Key Features**:
-  - **Runtime enrichment** from `config/api-landscape.yaml`
+  - **Runtime enrichment** from `/config/api-landscape.yaml`
   - Adds portfolio categories, URLs, tooltips
   - Groups APIs by canonical names (handles renames)
 - **Output**: JSON reports in `reports/` directory
@@ -94,8 +94,8 @@ generate-viewers.js (create HTML viewers)
 
 ### Required Configuration
 
-- `config/meta-release-mappings.yaml`: Maps repositories to meta-releases
-- `config/api-landscape.yaml`: Enrichment data for APIs
+- `/config/meta-release-mappings.yaml`: Maps repositories to meta-releases
+- `/config/api-landscape.yaml`: Enrichment data for APIs
   - Categories, URLs, tooltips
   - Previous names for renamed APIs
 

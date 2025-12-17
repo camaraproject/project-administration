@@ -1,20 +1,27 @@
-# CAMARA Release Collector - Production Deployment Workflow
+# =========================================================================================
+# CAMARA Project - Release Collector: Production Deploy
 #
-# This workflow deploys the Release Collector viewers to production
-# (camaraproject.github.io/releases/).
+# Deploys the Release Collector viewers to production (camaraproject.github.io/releases/).
 #
 # Safety checks:
 # - Default mode: Compares staging vs main timestamps to prevent deploying stale content
 # - Rollback mode: Allows deploying specific ref from main branch history
 # - Emergency mode: Allows deploying from any branch (explicit override)
 #
-# Prerequisites:
+# PREREQUISITES:
 # - Secret PRODUCTION_DEPLOY_TOKEN: Fine-grained PAT for camaraproject/camaraproject.github.io
 #   Required permissions:
 #   - Contents: Read and write (push files)
 #   - Actions: Read and write (trigger workflow_dispatch)
 #   - Metadata: Read (required for API access)
 #   Note: Pages permission is NOT needed - the target repo's workflow uses GITHUB_TOKEN
+#
+# CHANGELOG:
+# - 2024-12-17: Standardized header format
+#
+# DOCUMENTATION:
+# https://github.com/camaraproject/project-administration/blob/main/workflows/release-collector/docs/README.md
+# =========================================================================================
 
 name: Release Collector - Production Deploy
 

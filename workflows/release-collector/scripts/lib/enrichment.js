@@ -15,7 +15,7 @@ const yaml = require('js-yaml');
  * @returns {object} Parsed landscape data
  */
 function loadLandscape(landscapePath) {
-  const defaultPath = path.join(__dirname, '..', '..', 'config', 'api-landscape.yaml');
+  const defaultPath = path.join(__dirname, '..', '..', '..', '..', 'config', 'api-landscape.yaml'); // /config at repository root
   const filePath = landscapePath || process.env.API_LANDSCAPE_PATH || defaultPath;
 
   if (!fs.existsSync(filePath)) {
