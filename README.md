@@ -28,7 +28,7 @@ This repository provides:
 
 **Belongs here:**
 * Project-wide campaigns
-* Long-lived project systems
+* Long-lived project support systems
 * Orchestration workflows
 * Authoritative project-level data
 * Derived, regenerable reports
