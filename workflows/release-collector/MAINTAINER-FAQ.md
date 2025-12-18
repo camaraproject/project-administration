@@ -41,15 +41,17 @@ Then **squash and merge** to keep history clean.
 
 ## Configuration
 
+> **Note**: Configuration changes require **manual** workflow runs. Scheduled runs (incremental) do not detect config file changes.
+
 ### 6. How do I add a new API to the landscape?
 
-Edit [config/api-landscape.yaml](../../config/api-landscape.yaml) with the API details, then run workflow with **full** analysis and **force_viewers** enabled.
+Edit [config/api-landscape.yaml](../../config/api-landscape.yaml) with the API details, then manually run workflow with **full** analysis and **force_viewers** enabled.
 
 See [User Guide](docs/README.md#adding-new-apis) for complete syntax and examples.
 
 ### 7. How do I change which meta-release a repository belongs to?
 
-Edit [config/meta-release-mappings.yaml](../../config/meta-release-mappings.yaml), then run workflow with **full** analysis.
+Edit [config/meta-release-mappings.yaml](../../config/meta-release-mappings.yaml), then manually run workflow with **full** analysis.
 
 See [User Guide](docs/README.md#meta-release-mappingsyaml) for syntax.
 

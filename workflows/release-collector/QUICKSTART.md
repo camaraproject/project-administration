@@ -78,6 +78,8 @@ After merging the PR, deploy viewers to the public site:
 
 ## When to Use Full Re-analysis
 
+> **Important**: Config file changes are NOT automatically detected. You MUST manually run a full analysis after changing any config file - scheduled runs (incremental) will not pick up these changes.
+
 Run **full** analysis when:
 - You updated [api-landscape.yaml](../../config/api-landscape.yaml) (API categories, URLs, tooltips)
 - You changed [meta-release-mappings.yaml](../../config/meta-release-mappings.yaml)
