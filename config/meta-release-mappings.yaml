@@ -5,6 +5,10 @@
 # Each release cycle belongs to exactly one meta-release.
 #
 # Format: meta_release -> repository -> release_cycle
+#
+# IMPORTANT: After editing this file, you MUST manually run the Release Collector
+# workflow with "full" analysis scope. Scheduled/incremental runs do NOT detect
+# config file changes.
 # =========================================================================================
 
 mappings:

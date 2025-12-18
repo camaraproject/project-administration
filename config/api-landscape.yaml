@@ -1,3 +1,13 @@
+# =========================================================================================
+# API Landscape Configuration
+#
+# Enrichment data for CAMARA APIs (categories, URLs, tooltips, display names).
+#
+# IMPORTANT: After editing this file, you MUST manually run the Release Collector
+# workflow with "full" analysis scope. Scheduled/incremental runs do NOT detect
+# config file changes.
+# =========================================================================================
+
 metadata:
   version: 1.1.0
   last_updated: '2025-09-22'
