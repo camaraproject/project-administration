@@ -1,0 +1,16 @@
+repository:
+  repository_name: QualityOnDemand
+  release_tag: r2.2
+  release_type: public-release
+  release_date: "2025-03-11T15:31:39Z"
+  src_commit_sha: null
+apis:
+  - api_name: qod-provisioning
+    api_version: 0.2.0
+    api_title: QoD Provisioning API
+  - api_name: qos-profiles
+    api_version: 1.0.0
+    api_title: QoS Profiles
+  - api_name: quality-on-demand
+    api_version: 1.0.0
+    api_title: Quality-On-Demand

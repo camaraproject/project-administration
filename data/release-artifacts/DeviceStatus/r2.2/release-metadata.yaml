@@ -1,0 +1,25 @@
+repository:
+  repository_name: DeviceStatus
+  release_tag: r2.2
+  release_type: public-release
+  release_date: "2025-03-14T11:49:32Z"
+  src_commit_sha: null
+apis:
+  - api_name: connected-network-type-subscriptions
+    api_version: 0.1.0
+    api_title: Connected Network Type Subscriptions
+  - api_name: connected-network-type
+    api_version: 0.1.0
+    api_title: Connected Network Type
+  - api_name: device-reachability-status-subscriptions
+    api_version: 0.7.0
+    api_title: Device Reachability Status Subscriptions
+  - api_name: device-reachability-status
+    api_version: 1.0.0
+    api_title: Device Reachability Status
+  - api_name: device-roaming-status-subscriptions
+    api_version: 0.7.0
+    api_title: Device Roaming Status Subscriptions
+  - api_name: device-roaming-status
+    api_version: 1.0.0
+    api_title: Device Roaming Status

@@ -1,0 +1,10 @@
+repository:
+  repository_name: MostFrequentLocation
+  release_tag: r1.2
+  release_type: public-release
+  release_date: "2025-01-30T15:13:30Z"
+  src_commit_sha: null
+apis:
+  - api_name: most-frequent-location
+    api_version: 0.1.0
+    api_title: Most Frequent Location

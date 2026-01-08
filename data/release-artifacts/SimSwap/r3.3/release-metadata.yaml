@@ -1,0 +1,13 @@
+repository:
+  repository_name: SimSwap
+  release_tag: r3.3
+  release_type: maintenance-release
+  release_date: "2025-12-01T10:30:21Z"
+  src_commit_sha: null
+apis:
+  - api_name: sim-swap-subscriptions
+    api_version: 0.3.0
+    api_title: Sim Swap Subscriptions
+  - api_name: sim-swap
+    api_version: 2.1.0
+    api_title: SIM Swap

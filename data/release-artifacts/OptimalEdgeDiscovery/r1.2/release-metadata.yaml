@@ -1,0 +1,10 @@
+repository:
+  repository_name: OptimalEdgeDiscovery
+  release_tag: r1.2
+  release_type: public-release
+  release_date: "2025-09-17T15:32:16Z"
+  src_commit_sha: null
+apis:
+  - api_name: optimal-edge-discovery
+    api_version: 0.1.0
+    api_title: Optimal Edge Discovery

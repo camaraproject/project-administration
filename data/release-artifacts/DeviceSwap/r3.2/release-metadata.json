@@ -1,0 +1,16 @@
+{
+  "repository": {
+    "repository_name": "DeviceSwap",
+    "release_tag": "r3.2",
+    "release_type": "public-release",
+    "release_date": "2025-09-18T11:54:24Z",
+    "src_commit_sha": null
+  },
+  "apis": [
+    {
+      "api_name": "device-swap",
+      "api_version": "1.0.0",
+      "api_title": "Device Swap"
+    }
+  ]
+}

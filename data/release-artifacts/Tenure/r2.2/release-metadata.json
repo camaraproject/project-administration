@@ -1,0 +1,16 @@
+{
+  "repository": {
+    "repository_name": "Tenure",
+    "release_tag": "r2.2",
+    "release_type": "public-release",
+    "release_date": "2025-09-19T12:07:15Z",
+    "src_commit_sha": null
+  },
+  "apis": [
+    {
+      "api_name": "kyc-tenure",
+      "api_version": "0.2.0",
+      "api_title": "KYC Tenure"
+    }
+  ]
+}

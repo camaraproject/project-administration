@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "generated": "2025-12-17T20:52:36.085Z",
+    "generated": "2026-01-08T19:05:10.595Z",
     "meta_release": "Spring25",
     "source": "Release Collector v3",
     "landscape_version": "1.1.0"
@@ -266,12 +266,13 @@
       "release_date": "2025-03-10T16:50:34Z",
       "meta_release": "Spring25",
       "github_url": "https://github.com/camaraproject/BlockchainPublicAddress/releases/tag/r1.2",
+      "release_type": "public-release",
       "apis": [
         {
           "api_name": "blockchain-public-address",
           "file_name": "blockchain-public-address",
-          "version": "0.2.0",
-          "title": "Blockchain Public Address",
+          "api_version": "0.2.0",
+          "api_title": "Blockchain Public Address",
           "commonalities": "0.5",
           "maturity": "initial",
           "portfolio_category": "Payments and Charging",
@@ -291,12 +292,13 @@
       "release_date": "2025-03-06T08:29:28Z",
       "meta_release": "Spring25",
       "github_url": "https://github.com/camaraproject/CallForwardingSignal/releases/tag/r2.2",
+      "release_type": "public-release",
       "apis": [
         {
           "api_name": "call-forwarding-signal",
           "file_name": "call-forwarding-signal",
-          "version": "0.3.0",
-          "title": "Call Forwarding Signal",
+          "api_version": "0.3.0",
+          "api_title": "Call Forwarding Signal",
           "commonalities": "0.5",
           "maturity": "initial",
           "portfolio_category": "Authentication and Fraud Prevention",
@@ -316,12 +318,13 @@
       "release_date": "2025-03-11T11:47:51Z",
       "meta_release": "Spring25",
       "github_url": "https://github.com/camaraproject/CarrierBillingCheckOut/releases/tag/r2.2",
+      "release_type": "public-release",
       "apis": [
         {
           "api_name": "carrier-billing-refund",
           "file_name": "carrier-billing-refund",
-          "version": "0.2.0",
-          "title": "Carrier Billing Refunds",
+          "api_version": "0.2.0",
+          "api_title": "Carrier Billing Refunds",
           "commonalities": "0.5",
           "maturity": "initial",
           "portfolio_category": "Payments and Charging",
@@ -336,8 +339,8 @@
         {
           "api_name": "carrier-billing",
           "file_name": "carrier-billing",
-          "version": "0.4.0",
-          "title": "Carrier Billing",
+          "api_version": "0.4.0",
+          "api_title": "Carrier Billing",
           "commonalities": "0.5",
           "maturity": "initial",
           "portfolio_category": "Payments and Charging",
@@ -357,12 +360,13 @@
       "release_date": "2025-03-14T16:33:24Z",
       "meta_release": "Spring25",
       "github_url": "https://github.com/camaraproject/ConnectivityInsights/releases/tag/r2.2",
+      "release_type": "public-release",
       "apis": [
         {
           "api_name": "application-profiles",
           "file_name": "application-profiles",
-          "version": "0.4.0",
-          "title": "Connectivity Insights - Application Profiles",
+          "api_version": "0.4.0",
+          "api_title": "Connectivity Insights - Application Profiles",
           "commonalities": "0.5",
           "maturity": "initial",
           "portfolio_category": "Communication Quality",
@@ -377,8 +381,8 @@
         {
           "api_name": "connectivity-insights-subscriptions",
           "file_name": "connectivity-insights-subscriptions",
-          "version": "0.5.0",
-          "title": "Connectivity Insights Subscriptions",
+          "api_version": "0.5.0",
+          "api_title": "Connectivity Insights Subscriptions",
           "commonalities": "0.5",
           "maturity": "initial",
           "portfolio_category": "Communication Quality",
@@ -393,8 +397,8 @@
         {
           "api_name": "connectivity-insights",
           "file_name": "connectivity-insights",
-          "version": "0.5.0",
-          "title": "Connectivity Insights",
+          "api_version": "0.5.0",
+          "api_title": "Connectivity Insights",
           "commonalities": "0.5",
           "maturity": "initial",
           "portfolio_category": "Communication Quality",
@@ -414,12 +418,13 @@
       "release_date": "2025-03-10T18:07:26Z",
       "meta_release": "Spring25",
       "github_url": "https://github.com/camaraproject/CustomerInsights/releases/tag/r1.2",
+      "release_type": "public-release",
       "apis": [
         {
           "api_name": "customer-insights",
           "file_name": "customer-insights",
-          "version": "0.1.0",
-          "title": "Customer Insights",
+          "api_version": "0.1.0",
+          "api_title": "Customer Insights",
           "commonalities": "0.5",
           "maturity": "initial",
           "portfolio_category": "Authentication and Fraud Prevention",
@@ -439,12 +444,13 @@
       "release_date": "2025-03-20T16:54:07Z",
       "meta_release": "Spring25",
       "github_url": "https://github.com/camaraproject/CustomerInsights/releases/tag/r1.3",
+      "release_type": "maintenance-release",
       "apis": [
         {
           "api_name": "customer-insights",
           "file_name": "customer-insights",
-          "version": "0.1.1",
-          "title": "Customer Insights",
+          "api_version": "0.1.1",
+          "api_title": "Customer Insights",
           "commonalities": "0.5",
           "maturity": "initial",
           "portfolio_category": "Authentication and Fraud Prevention",
@@ -464,12 +470,13 @@
       "release_date": "2025-03-13T18:05:07Z",
       "meta_release": "Spring25",
       "github_url": "https://github.com/camaraproject/DeviceIdentifier/releases/tag/r1.3",
+      "release_type": "public-release",
       "apis": [
         {
           "api_name": "device-identifier",
           "file_name": "device-identifier",
-          "version": "0.2.0",
-          "title": "CAMARA Mobile Device Identifier",
+          "api_version": "0.2.0",
+          "api_title": "CAMARA Mobile Device Identifier",
           "commonalities": "0.5",
           "maturity": "initial",
           "portfolio_category": "Authentication and Fraud Prevention",
@@ -489,12 +496,13 @@
       "release_date": "2025-03-10T13:54:47Z",
       "meta_release": "Spring25",
       "github_url": "https://github.com/camaraproject/DeviceLocation/releases/tag/r2.2",
+      "release_type": "public-release",
       "apis": [
         {
           "api_name": "geofencing-subscriptions",
           "file_name": "geofencing-subscriptions",
-          "version": "0.4.0",
-          "title": "Device Geofencing Subscriptions",
+          "api_version": "0.4.0",
+          "api_title": "Device Geofencing Subscriptions",
           "commonalities": "0.5",
           "maturity": "initial",
           "portfolio_category": "Location Services",
@@ -509,8 +517,8 @@
         {
           "api_name": "location-retrieval",
           "file_name": "location-retrieval",
-          "version": "0.4.0",
-          "title": "Device Location Retrieval",
+          "api_version": "0.4.0",
+          "api_title": "Device Location Retrieval",
           "commonalities": "0.5",
           "maturity": "initial",
           "portfolio_category": "Location Services",
@@ -525,8 +533,8 @@
         {
           "api_name": "location-verification",
           "file_name": "location-verification",
-          "version": "2.0.0",
-          "title": "Device Location Verification",
+          "api_version": "2.0.0",
+          "api_title": "Device Location Verification",
           "commonalities": "0.5",
           "maturity": "stable",
           "portfolio_category": "Location Services",
@@ -546,12 +554,13 @@
       "release_date": "2025-03-14T11:49:32Z",
       "meta_release": "Spring25",
       "github_url": "https://github.com/camaraproject/DeviceStatus/releases/tag/r2.2",
+      "release_type": "public-release",
       "apis": [
         {
           "api_name": "connected-network-type-subscriptions",
           "file_name": "connected-network-type-subscriptions",
-          "version": "0.1.0",
-          "title": "Connected Network Type Subscriptions",
+          "api_version": "0.1.0",
+          "api_title": "Connected Network Type Subscriptions",
           "commonalities": "0.5",
           "maturity": "initial",
           "portfolio_category": "Communication Quality",
@@ -566,8 +575,8 @@
         {
           "api_name": "connected-network-type",
           "file_name": "connected-network-type",
-          "version": "0.1.0",
-          "title": "Connected Network Type",
+          "api_version": "0.1.0",
+          "api_title": "Connected Network Type",
           "commonalities": "0.5",
           "maturity": "initial",
           "portfolio_category": "Communication Quality",
@@ -582,8 +591,8 @@
         {
           "api_name": "device-reachability-status-subscriptions",
           "file_name": "device-reachability-status-subscriptions",
-          "version": "0.7.0",
-          "title": "Device Reachability Status Subscriptions",
+          "api_version": "0.7.0",
+          "api_title": "Device Reachability Status Subscriptions",
           "commonalities": "0.5",
           "maturity": "initial",
           "portfolio_category": "Device Information",
@@ -598,8 +607,8 @@
         {
           "api_name": "device-reachability-status",
           "file_name": "device-reachability-status",
-          "version": "1.0.0",
-          "title": "Device Reachability Status",
+          "api_version": "1.0.0",
+          "api_title": "Device Reachability Status",
           "commonalities": "0.5",
           "maturity": "stable",
           "portfolio_category": "Device Information",
@@ -614,8 +623,8 @@
         {
           "api_name": "device-roaming-status-subscriptions",
           "file_name": "device-roaming-status-subscriptions",
-          "version": "0.7.0",
-          "title": "Device Roaming Status Subscriptions",
+          "api_version": "0.7.0",
+          "api_title": "Device Roaming Status Subscriptions",
           "commonalities": "0.5",
           "maturity": "initial",
           "portfolio_category": "Device Information",
@@ -630,8 +639,8 @@
         {
           "api_name": "device-roaming-status",
           "file_name": "device-roaming-status",
-          "version": "1.0.0",
-          "title": "Device Roaming Status",
+          "api_version": "1.0.0",
+          "api_title": "Device Roaming Status",
           "commonalities": "0.5",
           "maturity": "stable",
           "portfolio_category": "Device Information",
@@ -651,12 +660,13 @@
       "release_date": "2025-03-13T07:59:07Z",
       "meta_release": "Spring25",
       "github_url": "https://github.com/camaraproject/DeviceSwap/releases/tag/r2.2",
+      "release_type": "public-release",
       "apis": [
         {
           "api_name": "device-swap",
           "file_name": "device-swap",
-          "version": "0.2.0",
-          "title": "Device Swap",
+          "api_version": "0.2.0",
+          "api_title": "Device Swap",
           "commonalities": "0.5",
           "maturity": "initial",
           "portfolio_category": "Authentication and Fraud Prevention",
@@ -676,12 +686,13 @@
       "release_date": "2025-03-10T11:44:37Z",
       "meta_release": "Spring25",
       "github_url": "https://github.com/camaraproject/KnowYourCustomer/releases/tag/r2.2",
+      "release_type": "public-release",
       "apis": [
         {
           "api_name": "kyc-age-verification",
           "file_name": "kyc-age-verification",
-          "version": "0.1.0",
-          "title": "Know Your Customer Age Verification",
+          "api_version": "0.1.0",
+          "api_title": "Know Your Customer Age Verification",
           "commonalities": "0.5",
           "maturity": "initial",
           "portfolio_category": "Authentication and Fraud Prevention",
@@ -696,8 +707,8 @@
         {
           "api_name": "kyc-fill-in",
           "file_name": "kyc-fill-in",
-          "version": "0.3.0",
-          "title": "Know Your Customer Fill-in",
+          "api_version": "0.3.0",
+          "api_title": "Know Your Customer Fill-in",
           "commonalities": "0.5",
           "maturity": "initial",
           "portfolio_category": "Authentication and Fraud Prevention",
@@ -712,8 +723,8 @@
         {
           "api_name": "kyc-match",
           "file_name": "kyc-match",
-          "version": "0.3.0",
-          "title": "Know Your Customer Match",
+          "api_version": "0.3.0",
+          "api_title": "Know Your Customer Match",
           "commonalities": "0.5",
           "maturity": "initial",
           "portfolio_category": "Authentication and Fraud Prevention",
@@ -733,12 +744,13 @@
       "release_date": "2025-03-14T16:46:04Z",
       "meta_release": "Spring25",
       "github_url": "https://github.com/camaraproject/NumberRecycling/releases/tag/r1.2",
+      "release_type": "public-release",
       "apis": [
         {
           "api_name": "number-recycling",
           "file_name": "number-recycling",
-          "version": "0.1.0",
-          "title": "Number Recycling",
+          "api_version": "0.1.0",
+          "api_title": "Number Recycling",
           "commonalities": "0.5",
           "maturity": "initial",
           "portfolio_category": "Authentication and Fraud Prevention",
@@ -758,12 +770,13 @@
       "release_date": "2025-05-06T14:34:40Z",
       "meta_release": "Spring25",
       "github_url": "https://github.com/camaraproject/NumberRecycling/releases/tag/r1.3",
+      "release_type": "maintenance-release",
       "apis": [
         {
           "api_name": "number-recycling",
           "file_name": "number-recycling",
-          "version": "0.1.1",
-          "title": "Number Recycling",
+          "api_version": "0.1.1",
+          "api_title": "Number Recycling",
           "commonalities": "0.5",
           "maturity": "initial",
           "portfolio_category": "Authentication and Fraud Prevention",
@@ -783,12 +796,13 @@
       "release_date": "2025-03-20T14:24:37Z",
       "meta_release": "Spring25",
       "github_url": "https://github.com/camaraproject/NumberVerification/releases/tag/r2.4",
+      "release_type": "public-release",
       "apis": [
         {
           "api_name": "number-verification",
           "file_name": "number-verification",
-          "version": "2.0.0",
-          "title": "Number Verification",
+          "api_version": "2.0.0",
+          "api_title": "Number Verification",
           "commonalities": "0.5",
           "maturity": "stable",
           "portfolio_category": "Authentication and Fraud Prevention",
@@ -808,12 +822,13 @@
       "release_date": "2025-03-11T15:47:08Z",
       "meta_release": "Spring25",
       "github_url": "https://github.com/camaraproject/OTPValidation/releases/tag/r2.3",
+      "release_type": "public-release",
       "apis": [
         {
           "api_name": "one-time-password-sms",
           "file_name": "one-time-password-sms",
-          "version": "1.1.0",
-          "title": "One Time Password SMS",
+          "api_version": "1.1.0",
+          "api_title": "One Time Password SMS",
           "commonalities": "0.5",
           "maturity": "stable",
           "portfolio_category": "Authentication and Fraud Prevention",
@@ -833,12 +848,13 @@
       "release_date": "2025-03-14T09:52:57Z",
       "meta_release": "Spring25",
       "github_url": "https://github.com/camaraproject/PopulationDensityData/releases/tag/r2.2",
+      "release_type": "public-release",
       "apis": [
         {
           "api_name": "population-density-data",
           "file_name": "population-density-data",
-          "version": "0.2.0",
-          "title": "Population Density Data",
+          "api_version": "0.2.0",
+          "api_title": "Population Density Data",
           "commonalities": "0.5",
           "maturity": "initial",
           "portfolio_category": "Location Services",
@@ -858,12 +874,13 @@
       "release_date": "2025-03-11T15:31:39Z",
       "meta_release": "Spring25",
       "github_url": "https://github.com/camaraproject/QualityOnDemand/releases/tag/r2.2",
+      "release_type": "public-release",
       "apis": [
         {
           "api_name": "qod-provisioning",
           "file_name": "qod-provisioning",
-          "version": "0.2.0",
-          "title": "QoD Provisioning API",
+          "api_version": "0.2.0",
+          "api_title": "QoD Provisioning API",
           "commonalities": "0.5",
           "maturity": "initial",
           "portfolio_category": "Communication Quality",
@@ -881,8 +898,8 @@
         {
           "api_name": "qos-profiles",
           "file_name": "qos-profiles",
-          "version": "1.0.0",
-          "title": "QoS Profiles",
+          "api_version": "1.0.0",
+          "api_title": "QoS Profiles",
           "commonalities": "0.5",
           "maturity": "stable",
           "portfolio_category": "Communication Quality",
@@ -897,8 +914,8 @@
         {
           "api_name": "quality-on-demand",
           "file_name": "quality-on-demand",
-          "version": "1.0.0",
-          "title": "Quality-On-Demand",
+          "api_version": "1.0.0",
+          "api_title": "Quality-On-Demand",
           "commonalities": "0.5",
           "maturity": "stable",
           "portfolio_category": "Communication Quality",
@@ -918,6 +935,7 @@
       "release_date": "2025-03-12T06:07:28Z",
       "meta_release": "Spring25",
       "github_url": "https://github.com/camaraproject/RegionDeviceCount/releases/tag/r1.2",
+      "release_type": "public-release",
       "apis": []
     },
     {
@@ -926,12 +944,13 @@
       "release_date": "2025-06-04T11:39:59Z",
       "meta_release": "Spring25",
       "github_url": "https://github.com/camaraproject/RegionDeviceCount/releases/tag/r1.3",
+      "release_type": "maintenance-release",
       "apis": [
         {
           "api_name": "region-device-count",
           "file_name": "region-device-count",
-          "version": "0.1.0",
-          "title": "Region Device Count",
+          "api_version": "0.1.0",
+          "api_title": "Region Device Count",
           "commonalities": "0.5",
           "maturity": "initial",
           "portfolio_category": "Location Services",
@@ -951,12 +970,13 @@
       "release_date": "2025-03-13T11:20:01Z",
       "meta_release": "Spring25",
       "github_url": "https://github.com/camaraproject/SimSwap/releases/tag/r2.2",
+      "release_type": "public-release",
       "apis": [
         {
           "api_name": "sim-swap-subscriptions",
           "file_name": "sim-swap-subscriptions",
-          "version": "0.2.0",
-          "title": "Sim Swap Subscriptions",
+          "api_version": "0.2.0",
+          "api_title": "Sim Swap Subscriptions",
           "commonalities": "0.5",
           "maturity": "initial",
           "portfolio_category": "Authentication and Fraud Prevention",
@@ -971,8 +991,8 @@
         {
           "api_name": "sim-swap",
           "file_name": "sim-swap",
-          "version": "2.0.0",
-          "title": "SIM Swap",
+          "api_version": "2.0.0",
+          "api_title": "SIM Swap",
           "commonalities": "0.5",
           "maturity": "stable",
           "portfolio_category": "Authentication and Fraud Prevention",
@@ -992,12 +1012,13 @@
       "release_date": "2025-03-11T08:37:12Z",
       "meta_release": "Spring25",
       "github_url": "https://github.com/camaraproject/Tenure/releases/tag/r1.2",
+      "release_type": "public-release",
       "apis": [
         {
           "api_name": "kyc-tenure",
           "file_name": "kyc-tenure",
-          "version": "0.1.0",
-          "title": "KYC Tenure",
+          "api_version": "0.1.0",
+          "api_title": "KYC Tenure",
           "commonalities": "0.5",
           "maturity": "initial",
           "portfolio_category": "Authentication and Fraud Prevention",
@@ -1017,12 +1038,13 @@
       "release_date": "2025-03-18T12:39:09Z",
       "meta_release": "Spring25",
       "github_url": "https://github.com/camaraproject/WebRTC/releases/tag/r1.2",
+      "release_type": "public-release",
       "apis": [
         {
           "api_name": "webrtc-call-handling",
           "file_name": "webrtc-call-handling",
-          "version": "0.2.0",
-          "title": "WebRTC Call Handling API",
+          "api_version": "0.2.0",
+          "api_title": "WebRTC Call Handling API",
           "commonalities": "0.5",
           "maturity": "initial",
           "portfolio_category": "Communication Services",
@@ -1037,8 +1059,8 @@
         {
           "api_name": "webrtc-events",
           "file_name": "webrtc-events-subscription",
-          "version": "0.1.0",
-          "title": "WebRTC Event Subscription",
+          "api_version": "0.1.0",
+          "api_title": "WebRTC Event Subscription",
           "commonalities": "0.5",
           "maturity": "initial",
           "portfolio_category": "Communication Services",
@@ -1053,8 +1075,8 @@
         {
           "api_name": "webrtc-registration",
           "file_name": "webrtc-registration",
-          "version": "0.2.0",
-          "title": "WebRTC Registration Service API",
+          "api_version": "0.2.0",
+          "api_title": "WebRTC Registration Service API",
           "commonalities": "0.5",
           "maturity": "initial",
           "portfolio_category": "Communication Services",
@@ -1073,8 +1095,8 @@
     {
       "api_name": "blockchain-public-address",
       "file_name": "blockchain-public-address",
-      "version": "0.2.0",
-      "title": "Blockchain Public Address",
+      "api_version": "0.2.0",
+      "api_title": "Blockchain Public Address",
       "commonalities": "0.5",
       "maturity": "initial",
       "portfolio_category": "Payments and Charging",
@@ -1089,13 +1111,14 @@
       "release_tag": "r1.2",
       "release_date": "2025-03-10T16:50:34Z",
       "meta_release": "Spring25",
-      "github_url": "https://github.com/camaraproject/BlockchainPublicAddress/releases/tag/r1.2"
+      "github_url": "https://github.com/camaraproject/BlockchainPublicAddress/releases/tag/r1.2",
+      "release_type": "public-release"
     },
     {
       "api_name": "call-forwarding-signal",
       "file_name": "call-forwarding-signal",
-      "version": "0.3.0",
-      "title": "Call Forwarding Signal",
+      "api_version": "0.3.0",
+      "api_title": "Call Forwarding Signal",
       "commonalities": "0.5",
       "maturity": "initial",
       "portfolio_category": "Authentication and Fraud Prevention",
@@ -1110,13 +1133,14 @@
       "release_tag": "r2.2",
       "release_date": "2025-03-06T08:29:28Z",
       "meta_release": "Spring25",
-      "github_url": "https://github.com/camaraproject/CallForwardingSignal/releases/tag/r2.2"
+      "github_url": "https://github.com/camaraproject/CallForwardingSignal/releases/tag/r2.2",
+      "release_type": "public-release"
     },
     {
       "api_name": "carrier-billing",
       "file_name": "carrier-billing",
-      "version": "0.4.0",
-      "title": "Carrier Billing",
+      "api_version": "0.4.0",
+      "api_title": "Carrier Billing",
       "commonalities": "0.5",
       "maturity": "initial",
       "portfolio_category": "Payments and Charging",
@@ -1131,13 +1155,14 @@
       "release_tag": "r2.2",
       "release_date": "2025-03-11T11:47:51Z",
       "meta_release": "Spring25",
-      "github_url": "https://github.com/camaraproject/CarrierBillingCheckOut/releases/tag/r2.2"
+      "github_url": "https://github.com/camaraproject/CarrierBillingCheckOut/releases/tag/r2.2",
+      "release_type": "public-release"
     },
     {
       "api_name": "carrier-billing-refund",
       "file_name": "carrier-billing-refund",
-      "version": "0.2.0",
-      "title": "Carrier Billing Refunds",
+      "api_version": "0.2.0",
+      "api_title": "Carrier Billing Refunds",
       "commonalities": "0.5",
       "maturity": "initial",
       "portfolio_category": "Payments and Charging",
@@ -1152,13 +1177,14 @@
       "release_tag": "r2.2",
       "release_date": "2025-03-11T11:47:51Z",
       "meta_release": "Spring25",
-      "github_url": "https://github.com/camaraproject/CarrierBillingCheckOut/releases/tag/r2.2"
+      "github_url": "https://github.com/camaraproject/CarrierBillingCheckOut/releases/tag/r2.2",
+      "release_type": "public-release"
     },
     {
       "api_name": "application-profiles",
       "file_name": "application-profiles",
-      "version": "0.4.0",
-      "title": "Connectivity Insights - Application Profiles",
+      "api_version": "0.4.0",
+      "api_title": "Connectivity Insights - Application Profiles",
       "commonalities": "0.5",
       "maturity": "initial",
       "portfolio_category": "Communication Quality",
@@ -1173,13 +1199,14 @@
       "release_tag": "r2.2",
       "release_date": "2025-03-14T16:33:24Z",
       "meta_release": "Spring25",
-      "github_url": "https://github.com/camaraproject/ConnectivityInsights/releases/tag/r2.2"
+      "github_url": "https://github.com/camaraproject/ConnectivityInsights/releases/tag/r2.2",
+      "release_type": "public-release"
     },
     {
       "api_name": "connectivity-insights",
       "file_name": "connectivity-insights",
-      "version": "0.5.0",
-      "title": "Connectivity Insights",
+      "api_version": "0.5.0",
+      "api_title": "Connectivity Insights",
       "commonalities": "0.5",
       "maturity": "initial",
       "portfolio_category": "Communication Quality",
@@ -1194,13 +1221,14 @@
       "release_tag": "r2.2",
       "release_date": "2025-03-14T16:33:24Z",
       "meta_release": "Spring25",
-      "github_url": "https://github.com/camaraproject/ConnectivityInsights/releases/tag/r2.2"
+      "github_url": "https://github.com/camaraproject/ConnectivityInsights/releases/tag/r2.2",
+      "release_type": "public-release"
     },
     {
       "api_name": "connectivity-insights-subscriptions",
       "file_name": "connectivity-insights-subscriptions",
-      "version": "0.5.0",
-      "title": "Connectivity Insights Subscriptions",
+      "api_version": "0.5.0",
+      "api_title": "Connectivity Insights Subscriptions",
       "commonalities": "0.5",
       "maturity": "initial",
       "portfolio_category": "Communication Quality",
@@ -1215,13 +1243,14 @@
       "release_tag": "r2.2",
       "release_date": "2025-03-14T16:33:24Z",
       "meta_release": "Spring25",
-      "github_url": "https://github.com/camaraproject/ConnectivityInsights/releases/tag/r2.2"
+      "github_url": "https://github.com/camaraproject/ConnectivityInsights/releases/tag/r2.2",
+      "release_type": "public-release"
     },
     {
       "api_name": "customer-insights",
       "file_name": "customer-insights",
-      "version": "0.1.0",
-      "title": "Customer Insights",
+      "api_version": "0.1.0",
+      "api_title": "Customer Insights",
       "commonalities": "0.5",
       "maturity": "initial",
       "portfolio_category": "Authentication and Fraud Prevention",
@@ -1236,13 +1265,14 @@
       "release_tag": "r1.2",
       "release_date": "2025-03-10T18:07:26Z",
       "meta_release": "Spring25",
-      "github_url": "https://github.com/camaraproject/CustomerInsights/releases/tag/r1.2"
+      "github_url": "https://github.com/camaraproject/CustomerInsights/releases/tag/r1.2",
+      "release_type": "public-release"
     },
     {
       "api_name": "customer-insights",
       "file_name": "customer-insights",
-      "version": "0.1.1",
-      "title": "Customer Insights",
+      "api_version": "0.1.1",
+      "api_title": "Customer Insights",
       "commonalities": "0.5",
       "maturity": "initial",
       "portfolio_category": "Authentication and Fraud Prevention",
@@ -1257,13 +1287,14 @@
       "release_tag": "r1.3",
       "release_date": "2025-03-20T16:54:07Z",
       "meta_release": "Spring25",
-      "github_url": "https://github.com/camaraproject/CustomerInsights/releases/tag/r1.3"
+      "github_url": "https://github.com/camaraproject/CustomerInsights/releases/tag/r1.3",
+      "release_type": "maintenance-release"
     },
     {
       "api_name": "device-identifier",
       "file_name": "device-identifier",
-      "version": "0.2.0",
-      "title": "CAMARA Mobile Device Identifier",
+      "api_version": "0.2.0",
+      "api_title": "CAMARA Mobile Device Identifier",
       "commonalities": "0.5",
       "maturity": "initial",
       "portfolio_category": "Authentication and Fraud Prevention",
@@ -1278,13 +1309,14 @@
       "release_tag": "r1.3",
       "release_date": "2025-03-13T18:05:07Z",
       "meta_release": "Spring25",
-      "github_url": "https://github.com/camaraproject/DeviceIdentifier/releases/tag/r1.3"
+      "github_url": "https://github.com/camaraproject/DeviceIdentifier/releases/tag/r1.3",
+      "release_type": "public-release"
     },
     {
       "api_name": "geofencing-subscriptions",
       "file_name": "geofencing-subscriptions",
-      "version": "0.4.0",
-      "title": "Device Geofencing Subscriptions",
+      "api_version": "0.4.0",
+      "api_title": "Device Geofencing Subscriptions",
       "commonalities": "0.5",
       "maturity": "initial",
       "portfolio_category": "Location Services",
@@ -1299,13 +1331,14 @@
       "release_tag": "r2.2",
       "release_date": "2025-03-10T13:54:47Z",
       "meta_release": "Spring25",
-      "github_url": "https://github.com/camaraproject/DeviceLocation/releases/tag/r2.2"
+      "github_url": "https://github.com/camaraproject/DeviceLocation/releases/tag/r2.2",
+      "release_type": "public-release"
     },
     {
       "api_name": "location-retrieval",
       "file_name": "location-retrieval",
-      "version": "0.4.0",
-      "title": "Device Location Retrieval",
+      "api_version": "0.4.0",
+      "api_title": "Device Location Retrieval",
       "commonalities": "0.5",
       "maturity": "initial",
       "portfolio_category": "Location Services",
@@ -1320,13 +1353,14 @@
       "release_tag": "r2.2",
       "release_date": "2025-03-10T13:54:47Z",
       "meta_release": "Spring25",
-      "github_url": "https://github.com/camaraproject/DeviceLocation/releases/tag/r2.2"
+      "github_url": "https://github.com/camaraproject/DeviceLocation/releases/tag/r2.2",
+      "release_type": "public-release"
     },
     {
       "api_name": "location-verification",
       "file_name": "location-verification",
-      "version": "2.0.0",
-      "title": "Device Location Verification",
+      "api_version": "2.0.0",
+      "api_title": "Device Location Verification",
       "commonalities": "0.5",
       "maturity": "stable",
       "portfolio_category": "Location Services",
@@ -1341,13 +1375,14 @@
       "release_tag": "r2.2",
       "release_date": "2025-03-10T13:54:47Z",
       "meta_release": "Spring25",
-      "github_url": "https://github.com/camaraproject/DeviceLocation/releases/tag/r2.2"
+      "github_url": "https://github.com/camaraproject/DeviceLocation/releases/tag/r2.2",
+      "release_type": "public-release"
     },
     {
       "api_name": "connected-network-type",
       "file_name": "connected-network-type",
-      "version": "0.1.0",
-      "title": "Connected Network Type",
+      "api_version": "0.1.0",
+      "api_title": "Connected Network Type",
       "commonalities": "0.5",
       "maturity": "initial",
       "portfolio_category": "Communication Quality",
@@ -1362,13 +1397,14 @@
       "release_tag": "r2.2",
       "release_date": "2025-03-14T11:49:32Z",
       "meta_release": "Spring25",
-      "github_url": "https://github.com/camaraproject/DeviceStatus/releases/tag/r2.2"
+      "github_url": "https://github.com/camaraproject/DeviceStatus/releases/tag/r2.2",
+      "release_type": "public-release"
     },
     {
       "api_name": "connected-network-type-subscriptions",
       "file_name": "connected-network-type-subscriptions",
-      "version": "0.1.0",
-      "title": "Connected Network Type Subscriptions",
+      "api_version": "0.1.0",
+      "api_title": "Connected Network Type Subscriptions",
       "commonalities": "0.5",
       "maturity": "initial",
       "portfolio_category": "Communication Quality",
@@ -1383,13 +1419,14 @@
       "release_tag": "r2.2",
       "release_date": "2025-03-14T11:49:32Z",
       "meta_release": "Spring25",
-      "github_url": "https://github.com/camaraproject/DeviceStatus/releases/tag/r2.2"
+      "github_url": "https://github.com/camaraproject/DeviceStatus/releases/tag/r2.2",
+      "release_type": "public-release"
     },
     {
       "api_name": "device-reachability-status",
       "file_name": "device-reachability-status",
-      "version": "1.0.0",
-      "title": "Device Reachability Status",
+      "api_version": "1.0.0",
+      "api_title": "Device Reachability Status",
       "commonalities": "0.5",
       "maturity": "stable",
       "portfolio_category": "Device Information",
@@ -1404,13 +1441,14 @@
       "release_tag": "r2.2",
       "release_date": "2025-03-14T11:49:32Z",
       "meta_release": "Spring25",
-      "github_url": "https://github.com/camaraproject/DeviceStatus/releases/tag/r2.2"
+      "github_url": "https://github.com/camaraproject/DeviceStatus/releases/tag/r2.2",
+      "release_type": "public-release"
     },
     {
       "api_name": "device-reachability-status-subscriptions",
       "file_name": "device-reachability-status-subscriptions",
-      "version": "0.7.0",
-      "title": "Device Reachability Status Subscriptions",
+      "api_version": "0.7.0",
+      "api_title": "Device Reachability Status Subscriptions",
       "commonalities": "0.5",
       "maturity": "initial",
       "portfolio_category": "Device Information",
@@ -1425,13 +1463,14 @@
       "release_tag": "r2.2",
       "release_date": "2025-03-14T11:49:32Z",
       "meta_release": "Spring25",
-      "github_url": "https://github.com/camaraproject/DeviceStatus/releases/tag/r2.2"
+      "github_url": "https://github.com/camaraproject/DeviceStatus/releases/tag/r2.2",
+      "release_type": "public-release"
     },
     {
       "api_name": "device-roaming-status",
       "file_name": "device-roaming-status",
-      "version": "1.0.0",
-      "title": "Device Roaming Status",
+      "api_version": "1.0.0",
+      "api_title": "Device Roaming Status",
       "commonalities": "0.5",
       "maturity": "stable",
       "portfolio_category": "Device Information",
@@ -1446,13 +1485,14 @@
       "release_tag": "r2.2",
       "release_date": "2025-03-14T11:49:32Z",
       "meta_release": "Spring25",
-      "github_url": "https://github.com/camaraproject/DeviceStatus/releases/tag/r2.2"
+      "github_url": "https://github.com/camaraproject/DeviceStatus/releases/tag/r2.2",
+      "release_type": "public-release"
     },
     {
       "api_name": "device-roaming-status-subscriptions",
       "file_name": "device-roaming-status-subscriptions",
-      "version": "0.7.0",
-      "title": "Device Roaming Status Subscriptions",
+      "api_version": "0.7.0",
+      "api_title": "Device Roaming Status Subscriptions",
       "commonalities": "0.5",
       "maturity": "initial",
       "portfolio_category": "Device Information",
@@ -1467,13 +1507,14 @@
       "release_tag": "r2.2",
       "release_date": "2025-03-14T11:49:32Z",
       "meta_release": "Spring25",
-      "github_url": "https://github.com/camaraproject/DeviceStatus/releases/tag/r2.2"
+      "github_url": "https://github.com/camaraproject/DeviceStatus/releases/tag/r2.2",
+      "release_type": "public-release"
     },
     {
       "api_name": "device-swap",
       "file_name": "device-swap",
-      "version": "0.2.0",
-      "title": "Device Swap",
+      "api_version": "0.2.0",
+      "api_title": "Device Swap",
       "commonalities": "0.5",
       "maturity": "initial",
       "portfolio_category": "Authentication and Fraud Prevention",
@@ -1488,13 +1529,14 @@
       "release_tag": "r2.2",
       "release_date": "2025-03-13T07:59:07Z",
       "meta_release": "Spring25",
-      "github_url": "https://github.com/camaraproject/DeviceSwap/releases/tag/r2.2"
+      "github_url": "https://github.com/camaraproject/DeviceSwap/releases/tag/r2.2",
+      "release_type": "public-release"
     },
     {
       "api_name": "kyc-age-verification",
       "file_name": "kyc-age-verification",
-      "version": "0.1.0",
-      "title": "Know Your Customer Age Verification",
+      "api_version": "0.1.0",
+      "api_title": "Know Your Customer Age Verification",
       "commonalities": "0.5",
       "maturity": "initial",
       "portfolio_category": "Authentication and Fraud Prevention",
@@ -1509,13 +1551,14 @@
       "release_tag": "r2.2",
       "release_date": "2025-03-10T11:44:37Z",
       "meta_release": "Spring25",
-      "github_url": "https://github.com/camaraproject/KnowYourCustomer/releases/tag/r2.2"
+      "github_url": "https://github.com/camaraproject/KnowYourCustomer/releases/tag/r2.2",
+      "release_type": "public-release"
     },
     {
       "api_name": "kyc-fill-in",
       "file_name": "kyc-fill-in",
-      "version": "0.3.0",
-      "title": "Know Your Customer Fill-in",
+      "api_version": "0.3.0",
+      "api_title": "Know Your Customer Fill-in",
       "commonalities": "0.5",
       "maturity": "initial",
       "portfolio_category": "Authentication and Fraud Prevention",
@@ -1530,13 +1573,14 @@
       "release_tag": "r2.2",
       "release_date": "2025-03-10T11:44:37Z",
       "meta_release": "Spring25",
-      "github_url": "https://github.com/camaraproject/KnowYourCustomer/releases/tag/r2.2"
+      "github_url": "https://github.com/camaraproject/KnowYourCustomer/releases/tag/r2.2",
+      "release_type": "public-release"
     },
     {
       "api_name": "kyc-match",
       "file_name": "kyc-match",
-      "version": "0.3.0",
-      "title": "Know Your Customer Match",
+      "api_version": "0.3.0",
+      "api_title": "Know Your Customer Match",
       "commonalities": "0.5",
       "maturity": "initial",
       "portfolio_category": "Authentication and Fraud Prevention",
@@ -1551,13 +1595,14 @@
       "release_tag": "r2.2",
       "release_date": "2025-03-10T11:44:37Z",
       "meta_release": "Spring25",
-      "github_url": "https://github.com/camaraproject/KnowYourCustomer/releases/tag/r2.2"
+      "github_url": "https://github.com/camaraproject/KnowYourCustomer/releases/tag/r2.2",
+      "release_type": "public-release"
     },
     {
       "api_name": "number-recycling",
       "file_name": "number-recycling",
-      "version": "0.1.0",
-      "title": "Number Recycling",
+      "api_version": "0.1.0",
+      "api_title": "Number Recycling",
       "commonalities": "0.5",
       "maturity": "initial",
       "portfolio_category": "Authentication and Fraud Prevention",
@@ -1572,13 +1617,14 @@
       "release_tag": "r1.2",
       "release_date": "2025-03-14T16:46:04Z",
       "meta_release": "Spring25",
-      "github_url": "https://github.com/camaraproject/NumberRecycling/releases/tag/r1.2"
+      "github_url": "https://github.com/camaraproject/NumberRecycling/releases/tag/r1.2",
+      "release_type": "public-release"
     },
     {
       "api_name": "number-recycling",
       "file_name": "number-recycling",
-      "version": "0.1.1",
-      "title": "Number Recycling",
+      "api_version": "0.1.1",
+      "api_title": "Number Recycling",
       "commonalities": "0.5",
       "maturity": "initial",
       "portfolio_category": "Authentication and Fraud Prevention",
@@ -1593,13 +1639,14 @@
       "release_tag": "r1.3",
       "release_date": "2025-05-06T14:34:40Z",
       "meta_release": "Spring25",
-      "github_url": "https://github.com/camaraproject/NumberRecycling/releases/tag/r1.3"
+      "github_url": "https://github.com/camaraproject/NumberRecycling/releases/tag/r1.3",
+      "release_type": "maintenance-release"
     },
     {
       "api_name": "number-verification",
       "file_name": "number-verification",
-      "version": "2.0.0",
-      "title": "Number Verification",
+      "api_version": "2.0.0",
+      "api_title": "Number Verification",
       "commonalities": "0.5",
       "maturity": "stable",
       "portfolio_category": "Authentication and Fraud Prevention",
@@ -1614,13 +1661,14 @@
       "release_tag": "r2.4",
       "release_date": "2025-03-20T14:24:37Z",
       "meta_release": "Spring25",
-      "github_url": "https://github.com/camaraproject/NumberVerification/releases/tag/r2.4"
+      "github_url": "https://github.com/camaraproject/NumberVerification/releases/tag/r2.4",
+      "release_type": "public-release"
     },
     {
       "api_name": "one-time-password-sms",
       "file_name": "one-time-password-sms",
-      "version": "1.1.0",
-      "title": "One Time Password SMS",
+      "api_version": "1.1.0",
+      "api_title": "One Time Password SMS",
       "commonalities": "0.5",
       "maturity": "stable",
       "portfolio_category": "Authentication and Fraud Prevention",
@@ -1635,13 +1683,14 @@
       "release_tag": "r2.3",
       "release_date": "2025-03-11T15:47:08Z",
       "meta_release": "Spring25",
-      "github_url": "https://github.com/camaraproject/OTPValidation/releases/tag/r2.3"
+      "github_url": "https://github.com/camaraproject/OTPValidation/releases/tag/r2.3",
+      "release_type": "public-release"
     },
     {
       "api_name": "population-density-data",
       "file_name": "population-density-data",
-      "version": "0.2.0",
-      "title": "Population Density Data",
+      "api_version": "0.2.0",
+      "api_title": "Population Density Data",
       "commonalities": "0.5",
       "maturity": "initial",
       "portfolio_category": "Location Services",
@@ -1656,13 +1705,14 @@
       "release_tag": "r2.2",
       "release_date": "2025-03-14T09:52:57Z",
       "meta_release": "Spring25",
-      "github_url": "https://github.com/camaraproject/PopulationDensityData/releases/tag/r2.2"
+      "github_url": "https://github.com/camaraproject/PopulationDensityData/releases/tag/r2.2",
+      "release_type": "public-release"
     },
     {
       "api_name": "qos-profiles",
       "file_name": "qos-profiles",
-      "version": "1.0.0",
-      "title": "QoS Profiles",
+      "api_version": "1.0.0",
+      "api_title": "QoS Profiles",
       "commonalities": "0.5",
       "maturity": "stable",
       "portfolio_category": "Communication Quality",
@@ -1677,13 +1727,14 @@
       "release_tag": "r2.2",
       "release_date": "2025-03-11T15:31:39Z",
       "meta_release": "Spring25",
-      "github_url": "https://github.com/camaraproject/QualityOnDemand/releases/tag/r2.2"
+      "github_url": "https://github.com/camaraproject/QualityOnDemand/releases/tag/r2.2",
+      "release_type": "public-release"
     },
     {
       "api_name": "qod-provisioning",
       "file_name": "qod-provisioning",
-      "version": "0.2.0",
-      "title": "QoD Provisioning API",
+      "api_version": "0.2.0",
+      "api_title": "QoD Provisioning API",
       "commonalities": "0.5",
       "maturity": "initial",
       "portfolio_category": "Communication Quality",
@@ -1701,13 +1752,14 @@
       "release_tag": "r2.2",
       "release_date": "2025-03-11T15:31:39Z",
       "meta_release": "Spring25",
-      "github_url": "https://github.com/camaraproject/QualityOnDemand/releases/tag/r2.2"
+      "github_url": "https://github.com/camaraproject/QualityOnDemand/releases/tag/r2.2",
+      "release_type": "public-release"
     },
     {
       "api_name": "quality-on-demand",
       "file_name": "quality-on-demand",
-      "version": "1.0.0",
-      "title": "Quality-On-Demand",
+      "api_version": "1.0.0",
+      "api_title": "Quality-On-Demand",
       "commonalities": "0.5",
       "maturity": "stable",
       "portfolio_category": "Communication Quality",
@@ -1722,13 +1774,14 @@
       "release_tag": "r2.2",
       "release_date": "2025-03-11T15:31:39Z",
       "meta_release": "Spring25",
-      "github_url": "https://github.com/camaraproject/QualityOnDemand/releases/tag/r2.2"
+      "github_url": "https://github.com/camaraproject/QualityOnDemand/releases/tag/r2.2",
+      "release_type": "public-release"
     },
     {
       "api_name": "region-device-count",
       "file_name": "region-device-count",
-      "version": "0.1.0",
-      "title": "Region Device Count",
+      "api_version": "0.1.0",
+      "api_title": "Region Device Count",
       "commonalities": "0.5",
       "maturity": "initial",
       "portfolio_category": "Location Services",
@@ -1743,13 +1796,14 @@
       "release_tag": "r1.3",
       "release_date": "2025-06-04T11:39:59Z",
       "meta_release": "Spring25",
-      "github_url": "https://github.com/camaraproject/RegionDeviceCount/releases/tag/r1.3"
+      "github_url": "https://github.com/camaraproject/RegionDeviceCount/releases/tag/r1.3",
+      "release_type": "maintenance-release"
     },
     {
       "api_name": "sim-swap",
       "file_name": "sim-swap",
-      "version": "2.0.0",
-      "title": "SIM Swap",
+      "api_version": "2.0.0",
+      "api_title": "SIM Swap",
       "commonalities": "0.5",
       "maturity": "stable",
       "portfolio_category": "Authentication and Fraud Prevention",
@@ -1764,13 +1818,14 @@
       "release_tag": "r2.2",
       "release_date": "2025-03-13T11:20:01Z",
       "meta_release": "Spring25",
-      "github_url": "https://github.com/camaraproject/SimSwap/releases/tag/r2.2"
+      "github_url": "https://github.com/camaraproject/SimSwap/releases/tag/r2.2",
+      "release_type": "public-release"
     },
     {
       "api_name": "sim-swap-subscriptions",
       "file_name": "sim-swap-subscriptions",
-      "version": "0.2.0",
-      "title": "Sim Swap Subscriptions",
+      "api_version": "0.2.0",
+      "api_title": "Sim Swap Subscriptions",
       "commonalities": "0.5",
       "maturity": "initial",
       "portfolio_category": "Authentication and Fraud Prevention",
@@ -1785,13 +1840,14 @@
       "release_tag": "r2.2",
       "release_date": "2025-03-13T11:20:01Z",
       "meta_release": "Spring25",
-      "github_url": "https://github.com/camaraproject/SimSwap/releases/tag/r2.2"
+      "github_url": "https://github.com/camaraproject/SimSwap/releases/tag/r2.2",
+      "release_type": "public-release"
     },
     {
       "api_name": "kyc-tenure",
       "file_name": "kyc-tenure",
-      "version": "0.1.0",
-      "title": "KYC Tenure",
+      "api_version": "0.1.0",
+      "api_title": "KYC Tenure",
       "commonalities": "0.5",
       "maturity": "initial",
       "portfolio_category": "Authentication and Fraud Prevention",
@@ -1806,13 +1862,14 @@
       "release_tag": "r1.2",
       "release_date": "2025-03-11T08:37:12Z",
       "meta_release": "Spring25",
-      "github_url": "https://github.com/camaraproject/Tenure/releases/tag/r1.2"
+      "github_url": "https://github.com/camaraproject/Tenure/releases/tag/r1.2",
+      "release_type": "public-release"
     },
     {
       "api_name": "webrtc-call-handling",
       "file_name": "webrtc-call-handling",
-      "version": "0.2.0",
-      "title": "WebRTC Call Handling API",
+      "api_version": "0.2.0",
+      "api_title": "WebRTC Call Handling API",
       "commonalities": "0.5",
       "maturity": "initial",
       "portfolio_category": "Communication Services",
@@ -1827,13 +1884,14 @@
       "release_tag": "r1.2",
       "release_date": "2025-03-18T12:39:09Z",
       "meta_release": "Spring25",
-      "github_url": "https://github.com/camaraproject/WebRTC/releases/tag/r1.2"
+      "github_url": "https://github.com/camaraproject/WebRTC/releases/tag/r1.2",
+      "release_type": "public-release"
     },
     {
       "api_name": "webrtc-events",
       "file_name": "webrtc-events-subscription",
-      "version": "0.1.0",
-      "title": "WebRTC Event Subscription",
+      "api_version": "0.1.0",
+      "api_title": "WebRTC Event Subscription",
       "commonalities": "0.5",
       "maturity": "initial",
       "portfolio_category": "Communication Services",
@@ -1848,13 +1906,14 @@
       "release_tag": "r1.2",
       "release_date": "2025-03-18T12:39:09Z",
       "meta_release": "Spring25",
-      "github_url": "https://github.com/camaraproject/WebRTC/releases/tag/r1.2"
+      "github_url": "https://github.com/camaraproject/WebRTC/releases/tag/r1.2",
+      "release_type": "public-release"
     },
     {
       "api_name": "webrtc-registration",
       "file_name": "webrtc-registration",
-      "version": "0.2.0",
-      "title": "WebRTC Registration Service API",
+      "api_version": "0.2.0",
+      "api_title": "WebRTC Registration Service API",
       "commonalities": "0.5",
       "maturity": "initial",
       "portfolio_category": "Communication Services",
@@ -1869,7 +1928,8 @@
       "release_tag": "r1.2",
       "release_date": "2025-03-18T12:39:09Z",
       "meta_release": "Spring25",
-      "github_url": "https://github.com/camaraproject/WebRTC/releases/tag/r1.2"
+      "github_url": "https://github.com/camaraproject/WebRTC/releases/tag/r1.2",
+      "release_type": "public-release"
     }
   ]
 }

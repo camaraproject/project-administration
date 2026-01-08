@@ -1,0 +1,10 @@
+repository:
+  repository_name: SimpleEdgeDiscovery
+  release_tag: r1.3
+  release_type: public-release
+  release_date: "2024-09-11T10:39:25Z"
+  src_commit_sha: null
+apis:
+  - api_name: simple-edge-discovery
+    api_version: 1.0.0
+    api_title: Simple Edge Discovery

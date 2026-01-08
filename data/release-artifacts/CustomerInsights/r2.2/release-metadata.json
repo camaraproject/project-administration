@@ -1,0 +1,16 @@
+{
+  "repository": {
+    "repository_name": "CustomerInsights",
+    "release_tag": "r2.2",
+    "release_type": "public-release",
+    "release_date": "2025-09-11T10:31:53Z",
+    "src_commit_sha": null
+  },
+  "apis": [
+    {
+      "api_name": "customer-insights",
+      "api_version": "0.2.0",
+      "api_title": "Customer Insights"
+    }
+  ]
+}

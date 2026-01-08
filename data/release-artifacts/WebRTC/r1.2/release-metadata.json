@@ -1,0 +1,26 @@
+{
+  "repository": {
+    "repository_name": "WebRTC",
+    "release_tag": "r1.2",
+    "release_type": "public-release",
+    "release_date": "2025-03-18T12:39:09Z",
+    "src_commit_sha": null
+  },
+  "apis": [
+    {
+      "api_name": "webrtc-call-handling",
+      "api_version": "0.2.0",
+      "api_title": "WebRTC Call Handling API"
+    },
+    {
+      "api_name": "webrtc-events",
+      "api_version": "0.1.0",
+      "api_title": "WebRTC Event Subscription"
+    },
+    {
+      "api_name": "webrtc-registration",
+      "api_version": "0.2.0",
+      "api_title": "WebRTC Registration Service API"
+    }
+  ]
+}

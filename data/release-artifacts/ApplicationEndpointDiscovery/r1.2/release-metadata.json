@@ -1,0 +1,16 @@
+{
+  "repository": {
+    "repository_name": "ApplicationEndpointDiscovery",
+    "release_tag": "r1.2",
+    "release_type": "public-release",
+    "release_date": "2025-09-16T19:23:11Z",
+    "src_commit_sha": null
+  },
+  "apis": [
+    {
+      "api_name": "application-endpoint-discovery",
+      "api_version": "0.1.0",
+      "api_title": "Application Endpoint Discovery"
+    }
+  ]
+}

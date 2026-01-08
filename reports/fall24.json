@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "generated": "2025-12-17T20:52:36.084Z",
+    "generated": "2026-01-08T19:05:10.593Z",
     "meta_release": "Fall24",
     "source": "Release Collector v3",
     "landscape_version": "1.1.0"
@@ -220,12 +220,13 @@
       "release_date": "2024-09-05T11:05:48Z",
       "meta_release": "Fall24",
       "github_url": "https://github.com/camaraproject/CallForwardingSignal/releases/tag/r1.3",
+      "release_type": "public-release",
       "apis": [
         {
           "api_name": "call-forwarding-signal",
           "file_name": "call-forwarding-signal",
-          "version": "0.2.0",
-          "title": "Call Forwarding Signal",
+          "api_version": "0.2.0",
+          "api_title": "Call Forwarding Signal",
           "commonalities": "0.4",
           "maturity": "initial",
           "portfolio_category": "Authentication and Fraud Prevention",
@@ -245,12 +246,13 @@
       "release_date": "2024-09-05T15:39:42Z",
       "meta_release": "Fall24",
       "github_url": "https://github.com/camaraproject/CarrierBillingCheckOut/releases/tag/r1.2",
+      "release_type": "public-release",
       "apis": [
         {
           "api_name": "carrier-billing-refund",
           "file_name": "carrier-billing-refund",
-          "version": "0.1.0",
-          "title": "Carrier Billing Refunds",
+          "api_version": "0.1.0",
+          "api_title": "Carrier Billing Refunds",
           "commonalities": null,
           "maturity": "initial",
           "portfolio_category": "Payments and Charging",
@@ -265,8 +267,8 @@
         {
           "api_name": "carrier-billing",
           "file_name": "carrier-billing",
-          "version": "0.3.0",
-          "title": "Carrier Billing",
+          "api_version": "0.3.0",
+          "api_title": "Carrier Billing",
           "commonalities": null,
           "maturity": "initial",
           "portfolio_category": "Payments and Charging",
@@ -286,12 +288,13 @@
       "release_date": "2024-11-23T07:48:50Z",
       "meta_release": "Fall24",
       "github_url": "https://github.com/camaraproject/CarrierBillingCheckOut/releases/tag/r1.3",
+      "release_type": "maintenance-release",
       "apis": [
         {
           "api_name": "carrier-billing-refund",
           "file_name": "carrier-billing-refund",
-          "version": "0.1.1",
-          "title": "Carrier Billing Refunds",
+          "api_version": "0.1.1",
+          "api_title": "Carrier Billing Refunds",
           "commonalities": null,
           "maturity": "initial",
           "portfolio_category": "Payments and Charging",
@@ -306,8 +309,8 @@
         {
           "api_name": "carrier-billing",
           "file_name": "carrier-billing",
-          "version": "0.3.1",
-          "title": "Carrier Billing",
+          "api_version": "0.3.1",
+          "api_title": "Carrier Billing",
           "commonalities": null,
           "maturity": "initial",
           "portfolio_category": "Payments and Charging",
@@ -327,12 +330,13 @@
       "release_date": "2024-09-11T03:30:01Z",
       "meta_release": "Fall24",
       "github_url": "https://github.com/camaraproject/ConnectivityInsights/releases/tag/r1.2",
+      "release_type": "public-release",
       "apis": [
         {
           "api_name": "application-profiles",
           "file_name": "application-profiles",
-          "version": "0.3.0",
-          "title": "Connectivity Insights - Application Profiles",
+          "api_version": "0.3.0",
+          "api_title": "Connectivity Insights - Application Profiles",
           "commonalities": "0.4",
           "maturity": "initial",
           "portfolio_category": "Communication Quality",
@@ -347,8 +351,8 @@
         {
           "api_name": "connectivity-insights-subscriptions",
           "file_name": "connectivity-insights-subscriptions",
-          "version": "0.4.0",
-          "title": "Connectivity Insights Subscriptions",
+          "api_version": "0.4.0",
+          "api_title": "Connectivity Insights Subscriptions",
           "commonalities": "0.4",
           "maturity": "initial",
           "portfolio_category": "Communication Quality",
@@ -363,8 +367,8 @@
         {
           "api_name": "connectivity-insights",
           "file_name": "connectivity-insights",
-          "version": "0.4.0",
-          "title": "Connectivity Insights",
+          "api_version": "0.4.0",
+          "api_title": "Connectivity Insights",
           "commonalities": "0.4",
           "maturity": "initial",
           "portfolio_category": "Communication Quality",
@@ -384,12 +388,13 @@
       "release_date": "2024-09-10T15:00:47Z",
       "meta_release": "Fall24",
       "github_url": "https://github.com/camaraproject/DeviceLocation/releases/tag/r1.2",
+      "release_type": "public-release",
       "apis": [
         {
           "api_name": "geofencing-subscriptions",
           "file_name": "geofencing-subscriptions",
-          "version": "0.3.0",
-          "title": "Device Geofencing Subscriptions",
+          "api_version": "0.3.0",
+          "api_title": "Device Geofencing Subscriptions",
           "commonalities": "0.4",
           "maturity": "initial",
           "portfolio_category": "Location Services",
@@ -404,8 +409,8 @@
         {
           "api_name": "location-retrieval",
           "file_name": "location-retrieval",
-          "version": "0.3.0",
-          "title": "Device Location Retrieval",
+          "api_version": "0.3.0",
+          "api_title": "Device Location Retrieval",
           "commonalities": "0.4",
           "maturity": "initial",
           "portfolio_category": "Location Services",
@@ -420,8 +425,8 @@
         {
           "api_name": "location-verification",
           "file_name": "location-verification",
-          "version": "1.0.0",
-          "title": "Device Location Verification",
+          "api_version": "1.0.0",
+          "api_title": "Device Location Verification",
           "commonalities": "0.4",
           "maturity": "stable",
           "portfolio_category": "Location Services",
@@ -441,12 +446,13 @@
       "release_date": "2024-09-10T07:58:36Z",
       "meta_release": "Fall24",
       "github_url": "https://github.com/camaraproject/DeviceStatus/releases/tag/r1.2",
+      "release_type": "public-release",
       "apis": [
         {
           "api_name": "device-reachability-status-subscriptions",
           "file_name": "device-reachability-status-subscriptions",
-          "version": "0.6.0",
-          "title": "Device Reachability Status Subscriptions",
+          "api_version": "0.6.0",
+          "api_title": "Device Reachability Status Subscriptions",
           "commonalities": "0.4",
           "maturity": "initial",
           "portfolio_category": "Device Information",
@@ -461,8 +467,8 @@
         {
           "api_name": "device-reachability-status",
           "file_name": "device-reachability-status",
-          "version": "0.6.0",
-          "title": "Device Reachability Status",
+          "api_version": "0.6.0",
+          "api_title": "Device Reachability Status",
           "commonalities": "0.4",
           "maturity": "initial",
           "portfolio_category": "Device Information",
@@ -477,8 +483,8 @@
         {
           "api_name": "device-roaming-status-subscriptions",
           "file_name": "device-roaming-status-subscriptions",
-          "version": "0.6.0",
-          "title": "Device Roaming Status Subscriptions",
+          "api_version": "0.6.0",
+          "api_title": "Device Roaming Status Subscriptions",
           "commonalities": "0.4",
           "maturity": "initial",
           "portfolio_category": "Device Information",
@@ -493,8 +499,8 @@
         {
           "api_name": "device-roaming-status",
           "file_name": "device-roaming-status",
-          "version": "0.6.0",
-          "title": "Device Roaming Status",
+          "api_version": "0.6.0",
+          "api_title": "Device Roaming Status",
           "commonalities": "0.4",
           "maturity": "initial",
           "portfolio_category": "Device Information",
@@ -514,12 +520,13 @@
       "release_date": "2024-11-05T21:11:50Z",
       "meta_release": "Fall24",
       "github_url": "https://github.com/camaraproject/DeviceStatus/releases/tag/r1.3",
+      "release_type": "maintenance-release",
       "apis": [
         {
           "api_name": "device-reachability-status-subscriptions",
           "file_name": "device-reachability-status-subscriptions",
-          "version": "0.6.1",
-          "title": "Device Reachability Status Subscriptions",
+          "api_version": "0.6.1",
+          "api_title": "Device Reachability Status Subscriptions",
           "commonalities": "0.4",
           "maturity": "initial",
           "portfolio_category": "Device Information",
@@ -534,8 +541,8 @@
         {
           "api_name": "device-reachability-status",
           "file_name": "device-reachability-status",
-          "version": "0.6.1",
-          "title": "Device Reachability Status",
+          "api_version": "0.6.1",
+          "api_title": "Device Reachability Status",
           "commonalities": "0.4",
           "maturity": "initial",
           "portfolio_category": "Device Information",
@@ -550,8 +557,8 @@
         {
           "api_name": "device-roaming-status-subscriptions",
           "file_name": "device-roaming-status-subscriptions",
-          "version": "0.6.1",
-          "title": "Device Roaming Status Subscriptions",
+          "api_version": "0.6.1",
+          "api_title": "Device Roaming Status Subscriptions",
           "commonalities": "0.4",
           "maturity": "initial",
           "portfolio_category": "Device Information",
@@ -566,8 +573,8 @@
         {
           "api_name": "device-roaming-status",
           "file_name": "device-roaming-status",
-          "version": "0.6.1",
-          "title": "Device Roaming Status",
+          "api_version": "0.6.1",
+          "api_title": "Device Roaming Status",
           "commonalities": "0.4",
           "maturity": "initial",
           "portfolio_category": "Device Information",
@@ -587,12 +594,13 @@
       "release_date": "2024-09-06T08:39:24Z",
       "meta_release": "Fall24",
       "github_url": "https://github.com/camaraproject/HomeDevicesQoD/releases/tag/r1.2",
+      "release_type": "public-release",
       "apis": [
         {
           "api_name": "home-devices-qod",
           "file_name": "home-devices-qod",
-          "version": "0.4.0",
-          "title": "Home Devices QoD",
+          "api_version": "0.4.0",
+          "api_title": "Home Devices QoD",
           "commonalities": "0.4",
           "maturity": "initial",
           "portfolio_category": "Communication Quality",
@@ -612,12 +620,13 @@
       "release_date": "2024-09-12T09:29:42Z",
       "meta_release": "Fall24",
       "github_url": "https://github.com/camaraproject/KnowYourCustomer/releases/tag/r1.3",
+      "release_type": "public-release",
       "apis": [
         {
           "api_name": "kyc-fill-in",
           "file_name": "kyc-fill-in",
-          "version": "0.2.0",
-          "title": "Know Your Customer Fill-in",
+          "api_version": "0.2.0",
+          "api_title": "Know Your Customer Fill-in",
           "commonalities": "0.4",
           "maturity": "initial",
           "portfolio_category": "Authentication and Fraud Prevention",
@@ -632,8 +641,8 @@
         {
           "api_name": "kyc-match",
           "file_name": "kyc-match",
-          "version": "0.2.1",
-          "title": "Know Your Customer Match",
+          "api_version": "0.2.1",
+          "api_title": "Know Your Customer Match",
           "commonalities": "0.4",
           "maturity": "initial",
           "portfolio_category": "Authentication and Fraud Prevention",
@@ -653,12 +662,13 @@
       "release_date": "2024-12-11T15:37:20Z",
       "meta_release": "Fall24",
       "github_url": "https://github.com/camaraproject/KnowYourCustomer/releases/tag/r1.4",
+      "release_type": "maintenance-release",
       "apis": [
         {
           "api_name": "kyc-fill-in",
           "file_name": "kyc-fill-in",
-          "version": "0.2.0",
-          "title": "Know Your Customer Fill-in",
+          "api_version": "0.2.0",
+          "api_title": "Know Your Customer Fill-in",
           "commonalities": "0.4",
           "maturity": "initial",
           "portfolio_category": "Authentication and Fraud Prevention",
@@ -673,8 +683,8 @@
         {
           "api_name": "kyc-match",
           "file_name": "kyc-match",
-          "version": "0.2.1",
-          "title": "Know Your Customer Match",
+          "api_version": "0.2.1",
+          "api_title": "Know Your Customer Match",
           "commonalities": "0.4",
           "maturity": "initial",
           "portfolio_category": "Authentication and Fraud Prevention",
@@ -694,12 +704,13 @@
       "release_date": "2024-09-06T15:22:46Z",
       "meta_release": "Fall24",
       "github_url": "https://github.com/camaraproject/NumberVerification/releases/tag/r1.2",
+      "release_type": "public-release",
       "apis": [
         {
           "api_name": "number-verification",
           "file_name": "number-verification",
-          "version": "1.0.0",
-          "title": "Number Verification",
+          "api_version": "1.0.0",
+          "api_title": "Number Verification",
           "commonalities": "0.4",
           "maturity": "stable",
           "portfolio_category": "Authentication and Fraud Prevention",
@@ -719,12 +730,13 @@
       "release_date": "2024-10-01T12:49:13Z",
       "meta_release": "Fall24",
       "github_url": "https://github.com/camaraproject/NumberVerification/releases/tag/r1.3",
+      "release_type": "maintenance-release",
       "apis": [
         {
           "api_name": "number-verification",
           "file_name": "number-verification",
-          "version": "1.0.0",
-          "title": "Number Verification",
+          "api_version": "1.0.0",
+          "api_title": "Number Verification",
           "commonalities": "0.4",
           "maturity": "stable",
           "portfolio_category": "Authentication and Fraud Prevention",
@@ -744,12 +756,13 @@
       "release_date": "2024-09-09T08:52:34Z",
       "meta_release": "Fall24",
       "github_url": "https://github.com/camaraproject/OTPValidation/releases/tag/r1.2",
+      "release_type": "public-release",
       "apis": [
         {
           "api_name": "one-time-password-sms",
           "file_name": "one-time-password-sms",
-          "version": "1.0.0",
-          "title": "One Time Password SMS",
+          "api_version": "1.0.0",
+          "api_title": "One Time Password SMS",
           "commonalities": "0.4",
           "maturity": "stable",
           "portfolio_category": "Authentication and Fraud Prevention",
@@ -769,12 +782,13 @@
       "release_date": "2024-09-11T17:46:08Z",
       "meta_release": "Fall24",
       "github_url": "https://github.com/camaraproject/PopulationDensityData/releases/tag/r1.2",
+      "release_type": "public-release",
       "apis": [
         {
           "api_name": "population-density-data",
           "file_name": "population-density-data",
-          "version": "0.1.1",
-          "title": "Population Density Data",
+          "api_version": "0.1.1",
+          "api_title": "Population Density Data",
           "commonalities": "0.4",
           "maturity": "initial",
           "portfolio_category": "Location Services",
@@ -794,12 +808,13 @@
       "release_date": "2024-09-06T16:16:48Z",
       "meta_release": "Fall24",
       "github_url": "https://github.com/camaraproject/QualityOnDemand/releases/tag/r1.2",
+      "release_type": "public-release",
       "apis": [
         {
           "api_name": "qod-provisioning",
           "file_name": "qod-provisioning",
-          "version": "0.1.0",
-          "title": "QoD Provisioning API",
+          "api_version": "0.1.0",
+          "api_title": "QoD Provisioning API",
           "commonalities": "0.4",
           "maturity": "initial",
           "portfolio_category": "Communication Quality",
@@ -817,8 +832,8 @@
         {
           "api_name": "qos-profiles",
           "file_name": "qos-profiles",
-          "version": "0.11.0",
-          "title": "QoS Profiles",
+          "api_version": "0.11.0",
+          "api_title": "QoS Profiles",
           "commonalities": "0.4",
           "maturity": "initial",
           "portfolio_category": "Communication Quality",
@@ -833,8 +848,8 @@
         {
           "api_name": "quality-on-demand",
           "file_name": "quality-on-demand",
-          "version": "0.11.0",
-          "title": "Quality-On-Demand",
+          "api_version": "0.11.0",
+          "api_title": "Quality-On-Demand",
           "commonalities": "0.4",
           "maturity": "initial",
           "portfolio_category": "Communication Quality",
@@ -854,12 +869,13 @@
       "release_date": "2024-12-18T14:58:23Z",
       "meta_release": "Fall24",
       "github_url": "https://github.com/camaraproject/QualityOnDemand/releases/tag/r1.3",
+      "release_type": "maintenance-release",
       "apis": [
         {
           "api_name": "qod-provisioning",
           "file_name": "qod-provisioning",
-          "version": "0.1.1",
-          "title": "QoD Provisioning API",
+          "api_version": "0.1.1",
+          "api_title": "QoD Provisioning API",
           "commonalities": "0.4",
           "maturity": "initial",
           "portfolio_category": "Communication Quality",
@@ -877,8 +893,8 @@
         {
           "api_name": "qos-profiles",
           "file_name": "qos-profiles",
-          "version": "0.11.1",
-          "title": "QoS Profiles",
+          "api_version": "0.11.1",
+          "api_title": "QoS Profiles",
           "commonalities": "0.4",
           "maturity": "initial",
           "portfolio_category": "Communication Quality",
@@ -893,8 +909,8 @@
         {
           "api_name": "quality-on-demand",
           "file_name": "quality-on-demand",
-          "version": "0.11.1",
-          "title": "Quality-On-Demand",
+          "api_version": "0.11.1",
+          "api_title": "Quality-On-Demand",
           "commonalities": "0.4",
           "maturity": "initial",
           "portfolio_category": "Communication Quality",
@@ -914,12 +930,13 @@
       "release_date": "2024-09-11T10:39:25Z",
       "meta_release": "Fall24",
       "github_url": "https://github.com/camaraproject/SimpleEdgeDiscovery/releases/tag/r1.3",
+      "release_type": "public-release",
       "apis": [
         {
           "api_name": "simple-edge-discovery",
           "file_name": "simple-edge-discovery",
-          "version": "1.0.0",
-          "title": "Simple Edge Discovery",
+          "api_version": "1.0.0",
+          "api_title": "Simple Edge Discovery",
           "commonalities": "0.4",
           "maturity": "stable",
           "portfolio_category": "Computing Services",
@@ -939,12 +956,13 @@
       "release_date": "2024-09-12T15:07:04Z",
       "meta_release": "Fall24",
       "github_url": "https://github.com/camaraproject/SimSwap/releases/tag/r1.2",
+      "release_type": "public-release",
       "apis": [
         {
           "api_name": "sim-swap-subscriptions",
           "file_name": "sim-swap-subscriptions",
-          "version": "0.1.0",
-          "title": "Sim Swap Subscriptions",
+          "api_version": "0.1.0",
+          "api_title": "Sim Swap Subscriptions",
           "commonalities": "0.4",
           "maturity": "initial",
           "portfolio_category": "Authentication and Fraud Prevention",
@@ -959,8 +977,8 @@
         {
           "api_name": "sim-swap",
           "file_name": "sim-swap",
-          "version": "1.0.0",
-          "title": "SIM Swap",
+          "api_version": "1.0.0",
+          "api_title": "SIM Swap",
           "commonalities": "0.4",
           "maturity": "stable",
           "portfolio_category": "Authentication and Fraud Prevention",
@@ -980,12 +998,13 @@
       "release_date": "2024-10-29T17:21:56Z",
       "meta_release": "Fall24",
       "github_url": "https://github.com/camaraproject/SimSwap/releases/tag/r1.3",
+      "release_type": "maintenance-release",
       "apis": [
         {
           "api_name": "sim-swap-subscriptions",
           "file_name": "sim-swap-subscriptions",
-          "version": "0.1.1",
-          "title": "Sim Swap Subscriptions",
+          "api_version": "0.1.1",
+          "api_title": "Sim Swap Subscriptions",
           "commonalities": "0.4",
           "maturity": "initial",
           "portfolio_category": "Authentication and Fraud Prevention",
@@ -1000,8 +1019,8 @@
         {
           "api_name": "sim-swap",
           "file_name": "sim-swap",
-          "version": "1.0.0",
-          "title": "SIM Swap",
+          "api_version": "1.0.0",
+          "api_title": "SIM Swap",
           "commonalities": "0.4",
           "maturity": "stable",
           "portfolio_category": "Authentication and Fraud Prevention",
@@ -1021,12 +1040,13 @@
       "release_date": "2025-04-04T11:51:06Z",
       "meta_release": "Fall24",
       "github_url": "https://github.com/camaraproject/SimSwap/releases/tag/r1.4",
+      "release_type": "maintenance-release",
       "apis": [
         {
           "api_name": "sim-swap-subscriptions",
           "file_name": "sim-swap-subscriptions",
-          "version": "0.1.2",
-          "title": "Sim Swap Subscriptions",
+          "api_version": "0.1.2",
+          "api_title": "Sim Swap Subscriptions",
           "commonalities": "0.4",
           "maturity": "initial",
           "portfolio_category": "Authentication and Fraud Prevention",
@@ -1041,8 +1061,8 @@
         {
           "api_name": "sim-swap",
           "file_name": "sim-swap",
-          "version": "1.0.0",
-          "title": "SIM Swap",
+          "api_version": "1.0.0",
+          "api_title": "SIM Swap",
           "commonalities": "0.4",
           "maturity": "stable",
           "portfolio_category": "Authentication and Fraud Prevention",
@@ -1061,8 +1081,8 @@
     {
       "api_name": "call-forwarding-signal",
       "file_name": "call-forwarding-signal",
-      "version": "0.2.0",
-      "title": "Call Forwarding Signal",
+      "api_version": "0.2.0",
+      "api_title": "Call Forwarding Signal",
       "commonalities": "0.4",
       "maturity": "initial",
       "portfolio_category": "Authentication and Fraud Prevention",
@@ -1077,13 +1097,14 @@
       "release_tag": "r1.3",
       "release_date": "2024-09-05T11:05:48Z",
       "meta_release": "Fall24",
-      "github_url": "https://github.com/camaraproject/CallForwardingSignal/releases/tag/r1.3"
+      "github_url": "https://github.com/camaraproject/CallForwardingSignal/releases/tag/r1.3",
+      "release_type": "public-release"
     },
     {
       "api_name": "carrier-billing",
       "file_name": "carrier-billing",
-      "version": "0.3.0",
-      "title": "Carrier Billing",
+      "api_version": "0.3.0",
+      "api_title": "Carrier Billing",
       "commonalities": null,
       "maturity": "initial",
       "portfolio_category": "Payments and Charging",
@@ -1098,13 +1119,14 @@
       "release_tag": "r1.2",
       "release_date": "2024-09-05T15:39:42Z",
       "meta_release": "Fall24",
-      "github_url": "https://github.com/camaraproject/CarrierBillingCheckOut/releases/tag/r1.2"
+      "github_url": "https://github.com/camaraproject/CarrierBillingCheckOut/releases/tag/r1.2",
+      "release_type": "public-release"
     },
     {
       "api_name": "carrier-billing",
       "file_name": "carrier-billing",
-      "version": "0.3.1",
-      "title": "Carrier Billing",
+      "api_version": "0.3.1",
+      "api_title": "Carrier Billing",
       "commonalities": null,
       "maturity": "initial",
       "portfolio_category": "Payments and Charging",
@@ -1119,13 +1141,14 @@
       "release_tag": "r1.3",
       "release_date": "2024-11-23T07:48:50Z",
       "meta_release": "Fall24",
-      "github_url": "https://github.com/camaraproject/CarrierBillingCheckOut/releases/tag/r1.3"
+      "github_url": "https://github.com/camaraproject/CarrierBillingCheckOut/releases/tag/r1.3",
+      "release_type": "maintenance-release"
     },
     {
       "api_name": "carrier-billing-refund",
       "file_name": "carrier-billing-refund",
-      "version": "0.1.0",
-      "title": "Carrier Billing Refunds",
+      "api_version": "0.1.0",
+      "api_title": "Carrier Billing Refunds",
       "commonalities": null,
       "maturity": "initial",
       "portfolio_category": "Payments and Charging",
@@ -1140,13 +1163,14 @@
       "release_tag": "r1.2",
       "release_date": "2024-09-05T15:39:42Z",
       "meta_release": "Fall24",
-      "github_url": "https://github.com/camaraproject/CarrierBillingCheckOut/releases/tag/r1.2"
+      "github_url": "https://github.com/camaraproject/CarrierBillingCheckOut/releases/tag/r1.2",
+      "release_type": "public-release"
     },
     {
       "api_name": "carrier-billing-refund",
       "file_name": "carrier-billing-refund",
-      "version": "0.1.1",
-      "title": "Carrier Billing Refunds",
+      "api_version": "0.1.1",
+      "api_title": "Carrier Billing Refunds",
       "commonalities": null,
       "maturity": "initial",
       "portfolio_category": "Payments and Charging",
@@ -1161,13 +1185,14 @@
       "release_tag": "r1.3",
       "release_date": "2024-11-23T07:48:50Z",
       "meta_release": "Fall24",
-      "github_url": "https://github.com/camaraproject/CarrierBillingCheckOut/releases/tag/r1.3"
+      "github_url": "https://github.com/camaraproject/CarrierBillingCheckOut/releases/tag/r1.3",
+      "release_type": "maintenance-release"
     },
     {
       "api_name": "application-profiles",
       "file_name": "application-profiles",
-      "version": "0.3.0",
-      "title": "Connectivity Insights - Application Profiles",
+      "api_version": "0.3.0",
+      "api_title": "Connectivity Insights - Application Profiles",
       "commonalities": "0.4",
       "maturity": "initial",
       "portfolio_category": "Communication Quality",
@@ -1182,13 +1207,14 @@
       "release_tag": "r1.2",
       "release_date": "2024-09-11T03:30:01Z",
       "meta_release": "Fall24",
-      "github_url": "https://github.com/camaraproject/ConnectivityInsights/releases/tag/r1.2"
+      "github_url": "https://github.com/camaraproject/ConnectivityInsights/releases/tag/r1.2",
+      "release_type": "public-release"
     },
     {
       "api_name": "connectivity-insights",
       "file_name": "connectivity-insights",
-      "version": "0.4.0",
-      "title": "Connectivity Insights",
+      "api_version": "0.4.0",
+      "api_title": "Connectivity Insights",
       "commonalities": "0.4",
       "maturity": "initial",
       "portfolio_category": "Communication Quality",
@@ -1203,13 +1229,14 @@
       "release_tag": "r1.2",
       "release_date": "2024-09-11T03:30:01Z",
       "meta_release": "Fall24",
-      "github_url": "https://github.com/camaraproject/ConnectivityInsights/releases/tag/r1.2"
+      "github_url": "https://github.com/camaraproject/ConnectivityInsights/releases/tag/r1.2",
+      "release_type": "public-release"
     },
     {
       "api_name": "connectivity-insights-subscriptions",
       "file_name": "connectivity-insights-subscriptions",
-      "version": "0.4.0",
-      "title": "Connectivity Insights Subscriptions",
+      "api_version": "0.4.0",
+      "api_title": "Connectivity Insights Subscriptions",
       "commonalities": "0.4",
       "maturity": "initial",
       "portfolio_category": "Communication Quality",
@@ -1224,13 +1251,14 @@
       "release_tag": "r1.2",
       "release_date": "2024-09-11T03:30:01Z",
       "meta_release": "Fall24",
-      "github_url": "https://github.com/camaraproject/ConnectivityInsights/releases/tag/r1.2"
+      "github_url": "https://github.com/camaraproject/ConnectivityInsights/releases/tag/r1.2",
+      "release_type": "public-release"
     },
     {
       "api_name": "geofencing-subscriptions",
       "file_name": "geofencing-subscriptions",
-      "version": "0.3.0",
-      "title": "Device Geofencing Subscriptions",
+      "api_version": "0.3.0",
+      "api_title": "Device Geofencing Subscriptions",
       "commonalities": "0.4",
       "maturity": "initial",
       "portfolio_category": "Location Services",
@@ -1245,13 +1273,14 @@
       "release_tag": "r1.2",
       "release_date": "2024-09-10T15:00:47Z",
       "meta_release": "Fall24",
-      "github_url": "https://github.com/camaraproject/DeviceLocation/releases/tag/r1.2"
+      "github_url": "https://github.com/camaraproject/DeviceLocation/releases/tag/r1.2",
+      "release_type": "public-release"
     },
     {
       "api_name": "location-retrieval",
       "file_name": "location-retrieval",
-      "version": "0.3.0",
-      "title": "Device Location Retrieval",
+      "api_version": "0.3.0",
+      "api_title": "Device Location Retrieval",
       "commonalities": "0.4",
       "maturity": "initial",
       "portfolio_category": "Location Services",
@@ -1266,13 +1295,14 @@
       "release_tag": "r1.2",
       "release_date": "2024-09-10T15:00:47Z",
       "meta_release": "Fall24",
-      "github_url": "https://github.com/camaraproject/DeviceLocation/releases/tag/r1.2"
+      "github_url": "https://github.com/camaraproject/DeviceLocation/releases/tag/r1.2",
+      "release_type": "public-release"
     },
     {
       "api_name": "location-verification",
       "file_name": "location-verification",
-      "version": "1.0.0",
-      "title": "Device Location Verification",
+      "api_version": "1.0.0",
+      "api_title": "Device Location Verification",
       "commonalities": "0.4",
       "maturity": "stable",
       "portfolio_category": "Location Services",
@@ -1287,13 +1317,14 @@
       "release_tag": "r1.2",
       "release_date": "2024-09-10T15:00:47Z",
       "meta_release": "Fall24",
-      "github_url": "https://github.com/camaraproject/DeviceLocation/releases/tag/r1.2"
+      "github_url": "https://github.com/camaraproject/DeviceLocation/releases/tag/r1.2",
+      "release_type": "public-release"
     },
     {
       "api_name": "device-reachability-status",
       "file_name": "device-reachability-status",
-      "version": "0.6.0",
-      "title": "Device Reachability Status",
+      "api_version": "0.6.0",
+      "api_title": "Device Reachability Status",
       "commonalities": "0.4",
       "maturity": "initial",
       "portfolio_category": "Device Information",
@@ -1308,13 +1339,14 @@
       "release_tag": "r1.2",
       "release_date": "2024-09-10T07:58:36Z",
       "meta_release": "Fall24",
-      "github_url": "https://github.com/camaraproject/DeviceStatus/releases/tag/r1.2"
+      "github_url": "https://github.com/camaraproject/DeviceStatus/releases/tag/r1.2",
+      "release_type": "public-release"
     },
     {
       "api_name": "device-reachability-status",
       "file_name": "device-reachability-status",
-      "version": "0.6.1",
-      "title": "Device Reachability Status",
+      "api_version": "0.6.1",
+      "api_title": "Device Reachability Status",
       "commonalities": "0.4",
       "maturity": "initial",
       "portfolio_category": "Device Information",
@@ -1329,13 +1361,14 @@
       "release_tag": "r1.3",
       "release_date": "2024-11-05T21:11:50Z",
       "meta_release": "Fall24",
-      "github_url": "https://github.com/camaraproject/DeviceStatus/releases/tag/r1.3"
+      "github_url": "https://github.com/camaraproject/DeviceStatus/releases/tag/r1.3",
+      "release_type": "maintenance-release"
     },
     {
       "api_name": "device-reachability-status-subscriptions",
       "file_name": "device-reachability-status-subscriptions",
-      "version": "0.6.0",
-      "title": "Device Reachability Status Subscriptions",
+      "api_version": "0.6.0",
+      "api_title": "Device Reachability Status Subscriptions",
       "commonalities": "0.4",
       "maturity": "initial",
       "portfolio_category": "Device Information",
@@ -1350,13 +1383,14 @@
       "release_tag": "r1.2",
       "release_date": "2024-09-10T07:58:36Z",
       "meta_release": "Fall24",
-      "github_url": "https://github.com/camaraproject/DeviceStatus/releases/tag/r1.2"
+      "github_url": "https://github.com/camaraproject/DeviceStatus/releases/tag/r1.2",
+      "release_type": "public-release"
     },
     {
       "api_name": "device-reachability-status-subscriptions",
       "file_name": "device-reachability-status-subscriptions",
-      "version": "0.6.1",
-      "title": "Device Reachability Status Subscriptions",
+      "api_version": "0.6.1",
+      "api_title": "Device Reachability Status Subscriptions",
       "commonalities": "0.4",
       "maturity": "initial",
       "portfolio_category": "Device Information",
@@ -1371,13 +1405,14 @@
       "release_tag": "r1.3",
       "release_date": "2024-11-05T21:11:50Z",
       "meta_release": "Fall24",
-      "github_url": "https://github.com/camaraproject/DeviceStatus/releases/tag/r1.3"
+      "github_url": "https://github.com/camaraproject/DeviceStatus/releases/tag/r1.3",
+      "release_type": "maintenance-release"
     },
     {
       "api_name": "device-roaming-status",
       "file_name": "device-roaming-status",
-      "version": "0.6.0",
-      "title": "Device Roaming Status",
+      "api_version": "0.6.0",
+      "api_title": "Device Roaming Status",
       "commonalities": "0.4",
       "maturity": "initial",
       "portfolio_category": "Device Information",
@@ -1392,13 +1427,14 @@
       "release_tag": "r1.2",
       "release_date": "2024-09-10T07:58:36Z",
       "meta_release": "Fall24",
-      "github_url": "https://github.com/camaraproject/DeviceStatus/releases/tag/r1.2"
+      "github_url": "https://github.com/camaraproject/DeviceStatus/releases/tag/r1.2",
+      "release_type": "public-release"
     },
     {
       "api_name": "device-roaming-status",
       "file_name": "device-roaming-status",
-      "version": "0.6.1",
-      "title": "Device Roaming Status",
+      "api_version": "0.6.1",
+      "api_title": "Device Roaming Status",
       "commonalities": "0.4",
       "maturity": "initial",
       "portfolio_category": "Device Information",
@@ -1413,13 +1449,14 @@
       "release_tag": "r1.3",
       "release_date": "2024-11-05T21:11:50Z",
       "meta_release": "Fall24",
-      "github_url": "https://github.com/camaraproject/DeviceStatus/releases/tag/r1.3"
+      "github_url": "https://github.com/camaraproject/DeviceStatus/releases/tag/r1.3",
+      "release_type": "maintenance-release"
     },
     {
       "api_name": "device-roaming-status-subscriptions",
       "file_name": "device-roaming-status-subscriptions",
-      "version": "0.6.0",
-      "title": "Device Roaming Status Subscriptions",
+      "api_version": "0.6.0",
+      "api_title": "Device Roaming Status Subscriptions",
       "commonalities": "0.4",
       "maturity": "initial",
       "portfolio_category": "Device Information",
@@ -1434,13 +1471,14 @@
       "release_tag": "r1.2",
       "release_date": "2024-09-10T07:58:36Z",
       "meta_release": "Fall24",
-      "github_url": "https://github.com/camaraproject/DeviceStatus/releases/tag/r1.2"
+      "github_url": "https://github.com/camaraproject/DeviceStatus/releases/tag/r1.2",
+      "release_type": "public-release"
     },
     {
       "api_name": "device-roaming-status-subscriptions",
       "file_name": "device-roaming-status-subscriptions",
-      "version": "0.6.1",
-      "title": "Device Roaming Status Subscriptions",
+      "api_version": "0.6.1",
+      "api_title": "Device Roaming Status Subscriptions",
       "commonalities": "0.4",
       "maturity": "initial",
       "portfolio_category": "Device Information",
@@ -1455,13 +1493,14 @@
       "release_tag": "r1.3",
       "release_date": "2024-11-05T21:11:50Z",
       "meta_release": "Fall24",
-      "github_url": "https://github.com/camaraproject/DeviceStatus/releases/tag/r1.3"
+      "github_url": "https://github.com/camaraproject/DeviceStatus/releases/tag/r1.3",
+      "release_type": "maintenance-release"
     },
     {
       "api_name": "home-devices-qod",
       "file_name": "home-devices-qod",
-      "version": "0.4.0",
-      "title": "Home Devices QoD",
+      "api_version": "0.4.0",
+      "api_title": "Home Devices QoD",
       "commonalities": "0.4",
       "maturity": "initial",
       "portfolio_category": "Communication Quality",
@@ -1476,13 +1515,14 @@
       "release_tag": "r1.2",
       "release_date": "2024-09-06T08:39:24Z",
       "meta_release": "Fall24",
-      "github_url": "https://github.com/camaraproject/HomeDevicesQoD/releases/tag/r1.2"
+      "github_url": "https://github.com/camaraproject/HomeDevicesQoD/releases/tag/r1.2",
+      "release_type": "public-release"
     },
     {
       "api_name": "kyc-fill-in",
       "file_name": "kyc-fill-in",
-      "version": "0.2.0",
-      "title": "Know Your Customer Fill-in",
+      "api_version": "0.2.0",
+      "api_title": "Know Your Customer Fill-in",
       "commonalities": "0.4",
       "maturity": "initial",
       "portfolio_category": "Authentication and Fraud Prevention",
@@ -1497,13 +1537,14 @@
       "release_tag": "r1.3",
       "release_date": "2024-09-12T09:29:42Z",
       "meta_release": "Fall24",
-      "github_url": "https://github.com/camaraproject/KnowYourCustomer/releases/tag/r1.3"
+      "github_url": "https://github.com/camaraproject/KnowYourCustomer/releases/tag/r1.3",
+      "release_type": "public-release"
     },
     {
       "api_name": "kyc-fill-in",
       "file_name": "kyc-fill-in",
-      "version": "0.2.0",
-      "title": "Know Your Customer Fill-in",
+      "api_version": "0.2.0",
+      "api_title": "Know Your Customer Fill-in",
       "commonalities": "0.4",
       "maturity": "initial",
       "portfolio_category": "Authentication and Fraud Prevention",
@@ -1518,13 +1559,14 @@
       "release_tag": "r1.4",
       "release_date": "2024-12-11T15:37:20Z",
       "meta_release": "Fall24",
-      "github_url": "https://github.com/camaraproject/KnowYourCustomer/releases/tag/r1.4"
+      "github_url": "https://github.com/camaraproject/KnowYourCustomer/releases/tag/r1.4",
+      "release_type": "maintenance-release"
     },
     {
       "api_name": "kyc-match",
       "file_name": "kyc-match",
-      "version": "0.2.1",
-      "title": "Know Your Customer Match",
+      "api_version": "0.2.1",
+      "api_title": "Know Your Customer Match",
       "commonalities": "0.4",
       "maturity": "initial",
       "portfolio_category": "Authentication and Fraud Prevention",
@@ -1539,13 +1581,14 @@
       "release_tag": "r1.3",
       "release_date": "2024-09-12T09:29:42Z",
       "meta_release": "Fall24",
-      "github_url": "https://github.com/camaraproject/KnowYourCustomer/releases/tag/r1.3"
+      "github_url": "https://github.com/camaraproject/KnowYourCustomer/releases/tag/r1.3",
+      "release_type": "public-release"
     },
     {
       "api_name": "kyc-match",
       "file_name": "kyc-match",
-      "version": "0.2.1",
-      "title": "Know Your Customer Match",
+      "api_version": "0.2.1",
+      "api_title": "Know Your Customer Match",
       "commonalities": "0.4",
       "maturity": "initial",
       "portfolio_category": "Authentication and Fraud Prevention",
@@ -1560,13 +1603,14 @@
       "release_tag": "r1.4",
       "release_date": "2024-12-11T15:37:20Z",
       "meta_release": "Fall24",
-      "github_url": "https://github.com/camaraproject/KnowYourCustomer/releases/tag/r1.4"
+      "github_url": "https://github.com/camaraproject/KnowYourCustomer/releases/tag/r1.4",
+      "release_type": "maintenance-release"
     },
     {
       "api_name": "number-verification",
       "file_name": "number-verification",
-      "version": "1.0.0",
-      "title": "Number Verification",
+      "api_version": "1.0.0",
+      "api_title": "Number Verification",
       "commonalities": "0.4",
       "maturity": "stable",
       "portfolio_category": "Authentication and Fraud Prevention",
@@ -1581,13 +1625,14 @@
       "release_tag": "r1.2",
       "release_date": "2024-09-06T15:22:46Z",
       "meta_release": "Fall24",
-      "github_url": "https://github.com/camaraproject/NumberVerification/releases/tag/r1.2"
+      "github_url": "https://github.com/camaraproject/NumberVerification/releases/tag/r1.2",
+      "release_type": "public-release"
     },
     {
       "api_name": "number-verification",
       "file_name": "number-verification",
-      "version": "1.0.0",
-      "title": "Number Verification",
+      "api_version": "1.0.0",
+      "api_title": "Number Verification",
       "commonalities": "0.4",
       "maturity": "stable",
       "portfolio_category": "Authentication and Fraud Prevention",
@@ -1602,13 +1647,14 @@
       "release_tag": "r1.3",
       "release_date": "2024-10-01T12:49:13Z",
       "meta_release": "Fall24",
-      "github_url": "https://github.com/camaraproject/NumberVerification/releases/tag/r1.3"
+      "github_url": "https://github.com/camaraproject/NumberVerification/releases/tag/r1.3",
+      "release_type": "maintenance-release"
     },
     {
       "api_name": "one-time-password-sms",
       "file_name": "one-time-password-sms",
-      "version": "1.0.0",
-      "title": "One Time Password SMS",
+      "api_version": "1.0.0",
+      "api_title": "One Time Password SMS",
       "commonalities": "0.4",
       "maturity": "stable",
       "portfolio_category": "Authentication and Fraud Prevention",
@@ -1623,13 +1669,14 @@
       "release_tag": "r1.2",
       "release_date": "2024-09-09T08:52:34Z",
       "meta_release": "Fall24",
-      "github_url": "https://github.com/camaraproject/OTPValidation/releases/tag/r1.2"
+      "github_url": "https://github.com/camaraproject/OTPValidation/releases/tag/r1.2",
+      "release_type": "public-release"
     },
     {
       "api_name": "population-density-data",
       "file_name": "population-density-data",
-      "version": "0.1.1",
-      "title": "Population Density Data",
+      "api_version": "0.1.1",
+      "api_title": "Population Density Data",
       "commonalities": "0.4",
       "maturity": "initial",
       "portfolio_category": "Location Services",
@@ -1644,13 +1691,14 @@
       "release_tag": "r1.2",
       "release_date": "2024-09-11T17:46:08Z",
       "meta_release": "Fall24",
-      "github_url": "https://github.com/camaraproject/PopulationDensityData/releases/tag/r1.2"
+      "github_url": "https://github.com/camaraproject/PopulationDensityData/releases/tag/r1.2",
+      "release_type": "public-release"
     },
     {
       "api_name": "qos-profiles",
       "file_name": "qos-profiles",
-      "version": "0.11.0",
-      "title": "QoS Profiles",
+      "api_version": "0.11.0",
+      "api_title": "QoS Profiles",
       "commonalities": "0.4",
       "maturity": "initial",
       "portfolio_category": "Communication Quality",
@@ -1665,13 +1713,14 @@
       "release_tag": "r1.2",
       "release_date": "2024-09-06T16:16:48Z",
       "meta_release": "Fall24",
-      "github_url": "https://github.com/camaraproject/QualityOnDemand/releases/tag/r1.2"
+      "github_url": "https://github.com/camaraproject/QualityOnDemand/releases/tag/r1.2",
+      "release_type": "public-release"
     },
     {
       "api_name": "qos-profiles",
       "file_name": "qos-profiles",
-      "version": "0.11.1",
-      "title": "QoS Profiles",
+      "api_version": "0.11.1",
+      "api_title": "QoS Profiles",
       "commonalities": "0.4",
       "maturity": "initial",
       "portfolio_category": "Communication Quality",
@@ -1686,13 +1735,14 @@
       "release_tag": "r1.3",
       "release_date": "2024-12-18T14:58:23Z",
       "meta_release": "Fall24",
-      "github_url": "https://github.com/camaraproject/QualityOnDemand/releases/tag/r1.3"
+      "github_url": "https://github.com/camaraproject/QualityOnDemand/releases/tag/r1.3",
+      "release_type": "maintenance-release"
     },
     {
       "api_name": "qod-provisioning",
       "file_name": "qod-provisioning",
-      "version": "0.1.0",
-      "title": "QoD Provisioning API",
+      "api_version": "0.1.0",
+      "api_title": "QoD Provisioning API",
       "commonalities": "0.4",
       "maturity": "initial",
       "portfolio_category": "Communication Quality",
@@ -1710,13 +1760,14 @@
       "release_tag": "r1.2",
       "release_date": "2024-09-06T16:16:48Z",
       "meta_release": "Fall24",
-      "github_url": "https://github.com/camaraproject/QualityOnDemand/releases/tag/r1.2"
+      "github_url": "https://github.com/camaraproject/QualityOnDemand/releases/tag/r1.2",
+      "release_type": "public-release"
     },
     {
       "api_name": "qod-provisioning",
       "file_name": "qod-provisioning",
-      "version": "0.1.1",
-      "title": "QoD Provisioning API",
+      "api_version": "0.1.1",
+      "api_title": "QoD Provisioning API",
       "commonalities": "0.4",
       "maturity": "initial",
       "portfolio_category": "Communication Quality",
@@ -1734,13 +1785,14 @@
       "release_tag": "r1.3",
       "release_date": "2024-12-18T14:58:23Z",
       "meta_release": "Fall24",
-      "github_url": "https://github.com/camaraproject/QualityOnDemand/releases/tag/r1.3"
+      "github_url": "https://github.com/camaraproject/QualityOnDemand/releases/tag/r1.3",
+      "release_type": "maintenance-release"
     },
     {
       "api_name": "quality-on-demand",
       "file_name": "quality-on-demand",
-      "version": "0.11.0",
-      "title": "Quality-On-Demand",
+      "api_version": "0.11.0",
+      "api_title": "Quality-On-Demand",
       "commonalities": "0.4",
       "maturity": "initial",
       "portfolio_category": "Communication Quality",
@@ -1755,13 +1807,14 @@
       "release_tag": "r1.2",
       "release_date": "2024-09-06T16:16:48Z",
       "meta_release": "Fall24",
-      "github_url": "https://github.com/camaraproject/QualityOnDemand/releases/tag/r1.2"
+      "github_url": "https://github.com/camaraproject/QualityOnDemand/releases/tag/r1.2",
+      "release_type": "public-release"
     },
     {
       "api_name": "quality-on-demand",
       "file_name": "quality-on-demand",
-      "version": "0.11.1",
-      "title": "Quality-On-Demand",
+      "api_version": "0.11.1",
+      "api_title": "Quality-On-Demand",
       "commonalities": "0.4",
       "maturity": "initial",
       "portfolio_category": "Communication Quality",
@@ -1776,13 +1829,14 @@
       "release_tag": "r1.3",
       "release_date": "2024-12-18T14:58:23Z",
       "meta_release": "Fall24",
-      "github_url": "https://github.com/camaraproject/QualityOnDemand/releases/tag/r1.3"
+      "github_url": "https://github.com/camaraproject/QualityOnDemand/releases/tag/r1.3",
+      "release_type": "maintenance-release"
     },
     {
       "api_name": "simple-edge-discovery",
       "file_name": "simple-edge-discovery",
-      "version": "1.0.0",
-      "title": "Simple Edge Discovery",
+      "api_version": "1.0.0",
+      "api_title": "Simple Edge Discovery",
       "commonalities": "0.4",
       "maturity": "stable",
       "portfolio_category": "Computing Services",
@@ -1797,13 +1851,14 @@
       "release_tag": "r1.3",
       "release_date": "2024-09-11T10:39:25Z",
       "meta_release": "Fall24",
-      "github_url": "https://github.com/camaraproject/SimpleEdgeDiscovery/releases/tag/r1.3"
+      "github_url": "https://github.com/camaraproject/SimpleEdgeDiscovery/releases/tag/r1.3",
+      "release_type": "public-release"
     },
     {
       "api_name": "sim-swap",
       "file_name": "sim-swap",
-      "version": "1.0.0",
-      "title": "SIM Swap",
+      "api_version": "1.0.0",
+      "api_title": "SIM Swap",
       "commonalities": "0.4",
       "maturity": "stable",
       "portfolio_category": "Authentication and Fraud Prevention",
@@ -1818,13 +1873,14 @@
       "release_tag": "r1.2",
       "release_date": "2024-09-12T15:07:04Z",
       "meta_release": "Fall24",
-      "github_url": "https://github.com/camaraproject/SimSwap/releases/tag/r1.2"
+      "github_url": "https://github.com/camaraproject/SimSwap/releases/tag/r1.2",
+      "release_type": "public-release"
     },
     {
       "api_name": "sim-swap",
       "file_name": "sim-swap",
-      "version": "1.0.0",
-      "title": "SIM Swap",
+      "api_version": "1.0.0",
+      "api_title": "SIM Swap",
       "commonalities": "0.4",
       "maturity": "stable",
       "portfolio_category": "Authentication and Fraud Prevention",
@@ -1839,13 +1895,14 @@
       "release_tag": "r1.3",
       "release_date": "2024-10-29T17:21:56Z",
       "meta_release": "Fall24",
-      "github_url": "https://github.com/camaraproject/SimSwap/releases/tag/r1.3"
+      "github_url": "https://github.com/camaraproject/SimSwap/releases/tag/r1.3",
+      "release_type": "maintenance-release"
     },
     {
       "api_name": "sim-swap",
       "file_name": "sim-swap",
-      "version": "1.0.0",
-      "title": "SIM Swap",
+      "api_version": "1.0.0",
+      "api_title": "SIM Swap",
       "commonalities": "0.4",
       "maturity": "stable",
       "portfolio_category": "Authentication and Fraud Prevention",
@@ -1860,13 +1917,14 @@
       "release_tag": "r1.4",
       "release_date": "2025-04-04T11:51:06Z",
       "meta_release": "Fall24",
-      "github_url": "https://github.com/camaraproject/SimSwap/releases/tag/r1.4"
+      "github_url": "https://github.com/camaraproject/SimSwap/releases/tag/r1.4",
+      "release_type": "maintenance-release"
     },
     {
       "api_name": "sim-swap-subscriptions",
       "file_name": "sim-swap-subscriptions",
-      "version": "0.1.0",
-      "title": "Sim Swap Subscriptions",
+      "api_version": "0.1.0",
+      "api_title": "Sim Swap Subscriptions",
       "commonalities": "0.4",
       "maturity": "initial",
       "portfolio_category": "Authentication and Fraud Prevention",
@@ -1881,13 +1939,14 @@
       "release_tag": "r1.2",
       "release_date": "2024-09-12T15:07:04Z",
       "meta_release": "Fall24",
-      "github_url": "https://github.com/camaraproject/SimSwap/releases/tag/r1.2"
+      "github_url": "https://github.com/camaraproject/SimSwap/releases/tag/r1.2",
+      "release_type": "public-release"
     },
     {
       "api_name": "sim-swap-subscriptions",
       "file_name": "sim-swap-subscriptions",
-      "version": "0.1.1",
-      "title": "Sim Swap Subscriptions",
+      "api_version": "0.1.1",
+      "api_title": "Sim Swap Subscriptions",
       "commonalities": "0.4",
       "maturity": "initial",
       "portfolio_category": "Authentication and Fraud Prevention",
@@ -1902,13 +1961,14 @@
       "release_tag": "r1.3",
       "release_date": "2024-10-29T17:21:56Z",
       "meta_release": "Fall24",
-      "github_url": "https://github.com/camaraproject/SimSwap/releases/tag/r1.3"
+      "github_url": "https://github.com/camaraproject/SimSwap/releases/tag/r1.3",
+      "release_type": "maintenance-release"
     },
     {
       "api_name": "sim-swap-subscriptions",
       "file_name": "sim-swap-subscriptions",
-      "version": "0.1.2",
-      "title": "Sim Swap Subscriptions",
+      "api_version": "0.1.2",
+      "api_title": "Sim Swap Subscriptions",
       "commonalities": "0.4",
       "maturity": "initial",
       "portfolio_category": "Authentication and Fraud Prevention",
@@ -1923,7 +1983,8 @@
       "release_tag": "r1.4",
       "release_date": "2025-04-04T11:51:06Z",
       "meta_release": "Fall24",
-      "github_url": "https://github.com/camaraproject/SimSwap/releases/tag/r1.4"
+      "github_url": "https://github.com/camaraproject/SimSwap/releases/tag/r1.4",
+      "release_type": "maintenance-release"
     }
   ]
 }

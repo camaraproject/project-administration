@@ -1,0 +1,13 @@
+repository:
+  repository_name: CarrierBillingCheckOut
+  release_tag: r1.2
+  release_type: public-release
+  release_date: "2024-09-05T15:39:42Z"
+  src_commit_sha: null
+apis:
+  - api_name: carrier-billing-refund
+    api_version: 0.1.0
+    api_title: Carrier Billing Refunds
+  - api_name: carrier-billing
+    api_version: 0.3.0
+    api_title: Carrier Billing

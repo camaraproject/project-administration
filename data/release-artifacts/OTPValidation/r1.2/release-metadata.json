@@ -1,0 +1,16 @@
+{
+  "repository": {
+    "repository_name": "OTPValidation",
+    "release_tag": "r1.2",
+    "release_type": "public-release",
+    "release_date": "2024-09-09T08:52:34Z",
+    "src_commit_sha": null
+  },
+  "apis": [
+    {
+      "api_name": "one-time-password-sms",
+      "api_version": "1.0.0",
+      "api_title": "One Time Password SMS"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "repository": {
+    "repository_name": "IoTNetworkOptimization",
+    "release_tag": "r1.1",
+    "release_type": "pre-release-alpha",
+    "release_date": "2025-12-11T13:11:28Z",
+    "src_commit_sha": null
+  },
+  "apis": [
+    {
+      "api_name": "iot-network-optimization",
+      "api_version": "0.1.0-alpha.1",
+      "api_title": "IoT Network Optimization API"
+    }
+  ]
+}

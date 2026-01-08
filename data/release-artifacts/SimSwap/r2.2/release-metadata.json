@@ -1,0 +1,21 @@
+{
+  "repository": {
+    "repository_name": "SimSwap",
+    "release_tag": "r2.2",
+    "release_type": "public-release",
+    "release_date": "2025-03-13T11:20:01Z",
+    "src_commit_sha": null
+  },
+  "apis": [
+    {
+      "api_name": "sim-swap-subscriptions",
+      "api_version": "0.2.0",
+      "api_title": "Sim Swap Subscriptions"
+    },
+    {
+      "api_name": "sim-swap",
+      "api_version": "2.0.0",
+      "api_title": "SIM Swap"
+    }
+  ]
+}

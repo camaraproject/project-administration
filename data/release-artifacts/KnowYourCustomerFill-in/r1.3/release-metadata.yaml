@@ -1,0 +1,10 @@
+repository:
+  repository_name: KnowYourCustomerFill-in
+  release_tag: r1.3
+  release_type: maintenance-release
+  release_date: "2025-12-15T09:02:43Z"
+  src_commit_sha: null
+apis:
+  - api_name: kyc-fill-in
+    api_version: 0.4.1
+    api_title: Know Your Customer Fill-in

@@ -1,0 +1,21 @@
+{
+  "repository": {
+    "repository_name": "QoSBooking",
+    "release_tag": "r1.2",
+    "release_type": "public-release",
+    "release_date": "2025-09-12T10:30:04Z",
+    "src_commit_sha": null
+  },
+  "apis": [
+    {
+      "api_name": "qos-booking-and-assignment",
+      "api_version": "0.1.0",
+      "api_title": "QoS Booking and Assignment"
+    },
+    {
+      "api_name": "qos-booking",
+      "api_version": "0.1.0",
+      "api_title": "QoS Booking"
+    }
+  ]
+}

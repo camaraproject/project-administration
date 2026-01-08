@@ -1,0 +1,16 @@
+{
+  "repository": {
+    "repository_name": "RegionDeviceCount",
+    "release_tag": "r2.2",
+    "release_type": "public-release",
+    "release_date": "2025-09-15T08:06:27Z",
+    "src_commit_sha": null
+  },
+  "apis": [
+    {
+      "api_name": "region-device-count",
+      "api_version": "0.2.0",
+      "api_title": "Region Device Count"
+    }
+  ]
+}
