@@ -1,0 +1,47 @@
+## Add release-plan.yaml for automated release tracking
+
+This PR introduces `release-plan.yaml` — a metadata file that enables automated release tooling for your repository.
+
+### What is this?
+
+The `release-plan.yaml` file declares your release intentions. It enables:
+- **Automated Release Progress Tracker** (visibility across CAMARA)
+- **CI validation** of release readiness
+- **Automated release branch creation** (coming soon)
+
+### Pre-populated data
+
+- **Contacts**: From your CODEOWNERS file
+
+:point_right: **Please review and adjust** if API-specific contacts differ from repository-wide codeowners.
+
+### What to do now
+
+**Option A: Merge as-is** (if you don't have an API name defined yet)
+- The file contains an `example-api` placeholder
+- `target_release_type: none` means "no release currently planned"
+- You can add API definitions freely — validation applies when preparing a release
+
+**Option B: Update before merging** (recommended if you have an API name)
+1. Replace `example-api` with your intended API name (kebab-case, per [Commonalities naming guidelines](https://github.com/camaraproject/Commonalities))
+2. Keep `target_api_status: draft` — the API definition file doesn't need to exist yet
+3. Review `main_contacts` — pre-populated from CODEOWNERS
+
+The API name can still be changed before your first release if needed.
+
+### When ready to release
+
+1. Ensure API names in this file match your files in `code/API_definitions/`
+2. Update `target_api_status` from `draft` to `alpha` (or higher)
+3. Set `target_release_type: pre-release-alpha`
+
+### API status progression
+
+| Status | Meaning |
+|--------|---------|
+| `draft` | API declared, definition file not required yet |
+| `alpha` | API definition exists, ready for early feedback |
+| `rc` | Release candidate, feature-complete |
+| `public` | Public release |
+
+:book: [Full documentation](https://github.com/camaraproject/ReleaseManagement/blob/main/documentation/API_Release_Guidelines.md)

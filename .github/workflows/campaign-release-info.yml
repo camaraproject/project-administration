@@ -26,6 +26,11 @@ on:
         required: true
         type: boolean
         default: true
+      include:
+        description: 'Comma-separated list of repository names to process (e.g., "QualityOnDemand, DeviceLocation"). Empty = all repos.'
+        required: false
+        type: string
+        default: ''
 
 concurrency:
   group: campaign-release-info-${{ github.ref }}
@@ -35,7 +40,7 @@ env:
   MODE: ${{ inputs.dry_run && 'plan' || 'apply' }}
   ORG: camaraproject
   RELEASES_FILE: data/releases-master.yaml
-  INCLUDE: ""
+  INCLUDE: ${{ inputs.include }}
   BRANCH: bulk/release-info-sync-${{ github.run_id }}
   PR_TITLE: "[bulk] Sync Release Information section"
   PR_BODY: "Automated update of README Release Information section"

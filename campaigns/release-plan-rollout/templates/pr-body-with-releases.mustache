@@ -1,0 +1,44 @@
+## Add release-plan.yaml for automated release tracking
+
+This PR introduces `release-plan.yaml` — a metadata file that will replace manual wiki-based release tracking with automated tooling.
+
+### What is this?
+
+The `release-plan.yaml` file declares your release intentions for this repository. It enables:
+- **Automated Release Progress Tracker** (replacing wiki API tables)
+- **CI validation** of release readiness
+- **Automated release branch creation** (coming soon)
+
+### Pre-populated data
+
+This file was generated from your latest release data and repository settings:
+- **APIs**: From your most recent release ({{target_release_tag}})
+- **Contacts**: From your CODEOWNERS file
+
+:point_right: **Please review and adjust** if API-specific contacts differ from repository-wide codeowners.
+
+### What to do now
+
+**Option A: Merge as-is** (recommended if no immediate release planned)
+- The file is pre-populated with your current release state ({{target_release_tag}}{{#meta_release}}, {{meta_release}}{{/meta_release}})
+- `target_release_type: none` means "no release currently planned"
+- Just merge — the file will be updated when you plan your next release
+
+**Option B: Update before merging** (if planning a release soon)
+1. Set `target_release_type` to your intended release type
+2. Update `target_release_tag` for your next release:
+   - New cycle: increment first number, reset second to 1 (e.g., r3.2 → r4.1)
+   - Progression in same cycle: increment second number (e.g., r3.2 → r3.3)
+3. Update `target_api_version` for any APIs being changed
+4. Optionally add `meta_release: Fall26` if participating in the meta-release
+
+### Before your next release
+
+Update this file with your release intentions:
+```yaml
+repository:
+  target_release_tag: rX.Y      # Your next release tag
+  target_release_type: pre-release-alpha  # Or: pre-release-rc, public-release, maintenance-release
+```
+
+:book: [Full documentation](https://github.com/camaraproject/ReleaseManagement/blob/main/documentation/API_Release_Guidelines.md)

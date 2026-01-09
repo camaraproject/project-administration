@@ -68,15 +68,15 @@ try {
     if (prStatus) {
       const statusMessages = {
         'will_create': 'New PR would be created',
-        'no_change': changeReason === 'main_up_to_date' && prNumber
-          ? `No changes needed (outdated PR #${prNumber})`
-          : prNumber
-            ? `No changes needed (latest PR #${prNumber})`
+        'no_change': changeReason === 'existing_pr' && prNumber
+          ? `Skipped - existing PR #${prNumber}`
+          : changeReason === 'main_up_to_date'
+            ? 'No changes needed'
             : 'No changes needed'
       };
       const reasonMessages = {
         'main_up_to_date': 'main already up-to-date',
-        'duplicate_of_pr': 'identical to existing PR',
+        'existing_pr': 'PR already exists',
         'new_changes': 'new changes detected'
       };
       const action = changed ? 'WOULD apply' : 'skip';
@@ -89,7 +89,7 @@ try {
       lines.push(changed ? '- WOULD apply (PR would be created)' : '- skip (no changes)');
     }
 
-    // Add PR URL if available (but not for main_up_to_date - old PR is misleading)
+    // Add PR URL if available (show for existing_pr, new_changes; hide for main_up_to_date)
     if (prUrl && changeReason !== 'main_up_to_date') {
       lines.push(`- PR URL: ${prUrl}`);
     }

@@ -1,0 +1,403 @@
+# =========================================================================================
+# CAMARA Project - Campaign: Release Plan Rollout
+#
+# Adds release-plan.yaml to all CAMARA API repositories based on data from
+# releases-master.yaml. Creates PRs for repositories that don't yet have the file.
+#
+# PREREQUISITES:
+# - Secret BULK_CAMPAIGN_TOKEN: Fine-grained PAT with the following permissions:
+#   - Contents: Read and write (create branches, commit changes)
+#   - Pull requests: Read and write (create PRs in target repos)
+#
+# DOCUMENTATION:
+# https://github.com/camaraproject/project-administration/blob/main/campaigns/release-plan-rollout/docs/README.md
+# =========================================================================================
+
+name: Campaign - Release Plan Rollout
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry run mode (plan only, no PRs created)'
+        required: true
+        type: boolean
+        default: true
+      include:
+        description: 'Comma-separated list of repository names to process (e.g., "QualityOnDemand, DeviceLocation"). Empty = all repos.'
+        required: false
+        type: string
+        default: ''
+      include_wip_repos:
+        description: 'Include repositories without release but with API definition files (work in progress, require manual review)'
+        required: false
+        type: boolean
+        default: true
+      include_new_repos:
+        description: 'Include repositories without API definition files and releases (new repositories)'
+        required: false
+        type: boolean
+        default: false
+
+concurrency:
+  group: campaign-release-plan-rollout-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  MODE: ${{ inputs.dry_run && 'plan' || 'apply' }}
+  ORG: camaraproject
+  RELEASES_FILE: data/releases-master.yaml
+  INCLUDE: ${{ inputs.include }}
+  INCLUDE_WIP_REPOS: ${{ inputs.include_wip_repos }}
+  INCLUDE_NEW_REPOS: ${{ inputs.include_new_repos }}
+  BRANCH: bulk/release-plan-rollout-${{ github.run_id }}
+  PR_TITLE: "[bulk] Add release-plan.yaml"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  select:
+    runs-on: ubuntu-latest
+    outputs:
+      repos: ${{ steps.sel.outputs.repos }}
+    steps:
+      - name: Checkout admin repo (self)
+        uses: actions/checkout@v4
+        with:
+          path: admin
+
+      - name: Install js-yaml
+        run: npm install js-yaml
+
+      - id: sel
+        name: Build repo list (from repositories array + include filter + skip existing)
+        uses: actions/github-script@v7
+        env:
+          GH_TOKEN: ${{ secrets.BULK_CAMPAIGN_TOKEN }}
+        with:
+          script: |
+            const fs = require('fs');
+            const yaml = require('js-yaml');
+            const { execSync } = require('child_process');
+
+            // Load releases-master.yaml
+            const doc = yaml.load(fs.readFileSync('admin/data/releases-master.yaml', 'utf8'));
+
+            // Get all repos from repositories array with release info
+            let list = (doc?.repositories || []).map(r => ({
+              slug: `${process.env.ORG}/${r.repository}`,
+              name: r.repository,
+              hasRelease: !!(r.latest_public_release || r.newest_pre_release),
+              releaseTag: r.newest_pre_release || r.latest_public_release || null,
+              hasApiFiles: null  // Will be detected for repos without releases
+            }));
+
+            // Apply include filter if specified
+            const include = (process.env.INCLUDE||'').split(',').map(s=>s.trim()).filter(Boolean);
+            if (include.length) {
+              list = list.filter(r => include.some(x => r.slug.endsWith(`/${x}`)));
+              console.log(`Include filter applied: ${include.join(', ')}`);
+            }
+
+            console.log(`Found ${list.length} repositories after filtering`);
+
+            // For repos without releases, check if they have API files
+            const reposWithoutRelease = list.filter(r => !r.hasRelease);
+            console.log(`\nChecking ${reposWithoutRelease.length} repositories without releases for API files...`);
+
+            for (const repo of reposWithoutRelease) {
+              try {
+                // Check if code/API_definitions directory has .yaml files (not just README.md placeholder)
+                const result = execSync(
+                  `gh api repos/${repo.slug}/contents/code/API_definitions --jq '[.[] | select(.name | endswith(".yaml"))] | length'`,
+                  { encoding: 'utf8', stdio: ['pipe', 'pipe', 'pipe'] }
+                ).trim();
+                const yamlCount = parseInt(result);
+                repo.hasApiFiles = yamlCount > 0;
+                console.log(`  ${repo.name}: ${yamlCount > 0 ? `Has ${yamlCount} API file(s)` : 'No API files (only placeholder)'}`);
+              } catch (e) {
+                // 404 means directory doesn't exist = no API files
+                repo.hasApiFiles = false;
+                console.log(`  ${repo.name}: No API files`);
+              }
+            }
+
+            // Categorize and filter based on inputs
+            const includeWip = process.env.INCLUDE_WIP_REPOS === 'true';
+            const includeNew = process.env.INCLUDE_NEW_REPOS === 'true';
+
+            console.log(`\nInput settings: include_wip_repos=${includeWip}, include_new_repos=${includeNew}`);
+
+            const counts = { withRelease: 0, wip: 0, new: 0, skippedWip: 0, skippedNew: 0, skippedExists: 0 };
+            const filteredList = [];
+
+            for (const repo of list) {
+              // Determine category
+              let category;
+              if (repo.hasRelease) {
+                category = 'with_release';
+              } else if (repo.hasApiFiles) {
+                category = 'wip';
+              } else {
+                category = 'new';
+              }
+
+              // Check if category is included
+              if (category === 'wip' && !includeWip) {
+                counts.skippedWip++;
+                console.log(`⊘ ${repo.name}: Skipping (WIP repo, include_wip_repos=false)`);
+                continue;
+              }
+              if (category === 'new' && !includeNew) {
+                counts.skippedNew++;
+                console.log(`⊘ ${repo.name}: Skipping (new repo, include_new_repos=false)`);
+                continue;
+              }
+
+              // Check if release-plan.yaml already exists
+              try {
+                execSync(
+                  `gh api repos/${repo.slug}/contents/release-plan.yaml`,
+                  { encoding: 'utf8', stdio: ['pipe', 'pipe', 'pipe'] }
+                );
+                // If we get here, file exists - skip
+                counts.skippedExists++;
+                console.log(`⊘ ${repo.name}: Skipping (release-plan.yaml already exists)`);
+                continue;
+              } catch (e) {
+                // 404 = file doesn't exist, include the repo
+              }
+
+              // Add to final list
+              filteredList.push(repo.slug);
+              counts[category === 'with_release' ? 'withRelease' : category]++;
+              console.log(`✓ ${repo.name}: Will process (category: ${category})`);
+            }
+
+            console.log(`\n=== Summary ===`);
+            console.log(`Repositories to process: ${filteredList.length}`);
+            console.log(`  - With releases: ${counts.withRelease}`);
+            console.log(`  - Work in progress: ${counts.wip}`);
+            console.log(`  - New repos: ${counts.new}`);
+            console.log(`Skipped:`);
+            console.log(`  - Already have release-plan.yaml: ${counts.skippedExists}`);
+            console.log(`  - WIP repos excluded: ${counts.skippedWip}`);
+            console.log(`  - New repos excluded: ${counts.skippedNew}`);
+
+            core.setOutput('repos', JSON.stringify(filteredList));
+
+  run:
+    needs: select
+    if: ${{ needs.select.outputs.repos != '[]' }}
+    runs-on: ubuntu-latest
+    outputs:
+      mode: ${{ env.MODE }}
+    strategy:
+      fail-fast: false
+      matrix:
+        repo: ${{ fromJson(needs.select.outputs.repos) }}
+
+    steps:
+      - name: Checkout admin repo (self)
+        uses: actions/checkout@v4
+        with:
+          path: admin
+
+      - name: Checkout target repo
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ matrix.repo }}
+          path: repo
+          fetch-depth: 0
+          token: ${{ secrets.BULK_CAMPAIGN_TOKEN }}
+
+      - name: Fetch CODEOWNERS
+        id: codeowners
+        shell: bash
+        run: |
+          # Fetch CODEOWNERS from target repo main branch
+          CODEOWNERS=$(gh api repos/${{ matrix.repo }}/contents/CODEOWNERS --jq '.content' 2>/dev/null | base64 -d || echo "")
+
+          # Extract usernames from first line starting with "*"
+          if [ -n "$CODEOWNERS" ]; then
+            OWNERS=$(echo "$CODEOWNERS" | grep "^\*" | head -1 | sed 's/\* //' | tr -s ' ' | sed 's/@//g' | tr ' ' ',')
+            echo "owners=$OWNERS" >> $GITHUB_OUTPUT
+            echo "Found codeowners: $OWNERS"
+          else
+            echo "owners=" >> $GITHUB_OUTPUT
+            echo "No CODEOWNERS file found"
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.BULK_CAMPAIGN_TOKEN }}
+
+      - name: Generate release-plan.yaml
+        id: generate
+        uses: ./admin/campaigns/release-plan-rollout/actions/generate-release-plan
+        with:
+          releases_file: admin/${{ env.RELEASES_FILE }}
+          repo_slug: ${{ matrix.repo }}
+          out_file: repo/release-plan.yaml
+          templates_dir: admin/campaigns/release-plan-rollout/templates
+          codeowners: ${{ steps.codeowners.outputs.owners }}
+
+      - name: Render PR body
+        id: pr_body
+        uses: ./admin/actions/render-mustache
+        with:
+          template: admin/campaigns/release-plan-rollout/templates/${{ steps.generate.outputs.pr_body_template }}
+          data_json: ${{ steps.generate.outputs.json }}
+          out_file: /tmp/pr-body.md
+
+      # TODO: Change to camaraproject/tooling@v0 when shared-action is released
+      - name: Validate generated release-plan.yaml
+        id: validate
+        continue-on-error: true
+        uses: hdamker/tooling/shared-actions/validate-release-plan@release-plan-validation
+        with:
+          release_plan_path: repo/release-plan.yaml
+
+      - name: Log validation result
+        shell: bash
+        run: |
+          echo "Validation result: valid=${{ steps.validate.outputs.valid }}"
+          if [[ "${{ steps.validate.outputs.valid }}" != "true" ]]; then
+            echo "::error::Validation failed for ${{ matrix.repo }}"
+            echo "Errors: ${{ steps.validate.outputs.errors }}"
+          fi
+          WARNINGS='${{ steps.validate.outputs.warnings }}'
+          if [[ -n "$WARNINGS" && "$WARNINGS" != "[]" ]]; then
+            echo "Warnings: $WARNINGS"
+          fi
+
+      - name: Detect changes
+        id: changes
+        if: steps.validate.outputs.valid == 'true'
+        shell: bash
+        working-directory: repo
+        run: |
+          if [ -f "release-plan.yaml" ]; then
+            git add release-plan.yaml
+            if git diff --cached --quiet; then
+              echo "changed=false" >> $GITHUB_OUTPUT
+            else
+              echo "changed=true" >> $GITHUB_OUTPUT
+            fi
+          else
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "::warning::release-plan.yaml was not generated"
+          fi
+
+      - name: Campaign finalize
+        uses: ./admin/actions/campaign-finalize-per-repo
+        with:
+          mode: ${{ env.MODE }}
+          changed: ${{ steps.validate.outputs.valid == 'true' && steps.changes.outputs.changed || 'false' }}
+          repo: ${{ matrix.repo }}
+          campaign_data: ${{ steps.generate.outputs.json }}
+          pr_base_title: ${{ env.PR_TITLE }}
+          pr_body_file: /tmp/pr-body.md
+          branch: ${{ env.BRANCH }}
+          github_token: ${{ secrets.BULK_CAMPAIGN_TOKEN }}
+          target_files: release-plan.yaml
+          error_occurred: ${{ steps.validate.outputs.valid != 'true' }}
+          error_message: "Validation failed: ${{ steps.validate.outputs.errors }}"
+          error_step: validate
+
+  aggregate:
+    needs: [select, run]
+    if: ${{ always() && inputs.dry_run && needs.select.outputs.repos != '[]' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download all plan artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: plan-*
+          path: plans
+
+      - name: Merge plan files
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+
+            // Header
+            const header = [
+              '# Release Plan Rollout Campaign - Plan Summary',
+              '',
+              `Generated: ${new Date().toISOString()}`,
+              'Mode: plan (dry run)',
+              `Settings: include_wip_repos=${{ inputs.include_wip_repos }}, include_new_repos=${{ inputs.include_new_repos }}`,
+              ''
+            ];
+
+            const md = [];
+            const jsonl = [];
+
+            const plansDir = 'plans';
+            if (!fs.existsSync(plansDir)) {
+              console.log('No plans directory found');
+              fs.writeFileSync('plan.md', header.join('\n') + '\n## Summary\n\n**Total repositories processed:** 0\n');
+              fs.writeFileSync('plan.jsonl', '');
+              return;
+            }
+
+            // Each artifact is in its own subdirectory
+            const dirs = fs.readdirSync(plansDir);
+            console.log(`Found ${dirs.length} artifact directories`);
+
+            for (const d of dirs) {
+              const dir = path.join(plansDir, d);
+              const stat = fs.statSync(dir);
+              if (!stat.isDirectory()) continue;
+
+              const mdFile = path.join(dir, 'plan.md');
+              const jsonlFile = path.join(dir, 'plan.jsonl');
+
+              if (fs.existsSync(mdFile)) {
+                md.push(fs.readFileSync(mdFile, 'utf8'));
+              }
+              if (fs.existsSync(jsonlFile)) {
+                jsonl.push(fs.readFileSync(jsonlFile, 'utf8'));
+              }
+            }
+
+            // Calculate summary
+            const total = jsonl.length;
+            const jsonlContent = jsonl.join('');
+            const warningCount = (jsonlContent.match(/"warning"/g) || []).length;
+            const withReleaseCount = total - warningCount;
+
+            // Build final output
+            const summary = [
+              '## Summary',
+              '',
+              `**Total repositories processed:** ${total}`,
+              ''
+            ];
+
+            if (total > 0) {
+              summary.push('**Category breakdown:**');
+              summary.push(`- With releases: ${withReleaseCount}`);
+              summary.push(`- Without releases (placeholders): ${warningCount}`);
+            }
+
+            const finalMd = header.join('\n') + md.join('\n') + '\n' + summary.join('\n') + '\n';
+            fs.writeFileSync('plan.md', finalMd);
+            fs.writeFileSync('plan.jsonl', jsonlContent);
+
+      - name: Upload merged plan
+        uses: actions/upload-artifact@v4
+        with:
+          name: campaign-plan
+          path: |
+            plan.md
+            plan.jsonl
+
+      - name: Add workflow summary
+        run: |
+          echo "## Release Plan Rollout Campaign - Plan" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          cat plan.md >> $GITHUB_STEP_SUMMARY

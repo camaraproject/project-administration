@@ -42,6 +42,30 @@ inputs:
     description: 'Step where error occurred'
     required: false
     default: ''
+  target_files:
+    description: 'Files to track for changes and commit (space-separated)'
+    required: false
+    default: 'README.md'
+  git_user_name:
+    description: 'Git commit author name'
+    required: false
+    default: 'github-actions[bot]'
+  git_user_email:
+    description: 'Git commit author email'
+    required: false
+    default: 'github-actions[bot]@users.noreply.github.com'
+  label_name:
+    description: 'GitHub label for campaign PRs'
+    required: false
+    default: 'automated'
+  label_color:
+    description: 'Label color (hex without #)'
+    required: false
+    default: 'd1d5db'
+  label_description:
+    description: 'Label description'
+    required: false
+    default: 'Automated bulk operations from project-administration'
 
 runs:
   using: 'composite'
@@ -52,9 +76,9 @@ runs:
       shell: bash
       working-directory: repo
       run: |
-        # Search for PRs by base title (partial match) and automated label, sort by created_at DESC
+        # Search for PRs by base title (partial match) and campaign label, sort by created_at DESC
         PR_DATA=$(gh pr list \
-          --search "in:title \"${{ inputs.pr_base_title }}\" label:automated" \
+          --search "in:title \"${{ inputs.pr_base_title }}\" label:${{ inputs.label_name }}" \
           --json number,url,title,createdAt,headRefName \
           --jq 'sort_by(.createdAt) | reverse | .[0]' 2>/dev/null || echo "{}")
 
@@ -81,36 +105,30 @@ runs:
       env:
         GH_TOKEN: ${{ inputs.github_token }}
 
-    - name: Two-stage change detection
+    - name: Change detection
       id: change_check
       if: ${{ inputs.error_occurred != 'true' }}
       shell: bash
       working-directory: repo
       run: |
-        # Stage 1: Compare against main
-        echo "Stage 1: Comparing against main..."
-        if git diff --quiet -- README.md; then
+        # If PR already exists, skip (no superseding)
+        if [ "${{ steps.detect.outputs.pr_exists }}" = "true" ]; then
+          echo "Existing PR found (#${{ steps.detect.outputs.pr_number }}) → skip"
+          echo "changed=false" >> $GITHUB_OUTPUT
+          echo "reason=existing_pr" >> $GITHUB_OUTPUT
+          exit 0
+        fi
+
+        # Compare against main (stage files first to detect new files)
+        git add ${{ inputs.target_files }} 2>/dev/null || true
+        if git diff --cached --quiet -- ${{ inputs.target_files }}; then
           echo "No changes vs main → noop"
           echo "changed=false" >> $GITHUB_OUTPUT
           echo "reason=main_up_to_date" >> $GITHUB_OUTPUT
           exit 0
         fi
-        echo "Changes detected vs main"
 
-        # Stage 2: If PR exists, compare against PR branch
-        PR_BRANCH="${{ steps.detect.outputs.pr_branch }}"
-        if [ -n "$PR_BRANCH" ]; then
-          echo "Stage 2: Comparing against PR branch $PR_BRANCH..."
-          git fetch origin "$PR_BRANCH" 2>/dev/null || true
-          if git diff --quiet origin/"$PR_BRANCH" -- README.md 2>/dev/null; then
-            echo "Identical to existing PR → noop"
-            echo "changed=false" >> $GITHUB_OUTPUT
-            echo "reason=duplicate_of_pr" >> $GITHUB_OUTPUT
-            exit 0
-          fi
-          echo "Different from existing PR"
-        fi
-
+        echo "Changes detected, will create PR"
         echo "changed=true" >> $GITHUB_OUTPUT
         echo "reason=new_changes" >> $GITHUB_OUTPUT
 
@@ -125,7 +143,7 @@ runs:
 
         # Search for PRs with same date in title
         EXISTING_TITLES=$(gh pr list \
-          --search "in:title \"$BASE_TITLE ($DATE\" label:automated" \
+          --search "in:title \"$BASE_TITLE ($DATE\" label:${{ inputs.label_name }}" \
           --json title \
           --jq '.[].title' 2>/dev/null || echo "")
 
@@ -170,39 +188,20 @@ runs:
         echo "pr_status=$STATUS" >> $GITHUB_OUTPUT
         echo "Determined PR status: $STATUS (reason: ${{ steps.change_check.outputs.reason }})"
 
-    - name: APPLY - Warn about outdated PR
-      if: ${{ inputs.mode == 'apply' && steps.change_check.outputs.reason == 'main_up_to_date' && steps.detect.outputs.pr_number != '' }}
-      shell: bash
-      working-directory: repo
-      run: |
-        PR_NUMBER="${{ steps.detect.outputs.pr_number }}"
-        echo "Main is up-to-date but old PR #$PR_NUMBER exists - adding warning comment"
-        gh pr comment "$PR_NUMBER" --body "$(cat <<'EOF'
-        ⚠️ **This PR appears outdated**
-
-        Main branch already contains up-to-date content. Consider closing this PR.
-
-        Detected by [workflow run ${{ github.run_id }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
-        EOF
-        )"
-        echo "Warning comment added to PR #$PR_NUMBER"
-      env:
-        GH_TOKEN: ${{ inputs.github_token }}
-
-    - name: APPLY - Ensure automated label exists
+    - name: APPLY - Ensure campaign label exists
       if: ${{ inputs.mode == 'apply' && steps.change_check.outputs.changed == 'true' }}
       shell: bash
       working-directory: repo
       run: |
-        # Check if automated label exists, create if not
-        if ! gh label list --json name --jq '.[].name' | grep -q "^automated$"; then
-          echo "Creating 'automated' label..."
-          gh label create automated \
-            --description "Automated bulk operations from project-administration" \
-            --color d1d5db
+        # Check if campaign label exists, create if not
+        if ! gh label list --json name --jq '.[].name' | grep -q "^${{ inputs.label_name }}$"; then
+          echo "Creating '${{ inputs.label_name }}' label..."
+          gh label create "${{ inputs.label_name }}" \
+            --description "${{ inputs.label_description }}" \
+            --color "${{ inputs.label_color }}"
           echo "Label created"
         else
-          echo "Label 'automated' already exists"
+          echo "Label '${{ inputs.label_name }}' already exists"
         fi
       env:
         GH_TOKEN: ${{ inputs.github_token }}
@@ -213,10 +212,10 @@ runs:
       shell: bash
       working-directory: repo
       run: |
-        git config user.name "hdamker-bot"
-        git config user.email "hdamker-bot@users.noreply.github.com"
+        git config user.name "${{ inputs.git_user_name }}"
+        git config user.email "${{ inputs.git_user_email }}"
         git checkout -B "${{ inputs.branch }}"
-        git add README.md
+        git add ${{ inputs.target_files }}
         git commit -m "${{ steps.pr_title.outputs.pr_title }}" || echo "No changes to commit"
         git push origin "${{ inputs.branch }}"
         echo "push_succeeded=true" >> $GITHUB_OUTPUT
@@ -233,35 +232,9 @@ runs:
           --body-file "${{ inputs.pr_body_file }}" \
           --head "${{ inputs.branch }}" \
           --base main \
-          --label automated)
+          --label "${{ inputs.label_name }}")
         echo "created_pr_url=$PR_URL" >> $GITHUB_OUTPUT
         echo "Created PR: $PR_URL"
-      env:
-        GH_TOKEN: ${{ inputs.github_token }}
-
-    - name: APPLY - Mark old PR as superseded
-      if: ${{ inputs.mode == 'apply' && steps.change_check.outputs.changed == 'true' && steps.detect.outputs.pr_number != '' }}
-      shell: bash
-      working-directory: repo
-      run: |
-        OLD_PR="${{ steps.detect.outputs.pr_number }}"
-        NEW_PR_URL="${{ steps.pr_create.outputs.created_pr_url }}"
-        NEW_PR=$(echo "$NEW_PR_URL" | grep -oE '[0-9]+$')
-
-        echo "New PR #$NEW_PR created, marking old PR #$OLD_PR as superseded and converting to draft"
-
-        # Add warning comment
-        gh pr comment "$OLD_PR" --body "$(cat <<EOF
-        ⚠️ **This PR has been superseded by #${NEW_PR}**
-
-        Please review and merge the newer PR instead. This PR has been converted to draft status.
-        EOF
-        )"
-
-        # Convert to draft to prevent accidental merge
-        gh pr ready "$OLD_PR" --undo
-
-        echo "Old PR #$OLD_PR marked as draft"
       env:
         GH_TOKEN: ${{ inputs.github_token }}
 
@@ -283,6 +256,18 @@ runs:
         INPUT_ERROR_MESSAGE: ${{ inputs.error_message }}
         INPUT_ERROR_STEP: ${{ inputs.error_step }}
 
+    - name: Copy generated files for plan artifact
+      if: ${{ inputs.mode == 'plan' }}
+      shell: bash
+      run: |
+        # Copy generated target files to plan artifact directory
+        mkdir -p plan-files
+        for file in ${{ inputs.target_files }}; do
+          if [ -f "repo/$file" ]; then
+            cp "repo/$file" "plan-files/"
+          fi
+        done
+
     - name: Reset repo (plan mode)
       if: ${{ inputs.mode == 'plan' }}
       shell: bash
@@ -298,3 +283,4 @@ runs:
         path: |
           ${{ inputs.mode == 'plan' && 'plan' || 'results' }}.md
           ${{ inputs.mode == 'plan' && 'plan' || 'results' }}.jsonl
+          ${{ inputs.mode == 'plan' && 'plan-files/*' || '' }}
