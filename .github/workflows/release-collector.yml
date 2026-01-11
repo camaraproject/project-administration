@@ -99,6 +99,8 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       has_updates: ${{ steps.detect.outputs.has_updates }}
+      has_new_releases: ${{ steps.detect.outputs.has_new_releases }}
+      has_new_repos: ${{ steps.detect.outputs.has_new_repos }}
       templates_changed: ${{ steps.check_templates.outputs.templates_changed }}
       new_releases: ${{ steps.detect.outputs.new_releases }}
       all_repos: ${{ steps.detect.outputs.all_repos }}
@@ -149,11 +151,15 @@ jobs:
 
           # Parse output
           HAS_UPDATES=$(jq -r '.has_updates' temp/detection-output.json)
+          HAS_NEW_RELEASES=$(jq -r '.has_new_releases' temp/detection-output.json)
+          HAS_NEW_REPOS=$(jq -r '.has_new_repos' temp/detection-output.json)
           RELEASES_TO_ANALYZE=$(jq -c '.releases_to_analyze' temp/detection-output.json)
           RELEASES_COUNT=$(jq -r '.releases_count' temp/detection-output.json)
           REPOS_COUNT=$(jq -r '.repositories_count' temp/detection-output.json)
 
           echo "has_updates=${HAS_UPDATES}" >> $GITHUB_OUTPUT
+          echo "has_new_releases=${HAS_NEW_RELEASES}" >> $GITHUB_OUTPUT
+          echo "has_new_repos=${HAS_NEW_REPOS}" >> $GITHUB_OUTPUT
           echo "releases_to_analyze=${RELEASES_TO_ANALYZE}" >> $GITHUB_OUTPUT
 
           # Extract repositories list for update-master.js
@@ -187,7 +193,7 @@ jobs:
   analyze-releases:
     name: Analyze Releases
     needs: detect-releases
-    if: needs.detect-releases.outputs.has_updates == 'true'
+    if: needs.detect-releases.outputs.has_new_releases == 'true'
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -247,7 +253,12 @@ jobs:
   # =========================================================================================
   update-metadata:
     name: Update Master Metadata
-    needs: analyze-releases
+    needs: [detect-releases, analyze-releases]
+    # Run if analyze-releases succeeded OR if new repos found (even without new releases)
+    if: |
+      always() &&
+      (needs.analyze-releases.result == 'success' ||
+       needs.detect-releases.outputs.has_new_repos == 'true')
     runs-on: ubuntu-latest
 
     steps:
@@ -263,9 +274,17 @@ jobs:
         run: |
           npm install js-yaml axios
 
-      - name: Download all analysis results
+      - name: Download repositories data
         uses: actions/download-artifact@v4
         with:
+          name: repositories-data
+          path: temp/repositories-data
+
+      - name: Download all analysis results
+        if: needs.analyze-releases.result == 'success'
+        uses: actions/download-artifact@v4
+        with:
+          pattern: analysis-group-*
           path: temp/
 
       - name: Combine and process data

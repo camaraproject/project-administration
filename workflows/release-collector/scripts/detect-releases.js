@@ -119,20 +119,61 @@ async function fetchReleases(repoName) {
 }
 
 /**
- * Compare releases to find new ones
+ * Check if a pre-release is superseded by an existing release in master
+ * A pre-release rX.Y is superseded if master has any rX.Z (non-prerelease) where Z >= Y
+ * for the same repository
  */
-function findNewReleases(repoReleases, storedReleases) {
+function isSupersededPrerelease(prerelease, storedReleases) {
+  const match = prerelease.release_tag.match(/^r(\d+)\.(\d+)$/);
+  if (!match) return false;
+
+  const cycle = parseInt(match[1]);
+  const minor = parseInt(match[2]);
+
+  // Check if any non-prerelease in same repo/cycle exists with >= minor version
+  return storedReleases.some(r => {
+    if (r.repository !== prerelease.repository) return false;
+    const storedMatch = r.release_tag.match(/^r(\d+)\.(\d+)$/);
+    if (!storedMatch) return false;
+    const storedCycle = parseInt(storedMatch[1]);
+    const storedMinor = parseInt(storedMatch[2]);
+    // Same cycle and stored version >= prerelease version means superseded
+    return storedCycle === cycle && storedMinor >= minor;
+  });
+}
+
+/**
+ * Compare releases to find new ones
+ * In incremental mode, filters out superseded pre-releases
+ */
+function findNewReleases(repoReleases, storedReleases, mode) {
   const storedTags = new Set(
     storedReleases.map(r => `${r.repository}:${r.release_tag}`)
   );
 
   const newReleases = [];
+  let skippedSuperseded = 0;
 
   for (const releaseInfo of repoReleases) {
     const key = `${releaseInfo.repository}:${releaseInfo.release_tag}`;
-    if (!storedTags.has(key)) {
-      newReleases.push(releaseInfo);
+
+    // Skip if already in master
+    if (storedTags.has(key)) continue;
+
+    // In incremental mode, skip superseded pre-releases
+    if (mode === 'incremental' && releaseInfo.is_prerelease) {
+      if (isSupersededPrerelease(releaseInfo, storedReleases)) {
+        console.error(`  Skipped (superseded): ${releaseInfo.repository} ${releaseInfo.release_tag}`);
+        skippedSuperseded++;
+        continue;
+      }
     }
+
+    newReleases.push(releaseInfo);
+  }
+
+  if (skippedSuperseded > 0) {
+    console.error(`Skipped ${skippedSuperseded} superseded pre-releases`);
   }
 
   return newReleases;
@@ -198,9 +239,9 @@ async function main() {
     releasesToAnalyze = allReleases;
     console.error(`Full mode: Will analyze all ${releasesToAnalyze.length} releases`);
   } else {
-    // Incremental mode: only new releases
-    releasesToAnalyze = findNewReleases(allReleases, masterData.releases);
-    console.error(`Incremental mode: Found ${releasesToAnalyze.length} new releases`);
+    // Incremental mode: only new releases (filters out superseded pre-releases)
+    releasesToAnalyze = findNewReleases(allReleases, masterData.releases, mode);
+    console.error(`Incremental mode: Found ${releasesToAnalyze.length} new releases to analyze`);
   }
 
   // Group releases by repository for summary
@@ -230,11 +271,15 @@ async function main() {
     newRepositories.forEach(r => console.error(`  - ${r.repository}`));
   }
 
+  // Separate flags for releases vs repositories
+  const hasNewReleases = releasesToAnalyze.length > 0;
   // has_updates is true if there are new releases OR new repositories
-  const hasUpdates = releasesToAnalyze.length > 0 || hasNewRepositories;
+  const hasUpdates = hasNewReleases || hasNewRepositories;
 
   const output = {
     has_updates: hasUpdates,
+    has_new_releases: hasNewReleases,
+    has_new_repos: hasNewRepositories,
     releases_to_analyze: releasesToAnalyze,
     releases_count: releasesToAnalyze.length,
     repositories_affected: Object.keys(repoSummary).length,

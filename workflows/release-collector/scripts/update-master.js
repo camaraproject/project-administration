@@ -40,7 +40,6 @@ function loadMaster() {
     return {
       metadata: {
         last_updated: null,
-        last_checked: null,
         workflow_version: "3.0.0",
         schema_version: "2.0.0"
       },
@@ -172,13 +171,12 @@ function computeRepoReleaseRefs(repoName, releases) {
 /**
  * Update master metadata with new analysis results
  * Format corrections have already been applied by analyze-release.js
+ * Returns { master, hasContentChanges } to track if actual updates occurred
  */
 function updateMaster(master, analysisResults, mode, mappings) {
-  const timestamp = new Date().toISOString();
-
-  // Update metadata
-  master.metadata.last_updated = timestamp;
-  master.metadata.last_checked = timestamp;
+  let releasesAdded = 0;
+  let releasesUpdated = 0;
+  let releasesFiltered = 0;
 
   // First pass: add all releases to get complete picture for filtering
   const tempReleases = [...master.releases];
@@ -215,6 +213,7 @@ function updateMaster(master, analysisResults, mode, mappings) {
       if (idx >= 0) {
         master.releases.splice(idx, 1);
       }
+      releasesFiltered++;
       continue;
     }
 
@@ -250,10 +249,12 @@ function updateMaster(master, analysisResults, mode, mappings) {
     if (existingIndex >= 0) {
       // Update existing release
       master.releases[existingIndex] = releaseEntry;
+      releasesUpdated++;
       console.log(`Updated: ${result.repository} ${result.release_tag} (${releaseType})`);
     } else {
       // Add new release
       master.releases.push(releaseEntry);
+      releasesAdded++;
       console.log(`Added: ${result.repository} ${result.release_tag} (${releaseType})`);
     }
   }
@@ -275,14 +276,32 @@ function updateMaster(master, analysisResults, mode, mappings) {
     return a.release_tag.localeCompare(b.release_tag);
   });
 
-  return master;
+  // Track whether content changed
+  const hasReleaseChanges = releasesAdded > 0 || releasesUpdated > 0;
+  console.log(`\nRelease changes: ${releasesAdded} added, ${releasesUpdated} updated, ${releasesFiltered} filtered`);
+
+  return { master, hasReleaseChanges };
 }
 
 /**
  * Update repositories array with release references
+ * Returns hasRepoChanges flag indicating if repository list changed
  */
 function updateRepositories(master, repositoriesInput) {
-  // Build map of existing repos
+  // Track existing repos for change detection
+  const existingRepoNames = new Set(master.repositories.map(r => r.repository));
+  const inputRepoNames = new Set(repositoriesInput.map(r => r.repository));
+
+  // Detect new repositories
+  const newRepos = repositoriesInput.filter(r => !existingRepoNames.has(r.repository));
+  const hasRepoChanges = newRepos.length > 0;
+
+  if (newRepos.length > 0) {
+    console.log(`\nNew repositories detected: ${newRepos.length}`);
+    newRepos.forEach(r => console.log(`  + ${r.repository}`));
+  }
+
+  // Build map of repos
   const repoMap = new Map();
 
   // Add all repos from input
@@ -311,6 +330,8 @@ function updateRepositories(master, repositoriesInput) {
   console.log(`  With public release: ${withPublic}`);
   console.log(`  Pre-release only: ${withPreOnly}`);
   console.log(`  No releases: ${noReleases}`);
+
+  return hasRepoChanges;
 }
 
 /**
@@ -361,17 +382,31 @@ async function main() {
     }
 
     // Update master with new data
-    const updatedMaster = updateMaster(master, analysisResults, mode, mappings);
+    const { master: updatedMaster, hasReleaseChanges } = updateMaster(master, analysisResults, mode, mappings);
 
     // Update repositories if repos file provided
+    let hasRepoChanges = false;
     if (reposFile) {
       if (!fs.existsSync(reposFile)) {
         console.error(`Repos file not found: ${reposFile}`);
         process.exit(1);
       }
       const reposData = JSON.parse(fs.readFileSync(reposFile, 'utf8'));
-      updateRepositories(updatedMaster, reposData.repositories || []);
+      hasRepoChanges = updateRepositories(updatedMaster, reposData.repositories || []);
     }
+
+    // Only update last_updated if actual content changed
+    const hasContentChanges = hasReleaseChanges || hasRepoChanges || mode === 'full';
+    if (hasContentChanges) {
+      const timestamp = new Date().toISOString();
+      updatedMaster.metadata.last_updated = timestamp;
+      console.log(`\nContent changes detected - updated last_updated to ${timestamp}`);
+    } else {
+      console.log(`\nNo content changes - last_updated unchanged`);
+    }
+
+    // Remove last_checked if it exists (migration)
+    delete updatedMaster.metadata.last_checked;
 
     // Write updated master file
     const yamlContent = yaml.dump(updatedMaster, {
