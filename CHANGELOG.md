@@ -2,8 +2,56 @@
 
 ## Table of Contents
 
+- **[r1.3](#r13)**
 - **[r1.2](#r12)**
 - **[r1.1](#r11)**
+
+## r1.3
+
+**Release focus: Release Plan Rollout campaign and extended Release Collector**
+
+### Added
+
+* **Release Plan Rollout campaign** (`campaign-release-plan-rollout.yml`)
+  - Adds release-plan.yaml to all CAMARA API repositories
+  - Supports dry-run mode for planning before execution
+  - Handles repositories with releases, WIP repositories, and new repositories
+  - Includes validation step and comprehensive error handling
+  - Mustache templates for release-plan generation
+
+* **Pre-release tracking** in Release Collector
+  - Extended to track pre-releases with repositories array filter
+  - Added release type filtering to portfolio and internal viewers
+  - Filter visibility for r0.X releases
+
+* **Release-metadata generation** with schema 2.0.0
+  - New property naming conventions
+  - Enhanced dry-run analysis for metadata upload
+
+* **Theme toggle** for viewers embedded in iframes
+
+* **Dependabot** for automated GitHub Actions updates
+
+### Changed
+
+* Aligned filter terminology with release-plan-schema conventions
+* Updated GitHub Actions to latest versions
+* Improved template formatting (ASCII characters for compatibility)
+
+### Fixed
+
+* Fixed release-collector creating empty PRs daily (#106)
+* Fixed release_type visibility in viewers
+* Fixed maintenance-release branch naming convention in README
+* Fixed aggregate job to run in both dry-run and apply modes
+
+### Documentation
+
+* Comprehensive documentation for pre-releases, metadata generation, and production upload
+* Updated release-collector QUICKSTART and README
+* New documentation for release-plan-rollout campaign
+
+---
 
 ## r1.2
 

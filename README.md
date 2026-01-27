@@ -71,7 +71,8 @@ Goal-oriented, time-bound initiatives for coordinated changes across repositorie
 * **Available campaigns**:
   * [release-info/](campaigns/release-info/) - Updates "Release Information" sections in API repository READMEs
   * [api-version-wip-check/](campaigns/api-version-wip-check/) - Verifies wip versions in API files after releases
-* **Workflows**: `campaign-release-info.yml`, `campaign-api-version-wip-check.yml`
+  * [release-plan-rollout/](campaigns/release-plan-rollout/) - Adds release-plan.yaml to API repositories
+* **Workflows**: `campaign-release-info.yml`, `campaign-api-version-wip-check.yml`, `campaign-release-plan-rollout.yml`
 
 ### API Repository Creation
 
@@ -101,7 +102,8 @@ project-administration/
 ├── actions/                     # Reusable GitHub Actions for campaigns
 ├── campaigns/                   # Goal-oriented initiatives
 │   ├── api-version-wip-check/   # API version compliance checks
-│   └── release-info/            # README release info updates
+│   ├── release-info/            # README release info updates
+│   └── release-plan-rollout/    # Release plan file generation
 ├── config/                      # Shared configuration files
 │   ├── api-landscape.yaml       # API portfolio metadata
 │   └── meta-release-mappings.yaml

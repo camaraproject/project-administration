@@ -1,3 +1,12 @@
+# =========================================================================================
+# CAMARA Project - Action: Generate Release Plan
+#
+# Generates release-plan.yaml from releases-master.yaml data using Mustache templates.
+# Part of the Release Plan Rollout campaign for standardizing release planning files.
+#
+# CHANGELOG:
+# - 2026-01-27: Added standardized header for r1.3 release
+# =========================================================================================
 name: generate-release-plan
 description: Generate release-plan.yaml from releases-master.yaml data using Mustache templates
 inputs:

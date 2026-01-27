@@ -1,3 +1,12 @@
+# =========================================================================================
+# CAMARA Project - Action: Replace Delimited Content
+#
+# Replaces content between start/end delimiters in a file with new content.
+# Used to update auto-generated sections in README files.
+#
+# CHANGELOG:
+# - 2026-01-27: Added standardized header for r1.3 release
+# =========================================================================================
 name: replace-delimited-content
 description: Replace content between delimiters in a file
 inputs:

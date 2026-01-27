@@ -1,3 +1,12 @@
+# =========================================================================================
+# CAMARA Project - Action: Ensure Delimited Section
+#
+# Ensures a delimited section exists in a file (idempotent operation).
+# Creates placeholder section if missing, used before content replacement.
+#
+# CHANGELOG:
+# - 2026-01-27: Added standardized header for r1.3 release
+# =========================================================================================
 name: ensure-delimited-section
 description: Ensure a delimited section exists in a file (idempotent)
 inputs:

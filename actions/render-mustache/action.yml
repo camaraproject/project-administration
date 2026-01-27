@@ -1,3 +1,12 @@
+# =========================================================================================
+# CAMARA Project - Action: Render Mustache
+#
+# Renders a Mustache template with JSON data and writes output to a file.
+# Used by campaign workflows to generate PR/issue bodies from templates.
+#
+# CHANGELOG:
+# - 2026-01-27: Added standardized header for r1.3 release
+# =========================================================================================
 name: render-mustache
 description: Render a mustache template with JSON data
 inputs:

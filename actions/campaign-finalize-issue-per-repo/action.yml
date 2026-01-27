@@ -1,3 +1,12 @@
+# =========================================================================================
+# CAMARA Project - Action: Campaign Finalize Issue Per Repo
+#
+# Generic finalization for issue-based campaign workflows. Handles issue creation,
+# deduplication, recording, and artifact upload.
+#
+# CHANGELOG:
+# - 2026-01-27: Added standardized header for r1.3 release
+# =========================================================================================
 name: 'Campaign Finalize Issue Per Repo'
 description: 'Generic finalization for issue-based campaign workflows: issue creation, deduplication, record, upload'
 inputs:

@@ -1,3 +1,12 @@
+# =========================================================================================
+# CAMARA Project - Action: Campaign Finalize Per Repo
+#
+# Generic finalization for PR-based campaign workflows. Handles commit, push,
+# PR creation, duplicate detection, and artifact upload.
+#
+# CHANGELOG:
+# - 2026-01-27: Added standardized header for r1.3 release
+# =========================================================================================
 name: 'Campaign Finalize Per Repo'
 description: 'Generic finalization for campaign workflows: commit, PR, record, upload'
 inputs:

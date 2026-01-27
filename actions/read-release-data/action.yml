@@ -1,3 +1,12 @@
+# =========================================================================================
+# CAMARA Project - Action: Read Release Data
+#
+# Resolves repository release data (latest public release, API version) from
+# releases-master.yaml for use in campaign workflows and templates.
+#
+# CHANGELOG:
+# - 2026-01-27: Added standardized header for r1.3 release
+# =========================================================================================
 name: read-release-data
 description: Resolve repo data (latest public release, api version) from releases-master.yaml
 inputs:
