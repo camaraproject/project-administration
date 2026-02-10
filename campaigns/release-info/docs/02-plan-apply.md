@@ -24,13 +24,15 @@ Plan mode simulates the campaign without creating any PRs or persistent changes.
 - WOULD apply
 - PR status: New PR would be created
 - Reason: new changes detected
+- release_state: public_release
 - latest_public_release: r3.2
+- newest_prerelease: N/A
 - api_count: 3
 ```
 
 **Example plan.jsonl:**
 ```json
-{"repo":"camaraproject/QualityOnDemand","pr_would_be_created":true,"reason":"new_changes","latest_public_release":"r3.2","api_count":3,"timestamp":"2025-10-29T14:58:08.925Z","pr_status":"will_create"}
+{"repo":"camaraproject/QualityOnDemand","release_state":"public_release","pr_would_be_created":true,"reason":"new_changes","latest_public_release":"r3.2","newest_prerelease":null,"api_count":3,"timestamp":"2025-10-29T14:58:08.925Z","pr_status":"will_create"}
 ```
 
 ## Apply Mode
@@ -56,13 +58,15 @@ Apply mode executes the campaign and creates pull requests in target repositorie
 - PR status: New PR would be created
 - Reason: new changes detected
 - PR URL: https://github.com/camaraproject/QualityOnDemand/pull/508
+- release_state: public_release
 - latest_public_release: r3.2
+- newest_prerelease: N/A
 - api_count: 3
 ```
 
 **Example results.jsonl:**
 ```json
-{"repo":"camaraproject/QualityOnDemand","pr_would_be_created":true,"reason":"new_changes","latest_public_release":"r3.2","api_count":3,"timestamp":"2025-10-29T15:01:00.757Z","pr_status":"will_create","pr_url":"https://github.com/camaraproject/QualityOnDemand/pull/508"}
+{"repo":"camaraproject/QualityOnDemand","release_state":"public_release","pr_would_be_created":true,"reason":"new_changes","latest_public_release":"r3.2","newest_prerelease":null,"api_count":3,"timestamp":"2025-10-29T15:01:00.757Z","pr_status":"will_create","pr_url":"https://github.com/camaraproject/QualityOnDemand/pull/508"}
 ```
 
 ## PR Status Values
@@ -224,7 +228,31 @@ Repositories that fail during processing are recorded:
 
 ## Data Source
 
-Campaign reads from `data/releases-master.yaml`:
+Campaign reads from `data/releases-master.yaml`, which contains two main sections:
+
+### Repositories Section
+
+Used for category-based filtering:
+
+```yaml
+repositories:
+  - repository: DeviceLocation
+    github_url: https://github.com/camaraproject/DeviceLocation/releases/tag/r3.2
+    latest_public_release: r3.2
+    newest_pre_release: null
+```
+
+**Release State Detection:**
+| `latest_public_release` | `newest_pre_release` | State |
+|-------------------------|---------------------|-------|
+| null | null | `no_release` |
+| null | rX.Y | `prerelease_only` |
+| rX.Y | null | `public_release` |
+| rX.Y | rX.Z | `public_with_prerelease` |
+
+### Releases Section
+
+Contains detailed release information:
 
 ```yaml
 releases:
@@ -236,17 +264,15 @@ releases:
     apis:
       - api_name: geofencing-subscriptions
         file_name: geofencing-subscriptions
-        version: 0.5.0
-        title: Device Geofencing Subscriptions
+        api_version: 0.5.0
+        api_title: Device Geofencing Subscriptions
         commonalities: '0.6'
 ```
 
-**Latest Public Release Logic:**
-1. Filter releases by repository name
-2. Exclude sandbox releases (`meta_release` contains "Sandbox" or "None (Sandbox)")
-3. Sort by semver (extract version from `release_tag` like "r3.2")
-4. Select latest (highest version)
-5. Include all APIs from that release
+**Release Data Logic:**
+1. Look up repository in `repositories` section to determine release state
+2. Find matching release(s) in `releases` section for public and/or pre-release tags
+3. Include all APIs from the relevant release(s)
 
 ## Artifacts
 

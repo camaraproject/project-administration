@@ -27,10 +27,30 @@ on:
         type: boolean
         default: true
       include:
-        description: 'Comma-separated list of repository names to process (e.g., "QualityOnDemand, DeviceLocation"). Empty = all repos.'
+        description: 'Comma-separated list of repository names to process (e.g., "QualityOnDemand, DeviceLocation"). Empty = all repos matching enabled categories.'
         required: false
         type: string
         default: ''
+      include_no_release:
+        description: 'Include repositories with no releases'
+        required: false
+        type: boolean
+        default: false
+      include_prerelease_only:
+        description: 'Include repositories with only pre-releases'
+        required: false
+        type: boolean
+        default: false
+      include_public_release:
+        description: 'Include repositories with public releases (no newer pre-release)'
+        required: false
+        type: boolean
+        default: false
+      include_public_with_prerelease:
+        description: 'Include repositories with public release + newer pre-release'
+        required: false
+        type: boolean
+        default: false
 
 concurrency:
   group: campaign-release-info-${{ github.ref }}
@@ -41,6 +61,10 @@ env:
   ORG: camaraproject
   RELEASES_FILE: data/releases-master.yaml
   INCLUDE: ${{ inputs.include }}
+  INCLUDE_NO_RELEASE: ${{ inputs.include_no_release }}
+  INCLUDE_PRERELEASE_ONLY: ${{ inputs.include_prerelease_only }}
+  INCLUDE_PUBLIC_RELEASE: ${{ inputs.include_public_release }}
+  INCLUDE_PUBLIC_WITH_PRERELEASE: ${{ inputs.include_public_with_prerelease }}
   BRANCH: bulk/release-info-sync-${{ github.run_id }}
   PR_TITLE: "[bulk] Sync Release Information section"
   PR_BODY: "Automated update of README Release Information section"
@@ -54,6 +78,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       repos: ${{ steps.sel.outputs.repos }}
+      mode: ${{ env.MODE }}
     steps:
       - name: Checkout admin repo (self)
         uses: actions/checkout@v6
@@ -64,22 +89,57 @@ jobs:
         run: npm install js-yaml
 
       - id: sel
-        name: Build repo list (from releases-master.yaml + include filter)
+        name: Build repo list (from releases-master.yaml with category filtering)
         uses: actions/github-script@v8
         with:
           script: |
             const fs = require('fs');
             const yaml = require('js-yaml');
             const doc = yaml.load(fs.readFileSync('admin/data/releases-master.yaml', 'utf8'));
-            let list = [...new Set((doc?.releases || [])
-              .map(r => `${process.env.ORG}/${r.repository}`)
-              .filter(Boolean))];
+
+            // Use repositories section for category-aware filtering
+            const repos = doc?.repositories || [];
+
+            // Determine release state for each repo
+            const categorized = repos.map(r => {
+              const hasPublic = r.latest_public_release !== null;
+              const hasPre = r.newest_pre_release !== null;
+              let state;
+              if (!hasPublic && !hasPre) state = 'no_release';
+              else if (!hasPublic && hasPre) state = 'prerelease_only';
+              else if (hasPublic && !hasPre) state = 'public_release';
+              else state = 'public_with_prerelease';
+              return { repo: r.repository, state };
+            });
+
+            // Filter by enabled categories
+            const includeNoRelease = process.env.INCLUDE_NO_RELEASE === 'true';
+            const includePreOnly = process.env.INCLUDE_PRERELEASE_ONLY === 'true';
+            const includePublic = process.env.INCLUDE_PUBLIC_RELEASE === 'true';
+            const includePublicPre = process.env.INCLUDE_PUBLIC_WITH_PRERELEASE === 'true';
+
+            console.log(`Category filters: no_release=${includeNoRelease}, prerelease_only=${includePreOnly}, public_release=${includePublic}, public_with_prerelease=${includePublicPre}`);
+
+            let list = categorized
+              .filter(r => {
+                if (r.state === 'no_release' && includeNoRelease) return true;
+                if (r.state === 'prerelease_only' && includePreOnly) return true;
+                if (r.state === 'public_release' && includePublic) return true;
+                if (r.state === 'public_with_prerelease' && includePublicPre) return true;
+                return false;
+              })
+              .map(r => `${process.env.ORG}/${r.repo}`);
+
+            // Apply INCLUDE filter if set (further restrict to specific repos)
             const include = (process.env.INCLUDE||'').split(',').map(s=>s.trim()).filter(Boolean);
             if (include.length) list = list.filter(r => include.some(x => r.endsWith(`/${x}`)));
+
+            console.log(`Selected ${list.length} repositories for processing`);
             core.setOutput('repos', JSON.stringify(list));
 
   run:
     needs: select
+    if: ${{ fromJson(needs.select.outputs.repos)[0] != null }}
     runs-on: ubuntu-latest
     outputs:
       mode: ${{ env.MODE }}
@@ -116,8 +176,9 @@ jobs:
           script: |
             const data = JSON.parse(`${{ steps.data.outputs.json }}`);
 
+            // Format public release APIs
             if (!data.apis || data.apis.length === 0) {
-              core.info('No APIs found, using empty formatted_apis');
+              core.info('No public release APIs found, using empty formatted_apis');
               data.formatted_apis = '';
             } else {
               const apiLines = data.apis.map(api => {
@@ -127,6 +188,20 @@ jobs:
                   '  [[Swagger]](https://camaraproject.github.io/swagger-ui/?url=https://raw.githubusercontent.com/camaraproject/' + data.repo_name + '/' + data.latest_public_release + '/code/API_definitions/' + api.file_name + '.yaml)';
               }).join('\n');
               data.formatted_apis = apiLines;
+            }
+
+            // Format pre-release APIs
+            if (!data.prerelease_apis || data.prerelease_apis.length === 0) {
+              core.info('No pre-release APIs found, using empty formatted_prerelease_apis');
+              data.formatted_prerelease_apis = '';
+            } else {
+              const preApiLines = data.prerelease_apis.map(api => {
+                return '  * **' + api.file_name + ' v' + api.version + '**\n' +
+                  '  [[YAML]](https://github.com/camaraproject/' + data.repo_name + '/blob/' + data.newest_prerelease + '/code/API_definitions/' + api.file_name + '.yaml)\n' +
+                  '  [[ReDoc]](https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/camaraproject/' + data.repo_name + '/' + data.newest_prerelease + '/code/API_definitions/' + api.file_name + '.yaml&nocors)\n' +
+                  '  [[Swagger]](https://camaraproject.github.io/swagger-ui/?url=https://raw.githubusercontent.com/camaraproject/' + data.repo_name + '/' + data.newest_prerelease + '/code/API_definitions/' + api.file_name + '.yaml)';
+              }).join('\n');
+              data.formatted_prerelease_apis = preApiLines;
             }
 
             core.setOutput('enhanced_json', JSON.stringify(data));
@@ -141,12 +216,27 @@ jobs:
           end:   "<!-- CAMARA:RELEASE-INFO:END -->"
           placeholder: "_This section is managed by project-administration_"
 
+      - name: Select template based on release state
+        id: template
+        if: steps.ensure.outcome == 'success'
+        run: |
+          STATE=$(echo '${{ steps.data.outputs.json }}' | jq -r '.release_state')
+          case "$STATE" in
+            no_release) TEMPLATE="release-info-no-release.mustache" ;;
+            prerelease_only) TEMPLATE="release-info-prerelease-only.mustache" ;;
+            public_release) TEMPLATE="release-info-public.mustache" ;;
+            public_with_prerelease) TEMPLATE="release-info-public-with-prerelease.mustache" ;;
+            *) TEMPLATE="release-info-public.mustache" ;;
+          esac
+          echo "template=$TEMPLATE" >> $GITHUB_OUTPUT
+          echo "Selected template: $TEMPLATE for state: $STATE"
+
       - name: Render content template → /tmp/release-info.md
         id: render
         if: steps.ensure.outcome == 'success'
         uses: ./admin/actions/render-mustache
         with:
-          template: ${{ github.workspace }}/admin/campaigns/release-info/templates/release-info.mustache
+          template: ${{ github.workspace }}/admin/campaigns/release-info/templates/${{ steps.template.outputs.template }}
           data_json: ${{ steps.format.outputs.enhanced_json }}
           out_file: /tmp/release-info.md
 
@@ -251,14 +341,14 @@ jobs:
           error_step: ${{ steps.error.outputs.error_step }}
 
   aggregate:
-    needs: run
+    needs: [select, run]
     if: always()
     runs-on: ubuntu-latest
     steps:
       - name: Determine artifact pattern
         id: pattern
         run: |
-          MODE="${{ needs.run.outputs.mode }}"
+          MODE="${{ needs.select.outputs.mode }}"
           if [ "$MODE" = "plan" ]; then
             echo "pattern=plan-*" >> $GITHUB_OUTPUT
             echo "output_name=plan" >> $GITHUB_OUTPUT

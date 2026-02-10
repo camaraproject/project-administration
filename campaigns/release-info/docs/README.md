@@ -1,11 +1,18 @@
 # Release Information Campaign
 
-This campaign automatically updates the "Release Information" section in README.md files across CAMARA API repositories with the latest public release details.
+This campaign automatically updates the "Release Information" section in README.md files across CAMARA API repositories.
 
 ## Purpose
 
-Maintains consistent and up-to-date release information across all CAMARA API repositories, including:
-- Latest public release tag and link
+Maintains consistent and up-to-date release information across all CAMARA API repositories. Supports four repository categories:
+
+1. **no_release** - Repositories with no releases yet (placeholder text)
+2. **prerelease_only** - Repositories with only pre-releases (alpha, rc)
+3. **public_release** - Repositories with public releases
+4. **public_with_prerelease** - Repositories with public release + newer pre-release
+
+Content includes:
+- Latest release tag and link (public or pre-release)
 - API versions and specifications
 - Links to YAML definitions and API viewers (ReDoc, Swagger UI)
 - References to CHANGELOG and other releases
@@ -93,20 +100,35 @@ Apply changes and create pull requests:
 
 ## Configuration
 
+### Workflow Inputs
+
+When running the workflow, configure these inputs:
+
+| Input | Type | Default | Description |
+|-------|------|---------|-------------|
+| `dry_run` | boolean | true | Plan mode (no PRs created) |
+| `include` | string | "" | Filter to specific repos (comma-separated) |
+| `include_no_release` | boolean | false | Process repos with no releases |
+| `include_prerelease_only` | boolean | false | Process repos with only pre-releases |
+| `include_public_release` | boolean | false | Process repos with public releases |
+| `include_public_with_prerelease` | boolean | false | Process repos with public + newer pre-release |
+
+**Note:** All category inputs default to false. You must enable at least one category to process any repositories.
+
+### Environment Variables
+
 Edit [.github/workflows/campaign-release-info.yml](../../.github/workflows/campaign-release-info.yml):
 
 ```yaml
 env:
   ORG: camaraproject                # Target organization
   RELEASES_FILE: data/releases-master.yaml
-  INCLUDE: "DeviceLocation,QualityOnDemand"  # Optional: filter specific repos
   BRANCH: bulk/release-info-sync-${{ github.run_id }}  # Unique branch per run
   PR_TITLE: "[bulk] Sync Release Information section"  # Date added automatically
   PR_BODY: "Automated update of README Release Information section"
 ```
 
 **Key Configuration Options:**
-- `INCLUDE`: Comma-separated list of repository names to target (leave empty for all)
 - `BRANCH`: Branch name pattern (run_id makes each run unique)
 - `PR_TITLE`: Base PR title (date and sequence number added automatically)
 
@@ -119,7 +141,9 @@ env:
 - WOULD apply
 - PR status: New PR would be created
 - Reason: new changes detected
+- release_state: public_release
 - latest_public_release: r3.2
+- newest_prerelease: N/A
 - api_count: 3
 ```
 
@@ -131,7 +155,9 @@ env:
 - PR status: New PR would be created
 - Reason: new changes detected
 - PR URL: https://github.com/camaraproject/QualityOnDemand/pull/508
+- release_state: public_release
 - latest_public_release: r3.2
+- newest_prerelease: N/A
 - api_count: 3
 ```
 
@@ -176,9 +202,9 @@ _This section is managed by project-administration_
 <!-- CAMARA:RELEASE-INFO:END -->
 ```
 
-### No public releases found for repository
-**Cause:** Repository only has sandbox releases
-**Solution:** Wait for public release or exclude repo from campaign
+### Repository shows "no_release" or "prerelease_only" state
+**Cause:** Repository has no public releases yet
+**Solution:** This is expected behavior. Enable `include_no_release` or `include_prerelease_only` to process these repositories with appropriate templates.
 
 ### PRs not created in apply mode
 **Cause:** Check results.md for status:
