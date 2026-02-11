@@ -1,0 +1,10 @@
+repository:
+  repository_name: CallForwardingSignal
+  release_tag: r1.1
+  release_type: pre-release-rc
+  release_date: "2024-07-19T11:48:23Z"
+  src_commit_sha: null
+apis:
+  - api_name: call-forwarding-signal
+    api_version: 0.2.0-rc.1
+    api_title: Call Forwarding Signal API

@@ -1,0 +1,13 @@
+repository:
+  repository_name: QoSBooking
+  release_tag: r1.1
+  release_type: pre-release-rc
+  release_date: "2025-07-17T16:26:18Z"
+  src_commit_sha: null
+apis:
+  - api_name: qos-booking-and-assignment
+    api_version: 0.1.0-rc.1
+    api_title: QoS Booking and Assignment
+  - api_name: qos-booking
+    api_version: 0.1.0-rc.1
+    api_title: QoS Booking

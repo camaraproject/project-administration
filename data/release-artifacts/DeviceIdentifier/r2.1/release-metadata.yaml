@@ -1,0 +1,10 @@
+repository:
+  repository_name: DeviceIdentifier
+  release_tag: r2.1
+  release_type: pre-release-rc
+  release_date: "2025-07-22T11:13:38Z"
+  src_commit_sha: null
+apis:
+  - api_name: device-identifier
+    api_version: 0.3.0-rc.1
+    api_title: Device Identifier

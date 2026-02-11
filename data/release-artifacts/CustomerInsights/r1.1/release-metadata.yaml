@@ -1,0 +1,10 @@
+repository:
+  repository_name: CustomerInsights
+  release_tag: r1.1
+  release_type: pre-release-rc
+  release_date: "2025-02-07T13:08:06Z"
+  src_commit_sha: null
+apis:
+  - api_name: customer-insights
+    api_version: 0.1.0-rc.1
+    api_title: Customer Insights

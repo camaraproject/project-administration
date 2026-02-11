@@ -1,0 +1,16 @@
+{
+  "repository": {
+    "repository_name": "EnergyFootprintNotification",
+    "release_tag": "r1.1",
+    "release_type": "pre-release-alpha",
+    "release_date": "2025-05-28T09:30:24Z",
+    "src_commit_sha": null
+  },
+  "apis": [
+    {
+      "api_name": "energy-footprint-notification",
+      "api_version": "0.1.0-alpha.1",
+      "api_title": "Energy Footprint Notification"
+    }
+  ]
+}

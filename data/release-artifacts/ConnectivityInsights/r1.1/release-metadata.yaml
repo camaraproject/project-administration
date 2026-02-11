@@ -1,0 +1,16 @@
+repository:
+  repository_name: ConnectivityInsights
+  release_tag: r1.1
+  release_type: pre-release-rc
+  release_date: "2024-08-23T16:54:17Z"
+  src_commit_sha: null
+apis:
+  - api_name: application-profiles
+    api_version: 0.3.0-rc.1
+    api_title: Connectivity Insights - Application Profiles
+  - api_name: v0.4rc1
+    api_version: 0.4.0-rc.1
+    api_title: Connectivity Insights
+  - api_name: connectivity-insights
+    api_version: 0.4.0-rc.1
+    api_title: Connectivity Insights

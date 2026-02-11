@@ -1,0 +1,26 @@
+{
+  "repository": {
+    "repository_name": "KnowYourCustomer",
+    "release_tag": "r2.1",
+    "release_type": "pre-release-rc",
+    "release_date": "2025-02-13T10:27:25Z",
+    "src_commit_sha": null
+  },
+  "apis": [
+    {
+      "api_name": "kyc-age-verification",
+      "api_version": "0.1.0-rc.1",
+      "api_title": "Know Your Customer Age Verification"
+    },
+    {
+      "api_name": "kyc-fill-in",
+      "api_version": "0.3.0-rc.1",
+      "api_title": "Know Your Customer Fill-in"
+    },
+    {
+      "api_name": "kyc-match",
+      "api_version": "0.3.0-rc.1",
+      "api_title": "Know Your Customer Match"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "repository": {
+    "repository_name": "ModelAsAService",
+    "release_tag": "r1.1",
+    "release_type": "pre-release-rc",
+    "release_date": "2025-07-24T10:54:35Z",
+    "src_commit_sha": null
+  },
+  "apis": [
+    {
+      "api_name": "knowledge-base",
+      "api_version": "0.1.0-rc.1",
+      "api_title": "Knowledge Base"
+    },
+    {
+      "api_name": "qa-assistant-manage",
+      "api_version": "0.1.0-rc.1",
+      "api_title": "Q&A Assistant - Manage"
+    },
+    {
+      "api_name": "qa-assistant-service",
+      "api_version": "0.1.0-rc.1",
+      "api_title": "Q&A Assistant - Service"
+    }
+  ]
+}

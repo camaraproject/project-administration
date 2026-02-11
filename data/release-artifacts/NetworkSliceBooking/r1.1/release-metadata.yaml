@@ -1,0 +1,10 @@
+repository:
+  repository_name: NetworkSliceBooking
+  release_tag: r1.1
+  release_type: pre-release-rc
+  release_date: "2025-08-01T08:01:19Z"
+  src_commit_sha: null
+apis:
+  - api_name: network-slice-booking
+    api_version: 0.1.0-rc.1
+    api_title: Network Slice Booking

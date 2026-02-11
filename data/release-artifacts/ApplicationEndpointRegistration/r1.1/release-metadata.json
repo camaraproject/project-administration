@@ -1,0 +1,16 @@
+{
+  "repository": {
+    "repository_name": "ApplicationEndpointRegistration",
+    "release_tag": "r1.1",
+    "release_type": "pre-release-rc",
+    "release_date": "2025-07-31T09:55:23Z",
+    "src_commit_sha": null
+  },
+  "apis": [
+    {
+      "api_name": "application-endpoint-registration",
+      "api_version": "0.1.0-rc.1",
+      "api_title": "Application Endpoints Registration"
+    }
+  ]
+}

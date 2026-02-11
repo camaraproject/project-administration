@@ -1,0 +1,10 @@
+repository:
+  repository_name: SubscriptionStatus
+  release_tag: r1.1
+  release_type: pre-release-rc
+  release_date: "2025-07-24T07:59:09Z"
+  src_commit_sha: null
+apis:
+  - api_name: subscription-status
+    api_version: 0.1.0-rc.1
+    api_title: SubscriptionStatus

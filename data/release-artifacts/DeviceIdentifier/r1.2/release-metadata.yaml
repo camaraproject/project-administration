@@ -1,0 +1,10 @@
+repository:
+  repository_name: DeviceIdentifier
+  release_tag: r1.2
+  release_type: pre-release-rc
+  release_date: "2025-02-12T22:11:52Z"
+  src_commit_sha: null
+apis:
+  - api_name: device-identifier
+    api_version: 0.2.0-rc.1
+    api_title: CAMARA Mobile Device Identifier

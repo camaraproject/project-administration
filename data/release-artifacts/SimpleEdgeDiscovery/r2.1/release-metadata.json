@@ -1,0 +1,16 @@
+{
+  "repository": {
+    "repository_name": "SimpleEdgeDiscovery",
+    "release_tag": "r2.1",
+    "release_type": "pre-release-rc",
+    "release_date": "2025-07-22T16:29:30Z",
+    "src_commit_sha": null
+  },
+  "apis": [
+    {
+      "api_name": "simple-edge-discovery",
+      "api_version": "2.0.0-rc.1",
+      "api_title": "Simple Edge Discovery"
+    }
+  ]
+}

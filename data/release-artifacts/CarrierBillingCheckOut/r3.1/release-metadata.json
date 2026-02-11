@@ -1,0 +1,21 @@
+{
+  "repository": {
+    "repository_name": "CarrierBillingCheckOut",
+    "release_tag": "r3.1",
+    "release_type": "pre-release-rc",
+    "release_date": "2025-07-18T13:41:49Z",
+    "src_commit_sha": null
+  },
+  "apis": [
+    {
+      "api_name": "carrier-billing-refund",
+      "api_version": "0.3.0-rc.1",
+      "api_title": "Carrier Billing Refund"
+    },
+    {
+      "api_name": "carrier-billing",
+      "api_version": "0.5.0-rc.1",
+      "api_title": "Carrier Billing"
+    }
+  ]
+}

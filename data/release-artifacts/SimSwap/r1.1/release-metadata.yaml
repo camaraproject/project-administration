@@ -1,0 +1,13 @@
+repository:
+  repository_name: SimSwap
+  release_tag: r1.1
+  release_type: pre-release-alpha
+  release_date: "2024-08-09T07:45:06Z"
+  src_commit_sha: null
+apis:
+  - api_name: sim-swap-subscriptions
+    api_version: 0.1.0-alpha.1
+    api_title: Sim Swap Subscriptions
+  - api_name: sim-swap
+    api_version: 1.0.0-rc.1
+    api_title: SIM Swap

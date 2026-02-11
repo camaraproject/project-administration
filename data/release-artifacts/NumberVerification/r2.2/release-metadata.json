@@ -1,0 +1,16 @@
+{
+  "repository": {
+    "repository_name": "NumberVerification",
+    "release_tag": "r2.2",
+    "release_type": "pre-release-rc",
+    "release_date": "2025-02-20T12:55:31Z",
+    "src_commit_sha": null
+  },
+  "apis": [
+    {
+      "api_name": "number-verification",
+      "api_version": "1.1.0-rc.2",
+      "api_title": "Number Verification"
+    }
+  ]
+}

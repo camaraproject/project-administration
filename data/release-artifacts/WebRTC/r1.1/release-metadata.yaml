@@ -1,0 +1,19 @@
+repository:
+  repository_name: WebRTC
+  release_tag: r1.1
+  release_type: pre-release-rc
+  release_date: "2025-02-17T11:57:15Z"
+  src_commit_sha: null
+apis:
+  - api_name: webrtc-call-handling
+    api_version: 0.2.0-rc.1
+    api_title: WebRTC Call Handling API
+  - api_name: webrtc-events
+    api_version: 0.1.0-rc.1
+    api_title: WebRTC Event Subscription
+  - api_name: vwip
+    api_version: 0.1.1
+    api_title: WebRTC Notification Channel API
+  - api_name: webrtc-registration
+    api_version: 0.2.0-rc.1
+    api_title: WebRTC Registration Service API

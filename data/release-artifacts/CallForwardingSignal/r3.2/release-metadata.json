@@ -1,0 +1,16 @@
+{
+  "repository": {
+    "repository_name": "CallForwardingSignal",
+    "release_tag": "r3.2",
+    "release_type": "pre-release-rc",
+    "release_date": "2025-07-16T21:31:41Z",
+    "src_commit_sha": null
+  },
+  "apis": [
+    {
+      "api_name": "call-forwarding-signal",
+      "api_version": "0.4.0-rc.1",
+      "api_title": "Call Forwarding Signal"
+    }
+  ]
+}

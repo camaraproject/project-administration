@@ -1,0 +1,16 @@
+repository:
+  repository_name: DeviceLocation
+  release_tag: r2.1
+  release_type: pre-release-rc
+  release_date: "2025-02-05T10:18:17Z"
+  src_commit_sha: null
+apis:
+  - api_name: geofencing-subscriptions
+    api_version: 0.4.0-rc.1
+    api_title: Device Geofencing Subscriptions
+  - api_name: location-retrieval
+    api_version: 0.4.0-rc.1
+    api_title: Device Location Retrieval
+  - api_name: location-verification
+    api_version: 2.0.0-rc.1
+    api_title: Device Location Verification

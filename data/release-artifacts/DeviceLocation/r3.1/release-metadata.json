@@ -1,0 +1,26 @@
+{
+  "repository": {
+    "repository_name": "DeviceLocation",
+    "release_tag": "r3.1",
+    "release_type": "pre-release-rc",
+    "release_date": "2025-07-17T14:45:50Z",
+    "src_commit_sha": null
+  },
+  "apis": [
+    {
+      "api_name": "geofencing-subscriptions",
+      "api_version": "0.5.0-rc.1",
+      "api_title": "Device Geofencing Subscriptions"
+    },
+    {
+      "api_name": "location-retrieval",
+      "api_version": "0.5.0-rc.1",
+      "api_title": "Device Location Retrieval"
+    },
+    {
+      "api_name": "location-verification",
+      "api_version": "3.0.0-rc.1",
+      "api_title": "Device Location Verification"
+    }
+  ]
+}

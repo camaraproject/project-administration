@@ -1,0 +1,26 @@
+{
+  "repository": {
+    "repository_name": "QualityOnDemand",
+    "release_tag": "r3.1",
+    "release_type": "pre-release-rc",
+    "release_date": "2025-07-17T14:22:52Z",
+    "src_commit_sha": null
+  },
+  "apis": [
+    {
+      "api_name": "qos-profiles",
+      "api_version": "1.1.0-rc.2",
+      "api_title": "QoS Profiles"
+    },
+    {
+      "api_name": "qos-provisioning",
+      "api_version": "0.3.0-rc.1",
+      "api_title": "QoS Provisioning"
+    },
+    {
+      "api_name": "quality-on-demand",
+      "api_version": "1.1.0-rc.2",
+      "api_title": "Quality-On-Demand"
+    }
+  ]
+}

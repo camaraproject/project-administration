@@ -1,0 +1,21 @@
+{
+  "repository": {
+    "repository_name": "VerifiedCaller",
+    "release_tag": "r1.1",
+    "release_type": "pre-release-rc",
+    "release_date": "2025-07-18T11:34:25Z",
+    "src_commit_sha": null
+  },
+  "apis": [
+    {
+      "api_name": "brand-registration",
+      "api_version": "0.1.0-rc.1",
+      "api_title": "Brand Registration"
+    },
+    {
+      "api_name": "verified-caller",
+      "api_version": "0.1.0-rc.1",
+      "api_title": "Verified Caller Pre-announcement"
+    }
+  ]
+}

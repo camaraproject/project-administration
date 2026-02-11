@@ -1,0 +1,31 @@
+{
+  "repository": {
+    "repository_name": "DeviceStatus",
+    "release_tag": "r1.1",
+    "release_type": "pre-release-rc",
+    "release_date": "2024-08-02T06:43:41Z",
+    "src_commit_sha": null
+  },
+  "apis": [
+    {
+      "api_name": "device-reachability-status-subscriptions",
+      "api_version": "0.6.0-rc.1",
+      "api_title": "Device Reachability Status Subscriptions"
+    },
+    {
+      "api_name": "device-reachability-status",
+      "api_version": "0.6.0-rc.1",
+      "api_title": "Device Reachability Status"
+    },
+    {
+      "api_name": "device-roaming-status-subscriptions",
+      "api_version": "0.6.0-rc.1",
+      "api_title": "Device Roaming Status Subscriptions"
+    },
+    {
+      "api_name": "device-roaming-status",
+      "api_version": "0.6.0-rc.1",
+      "api_title": "Device Roaming Status"
+    }
+  ]
+}

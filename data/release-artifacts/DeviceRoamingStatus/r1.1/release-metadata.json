@@ -1,0 +1,21 @@
+{
+  "repository": {
+    "repository_name": "DeviceRoamingStatus",
+    "release_tag": "r1.1",
+    "release_type": "pre-release-rc",
+    "release_date": "2025-07-17T15:49:44Z",
+    "src_commit_sha": null
+  },
+  "apis": [
+    {
+      "api_name": "device-roaming-status-subscriptions",
+      "api_version": "0.8.0-rc.1",
+      "api_title": "Device Roaming Status Subscriptions"
+    },
+    {
+      "api_name": "device-roaming-status",
+      "api_version": "1.1.0-rc.2",
+      "api_title": "Device Roaming Status"
+    }
+  ]
+}

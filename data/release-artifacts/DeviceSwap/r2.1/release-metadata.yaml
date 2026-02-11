@@ -1,0 +1,10 @@
+repository:
+  repository_name: DeviceSwap
+  release_tag: r2.1
+  release_type: pre-release-rc
+  release_date: "2025-02-13T09:05:11Z"
+  src_commit_sha: null
+apis:
+  - api_name: device-swap
+    api_version: 0.2.0-rc.1
+    api_title: Device Swap

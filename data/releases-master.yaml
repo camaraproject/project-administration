@@ -1,8 +1,21 @@
 metadata:
-  last_updated: '2026-02-10T10:42:34.028Z'
+  last_updated: '2026-02-11T23:15:00.997Z'
   workflow_version: 3.0.0
   schema_version: 2.0.0
 releases:
+  - repository: ApplicationEndpointDiscovery
+    release_tag: r1.1
+    release_date: '2025-07-24T10:18:04Z'
+    meta_release: Fall25
+    github_url: https://github.com/camaraproject/ApplicationEndpointDiscovery/releases/tag/r1.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: application-endpoint-discovery
+        file_name: application-endpoint-discovery
+        api_version: 0.1.0-rc.1
+        api_title: Application Endpoint Discovery
+        commonalities: '0.6'
   - repository: ApplicationEndpointDiscovery
     release_tag: r1.2
     release_date: '2025-09-16T19:23:11Z'
@@ -14,6 +27,19 @@ releases:
         file_name: application-endpoint-discovery
         api_version: 0.1.0
         api_title: Application Endpoint Discovery
+        commonalities: '0.6'
+  - repository: ApplicationEndpointRegistration
+    release_tag: r1.1
+    release_date: '2025-07-31T09:55:23Z'
+    meta_release: Fall25
+    github_url: https://github.com/camaraproject/ApplicationEndpointRegistration/releases/tag/r1.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: application-endpoint-registration
+        file_name: application-endpoint-registration
+        api_version: 0.1.0-rc.1
+        api_title: Application Endpoints Registration
         commonalities: '0.6'
   - repository: ApplicationEndpointRegistration
     release_tag: r1.2
@@ -28,6 +54,19 @@ releases:
         api_title: Application Endpoints Registration
         commonalities: '0.6'
   - repository: ApplicationProfiles
+    release_tag: r1.1
+    release_date: '2025-07-29T16:08:11Z'
+    meta_release: Fall25
+    github_url: https://github.com/camaraproject/ApplicationProfiles/releases/tag/r1.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: application-profiles
+        file_name: application-profiles
+        api_version: 0.5.0-rc.1
+        api_title: Connectivity Insights - Application Profiles
+        commonalities: '0.6'
+  - repository: ApplicationProfiles
     release_tag: r1.2
     release_date: '2025-09-17T15:37:44Z'
     meta_release: Fall25
@@ -40,6 +79,19 @@ releases:
         api_title: Connectivity Insights - Application Profiles
         commonalities: '0.6'
   - repository: BlockchainPublicAddress
+    release_tag: r1.1
+    release_date: '2025-02-20T07:58:47Z'
+    meta_release: Spring25
+    github_url: https://github.com/camaraproject/BlockchainPublicAddress/releases/tag/r1.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: blockchain-public-address
+        file_name: blockchain-public-address
+        api_version: 0.2.0-rc.1
+        api_title: Blockchain Public Address
+        commonalities: '0.5'
+  - repository: BlockchainPublicAddress
     release_tag: r1.2
     release_date: '2025-03-10T16:50:34Z'
     meta_release: Spring25
@@ -51,6 +103,24 @@ releases:
         api_version: 0.2.0
         api_title: Blockchain Public Address
         commonalities: '0.5'
+  - repository: BlockchainPublicAddress
+    release_tag: r2.1
+    release_date: '2025-07-29T09:11:51Z'
+    meta_release: Fall25
+    github_url: https://github.com/camaraproject/BlockchainPublicAddress/releases/tag/r2.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: blockchain-public-address-validation
+        file_name: blockchain-public-address-validation
+        api_version: 0.1.0-rc.1
+        api_title: Blockchain Public Address Validation
+        commonalities: '0.6'
+      - api_name: blockchain-public-address
+        file_name: blockchain-public-address
+        api_version: 0.3.0-rc.1
+        api_title: Blockchain Public Address
+        commonalities: '0.6'
   - repository: BlockchainPublicAddress
     release_tag: r2.2
     release_date: '2025-09-11T10:58:35Z'
@@ -69,6 +139,32 @@ releases:
         api_title: Blockchain Public Address
         commonalities: '0.6'
   - repository: CallForwardingSignal
+    release_tag: r1.1
+    release_date: '2024-07-19T11:48:23Z'
+    meta_release: Fall24
+    github_url: https://github.com/camaraproject/CallForwardingSignal/releases/tag/r1.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: call-forwarding-signal
+        file_name: Call_Forwarding_Signal
+        api_version: 0.2.0-rc.1
+        api_title: Call Forwarding Signal API
+        commonalities: null
+  - repository: CallForwardingSignal
+    release_tag: r1.2
+    release_date: '2024-08-07T12:02:13Z'
+    meta_release: Fall24
+    github_url: https://github.com/camaraproject/CallForwardingSignal/releases/tag/r1.2
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: call-forwarding-signal
+        file_name: Call_Forwarding_Signal
+        api_version: 0.2.0-rc.2
+        api_title: Call Forwarding Signal
+        commonalities: 0.4.0-rc.2
+  - repository: CallForwardingSignal
     release_tag: r1.3
     release_date: '2024-09-05T11:05:48Z'
     meta_release: Fall24
@@ -80,6 +176,19 @@ releases:
         api_version: 0.2.0
         api_title: Call Forwarding Signal
         commonalities: '0.4'
+  - repository: CallForwardingSignal
+    release_tag: r2.1
+    release_date: '2025-02-11T08:54:20Z'
+    meta_release: Spring25
+    github_url: https://github.com/camaraproject/CallForwardingSignal/releases/tag/r2.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: call-forwarding-signal
+        file_name: call-forwarding-signal
+        api_version: 0.3.0-rc.1
+        api_title: Call Forwarding Signal
+        commonalities: '0.5'
   - repository: CallForwardingSignal
     release_tag: r2.2
     release_date: '2025-03-06T08:29:28Z'
@@ -93,6 +202,32 @@ releases:
         api_title: Call Forwarding Signal
         commonalities: '0.5'
   - repository: CallForwardingSignal
+    release_tag: r3.1
+    release_date: '2025-06-16T09:51:19Z'
+    meta_release: Fall25
+    github_url: https://github.com/camaraproject/CallForwardingSignal/releases/tag/r3.1
+    release_type: pre-release-alpha
+    superseded: true
+    apis:
+      - api_name: call-forwarding-signal
+        file_name: call-forwarding-signal
+        api_version: 0.4.0-alpha.1
+        api_title: Call Forwarding Signal
+        commonalities: '0.5'
+  - repository: CallForwardingSignal
+    release_tag: r3.2
+    release_date: '2025-07-16T21:31:41Z'
+    meta_release: Fall25
+    github_url: https://github.com/camaraproject/CallForwardingSignal/releases/tag/r3.2
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: call-forwarding-signal
+        file_name: call-forwarding-signal
+        api_version: 0.4.0-rc.1
+        api_title: Call Forwarding Signal
+        commonalities: '0.6'
+  - repository: CallForwardingSignal
     release_tag: r3.3
     release_date: '2025-09-16T14:38:30Z'
     meta_release: Fall25
@@ -104,6 +239,24 @@ releases:
         api_version: 0.4.0
         api_title: Call Forwarding Signal
         commonalities: '0.6'
+  - repository: CarrierBillingCheckOut
+    release_tag: r1.1
+    release_date: '2024-08-13T13:15:38Z'
+    meta_release: Fall24
+    github_url: https://github.com/camaraproject/CarrierBillingCheckOut/releases/tag/r1.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: carrier-billing
+        file_name: carrier_billing
+        api_version: 0.3.0-rc.1
+        api_title: Carrier Billing
+        commonalities: null
+      - api_name: carrier-billing-refund
+        file_name: carrier_billing_refund
+        api_version: 0.1.0-rc.1
+        api_title: Carrier Billing Refunds
+        commonalities: null
   - repository: CarrierBillingCheckOut
     release_tag: r1.2
     release_date: '2024-09-05T15:39:42Z'
@@ -139,6 +292,24 @@ releases:
         api_title: Carrier Billing
         commonalities: null
   - repository: CarrierBillingCheckOut
+    release_tag: r2.1
+    release_date: '2025-01-30T17:29:07Z'
+    meta_release: Spring25
+    github_url: https://github.com/camaraproject/CarrierBillingCheckOut/releases/tag/r2.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: carrier-billing-refund
+        file_name: carrier-billing-refund
+        api_version: 0.2.0-rc.1
+        api_title: Carrier Billing Refunds
+        commonalities: null
+      - api_name: carrier-billing
+        file_name: carrier-billing
+        api_version: 0.4.0-rc.1
+        api_title: Carrier Billing
+        commonalities: null
+  - repository: CarrierBillingCheckOut
     release_tag: r2.2
     release_date: '2025-03-11T11:47:51Z'
     meta_release: Spring25
@@ -155,6 +326,24 @@ releases:
         api_version: 0.4.0
         api_title: Carrier Billing
         commonalities: '0.5'
+  - repository: CarrierBillingCheckOut
+    release_tag: r3.1
+    release_date: '2025-07-18T13:41:49Z'
+    meta_release: Fall25
+    github_url: https://github.com/camaraproject/CarrierBillingCheckOut/releases/tag/r3.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: carrier-billing-refund
+        file_name: carrier-billing-refund
+        api_version: 0.3.0-rc.1
+        api_title: Carrier Billing Refund
+        commonalities: '0.6'
+      - api_name: carrier-billing
+        file_name: carrier-billing
+        api_version: 0.5.0-rc.1
+        api_title: Carrier Billing
+        commonalities: '0.6'
   - repository: CarrierBillingCheckOut
     release_tag: r3.2
     release_date: '2025-09-11T09:51:40Z'
@@ -185,6 +374,24 @@ releases:
         api_title: Click to Dial Service API
         commonalities: '0.5'
   - repository: ConnectedNetworkType
+    release_tag: r1.1
+    release_date: '2025-07-18T15:40:21Z'
+    meta_release: Fall25
+    github_url: https://github.com/camaraproject/ConnectedNetworkType/releases/tag/r1.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: connected-network-type-subscriptions
+        file_name: connected-network-type-subscriptions
+        api_version: 0.2.0-rc.1
+        api_title: Connected Network Type Subscriptions
+        commonalities: '0.6'
+      - api_name: connected-network-type
+        file_name: connected-network-type
+        api_version: 0.2.0-rc.1
+        api_title: Connected Network Type
+        commonalities: '0.6'
+  - repository: ConnectedNetworkType
     release_tag: r1.2
     release_date: '2025-09-16T16:21:44Z'
     meta_release: Fall25
@@ -201,6 +408,29 @@ releases:
         api_version: 0.2.0
         api_title: Connected Network Type
         commonalities: '0.6'
+  - repository: ConnectivityInsights
+    release_tag: r1.1
+    release_date: '2024-08-23T16:54:17Z'
+    meta_release: Fall24
+    github_url: https://github.com/camaraproject/ConnectivityInsights/releases/tag/r1.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: application-profiles
+        file_name: application-profiles
+        api_version: 0.3.0-rc.1
+        api_title: Connectivity Insights - Application Profiles
+        commonalities: '0.4'
+      - api_name: v0.4rc1
+        file_name: connectivity-insights-subscriptions
+        api_version: 0.4.0-rc.1
+        api_title: Connectivity Insights
+        commonalities: '0.4'
+      - api_name: connectivity-insights
+        file_name: connectivity-insights
+        api_version: 0.4.0-rc.1
+        api_title: Connectivity Insights
+        commonalities: '0.4'
   - repository: ConnectivityInsights
     release_tag: r1.2
     release_date: '2024-09-11T03:30:01Z'
@@ -224,6 +454,29 @@ releases:
         api_title: Connectivity Insights
         commonalities: '0.4'
   - repository: ConnectivityInsights
+    release_tag: r2.1
+    release_date: '2025-02-18T15:52:17Z'
+    meta_release: Spring25
+    github_url: https://github.com/camaraproject/ConnectivityInsights/releases/tag/r2.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: application-profiles
+        file_name: application-profiles
+        api_version: 0.4.0-rc.1
+        api_title: Connectivity Insights - Application Profiles
+        commonalities: '0.5'
+      - api_name: connectivity-insights-subscriptions
+        file_name: connectivity-insights-subscriptions
+        api_version: 0.5.0-rc.1
+        api_title: Connectivity Insights
+        commonalities: '0.5'
+      - api_name: connectivity-insights
+        file_name: connectivity-insights
+        api_version: 0.5.0-rc.1
+        api_title: Connectivity Insights
+        commonalities: '0.5'
+  - repository: ConnectivityInsights
     release_tag: r2.2
     release_date: '2025-03-14T16:33:24Z'
     meta_release: Spring25
@@ -246,6 +499,24 @@ releases:
         api_title: Connectivity Insights
         commonalities: '0.5'
   - repository: ConnectivityInsights
+    release_tag: r3.1
+    release_date: '2025-08-01T11:12:36Z'
+    meta_release: Fall25
+    github_url: https://github.com/camaraproject/ConnectivityInsights/releases/tag/r3.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: connectivity-insights-subscriptions
+        file_name: connectivity-insights-subscriptions
+        api_version: 0.6.0-rc.1
+        api_title: Connectivity Insights Subscriptions
+        commonalities: '0.6'
+      - api_name: connectivity-insights
+        file_name: connectivity-insights
+        api_version: 0.6.0-rc.1
+        api_title: Connectivity Insights
+        commonalities: '0.6'
+  - repository: ConnectivityInsights
     release_tag: r3.2
     release_date: '2025-09-17T15:44:03Z'
     meta_release: Fall25
@@ -261,6 +532,19 @@ releases:
         file_name: connectivity-insights
         api_version: 0.6.0
         api_title: Connectivity Insights
+        commonalities: '0.6'
+  - repository: ConsentInfo
+    release_tag: r1.1
+    release_date: '2025-07-11T12:49:50Z'
+    meta_release: Fall25
+    github_url: https://github.com/camaraproject/ConsentInfo/releases/tag/r1.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: consent-info
+        file_name: consent-info
+        api_version: 0.1.0-rc.1
+        api_title: Consent Info
         commonalities: '0.6'
   - repository: ConsentInfo
     release_tag: r1.2
@@ -287,6 +571,19 @@ releases:
         api_title: Consent Info
         commonalities: '0.6'
   - repository: CustomerInsights
+    release_tag: r1.1
+    release_date: '2025-02-07T13:08:06Z'
+    meta_release: Spring25
+    github_url: https://github.com/camaraproject/CustomerInsights/releases/tag/r1.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: customer-insights
+        file_name: customer-insights
+        api_version: 0.1.0-rc.1
+        api_title: Customer Insights
+        commonalities: null
+  - repository: CustomerInsights
     release_tag: r1.2
     release_date: '2025-03-10T18:07:26Z'
     meta_release: Spring25
@@ -311,6 +608,19 @@ releases:
         api_title: Customer Insights
         commonalities: '0.5'
   - repository: CustomerInsights
+    release_tag: r2.1
+    release_date: '2025-07-11T13:03:43Z'
+    meta_release: Fall25
+    github_url: https://github.com/camaraproject/CustomerInsights/releases/tag/r2.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: customer-insights
+        file_name: customer-insights
+        api_version: 0.2.0-rc.1
+        api_title: Customer Insights
+        commonalities: '0.6'
+  - repository: CustomerInsights
     release_tag: r2.2
     release_date: '2025-09-11T10:31:53Z'
     meta_release: Fall25
@@ -321,6 +631,29 @@ releases:
         file_name: customer-insights
         api_version: 0.2.0
         api_title: Customer Insights
+        commonalities: '0.6'
+  - repository: DedicatedNetworks
+    release_tag: r1.1
+    release_date: '2025-07-21T11:45:44Z'
+    meta_release: Fall25
+    github_url: https://github.com/camaraproject/DedicatedNetworks/releases/tag/r1.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: dedicated-network-accesses
+        file_name: dedicated-network-accesses
+        api_version: 0.1.0-rc.1
+        api_title: Dedicated Network - Accesses
+        commonalities: '0.6'
+      - api_name: dedicated-network-profiles
+        file_name: dedicated-network-profiles
+        api_version: 0.1.0-rc.1
+        api_title: Dedicated Network - Network Profiles
+        commonalities: '0.6'
+      - api_name: dedicated-network
+        file_name: dedicated-network
+        api_version: 0.1.0-rc.1
+        api_title: Dedicated Network - Networks
         commonalities: '0.6'
   - repository: DedicatedNetworks
     release_tag: r1.2
@@ -345,6 +678,42 @@ releases:
         api_title: Dedicated Network - Networks
         commonalities: '0.6'
   - repository: DeviceDataVolume
+    release_tag: r1.1
+    release_date: '2025-01-16T16:32:33Z'
+    meta_release: Fall25
+    github_url: https://github.com/camaraproject/DeviceDataVolume/releases/tag/r1.1
+    release_type: pre-release-alpha
+    superseded: true
+    apis:
+      - api_name: device-data-volume-subscriptions
+        file_name: device-data-volume-subscriptions
+        api_version: 0.1.0-alpha.1
+        api_title: Device Data Volume Subscriptions
+        commonalities: '0.5'
+      - api_name: device-data-volume
+        file_name: device-data-volume
+        api_version: 0.1.0-alpha.1
+        api_title: Device Data Volume
+        commonalities: '0.5'
+  - repository: DeviceDataVolume
+    release_tag: r1.2
+    release_date: '2025-07-25T14:22:52Z'
+    meta_release: Fall25
+    github_url: https://github.com/camaraproject/DeviceDataVolume/releases/tag/r1.2
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: device-data-volume-subscriptions
+        file_name: device-data-volume-subscriptions
+        api_version: 0.1.0-rc.1
+        api_title: Device Data Volume Subscriptions
+        commonalities: '0.6'
+      - api_name: device-data-volume
+        file_name: device-data-volume
+        api_version: 0.1.0-rc.1
+        api_title: Device Data Volume
+        commonalities: '0.6'
+  - repository: DeviceDataVolume
     release_tag: r1.3
     release_date: '2025-09-12T09:19:47Z'
     meta_release: Fall25
@@ -362,6 +731,32 @@ releases:
         api_title: Device Data Volume
         commonalities: '0.6'
   - repository: DeviceIdentifier
+    release_tag: r1.1
+    release_date: '2024-10-15T08:39:48Z'
+    meta_release: Spring25
+    github_url: https://github.com/camaraproject/DeviceIdentifier/releases/tag/r1.1
+    release_type: pre-release-alpha
+    superseded: true
+    apis:
+      - api_name: device-identifier
+        file_name: device-identifier
+        api_version: 0.2.0-alpha.1
+        api_title: CAMARA Mobile Device Identifier
+        commonalities: '0.4'
+  - repository: DeviceIdentifier
+    release_tag: r1.2
+    release_date: '2025-02-12T22:11:52Z'
+    meta_release: Spring25
+    github_url: https://github.com/camaraproject/DeviceIdentifier/releases/tag/r1.2
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: device-identifier
+        file_name: device-identifier
+        api_version: 0.2.0-rc.1
+        api_title: CAMARA Mobile Device Identifier
+        commonalities: '0.5'
+  - repository: DeviceIdentifier
     release_tag: r1.3
     release_date: '2025-03-13T18:05:07Z'
     meta_release: Spring25
@@ -374,6 +769,19 @@ releases:
         api_title: CAMARA Mobile Device Identifier
         commonalities: '0.5'
   - repository: DeviceIdentifier
+    release_tag: r2.1
+    release_date: '2025-07-22T11:13:38Z'
+    meta_release: Fall25
+    github_url: https://github.com/camaraproject/DeviceIdentifier/releases/tag/r2.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: device-identifier
+        file_name: device-identifier
+        api_version: 0.3.0-rc.1
+        api_title: Device Identifier
+        commonalities: '0.6'
+  - repository: DeviceIdentifier
     release_tag: r2.2
     release_date: '2025-09-16T16:22:11Z'
     meta_release: Fall25
@@ -385,6 +793,29 @@ releases:
         api_version: 0.3.0
         api_title: Device Identifier
         commonalities: '0.6'
+  - repository: DeviceLocation
+    release_tag: r1.1
+    release_date: '2024-08-09T08:18:03Z'
+    meta_release: Fall24
+    github_url: https://github.com/camaraproject/DeviceLocation/releases/tag/r1.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: geofencing-subscriptions
+        file_name: geofencing-subscriptions
+        api_version: 0.3.0-rc.1
+        api_title: Device Geofencing Subscriptions
+        commonalities: '0.4'
+      - api_name: location-retrieval
+        file_name: location-retrieval
+        api_version: 0.3.0-rc.1
+        api_title: Device Location Retrieval
+        commonalities: '0.4'
+      - api_name: location-verification
+        file_name: location-verification
+        api_version: 1.0.0-rc.1
+        api_title: Device Location Verification
+        commonalities: '0.4'
   - repository: DeviceLocation
     release_tag: r1.2
     release_date: '2024-09-10T15:00:47Z'
@@ -408,6 +839,29 @@ releases:
         api_title: Device Location Verification
         commonalities: '0.4'
   - repository: DeviceLocation
+    release_tag: r2.1
+    release_date: '2025-02-05T10:18:17Z'
+    meta_release: Spring25
+    github_url: https://github.com/camaraproject/DeviceLocation/releases/tag/r2.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: geofencing-subscriptions
+        file_name: geofencing-subscriptions
+        api_version: 0.4.0-rc.1
+        api_title: Device Geofencing Subscriptions
+        commonalities: '0.5'
+      - api_name: location-retrieval
+        file_name: location-retrieval
+        api_version: 0.4.0-rc.1
+        api_title: Device Location Retrieval
+        commonalities: '0.5'
+      - api_name: location-verification
+        file_name: location-verification
+        api_version: 2.0.0-rc.1
+        api_title: Device Location Verification
+        commonalities: '0.5'
+  - repository: DeviceLocation
     release_tag: r2.2
     release_date: '2025-03-10T13:54:47Z'
     meta_release: Spring25
@@ -429,6 +883,29 @@ releases:
         api_version: 2.0.0
         api_title: Device Location Verification
         commonalities: '0.5'
+  - repository: DeviceLocation
+    release_tag: r3.1
+    release_date: '2025-07-17T14:45:50Z'
+    meta_release: Fall25
+    github_url: https://github.com/camaraproject/DeviceLocation/releases/tag/r3.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: geofencing-subscriptions
+        file_name: geofencing-subscriptions
+        api_version: 0.5.0-rc.1
+        api_title: Device Geofencing Subscriptions
+        commonalities: '0.6'
+      - api_name: location-retrieval
+        file_name: location-retrieval
+        api_version: 0.5.0-rc.1
+        api_title: Device Location Retrieval
+        commonalities: '0.6'
+      - api_name: location-verification
+        file_name: location-verification
+        api_version: 3.0.0-rc.1
+        api_title: Device Location Verification
+        commonalities: '0.6'
   - repository: DeviceLocation
     release_tag: r3.2
     release_date: '2025-09-16T11:41:00Z'
@@ -452,6 +929,24 @@ releases:
         api_title: Device Location Verification
         commonalities: '0.6'
   - repository: DeviceReachabilityStatus
+    release_tag: r1.1
+    release_date: '2025-07-18T07:21:01Z'
+    meta_release: Fall25
+    github_url: https://github.com/camaraproject/DeviceReachabilityStatus/releases/tag/r1.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: device-reachability-status-subscriptions
+        file_name: device-reachability-status-subscriptions
+        api_version: 0.8.0-rc.1
+        api_title: Device Reachability Status Subscriptions
+        commonalities: '0.6'
+      - api_name: device-reachability-status
+        file_name: device-reachability-status
+        api_version: 1.1.0-rc.2
+        api_title: Device Reachability Status
+        commonalities: '0.6'
+  - repository: DeviceReachabilityStatus
     release_tag: r1.2
     release_date: '2025-09-16T12:14:22Z'
     meta_release: Fall25
@@ -467,6 +962,24 @@ releases:
         file_name: device-reachability-status
         api_version: 1.1.0
         api_title: Device Reachability Status
+        commonalities: '0.6'
+  - repository: DeviceRoamingStatus
+    release_tag: r1.1
+    release_date: '2025-07-17T15:49:44Z'
+    meta_release: Fall25
+    github_url: https://github.com/camaraproject/DeviceRoamingStatus/releases/tag/r1.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: device-roaming-status-subscriptions
+        file_name: device-roaming-status-subscriptions
+        api_version: 0.8.0-rc.1
+        api_title: Device Roaming Status Subscriptions
+        commonalities: '0.6'
+      - api_name: device-roaming-status
+        file_name: device-roaming-status
+        api_version: 1.1.0-rc.2
+        api_title: Device Roaming Status
         commonalities: '0.6'
   - repository: DeviceRoamingStatus
     release_tag: r1.2
@@ -485,6 +998,34 @@ releases:
         api_version: 1.1.0
         api_title: Device Roaming Status
         commonalities: '0.6'
+  - repository: DeviceStatus
+    release_tag: r1.1
+    release_date: '2024-08-02T06:43:41Z'
+    meta_release: Fall24
+    github_url: https://github.com/camaraproject/DeviceStatus/releases/tag/r1.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: device-reachability-status-subscriptions
+        file_name: device-reachability-status-subscriptions
+        api_version: 0.6.0-rc.1
+        api_title: Device Reachability Status Subscriptions
+        commonalities: '0.4'
+      - api_name: device-reachability-status
+        file_name: device-reachability-status
+        api_version: 0.6.0-rc.1
+        api_title: Device Reachability Status
+        commonalities: '0.4'
+      - api_name: device-roaming-status-subscriptions
+        file_name: device-roaming-status-subscriptions
+        api_version: 0.6.0-rc.1
+        api_title: Device Roaming Status Subscriptions
+        commonalities: '0.4'
+      - api_name: device-roaming-status
+        file_name: device-roaming-status
+        api_version: 0.6.0-rc.1
+        api_title: Device Roaming Status
+        commonalities: '0.4'
   - repository: DeviceStatus
     release_tag: r1.2
     release_date: '2024-09-10T07:58:36Z'
@@ -540,6 +1081,44 @@ releases:
         api_title: Device Roaming Status
         commonalities: '0.4'
   - repository: DeviceStatus
+    release_tag: r2.1
+    release_date: '2025-02-14T21:28:48Z'
+    meta_release: Spring25
+    github_url: https://github.com/camaraproject/DeviceStatus/releases/tag/r2.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: connected-network-type-subscriptions
+        file_name: connected-network-type-subscriptions
+        api_version: 0.1.0-rc.1
+        api_title: Connected Network Type Subscriptions
+        commonalities: '0.5'
+      - api_name: connected-network-type
+        file_name: connected-network-type
+        api_version: 0.1.0-rc.1
+        api_title: Connected Network Type
+        commonalities: '0.5'
+      - api_name: device-reachability-status-subscriptions
+        file_name: device-reachability-status-subscriptions
+        api_version: 0.7.0-rc.1
+        api_title: Device Reachability Status Subscriptions
+        commonalities: '0.5'
+      - api_name: device-reachability-status
+        file_name: device-reachability-status
+        api_version: 1.0.0-rc.1
+        api_title: Device Reachability Status
+        commonalities: '0.5'
+      - api_name: device-roaming-status-subscriptions
+        file_name: device-roaming-status-subscriptions
+        api_version: 0.7.0-rc.1
+        api_title: Device Roaming Status Subscriptions
+        commonalities: '0.5'
+      - api_name: device-roaming-status
+        file_name: device-roaming-status
+        api_version: 1.0.0-rc.1
+        api_title: Device Roaming Status
+        commonalities: '0.5'
+  - repository: DeviceStatus
     release_tag: r2.2
     release_date: '2025-03-14T11:49:32Z'
     meta_release: Spring25
@@ -577,6 +1156,19 @@ releases:
         api_title: Device Roaming Status
         commonalities: '0.5'
   - repository: DeviceSwap
+    release_tag: r1.1
+    release_date: '2024-10-30T11:19:23Z'
+    meta_release: None (Sandbox)
+    github_url: https://github.com/camaraproject/DeviceSwap/releases/tag/r1.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: device-swap
+        file_name: device-swap
+        api_version: 0.1.0-rc.1
+        api_title: Device Swap
+        commonalities: '0.4'
+  - repository: DeviceSwap
     release_tag: r1.2
     release_date: '2024-12-12T16:40:48Z'
     meta_release: None (Sandbox)
@@ -588,6 +1180,19 @@ releases:
         api_version: 0.1.0
         api_title: Device Swap
         commonalities: '0.4'
+  - repository: DeviceSwap
+    release_tag: r2.1
+    release_date: '2025-02-13T09:05:11Z'
+    meta_release: Spring25
+    github_url: https://github.com/camaraproject/DeviceSwap/releases/tag/r2.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: device-swap
+        file_name: device-swap
+        api_version: 0.2.0-rc.1
+        api_title: Device Swap
+        commonalities: '0.5'
   - repository: DeviceSwap
     release_tag: r2.2
     release_date: '2025-03-13T07:59:07Z'
@@ -601,6 +1206,19 @@ releases:
         api_title: Device Swap
         commonalities: '0.5'
   - repository: DeviceSwap
+    release_tag: r3.1
+    release_date: '2025-07-23T09:43:47Z'
+    meta_release: Fall25
+    github_url: https://github.com/camaraproject/DeviceSwap/releases/tag/r3.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: device-swap
+        file_name: device-swap
+        api_version: 1.0.0-rc.1
+        api_title: Device Swap
+        commonalities: '0.6'
+  - repository: DeviceSwap
     release_tag: r3.2
     release_date: '2025-09-18T11:54:24Z'
     meta_release: Fall25
@@ -611,6 +1229,32 @@ releases:
         file_name: device-swap
         api_version: 1.0.0
         api_title: Device Swap
+        commonalities: '0.6'
+  - repository: EnergyFootprintNotification
+    release_tag: r1.1
+    release_date: '2025-05-28T09:30:24Z'
+    meta_release: Fall25
+    github_url: https://github.com/camaraproject/EnergyFootprintNotification/releases/tag/r1.1
+    release_type: pre-release-alpha
+    superseded: true
+    apis:
+      - api_name: energy-footprint-notification
+        file_name: energy-footprint-notification
+        api_version: 0.1.0-alpha.1
+        api_title: Energy Footprint Notification
+        commonalities: '0.5'
+  - repository: EnergyFootprintNotification
+    release_tag: r1.2
+    release_date: '2025-08-01T07:51:12Z'
+    meta_release: Fall25
+    github_url: https://github.com/camaraproject/EnergyFootprintNotification/releases/tag/r1.2
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: energy-footprint
+        file_name: energy-footprint-notification
+        api_version: 0.1.0-rc.1
+        api_title: Energy Footprint
         commonalities: '0.6'
   - repository: EnergyFootprintNotification
     release_tag: r1.3
@@ -624,6 +1268,19 @@ releases:
         api_version: 0.1.0
         api_title: Energy Footprint Notification
         commonalities: '0.6'
+  - repository: HomeDevicesQoD
+    release_tag: r1.1
+    release_date: '2024-08-05T11:47:40Z'
+    meta_release: Fall24
+    github_url: https://github.com/camaraproject/HomeDevicesQoD/releases/tag/r1.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: home-devices-qod
+        file_name: home_devices_qod
+        api_version: 0.4.0-rc.1
+        api_title: Home Devices QoD
+        commonalities: '0.4'
   - repository: HomeDevicesQoD
     release_tag: r1.2
     release_date: '2024-09-06T08:39:24Z'
@@ -648,6 +1305,24 @@ releases:
         api_version: 0.1.0-alpha.1
         api_title: IoT Network Optimization API
         commonalities: '0.5'
+  - repository: KnowYourCustomer
+    release_tag: r1.1
+    release_date: '2024-08-13T10:09:52Z'
+    meta_release: Fall24
+    github_url: https://github.com/camaraproject/KnowYourCustomer/releases/tag/r1.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: kyc-fill-in
+        file_name: kyc-fill-in
+        api_version: 0.2.0-rc.1
+        api_title: Know Your Customer Fill-in
+        commonalities: '0.4'
+      - api_name: kyc-match
+        file_name: kyc-match
+        api_version: 0.2.0-rc.1
+        api_title: Know Your Customer Match
+        commonalities: '0.4'
   - repository: KnowYourCustomer
     release_tag: r1.3
     release_date: '2024-09-12T09:29:42Z'
@@ -683,6 +1358,29 @@ releases:
         api_title: Know Your Customer Match
         commonalities: '0.4'
   - repository: KnowYourCustomer
+    release_tag: r2.1
+    release_date: '2025-02-13T10:27:25Z'
+    meta_release: Spring25
+    github_url: https://github.com/camaraproject/KnowYourCustomer/releases/tag/r2.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: kyc-age-verification
+        file_name: kyc-age-verification
+        api_version: 0.1.0-rc.1
+        api_title: Know Your Customer Age Verification
+        commonalities: '0.5'
+      - api_name: kyc-fill-in
+        file_name: kyc-fill-in
+        api_version: 0.3.0-rc.1
+        api_title: Know Your Customer Fill-in
+        commonalities: '0.5'
+      - api_name: kyc-match
+        file_name: kyc-match
+        api_version: 0.3.0-rc.1
+        api_title: Know Your Customer Match
+        commonalities: '0.5'
+  - repository: KnowYourCustomer
     release_tag: r2.2
     release_date: '2025-03-10T11:44:37Z'
     meta_release: Spring25
@@ -705,6 +1403,19 @@ releases:
         api_title: Know Your Customer Match
         commonalities: '0.5'
   - repository: KnowYourCustomerAgeVerification
+    release_tag: r1.2
+    release_date: '2025-08-12T08:08:24Z'
+    meta_release: Fall25
+    github_url: https://github.com/camaraproject/KnowYourCustomerAgeVerification/releases/tag/r1.2
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: kyc-age-verification
+        file_name: kyc-age-verification
+        api_version: 0.2.1-rc.2
+        api_title: Know Your Customer Age Verification
+        commonalities: '0.6'
+  - repository: KnowYourCustomerAgeVerification
     release_tag: r1.3
     release_date: '2025-09-14T03:25:04Z'
     meta_release: Fall25
@@ -715,6 +1426,19 @@ releases:
         file_name: kyc-age-verification
         api_version: 0.2.1
         api_title: Know Your Customer Age Verification
+        commonalities: '0.6'
+  - repository: KnowYourCustomerFill-in
+    release_tag: r1.1
+    release_date: '2025-07-22T09:43:39Z'
+    meta_release: Fall25
+    github_url: https://github.com/camaraproject/KnowYourCustomerFill-in/releases/tag/r1.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: kyc-fill-in
+        file_name: kyc-fill-in
+        api_version: 0.4.0-rc.1
+        api_title: Know Your Customer Fill-in
         commonalities: '0.6'
   - repository: KnowYourCustomerFill-in
     release_tag: r1.2
@@ -741,6 +1465,19 @@ releases:
         api_title: Know Your Customer Fill-in
         commonalities: '0.6'
   - repository: KnowYourCustomerMatch
+    release_tag: r1.1
+    release_date: '2025-07-22T09:51:48Z'
+    meta_release: Fall25
+    github_url: https://github.com/camaraproject/KnowYourCustomerMatch/releases/tag/r1.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: kyc-match
+        file_name: kyc-match
+        api_version: 0.4.0-rc.1
+        api_title: Know Your Customer Match
+        commonalities: '0.6'
+  - repository: KnowYourCustomerMatch
     release_tag: r1.2
     release_date: '2025-09-14T03:35:29Z'
     meta_release: Fall25
@@ -751,6 +1488,29 @@ releases:
         file_name: kyc-match
         api_version: 0.4.0
         api_title: Know Your Customer Match
+        commonalities: '0.6'
+  - repository: ModelAsAService
+    release_tag: r1.1
+    release_date: '2025-07-24T10:54:35Z'
+    meta_release: Fall25
+    github_url: https://github.com/camaraproject/ModelAsAService/releases/tag/r1.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: knowledge-base
+        file_name: knowledge-base
+        api_version: 0.1.0-rc.1
+        api_title: Knowledge Base
+        commonalities: '0.6'
+      - api_name: qa-assistant-manage
+        file_name: qa-assistant-manage
+        api_version: 0.1.0-rc.1
+        api_title: Q&A Assistant - Manage
+        commonalities: '0.6'
+      - api_name: qa-assistant-service
+        file_name: qa-assistant-service
+        api_version: 0.1.0-rc.1
+        api_title: Q&A Assistant - Service
         commonalities: '0.6'
   - repository: ModelAsAService
     release_tag: r1.2
@@ -775,6 +1535,19 @@ releases:
         api_title: Q&A Assistant - Service
         commonalities: '0.6'
   - repository: MostFrequentLocation
+    release_tag: r1.1
+    release_date: '2024-12-11T09:41:11Z'
+    meta_release: None (Sandbox)
+    github_url: https://github.com/camaraproject/MostFrequentLocation/releases/tag/r1.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: most-frequent-location
+        file_name: most-frequent-location
+        api_version: 0.1.0-rc.1
+        api_title: Most Frequent Location
+        commonalities: null
+  - repository: MostFrequentLocation
     release_tag: r1.2
     release_date: '2025-01-30T15:13:30Z'
     meta_release: None (Sandbox)
@@ -786,6 +1559,19 @@ releases:
         api_version: 0.1.0
         api_title: Most Frequent Location
         commonalities: '0.4'
+  - repository: MostFrequentLocation
+    release_tag: r2.1
+    release_date: '2025-07-30T07:42:05Z'
+    meta_release: Fall25
+    github_url: https://github.com/camaraproject/MostFrequentLocation/releases/tag/r2.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: most-frequent-location
+        file_name: most-frequent-location
+        api_version: 0.2.0-rc.1
+        api_title: Most Frequent Location
+        commonalities: '0.6'
   - repository: MostFrequentLocation
     release_tag: r2.2
     release_date: '2025-09-16T15:16:15Z'
@@ -799,6 +1585,19 @@ releases:
         api_title: Most Frequent Location
         commonalities: '0.6'
   - repository: NetworkSliceBooking
+    release_tag: r1.1
+    release_date: '2025-08-01T08:01:19Z'
+    meta_release: Fall25
+    github_url: https://github.com/camaraproject/NetworkSliceBooking/releases/tag/r1.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: network-slice-booking
+        file_name: network-slice-booking
+        api_version: 0.1.0-rc.1
+        api_title: Network Slice Booking
+        commonalities: '0.6'
+  - repository: NetworkSliceBooking
     release_tag: r1.2
     release_date: '2025-09-17T01:33:48Z'
     meta_release: Fall25
@@ -810,6 +1609,19 @@ releases:
         api_version: 0.1.0
         api_title: Network Slice Booking
         commonalities: '0.6'
+  - repository: NumberRecycling
+    release_tag: r1.1
+    release_date: '2025-02-18T21:33:53Z'
+    meta_release: Spring25
+    github_url: https://github.com/camaraproject/NumberRecycling/releases/tag/r1.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: number-recycling
+        file_name: number-recycling
+        api_version: 0.1.0-rc.1
+        api_title: Number Recycling
+        commonalities: '0.5'
   - repository: NumberRecycling
     release_tag: r1.2
     release_date: '2025-03-14T16:46:04Z'
@@ -835,6 +1647,19 @@ releases:
         api_title: Number Recycling
         commonalities: '0.5'
   - repository: NumberRecycling
+    release_tag: r2.1
+    release_date: '2025-07-28T17:59:55Z'
+    meta_release: Fall25
+    github_url: https://github.com/camaraproject/NumberRecycling/releases/tag/r2.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: number-recycling
+        file_name: number-recycling
+        api_version: 0.2.0-rc.1
+        api_title: Number Recycling
+        commonalities: '0.6'
+  - repository: NumberRecycling
     release_tag: r2.2
     release_date: '2025-09-11T11:13:24Z'
     meta_release: Fall25
@@ -846,6 +1671,19 @@ releases:
         api_version: 0.2.0
         api_title: Number Recycling
         commonalities: '0.6'
+  - repository: NumberVerification
+    release_tag: r1.1
+    release_date: '2024-08-16T17:25:41Z'
+    meta_release: Fall24
+    github_url: https://github.com/camaraproject/NumberVerification/releases/tag/r1.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: number-verification
+        file_name: number_verification
+        api_version: 1.0.0-rc.1
+        api_title: Number Verification
+        commonalities: '0.4'
   - repository: NumberVerification
     release_tag: r1.2
     release_date: '2024-09-06T15:22:46Z'
@@ -871,6 +1709,32 @@ releases:
         api_title: Number Verification
         commonalities: '0.4'
   - repository: NumberVerification
+    release_tag: r2.1
+    release_date: '2025-02-17T22:50:26Z'
+    meta_release: Spring25
+    github_url: https://github.com/camaraproject/NumberVerification/releases/tag/r2.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: number-verification
+        file_name: number-verification
+        api_version: 1.1.0-rc.1
+        api_title: Number Verification
+        commonalities: '0.5'
+  - repository: NumberVerification
+    release_tag: r2.2
+    release_date: '2025-02-20T12:55:31Z'
+    meta_release: Spring25
+    github_url: https://github.com/camaraproject/NumberVerification/releases/tag/r2.2
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: number-verification
+        file_name: number-verification
+        api_version: 1.1.0-rc.2
+        api_title: Number Verification
+        commonalities: '0.5'
+  - repository: NumberVerification
     release_tag: r2.4
     release_date: '2025-03-20T14:24:37Z'
     meta_release: Spring25
@@ -883,6 +1747,19 @@ releases:
         api_title: Number Verification
         commonalities: '0.5'
   - repository: NumberVerification
+    release_tag: r3.1
+    release_date: '2025-07-18T09:18:23Z'
+    meta_release: Fall25
+    github_url: https://github.com/camaraproject/NumberVerification/releases/tag/r3.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: number-verification
+        file_name: number-verification
+        api_version: 2.1.0-rc.1
+        api_title: Number Verification
+        commonalities: '0.6'
+  - repository: NumberVerification
     release_tag: r3.2
     release_date: '2025-09-12T09:55:34Z'
     meta_release: Fall25
@@ -893,6 +1770,19 @@ releases:
         file_name: number-verification
         api_version: 2.1.0
         api_title: Number Verification
+        commonalities: '0.6'
+  - repository: OptimalEdgeDiscovery
+    release_tag: r1.1
+    release_date: '2025-07-30T16:41:18Z'
+    meta_release: Fall25
+    github_url: https://github.com/camaraproject/OptimalEdgeDiscovery/releases/tag/r1.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: optimal-edge-discovery
+        file_name: optimal-edge-discovery
+        api_version: 0.1.0-rc.1
+        api_title: Optimal Edge Discovery
         commonalities: '0.6'
   - repository: OptimalEdgeDiscovery
     release_tag: r1.2
@@ -907,6 +1797,19 @@ releases:
         api_title: Optimal Edge Discovery
         commonalities: '0.6'
   - repository: OTPValidation
+    release_tag: r1.1
+    release_date: '2024-08-08T10:14:37Z'
+    meta_release: Fall24
+    github_url: https://github.com/camaraproject/OTPValidation/releases/tag/r1.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: one-time-password-sms
+        file_name: one-time-password-sms
+        api_version: 1.0.0-rc.1
+        api_title: One Time Password SMS
+        commonalities: '0.4'
+  - repository: OTPValidation
     release_tag: r1.2
     release_date: '2024-09-09T08:52:34Z'
     meta_release: Fall24
@@ -918,6 +1821,32 @@ releases:
         api_version: 1.0.0
         api_title: One Time Password SMS
         commonalities: '0.4'
+  - repository: OTPValidation
+    release_tag: r2.1
+    release_date: '2025-02-11T10:32:45Z'
+    meta_release: Spring25
+    github_url: https://github.com/camaraproject/OTPValidation/releases/tag/r2.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: one-time-password-sms
+        file_name: one-time-password-sms
+        api_version: 1.1.0-rc.1
+        api_title: One Time Password SMS
+        commonalities: 0.5.0
+  - repository: OTPValidation
+    release_tag: r2.2
+    release_date: '2025-02-19T14:08:45Z'
+    meta_release: Spring25
+    github_url: https://github.com/camaraproject/OTPValidation/releases/tag/r2.2
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: one-time-password-sms
+        file_name: one-time-password-sms
+        api_version: 1.1.0-rc.2
+        api_title: One Time Password SMS
+        commonalities: '0.5'
   - repository: OTPValidation
     release_tag: r2.3
     release_date: '2025-03-11T15:47:08Z'
@@ -931,6 +1860,19 @@ releases:
         api_title: One Time Password SMS
         commonalities: '0.5'
   - repository: OTPValidation
+    release_tag: r3.1
+    release_date: '2025-07-24T08:58:13Z'
+    meta_release: Fall25
+    github_url: https://github.com/camaraproject/OTPValidation/releases/tag/r3.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: one-time-password-sms
+        file_name: one-time-password-sms
+        api_version: 1.1.1-rc.3
+        api_title: One Time Password SMS
+        commonalities: '0.6'
+  - repository: OTPValidation
     release_tag: r3.2
     release_date: '2025-09-16T09:27:12Z'
     meta_release: Fall25
@@ -942,6 +1884,19 @@ releases:
         api_version: 1.1.1
         api_title: One Time Password SMS
         commonalities: '0.6'
+  - repository: PopulationDensityData
+    release_tag: r1.1
+    release_date: '2024-08-02T11:21:21Z'
+    meta_release: Fall24
+    github_url: https://github.com/camaraproject/PopulationDensityData/releases/tag/r1.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: population-density-data
+        file_name: population-density-data
+        api_version: 0.1.1-rc.1
+        api_title: Population Density Data
+        commonalities: '0.4'
   - repository: PopulationDensityData
     release_tag: r1.2
     release_date: '2024-09-11T17:46:08Z'
@@ -955,6 +1910,19 @@ releases:
         api_title: Population Density Data
         commonalities: '0.4'
   - repository: PopulationDensityData
+    release_tag: r2.1
+    release_date: '2025-02-10T11:51:33Z'
+    meta_release: Spring25
+    github_url: https://github.com/camaraproject/PopulationDensityData/releases/tag/r2.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: population-density-data
+        file_name: population-density-data
+        api_version: 0.2.0-rc.1
+        api_title: Population Density Data
+        commonalities: '0.5'
+  - repository: PopulationDensityData
     release_tag: r2.2
     release_date: '2025-03-14T09:52:57Z'
     meta_release: Spring25
@@ -966,6 +1934,19 @@ releases:
         api_version: 0.2.0
         api_title: Population Density Data
         commonalities: '0.5'
+  - repository: PopulationDensityData
+    release_tag: r3.1
+    release_date: '2025-07-29T08:25:07Z'
+    meta_release: Fall25
+    github_url: https://github.com/camaraproject/PopulationDensityData/releases/tag/r3.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: population-density-data
+        file_name: population-density-data
+        api_version: 0.3.0-rc.1
+        api_title: Population Density Data
+        commonalities: '0.6'
   - repository: PopulationDensityData
     release_tag: r3.2
     release_date: '2025-09-10T08:54:28Z'
@@ -979,6 +1960,19 @@ releases:
         api_title: Population Density Data
         commonalities: '0.6'
   - repository: PredictiveConnectivityData
+    release_tag: r1.1
+    release_date: '2025-07-24T08:21:30Z'
+    meta_release: Fall25
+    github_url: https://github.com/camaraproject/PredictiveConnectivityData/releases/tag/r1.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: predictive-connectivity-data
+        file_name: predictive-connectivity-data
+        api_version: 0.1.0-rc.1
+        api_title: Predictive Connectivity Data
+        commonalities: '0.6'
+  - repository: PredictiveConnectivityData
     release_tag: r1.2
     release_date: '2025-09-16T14:08:33Z'
     meta_release: Fall25
@@ -989,6 +1983,24 @@ releases:
         file_name: predictive-connectivity-data
         api_version: 0.1.0
         api_title: Predictive Connectivity Data
+        commonalities: '0.6'
+  - repository: QoSBooking
+    release_tag: r1.1
+    release_date: '2025-07-17T16:26:18Z'
+    meta_release: Fall25
+    github_url: https://github.com/camaraproject/QoSBooking/releases/tag/r1.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: qos-booking-and-assignment
+        file_name: qos-booking-and-assignment
+        api_version: 0.1.0-rc.1
+        api_title: QoS Booking and Assignment
+        commonalities: '0.6'
+      - api_name: qos-booking
+        file_name: qos-booking
+        api_version: 0.1.0-rc.1
+        api_title: QoS Booking
         commonalities: '0.6'
   - repository: QoSBooking
     release_tag: r1.2
@@ -1007,6 +2019,29 @@ releases:
         api_version: 0.1.0
         api_title: QoS Booking
         commonalities: '0.6'
+  - repository: QualityOnDemand
+    release_tag: r1.1
+    release_date: '2024-08-09T13:30:59Z'
+    meta_release: Fall24
+    github_url: https://github.com/camaraproject/QualityOnDemand/releases/tag/r1.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: qod-provisioning
+        file_name: qod-provisioning
+        api_version: 0.1.0-rc.1
+        api_title: QoD Provisioning API
+        commonalities: 0.4.0-rc.1
+      - api_name: qos-profiles
+        file_name: qos-profiles
+        api_version: 0.11.0-rc.1
+        api_title: QoS Profiles
+        commonalities: 0.4.0-rc.1
+      - api_name: quality-on-demand
+        file_name: quality-on-demand
+        api_version: 0.11.0-rc.1
+        api_title: Quality-On-Demand
+        commonalities: 0.4.0-rc.1
   - repository: QualityOnDemand
     release_tag: r1.2
     release_date: '2024-09-06T16:16:48Z'
@@ -1052,6 +2087,29 @@ releases:
         api_title: Quality-On-Demand
         commonalities: '0.4'
   - repository: QualityOnDemand
+    release_tag: r2.1
+    release_date: '2025-02-10T19:19:28Z'
+    meta_release: Spring25
+    github_url: https://github.com/camaraproject/QualityOnDemand/releases/tag/r2.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: qod-provisioning
+        file_name: qod-provisioning
+        api_version: 0.2.0-rc.1
+        api_title: QoD Provisioning API
+        commonalities: '0.5'
+      - api_name: qos-profiles
+        file_name: qos-profiles
+        api_version: 1.0.0-rc.1
+        api_title: QoS Profiles
+        commonalities: '0.5'
+      - api_name: quality-on-demand
+        file_name: quality-on-demand
+        api_version: 1.0.0-rc.1
+        api_title: Quality-On-Demand
+        commonalities: '0.5'
+  - repository: QualityOnDemand
     release_tag: r2.2
     release_date: '2025-03-11T15:31:39Z'
     meta_release: Spring25
@@ -1073,6 +2131,29 @@ releases:
         api_version: 1.0.0
         api_title: Quality-On-Demand
         commonalities: '0.5'
+  - repository: QualityOnDemand
+    release_tag: r3.1
+    release_date: '2025-07-17T14:22:52Z'
+    meta_release: Fall25
+    github_url: https://github.com/camaraproject/QualityOnDemand/releases/tag/r3.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: qos-profiles
+        file_name: qos-profiles
+        api_version: 1.1.0-rc.2
+        api_title: QoS Profiles
+        commonalities: '0.6'
+      - api_name: qos-provisioning
+        file_name: qos-provisioning
+        api_version: 0.3.0-rc.1
+        api_title: QoS Provisioning
+        commonalities: '0.6'
+      - api_name: quality-on-demand
+        file_name: quality-on-demand
+        api_version: 1.1.0-rc.2
+        api_title: Quality-On-Demand
+        commonalities: '0.6'
   - repository: QualityOnDemand
     release_tag: r3.2
     release_date: '2025-09-16T12:19:48Z'
@@ -1096,6 +2177,14 @@ releases:
         api_title: Quality-On-Demand
         commonalities: '0.6'
   - repository: RegionDeviceCount
+    release_tag: r1.1
+    release_date: '2025-02-13T09:46:14Z'
+    meta_release: Spring25
+    github_url: https://github.com/camaraproject/RegionDeviceCount/releases/tag/r1.1
+    release_type: pre-release-alpha
+    superseded: true
+    apis: []
+  - repository: RegionDeviceCount
     release_tag: r1.2
     release_date: '2025-03-12T06:07:28Z'
     meta_release: Spring25
@@ -1115,6 +2204,19 @@ releases:
         api_title: Region Device Count
         commonalities: '0.5'
   - repository: RegionDeviceCount
+    release_tag: r2.1
+    release_date: '2025-07-25T08:52:58Z'
+    meta_release: Fall25
+    github_url: https://github.com/camaraproject/RegionDeviceCount/releases/tag/r2.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: region-device-count
+        file_name: region-device-count
+        api_version: 0.2.0-rc.1
+        api_title: Region Device Count
+        commonalities: '0.6'
+  - repository: RegionDeviceCount
     release_tag: r2.2
     release_date: '2025-09-15T08:06:27Z'
     meta_release: Fall25
@@ -1126,6 +2228,32 @@ releases:
         api_version: 0.2.0
         api_title: Region Device Count
         commonalities: '0.6'
+  - repository: SimpleEdgeDiscovery
+    release_tag: r1.1
+    release_date: '2024-07-30T17:33:27Z'
+    meta_release: Fall24
+    github_url: https://github.com/camaraproject/SimpleEdgeDiscovery/releases/tag/r1.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: simple-edge-discovery
+        file_name: simple-edge-discovery
+        api_version: 0.11.0-rc.1
+        api_title: Simple Edge Discovery API
+        commonalities: '0.4'
+  - repository: SimpleEdgeDiscovery
+    release_tag: r1.2
+    release_date: '2024-08-23T10:40:00Z'
+    meta_release: Fall24
+    github_url: https://github.com/camaraproject/SimpleEdgeDiscovery/releases/tag/r1.2
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: simple-edge-discovery
+        file_name: simple-edge-discovery
+        api_version: 0.11.0-rc.2
+        api_title: Simple Edge Discovery API
+        commonalities: '0.4'
   - repository: SimpleEdgeDiscovery
     release_tag: r1.3
     release_date: '2024-09-11T10:39:25Z'
@@ -1139,6 +2267,19 @@ releases:
         api_title: Simple Edge Discovery
         commonalities: '0.4'
   - repository: SimpleEdgeDiscovery
+    release_tag: r2.1
+    release_date: '2025-07-22T16:29:30Z'
+    meta_release: Fall25
+    github_url: https://github.com/camaraproject/SimpleEdgeDiscovery/releases/tag/r2.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: simple-edge-discovery
+        file_name: simple-edge-discovery
+        api_version: 2.0.0-rc.1
+        api_title: Simple Edge Discovery
+        commonalities: '0.6'
+  - repository: SimpleEdgeDiscovery
     release_tag: r2.2
     release_date: '2025-09-17T17:29:46Z'
     meta_release: Fall25
@@ -1150,6 +2291,24 @@ releases:
         api_version: 2.0.0
         api_title: Simple Edge Discovery
         commonalities: '0.6'
+  - repository: SimSwap
+    release_tag: r1.1
+    release_date: '2024-08-09T07:45:06Z'
+    meta_release: Fall24
+    github_url: https://github.com/camaraproject/SimSwap/releases/tag/r1.1
+    release_type: pre-release-alpha
+    superseded: true
+    apis:
+      - api_name: sim-swap-subscriptions
+        file_name: sim-swap-subscriptions
+        api_version: 0.1.0-alpha.1
+        api_title: Sim Swap Subscriptions
+        commonalities: '0.4'
+      - api_name: sim-swap
+        file_name: sim_swap
+        api_version: 1.0.0-rc.1
+        api_title: SIM Swap
+        commonalities: '0.4'
   - repository: SimSwap
     release_tag: r1.2
     release_date: '2024-09-12T15:07:04Z'
@@ -1202,6 +2361,24 @@ releases:
         api_title: SIM Swap
         commonalities: '0.4'
   - repository: SimSwap
+    release_tag: r2.1
+    release_date: '2025-02-13T16:00:08Z'
+    meta_release: Spring25
+    github_url: https://github.com/camaraproject/SimSwap/releases/tag/r2.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: sim-swap-subscriptions
+        file_name: sim-swap-subscriptions
+        api_version: 0.2.0-rc.1
+        api_title: Sim Swap Subscriptions
+        commonalities: '0.5'
+      - api_name: sim-swap
+        file_name: sim-swap
+        api_version: 2.0.0-rc.1
+        api_title: SIM Swap
+        commonalities: '0.5'
+  - repository: SimSwap
     release_tag: r2.2
     release_date: '2025-03-13T11:20:01Z'
     meta_release: Spring25
@@ -1218,6 +2395,24 @@ releases:
         api_version: 2.0.0
         api_title: SIM Swap
         commonalities: '0.5'
+  - repository: SimSwap
+    release_tag: r3.1
+    release_date: '2025-07-18T09:52:55Z'
+    meta_release: Fall25
+    github_url: https://github.com/camaraproject/SimSwap/releases/tag/r3.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: sim-swap-subscriptions
+        file_name: sim-swap-subscriptions
+        api_version: 0.3.0-rc.1
+        api_title: Sim Swap Subscriptions
+        commonalities: '0.6'
+      - api_name: sim-swap
+        file_name: sim-swap
+        api_version: 2.1.0-rc.2
+        api_title: SIM Swap
+        commonalities: '0.6'
   - repository: SimSwap
     release_tag: r3.2
     release_date: '2025-09-17T15:10:21Z'
@@ -1253,6 +2448,19 @@ releases:
         api_title: SIM Swap
         commonalities: '0.6'
   - repository: SubscriptionStatus
+    release_tag: r1.1
+    release_date: '2025-07-24T07:59:09Z'
+    meta_release: Fall25
+    github_url: https://github.com/camaraproject/SubscriptionStatus/releases/tag/r1.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: subscription-status
+        file_name: subscription-status
+        api_version: 0.1.0-rc.1
+        api_title: SubscriptionStatus
+        commonalities: '0.6'
+  - repository: SubscriptionStatus
     release_tag: r1.2
     release_date: '2025-09-15T07:00:03Z'
     meta_release: Fall25
@@ -1264,6 +2472,19 @@ releases:
         api_version: 0.1.0
         api_title: SubscriptionStatus
         commonalities: '0.6'
+  - repository: Tenure
+    release_tag: r1.1
+    release_date: '2025-01-24T11:36:06Z'
+    meta_release: Spring25
+    github_url: https://github.com/camaraproject/Tenure/releases/tag/r1.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: kyc-tenure
+        file_name: kyc-tenure
+        api_version: 0.1.0-rc.1
+        api_title: CAMARA KYC Tenure
+        commonalities: '0.5'
   - repository: Tenure
     release_tag: r1.2
     release_date: '2025-03-11T08:37:12Z'
@@ -1277,6 +2498,19 @@ releases:
         api_title: KYC Tenure
         commonalities: '0.5'
   - repository: Tenure
+    release_tag: r2.1
+    release_date: '2025-07-17T10:37:29Z'
+    meta_release: Fall25
+    github_url: https://github.com/camaraproject/Tenure/releases/tag/r2.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: kyc-tenure
+        file_name: kyc-tenure
+        api_version: 0.2.0-rc.1
+        api_title: KYC Tenure
+        commonalities: '0.6'
+  - repository: Tenure
     release_tag: r2.2
     release_date: '2025-09-19T12:07:15Z'
     meta_release: Fall25
@@ -1289,6 +2523,32 @@ releases:
         api_title: KYC Tenure
         commonalities: '0.6'
   - repository: TrafficInfluence
+    release_tag: r1.1
+    release_date: '2025-06-10T15:04:41Z'
+    meta_release: Fall25
+    github_url: https://github.com/camaraproject/TrafficInfluence/releases/tag/r1.1
+    release_type: pre-release-alpha
+    superseded: true
+    apis:
+      - api_name: traffic-influence
+        file_name: traffic_influence
+        api_version: 0.9.0-alpha.1
+        api_title: Traffic Influence API
+        commonalities: 0.5.0
+  - repository: TrafficInfluence
+    release_tag: r1.2
+    release_date: '2025-08-01T10:06:24Z'
+    meta_release: Fall25
+    github_url: https://github.com/camaraproject/TrafficInfluence/releases/tag/r1.2
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: traffic-influence
+        file_name: traffic-influence
+        api_version: 0.10.0-rc.1
+        api_title: Traffic Influence
+        commonalities: '0.6'
+  - repository: TrafficInfluence
     release_tag: r1.3
     release_date: '2025-09-16T15:12:23Z'
     meta_release: Fall25
@@ -1299,6 +2559,42 @@ releases:
         file_name: traffic-influence
         api_version: 0.10.0
         api_title: Traffic Influence
+        commonalities: '0.6'
+  - repository: VerifiedCaller
+    release_tag: r1.1
+    release_date: '2025-07-18T11:34:25Z'
+    meta_release: Fall25
+    github_url: https://github.com/camaraproject/VerifiedCaller/releases/tag/r1.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: brand-registration
+        file_name: brand-registration
+        api_version: 0.1.0-rc.1
+        api_title: Brand Registration
+        commonalities: '0.6'
+      - api_name: verified-caller
+        file_name: verified-caller
+        api_version: 0.1.0-rc.1
+        api_title: Verified Caller Pre-announcement
+        commonalities: '0.6'
+  - repository: VerifiedCaller
+    release_tag: r1.2
+    release_date: '2025-07-31T13:12:58Z'
+    meta_release: Fall25
+    github_url: https://github.com/camaraproject/VerifiedCaller/releases/tag/r1.2
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: brand-registration
+        file_name: brand-registration
+        api_version: 0.1.0-rc.1
+        api_title: Brand Registration
+        commonalities: '0.6'
+      - api_name: verified-caller
+        file_name: verified-caller
+        api_version: 0.1.0-rc.2
+        api_title: Verified Caller
         commonalities: '0.6'
   - repository: VerifiedCaller
     release_tag: r1.3
@@ -1317,6 +2613,34 @@ releases:
         api_version: 0.1.0
         api_title: Verified Caller
         commonalities: '0.6'
+  - repository: WebRTC
+    release_tag: r1.1
+    release_date: '2025-02-17T11:57:15Z'
+    meta_release: Spring25
+    github_url: https://github.com/camaraproject/WebRTC/releases/tag/r1.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: webrtc-call-handling
+        file_name: webrtc-call-handling
+        api_version: 0.2.0-rc.1
+        api_title: WebRTC Call Handling API
+        commonalities: '0.5'
+      - api_name: webrtc-events
+        file_name: webrtc-events
+        api_version: 0.1.0-rc.1
+        api_title: WebRTC Event Subscription
+        commonalities: '0.5'
+      - api_name: vwip
+        file_name: webrtc-notification-channel
+        api_version: 0.1.1
+        api_title: WebRTC Notification Channel API
+        commonalities: null
+      - api_name: webrtc-registration
+        file_name: webrtc-registration
+        api_version: 0.2.0-rc.1
+        api_title: WebRTC Registration Service API
+        commonalities: '0.5'
   - repository: WebRTC
     release_tag: r1.2
     release_date: '2025-03-18T12:39:09Z'
@@ -1339,6 +2663,29 @@ releases:
         api_version: 0.2.0
         api_title: WebRTC Registration Service API
         commonalities: '0.5'
+  - repository: WebRTC
+    release_tag: r2.1
+    release_date: '2025-07-30T08:02:14Z'
+    meta_release: Fall25
+    github_url: https://github.com/camaraproject/WebRTC/releases/tag/r2.1
+    release_type: pre-release-rc
+    superseded: true
+    apis:
+      - api_name: webrtc-call-handling
+        file_name: webrtc-call-handling
+        api_version: 0.3.0-rc.1
+        api_title: WebRTC Call Handling
+        commonalities: '0.6'
+      - api_name: webrtc-events
+        file_name: webrtc-events
+        api_version: 0.2.0-rc.1
+        api_title: WebRTC Events
+        commonalities: '0.6'
+      - api_name: webrtc-registration
+        file_name: webrtc-registration
+        api_version: 0.3.0-rc.1
+        api_title: WebRTC Registration Service
+        commonalities: '0.6'
   - repository: WebRTC
     release_tag: r2.2
     release_date: '2025-09-23T14:44:21Z'

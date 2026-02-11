@@ -1,0 +1,16 @@
+repository:
+  repository_name: DedicatedNetworks
+  release_tag: r1.1
+  release_type: pre-release-rc
+  release_date: "2025-07-21T11:45:44Z"
+  src_commit_sha: null
+apis:
+  - api_name: dedicated-network-accesses
+    api_version: 0.1.0-rc.1
+    api_title: Dedicated Network - Accesses
+  - api_name: dedicated-network-profiles
+    api_version: 0.1.0-rc.1
+    api_title: Dedicated Network - Network Profiles
+  - api_name: dedicated-network
+    api_version: 0.1.0-rc.1
+    api_title: Dedicated Network - Networks

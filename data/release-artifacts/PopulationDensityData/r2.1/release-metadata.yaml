@@ -1,0 +1,10 @@
+repository:
+  repository_name: PopulationDensityData
+  release_tag: r2.1
+  release_type: pre-release-rc
+  release_date: "2025-02-10T11:51:33Z"
+  src_commit_sha: null
+apis:
+  - api_name: population-density-data
+    api_version: 0.2.0-rc.1
+    api_title: Population Density Data
