@@ -487,10 +487,9 @@ jobs:
             tag="${release#*/}"
 
             YAML_FILE="data/release-artifacts/$repo/$tag/release-metadata.yaml"
-            JSON_FILE="data/release-artifacts/$repo/$tag/release-metadata.json"
 
-            # Check local files exist
-            if [[ ! -f "$YAML_FILE" ]] || [[ ! -f "$JSON_FILE" ]]; then
+            # Check local file exists
+            if [[ ! -f "$YAML_FILE" ]]; then
               echo "⚠️  $repo/$tag - local files missing"
               echo "::warning::$repo/$tag - local files missing (not in release-artifacts)"
               echo "{\"repository\":\"$repo\",\"tag\":\"$tag\",\"status\":\"missing_local\",\"mode\":\"$MODE_LABEL\"}" >> "$REPORT_JSONL"
@@ -522,7 +521,7 @@ jobs:
                 echo "{\"repository\":\"$repo\",\"tag\":\"$tag\",\"status\":\"new\",\"mode\":\"$MODE_LABEL\"}" >> "$REPORT_JSONL"
               else
                 echo -n "🆕  $repo/$tag - new, uploading... "
-                UPLOAD_ERR=$(gh release upload "$tag" --repo "camaraproject/$repo" "$YAML_FILE" "$JSON_FILE" --clobber 2>&1) && UPLOAD_OK=true || UPLOAD_OK=false
+                UPLOAD_ERR=$(gh release upload "$tag" --repo "camaraproject/$repo" "$YAML_FILE" --clobber 2>&1) && UPLOAD_OK=true || UPLOAD_OK=false
                 if [[ "$UPLOAD_OK" == "true" ]]; then
                   echo "✓"
                   UPLOADED=$((UPLOADED + 1))
@@ -556,7 +555,7 @@ jobs:
                   echo "{\"repository\":\"$repo\",\"tag\":\"$tag\",\"status\":\"update\",\"mode\":\"$MODE_LABEL\"}" >> "$REPORT_JSONL"
                 else
                   echo -n "🔄  $repo/$tag - update, uploading... "
-                  UPLOAD_ERR=$(gh release upload "$tag" --repo "camaraproject/$repo" "$YAML_FILE" "$JSON_FILE" --clobber 2>&1) && UPLOAD_OK=true || UPLOAD_OK=false
+                  UPLOAD_ERR=$(gh release upload "$tag" --repo "camaraproject/$repo" "$YAML_FILE" --clobber 2>&1) && UPLOAD_OK=true || UPLOAD_OK=false
                   if [[ "$UPLOAD_OK" == "true" ]]; then
                     echo "✓"
                     UPLOADED=$((UPLOADED + 1))

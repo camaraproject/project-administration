@@ -3,7 +3,7 @@
 /**
  * Generate Release Metadata Script
  *
- * Generates release-metadata.yaml and release-metadata.json files for ALL releases.
+ * Generates release-metadata.yaml files for ALL releases.
  * Conforms to the schema at:
  * upstream/traversals/ReleaseManagement/artifacts/metadata-schemas/schemas/release-metadata-schema.yaml
  *
@@ -96,9 +96,6 @@ function writeMetadataFiles(metadata, repo, tag) {
   });
   fs.writeFileSync(path.join(dir, 'release-metadata.yaml'), yamlContent);
 
-  // Write JSON file
-  const jsonContent = JSON.stringify(metadata, null, 2);
-  fs.writeFileSync(path.join(dir, 'release-metadata.json'), jsonContent);
 }
 
 /**
@@ -128,7 +125,6 @@ function processReleases() {
       console.error(`Generated ${repo}/${tag}`);
       results.processed++;
       results.files.push(`${repo}/${tag}/release-metadata.yaml`);
-      results.files.push(`${repo}/${tag}/release-metadata.json`);
     } catch (error) {
       console.error(`Error processing ${repo}/${tag}: ${error.message}`);
       results.errors.push({ repo, tag, error: error.message });
@@ -149,7 +145,7 @@ function main() {
     console.error(`
 Usage: node generate-release-metadata.js
 
-Generates release-metadata.yaml and release-metadata.json files for ALL releases
+Generates release-metadata.yaml files for ALL releases
 in releases-master.yaml. Always regenerates all files - git diff shows changes.
 
 Output directory: data/release-artifacts/{repo}/{tag}/

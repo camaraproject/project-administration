@@ -234,8 +234,7 @@ data/
 └── release-artifacts/            # Staged release metadata (uploaded to releases)
     └── {repo}/
         └── {tag}/
-            ├── release-metadata.yaml
-            └── release-metadata.json
+            └── release-metadata.yaml
 
 reports/
 ├── all-releases.json             # Complete dataset (enriched)
@@ -333,18 +332,12 @@ The collector tracks all release types, not just public releases:
 - Internal viewer allows filtering by release type
 
 #### Release Metadata Files
-For each release, the collector generates metadata files that are uploaded to GitHub releases:
-
-| File | Format | Purpose |
-|------|--------|---------|
-| `release-metadata.yaml` | YAML | Human-readable, editable |
-| `release-metadata.json` | JSON | Machine-friendly, fast parsing |
+For each release, the collector generates a `release-metadata.yaml` file that is uploaded to the GitHub release:
 
 **Content includes:**
 - Repository and release tag
 - Release type and date
-- API details (name, version, status, file)
-- Meta-release assignment
+- API details (name, version, title)
 
 These files enable tooling validation to be self-contained (no dependency on project-administration at runtime).
 
