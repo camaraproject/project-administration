@@ -28,6 +28,11 @@ on:
         required: false
         type: string
         default: ''
+      exclude:
+        description: 'Comma-separated list of repository names to exclude (e.g., "Template_API_Repository, Sandbox")'
+        required: false
+        type: string
+        default: ''
       include_wip_repos:
         description: 'Include repositories without release but with API definition files (work in progress, require manual review)'
         required: false
@@ -48,6 +53,7 @@ env:
   ORG: camaraproject
   RELEASES_FILE: data/releases-master.yaml
   INCLUDE: ${{ inputs.include }}
+  EXCLUDE: ${{ inputs.exclude }}
   INCLUDE_WIP_REPOS: ${{ inputs.include_wip_repos }}
   INCLUDE_NEW_REPOS: ${{ inputs.include_new_repos }}
   BRANCH: bulk/release-plan-rollout-${{ github.run_id }}
@@ -101,6 +107,13 @@ jobs:
               console.log(`Include filter applied: ${include.join(', ')}`);
             }
 
+            // Apply exclude filter if specified
+            const exclude = (process.env.EXCLUDE||'').split(',').map(s=>s.trim()).filter(Boolean);
+            if (exclude.length) {
+              list = list.filter(r => !exclude.some(x => r.slug.endsWith(`/${x}`)));
+              console.log(`Exclude filter applied: ${exclude.join(', ')}`);
+            }
+
             console.log(`Found ${list.length} repositories after filtering`);
 
             // For repos without releases, check if they have API files
@@ -130,7 +143,7 @@ jobs:
 
             console.log(`\nInput settings: include_wip_repos=${includeWip}, include_new_repos=${includeNew}`);
 
-            const counts = { withRelease: 0, wip: 0, new: 0, skippedWip: 0, skippedNew: 0, skippedExists: 0 };
+            const counts = { withRelease: 0, wip: 0, new: 0, skippedWip: 0, skippedNew: 0, skippedExists: 0, skippedExclude: 0 };
             const filteredList = [];
 
             for (const repo of list) {
@@ -183,6 +196,7 @@ jobs:
             console.log(`  - New repos: ${counts.new}`);
             console.log(`Skipped:`);
             console.log(`  - Already have release-plan.yaml: ${counts.skippedExists}`);
+            if (exclude.length) console.log(`  - Excluded by exclude filter: ${exclude.length}`);
             console.log(`  - WIP repos excluded: ${counts.skippedWip}`);
             console.log(`  - New repos excluded: ${counts.skippedNew}`);
 
@@ -250,11 +264,10 @@ jobs:
           data_json: ${{ steps.generate.outputs.json }}
           out_file: /tmp/pr-body.md
 
-      # TODO: Change to camaraproject/tooling@v0 when shared-action is released
       - name: Validate generated release-plan.yaml
         id: validate
         continue-on-error: true
-        uses: hdamker/tooling/shared-actions/validate-release-plan@release-plan-validation
+        uses: camaraproject/tooling/shared-actions/validate-release-plan@v0
         with:
           release_plan_path: repo/release-plan.yaml
 
