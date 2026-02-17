@@ -289,17 +289,27 @@ jobs:
               return;
             }
             const md = []; const lines = [];
-            const dirs = fs.readdirSync(p);
-            if (dirs.length === 0) {
+            const entries = fs.readdirSync(p);
+            if (entries.length === 0) {
               console.log(`${p} directory is empty, no artifacts were downloaded`);
               fs.writeFileSync(`${outputName}.md`, `# No ${outputName} artifacts found\n`);
               fs.writeFileSync(`${outputName}.jsonl`, '');
               return;
             }
-            for (const d of dirs) {
-              const dir = `${p}/${d}`;
-              if (fs.existsSync(`${dir}/${outputName}.md`))    md.push(fs.readFileSync(`${dir}/${outputName}.md`,'utf8'));
-              if (fs.existsSync(`${dir}/${outputName}.jsonl`)) lines.push(fs.readFileSync(`${dir}/${outputName}.jsonl`,'utf8'));
+            // Handle both artifact layouts (#125):
+            // - Multiple artifacts: p/plan-xxx-0/plan.md (subdirectories)
+            // - Single artifact (download-artifact v5+): p/plan.md (flat)
+            for (const entry of entries) {
+              const entryPath = `${p}/${entry}`;
+              const stat = fs.statSync(entryPath);
+              if (stat.isDirectory()) {
+                if (fs.existsSync(`${entryPath}/${outputName}.md`))    md.push(fs.readFileSync(`${entryPath}/${outputName}.md`,'utf8'));
+                if (fs.existsSync(`${entryPath}/${outputName}.jsonl`)) lines.push(fs.readFileSync(`${entryPath}/${outputName}.jsonl`,'utf8'));
+              } else if (entry === `${outputName}.md`) {
+                md.push(fs.readFileSync(entryPath, 'utf8'));
+              } else if (entry === `${outputName}.jsonl`) {
+                lines.push(fs.readFileSync(entryPath, 'utf8'));
+              }
             }
             fs.writeFileSync(`${outputName}.md`, md.join('\n'));
             fs.writeFileSync(`${outputName}.jsonl`, lines.join(''));

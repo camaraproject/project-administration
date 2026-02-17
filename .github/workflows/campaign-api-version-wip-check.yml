@@ -253,9 +253,9 @@ jobs:
 
             const md = [];
             const lines = [];
-            const dirs = fs.readdirSync(p);
+            const entries = fs.readdirSync(p);
 
-            if (dirs.length === 0) {
+            if (entries.length === 0) {
               console.log(`${p} directory is empty, no artifacts were downloaded`);
               fs.writeFileSync(`${outputName}.md`, `# No ${outputName} artifacts found\n`);
               fs.writeFileSync(`${outputName}.jsonl`, '');
@@ -268,15 +268,16 @@ jobs:
             let created = 0;
             let skipped = 0;
 
-            for (const d of dirs) {
-              const dir = `${p}/${d}`;
-              if (fs.existsSync(`${dir}/${outputName}.md`)) {
-                md.push(fs.readFileSync(`${dir}/${outputName}.md`, 'utf8'));
+            // Handle both artifact layouts (#125):
+            // - Multiple artifacts: p/plan-xxx-0/plan.md (subdirectories)
+            // - Single artifact (download-artifact v5+): p/plan.md (flat)
+            function collectEntry(mdPath, jsonlPath) {
+              if (fs.existsSync(mdPath)) {
+                md.push(fs.readFileSync(mdPath, 'utf8'));
               }
-              if (fs.existsSync(`${dir}/${outputName}.jsonl`)) {
-                const jsonlContent = fs.readFileSync(`${dir}/${outputName}.jsonl`, 'utf8');
+              if (fs.existsSync(jsonlPath)) {
+                const jsonlContent = fs.readFileSync(jsonlPath, 'utf8');
                 lines.push(jsonlContent);
-                // Parse for stats
                 try {
                   const record = JSON.parse(jsonlContent.trim());
                   if (record.status === 'compliant') compliant++;
@@ -284,6 +285,16 @@ jobs:
                   else if (record.status === 'created') created++;
                   else if (record.status === 'issue_exists') skipped++;
                 } catch (e) {}
+              }
+            }
+
+            for (const entry of entries) {
+              const entryPath = `${p}/${entry}`;
+              const stat = fs.statSync(entryPath);
+              if (stat.isDirectory()) {
+                collectEntry(`${entryPath}/${outputName}.md`, `${entryPath}/${outputName}.jsonl`);
+              } else if (entry === `${outputName}.jsonl`) {
+                collectEntry(`${p}/${outputName}.md`, entryPath);
               }
             }
 
