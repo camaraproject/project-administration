@@ -374,23 +374,25 @@ jobs:
               return;
             }
 
-            // Each artifact is in its own subdirectory
-            const dirs = fs.readdirSync(plansDir);
-            console.log(`Found ${dirs.length} artifact directories`);
+            // Handle both artifact layouts (see #125):
+            // - Multiple artifacts: plans/plan-xxx-0/plan.md (subdirectories)
+            // - Single artifact (download-artifact v5+): plans/plan.md (flat)
+            const entries = fs.readdirSync(plansDir);
+            console.log(`Found ${entries.length} entries in plans directory`);
 
-            for (const d of dirs) {
-              const dir = path.join(plansDir, d);
-              const stat = fs.statSync(dir);
-              if (!stat.isDirectory()) continue;
+            for (const entry of entries) {
+              const entryPath = path.join(plansDir, entry);
+              const stat = fs.statSync(entryPath);
 
-              const mdFile = path.join(dir, `${baseName}.md`);
-              const jsonlFile = path.join(dir, `${baseName}.jsonl`);
-
-              if (fs.existsSync(mdFile)) {
-                md.push(fs.readFileSync(mdFile, 'utf8'));
-              }
-              if (fs.existsSync(jsonlFile)) {
-                jsonl.push(fs.readFileSync(jsonlFile, 'utf8'));
+              if (stat.isDirectory()) {
+                const mdFile = path.join(entryPath, `${baseName}.md`);
+                const jsonlFile = path.join(entryPath, `${baseName}.jsonl`);
+                if (fs.existsSync(mdFile)) md.push(fs.readFileSync(mdFile, 'utf8'));
+                if (fs.existsSync(jsonlFile)) jsonl.push(fs.readFileSync(jsonlFile, 'utf8'));
+              } else if (entry === `${baseName}.md`) {
+                md.push(fs.readFileSync(entryPath, 'utf8'));
+              } else if (entry === `${baseName}.jsonl`) {
+                jsonl.push(fs.readFileSync(entryPath, 'utf8'));
               }
             }
 
