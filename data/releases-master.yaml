@@ -1,5 +1,5 @@
 metadata:
-  last_updated: '2026-02-11T23:15:00.997Z'
+  last_updated: '2026-02-18T10:07:04.714Z'
   workflow_version: 3.0.0
   schema_version: 2.0.0
 releases:
@@ -2952,6 +2952,10 @@ repositories:
   - repository: Tenure
     github_url: https://github.com/camaraproject/Tenure
     latest_public_release: r2.2
+    newest_pre_release: null
+  - repository: TestRepo
+    github_url: https://github.com/camaraproject/TestRepo
+    latest_public_release: null
     newest_pre_release: null
   - repository: TrafficInfluence
     github_url: https://github.com/camaraproject/TrafficInfluence
