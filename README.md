@@ -69,10 +69,11 @@ Goal-oriented, time-bound initiatives for coordinated changes across repositorie
 
 * **Location**: [campaigns/](campaigns/)
 * **Available campaigns**:
-  * [release-info/](campaigns/release-info/) - Updates "Release Information" sections in API repository READMEs
+  * [release-info/](campaigns/release-info/) - Updates "Release Information" sections in API repository READMEs (supports pre-releases and "no releases" categories)
   * [api-version-wip-check/](campaigns/api-version-wip-check/) - Verifies wip versions in API files after releases
   * [release-plan-rollout/](campaigns/release-plan-rollout/) - Adds release-plan.yaml to API repositories
-* **Workflows**: `campaign-release-info.yml`, `campaign-api-version-wip-check.yml`, `campaign-release-plan-rollout.yml`
+  * [release-automation-onboarding/](campaigns/release-automation-onboarding/) - Onboards API repositories to the release automation (caller workflow, CHANGELOG directory, rulesets)
+* **Workflows**: `campaign-release-info.yml`, `campaign-api-version-wip-check.yml`, `campaign-release-plan-rollout.yml`, `campaign-release-automation-onboarding.yml`
 
 ### API Repository Creation
 
@@ -83,6 +84,14 @@ Automates setup of new API repositories from [Template_API_Repository](https://g
 * **Workflow**: `admin-api-repository-creation.yml`
 * **Requirements**: Environment `repository-creation` with `GH_REPO_CREATE_TOKEN`
 
+### Admin Scripts
+
+Scripts for administrative tasks that complement campaigns.
+
+* **Location**: [scripts/](scripts/)
+* **Scripts**:
+  * `apply-release-rulesets.sh` - Applies release automation rulesets to API repositories (companion to the onboarding campaign)
+
 ### Legacy Reporting (to be replaced)
 
 * **Workflow**: `report-repository-overview.yml` - Repository overview reporting (legacy, will be replaced)
@@ -92,7 +101,7 @@ Automates setup of new API repositories from [Template_API_Repository](https://g
 Supporting GitHub Actions for campaigns and workflows.
 
 * **Location**: [actions/](actions/)
-* **Actions**: render-mustache, replace-delimited-content, ensure-delimited-section, campaign-finalize-per-repo, and others
+* **Actions**: render-mustache, replace-delimited-content, ensure-delimited-section, campaign-finalize-per-repo, campaign-finalize-issue-per-repo, read-release-data, read-api-version-compliance
 
 ## Repository Structure
 
@@ -102,6 +111,7 @@ project-administration/
 ├── actions/                     # Reusable GitHub Actions for campaigns
 ├── campaigns/                   # Goal-oriented initiatives
 │   ├── api-version-wip-check/   # API version compliance checks
+│   ├── release-automation-onboarding/ # Release automation setup
 │   ├── release-info/            # README release info updates
 │   └── release-plan-rollout/    # Release plan file generation
 ├── config/                      # Shared configuration files
@@ -110,6 +120,8 @@ project-administration/
 ├── data/                        # Release Collector outputs (master data)
 │   └── releases-master.yaml     # Master release metadata
 ├── reports/                     # Release Collector outputs (JSON reports)
+├── scripts/                     # Admin scripts
+│   └── apply-release-rulesets.sh
 └── workflows/
     ├── api-repository-creation/ # Repository creation system
     │   └── docs/README.md
