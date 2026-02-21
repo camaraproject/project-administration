@@ -70,21 +70,43 @@ async function fetchAPIRepositories() {
 
     if (data.length === 0) break;
 
-    // Filter for API repositories by topics
-    // Topics: sandbox-api-repository, incubating-api-repository, graduated-api-repository
+    // Filter for API repositories by topics (includes archived)
+    // Topics: sandbox-api-repository, incubating-api-repository, graduated-api-repository, archived-api-repository
     const apiRepos = data.filter(repo =>
-      !repo.archived &&
-      (repo.topics?.includes('sandbox-api-repository') ||
-       repo.topics?.includes('incubating-api-repository') ||
-       repo.topics?.includes('graduated-api-repository'))
+      repo.topics?.includes('sandbox-api-repository') ||
+      repo.topics?.includes('incubating-api-repository') ||
+      repo.topics?.includes('graduated-api-repository') ||
+      repo.topics?.includes('archived-api-repository')
     );
 
     repos.push(...apiRepos);
     page++;
   }
 
-  console.error(`Found ${repos.length} API repositories`);
-  return repos;
+  // Validate consistency between archived-api-repository topic and GitHub archived status
+  const warnings = [];
+  const validRepos = repos.filter(repo => {
+    const hasArchivedTopic = repo.topics?.includes('archived-api-repository');
+    const isGitHubArchived = repo.archived;
+    if (hasArchivedTopic && !isGitHubArchived) {
+      warnings.push(`${repo.name}: has archived-api-repository topic but is NOT archived on GitHub`);
+      return false;
+    }
+    if (!hasArchivedTopic && isGitHubArchived) {
+      warnings.push(`${repo.name}: archived on GitHub but does NOT have archived-api-repository topic`);
+      return false;
+    }
+    return true;
+  });
+
+  if (warnings.length > 0) {
+    console.error(`⚠️  ${warnings.length} archived status mismatch(es):`);
+    warnings.forEach(w => console.error(`  - ${w}`));
+  }
+
+  const archivedCount = validRepos.filter(r => r.topics?.includes('archived-api-repository')).length;
+  console.error(`Found ${validRepos.length} API repositories (${archivedCount} archived${warnings.length > 0 ? `, ${warnings.length} skipped due to mismatch` : ''})`);
+  return { repos: validRepos, warnings };
 }
 
 /**
@@ -194,8 +216,8 @@ async function main() {
   const masterData = loadMasterMetadata();
   console.error(`Loaded ${masterData.releases.length} existing releases`);
 
-  // Fetch all API repositories with the specified topics
-  const repositories = await fetchAPIRepositories();
+  // Fetch all API repositories with the specified topics (includes archived)
+  const { repos: repositories, warnings } = await fetchAPIRepositories();
   const repositoriesToCheck = repositories.map(r => r.name).sort();
 
   console.error(`Will check ${repositoriesToCheck.length} repositories`);
@@ -249,7 +271,8 @@ async function main() {
   // Build repositories list with minimal data for update-master.js
   const repositoriesList = repositories.map(repo => ({
     repository: repo.name,
-    github_url: repo.html_url
+    github_url: repo.html_url,
+    ...(repo.topics?.includes('archived-api-repository') ? { archived: true } : {})
   })).sort((a, b) => a.repository.localeCompare(b.repository));
 
   // Check for new repositories (not in existing master data)
@@ -282,7 +305,8 @@ async function main() {
     repositories: repositoriesList,
     repositories_count: repositoriesList.length,
     new_repositories: newRepositories,
-    new_repositories_count: newRepositories.length
+    new_repositories_count: newRepositories.length,
+    warnings: warnings
   };
 
   console.log(JSON.stringify(output, null, 2));

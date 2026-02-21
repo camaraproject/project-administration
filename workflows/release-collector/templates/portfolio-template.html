@@ -433,6 +433,7 @@
                 meta_release: release.meta_release,
                 github_url: release.github_url,
                 release_type: release.release_type,
+                ...(release.repository_archived ? { repository_archived: true } : {}),
 
                 // Enrichment fields
                 portfolio_category: api.portfolio_category,
@@ -867,11 +868,13 @@
         section.className = 'api-evolution-section';
 
         // Header
+        const isArchived = versions.some(v => v.repository_archived);
+        const archivedBadge = isArchived ? ' <span class="badge badge-archived">Archived</span>' : '';
         const header = document.createElement('div');
         header.className = 'api-evolution-header';
         header.innerHTML = `
           <div>
-            <div class="api-evolution-name">${latestAPI.api_name}</div>
+            <div class="api-evolution-name">${latestAPI.api_name}${archivedBadge}</div>
             <div class="api-evolution-category">${firstAPI.portfolio_category || 'Uncategorized'}</div>
           </div>
           <div>
@@ -944,10 +947,13 @@
         const uniqueAPIs = Object.keys(apisByName).length;
         const githubUrl = repo.apis[0].github_url.replace(/\/releases\/tag\/.*$/, '');
 
+        const isArchived = repo.apis.some(a => a.repository_archived);
+        const archivedBadge = isArchived ? ' <span class="badge badge-archived">Archived</span>' : '';
+
         header.innerHTML = `
           <div>
             <div class="repo-name">
-              <a href="${githubUrl}" target="_blank" rel="noopener">${repoName}</a>
+              <a href="${githubUrl}" target="_blank" rel="noopener">${repoName}</a>${archivedBadge}
             </div>
             <div class="repo-stats">${Array.from(repo.releases).length} releases | ${uniqueAPIs} APIs</div>
           </div>

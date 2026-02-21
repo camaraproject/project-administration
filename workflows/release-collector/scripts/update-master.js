@@ -41,7 +41,7 @@ function loadMaster() {
       metadata: {
         last_updated: null,
         workflow_version: "3.0.0",
-        schema_version: "2.0.0"
+        schema_version: "2.1.0"
       },
       releases: [],
       repositories: []
@@ -174,7 +174,7 @@ function computeRepoReleaseRefs(repoName, releases) {
  * Format corrections have already been applied by analyze-release.js
  * Returns { master, hasContentChanges } to track if actual updates occurred
  */
-function updateMaster(master, analysisResults, mode, mappings) {
+function updateMaster(master, analysisResults, mode, mappings, archivedRepoNames = new Set()) {
   let releasesAdded = 0;
   let releasesUpdated = 0;
   let releasesSuperseded = 0;
@@ -229,6 +229,7 @@ function updateMaster(master, analysisResults, mode, mappings) {
       github_url: result.github_url,
       release_type: releaseType,
       superseded: superseded || undefined,  // only present when true
+      repository_archived: archivedRepoNames.has(result.repository) || undefined,  // only present when true
       apis: result.apis.map(api => ({
         api_name: api.api_name,        // Raw API name from server URL
         file_name: api.file_name,      // Raw filename for reference
@@ -326,7 +327,8 @@ function updateRepositories(master, repositoriesInput) {
   for (const repo of repositoriesInput) {
     repoMap.set(repo.repository, {
       repository: repo.repository,
-      github_url: repo.github_url
+      github_url: repo.github_url,
+      ...(repo.archived ? { repository_archived: true } : {})
     });
   }
 
@@ -345,9 +347,13 @@ function updateRepositories(master, repositoriesInput) {
   const withPublic = master.repositories.filter(r => r.latest_public_release).length;
   const withPreOnly = master.repositories.filter(r => !r.latest_public_release && r.newest_pre_release).length;
   const noReleases = master.repositories.filter(r => !r.latest_public_release && !r.newest_pre_release).length;
+  const archivedCount = master.repositories.filter(r => r.repository_archived).length;
   console.log(`  With public release: ${withPublic}`);
   console.log(`  Pre-release only: ${withPreOnly}`);
   console.log(`  No releases: ${noReleases}`);
+  if (archivedCount > 0) {
+    console.log(`  Archived: ${archivedCount}`);
+  }
 
   return hasRepoChanges;
 }
@@ -399,17 +405,31 @@ async function main() {
       master.releases = [];  // Clear ALL existing releases
     }
 
-    // Update master with new data
-    const { master: updatedMaster, hasReleaseChanges } = updateMaster(master, analysisResults, mode, mappings);
-
-    // Update repositories if repos file provided
-    let hasRepoChanges = false;
+    // Build set of archived repository names from repos data (if available)
+    let archivedRepoNames = new Set();
+    let reposData = null;
     if (reposFile) {
       if (!fs.existsSync(reposFile)) {
         console.error(`Repos file not found: ${reposFile}`);
         process.exit(1);
       }
-      const reposData = JSON.parse(fs.readFileSync(reposFile, 'utf8'));
+      reposData = JSON.parse(fs.readFileSync(reposFile, 'utf8'));
+      archivedRepoNames = new Set(
+        (reposData.repositories || [])
+          .filter(r => r.archived)
+          .map(r => r.repository)
+      );
+      if (archivedRepoNames.size > 0) {
+        console.log(`Archived repositories: ${Array.from(archivedRepoNames).join(', ')}`);
+      }
+    }
+
+    // Update master with new data
+    const { master: updatedMaster, hasReleaseChanges } = updateMaster(master, analysisResults, mode, mappings, archivedRepoNames);
+
+    // Update repositories if repos file provided
+    let hasRepoChanges = false;
+    if (reposData) {
       hasRepoChanges = updateRepositories(updatedMaster, reposData.repositories || []);
     }
 

@@ -92,13 +92,16 @@ jobs:
             const doc = yaml.load(fs.readFileSync('admin/data/releases-master.yaml', 'utf8'));
 
             // Get all repos from repositories array with release info
-            let list = (doc?.repositories || []).map(r => ({
-              slug: `${process.env.ORG}/${r.repository}`,
-              name: r.repository,
-              hasRelease: !!(r.latest_public_release || r.newest_pre_release),
-              releaseTag: r.newest_pre_release || r.latest_public_release || null,
-              hasApiFiles: null  // Will be detected for repos without releases
-            }));
+            // Filter out archived repos (PRs cannot be created on archived repos)
+            let list = (doc?.repositories || [])
+              .filter(r => !r.repository_archived)
+              .map(r => ({
+                slug: `${process.env.ORG}/${r.repository}`,
+                name: r.repository,
+                hasRelease: !!(r.latest_public_release || r.newest_pre_release),
+                releaseTag: r.newest_pre_release || r.latest_public_release || null,
+                hasApiFiles: null  // Will be detected for repos without releases
+              }));
 
             // Apply include filter if specified
             const include = (process.env.INCLUDE||'').split(',').map(s=>s.trim()).filter(Boolean);

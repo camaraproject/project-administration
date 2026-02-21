@@ -1,6 +1,10 @@
 # Master Metadata Schema
 # Schema for releases-master.yaml containing GitHub facts with format corrections only
-# Version: 2.0.0
+# Version: 2.1.0
+#
+# Changes in 2.1.0:
+# - Added optional repository_archived field to releases and repositories (issue #147)
+#   Only present when true. Mirrors the superseded pattern for archived API repositories.
 #
 # Changes in 2.0.0:
 # - Renamed 'version' to 'api_version' in APIs array (per issue #69 property alignment)
@@ -99,6 +103,13 @@ properties:
             - public-release: First non-prerelease in a release cycle (rX)
             - maintenance-release: Subsequent non-prereleases in the same cycle
 
+        repository_archived:
+          type: boolean
+          description: |
+            True when the source repository has been archived on GitHub.
+            Only present when true (same pattern as 'superseded').
+            Archived releases are included in all reports without filtering.
+
         apis:
           type: array
           description: API specifications in this release
@@ -177,3 +188,10 @@ properties:
             - Newer than latest_public_release (same cycle rX.Y+1 or next cycle rX+1.Y), OR
             - latest_public_release is null (repo has only pre-releases)
             Null if no relevant pre-release exists.
+
+        repository_archived:
+          type: boolean
+          description: |
+            True when the repository has been archived on GitHub.
+            Only present when true. Archived repos appear in the list
+            but cannot accept PRs (campaigns must skip them).

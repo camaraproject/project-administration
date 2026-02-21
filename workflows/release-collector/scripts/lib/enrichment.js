@@ -327,7 +327,8 @@ function createFlattenedAPIView(releases) {
         release_date: release.release_date,
         meta_release: release.meta_release,
         github_url: release.github_url,
-        release_type: release.release_type
+        release_type: release.release_type,
+        ...(release.repository_archived ? { repository_archived: true } : {})
       });
     }
   }
@@ -355,7 +356,8 @@ function createRepositorySummary(releases) {
       summary[release.repository] = {
         releases: [],
         total_apis: 0,
-        unique_apis: new Set()
+        unique_apis: new Set(),
+        ...(release.repository_archived ? { repository_archived: true } : {})
       };
     }
 
