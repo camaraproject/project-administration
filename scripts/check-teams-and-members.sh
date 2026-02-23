@@ -32,6 +32,10 @@ VERBOSE=false
 # These are excluded from the "unused" analysis since their access is managed at org level.
 ADMIN_TEAMS="release-management_reviewers"
 
+# Members with special roles that are expected to have no team assignments.
+# These are excluded from the "orphaned members" analysis.
+EXCLUDED_MEMBERS="askb camarapmo-bot thelinuxfoundation"
+
 usage() {
   echo "Usage: $0 [--org <org>] [--verbose]"
   echo ""
@@ -289,6 +293,15 @@ ACTIVE_MEMBERS=$(wc -l < "${TMPDIR_WORK}/active_members.txt" | tr -d ' ')
 
 # Orphaned members = org members not in any directly-active team
 comm -23 "${TMPDIR_WORK}/org_members.txt" "${TMPDIR_WORK}/active_members.txt" \
+  > "${TMPDIR_WORK}/orphaned_members_raw.txt"
+
+# Remove excluded members (special roles)
+for excluded in $EXCLUDED_MEMBERS; do
+  excluded_lower=$(echo "$excluded" | tr '[:upper:]' '[:lower:]')
+  echo "$excluded_lower"
+done | sort -u > "${TMPDIR_WORK}/excluded_members.txt"
+
+comm -23 "${TMPDIR_WORK}/orphaned_members_raw.txt" "${TMPDIR_WORK}/excluded_members.txt" \
   > "${TMPDIR_WORK}/orphaned_members.txt"
 
 ORPHANED_MEMBERS=$(wc -l < "${TMPDIR_WORK}/orphaned_members.txt" | tr -d ' ')
