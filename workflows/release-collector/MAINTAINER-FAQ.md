@@ -101,15 +101,41 @@ Release types:
 
 Formal releases start at r1.1. Two existing r0.X releases are excluded from the collection - they were pre-releases accidentially created with these non-valid release tags.
 
+## Archived Repositories
+
+### 15. How are archived repositories handled?
+
+Archived CAMARA API repositories (with the `archived-api-repository` topic) are included in the collection pipeline. Their releases remain in all reports with a `repository_archived: true` field in `releases-master.yaml`.
+
+- Historical releases remain in meta-release reports (e.g., HomeDevicesQoD in Fall24)
+- Viewers display archived repositories and APIs with an "Archived" badge
+- Campaign workflows automatically skip archived repositories (PRs cannot be created on archived repos)
+- Archived repositories appear in the `repositories[]` section of `releases-master.yaml`
+
+After archiving a repository, run the workflow in **full** mode to ensure the `repository_archived` flag is applied to all existing release entries.
+
+### 16. Workflow shows a warning about archived repository mismatch
+
+The collector validates that the `archived-api-repository` topic and the GitHub `repo.archived` status are consistent. Two mismatch cases trigger warnings:
+
+1. **Topic set but not archived on GitHub**: The repository has `archived-api-repository` topic but is not archived on GitHub. The repository may be in the process of being archived.
+2. **Archived on GitHub but topic missing**: The repository is archived on GitHub but the maturity topic hasn't been updated to `archived-api-repository`. The governance process may not be complete.
+
+In both cases, the mismatched repository is **skipped** from the current collection run. Warnings appear in:
+- The PR body (### Warnings section)
+- The workflow step summary
+
+**To resolve**: Synchronize the two states — either archive the repository on GitHub or update the topic via the governance process. The next collection run will process the repository normally once both states are consistent.
+
 ## Production Deployment
 
-### 15. What happens during production deploy?
+### 17. What happens during production deploy?
 
 The **Release Collector - Production Deploy** workflow does two things:
 1. Deploys HTML viewers to camaraproject.github.io
 2. Uploads release-metadata files (YAML/JSON) to each GitHub release as assets
 
-### 16. Upload shows FAILED - what went wrong?
+### 18. Upload shows FAILED - what went wrong?
 
 Common causes:
 - **403 Forbidden**: Token lacks write permission for repository. The `PRODUCTION_DEPLOY_TOKEN` needs **Contents: Read and Write** permission.
@@ -118,21 +144,21 @@ Common causes:
 
 Check the workflow logs and upload report artifact for the specific error message.
 
-### 17. Can I re-upload release metadata?
+### 19. Can I re-upload release metadata?
 
 Yes. The upload uses `--clobber` mode, so running production deploy again will replace existing metadata files. The workflow shows **UPDATE** status for releases where files exist but content differs.
 
 ## Advanced
 
-### 18. What files does the workflow commit?
+### 20. What files does the workflow commit?
 
 Only `data/releases-master.yaml`, `data/release-artifacts/`, and `reports/*.json`. Viewers are NOT committed (available in artifacts and staging deployment).
 
-### 19. How do I check what changed in a specific meta-release?
+### 21. How do I check what changed in a specific meta-release?
 
 For new APIs within a meta-release you can use the meta-release viewer and order the "New" column with "True" values on top. To see the evolution of APIs across meta-releases use the Portfolio viewer.
 
-### 20. The workflow is taking too long
+### 22. The workflow is taking too long
 
 See FAQ #2 for normal times. If significantly longer, check for API rate limits in logs or network issues.
 

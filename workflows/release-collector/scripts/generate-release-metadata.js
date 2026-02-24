@@ -51,7 +51,8 @@ function toReleaseMetadata(release) {
       release_tag: release.release_tag,
       release_type: release.release_type,  // Use directly from master file
       release_date: formatReleaseDate(release.release_date),
-      src_commit_sha: null  // Not available for backfill
+      src_commit_sha: null,  // Not available for backfill
+      ...(release.repository_archived ? { repository_archived: true } : {})
     },
     apis: apis
   };

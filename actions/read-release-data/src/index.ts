@@ -43,6 +43,7 @@ interface Release {
   meta_release: string;
   github_url: string;
   release_type?: string;
+  repository_archived?: boolean;
   apis: API[];
 }
 
@@ -51,6 +52,7 @@ interface Repository {
   github_url: string;
   latest_public_release: string | null;
   newest_pre_release: string | null;
+  repository_archived?: boolean;
 }
 
 interface ReleasesData {

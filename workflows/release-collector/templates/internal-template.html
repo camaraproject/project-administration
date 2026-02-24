@@ -459,6 +459,14 @@
       background: var(--warning-color);
     }
 
+    .status-archived {
+      background: #9e9e9e;
+    }
+
+    .archived-row {
+      background-color: rgba(158, 158, 158, 0.1);
+    }
+
     /* Category pills */
     .category-pills {
       display: flex;
@@ -751,6 +759,7 @@
                 meta_release: release.meta_release,
                 github_url: release.github_url,
                 release_type: release.release_type,
+                ...(release.repository_archived ? { repository_archived: true } : {}),
                 portfolio_category: api.portfolio_category,
                 website_url: api.website_url,
                 tooltip: api.tooltip,
@@ -1069,8 +1078,13 @@
           row.classList.add('sandbox-row');
         }
 
+        if (api.repository_archived) {
+          row.classList.add('archived-row');
+        }
+
         // Status indicator based on release type
-        const statusClass = releaseType === 'pre-release-alpha' ? 'status-prerelease-alpha' :
+        const statusClass = api.repository_archived ? 'status-archived' :
+          releaseType === 'pre-release-alpha' ? 'status-prerelease-alpha' :
           releaseType === 'pre-release-rc' ? 'status-prerelease-rc' :
           releaseType === 'maintenance-release' ? 'status-maintenance' :
           api.meta_release === 'None (Sandbox)' ? 'status-sandbox' :
@@ -1082,12 +1096,13 @@
           releaseType === 'maintenance-release' ? 'Maint' : 'Public';
 
         const apiStatus = ViewerLib.getApiStatus(api.api_version);
+        const archivedBadge = api.repository_archived ? ' <span class="badge badge-archived">Archived</span>' : '';
         row.innerHTML = `
           <td><span class="status-indicator ${statusClass}"></span>${api.api_name}</td>
           <td>${api.api_version}</td>
           <td>${ViewerLib.renderApiStatusBadge(apiStatus)}</td>
           <td>${api.portfolio_category || '<em>Missing</em>'}</td>
-          <td><a href="${api.github_url.replace(/\/releases\/tag\/.*$/, '')}" target="_blank">${api.repository}</a></td>
+          <td><a href="${api.github_url.replace(/\/releases\/tag\/.*$/, '')}" target="_blank">${api.repository}</a>${archivedBadge}</td>
           <td><a href="${api.github_url}" target="_blank">${api.release_tag}</a></td>
           <td>${releaseTypeLabel}</td>
           <td>${api.meta_release === 'None (Sandbox)' ? 'Sandbox' : api.meta_release}</td>
@@ -1143,12 +1158,14 @@
         const githubUrl = repo.apis[0].github_url.replace(/\/releases\/tag\/.*$/, '');
 
         // Repository header row
+        const isArchived = repo.apis.some(a => a.repository_archived);
+        const repoArchivedBadge = isArchived ? ' <span class="badge badge-archived">Archived</span>' : '';
         tableHtml += `
           <tr class="repo-header">
             <td colspan="7">
               <a href="${githubUrl}" target="_blank" style="text-decoration: none; color: inherit;">
                 ${repoName}
-              </a>
+              </a>${repoArchivedBadge}
               <span style="margin-left: 12px; font-weight: 400; font-size: 13px; color: var(--text-secondary);">
                 ${repo.releases.length} releases • ${repo.apis.length} API versions
               </span>

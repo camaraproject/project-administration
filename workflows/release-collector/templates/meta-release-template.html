@@ -148,6 +148,7 @@
                 release_date: release.release_date,
                 github_url: release.github_url,
                 release_type: release.release_type,
+                ...(release.repository_archived ? { repository_archived: true } : {}),
 
                 // Enrichment fields
                 portfolio_category: api.portfolio_category,
@@ -372,7 +373,8 @@
 
         // Repository cell with link
         const repoUrl = api.github_url.replace(/\/releases\/tag\/.*$/, '');
-        const repoCell = `<a href="${repoUrl}" target="_blank" rel="noopener">${api.repository}</a>`;
+        const archivedBadge = api.repository_archived ? ' <span class="badge badge-archived">Archived</span>' : '';
+        const repoCell = `<a href="${repoUrl}" target="_blank" rel="noopener">${api.repository}</a>${archivedBadge}`;
 
         // New cell
         const newCell = api.isNew ? 'Yes' : 'No';

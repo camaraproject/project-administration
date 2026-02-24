@@ -105,6 +105,7 @@ jobs:
       new_releases: ${{ steps.detect.outputs.new_releases }}
       all_repos: ${{ steps.detect.outputs.all_repos }}
       release_groups: ${{ steps.detect.outputs.release_groups }}
+      warnings: ${{ steps.detect.outputs.warnings }}
 
     steps:
       - name: Checkout repository
@@ -178,6 +179,19 @@ jobs:
           " > temp/release-groups.json
 
           echo "release_groups=$(cat temp/release-groups.json)" >> $GITHUB_OUTPUT
+
+          # Extract warnings (archived repository mismatch etc.)
+          WARNINGS=$(jq -c '.warnings // []' temp/detection-output.json)
+          WARNINGS_COUNT=$(jq '.warnings | length' temp/detection-output.json)
+          echo "warnings=${WARNINGS}" >> $GITHUB_OUTPUT
+
+          if [ "$WARNINGS_COUNT" -gt 0 ]; then
+            echo "⚠️ ${WARNINGS_COUNT} warning(s) detected"
+            jq -r '.warnings[]' temp/detection-output.json | while read -r w; do
+              echo "  - $w"
+            done
+          fi
+
           echo "Found ${RELEASES_COUNT} releases to analyze across ${REPOS_COUNT} repositories"
 
       - name: Upload repositories data
@@ -445,7 +459,7 @@ jobs:
   # =========================================================================================
   publish-changes:
     name: Publish Changes
-    needs: [generate-viewers, generate-release-metadata]
+    needs: [detect-releases, generate-viewers, generate-release-metadata]
     if: |
       always() &&
       (github.event.inputs.execution_mode || 'pr') != 'dry-run' &&
@@ -541,6 +555,22 @@ jobs:
         id: timestamp
         run: echo "current=$(date -u +"%Y-%m-%dT%H:%M:%SZ")" >> $GITHUB_OUTPUT
 
+      - name: Prepare warnings text
+        id: warnings
+        run: |
+          WARNINGS='${{ needs.detect-releases.outputs.warnings }}'
+          if [ "$WARNINGS" = "[]" ] || [ -z "$WARNINGS" ]; then
+            echo "text=No warnings." >> $GITHUB_OUTPUT
+          else
+            {
+              echo "text<<EOF"
+              echo "⚠️ **Archived repository mismatch warnings:**"
+              echo ""
+              echo "$WARNINGS" | jq -r '.[] | "- " + .'
+              echo "EOF"
+            } >> $GITHUB_OUTPUT
+          fi
+
       - name: Create pull request
         id: create-pr
         if: env.EXECUTION_MODE == 'pr' && steps.diff.outputs.has_changes == 'true'
@@ -571,6 +601,10 @@ jobs:
             ```
             ${{ steps.diff.outputs.change_summary }}
             ```
+
+            ### Warnings
+
+            ${{ steps.warnings.outputs.text }}
 
             ### Review Checklist
 
@@ -682,6 +716,15 @@ jobs:
           echo "- **Updates Found**: ${{ needs.detect-releases.outputs.has_updates }}" >> $GITHUB_STEP_SUMMARY
           echo "- **Workflow Status**: ${{ job.status }}" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
+
+          # Show warnings if any
+          WARNINGS='${{ needs.detect-releases.outputs.warnings }}'
+          if [ "$WARNINGS" != "[]" ] && [ -n "$WARNINGS" ]; then
+            echo "### ⚠️ Warnings" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "$WARNINGS" | jq -r '.[] | "- " + .' >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+          fi
 
           # Determine state
           HAS_UPDATES="${{ needs.detect-releases.outputs.has_updates }}"

@@ -28,6 +28,14 @@ Explains the core architectural pattern: separating GitHub facts (master metadat
 
 **Key decision**: Keep master metadata pure (only GitHub facts), apply portfolio metadata at runtime.
 
+### [ADR-0003: Archived Repository Handling](0003-archived-repository-handling.md)
+**Date**: 2026-02-21
+**Status**: Accepted
+
+Explains how archived CAMARA API repositories are handled in the Release Collector pipeline, preserving historical release data while marking archived entries.
+
+**Key decision**: Include archived repos via `archived-api-repository` topic with `repository_archived: true` field. No filtering in reports; campaigns skip archived repos.
+
 ## Related Documentation
 
 - [User Guide](../README.md) - Operational guide for running the workflow

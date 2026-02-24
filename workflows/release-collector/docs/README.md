@@ -331,6 +331,17 @@ The collector tracks all release types, not just public releases:
 - Pre-releases appear in viewers with release type badges
 - Internal viewer allows filtering by release type
 
+#### Archived Repositories
+
+CAMARA API repositories that have been archived (topic `archived-api-repository` and GitHub archived status) are included in the collection pipeline:
+
+- **Detection**: The `detect-releases.js` script matches `archived-api-repository` alongside the other maturity topics (sandbox, incubating, graduated). The GitHub API returns releases for archived repos (read-only access is preserved).
+- **Data**: Archived releases and repositories carry `repository_archived: true` in `releases-master.yaml`. This field is optional and only present when `true` (same pattern as `superseded`).
+- **Reports**: Archived releases appear in all reports without filtering. Historical meta-release data remains complete (e.g., HomeDevicesQoD in Fall24).
+- **Viewers**: Archived repositories and APIs display a gray "Archived" badge.
+- **Campaigns**: Campaign workflows skip archived repositories automatically (PRs cannot be created on archived GitHub repos).
+- **Mismatch validation**: The collector cross-validates the `archived-api-repository` topic against the GitHub `repo.archived` status. Mismatched repositories are skipped with a warning in the PR body and workflow step summary. See [FAQ #16](../MAINTAINER-FAQ.md#16-workflow-shows-a-warning-about-archived-repository-mismatch) for details.
+
 #### Release Metadata Files
 For each release, the collector generates a `release-metadata.yaml` file that is uploaded to the GitHub release:
 
@@ -481,6 +492,7 @@ These corrections are hardcoded and applied to all releases automatically. No co
 **For Developers**: See [architecture/](architecture/) for detailed architectural decision records (ADRs) including:
 - [ADR-0001: Feature-Grouped Organization](architecture/0001-feature-grouped-organization.md)
 - [ADR-0002: Runtime Enrichment Architecture](architecture/0002-runtime-enrichment-architecture.md)
+- [ADR-0003: Archived Repository Handling](architecture/0003-archived-repository-handling.md)
 
 ## Maintenance
 
@@ -504,6 +516,13 @@ This is version 3 of the meta-release collector workflow:
 - **v3**: Current implementation with runtime enrichment
 
 v3 will be the primary workflow until Spring 2026 when native `release-metadata.yaml` files become standard in CAMARA repositories.
+
+### Schema Version 2.1.0
+
+Schema 2.1.0 adds support for archived repositories (per [#147](https://github.com/camaraproject/project-administration/issues/147)):
+
+**New field in releases-master.yaml:**
+- `repository_archived`: Optional boolean (only present when `true`) on both `releases[]` and `repositories[]` entries
 
 ### Schema Version 2.0.0
 

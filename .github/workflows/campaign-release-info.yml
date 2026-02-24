@@ -98,7 +98,8 @@ jobs:
             const doc = yaml.load(fs.readFileSync('admin/data/releases-master.yaml', 'utf8'));
 
             // Use repositories section for category-aware filtering
-            const repos = doc?.repositories || [];
+            // Filter out archived repos (PRs cannot be created on archived repos)
+            const repos = (doc?.repositories || []).filter(r => !r.repository_archived);
 
             // Determine release state for each repo
             const categorized = repos.map(r => {
