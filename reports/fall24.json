@@ -1,29 +1,29 @@
 {
   "metadata": {
-    "generated": "2026-02-20T10:34:19.318Z",
+    "generated": "2026-02-24T17:21:50.115Z",
     "meta_release": "Fall24",
     "source": "Release Collector v3",
     "landscape_version": "1.1.0"
   },
   "statistics": {
-    "repositories_count": 12,
-    "api_versions_count": 40,
-    "unique_api_names_count": 24,
-    "unique_apis_count": 24,
+    "repositories_count": 13,
+    "api_versions_count": 41,
+    "unique_api_names_count": 25,
+    "unique_apis_count": 25,
     "api_version_maturity": {
       "stable": 8,
-      "initial": 32,
+      "initial": 33,
       "rc": 0
     },
     "unique_api_maturity": {
       "stable": 5,
-      "initial": 19,
+      "initial": 20,
       "rc": 0
     },
     "categories": {
       "Authentication and Fraud Prevention": 14,
       "Payments and Charging": 4,
-      "Communication Quality": 9,
+      "Communication Quality": 10,
       "Location Services": 4,
       "Device Information": 8,
       "Computing Services": 1
@@ -98,6 +98,18 @@
       ],
       "total_apis": 8,
       "unique_apis_count": 4
+    },
+    "HomeDevicesQoD": {
+      "releases": [
+        {
+          "tag": "r1.2",
+          "date": "2024-09-06T08:39:24Z",
+          "apis_count": 1
+        }
+      ],
+      "total_apis": 1,
+      "repository_archived": true,
+      "unique_apis_count": 1
     },
     "KnowYourCustomer": {
       "releases": [
@@ -572,6 +584,33 @@
           "display_name": "Device Roaming Status",
           "published": true,
           "canonical_name": "device-roaming-status",
+          "first_release": "PreFall24",
+          "isNew": false
+        }
+      ]
+    },
+    {
+      "repository": "HomeDevicesQoD",
+      "release_tag": "r1.2",
+      "release_date": "2024-09-06T08:39:24Z",
+      "meta_release": "Fall24",
+      "github_url": "https://github.com/camaraproject/HomeDevicesQoD/releases/tag/r1.2",
+      "release_type": "public-release",
+      "repository_archived": true,
+      "apis": [
+        {
+          "api_name": "home-devices-qod",
+          "file_name": "home-devices-qod",
+          "api_version": "0.4.0",
+          "api_title": "Home Devices QoD",
+          "commonalities": "0.4",
+          "maturity": "initial",
+          "portfolio_category": "Communication Quality",
+          "website_url": "https://camaraproject.org/home-devices-qod/",
+          "tooltip": "Request prioritization of traffic on a specific device on the home network",
+          "display_name": "Home Devices QoD",
+          "published": true,
+          "canonical_name": "home-devices-qod",
           "first_release": "PreFall24",
           "isNew": false
         }
@@ -1458,6 +1497,29 @@
       "meta_release": "Fall24",
       "github_url": "https://github.com/camaraproject/DeviceStatus/releases/tag/r1.3",
       "release_type": "maintenance-release"
+    },
+    {
+      "api_name": "home-devices-qod",
+      "file_name": "home-devices-qod",
+      "api_version": "0.4.0",
+      "api_title": "Home Devices QoD",
+      "commonalities": "0.4",
+      "maturity": "initial",
+      "portfolio_category": "Communication Quality",
+      "website_url": "https://camaraproject.org/home-devices-qod/",
+      "tooltip": "Request prioritization of traffic on a specific device on the home network",
+      "display_name": "Home Devices QoD",
+      "published": true,
+      "canonical_name": "home-devices-qod",
+      "first_release": "PreFall24",
+      "isNew": false,
+      "repository": "HomeDevicesQoD",
+      "release_tag": "r1.2",
+      "release_date": "2024-09-06T08:39:24Z",
+      "meta_release": "Fall24",
+      "github_url": "https://github.com/camaraproject/HomeDevicesQoD/releases/tag/r1.2",
+      "release_type": "public-release",
+      "repository_archived": true
     },
     {
       "api_name": "kyc-fill-in",

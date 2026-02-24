@@ -1,28 +1,28 @@
 {
   "metadata": {
-    "generated": "2026-02-20T10:34:19.305Z",
+    "generated": "2026-02-24T17:21:50.102Z",
     "meta_release": "All",
     "source": "Release Collector v3",
     "landscape_version": "1.1.0"
   },
   "statistics": {
-    "repositories_count": 44,
-    "api_versions_count": 146,
-    "unique_api_names_count": 63,
-    "unique_apis_count": 62,
+    "repositories_count": 45,
+    "api_versions_count": 147,
+    "unique_api_names_count": 64,
+    "unique_apis_count": 63,
     "api_version_maturity": {
       "stable": 27,
-      "initial": 118,
+      "initial": 119,
       "rc": 1
     },
     "unique_api_maturity": {
       "stable": 10,
-      "initial": 51,
+      "initial": 52,
       "rc": 1
     },
     "categories": {
       "Computing Services": 9,
-      "Communication Quality": 33,
+      "Communication Quality": 34,
       "Payments and Charging": 11,
       "Authentication and Fraud Prevention": 46,
       "Service Management": 2,
@@ -346,6 +346,18 @@
         }
       ],
       "total_apis": 1,
+      "unique_apis_count": 1
+    },
+    "HomeDevicesQoD": {
+      "releases": [
+        {
+          "tag": "r1.2",
+          "date": "2024-09-06T08:39:24Z",
+          "apis_count": 1
+        }
+      ],
+      "total_apis": 1,
+      "repository_archived": true,
       "unique_apis_count": 1
     },
     "IoTNetworkOptimization": {
@@ -2254,6 +2266,33 @@
           "canonical_name": "energy-footprint-notification",
           "first_release": "Fall25",
           "isNew": true
+        }
+      ]
+    },
+    {
+      "repository": "HomeDevicesQoD",
+      "release_tag": "r1.2",
+      "release_date": "2024-09-06T08:39:24Z",
+      "meta_release": "Fall24",
+      "github_url": "https://github.com/camaraproject/HomeDevicesQoD/releases/tag/r1.2",
+      "release_type": "public-release",
+      "repository_archived": true,
+      "apis": [
+        {
+          "api_name": "home-devices-qod",
+          "file_name": "home-devices-qod",
+          "api_version": "0.4.0",
+          "api_title": "Home Devices QoD",
+          "commonalities": "0.4",
+          "maturity": "initial",
+          "portfolio_category": "Communication Quality",
+          "website_url": "https://camaraproject.org/home-devices-qod/",
+          "tooltip": "Request prioritization of traffic on a specific device on the home network",
+          "display_name": "Home Devices QoD",
+          "published": true,
+          "canonical_name": "home-devices-qod",
+          "first_release": "PreFall24",
+          "isNew": false
         }
       ]
     },
@@ -5526,6 +5565,29 @@
       "meta_release": "Fall25",
       "github_url": "https://github.com/camaraproject/EnergyFootprintNotification/releases/tag/r1.3",
       "release_type": "public-release"
+    },
+    {
+      "api_name": "home-devices-qod",
+      "file_name": "home-devices-qod",
+      "api_version": "0.4.0",
+      "api_title": "Home Devices QoD",
+      "commonalities": "0.4",
+      "maturity": "initial",
+      "portfolio_category": "Communication Quality",
+      "website_url": "https://camaraproject.org/home-devices-qod/",
+      "tooltip": "Request prioritization of traffic on a specific device on the home network",
+      "display_name": "Home Devices QoD",
+      "published": true,
+      "canonical_name": "home-devices-qod",
+      "first_release": "PreFall24",
+      "isNew": false,
+      "repository": "HomeDevicesQoD",
+      "release_tag": "r1.2",
+      "release_date": "2024-09-06T08:39:24Z",
+      "meta_release": "Fall24",
+      "github_url": "https://github.com/camaraproject/HomeDevicesQoD/releases/tag/r1.2",
+      "release_type": "public-release",
+      "repository_archived": true
     },
     {
       "api_name": "iot-network-optimization",

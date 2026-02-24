@@ -4,6 +4,7 @@ repository:
   release_type: public-release
   release_date: "2024-09-06T08:39:24Z"
   src_commit_sha: null
+  repository_archived: true
 apis:
   - api_name: home-devices-qod
     api_version: 0.4.0
