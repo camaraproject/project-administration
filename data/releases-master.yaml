@@ -1,5 +1,5 @@
 metadata:
-  last_updated: '2026-02-20T10:34:19.188Z'
+  last_updated: '2026-02-24T17:21:49.981Z'
   workflow_version: 3.0.0
   schema_version: 2.0.0
 releases:
@@ -1268,6 +1268,33 @@ releases:
         api_version: 0.1.0
         api_title: Energy Footprint Notification
         commonalities: '0.6'
+  - repository: HomeDevicesQoD
+    release_tag: r1.1
+    release_date: '2024-08-05T11:47:40Z'
+    meta_release: Fall24
+    github_url: https://github.com/camaraproject/HomeDevicesQoD/releases/tag/r1.1
+    release_type: pre-release-rc
+    superseded: true
+    repository_archived: true
+    apis:
+      - api_name: home-devices-qod
+        file_name: home_devices_qod
+        api_version: 0.4.0-rc.1
+        api_title: Home Devices QoD
+        commonalities: '0.4'
+  - repository: HomeDevicesQoD
+    release_tag: r1.2
+    release_date: '2024-09-06T08:39:24Z'
+    meta_release: Fall24
+    github_url: https://github.com/camaraproject/HomeDevicesQoD/releases/tag/r1.2
+    release_type: public-release
+    repository_archived: true
+    apis:
+      - api_name: home-devices-qod
+        file_name: home-devices-qod
+        api_version: 0.4.0
+        api_title: Home Devices QoD
+        commonalities: '0.4'
   - repository: IoTNetworkOptimization
     release_tag: r1.1
     release_date: '2025-12-11T13:11:28Z'
@@ -2796,6 +2823,11 @@ repositories:
     github_url: https://github.com/camaraproject/HighThroughputElasticNetworks
     latest_public_release: null
     newest_pre_release: null
+  - repository: HomeDevicesQoD
+    github_url: https://github.com/camaraproject/HomeDevicesQoD
+    repository_archived: true
+    latest_public_release: r1.2
+    newest_pre_release: null
   - repository: InHomeDeviceManagement
     github_url: https://github.com/camaraproject/InHomeDeviceManagement
     latest_public_release: null
@@ -2900,6 +2932,11 @@ repositories:
     github_url: https://github.com/camaraproject/SessionInsights
     latest_public_release: null
     newest_pre_release: null
+  - repository: ShortMessageService
+    github_url: https://github.com/camaraproject/ShortMessageService
+    repository_archived: true
+    latest_public_release: null
+    newest_pre_release: null
   - repository: SimpleEdgeDiscovery
     github_url: https://github.com/camaraproject/SimpleEdgeDiscovery
     latest_public_release: r2.2
@@ -2907,6 +2944,11 @@ repositories:
   - repository: SimSwap
     github_url: https://github.com/camaraproject/SimSwap
     latest_public_release: r3.3
+    newest_pre_release: null
+  - repository: SiteToCloudVPN
+    github_url: https://github.com/camaraproject/SiteToCloudVPN
+    repository_archived: true
+    latest_public_release: null
     newest_pre_release: null
   - repository: SponsoredData
     github_url: https://github.com/camaraproject/SponsoredData
