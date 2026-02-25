@@ -1,0 +1,272 @@
+$schema: "http://json-schema.org/draft-07/schema#"
+title: CAMARA Release Progress Schema
+description: |
+  Schema for releases-progress.yaml produced by the release progress collector.
+  Contains per-repository release state, artifact links, milestone achievement,
+  and validation warnings.
+type: object
+required:
+  - metadata
+  - progress
+
+properties:
+  metadata:
+    type: object
+    description: Collection metadata and statistics
+    required:
+      - last_updated
+      - schema_version
+      - collector_version
+      - collection_stats
+    properties:
+      last_updated:
+        type: string
+        format: date-time
+        description: When the data was last collected
+      schema_version:
+        type: string
+        pattern: "^\\d+\\.\\d+\\.\\d+$"
+      collector_version:
+        type: string
+        pattern: "^\\d+\\.\\d+\\.\\d+$"
+      collection_stats:
+        type: object
+        required:
+          - repos_scanned
+          - repos_with_plan
+          - repos_planned
+        properties:
+          repos_scanned:
+            type: integer
+            description: Total repositories checked
+          repos_with_plan:
+            type: integer
+            description: Repositories with release-plan.yaml
+          repos_planned:
+            type: integer
+            description: Repositories with active release plans (type != none)
+          api_calls:
+            type: integer
+            description: Total GitHub API calls made
+          duration_seconds:
+            type: number
+            description: Collection duration in seconds
+
+  meta_releases:
+    type: array
+    description: Aggregate progress summaries per meta-release cycle
+    items:
+      type: object
+      required:
+        - name
+        - total_apis
+        - m1_achieved
+        - m3_achieved
+        - m4_achieved
+      properties:
+        name:
+          type: string
+          description: Meta-release label (e.g., Sync26)
+        total_apis:
+          type: integer
+        m1_achieved:
+          type: integer
+          description: APIs with first alpha published in this cycle
+        m3_achieved:
+          type: integer
+          description: APIs with first rc published in this cycle
+        m4_achieved:
+          type: integer
+          description: APIs with first public release published in this cycle
+
+  progress:
+    type: array
+    description: Per-repository progress entries
+    items:
+      type: object
+      required:
+        - repository
+        - github_url
+        - state
+      properties:
+        repository:
+          type: string
+          pattern: "^[A-Za-z][A-Za-z0-9-]*$"
+          description: GitHub repository name
+
+        github_url:
+          type: string
+          format: uri
+
+        release_track:
+          type: string
+          enum:
+            - independent
+            - meta-release
+
+        meta_release:
+          type: string
+          description: Meta-release label (e.g., Sync26)
+
+        target_release_tag:
+          type: ["string", "null"]
+          pattern: "^r[1-9]\\d*\\.[1-9]\\d*$"
+
+        target_release_type:
+          type: ["string", "null"]
+          enum:
+            - none
+            - pre-release-alpha
+            - pre-release-rc
+            - public-release
+            - maintenance-release
+
+        dependencies:
+          type: object
+          properties:
+            commonalities_release:
+              type: string
+              pattern: "^r[1-9]\\d*\\.[1-9]\\d*$"
+            identity_consent_management_release:
+              type: string
+              pattern: "^r[1-9]\\d*\\.[1-9]\\d*$"
+
+        apis:
+          type: array
+          items:
+            type: object
+            required:
+              - api_name
+              - target_api_version
+              - target_api_status
+            properties:
+              api_name:
+                type: string
+                pattern: "^[a-z][a-z0-9-]*$"
+              target_api_version:
+                type: string
+                pattern: "^\\d+\\.\\d+\\.\\d+$"
+              target_api_status:
+                type: string
+                enum:
+                  - draft
+                  - alpha
+                  - rc
+                  - public
+              main_contacts:
+                type: array
+                items:
+                  type: string
+
+        state:
+          type: string
+          enum:
+            - not_planned
+            - planned
+            - snapshot_active
+            - draft_ready
+            - published
+          description: |
+            Derived from repository artifacts:
+            - not_planned: target_release_type is none
+            - planned: Has plan, no release artifacts
+            - snapshot_active: Snapshot branch exists
+            - draft_ready: Snapshot branch + draft release exist
+            - published: Release tag exists
+
+        artifacts:
+          type: object
+          properties:
+            snapshot_branch:
+              type: ["string", "null"]
+            release_pr:
+              type: ["object", "null"]
+              properties:
+                number:
+                  type: integer
+                state:
+                  type: string
+                url:
+                  type: string
+                  format: uri
+            draft_release:
+              type: ["object", "null"]
+              properties:
+                name:
+                  type: string
+                url:
+                  type: string
+                  format: uri
+            release_issue:
+              type: ["object", "null"]
+              properties:
+                number:
+                  type: integer
+                url:
+                  type: string
+                  format: uri
+
+        published_context:
+          type: object
+          properties:
+            latest_public_release:
+              type: ["string", "null"]
+              pattern: "^r\\d+\\.\\d+$"
+            newest_pre_release:
+              type: ["string", "null"]
+              pattern: "^r\\d+\\.\\d+$"
+
+        cycle_releases:
+          type: object
+          description: M1/M3/M4 milestone releases in the current meta-release cycle
+          properties:
+            m1:
+              $ref: "#/$defs/milestone_release"
+            m3:
+              $ref: "#/$defs/milestone_release"
+            m4:
+              $ref: "#/$defs/milestone_release"
+
+        warnings:
+          type: array
+          description: Validation warnings for this entry
+          items:
+            type: object
+            required:
+              - code
+              - message
+              - severity
+            properties:
+              code:
+                type: string
+                pattern: "^W\\d{3}$"
+                description: Warning code (e.g., W001)
+              message:
+                type: string
+                description: Human-readable warning message
+              severity:
+                type: string
+                enum:
+                  - warning
+                  - info
+
+$defs:
+  milestone_release:
+    type: object
+    properties:
+      release_tag:
+        type: ["string", "null"]
+      release_date:
+        type: ["string", "null"]
+        format: date-time
+      apis:
+        type: array
+        items:
+          type: object
+          required:
+            - api_name
+          properties:
+            api_name:
+              type: string
+            api_version:
+              type: ["string", "null"]
