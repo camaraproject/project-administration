@@ -27,6 +27,12 @@ plan.md
 # Workflow v3 generated viewers (generated from templates)
 viewers/
 
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+
 # IDE
 .vscode/
 .idea/

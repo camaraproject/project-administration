@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CAMARA Release Progress</title>
+  <style>
+{{VIEWER_STYLES}}
+
+/* ===== Progress-Specific Styles ===== */
+
+/* State badges */
+.state-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+  color: #ffffff;
+  letter-spacing: 0.3px;
+}
+
+.state-not_planned { background: #C2C9D1; color: #24292f; }
+.state-planned { background: #0969da; }
+.state-snapshot_active { background: #FBCA04; color: #24292f; }
+.state-draft_ready { background: #1D76DB; }
+.state-published { background: #0E8A16; }
+
+/* State artifact link below badge */
+.state-artifact {
+  display: block;
+  font-size: 11px;
+  margin-top: 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 140px;
+}
+
+.state-artifact a {
+  color: var(--accent-primary);
+  text-decoration: none;
+  font-weight: 400;
+}
+
+.state-artifact a:hover {
+  text-decoration: underline;
+}
+
+/* Warning icon */
+.warning-icon {
+  display: inline-block;
+  cursor: help;
+  font-size: 13px;
+  margin-left: 4px;
+  position: relative;
+  vertical-align: middle;
+}
+
+.warning-icon .warning-tooltip {
+  display: none;
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #2c3e50;
+  color: #ffffff;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: normal;
+  white-space: pre-line;
+  min-width: 220px;
+  max-width: 380px;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  line-height: 1.4;
+  text-align: left;
+  pointer-events: none;
+}
+
+.warning-icon:hover .warning-tooltip {
+  display: block;
+}
+
+/* Milestone columns */
+.milestone-cell {
+  font-size: 12px;
+  line-height: 1.3;
+}
+
+.milestone-tag {
+  font-weight: 500;
+}
+
+.milestone-date {
+  display: block;
+  font-size: 10px;
+  color: var(--text-secondary);
+}
+
+.milestone-empty {
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+/* Track pill count */
+.track-pill-count {
+  opacity: 0.7;
+  font-size: 11px;
+  margin-left: 3px;
+}
+
+/* Allow two-line column headers */
+#progressTable th {
+  white-space: normal;
+  vertical-align: bottom;
+  line-height: 1.3;
+}
+
+/* NOT_PLANNED row dimming */
+tr.not-planned-row td {
+  opacity: 0.6;
+}
+
+tr.not-planned-row:hover td {
+  opacity: 1;
+}
+
+/* Group header rows */
+.group-header-row td {
+  background: linear-gradient(135deg, var(--bg-table-header-start) 0%, var(--bg-table-header-end) 100%);
+  color: var(--text-on-accent);
+  padding: 8px 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  font-size: 13px;
+}
+
+.group-progress {
+  display: inline-flex;
+  gap: 16px;
+  margin-left: 16px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.group-progress-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.group-progress-bar {
+  width: 50px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.group-progress-fill {
+  height: 100%;
+  border-radius: 3px;
+  display: block;
+}
+
+.group-progress-fill.m1 { background: #f39c12; }
+.group-progress-fill.m3 { background: #3498db; }
+.group-progress-fill.m4 { background: #2ecc71; }
+
+/* Track footer (single track selected) */
+.track-footer {
+  background: linear-gradient(135deg, var(--bg-table-header-start) 0%, var(--bg-table-header-end) 100%);
+  color: var(--text-on-accent);
+  padding: 10px 16px;
+  border-radius: 0 0 8px 8px;
+  margin-top: -1px;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.track-footer .group-progress {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.track-footer .group-progress-bar {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.track-footer.hidden {
+  display: none;
+}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div>
+        <h1>CAMARA Release Progress</h1>
+        <div class="header-content">
+          <div class="metadata" id="header-metadata"></div>
+        </div>
+      </div>
+      <div class="theme-toggle-wrapper">
+        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Dark Mode">
+          <span class="theme-icon">🌙</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="content" id="content">
+      <div class="category-pills" id="trackPills"></div>
+
+      <div class="filters">
+        <div class="filter-row">
+          <div class="filter-group">
+            <label for="filterSearch">Search:</label>
+            <input type="text" id="filterSearch" placeholder="API or repo name..." onkeyup="applyFilters()">
+          </div>
+          <div class="filter-group">
+            <label for="filterState">State:</label>
+            <select id="filterState" onchange="applyFilters()">
+              <option value="">All</option>
+              <option value="published">Published</option>
+              <option value="draft_ready">Draft Ready</option>
+              <option value="snapshot_active">Snapshot</option>
+              <option value="planned">Planned</option>
+              <option value="not_planned">Not Planned</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="filterReleaseTrack">Release Track:</label>
+            <select id="filterReleaseTrack" onchange="applyFilters()">
+              <option value="">All</option>
+              <option value="independent">Independent</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="filterMaturity">Maturity:</label>
+            <select id="filterMaturity" onchange="applyFilters()">
+              <option value="">All</option>
+              <option value="stable">Stable</option>
+              <option value="initial">Initial</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label>
+              <input type="checkbox" id="filterWarnings" onchange="applyFilters()" style="margin-right: 4px;">
+              Has warnings
+            </label>
+          </div>
+          <button class="clear-filters-btn" onclick="clearAllFilters()">Clear Filters</button>
+        </div>
+      </div>
+
+      <div id="resultsCounter" class="results-counter hidden">
+        <div class="results-text"></div>
+        <div class="export-buttons">
+          <button class="export-btn" onclick="exportCSV()">Export CSV</button>
+          <button class="export-btn" onclick="exportJSON()">Export JSON</button>
+        </div>
+      </div>
+
+      <table id="progressTable">
+        <thead>
+          <tr>
+            <th onclick="sortTable(0)">API Name <span class="sort-arrow"></span></th>
+            <th onclick="sortTable(1)">Target API<br>Version <span class="sort-arrow"></span></th>
+            <th onclick="sortTable(2)">Target API<br>Status <span class="sort-arrow"></span></th>
+            <th onclick="sortTable(3)">Release<br>State <span class="sort-arrow"></span></th>
+            <th onclick="sortTable(4)">Release<br>Type <span class="sort-arrow"></span></th>
+            <th onclick="sortTable(5)">Target<br>Release <span class="sort-arrow"></span></th>
+            <th onclick="sortTable(6)">M1<br>(Alpha) <span class="sort-arrow"></span></th>
+            <th onclick="sortTable(7)">M3<br>(RC) <span class="sort-arrow"></span></th>
+            <th onclick="sortTable(8)">M4<br>(Public) <span class="sort-arrow"></span></th>
+            <th onclick="sortTable(9)">Repository <span class="sort-arrow"></span></th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+
+      <div id="trackFooter" class="track-footer hidden"></div>
+
+      <div id="footer-metadata" class="footer-metadata"></div>
+    </div>
+  </div>
+
+  <script>
+{{VIEWER_LIBRARY}}
+
+    const PROGRESS_DATA = {{PROGRESS_DATA}};
+
+    // State display configuration
+    const STATE_CONFIG = {
+      'published':       { label: 'Published', color: '#0E8A16', order: 1 },
+      'draft_ready':     { label: 'Draft Ready', color: '#1D76DB', order: 2 },
+      'snapshot_active': { label: 'Snapshot', color: '#FBCA04', order: 3 },
+      'planned':         { label: 'Planned', color: '#0969da', order: 4 },
+      'not_planned':     { label: 'Not Planned', color: '#C2C9D1', order: 5 }
+    };
+
+    const TYPE_SHORT = {
+      'pre-release-alpha': 'alpha',
+      'pre-release-rc': 'rc',
+      'public-release': 'public',
+      'maintenance-release': 'maint.',
+      'none': ''
+    };
+
+    const COL_COUNT = 10;
+
+    // Global state
+    let allRows = [];
+    let filteredRows = [];
+    let currentSort = { column: 3, ascending: true }; // Default: sort by Release State
+
+    /**
+     * Flatten repo-centric progress data to API-centric rows.
+     */
+    function flattenProgressData(data) {
+      const rows = [];
+      if (!data.progress) return rows;
+
+      data.progress.forEach(repo => {
+        if (!repo.apis || repo.apis.length === 0) {
+          rows.push({
+            api_name: '',
+            target_api_version: '',
+            target_api_status: '',
+            main_contacts: [],
+            repository: repo.repository,
+            github_url: repo.github_url,
+            release_track: repo.release_track || '',
+            meta_release: repo.meta_release || '',
+            target_release_tag: repo.target_release_tag || '',
+            target_release_type: repo.target_release_type || '',
+            state: repo.state,
+            artifacts: repo.artifacts || {},
+            published_context: repo.published_context || {},
+            cycle_releases: repo.cycle_releases || {},
+            warnings: repo.warnings || [],
+            dependencies: repo.dependencies || {},
+            _is_placeholder: true
+          });
+        } else {
+          repo.apis.forEach((api, idx) => {
+            rows.push({
+              api_name: api.api_name,
+              target_api_version: api.target_api_version || '',
+              target_api_status: api.target_api_status || '',
+              main_contacts: api.main_contacts || [],
+              repository: repo.repository,
+              github_url: repo.github_url,
+              release_track: repo.release_track || '',
+              meta_release: repo.meta_release || '',
+              target_release_tag: repo.target_release_tag || '',
+              target_release_type: repo.target_release_type || '',
+              state: repo.state,
+              artifacts: repo.artifacts || {},
+              published_context: repo.published_context || {},
+              cycle_releases: repo.cycle_releases || {},
+              warnings: repo.warnings || [],
+              dependencies: repo.dependencies || {},
+              _is_placeholder: false,
+              _is_first_in_repo: idx === 0,
+              _repo_api_count: repo.apis.length
+            });
+          });
+        }
+      });
+
+      return rows;
+    }
+
+    /**
+     * Get maturity from target version: initial (0.x) / stable (>=1.x)
+     */
+    function getMaturity(version) {
+      if (!version) return '';
+      return version.match(/^0\./) ? 'initial' : 'stable';
+    }
+
+    /**
+     * Get track key for grouping: meta-release name or 'independent'
+     */
+    function getTrackKey(row) {
+      return row.release_track === 'independent' ? 'independent' : (row.meta_release || 'unknown');
+    }
+
+    /**
+     * Render progress bars (M1/M3/M4) for a meta-release
+     */
+    function renderProgressBars(mr) {
+      if (!mr || mr.total_apis === 0) return '';
+      const pct1 = Math.round(mr.m1_achieved / mr.total_apis * 100);
+      const pct3 = Math.round(mr.m3_achieved / mr.total_apis * 100);
+      const pct4 = Math.round(mr.m4_achieved / mr.total_apis * 100);
+      return `
+        <span class="group-progress">
+          <span class="group-progress-item">M1: ${mr.m1_achieved}/${mr.total_apis}
+            <span class="group-progress-bar"><span class="group-progress-fill m1" style="width:${pct1}%"></span></span>
+          </span>
+          <span class="group-progress-item">M3: ${mr.m3_achieved}/${mr.total_apis}
+            <span class="group-progress-bar"><span class="group-progress-fill m3" style="width:${pct3}%"></span></span>
+          </span>
+          <span class="group-progress-item">M4: ${mr.m4_achieved}/${mr.total_apis}
+            <span class="group-progress-bar"><span class="group-progress-fill m4" style="width:${pct4}%"></span></span>
+          </span>
+        </span>
+      `;
+    }
+
+    /**
+     * Render simplified header
+     */
+    function renderHeader(data) {
+      const headerDiv = document.getElementById('header-metadata');
+      const stats = data.metadata.collection_stats;
+      headerDiv.innerHTML = `Tracked: ${stats.repos_with_plan}/${stats.repos_scanned} repos`;
+    }
+
+    /**
+     * Build release track pills
+     */
+    function buildTrackPills() {
+      const container = document.getElementById('trackPills');
+      const trackCounts = {};
+
+      allRows.forEach(row => {
+        const key = getTrackKey(row);
+        trackCounts[key] = (trackCounts[key] || 0) + 1;
+      });
+
+      let html = `<div class="category-pill all-categories active" onclick="filterByTrack('')">
+        All<span class="track-pill-count">(${allRows.length})</span>
+      </div>`;
+
+      // Meta-releases first (sorted), then Independent last
+      const metaNames = Object.keys(trackCounts).filter(k => k !== 'independent').sort();
+
+      metaNames.forEach(name => {
+        html += `<div class="category-pill" data-track="${name}" onclick="filterByTrack('${name}')">
+          ${name}<span class="track-pill-count">(${trackCounts[name]})</span>
+        </div>`;
+      });
+
+      if (trackCounts['independent']) {
+        html += `<div class="category-pill" data-track="independent" onclick="filterByTrack('independent')">
+          Independent<span class="track-pill-count">(${trackCounts['independent']})</span>
+        </div>`;
+      }
+
+      container.innerHTML = html;
+    }
+
+    /**
+     * Filter by clicking a track pill
+     */
+    function filterByTrack(track) {
+      document.getElementById('filterReleaseTrack').value = track;
+      applyFilters();
+    }
+
+    /**
+     * Populate Release Track dropdown from data
+     */
+    function populateReleaseTrackDropdown() {
+      const dropdown = document.getElementById('filterReleaseTrack');
+      const names = new Set();
+      allRows.forEach(row => {
+        if (row.meta_release) names.add(row.meta_release);
+      });
+
+      Array.from(names).sort().forEach(name => {
+        const opt = document.createElement('option');
+        opt.value = name;
+        opt.textContent = name;
+        dropdown.appendChild(opt);
+      });
+    }
+
+    /**
+     * Group rows by release track
+     */
+    function getGroupedRows(rows) {
+      const groups = {};
+      rows.forEach(row => {
+        const key = getTrackKey(row);
+        if (!groups[key]) {
+          groups[key] = {
+            track: key,
+            isMetaRelease: row.release_track === 'meta-release',
+            rows: []
+          };
+        }
+        groups[key].rows.push(row);
+      });
+
+      // Meta-releases alphabetically, then Independent last
+      return Object.values(groups).sort((a, b) => {
+        if (a.track === 'independent') return 1;
+        if (b.track === 'independent') return -1;
+        return a.track.localeCompare(b.track);
+      });
+    }
+
+    /**
+     * Render a group header row
+     */
+    function renderGroupHeader(group) {
+      const tr = document.createElement('tr');
+      tr.className = 'group-header-row';
+
+      const td = document.createElement('td');
+      td.colSpan = COL_COUNT;
+
+      let html = `<strong>${group.track === 'independent' ? 'Independent' : group.track}</strong>`;
+      html += `<span class="track-pill-count">(${group.rows.length})</span>`;
+
+      if (group.isMetaRelease) {
+        const mr = (PROGRESS_DATA.meta_releases || []).find(m => m.name === group.track);
+        html += renderProgressBars(mr);
+      }
+
+      td.innerHTML = html;
+      tr.appendChild(td);
+      return tr;
+    }
+
+    /**
+     * Render state badge with optional artifact link and warning icon
+     */
+    function renderStateCell(row) {
+      const cfg = STATE_CONFIG[row.state] || { label: row.state, color: '#666' };
+      let html = `<span class="state-badge state-${row.state}">${cfg.label}</span>`;
+
+      if (row.warnings && row.warnings.length > 0) {
+        const tooltipText = row.warnings.map(w =>
+          `${w.code}: ${ViewerLib.escapeHtml(w.message)}`
+        ).join('\n');
+        html += `<span class="warning-icon">&#9888;<span class="warning-tooltip">${tooltipText}</span></span>`;
+      }
+
+      const artifacts = row.artifacts || {};
+      let link = '';
+
+      if (row.state === 'snapshot_active' && artifacts.release_pr) {
+        link = `<a href="${artifacts.release_pr.url}" target="_blank" rel="noopener">PR #${artifacts.release_pr.number}</a>`;
+      } else if (row.state === 'draft_ready' && artifacts.draft_release) {
+        link = `<a href="${artifacts.draft_release.url}" target="_blank" rel="noopener">Draft: ${artifacts.draft_release.name}</a>`;
+      } else if (row.state === 'published' && row.github_url && row.target_release_tag) {
+        link = `<a href="${row.github_url}/releases/tag/${row.target_release_tag}" target="_blank" rel="noopener">${row.target_release_tag}</a>`;
+      }
+
+      // Fallback: show release issue link when primary artifact link is unavailable
+      if (!link && artifacts.release_issue) {
+        link = `<a href="${artifacts.release_issue.url}" target="_blank" rel="noopener">Issue #${artifacts.release_issue.number}</a>`;
+      }
+
+      if (link) {
+        html += `<span class="state-artifact">${link}</span>`;
+      }
+
+      return html;
+    }
+
+    /**
+     * Render a milestone cell (M1, M3, or M4)
+     */
+    function renderMilestoneCell(cycleReleases, milestoneKey, apiName) {
+      if (!cycleReleases || !cycleReleases[milestoneKey]) {
+        return '<span class="milestone-empty">&mdash;</span>';
+      }
+
+      const milestone = cycleReleases[milestoneKey];
+      if (!milestone.release_tag) {
+        return '<span class="milestone-empty">&mdash;</span>';
+      }
+
+      let apiVersion = '';
+      if (milestone.apis && apiName) {
+        const apiEntry = milestone.apis.find(a => a.api_name === apiName);
+        if (apiEntry && apiEntry.api_version) {
+          apiVersion = apiEntry.api_version;
+        }
+      }
+
+      const date = milestone.release_date
+        ? ViewerLib.formatDate(milestone.release_date)
+        : '';
+
+      let html = `<span class="milestone-tag">${milestone.release_tag}</span>`;
+      if (apiVersion) {
+        html += `<br><span style="font-size:10px;color:var(--text-secondary)">${apiVersion}</span>`;
+      }
+      if (date) {
+        html += `<span class="milestone-date">${date}</span>`;
+      }
+
+      return html;
+    }
+
+    /**
+     * Render a single data row
+     */
+    function renderDataRow(row) {
+      const tr = document.createElement('tr');
+
+      if (row.state === 'not_planned') {
+        tr.className = 'not-planned-row';
+      }
+
+      // API Name
+      const apiNameText = row._is_placeholder
+        ? `<span style="color:var(--text-secondary);font-style:italic">(${row.repository})</span>`
+        : `<span class="api-name-plain">${row.api_name}</span>`;
+
+      // Target API Version
+      const versionCell = row.target_api_version || '&mdash;';
+
+      // Target API Status
+      const statusCell = row.target_api_status || '&mdash;';
+
+      // Release State
+      const stateCell = renderStateCell(row);
+
+      // Release Type (plain text with tooltip)
+      const typeText = TYPE_SHORT[row.target_release_type] || row.target_release_type || '';
+      const typeCell = typeText || '&mdash;';
+      const typeTitle = row.target_release_type || '';
+
+      // Target Release
+      const releaseCell = row.target_release_tag || '&mdash;';
+
+      // Milestones
+      const m1Cell = renderMilestoneCell(row.cycle_releases, 'm1', row.api_name);
+      const m3Cell = renderMilestoneCell(row.cycle_releases, 'm3', row.api_name);
+      const m4Cell = renderMilestoneCell(row.cycle_releases, 'm4', row.api_name);
+
+      // Repository (link)
+      const repoCell = `<a href="${row.github_url}" target="_blank" rel="noopener">${row.repository}</a>`;
+
+      tr.innerHTML = `
+        <td>${apiNameText}</td>
+        <td>${versionCell}</td>
+        <td>${statusCell}</td>
+        <td>${stateCell}</td>
+        <td title="${typeTitle}">${typeCell}</td>
+        <td>${releaseCell}</td>
+        <td class="milestone-cell">${m1Cell}</td>
+        <td class="milestone-cell">${m3Cell}</td>
+        <td class="milestone-cell">${m4Cell}</td>
+        <td>${repoCell}</td>
+      `;
+
+      return tr;
+    }
+
+    /**
+     * Render the table (with grouping when unfiltered by track)
+     */
+    function renderTable(rows) {
+      const tbody = document.getElementById('tableBody');
+      tbody.innerHTML = '';
+
+      const releaseTrackFilter = document.getElementById('filterReleaseTrack').value;
+      const isGrouped = !releaseTrackFilter;
+
+      if (isGrouped && rows.length > 0) {
+        const groups = getGroupedRows(rows);
+        groups.forEach(group => {
+          sortData(group.rows, currentSort.column, currentSort.ascending);
+          tbody.appendChild(renderGroupHeader(group));
+          group.rows.forEach(row => tbody.appendChild(renderDataRow(row)));
+        });
+      } else {
+        sortData(rows, currentSort.column, currentSort.ascending);
+        rows.forEach(row => tbody.appendChild(renderDataRow(row)));
+      }
+
+      updateResultsCounter(rows.length);
+      updateTrackFooter(releaseTrackFilter);
+    }
+
+    /**
+     * Update track footer (visible only when single track selected)
+     */
+    function updateTrackFooter(trackFilter) {
+      const footer = document.getElementById('trackFooter');
+      if (!trackFilter) {
+        footer.classList.add('hidden');
+        return;
+      }
+
+      footer.classList.remove('hidden');
+
+      const label = trackFilter === 'independent' ? 'Independent' : trackFilter;
+      let html = `<strong>${label}</strong> &mdash; ${filteredRows.length} APIs`;
+
+      if (trackFilter !== 'independent') {
+        const mr = (PROGRESS_DATA.meta_releases || []).find(m => m.name === trackFilter);
+        html += renderProgressBars(mr);
+      }
+
+      footer.innerHTML = html;
+    }
+
+    /**
+     * Apply all filters
+     */
+    function applyFilters() {
+      const searchFilter = document.getElementById('filterSearch').value.toLowerCase();
+      const stateFilter = document.getElementById('filterState').value;
+      const releaseTrackFilter = document.getElementById('filterReleaseTrack').value;
+      const maturityFilter = document.getElementById('filterMaturity').value;
+      const warningsFilter = document.getElementById('filterWarnings').checked;
+
+      filteredRows = allRows.filter(row => {
+        if (searchFilter) {
+          const haystack = (row.api_name + ' ' + row.repository).toLowerCase();
+          if (!haystack.includes(searchFilter)) return false;
+        }
+
+        if (stateFilter && row.state !== stateFilter) return false;
+
+        if (releaseTrackFilter) {
+          if (releaseTrackFilter === 'independent') {
+            if (row.release_track !== 'independent') return false;
+          } else {
+            if (row.meta_release !== releaseTrackFilter) return false;
+          }
+        }
+
+        if (maturityFilter) {
+          const mat = getMaturity(row.target_api_version);
+          if (mat !== maturityFilter) return false;
+        }
+
+        if (warningsFilter && (!row.warnings || row.warnings.length === 0)) return false;
+
+        return true;
+      });
+
+      updateTrackPillStates(releaseTrackFilter);
+      renderTable(filteredRows);
+      updateSortIndicators(currentSort.column);
+      updateUrlParams();
+    }
+
+    /**
+     * Update track pill active styling
+     */
+    function updateTrackPillStates(activeTrack) {
+      const pills = document.querySelectorAll('#trackPills .category-pill');
+      pills.forEach(pill => {
+        pill.classList.remove('active');
+        if (pill.classList.contains('all-categories') && !activeTrack) {
+          pill.classList.add('active');
+        } else if (pill.dataset.track === activeTrack) {
+          pill.classList.add('active');
+        }
+      });
+    }
+
+    /**
+     * Sort data in place
+     */
+    function sortData(rows, columnIndex, ascending) {
+      const sortKeys = [
+        r => r.api_name.toLowerCase(),                           // 0: API Name
+        r => r.target_api_version,                               // 1: Target API Version
+        r => r.target_api_status || '',                          // 2: Target API Status
+        r => (STATE_CONFIG[r.state] || {}).order ?? 99,          // 3: Release State
+        r => r.target_release_type || '',                        // 4: Release Type
+        r => r.target_release_tag || '',                         // 5: Target Release
+        r => getMilestoneDate(r.cycle_releases, 'm1'),           // 6: M1
+        r => getMilestoneDate(r.cycle_releases, 'm3'),           // 7: M3
+        r => getMilestoneDate(r.cycle_releases, 'm4'),           // 8: M4
+        r => r.repository.toLowerCase(),                         // 9: Repository
+      ];
+
+      const getKey = sortKeys[columnIndex] || sortKeys[0];
+
+      rows.sort((a, b) => {
+        let aVal = getKey(a);
+        let bVal = getKey(b);
+
+        // Version comparison
+        if (columnIndex === 1) {
+          return (ascending ? 1 : -1) * ViewerLib.compareVersions(aVal, bVal);
+        }
+
+        // Numeric comparison (state order, dates)
+        if (typeof aVal === 'number' && typeof bVal === 'number') {
+          const result = aVal - bVal;
+          return ascending ? result : -result;
+        }
+
+        // String comparison
+        aVal = String(aVal);
+        bVal = String(bVal);
+
+        if (!aVal && !bVal) return 0;
+        if (!aVal) return 1;
+        if (!bVal) return -1;
+
+        const result = aVal.localeCompare(bVal);
+        return ascending ? result : -result;
+      });
+    }
+
+    /**
+     * Get milestone date as sortable value
+     */
+    function getMilestoneDate(cycleReleases, key) {
+      if (!cycleReleases || !cycleReleases[key] || !cycleReleases[key].release_date) {
+        return Infinity;
+      }
+      return new Date(cycleReleases[key].release_date).getTime();
+    }
+
+    /**
+     * Sort table by column index (click handler)
+     */
+    function sortTable(columnIndex) {
+      if (currentSort.column === columnIndex) {
+        currentSort.ascending = !currentSort.ascending;
+      } else {
+        currentSort.column = columnIndex;
+        currentSort.ascending = true;
+      }
+
+      renderTable(filteredRows);
+      updateSortIndicators(columnIndex);
+      updateUrlParams();
+    }
+
+    /**
+     * Update sort arrow indicators
+     */
+    function updateSortIndicators(activeColumn) {
+      const headers = document.querySelectorAll('#progressTable th');
+      headers.forEach((header, index) => {
+        const arrow = header.querySelector('.sort-arrow');
+        if (!arrow) return;
+        arrow.classList.remove('active-asc', 'active-desc');
+        if (index === activeColumn) {
+          arrow.classList.add(currentSort.ascending ? 'active-asc' : 'active-desc');
+        }
+      });
+    }
+
+    /**
+     * Update results counter
+     */
+    function updateResultsCounter(count) {
+      const counter = document.getElementById('resultsCounter');
+      const resultsText = counter.querySelector('.results-text');
+
+      if (count === 0) {
+        resultsText.textContent = 'No entries match the current filters';
+        counter.classList.add('no-results');
+      } else {
+        const apiCount = filteredRows.filter(r => !r._is_placeholder).length;
+        const repoCount = new Set(filteredRows.map(r => r.repository)).size;
+        resultsText.textContent = `Showing ${apiCount} APIs across ${repoCount} repositories`;
+        counter.classList.remove('no-results');
+      }
+
+      counter.classList.remove('hidden');
+    }
+
+    /**
+     * Clear all filters
+     */
+    function clearAllFilters() {
+      document.getElementById('filterSearch').value = '';
+      document.getElementById('filterState').value = '';
+      document.getElementById('filterReleaseTrack').value = '';
+      document.getElementById('filterMaturity').value = '';
+      document.getElementById('filterWarnings').checked = false;
+      applyFilters();
+    }
+
+    /**
+     * Parse URL parameters and set filter controls
+     */
+    function parseUrlParams() {
+      const params = new URLSearchParams(window.location.search);
+
+      if (params.has('search')) document.getElementById('filterSearch').value = params.get('search');
+      if (params.has('state')) document.getElementById('filterState').value = params.get('state');
+      if (params.has('release_track')) document.getElementById('filterReleaseTrack').value = params.get('release_track');
+      if (params.has('maturity')) document.getElementById('filterMaturity').value = params.get('maturity');
+      if (params.get('warnings') === 'true') document.getElementById('filterWarnings').checked = true;
+
+      if (params.has('sort')) {
+        currentSort.column = parseInt(params.get('sort')) || 3;
+      }
+      if (params.has('order')) {
+        currentSort.ascending = params.get('order') !== 'desc';
+      }
+    }
+
+    /**
+     * Update URL parameters from current filter state
+     */
+    function updateUrlParams() {
+      const params = new URLSearchParams();
+
+      const search = document.getElementById('filterSearch').value;
+      const state = document.getElementById('filterState').value;
+      const releaseTrack = document.getElementById('filterReleaseTrack').value;
+      const maturity = document.getElementById('filterMaturity').value;
+      const warnings = document.getElementById('filterWarnings').checked;
+
+      if (search) params.set('search', search);
+      if (state) params.set('state', state);
+      if (releaseTrack) params.set('release_track', releaseTrack);
+      if (maturity) params.set('maturity', maturity);
+      if (warnings) params.set('warnings', 'true');
+      if (currentSort.column !== 3) params.set('sort', currentSort.column);
+      if (!currentSort.ascending) params.set('order', 'desc');
+
+      const newUrl = params.toString()
+        ? `${window.location.pathname}?${params.toString()}`
+        : window.location.pathname;
+
+      history.replaceState(null, '', newUrl);
+    }
+
+    /**
+     * Export filtered data to CSV
+     */
+    function exportCSV() {
+      const headers = [
+        'API Name', 'Target API Version', 'Target API Status',
+        'Release State', 'Release Type', 'Target Release',
+        'Release Track', 'Meta-Release',
+        'M1 Tag', 'M1 Date', 'M3 Tag', 'M3 Date', 'M4 Tag', 'M4 Date',
+        'Repository', 'Warnings'
+      ];
+
+      const rows = filteredRows.map(row => {
+        const m1 = (row.cycle_releases || {}).m1 || {};
+        const m3 = (row.cycle_releases || {}).m3 || {};
+        const m4 = (row.cycle_releases || {}).m4 || {};
+        return [
+          row.api_name || row.repository,
+          row.target_api_version,
+          row.target_api_status,
+          row.state,
+          row.target_release_type,
+          row.target_release_tag,
+          row.release_track,
+          row.meta_release,
+          m1.release_tag || '',
+          m1.release_date || '',
+          m3.release_tag || '',
+          m3.release_date || '',
+          m4.release_tag || '',
+          m4.release_date || '',
+          row.repository,
+          (row.warnings || []).map(w => w.code + ': ' + w.message).join('; ')
+        ];
+      });
+
+      const csv = [headers, ...rows]
+        .map(row => row.map(cell => `"${String(cell || '').replace(/"/g, '""')}"`).join(','))
+        .join('\n');
+
+      ViewerLib.downloadFile(csv, 'camara-release-progress.csv', 'text/csv');
+    }
+
+    /**
+     * Export filtered data to JSON
+     */
+    function exportJSON() {
+      const json = JSON.stringify(filteredRows, null, 2);
+      ViewerLib.downloadFile(json, 'camara-release-progress.json', 'application/json');
+    }
+
+    /**
+     * Render footer
+     */
+    function renderFooter(data) {
+      const footerDiv = document.getElementById('footer-metadata');
+      const updated = new Date(data.metadata.last_updated).toLocaleString('en-US', {
+        year: 'numeric', month: 'short', day: 'numeric',
+        hour: '2-digit', minute: '2-digit'
+      });
+      const stats = data.metadata.collection_stats;
+      footerDiv.innerHTML = `
+        Data collected: ${updated} |
+        ${stats.repos_scanned} repos scanned |
+        Schema v${data.metadata.schema_version}
+      `;
+    }
+
+    // ===== Initialization =====
+
+    function initialize() {
+      allRows = flattenProgressData(PROGRESS_DATA);
+
+      renderHeader(PROGRESS_DATA);
+      renderFooter(PROGRESS_DATA);
+
+      buildTrackPills();
+      populateReleaseTrackDropdown();
+
+      parseUrlParams();
+      applyFilters();
+      updateSortIndicators(currentSort.column);
+    }
+
+    if (ViewerLib.isInIframe()) {
+      document.body.classList.add('in-iframe');
+    }
+
+    initialize();
+    ViewerLib.initThemeToggle('progress');
+  </script>
+</body>
+</html>

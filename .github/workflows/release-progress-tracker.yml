@@ -1,0 +1,242 @@
+# Release Progress Tracker — Reusable Workflow
+#
+# Collects release progress data from CAMARA repositories, generates an
+# HTML viewer, deploys it to the caller's GitHub Pages, and opens a PR
+# with updated data in the caller repository.
+#
+# Called by: release-progress-tracker.yml in ReleaseManagement
+#
+# Jobs:
+#   1. collect-and-generate — runs collector + viewer generator
+#   2. deploy-viewer        — deploys viewer HTML to caller's GitHub Pages
+#   3. create-data-pr       — opens PR with updated releases-progress.yaml
+#
+# Jobs 2 and 3 run in parallel after job 1 completes.
+
+name: Release Progress Tracker
+
+on:
+  workflow_call:
+    inputs:
+      debug:
+        description: "Enable debug logging"
+        type: boolean
+        required: false
+        default: false
+
+env:
+  # Source repository and ref for progress tracker code and shared assets.
+  # Change these when testing on a fork or switching between branches.
+  SOURCE_REPO: camaraproject/project-administration
+  SOURCE_REF: main
+
+jobs:
+  # ---------------------------------------------------------------------------
+  # Job 1: Collect progress data and generate viewer
+  # ---------------------------------------------------------------------------
+  collect-and-generate:
+    name: Collect & Generate
+    runs-on: ubuntu-latest
+    outputs:
+      has_data: ${{ steps.collect.outcome == 'success' }}
+    steps:
+      - name: Checkout source repository
+        uses: actions/checkout@v6
+        with:
+          repository: ${{ env.SOURCE_REPO }}
+          ref: ${{ env.SOURCE_REF }}
+          path: project-admin
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install PyYAML requests
+
+      - name: Collect release progress
+        id: collect
+        working-directory: project-admin/workflows/release-progress-tracker
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python3 -m scripts.collect_progress \
+            --master ../../data/releases-master.yaml \
+            --output ${{ runner.temp }}/releases-progress.yaml \
+            ${{ inputs.debug && '--debug' || '' }}
+
+          echo "Collected data:"
+          wc -l ${{ runner.temp }}/releases-progress.yaml
+
+      - name: Generate viewer
+        working-directory: project-admin/workflows/release-progress-tracker
+        run: |
+          python3 -m scripts.generate_progress_viewer \
+            --data ${{ runner.temp }}/releases-progress.yaml \
+            --output ${{ runner.temp }}/progress.html \
+            --shared-assets ../release-collector/templates \
+            ${{ inputs.debug && '--debug' || '' }}
+
+          echo "Generated viewer:"
+          wc -c ${{ runner.temp }}/progress.html
+
+      - name: Upload data artifact
+        uses: actions/upload-artifact@v6
+        with:
+          name: progress-data
+          path: ${{ runner.temp }}/releases-progress.yaml
+          retention-days: 7
+
+      - name: Upload viewer artifact
+        uses: actions/upload-artifact@v6
+        with:
+          name: progress-viewer
+          path: ${{ runner.temp }}/progress.html
+          retention-days: 7
+
+  # ---------------------------------------------------------------------------
+  # Job 2: Deploy viewer to caller's GitHub Pages
+  # ---------------------------------------------------------------------------
+  deploy-viewer:
+    name: Deploy Viewer
+    needs: collect-and-generate
+    if: needs.collect-and-generate.result == 'success'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    concurrency:
+      group: "pages"
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Download viewer artifact
+        uses: actions/download-artifact@v7
+        with:
+          name: progress-viewer
+          path: site
+
+      - name: Add index redirect
+        run: |
+          cat > site/index.html << 'HEREDOC'
+          <!DOCTYPE html>
+          <html><head>
+          <meta http-equiv="refresh" content="0; url=progress.html">
+          <title>Release Progress</title>
+          </head><body>
+          <p>Redirecting to <a href="progress.html">Release Progress Viewer</a>...</p>
+          </body></html>
+          HEREDOC
+          touch site/.nojekyll
+
+          echo "Site contents:"
+          ls -la site/
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  # ---------------------------------------------------------------------------
+  # Job 3: Create PR with updated data in caller repository
+  # ---------------------------------------------------------------------------
+  create-data-pr:
+    name: Create Data PR
+    needs: collect-and-generate
+    if: needs.collect-and-generate.result == 'success'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Checkout caller repository
+        uses: actions/checkout@v6
+        # Default: checks out the caller repo (e.g. ReleaseManagement)
+
+      - name: Download data artifact
+        uses: actions/download-artifact@v7
+        with:
+          name: progress-data
+          path: data
+
+      - name: Check for changes
+        id: diff
+        run: |
+          # Stage all files so git diff --cached detects both new and modified files
+          git add data/
+          if git diff --cached --quiet data/; then
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+            echo "No changes detected in data/"
+          else
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "change_summary<<EOF" >> $GITHUB_OUTPUT
+            git diff --cached --stat data/ >> $GITHUB_OUTPUT
+            echo "EOF" >> $GITHUB_OUTPUT
+            echo "Changes detected:"
+            git diff --cached --stat data/
+          fi
+
+      - name: Create pull request
+        if: steps.diff.outputs.has_changes == 'true'
+        uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0 # v8.1.0
+        with:
+          branch: release-progress-update-${{ github.run_number }}
+          title: 'Release Progress: Update releases-progress.yaml'
+          labels: release-progress
+          commit-message: 'Release Progress: Update releases-progress.yaml'
+          body: |
+            ## Release Progress Data Update
+
+            **Workflow run**: [#${{ github.run_number }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
+
+            Updates `data/releases-progress.yaml` with the latest release progress data
+            collected from CAMARA repositories.
+
+            The viewer has been deployed to [GitHub Pages](https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/).
+
+            ### Changes
+
+            ```
+            ${{ steps.diff.outputs.change_summary }}
+            ```
+
+  # ---------------------------------------------------------------------------
+  # Summary
+  # ---------------------------------------------------------------------------
+  summary:
+    name: Workflow Summary
+    needs: [collect-and-generate, deploy-viewer, create-data-pr]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate summary
+        run: |
+          echo "## Release Progress Tracker" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          # Job results
+          echo "### Job Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Job | Result |" >> $GITHUB_STEP_SUMMARY
+          echo "|-----|--------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Collect & Generate | ${{ needs.collect-and-generate.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Deploy Viewer | ${{ needs.deploy-viewer.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Create Data PR | ${{ needs.create-data-pr.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          # Viewer URL
+          if [[ "${{ needs.deploy-viewer.result }}" == "success" ]]; then
+            echo "### Viewer" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "Deployed to: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/" >> $GITHUB_STEP_SUMMARY
+          fi

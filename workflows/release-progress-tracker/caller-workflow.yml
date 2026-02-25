@@ -1,0 +1,40 @@
+# Release Progress Tracker — Caller Workflow
+#
+# Place this file in ReleaseManagement at:
+#   .github/workflows/release-progress-tracker.yml
+#
+# Calls the reusable workflow in project-administration which collects
+# progress data, generates the HTML viewer, deploys it to this repo's
+# GitHub Pages, and opens a PR with updated data.
+#
+# Prerequisites:
+#   - GitHub Pages enabled (source: GitHub Actions) in repo settings
+#   - Label "release-progress" created (or let peter-evans/create-pull-request auto-create)
+#
+# Fork testing:
+#   Change the 'uses' line below to point at your fork/branch, e.g.:
+#     uses: hdamker/project-administration/.github/workflows/release-progress-tracker.yml@release-progress-tracker
+
+name: Release Progress Tracker
+
+on:
+  schedule:
+    - cron: '0 5 * * *'  # Daily at 05:00 UTC
+  workflow_dispatch:
+    inputs:
+      debug:
+        description: 'Enable debug logging'
+        type: boolean
+        default: false
+
+jobs:
+  track-progress:
+    uses: camaraproject/project-administration/.github/workflows/release-progress-tracker.yml@main
+    with:
+      debug: ${{ inputs.debug || false }}
+    secrets: inherit
+    permissions:
+      contents: write
+      pull-requests: write
+      pages: write
+      id-token: write
