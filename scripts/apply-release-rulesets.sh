@@ -2,13 +2,17 @@
 # =========================================================================================
 # CAMARA Project - Admin Script: Apply Release Automation Ruleset
 #
-# Creates or updates the repository ruleset required by the release automation.
+# Creates or updates the repository rulesets required by the release automation.
 # Also removes legacy rulesets from earlier versions if present.
 # Idempotent: safe to run multiple times on the same repository.
 #
-# The ruleset protects release-snapshot/** branches:
-# - Only the camara-release-automation GitHub App can create/push/delete
-# - Humans must use PRs with 2 approvals, code owner review, and RM team approval
+# Rulesets managed:
+# 1. release-snapshot-protection: Protects release-snapshot/** branches
+#    - Only the camara-release-automation GitHub App can create/push/delete
+#    - Humans must use PRs with 2 approvals, code owner review, and RM team approval
+# 2. release-pointer-protection: Protects release/** pointer branches (fully immutable)
+# 3. pre-release-pointer-protection: Protects pre-release/** pointer branches
+#    (immutable but deletable by codeowners)
 #
 # PREREQUISITES:
 # - gh CLI authenticated with a Fine-grained PAT that has:
@@ -129,6 +133,75 @@ ruleset_snapshot_protection() {
 JSONEOF
 }
 
+# Release pointer branch protection: release/** (fully protected, including deletion)
+ruleset_release_pointer_protection() {
+  cat <<JSONEOF
+{
+  "name": "release-pointer-protection",
+  "target": "branch",
+  "enforcement": "active",
+  "conditions": {
+    "ref_name": {
+      "include": ["refs/heads/release/**"],
+      "exclude": []
+    }
+  },
+  "rules": [
+    { "type": "creation" },
+    { "type": "deletion" },
+    { "type": "update" },
+    { "type": "non_fast_forward" }
+  ],
+  "bypass_actors": [
+    {
+      "actor_id": null,
+      "actor_type": "OrganizationAdmin",
+      "bypass_mode": "always"
+    },
+    {
+      "actor_id": ${APP_ACTOR_ID},
+      "actor_type": "Integration",
+      "bypass_mode": "always"
+    }
+  ]
+}
+JSONEOF
+}
+
+# Pre-release pointer branch protection: pre-release/** (immutable but deletable)
+ruleset_pre_release_pointer_protection() {
+  cat <<JSONEOF
+{
+  "name": "pre-release-pointer-protection",
+  "target": "branch",
+  "enforcement": "active",
+  "conditions": {
+    "ref_name": {
+      "include": ["refs/heads/pre-release/**"],
+      "exclude": []
+    }
+  },
+  "rules": [
+    { "type": "creation" },
+    { "type": "update" },
+    { "type": "non_fast_forward" }
+  ],
+  "bypass_actors": [
+    {
+      "actor_id": null,
+      "actor_type": "OrganizationAdmin",
+      "bypass_mode": "always"
+    },
+    {
+      "actor_id": ${APP_ACTOR_ID},
+      "actor_type": "Integration",
+      "bypass_mode": "always"
+    }
+  ]
+}
+JSONEOF
+}
+
 # ── Helper Functions ─────────────────────────────────────────────────────────
 
 # Apply or update a single ruleset for a repository
@@ -212,8 +285,26 @@ for repo in "${REPO_LIST[@]}"; do
 
   REPO_OK=true
 
-  # Apply the combined ruleset
+  # Apply snapshot protection ruleset
   payload=$(ruleset_snapshot_protection)
+  ruleset_name=$(echo "$payload" | jq -r '.name')
+
+  if ! apply_ruleset "$repo" "$ruleset_name" "$payload"; then
+    echo "  ERROR: Failed to apply '${ruleset_name}'"
+    REPO_OK=false
+  fi
+
+  # Apply release pointer protection ruleset
+  payload=$(ruleset_release_pointer_protection)
+  ruleset_name=$(echo "$payload" | jq -r '.name')
+
+  if ! apply_ruleset "$repo" "$ruleset_name" "$payload"; then
+    echo "  ERROR: Failed to apply '${ruleset_name}'"
+    REPO_OK=false
+  fi
+
+  # Apply pre-release pointer protection ruleset
+  payload=$(ruleset_pre_release_pointer_protection)
   ruleset_name=$(echo "$payload" | jq -r '.name')
 
   if ! apply_ruleset "$repo" "$ruleset_name" "$payload"; then
