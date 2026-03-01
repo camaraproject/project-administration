@@ -45,6 +45,18 @@ gh workflow run campaign-owasp-linting.yml \
 - `exclude_repos` (default `DeviceStatus,KnowYourCustomer`): comma-separated exclusions
 - `rule_profile` (default `api4-target`): `api4-target` or `full-camara-owasp`
 
+## Token Requirements (FGPAT)
+
+This campaign requires a Fine-Grained Personal Access Token stored as repository secret:
+
+- Secret name: `BULK_CAMPAIGN_TOKEN`
+- Repository access: all target CAMARA API repositories included in the campaign scope
+- Repository permissions:
+  - `Issues`: **Read and write** (required for deduplication checks and issue creation)
+  - `Contents`: **Read-only** (required for checkout of target repositories)
+
+The workflow now validates that `BULK_CAMPAIGN_TOKEN` is present before executing per-repo checks.
+
 ## Dry-Run Artifacts
 
 - `plan.md`: summary report

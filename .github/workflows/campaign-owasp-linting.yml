@@ -66,6 +66,7 @@ jobs:
         id: sel
         uses: actions/github-script@v8
         with:
+          github-token: ${{ secrets.BULK_CAMPAIGN_TOKEN || secrets.GITHUB_TOKEN }}
           script: |
             const org = process.env.ORG;
             const includeSandbox = '${{ inputs.include_sandbox }}' === 'true';
@@ -127,6 +128,15 @@ jobs:
         repo: ${{ fromJson(needs.select.outputs.repos) }}
 
     steps:
+      - name: Validate BULK_CAMPAIGN_TOKEN
+        shell: bash
+        run: |
+          if [ -z "${{ secrets.BULK_CAMPAIGN_TOKEN }}" ]; then
+            echo "::error::Missing required secret BULK_CAMPAIGN_TOKEN."
+            echo "::error::Configure an FGPAT with access to target repositories and Issues read/write permission."
+            exit 1
+          fi
+
       - name: Checkout admin repo (self)
         uses: actions/checkout@v6
         with:
@@ -137,6 +147,7 @@ jobs:
         with:
           repository: ${{ matrix.repo }}
           path: repo
+          token: ${{ secrets.BULK_CAMPAIGN_TOKEN }}
 
       - name: Set up Node.js
         uses: actions/setup-node@v6
