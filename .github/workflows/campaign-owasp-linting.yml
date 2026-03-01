@@ -1,0 +1,391 @@
+# =========================================================================================
+# CAMARA Project - Campaign: OWASP Linting
+#
+# Creates issues in API repositories for OWASP linting findings in OpenAPI definitions.
+# Supports dry-run (plan) and apply modes and provides full rendered issue text per repo.
+#
+# DOCUMENTATION:
+# https://github.com/camaraproject/project-administration/blob/main/campaigns/owasp-linting/README.md
+# =========================================================================================
+
+name: Campaign - OWASP Linting
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry run mode (plan only, no issues created)'
+        required: true
+        type: boolean
+        default: true
+      include_sandbox:
+        description: 'Include sandbox API repositories'
+        type: boolean
+        default: true
+      include_incubating:
+        description: 'Include incubating API repositories'
+        type: boolean
+        default: true
+      repository_filter:
+        description: 'Filter to specific repo name (for testing, e.g. "QualityOnDemand")'
+        type: string
+        default: ''
+      exclude_repos:
+        description: 'Comma-separated repositories to exclude'
+        type: string
+        default: 'DeviceStatus,KnowYourCustomer'
+      rule_profile:
+        description: 'OWASP rules profile: api4-target or full-camara-owasp'
+        type: choice
+        default: 'api4-target'
+        options:
+          - api4-target
+          - full-camara-owasp
+
+concurrency:
+  group: campaign-owasp-linting-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  MODE: ${{ inputs.dry_run && 'plan' || 'apply' }}
+  ORG: camaraproject
+  ISSUE_TITLE: 'OWASP linting findings: align API schemas with CAMARA OWASP rules'
+  ISSUE_LABELS: 'automated'
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  select:
+    runs-on: ubuntu-latest
+    outputs:
+      repos: ${{ steps.sel.outputs.repos }}
+    steps:
+      - name: Build repo list from GitHub API
+        id: sel
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const org = process.env.ORG;
+            const includeSandbox = '${{ inputs.include_sandbox }}' === 'true';
+            const includeIncubating = '${{ inputs.include_incubating }}' === 'true';
+            const repoFilter = '${{ inputs.repository_filter }}'.trim();
+            const excludeRepos = '${{ inputs.exclude_repos }}'
+              .split(',')
+              .map((r) => r.trim())
+              .filter(Boolean);
+
+            console.log(`Fetching repositories from ${org}`);
+            console.log(`Include sandbox: ${includeSandbox}`);
+            console.log(`Include incubating: ${includeIncubating}`);
+            console.log(`Exclude repos: ${excludeRepos.join(', ') || '(none)'}`);
+            if (repoFilter) {
+              console.log(`Filter: ${repoFilter}`);
+            }
+
+            const repos = await github.paginate(github.rest.repos.listForOrg, {
+              org,
+              per_page: 100,
+              type: 'public'
+            });
+
+            console.log(`Found ${repos.length} total repositories`);
+
+            const targetTopics = [];
+            if (includeSandbox) targetTopics.push('sandbox-api-repository');
+            if (includeIncubating) targetTopics.push('incubating-api-repository');
+
+            const filteredRepos = repos.filter((repo) => {
+              if (repo.archived) return false;
+              if (excludeRepos.includes(repo.name)) return false;
+
+              const repoTopics = repo.topics || [];
+              const hasTargetTopic = targetTopics.some((topic) => repoTopics.includes(topic));
+              if (!hasTargetTopic) return false;
+
+              if (repoFilter && repo.name !== repoFilter) return false;
+
+              return true;
+            });
+
+            const repoList = filteredRepos.map((r) => `${org}/${r.name}`);
+            console.log(`Selected ${repoList.length} repositories:`);
+            repoList.forEach((r) => console.log(`  - ${r}`));
+
+            core.setOutput('repos', JSON.stringify(repoList));
+
+  run:
+    needs: select
+    if: ${{ needs.select.outputs.repos != '[]' }}
+    runs-on: ubuntu-latest
+    outputs:
+      mode: ${{ env.MODE }}
+    strategy:
+      fail-fast: false
+      matrix:
+        repo: ${{ fromJson(needs.select.outputs.repos) }}
+
+    steps:
+      - name: Checkout admin repo (self)
+        uses: actions/checkout@v6
+        with:
+          path: admin
+
+      - name: Checkout target repo
+        uses: actions/checkout@v6
+        with:
+          repository: ${{ matrix.repo }}
+          path: repo
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+
+      - name: Install Spectral CLI
+        run: npm install -g @stoplight/spectral-cli
+
+      - name: Check OWASP compliance
+        id: check
+        uses: ./admin/actions/read-owasp-compliance
+        with:
+          repo_path: repo
+          repo_slug: ${{ matrix.repo }}
+          rule_profile: ${{ inputs.rule_profile }}
+
+      - name: Render issue body template
+        if: steps.check.outputs.has_findings == 'true'
+        uses: ./admin/actions/render-mustache
+        with:
+          template: ${{ github.workspace }}/admin/campaigns/owasp-linting/templates/issue-body.mustache
+          data_json: ${{ steps.check.outputs.json }}
+          out_file: /tmp/issue-body.md
+
+      - name: Finalize campaign per repo
+        if: always()
+        uses: ./admin/actions/campaign-finalize-issue-per-repo
+        with:
+          mode: ${{ env.MODE }}
+          repo: ${{ matrix.repo }}
+          should_create_issue: ${{ steps.check.outputs.has_findings == 'true' }}
+          campaign_data: ${{ steps.check.outputs.summary }}
+          issue_title: ${{ env.ISSUE_TITLE }}
+          issue_body_file: /tmp/issue-body.md
+          issue_labels: ${{ env.ISSUE_LABELS }}
+          github_token: ${{ secrets.BULK_CAMPAIGN_TOKEN }}
+
+      - name: Build dry-run issue text artifact
+        if: env.MODE == 'plan' && steps.check.outputs.has_findings == 'true'
+        shell: bash
+        run: |
+          mkdir -p issue-text
+          echo "${{ matrix.repo }}" > issue-text/repo.txt
+
+          STATUS="unknown"
+          if [ -f plan.jsonl ]; then
+            STATUS=$(node -e "const fs=require('fs');const p='plan.jsonl';let s='unknown';if(fs.existsSync(p)){try{s=JSON.parse(fs.readFileSync(p,'utf8').trim()).status||'unknown'}catch(e){}}process.stdout.write(s)")
+          fi
+          echo "$STATUS" > issue-text/status.txt
+
+          if [ -f /tmp/issue-body.md ]; then
+            cp /tmp/issue-body.md issue-text/issue-body.md
+          else
+            echo "Issue body was not rendered." > issue-text/issue-body.md
+          fi
+
+      - name: Upload dry-run issue text artifact
+        if: env.MODE == 'plan' && steps.check.outputs.has_findings == 'true'
+        uses: actions/upload-artifact@v6
+        with:
+          name: owasp-issue-text-${{ github.run_id }}-${{ strategy.job-index }}
+          path: |
+            issue-text/repo.txt
+            issue-text/status.txt
+            issue-text/issue-body.md
+
+  aggregate:
+    needs: run
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Determine artifact pattern
+        id: pattern
+        run: |
+          MODE="${{ needs.run.outputs.mode }}"
+          if [ "$MODE" = "apply" ]; then
+            echo "pattern=results-*" >> $GITHUB_OUTPUT
+            echo "output_name=results" >> $GITHUB_OUTPUT
+            echo "dir_name=results" >> $GITHUB_OUTPUT
+          else
+            echo "pattern=plan-*" >> $GITHUB_OUTPUT
+            echo "output_name=plan" >> $GITHUB_OUTPUT
+            echo "dir_name=plans" >> $GITHUB_OUTPUT
+          fi
+
+      - uses: actions/download-artifact@v7
+        with:
+          pattern: ${{ steps.pattern.outputs.pattern }}
+          path: ${{ steps.pattern.outputs.dir_name }}
+
+      - name: Merge summary artifacts
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const fs = require('fs');
+            const p = '${{ steps.pattern.outputs.dir_name }}';
+            const outputName = '${{ steps.pattern.outputs.output_name }}';
+
+            if (!fs.existsSync(p)) {
+              fs.writeFileSync(`${outputName}.md`, `# No ${outputName} artifacts found\n`);
+              fs.writeFileSync(`${outputName}.jsonl`, '');
+              return;
+            }
+
+            const md = [];
+            const lines = [];
+            const entries = fs.readdirSync(p);
+
+            let compliant = 0;
+            let wouldCreate = 0;
+            let created = 0;
+            let skipped = 0;
+
+            function collectEntry(mdPath, jsonlPath) {
+              if (fs.existsSync(mdPath)) {
+                md.push(fs.readFileSync(mdPath, 'utf8'));
+              }
+              if (fs.existsSync(jsonlPath)) {
+                const jsonlContent = fs.readFileSync(jsonlPath, 'utf8');
+                lines.push(jsonlContent);
+                try {
+                  const record = JSON.parse(jsonlContent.trim());
+                  if (record.status === 'compliant') compliant++;
+                  else if (record.status === 'would_create') wouldCreate++;
+                  else if (record.status === 'created') created++;
+                  else if (record.status === 'issue_exists') skipped++;
+                } catch (e) {
+                  // ignore malformed line
+                }
+              }
+            }
+
+            for (const entry of entries) {
+              const entryPath = `${p}/${entry}`;
+              const stat = fs.statSync(entryPath);
+              if (stat.isDirectory()) {
+                collectEntry(`${entryPath}/${outputName}.md`, `${entryPath}/${outputName}.jsonl`);
+              } else if (entry === `${outputName}.jsonl`) {
+                collectEntry(`${p}/${outputName}.md`, entryPath);
+              }
+            }
+
+            const total = compliant + wouldCreate + created + skipped;
+            let header = `# OWASP Linting Campaign - ${outputName === 'plan' ? 'Plan' : 'Results'}\n\n`;
+            header += `**Mode:** ${outputName === 'plan' ? 'PLAN (dry run)' : 'APPLY'}\n`;
+            header += `**Repositories checked:** ${total}\n\n`;
+            header += `## Summary\n\n`;
+            header += `| Status | Count |\n`;
+            header += `|--------|-------|\n`;
+            header += `| Compliant | ${compliant} |\n`;
+            if (outputName === 'plan') {
+              header += `| Would create issue | ${wouldCreate} |\n`;
+            } else {
+              header += `| Issue created | ${created} |\n`;
+            }
+            header += `| Issue already exists | ${skipped} |\n`;
+            header += `\n## Details\n\n`;
+
+            fs.writeFileSync(`${outputName}.md`, header + md.join('\n'));
+            fs.writeFileSync(`${outputName}.jsonl`, lines.join(''));
+
+      - name: Upload summary artifact
+        uses: actions/upload-artifact@v6
+        with:
+          name: ${{ steps.pattern.outputs.output_name }}
+          path: |
+            ${{ steps.pattern.outputs.output_name }}.md
+            ${{ steps.pattern.outputs.output_name }}.jsonl
+
+      - name: Download dry-run issue text artifacts
+        if: ${{ steps.pattern.outputs.output_name == 'plan' }}
+        uses: actions/download-artifact@v7
+        continue-on-error: true
+        with:
+          pattern: owasp-issue-text-*
+          path: issue-texts
+
+      - name: Merge dry-run issue texts
+        if: ${{ steps.pattern.outputs.output_name == 'plan' }}
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const fs = require('fs');
+            const root = 'issue-texts';
+            const outFile = 'plan-issue-texts.md';
+
+            function gatherDirs(dir) {
+              if (!fs.existsSync(dir)) return [];
+              const result = [];
+              const stack = [dir];
+              while (stack.length > 0) {
+                const current = stack.pop();
+                const entries = fs.readdirSync(current, { withFileTypes: true });
+                for (const entry of entries) {
+                  const full = `${current}/${entry.name}`;
+                  if (entry.isDirectory()) stack.push(full);
+                }
+
+                const repoPath = `${current}/repo.txt`;
+                const statusPath = `${current}/status.txt`;
+                const bodyPath = `${current}/issue-body.md`;
+                if (fs.existsSync(repoPath) && fs.existsSync(statusPath) && fs.existsSync(bodyPath)) {
+                  result.push(current);
+                }
+              }
+              return result;
+            }
+
+            const dirs = gatherDirs(root);
+            if (dirs.length === 0) {
+              fs.writeFileSync(outFile, '# OWASP Linting Campaign - Planned Issue Texts\n\nNo repositories with planned issue bodies were found in this run.\n');
+              return;
+            }
+
+            const records = dirs.map((dir) => ({
+              repo: fs.readFileSync(`${dir}/repo.txt`, 'utf8').trim(),
+              status: fs.readFileSync(`${dir}/status.txt`, 'utf8').trim(),
+              body: fs.readFileSync(`${dir}/issue-body.md`, 'utf8').trim()
+            })).sort((a, b) => a.repo.localeCompare(b.repo));
+
+            const parts = ['# OWASP Linting Campaign - Planned Issue Texts', ''];
+            for (const record of records) {
+              parts.push(`## ${record.repo}`);
+              parts.push('');
+              parts.push(`Status: \`${record.status || 'unknown'}\``);
+              parts.push('');
+              parts.push(record.body || '_No issue body text found._');
+              parts.push('');
+              parts.push('---');
+              parts.push('');
+            }
+
+            fs.writeFileSync(outFile, parts.join('\n'));
+
+      - name: Upload dry-run issue text aggregate
+        if: ${{ steps.pattern.outputs.output_name == 'plan' }}
+        uses: actions/upload-artifact@v6
+        with:
+          name: plan-issue-texts
+          path: plan-issue-texts.md
+
+      - name: Summary
+        run: |
+          OUTPUT_NAME="${{ steps.pattern.outputs.output_name }}"
+          echo "## OWASP Linting Campaign - ${OUTPUT_NAME^}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          cat "${OUTPUT_NAME}.md" >> $GITHUB_STEP_SUMMARY
+          if [ "$OUTPUT_NAME" = "plan" ]; then
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "Additional artifact generated: plan-issue-texts.md" >> $GITHUB_STEP_SUMMARY
+          fi

@@ -1,0 +1,40 @@
+# =========================================================================================
+# CAMARA Project - Action: Read OWASP Compliance
+#
+# Runs Spectral OWASP linting on OpenAPI files and emits structured findings for
+# issue-based campaign workflows.
+#
+# CHANGELOG:
+# - 2026-03-01: Initial version
+# =========================================================================================
+name: read-owasp-compliance
+description: Run OWASP Spectral linting and report per-repository compliance findings
+inputs:
+  repo_path:
+    description: 'Path to checked-out repository'
+    required: true
+  repo_slug:
+    description: 'Repository slug (org/repo)'
+    required: true
+  rule_profile:
+    description: 'Rules profile: api4-target or full-camara-owasp'
+    required: false
+    default: 'api4-target'
+outputs:
+  json:
+    description: 'Full JSON payload for Mustache templates'
+  summary:
+    description: 'Compact JSON for JSONL records'
+  has_findings:
+    description: 'Whether OWASP findings were detected (true/false)'
+  finding_count:
+    description: 'Total number of findings'
+  error_count:
+    description: 'Number of error findings'
+  warning_count:
+    description: 'Number of warning findings'
+  files_checked:
+    description: 'Number of API definition files checked'
+runs:
+  using: node20
+  main: src/index.js
