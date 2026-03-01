@@ -36,12 +36,20 @@ gh workflow run campaign-owasp-linting.yml \
   -f repository_filter=QualityOnDemand
 ```
 
+### Test Multiple Repositories
+
+```bash
+gh workflow run campaign-owasp-linting.yml \
+  -f dry_run=true \
+  -f repository_filter=\"ReleaseTest,ConsentInfo,QualityOnDemand\"
+```
+
 ## Inputs
 
 - `dry_run` (default `true`): plan mode without issue creation
 - `include_sandbox` (default `true`): include repositories with topic `sandbox-api-repository`
 - `include_incubating` (default `true`): include repositories with topic `incubating-api-repository`
-- `repository_filter` (default empty): test against one repository name
+- `repository_filter` (default empty): optional single repository name or comma-separated list of names
 - `exclude_repos` (default `DeviceStatus,KnowYourCustomer`): comma-separated exclusions
 - `rule_profile` (default `api4-target`): `api4-target` or `full-camara-owasp`
 

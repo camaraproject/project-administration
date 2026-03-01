@@ -27,7 +27,7 @@ on:
         type: boolean
         default: true
       repository_filter:
-        description: 'Filter to specific repo name (for testing, e.g. "QualityOnDemand")'
+        description: 'Optional repository filter: single name or comma-separated names (e.g. "ReleaseTest,ConsentInfo,QualityOnDemand")'
         type: string
         default: ''
       exclude_repos:
@@ -71,7 +71,13 @@ jobs:
             const org = process.env.ORG;
             const includeSandbox = '${{ inputs.include_sandbox }}' === 'true';
             const includeIncubating = '${{ inputs.include_incubating }}' === 'true';
-            const repoFilter = '${{ inputs.repository_filter }}'.trim();
+            const repoFilterRaw = '${{ inputs.repository_filter }}'.trim();
+            const repoFilterSet = new Set(
+              repoFilterRaw
+                .split(',')
+                .map((r) => r.trim())
+                .filter(Boolean)
+            );
             const excludeRepos = '${{ inputs.exclude_repos }}'
               .split(',')
               .map((r) => r.trim())
@@ -81,8 +87,8 @@ jobs:
             console.log(`Include sandbox: ${includeSandbox}`);
             console.log(`Include incubating: ${includeIncubating}`);
             console.log(`Exclude repos: ${excludeRepos.join(', ') || '(none)'}`);
-            if (repoFilter) {
-              console.log(`Filter: ${repoFilter}`);
+            if (repoFilterSet.size > 0) {
+              console.log(`Filter: ${Array.from(repoFilterSet).join(', ')}`);
             }
 
             const repos = await github.paginate(github.rest.repos.listForOrg, {
@@ -105,7 +111,7 @@ jobs:
               const hasTargetTopic = targetTopics.some((topic) => repoTopics.includes(topic));
               if (!hasTargetTopic) return false;
 
-              if (repoFilter && repo.name !== repoFilter) return false;
+              if (repoFilterSet.size > 0 && !repoFilterSet.has(repo.name)) return false;
 
               return true;
             });
