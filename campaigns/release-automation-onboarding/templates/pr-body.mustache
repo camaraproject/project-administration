@@ -3,7 +3,7 @@
 **TL;DR:** This PR adds the **release automation workflow** and prepares the CHANGELOG structure for **{{name}}**.
 
 > **Note:** Once merged, the release automation becomes active.
-> Release Issues will be created automatically when `release-plan.yaml` is updated on `main`.
+> A Release Issue will be created automatically (if not existing yet) when `release-plan.yaml` is updated on `main`.
 
 ### What is this?
 
@@ -38,8 +38,6 @@ If `release-plan.yaml` was updated before this workflow was installed, you may n
 <details>
 <summary><b>Release lifecycle overview</b></summary>
 
-More details: [Release Lifecycle](https://github.com/camaraproject/ReleaseManagement/blob/main/documentation/release-process/lifecycle.md)
-
 1. **Plan** — update `release-plan.yaml` with target release tag, type, and API versions/statuses
 2. **Develop** — continue work on `main` branch with version fields set to `wip`
 3. **Create Snapshot** — post `/create-snapshot` on the Release Issue to generate a Release PR
@@ -47,6 +45,8 @@ More details: [Release Lifecycle](https://github.com/camaraproject/ReleaseManage
 5. **Publish** — post `/publish-release --confirm rX.Y` to finalize the release
 
 If issues arise: use `/discard-snapshot` (during review) or `/delete-draft` (during draft phase) to return to planned state and make corrections on `main`.
+
+More details: [Release Lifecycle](https://github.com/camaraproject/ReleaseManagement/blob/main/documentation/release-process/lifecycle.md)
 
 </details>
 

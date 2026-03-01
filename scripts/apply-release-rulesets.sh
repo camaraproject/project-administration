@@ -8,8 +8,8 @@
 #
 # Rulesets managed:
 # 1. release-snapshot-protection: Protects release-snapshot/** branches
-#    - Only the camara-release-automation GitHub App can create/push/delete
-#    - Humans must use PRs with 2 approvals, code owner review, and RM team approval
+#    - Only the camara-release-automation GitHub App can create/delete branches
+#    - All changes must go through PRs with 2 approvals, code owner review, and RM team approval
 # 2. release-pointer-protection: Protects release/** pointer branches (fully immutable)
 # 3. pre-release-pointer-protection: Protects pre-release/** pointer branches
 #    (immutable but deletable by codeowners)
@@ -94,7 +94,6 @@ ruleset_snapshot_protection() {
     { "type": "deletion" },
     { "type": "non_fast_forward" },
     { "type": "creation" },
-    { "type": "update" },
     {
       "type": "pull_request",
       "parameters": {

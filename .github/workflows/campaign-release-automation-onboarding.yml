@@ -54,7 +54,7 @@ env:
   INCLUDE: ${{ inputs.include }}
   CALLER_REF: ${{ inputs.caller_ref }}
   BRANCH: bulk/release-automation-onboarding-${{ github.run_id }}
-  PR_TITLE: "[bulk] Sync release automation configuration"
+  PR_TITLE: "[bulk] Enable release automation process"
   # Source location of the caller workflow template in camaraproject/tooling
   CALLER_TEMPLATE_PATH: release_automation/workflows/release-automation-caller.yml
 
