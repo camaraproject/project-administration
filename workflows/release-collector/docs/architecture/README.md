@@ -36,6 +36,14 @@ Explains how archived CAMARA API repositories are handled in the Release Collect
 
 **Key decision**: Include archived repos via `archived-api-repository` topic with `repository_archived: true` field. No filtering in reports; campaigns skip archived repos.
 
+### [ADR-0004: Native Release Metadata Adoption](0004-native-release-metadata-adoption.md)
+**Date**: 2026-03-11
+**Status**: Proposed
+
+Explains how the Release Collector should transition from synthetic release metadata generation to native tag-root `release-metadata.yaml`, including mixed native/legacy handling and the resulting `releases-master.yaml` and report changes.
+
+**Key decision**: Use native `release-metadata.yaml` as the primary source when present, generate local artifacts only for legacy releases, and evolve master/report fields selectively around the native contract.
+
 ## Related Documentation
 
 - [User Guide](../README.md) - Operational guide for running the workflow
