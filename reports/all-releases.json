@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "generated": "2026-03-13T05:33:53.173Z",
+    "generated": "2026-03-23T15:50:18.943Z",
     "meta_release": "All",
     "source": "Release Collector v3",
     "landscape_version": "1.1.0"
@@ -12,13 +12,13 @@
     "unique_apis_count": 65,
     "api_version_maturity": {
       "stable": 28,
-      "initial": 119,
-      "rc": 3
+      "initial": 120,
+      "rc": 2
     },
     "unique_api_maturity": {
       "stable": 11,
-      "initial": 51,
-      "rc": 3
+      "initial": 52,
+      "rc": 2
     },
     "categories": {
       "Computing Services": 9,
@@ -34,6 +34,7 @@
       "0.4",
       "0.5",
       "0.6",
+      "0.6.1",
       "0.7",
       "r4.1"
     ],
@@ -182,8 +183,8 @@
     "ConsentInfo": {
       "releases": [
         {
-          "tag": "r2.1",
-          "date": "2026-02-05T10:25:58Z",
+          "tag": "r2.3",
+          "date": "2026-03-23T12:56:54Z",
           "apis_count": 1
         },
         {
@@ -1419,18 +1420,18 @@
     },
     {
       "repository": "ConsentInfo",
-      "release_tag": "r2.1",
-      "release_date": "2026-02-05T10:25:58Z",
+      "release_tag": "r2.3",
+      "release_date": "2026-03-23T12:56:54Z",
       "meta_release": "None (Sandbox)",
-      "github_url": "https://github.com/camaraproject/ConsentInfo/releases/tag/r2.1",
-      "release_type": "pre-release-rc",
+      "github_url": "https://github.com/camaraproject/ConsentInfo/releases/tag/r2.3",
+      "release_type": "maintenance-release",
       "apis": [
         {
           "api_name": "consent-info",
           "file_name": "consent-info",
-          "api_version": "0.2.0-rc.1",
+          "api_version": "0.2.0",
           "api_title": "Consent Info",
-          "commonalities": "0.6",
+          "commonalities": "0.6.1",
           "maturity": "initial",
           "portfolio_category": "Service Management",
           "website_url": "https://camaraproject.org/consent-info/",
@@ -4730,9 +4731,9 @@
     {
       "api_name": "consent-info",
       "file_name": "consent-info",
-      "api_version": "0.2.0-rc.1",
+      "api_version": "0.2.0",
       "api_title": "Consent Info",
-      "commonalities": "0.6",
+      "commonalities": "0.6.1",
       "maturity": "initial",
       "portfolio_category": "Service Management",
       "website_url": "https://camaraproject.org/consent-info/",
@@ -4742,11 +4743,11 @@
       "canonical_name": "consent-info",
       "first_release": "Fall25",
       "repository": "ConsentInfo",
-      "release_tag": "r2.1",
-      "release_date": "2026-02-05T10:25:58Z",
+      "release_tag": "r2.3",
+      "release_date": "2026-03-23T12:56:54Z",
       "meta_release": "None (Sandbox)",
-      "github_url": "https://github.com/camaraproject/ConsentInfo/releases/tag/r2.1",
-      "release_type": "pre-release-rc"
+      "github_url": "https://github.com/camaraproject/ConsentInfo/releases/tag/r2.3",
+      "release_type": "maintenance-release"
     },
     {
       "api_name": "customer-insights",
