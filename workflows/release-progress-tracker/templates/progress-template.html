@@ -19,14 +19,52 @@
   white-space: nowrap;
   color: #ffffff;
   letter-spacing: 0.3px;
+  position: relative;
+  cursor: help;
 }
 
 .state-not_planned { background: #C2C9D1; color: #24292f; }
-.state-completed   { background: #E8EBEE; color: #57606a; }
 .state-planned { background: #0969da; }
 .state-snapshot_active { background: #FBCA04; color: #24292f; }
 .state-draft_ready { background: #1D76DB; }
 .state-published { background: #0E8A16; }
+
+/* State badge tooltip — mirrors .warning-tooltip pattern for instant CSS-driven hover */
+.state-badge .state-tooltip {
+  display: none;
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 4px;
+  background: #2c3e50;
+  color: #ffffff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: normal;
+  white-space: normal;
+  min-width: 200px;
+  max-width: 320px;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  line-height: 1.4;
+  text-align: left;
+  letter-spacing: normal;
+  pointer-events: none;
+}
+
+.state-badge:hover .state-tooltip {
+  display: block;
+}
+
+/* Flip top-row state tooltips below the badge so they stay clear of sticky headers */
+.tooltip-below-row .state-badge .state-tooltip {
+  bottom: auto;
+  top: 100%;
+  margin-top: 4px;
+  margin-bottom: 0;
+}
 
 /* State artifact link below badge */
 .state-artifact {
@@ -133,17 +171,11 @@ a.milestone-tag:hover {
   line-height: 1.3;
 }
 
-/* NOT_PLANNED / COMPLETED / HISTORICAL row dimming */
+/* NOT_PLANNED / HISTORICAL row dimming */
 tr.not-planned-row td {
   opacity: 0.6;
 }
 tr.not-planned-row:hover td {
-  opacity: 1;
-}
-tr.completed-row td {
-  opacity: 0.8;
-}
-tr.completed-row:hover td {
   opacity: 1;
 }
 tr.historical-row td {
@@ -255,8 +287,7 @@ tr.historical-row:hover td {
               <option value="draft_ready">Draft Ready</option>
               <option value="snapshot_active">Snapshot</option>
               <option value="planned">Planned</option>
-              <option value="completed">Completed</option>
-              <option value="not_planned">None</option>
+              <option value="not_planned">Not Planned</option>
               <option value="historical">Historical</option>
             </select>
           </div>
@@ -326,9 +357,19 @@ tr.historical-row:hover td {
       'draft_ready':     { label: 'Draft Ready', color: '#1D76DB', order: 2 },
       'snapshot_active': { label: 'Snapshot',    color: '#FBCA04', order: 3 },
       'planned':         { label: 'Planned',     color: '#0969da', order: 4 },
-      'completed':       { label: 'Completed',   color: '#E8EBEE', order: 5 },
-      'not_planned':     { label: 'None',        color: '#C2C9D1', order: 6 },
-      'historical':      { label: null,          color: null,      order: 7 },
+      'not_planned':     { label: '—',           color: '#C2C9D1', order: 5 },
+      'historical':      { label: null,          color: null,      order: 6 },
+    };
+
+    // Tooltip text shown on hover for each state badge. Keys must match
+    // STATE_CONFIG and the schema enum in releases-progress-schema.yaml.
+    const STATE_TOOLTIPS = {
+      'published':       'Published: release tag exists',
+      'draft_ready':     'Draft Ready: snapshot branch and draft release exist',
+      'snapshot_active': 'Snapshot: release-snapshot branch exists; review in progress',
+      'planned':         'Planned: release planned, no release artifacts yet',
+      'not_planned':     'Not Planned: target_release_type is none — no active release planned',
+      'historical':      'Historical: no active release-plan.yaml; entry derived from releases-master.yaml',
     };
 
     const COL_COUNT = 9;
@@ -562,7 +603,11 @@ tr.historical-row:hover td {
 
       // Historical entries carry no state badge
       if (cfg.label !== null) {
-        html = `<span class="state-badge state-${row.state}">${cfg.label}</span>`;
+        const tooltip = STATE_TOOLTIPS[row.state] || '';
+        const tooltipHtml = tooltip
+          ? `<span class="state-tooltip">${ViewerLib.escapeHtml(tooltip)}</span>`
+          : '';
+        html = `<span class="state-badge state-${row.state}">${cfg.label}${tooltipHtml}</span>`;
       }
 
       if (row.warnings && row.warnings.length > 0) {
@@ -583,12 +628,12 @@ tr.historical-row:hover td {
       const tag = row.target_release_tag;
       const artifacts = row.artifacts || {};
 
-      // Completed and historical: no ongoing release target
-      if (state === 'completed' || state === 'historical') {
+      // Historical: no ongoing release target
+      if (state === 'historical') {
         return '<span class="milestone-empty">&mdash;</span>';
       }
 
-      // Not Planned (None): show plan data only if it differs from last published
+      // Not Planned: show plan data only if it differs from last published
       if (state === 'not_planned') {
         const lp = row.last_published;
         const hasDifferentPlan = tag && (!lp || lp.release_tag !== tag);
@@ -751,8 +796,6 @@ tr.historical-row:hover td {
 
       if (row.state === 'not_planned') {
         tr.className = 'not-planned-row';
-      } else if (row.state === 'completed') {
-        tr.className = 'completed-row';
       } else if (row.state === 'historical') {
         tr.className = 'historical-row';
       }

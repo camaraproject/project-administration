@@ -20,7 +20,6 @@ class ProgressState(Enum):
     SNAPSHOT_ACTIVE = "snapshot_active"
     DRAFT_READY = "draft_ready"
     PUBLISHED = "published"
-    COMPLETED = "completed"    # target_release_type=none, plan exactly matches last public release
     HISTORICAL = "historical"  # No release-plan.yaml; derived from releases-master.yaml only
 
 

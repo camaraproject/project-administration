@@ -109,47 +109,6 @@ def _tag_prefix(release_tag: str) -> str:
     return release_tag[:dot_index + 1] if dot_index != -1 else release_tag + "."
 
 
-def _check_completed_state(entry: ProgressEntry, all_releases: List[Dict]) -> ProgressState:
-    """Upgrade NOT_PLANNED to COMPLETED when release-plan exactly matches a completed release.
-
-    Conditions (all must hold):
-    1. target_release_tag exactly matches a public-release or maintenance-release
-       for this repo in releases-master.yaml (a maintenance-release implies a prior
-       public-release in the same cycle, so both count as completed states).
-    2. Every planned API's target_api_version matches the api_version in that release.
-    3. entry.apis is non-empty (empty API list is not verifiable, stays NOT_PLANNED).
-    """
-    if not entry.target_release_tag or not entry.apis:
-        return ProgressState.NOT_PLANNED
-
-    _TERMINAL_TYPES = {"public-release", "maintenance-release"}
-
-    matched_release = next(
-        (
-            r for r in all_releases
-            if r.get("repository") == entry.repository
-            and r.get("release_tag") == entry.target_release_tag
-            and r.get("release_type") in _TERMINAL_TYPES
-        ),
-        None,
-    )
-
-    if not matched_release:
-        return ProgressState.NOT_PLANNED
-
-    release_api_versions = {
-        a.get("api_name"): a.get("api_version")
-        for a in matched_release.get("apis", [])
-        if a.get("api_name")
-    }
-
-    for api_entry in entry.apis:
-        if release_api_versions.get(api_entry.api_name) != api_entry.target_api_version:
-            return ProgressState.NOT_PLANNED
-
-    return ProgressState.COMPLETED
-
-
 # meta_release values that indicate an independent / non-meta-release repo
 # Includes legacy "None (Sandbox)" for backward compatibility with old releases-master.yaml data
 _INDEPENDENT_META_RELEASES = {"Independent", "None (Sandbox)", "None"}
@@ -333,8 +292,6 @@ def collect_repo_progress(
         entry.last_published = derive_last_published(
             repo_name, target_tag, all_releases,
         )
-        # Upgrade to COMPLETED if plan exactly matches last public release
-        entry.state = _check_completed_state(entry, all_releases)
         # Generate warnings
         repo_releases = [r for r in all_releases if r.get("repository") == repo_name]
         entry.warnings = generate_warnings(entry, repo_releases)

@@ -176,17 +176,6 @@ class TestProgressData:
 
 
 class TestNewStates:
-    def test_completed_state_serializes(self):
-        entry = ProgressEntry(
-            repository="FallRepo",
-            github_url="https://github.com/camaraproject/FallRepo",
-            state=ProgressState.COMPLETED,
-            target_release_type="none",
-        )
-        d = entry.to_dict()
-        assert d["state"] == "completed"
-        assert "source" not in d
-
     def test_historical_state_serializes_with_source(self):
         entry = ProgressEntry(
             repository="OldRepo",

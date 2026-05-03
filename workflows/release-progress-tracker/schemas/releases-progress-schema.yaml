@@ -172,17 +172,15 @@ properties:
             - snapshot_active
             - draft_ready
             - published
-            - completed
             - historical
           description: |
             Derived from repository artifacts:
-            - not_planned: target_release_type is none, plan does not match last public release
-            - planned: Has plan, no release artifacts
-            - snapshot_active: Snapshot branch exists
-            - draft_ready: Snapshot branch + draft release exist
-            - published: Release tag exists
-            - completed: target_release_type is none, plan exactly matches last public release
-            - historical: No release-plan.yaml; entry derived from releases-master.yaml only
+            - not_planned: target_release_type is none — no active release planned
+            - planned: Release planned, no release artifacts yet
+            - snapshot_active: Release-snapshot branch exists; review in progress
+            - draft_ready: Snapshot branch + draft release ready for publication
+            - published: Release tag published
+            - historical: No active release-plan.yaml; entry derived from releases-master.yaml only
 
         source:
           type: string
