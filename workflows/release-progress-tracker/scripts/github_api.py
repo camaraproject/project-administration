@@ -8,6 +8,7 @@ All methods return parsed data or None on 404.
 import base64
 import logging
 import os
+import time
 from typing import Dict, List, Optional
 
 import requests
@@ -15,6 +16,10 @@ import requests
 logger = logging.getLogger(__name__)
 
 ORG = "camaraproject"
+
+RETRY_STATUS_CODES = frozenset({502, 503, 504})
+RETRY_ATTEMPTS = 3
+RETRY_BACKOFF_SECONDS = (1, 2, 4)
 
 
 class RateLimitError(Exception):
@@ -24,7 +29,7 @@ class RateLimitError(Exception):
 class GitHubAPI:
     """Thin REST client for GitHub API operations needed by the collector."""
 
-    def __init__(self, token: Optional[str] = None):
+    def __init__(self, token: Optional[str] = None, sleep=time.sleep):
         self.session = requests.Session()
         self.public_session = requests.Session()
         self.token = token or os.environ.get("GITHUB_TOKEN", "")
@@ -34,6 +39,8 @@ class GitHubAPI:
             session.headers["Accept"] = "application/vnd.github+json"
             session.headers["X-GitHub-Api-Version"] = "2022-11-28"
         self.api_calls = 0
+        # Injectable so tests can avoid real backoff sleeps.
+        self._sleep = sleep
 
     def _request(
         self,
@@ -43,23 +50,68 @@ class GitHubAPI:
         public: bool = False,
         **kwargs,
     ) -> Optional[requests.Response]:
-        """Make an API request with rate limit monitoring."""
+        """Make an API request with rate-limit monitoring and transient retry.
+
+        Retries up to RETRY_ATTEMPTS times on HTTP 502/503/504 and on
+        connection / timeout errors with exponential backoff (1s, 2s, 4s).
+        404 and other 4xx responses are returned to the caller without
+        retry. Rate-limit exhaustion raises RateLimitError immediately.
+        """
         session = self.public_session if public or not self.token else self.session
-        resp = session.request(method, url, **kwargs)
-        self.api_calls += 1
 
-        # Monitor rate limit
-        remaining = resp.headers.get("X-RateLimit-Remaining")
-        if remaining is not None:
-            remaining = int(remaining)
-            if remaining == 0:
-                raise RateLimitError(
-                    f"GitHub API rate limit exhausted after {self.api_calls} calls"
+        for attempt in range(RETRY_ATTEMPTS + 1):
+            try:
+                resp = session.request(method, url, **kwargs)
+            except (requests.exceptions.ConnectionError,
+                    requests.exceptions.Timeout) as exc:
+                if attempt < RETRY_ATTEMPTS:
+                    delay = RETRY_BACKOFF_SECONDS[attempt]
+                    logger.warning(
+                        "Request to %s failed (%s); retrying in %ds (attempt %d/%d)",
+                        url, exc.__class__.__name__, delay,
+                        attempt + 1, RETRY_ATTEMPTS,
+                    )
+                    self._sleep(delay)
+                    continue
+                logger.error(
+                    "Request to %s failed after %d attempts: %s",
+                    url, RETRY_ATTEMPTS, exc,
                 )
-            if remaining < 50:
-                logger.warning("GitHub API rate limit low: %d remaining", remaining)
+                raise
 
-        return resp
+            self.api_calls += 1
+
+            # Rate-limit check first: an exhausted budget should abort
+            # collection regardless of status code on this response.
+            remaining = resp.headers.get("X-RateLimit-Remaining")
+            if remaining is not None:
+                remaining_int = int(remaining)
+                if remaining_int == 0:
+                    raise RateLimitError(
+                        f"GitHub API rate limit exhausted after {self.api_calls} calls"
+                    )
+                if remaining_int < 50:
+                    logger.warning("GitHub API rate limit low: %d remaining", remaining_int)
+
+            if resp.status_code in RETRY_STATUS_CODES and attempt < RETRY_ATTEMPTS:
+                delay = RETRY_BACKOFF_SECONDS[attempt]
+                logger.warning(
+                    "Request to %s returned %d; retrying in %ds (attempt %d/%d)",
+                    url, resp.status_code, delay,
+                    attempt + 1, RETRY_ATTEMPTS,
+                )
+                self._sleep(delay)
+                continue
+
+            if resp.status_code in RETRY_STATUS_CODES:
+                logger.error(
+                    "Request to %s returned %d after %d attempts",
+                    url, resp.status_code, RETRY_ATTEMPTS,
+                )
+
+            return resp
+
+        raise RuntimeError(f"Request to {url} exhausted retries unexpectedly")
 
     def _get(self, path: str, public: bool = False, **kwargs) -> Optional[requests.Response]:
         """GET request to GitHub API."""

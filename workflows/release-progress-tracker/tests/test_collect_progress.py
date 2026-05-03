@@ -455,8 +455,14 @@ class TestCollectAll:
         assert meta["repos_fully_onboarded"] == 0  # No caller workflow or active state
         assert meta["repos_with_release_issue"] == 0  # No release issues mocked
 
-    def test_collection_handles_api_errors(self, tmp_path):
-        """Repos with API errors should be skipped gracefully."""
+    def test_collection_aborts_on_per_repo_error(self, tmp_path):
+        """Per-repo failures abort the collection rather than silently dropping rows.
+
+        The existing output file must be preserved so the workflow does not
+        deploy partial data (PA#209).
+        """
+        from scripts.collect_progress import CollectionAbortedError
+
         master_data = {
             "metadata": SAMPLE_MASTER["metadata"],
             "repositories": [
@@ -474,11 +480,45 @@ class TestCollectAll:
                 raise ConnectionError("Network error")
 
         api = ErrorAPI()
-        result = collect_all(str(master_file), str(output_file), api=api)
+        with pytest.raises(CollectionAbortedError, match="ErrorRepo"):
+            collect_all(str(master_file), str(output_file), api=api)
 
-        assert result.collection_stats.repos_scanned == 1
-        assert result.collection_stats.repos_with_plan == 0
-        assert len(result.progress) == 0
+        assert not output_file.exists()
+
+    def test_collection_aborts_on_rate_limit(self, tmp_path):
+        """RateLimitError mid-loop aborts collection (PA#224).
+
+        The corrupted-PR symptom from ReleaseManagement#507 was caused by
+        the collector continuing to historical-fallback after a rate-limit
+        abort. The new contract is: raise CollectionAbortedError, leave
+        the existing releases-progress.yaml in place.
+        """
+        from scripts.collect_progress import CollectionAbortedError
+        from scripts.github_api import RateLimitError
+
+        master_data = {
+            "metadata": SAMPLE_MASTER["metadata"],
+            "repositories": [
+                {"repository": "RepoA",
+                 "github_url": "https://github.com/camaraproject/RepoA"},
+                {"repository": "RepoB",
+                 "github_url": "https://github.com/camaraproject/RepoB"},
+            ],
+            "releases": [],
+        }
+        master_file = tmp_path / "releases-master.yaml"
+        output_file = tmp_path / "releases-progress.yaml"
+        master_file.write_text(yaml.dump(master_data))
+
+        class RateLimitedAPI(MockGitHubAPI):
+            def get_file_content(self, repo, path, ref="main"):
+                raise RateLimitError("budget exhausted")
+
+        api = RateLimitedAPI()
+        with pytest.raises(CollectionAbortedError, match="Rate limit exhausted"):
+            collect_all(str(master_file), str(output_file), api=api)
+
+        assert not output_file.exists()
 
     def test_releases_master_updated_populated(self, tmp_path):
         """releases_master_updated should be read from master file metadata."""
