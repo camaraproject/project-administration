@@ -52,6 +52,17 @@ from .warnings import generate_warnings
 
 logger = logging.getLogger(__name__)
 
+
+class CollectionAbortedError(Exception):
+    """Raised when collection cannot complete a full pass.
+
+    Triggered by rate-limit exhaustion mid-run or by unrecovered per-repo
+    failures. The collector preserves the existing releases-progress.yaml
+    on disk rather than overwriting it with partial data; the workflow
+    sees a non-zero exit and skips the downstream PR/deploy jobs.
+    """
+
+
 # Repositories that have been split into sub-APIs and will not receive new
 # release-plan.yaml entries. Historical releases remain visible in the table
 # because they flow through all_releases, not the filtered repositories list.
@@ -519,6 +530,8 @@ def collect_all(
 
     stats = CollectionStats(repos_scanned=len(repositories))
     entries: List[ProgressEntry] = []
+    rate_limit_aborted = False
+    failed_repos: List[str] = []
 
     for repo_data in repositories:
         repo_name = repo_data.get("repository", "")
@@ -546,10 +559,28 @@ def collect_all(
                     stats.repos_with_release_issue += 1
         except RateLimitError:
             logger.error("Rate limit exhausted, aborting collection")
+            rate_limit_aborted = True
             break
         except Exception as e:
             logger.warning("%s: collection failed: %s", repo_name, e)
+            failed_repos.append(repo_name)
             continue
+
+    # Abort before writing partial data: a corrupted releases-progress.yaml
+    # is worse than a workflow failure (PA#209, PA#224).
+    if rate_limit_aborted:
+        raise CollectionAbortedError(
+            f"Rate limit exhausted after {api.api_calls} calls; "
+            f"{len(entries)}/{len(repositories)} repos collected. "
+            "Existing releases-progress.yaml left untouched."
+        )
+    if failed_repos:
+        sample = ", ".join(failed_repos[:5])
+        more = "" if len(failed_repos) <= 5 else f" (and {len(failed_repos) - 5} more)"
+        raise CollectionAbortedError(
+            f"{len(failed_repos)} repos failed during collection: {sample}{more}. "
+            "Existing releases-progress.yaml left untouched."
+        )
 
     # Count active repos that have no release-plan.yaml AND no published/pre releases.
     # These are freshly-created repos not yet onboarded.
@@ -690,6 +721,9 @@ def main():
         print(f"Data changed: {result.data_changed}")
         print(f"::endgroup::")
 
+    except CollectionAbortedError as e:
+        logger.error("Collection aborted: %s", e)
+        sys.exit(1)
     except Exception as e:
         logger.error("Collection failed: %s", e)
         sys.exit(1)
