@@ -1,34 +1,56 @@
-## Enable release automation and validation for {{name}}
+## Enable CAMARA Validation and Release Automation for {{name}}
 
-**TL;DR:** This PR adds the **release automation workflow** and the **CAMARA Validation** workflow, and prepares the CHANGELOG structure for **{{name}}**.
+Following the [Spring26 release announcement](https://lists.camaraproject.org/g/codeowners/topic/119079596) on the codeowners list, this PR onboards **{{name}}** to **CAMARA Validation** and the updated **Release Automation**, plus the CHANGELOG directory structure both depend on.
 
-> **Note:** Once merged, the release automation becomes active.
-> A Release Issue will be created automatically (if not existing yet) when `release-plan.yaml` is updated on `main`.
+### What you get
 
-### What is this?
+**CAMARA Validation** runs automatically on every PR against `main`, `release-snapshot/**`, or `maintenance/**`:
+- Catches compliance and spec issues at PR time, when fixes are cheap
+- Inline annotations on the diff plus a structured findings report in the PR check
+- Same rule set across all CAMARA APIs, kept current with each Commonalities release
 
-The release automation workflow enables slash commands on **Release Issues** to manage your release lifecycle. Post these as comments on the Release Issue:
-- `/create-snapshot` — create a snapshot branch (updates versions, changelog entries, and release metadata automatically)
-- `/discard-snapshot <reason>` — discard a snapshot and return to planned state
-- `/delete-draft` — delete a draft release
-- `/publish-release --confirm rX.Y` — publish the release
+**Release Automation** streamlines the release lifecycle:
+- Automates the mechanical steps of cutting a release — version bumps, CHANGELOG entries, release metadata
+- Slash commands on Release Issues give explicit control over snapshotting, publishing, and rollback
+- Same lifecycle across all CAMARA APIs — predictable, repeatable releases
 
 ### Changes
 
 | File | Description |
 |------|-------------|
-| `.github/workflows/release-automation.yml` | Release automation workflow (pinned to `@{{caller_ref}}`) |
-| `.github/workflows/camara-validation.yml` | CAMARA Validation workflow (pinned to `@{{validation_ref}}`) |
+| `.github/workflows/camara-validation.yml` | CAMARA Validation caller (pinned to `@{{validation_ref}}`) |
+| `.github/workflows/release-automation.yml` | Release Automation caller (pinned to `@{{caller_ref}}`) |
 | `CHANGELOG.md` | {{changelog_root_status}} |
 | `CHANGELOG/README.md` | {{changelog_dir_status}} |
 
 ### What to do next
 
 1. **Review** the file changes above
-2. **Merge** this PR to activate the release automation
+2. **Skim** the docs linked below if you'd like context first
+3. **Merge** to activate
 
-If `release-plan.yaml` was updated before this workflow was installed, you may need to **trigger the workflow manually once** to create the initial Release Issue:
-- Go to **Actions → [Release Automation](https://github.com/{{org}}/{{name}}/actions/workflows/release-automation.yml) → Run workflow**
+### Documentation
+
+:book: [Validation on PRs — what to expect](https://github.com/camaraproject/tooling/blob/main/documentation/validation/pull-requests.md)
+:book: [Where to see results](https://github.com/camaraproject/tooling/blob/main/documentation/validation/where-to-see-results.md)
+:book: [Anatomy of a finding](https://github.com/camaraproject/tooling/blob/main/documentation/validation/problem-messages.md)
+:book: [FAQ](https://github.com/camaraproject/tooling/blob/main/documentation/validation/faq.md)
+:book: [Release Management Documentation](https://github.com/camaraproject/ReleaseManagement/tree/main/documentation)
+
+<details>
+<summary><b>Release lifecycle overview</b></summary>
+
+1. **Plan** — update `release-plan.yaml` with target release tag, type, and API versions/statuses
+2. **Develop** — continue work on `main` with version fields set to `wip`
+3. **Snapshot** — post `/create-snapshot` on the Release Issue to generate a Release PR
+4. **Review & Merge** — review Release PR (includes CHANGELOG entry), obtain approvals, merge it
+5. **Publish** — post `/publish-release --confirm rX.Y` to finalize the release
+
+If issues arise: use `/discard-snapshot` (during review) or `/delete-draft` (during draft) to return to planned state.
+
+More: [Release Lifecycle](https://github.com/camaraproject/ReleaseManagement/blob/main/documentation/release-process/lifecycle.md)
+
+</details>
 {{#has_warnings}}
 
 ### Warnings
@@ -36,23 +58,8 @@ If `release-plan.yaml` was updated before this workflow was installed, you may n
 {{warnings}}
 {{/has_warnings}}
 
-<details>
-<summary><b>Release lifecycle overview</b></summary>
+---
 
-1. **Plan** — update `release-plan.yaml` with target release tag, type, and API versions/statuses
-2. **Develop** — continue work on `main` branch with version fields set to `wip`
-3. **Create Snapshot** — post `/create-snapshot` on the Release Issue to generate a Release PR
-4. **Review & Merge** — review Release PR (includes CHANGELOG entry), obtain approvals, merge it
-5. **Publish** — post `/publish-release --confirm rX.Y` to finalize the release
+After merge, the admin team will disable the legacy `pr_validation` (v0) workflow in this repository in favor of the new validation.
 
-If issues arise: use `/discard-snapshot` (during review) or `/delete-draft` (during draft phase) to return to planned state and make corrections on `main`.
-
-More details: [Release Lifecycle](https://github.com/camaraproject/ReleaseManagement/blob/main/documentation/release-process/lifecycle.md)
-
-</details>
-
-### Documentation
-
-:book: [Release Management Documentation](https://github.com/camaraproject/ReleaseManagement/tree/main/documentation)
-:book: [Release Lifecycle](https://github.com/camaraproject/ReleaseManagement/blob/main/documentation/release-process/lifecycle.md)
-:book: [The release-plan.yaml File](https://github.com/camaraproject/ReleaseManagement/blob/main/documentation/metadata/release-plan.md)
+Questions or feedback? See the [announcement](https://lists.camaraproject.org/g/codeowners/topic/119079596) for contact channels (Zulip, GitHub issues, mailing list).
