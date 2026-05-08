@@ -1,18 +1,22 @@
 ## Enable CAMARA Validation and Release Automation for {{name}}
 
-Following the [Spring26 release announcement](https://lists.camaraproject.org/g/codeowners/topic/119079596) on the codeowners list, this PR onboards **{{name}}** to **CAMARA Validation** and the updated **Release Automation**, plus the CHANGELOG directory structure both depend on.
+Following the [Spring26 release announcement](https://lists.camaraproject.org/g/codeowners/topic/119079596) on the codeowners list, this PR applies the following changes to your **{{name}}** repository: 
+- installs the **CAMARA Validation** workflow
+- installs the **CAMARA Release Automation** workflow, 
+- creates the new CHANGELOG directory structure
 
 ### What you get
 
 **CAMARA Validation** runs automatically on every PR against `main`, `release-snapshot/**`, or `maintenance/**`:
 - Catches compliance and spec issues at PR time, when fixes are cheap
-- Inline annotations on the diff plus a structured findings report in the PR check
+- Annotates changed files inline in the PR (in "files changed" view)
+- Provides a detailed report on the workflow run page
 - Same rule set across all CAMARA APIs, kept current with each Commonalities release
 
-**Release Automation** streamlines the release lifecycle:
-- Automates the mechanical steps of cutting a release — version bumps, CHANGELOG entries, release metadata
-- Slash commands on Release Issues give explicit control over snapshotting, publishing, and rollback
-- Same lifecycle across all CAMARA APIs — predictable, repeatable releases
+**Release Automation** simplifies creating the release of an API version:
+- Automates the tedious tasks of creating a release — version bumps, CHANGELOG entry collection, release metadata
+- Slash ("/") commands on Release Issues give explicit control over the steps in the release process (e.g. snapshotting, publishing, and rollback)
+- Consistent quality across all CAMARA APIs through predictable, repeatable release process.
 
 ### Changes
 
@@ -27,28 +31,28 @@ Following the [Spring26 release announcement](https://lists.camaraproject.org/g/
 
 1. **Review** the file changes above
 2. **Skim** the docs linked below if you'd like context first
-3. **Merge** to activate
+3. **Merge** to activate the full validation and automation processes
 
 ### Documentation
 
 :book: [Validation on PRs — what to expect](https://github.com/camaraproject/tooling/blob/main/documentation/validation/pull-requests.md)
 :book: [Where to see results](https://github.com/camaraproject/tooling/blob/main/documentation/validation/where-to-see-results.md)
-:book: [Anatomy of a finding](https://github.com/camaraproject/tooling/blob/main/documentation/validation/problem-messages.md)
+:book: [Problem messages explained](https://github.com/camaraproject/tooling/blob/main/documentation/validation/problem-messages.md)
 :book: [FAQ](https://github.com/camaraproject/tooling/blob/main/documentation/validation/faq.md)
 :book: [Release Management Documentation](https://github.com/camaraproject/ReleaseManagement/tree/main/documentation)
 
 <details>
-<summary><b>Release lifecycle overview</b></summary>
+<summary><b>Release process overview</b></summary>
 
 1. **Plan** — update `release-plan.yaml` with target release tag, type, and API versions/statuses
-2. **Develop** — continue work on `main` with version fields set to `wip`
+2. **Develop** — continue work on `main` keeping version fields always set to `wip`
 3. **Snapshot** — post `/create-snapshot` on the Release Issue to generate a Release PR
 4. **Review & Merge** — review Release PR (includes CHANGELOG entry), obtain approvals, merge it
 5. **Publish** — post `/publish-release --confirm rX.Y` to finalize the release
 
 If issues arise: use `/discard-snapshot` (during review) or `/delete-draft` (during draft) to return to planned state.
 
-More: [Release Lifecycle](https://github.com/camaraproject/ReleaseManagement/blob/main/documentation/release-process/lifecycle.md)
+More: [Release Process](https://github.com/camaraproject/ReleaseManagement/blob/main/documentation/release-process/lifecycle.md)
 
 </details>
 {{#has_warnings}}
@@ -60,6 +64,6 @@ More: [Release Lifecycle](https://github.com/camaraproject/ReleaseManagement/blo
 
 ---
 
-After merge, the admin team will disable the legacy `pr_validation` (v0) workflow in this repository in favor of the new validation.
+After merge, the admin team will disable the legacy validation workflow from the repository.
 
 Questions or feedback? See the [announcement](https://lists.camaraproject.org/g/codeowners/topic/119079596) for contact channels (Zulip, GitHub issues, mailing list).
