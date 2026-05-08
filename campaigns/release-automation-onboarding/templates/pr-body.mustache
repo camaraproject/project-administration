@@ -1,8 +1,8 @@
 ## Enable CAMARA Validation and Release Automation for {{name}}
 
-Following the [Spring26 release announcement](https://lists.camaraproject.org/g/codeowners/topic/119079596) on the codeowners list, this PR applies the following changes to your **{{name}}** repository: 
+Following the [Spring26 release announcement](https://lists.camaraproject.org/g/codeowners/topic/119079596) on the codeowners list, this PR applies the following changes to your **{{name}}** repository:
 - installs the **CAMARA Validation** workflow
-- installs the **CAMARA Release Automation** workflow, 
+- installs the **CAMARA Release Automation** workflow
 - creates the new CHANGELOG directory structure
 
 ### What you get
@@ -29,20 +29,9 @@ Following the [Spring26 release announcement](https://lists.camaraproject.org/g/
 
 ### What to do next
 
-1. **Review** the file changes above
-2. **Skim** the docs linked below if you'd like context first
-3. **Merge** to activate the full validation and automation processes
+**Merge** this PR to activate the full validation and automation processes.
 
-### Documentation
-
-:book: [Validation on PRs — what to expect](https://github.com/camaraproject/tooling/blob/main/documentation/validation/pull-requests.md)
-:book: [Where to see results](https://github.com/camaraproject/tooling/blob/main/documentation/validation/where-to-see-results.md)
-:book: [Problem messages explained](https://github.com/camaraproject/tooling/blob/main/documentation/validation/problem-messages.md)
-:book: [FAQ](https://github.com/camaraproject/tooling/blob/main/documentation/validation/faq.md)
-:book: [Release Management Documentation](https://github.com/camaraproject/ReleaseManagement/tree/main/documentation)
-
-<details>
-<summary><b>Release process overview</b></summary>
+After the merge you can prepare and create a release as follows:
 
 1. **Plan** — update `release-plan.yaml` with target release tag, type, and API versions/statuses
 2. **Develop** — continue work on `main` keeping version fields always set to `wip`
@@ -53,8 +42,6 @@ Following the [Spring26 release announcement](https://lists.camaraproject.org/g/
 If issues arise: use `/discard-snapshot` (during review) or `/delete-draft` (during draft) to return to planned state.
 
 More: [Release Process](https://github.com/camaraproject/ReleaseManagement/blob/main/documentation/release-process/lifecycle.md)
-
-</details>
 {{#has_warnings}}
 
 ### Warnings
@@ -67,3 +54,11 @@ More: [Release Process](https://github.com/camaraproject/ReleaseManagement/blob/
 After merge, the admin team will disable the legacy validation workflow from the repository.
 
 Questions or feedback? See the [announcement](https://lists.camaraproject.org/g/codeowners/topic/119079596) for contact channels (Zulip, GitHub issues, mailing list).
+
+### Documentation
+
+:book: [Validation on PRs — what to expect](https://github.com/camaraproject/tooling/blob/main/documentation/validation/pull-requests.md)
+:book: [Where to see results](https://github.com/camaraproject/tooling/blob/main/documentation/validation/where-to-see-results.md)
+:book: [Problem messages explained](https://github.com/camaraproject/tooling/blob/main/documentation/validation/problem-messages.md)
+:book: [FAQ](https://github.com/camaraproject/tooling/blob/main/documentation/validation/faq.md)
+:book: [Release Management Documentation](https://github.com/camaraproject/ReleaseManagement/tree/main/documentation)
