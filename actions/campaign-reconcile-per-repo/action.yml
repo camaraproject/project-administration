@@ -318,6 +318,10 @@ runs:
     # 7. APPLY — create PR (only if no PR on stable branch yet)
     # Force-push on an existing PR updates it automatically.
     # ─────────────────────────────────────────────────────────────────────
+    # tree_match=true with pr_exists=false is the orphan-branch recovery path:
+    # a previous run pushed the branch but failed before creating the PR
+    # (e.g., transient GraphQL 504). Fall through to create the missing PR
+    # on the existing branch instead of skipping under the preserve-approvals path.
     - name: APPLY - Create PR
       id: pr_create
       if: |
@@ -325,7 +329,7 @@ runs:
         && inputs.error_occurred != 'true'
         && steps.verify_authorship.outputs.aborted != 'true'
         && steps.change_check.outputs.changed == 'true'
-        && steps.push.outputs.pushed == 'true'
+        && (steps.push.outputs.pushed == 'true' || steps.push.outputs.tree_match == 'true')
         && steps.detect.outputs.pr_exists != 'true'
       shell: bash
       working-directory: repo
