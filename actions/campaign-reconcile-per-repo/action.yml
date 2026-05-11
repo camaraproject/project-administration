@@ -220,14 +220,15 @@ runs:
       shell: bash
       working-directory: repo
       run: |
-        if ! gh label list --json name --jq '.[].name' | grep -q "^${{ inputs.label_name }}$"; then
-          gh label create "${{ inputs.label_name }}" \
-            --description "${{ inputs.label_description }}" \
-            --color "${{ inputs.label_color }}"
-          echo "Label '${{ inputs.label_name }}' created"
-        else
-          echo "Label '${{ inputs.label_name }}' already exists"
-        fi
+        # --force is idempotent: creates the label if missing, updates color +
+        # description if it already exists. Avoids the GraphQL existence probe,
+        # which silently returns empty on transient 504s and led the script to
+        # attempt a create that then failed with "label already exists".
+        gh label create "${{ inputs.label_name }}" \
+          --description "${{ inputs.label_description }}" \
+          --color "${{ inputs.label_color }}" \
+          --force
+        echo "Label '${{ inputs.label_name }}' ensured"
       env:
         GH_TOKEN: ${{ inputs.github_token }}
 
