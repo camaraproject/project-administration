@@ -97,17 +97,15 @@ runs:
       if: ${{ inputs.mode == 'apply' && steps.action.outputs.action == 'create' }}
       shell: bash
       run: |
-        # Check if automated label exists, create if not
-        if ! gh label list --repo "${{ inputs.repo }}" --json name --jq '.[].name' | grep -q "^automated$"; then
-          echo "Creating 'automated' label..."
-          gh label create automated \
-            --repo "${{ inputs.repo }}" \
-            --description "Automated bulk operations from project-administration" \
-            --color d1d5db
-          echo "Label created"
-        else
-          echo "Label 'automated' already exists"
-        fi
+        # --force is idempotent: creates the label if missing, updates color +
+        # description if it already exists. Avoids the GraphQL existence probe,
+        # which silently returns empty on transient 504s.
+        gh label create automated \
+          --repo "${{ inputs.repo }}" \
+          --description "Automated bulk operations from project-administration" \
+          --color d1d5db \
+          --force
+        echo "Label 'automated' ensured"
       env:
         GH_TOKEN: ${{ inputs.github_token }}
 

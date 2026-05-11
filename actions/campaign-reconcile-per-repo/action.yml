@@ -220,14 +220,15 @@ runs:
       shell: bash
       working-directory: repo
       run: |
-        if ! gh label list --json name --jq '.[].name' | grep -q "^${{ inputs.label_name }}$"; then
-          gh label create "${{ inputs.label_name }}" \
-            --description "${{ inputs.label_description }}" \
-            --color "${{ inputs.label_color }}"
-          echo "Label '${{ inputs.label_name }}' created"
-        else
-          echo "Label '${{ inputs.label_name }}' already exists"
-        fi
+        # --force is idempotent: creates the label if missing, updates color +
+        # description if it already exists. Avoids the GraphQL existence probe,
+        # which silently returns empty on transient 504s and led the script to
+        # attempt a create that then failed with "label already exists".
+        gh label create "${{ inputs.label_name }}" \
+          --description "${{ inputs.label_description }}" \
+          --color "${{ inputs.label_color }}" \
+          --force
+        echo "Label '${{ inputs.label_name }}' ensured"
       env:
         GH_TOKEN: ${{ inputs.github_token }}
 
@@ -318,6 +319,10 @@ runs:
     # 7. APPLY — create PR (only if no PR on stable branch yet)
     # Force-push on an existing PR updates it automatically.
     # ─────────────────────────────────────────────────────────────────────
+    # tree_match=true with pr_exists=false is the orphan-branch recovery path:
+    # a previous run pushed the branch but failed before creating the PR
+    # (e.g., transient GraphQL 504). Fall through to create the missing PR
+    # on the existing branch instead of skipping under the preserve-approvals path.
     - name: APPLY - Create PR
       id: pr_create
       if: |
@@ -325,7 +330,7 @@ runs:
         && inputs.error_occurred != 'true'
         && steps.verify_authorship.outputs.aborted != 'true'
         && steps.change_check.outputs.changed == 'true'
-        && steps.push.outputs.pushed == 'true'
+        && (steps.push.outputs.pushed == 'true' || steps.push.outputs.tree_match == 'true')
         && steps.detect.outputs.pr_exists != 'true'
       shell: bash
       working-directory: repo

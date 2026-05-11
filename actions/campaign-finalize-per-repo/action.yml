@@ -198,16 +198,14 @@ runs:
       shell: bash
       working-directory: repo
       run: |
-        # Check if campaign label exists, create if not
-        if ! gh label list --json name --jq '.[].name' | grep -q "^${{ inputs.label_name }}$"; then
-          echo "Creating '${{ inputs.label_name }}' label..."
-          gh label create "${{ inputs.label_name }}" \
-            --description "${{ inputs.label_description }}" \
-            --color "${{ inputs.label_color }}"
-          echo "Label created"
-        else
-          echo "Label '${{ inputs.label_name }}' already exists"
-        fi
+        # --force is idempotent: creates the label if missing, updates color +
+        # description if it already exists. Avoids the GraphQL existence probe,
+        # which silently returns empty on transient 504s.
+        gh label create "${{ inputs.label_name }}" \
+          --description "${{ inputs.label_description }}" \
+          --color "${{ inputs.label_color }}" \
+          --force
+        echo "Label '${{ inputs.label_name }}' ensured"
       env:
         GH_TOKEN: ${{ inputs.github_token }}
 
