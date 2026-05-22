@@ -1,5 +1,5 @@
 metadata:
-  last_updated: '2026-05-15T06:48:36.039Z'
+  last_updated: '2026-05-22T06:33:49.302Z'
   workflow_version: 3.0.0
   schema_version: 3.1.0
 releases:
@@ -1515,6 +1515,25 @@ releases:
         api_version: 0.1.0-alpha.1
         api_title: Network Traffic Analysis
         commonalities: 0.7.0-rc.1
+  - repository: NetworkInsights
+    release_tag: r1.2
+    release_date: '2026-05-22T03:21:06Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/NetworkInsights/releases/tag/r1.2
+    release_type: pre-release-rc
+    src_commit_sha: a5e16b7e699069edb36b6eabcc442884516f4213
+    dependencies:
+      commonalities_release: r4.2 (0.8.0-rc.2)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: network-health-assessment
+        api_version: 0.1.0-rc.1
+        api_title: Network Health Assessment
+        commonalities: 0.8.0-rc.2
+      - api_name: network-traffic-analysis
+        api_version: 0.1.0-rc.1
+        api_title: Network Traffic Analysis
+        commonalities: 0.8.0-rc.2
   - repository: NetworkSliceBooking
     release_tag: r1.1
     release_date: '2025-08-01T08:01:19Z'
@@ -2742,7 +2761,7 @@ repositories:
   - repository: NetworkInsights
     github_url: https://github.com/camaraproject/NetworkInsights
     latest_public_release: null
-    newest_pre_release: r1.1
+    newest_pre_release: r1.2
   - repository: NetworkSliceBooking
     github_url: https://github.com/camaraproject/NetworkSliceBooking
     latest_public_release: r1.2

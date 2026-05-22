@@ -1,24 +1,24 @@
 {
   "metadata": {
-    "generated": "2026-05-15T06:48:36.152Z",
+    "generated": "2026-05-22T06:33:49.415Z",
     "meta_release": "All",
     "source": "Release Collector v3",
     "landscape_version": "1.1.0"
   },
   "statistics": {
     "repositories_count": 48,
-    "api_versions_count": 157,
+    "api_versions_count": 159,
     "unique_api_names_count": 70,
     "unique_apis_count": 69,
     "api_version_maturity": {
       "stable": 28,
       "initial": 123,
-      "rc": 6
+      "rc": 8
     },
     "unique_api_maturity": {
       "stable": 10,
-      "initial": 54,
-      "rc": 5
+      "initial": 52,
+      "rc": 7
     },
     "categories": {
       "Computing Services": 10,
@@ -476,12 +476,17 @@
     "NetworkInsights": {
       "releases": [
         {
+          "tag": "r1.2",
+          "date": "2026-05-22T03:21:06Z",
+          "apis_count": 2
+        },
+        {
           "tag": "r1.1",
           "date": "2026-04-16T01:13:01Z",
           "apis_count": 2
         }
       ],
-      "total_apis": 2,
+      "total_apis": 4,
       "unique_apis_count": 2
     },
     "NetworkSliceBooking": {
@@ -2773,6 +2778,49 @@
           "api_version": "0.1.0-alpha.1",
           "api_title": "Network Traffic Analysis",
           "commonalities": "0.7.0-rc.1",
+          "maturity": "initial",
+          "portfolio_category": null,
+          "website_url": null,
+          "tooltip": null,
+          "display_name": "Network Traffic Analysis",
+          "published": true,
+          "canonical_name": "network-traffic-analysis",
+          "first_release": "Sandbox"
+        }
+      ]
+    },
+    {
+      "repository": "NetworkInsights",
+      "release_tag": "r1.2",
+      "release_date": "2026-05-22T03:21:06Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/NetworkInsights/releases/tag/r1.2",
+      "release_type": "pre-release-rc",
+      "src_commit_sha": "a5e16b7e699069edb36b6eabcc442884516f4213",
+      "dependencies": {
+        "commonalities_release": "r4.2 (0.8.0-rc.2)",
+        "identity_consent_management_release": "r4.2 (0.5.0)"
+      },
+      "apis": [
+        {
+          "api_name": "network-health-assessment",
+          "api_version": "0.1.0-rc.1",
+          "api_title": "Network Health Assessment",
+          "commonalities": "0.8.0-rc.2",
+          "maturity": "initial",
+          "portfolio_category": null,
+          "website_url": null,
+          "tooltip": null,
+          "display_name": "Network Health Assessment",
+          "published": true,
+          "canonical_name": "network-health-assessment",
+          "first_release": "Sandbox"
+        },
+        {
+          "api_name": "network-traffic-analysis",
+          "api_version": "0.1.0-rc.1",
+          "api_title": "Network Traffic Analysis",
+          "commonalities": "0.8.0-rc.2",
           "maturity": "initial",
           "portfolio_category": null,
           "website_url": null,
@@ -6120,6 +6168,26 @@
       "release_type": "pre-release-alpha"
     },
     {
+      "api_name": "network-health-assessment",
+      "api_version": "0.1.0-rc.1",
+      "api_title": "Network Health Assessment",
+      "commonalities": "0.8.0-rc.2",
+      "maturity": "initial",
+      "portfolio_category": null,
+      "website_url": null,
+      "tooltip": null,
+      "display_name": "Network Health Assessment",
+      "published": true,
+      "canonical_name": "network-health-assessment",
+      "first_release": "Sandbox",
+      "repository": "NetworkInsights",
+      "release_tag": "r1.2",
+      "release_date": "2026-05-22T03:21:06Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/NetworkInsights/releases/tag/r1.2",
+      "release_type": "pre-release-rc"
+    },
+    {
       "api_name": "network-traffic-analysis",
       "api_version": "0.1.0-alpha.1",
       "api_title": "Network Traffic Analysis",
@@ -6138,6 +6206,26 @@
       "meta_release": "Independent",
       "github_url": "https://github.com/camaraproject/NetworkInsights/releases/tag/r1.1",
       "release_type": "pre-release-alpha"
+    },
+    {
+      "api_name": "network-traffic-analysis",
+      "api_version": "0.1.0-rc.1",
+      "api_title": "Network Traffic Analysis",
+      "commonalities": "0.8.0-rc.2",
+      "maturity": "initial",
+      "portfolio_category": null,
+      "website_url": null,
+      "tooltip": null,
+      "display_name": "Network Traffic Analysis",
+      "published": true,
+      "canonical_name": "network-traffic-analysis",
+      "first_release": "Sandbox",
+      "repository": "NetworkInsights",
+      "release_tag": "r1.2",
+      "release_date": "2026-05-22T03:21:06Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/NetworkInsights/releases/tag/r1.2",
+      "release_type": "pre-release-rc"
     },
     {
       "api_name": "network-slice-assignment",
