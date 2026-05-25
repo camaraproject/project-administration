@@ -1,5 +1,5 @@
 metadata:
-  last_updated: '2026-05-22T06:33:49.302Z'
+  last_updated: '2026-05-25T06:54:30.090Z'
   workflow_version: 3.0.0
   schema_version: 3.1.0
 releases:
@@ -1572,6 +1572,25 @@ releases:
         api_version: 0.2.0-rc.1
         api_title: Network Slice Booking
         commonalities: '0.7'
+  - repository: NetworkSliceBooking
+    release_tag: r2.2
+    release_date: '2026-05-25T02:43:46Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/NetworkSliceBooking/releases/tag/r2.2
+    release_type: pre-release-rc
+    src_commit_sha: a4d341853a4e5f6bff8b16984f4dd780fef35f9c
+    dependencies:
+      commonalities_release: r4.2 (0.8.0-rc.2)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: network-slice-booking
+        api_version: 0.2.0-rc.2
+        api_title: Network Slice Booking
+        commonalities: 0.8.0-rc.2
+      - api_name: network-slice-assignment
+        api_version: 0.1.0-rc.2
+        api_title: Network Slice Assignment
+        commonalities: 0.8.0-rc.2
   - repository: NumberRecycling
     release_tag: r1.1
     release_date: '2025-02-18T21:33:53Z'
@@ -2765,7 +2784,7 @@ repositories:
   - repository: NetworkSliceBooking
     github_url: https://github.com/camaraproject/NetworkSliceBooking
     latest_public_release: r1.2
-    newest_pre_release: r2.1
+    newest_pre_release: r2.2
   - repository: NumberRecycling
     github_url: https://github.com/camaraproject/NumberRecycling
     latest_public_release: r2.2
