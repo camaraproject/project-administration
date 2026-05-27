@@ -1,5 +1,5 @@
 metadata:
-  last_updated: '2026-05-25T06:54:30.090Z'
+  last_updated: '2026-05-27T06:48:11.849Z'
   workflow_version: 3.0.0
   schema_version: 3.1.0
 releases:
@@ -670,6 +670,33 @@ releases:
         api_version: 0.1.0
         api_title: Dedicated Network - Networks
         commonalities: '0.6'
+  - repository: DedicatedNetworks
+    release_tag: r2.1
+    release_date: '2026-05-26T09:40:59Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/DedicatedNetworks/releases/tag/r2.1
+    release_type: pre-release-alpha
+    src_commit_sha: 85f46685709380b2a615e12e28f2f6c85f13f245
+    dependencies:
+      commonalities_release: r3.4 (0.6.1)
+      identity_consent_management_release: r3.3 (0.4.0)
+    apis:
+      - api_name: dedicated-network-accesses
+        api_version: 0.2.0-alpha.1
+        api_title: Dedicated Network - Accesses
+        commonalities: 0.6.1
+      - api_name: dedicated-network-profiles
+        api_version: 0.2.0-alpha.1
+        api_title: Dedicated Network - Network Profiles
+        commonalities: 0.6.1
+      - api_name: dedicated-network
+        api_version: 0.2.0-alpha.1
+        api_title: Dedicated Network - Networks
+        commonalities: 0.6.1
+      - api_name: dedicated-network-areas
+        api_version: 0.1.0-alpha.1
+        api_title: Dedicated Network - Areas
+        commonalities: 0.6.1
   - repository: DeviceDataVolume
     release_tag: r1.1
     release_date: '2025-01-16T16:32:33Z'
@@ -2667,7 +2694,7 @@ repositories:
   - repository: DedicatedNetworks
     github_url: https://github.com/camaraproject/DedicatedNetworks
     latest_public_release: r1.2
-    newest_pre_release: null
+    newest_pre_release: r2.1
   - repository: DeviceAuthenticity
     github_url: https://github.com/camaraproject/DeviceAuthenticity
     latest_public_release: null
