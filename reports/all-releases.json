@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "generated": "2026-05-27T06:48:11.982Z",
+    "generated": "2026-05-28T06:39:12.519Z",
     "meta_release": "All",
     "source": "Release Collector v3",
     "landscape_version": "1.1.0"
@@ -12,13 +12,13 @@
     "unique_apis_count": 70,
     "api_version_maturity": {
       "stable": 28,
-      "initial": 127,
-      "rc": 10
+      "initial": 129,
+      "rc": 8
     },
     "unique_api_maturity": {
       "stable": 10,
-      "initial": 53,
-      "rc": 7
+      "initial": 55,
+      "rc": 5
     },
     "categories": {
       "Computing Services": 10,
@@ -384,8 +384,8 @@
     "IoTSIMFraudPrevention": {
       "releases": [
         {
-          "tag": "r1.1",
-          "date": "2026-04-27T01:17:04Z",
+          "tag": "r1.2",
+          "date": "2026-05-28T01:55:36Z",
           "apis_count": 2
         }
       ],
@@ -2447,12 +2447,12 @@
     },
     {
       "repository": "IoTSIMFraudPrevention",
-      "release_tag": "r1.1",
-      "release_date": "2026-04-27T01:17:04Z",
+      "release_tag": "r1.2",
+      "release_date": "2026-05-28T01:55:36Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/IoTSIMFraudPrevention/releases/tag/r1.1",
-      "release_type": "pre-release-rc",
-      "src_commit_sha": "b7773ee01b6fd233ad07897b227db0ca0347ae80",
+      "github_url": "https://github.com/camaraproject/IoTSIMFraudPrevention/releases/tag/r1.2",
+      "release_type": "public-release",
+      "src_commit_sha": "e5096ec78ec5707413650b34f5a6f4fc6b2ac30d",
       "dependencies": {
         "commonalities_release": "r3.4 (0.6.1)",
         "identity_consent_management_release": "r3.3 (0.4.0)"
@@ -2460,7 +2460,7 @@
       "apis": [
         {
           "api_name": "iot-sim-fraud-prevention",
-          "api_version": "0.1.0-rc.1",
+          "api_version": "0.1.0",
           "api_title": "IoT SIM Fraud Prevention",
           "commonalities": "0.6.1",
           "maturity": "initial",
@@ -2474,7 +2474,7 @@
         },
         {
           "api_name": "iot-sim-fraud-prevention-subscriptions",
-          "api_version": "0.1.0-rc.1",
+          "api_version": "0.1.0",
           "api_title": "IoT SIM Fraud Prevention Subscriptions",
           "commonalities": "0.6.1",
           "maturity": "initial",
@@ -5978,7 +5978,7 @@
     },
     {
       "api_name": "iot-sim-fraud-prevention",
-      "api_version": "0.1.0-rc.1",
+      "api_version": "0.1.0",
       "api_title": "IoT SIM Fraud Prevention",
       "commonalities": "0.6.1",
       "maturity": "initial",
@@ -5990,15 +5990,15 @@
       "canonical_name": "iot-sim-fraud-prevention",
       "first_release": "Sandbox",
       "repository": "IoTSIMFraudPrevention",
-      "release_tag": "r1.1",
-      "release_date": "2026-04-27T01:17:04Z",
+      "release_tag": "r1.2",
+      "release_date": "2026-05-28T01:55:36Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/IoTSIMFraudPrevention/releases/tag/r1.1",
-      "release_type": "pre-release-rc"
+      "github_url": "https://github.com/camaraproject/IoTSIMFraudPrevention/releases/tag/r1.2",
+      "release_type": "public-release"
     },
     {
       "api_name": "iot-sim-fraud-prevention-subscriptions",
-      "api_version": "0.1.0-rc.1",
+      "api_version": "0.1.0",
       "api_title": "IoT SIM Fraud Prevention Subscriptions",
       "commonalities": "0.6.1",
       "maturity": "initial",
@@ -6010,11 +6010,11 @@
       "canonical_name": "iot-sim-fraud-prevention-subscriptions",
       "first_release": "Sandbox",
       "repository": "IoTSIMFraudPrevention",
-      "release_tag": "r1.1",
-      "release_date": "2026-04-27T01:17:04Z",
+      "release_tag": "r1.2",
+      "release_date": "2026-05-28T01:55:36Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/IoTSIMFraudPrevention/releases/tag/r1.1",
-      "release_type": "pre-release-rc"
+      "github_url": "https://github.com/camaraproject/IoTSIMFraudPrevention/releases/tag/r1.2",
+      "release_type": "public-release"
     },
     {
       "api_name": "kyc-age-verification",
