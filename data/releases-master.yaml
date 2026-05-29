@@ -1,5 +1,5 @@
 metadata:
-  last_updated: '2026-05-28T06:39:12.402Z'
+  last_updated: '2026-05-29T06:41:15.098Z'
   workflow_version: 3.0.0
   schema_version: 3.1.0
 releases:
@@ -1543,6 +1543,21 @@ releases:
         api_version: 0.2.0
         api_title: Most Frequent Location
         commonalities: '0.6'
+  - repository: NetworkAccessManagement
+    release_tag: r2.1
+    release_date: '2026-05-28T15:15:46Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/NetworkAccessManagement/releases/tag/r2.1
+    release_type: pre-release-alpha
+    src_commit_sha: fdbc21694b6c90145538788d5206ef537d88f713
+    dependencies:
+      commonalities_release: r4.2 (0.8.0-rc.2)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: network-access-management
+        api_version: 0.2.0-alpha.1
+        api_title: Home Devices - Network Access Management
+        commonalities: 0.8.0-rc.2
   - repository: NetworkInsights
     release_tag: r1.1
     release_date: '2026-04-16T01:13:01Z'
@@ -2823,7 +2838,7 @@ repositories:
   - repository: NetworkAccessManagement
     github_url: https://github.com/camaraproject/NetworkAccessManagement
     latest_public_release: null
-    newest_pre_release: null
+    newest_pre_release: r2.1
   - repository: NetworkInsights
     github_url: https://github.com/camaraproject/NetworkInsights
     latest_public_release: null
