@@ -29,6 +29,8 @@ env:
   # Change these when testing on a fork or switching between branches.
   SOURCE_REPO: camaraproject/project-administration
   SOURCE_REF: main
+  PROGRESS_UPDATE_BRANCH: release-progress-update
+  PROGRESS_UPDATE_TITLE: 'Release Progress: Update releases-progress.yaml'
 
 jobs:
   # ---------------------------------------------------------------------------
@@ -196,6 +198,7 @@ jobs:
         uses: actions/checkout@v6
         with:
           token: ${{ steps.app-token.outputs.token || github.token }}
+          fetch-depth: 0
 
       - name: Download data artifact
         uses: actions/download-artifact@v8
@@ -213,15 +216,10 @@ jobs:
           echo "Changes detected:"
           git diff --cached --stat data/
 
-      - name: Create pull request
-        id: create-pr
-        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
-        with:
-          token: ${{ steps.app-token.outputs.token || github.token }}
-          branch: release-progress-update-${{ github.run_number }}
-          title: 'Release Progress: Update releases-progress.yaml'
-          commit-message: 'Release Progress: Update releases-progress.yaml'
-          body: |
+      - name: Render pull request body
+        id: pr-body
+        run: |
+          cat > "$RUNNER_TEMP/release-progress-pr-body.md" <<'EOF'
             ## Release Progress Data Update
 
             **Workflow run**: [#${{ github.run_number }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
@@ -236,6 +234,117 @@ jobs:
             ```
             ${{ steps.diff.outputs.change_summary }}
             ```
+          EOF
+          echo "path=$RUNNER_TEMP/release-progress-pr-body.md" >> $GITHUB_OUTPUT
+
+      - name: Prepare stable update branch
+        id: stable-pr
+        env:
+          BRANCH: ${{ env.PROGRESS_UPDATE_BRANCH }}
+          COMMIT_MESSAGE: ${{ env.PROGRESS_UPDATE_TITLE }}
+          GH_TOKEN: ${{ steps.app-token.outputs.token || github.token }}
+          TITLE: ${{ env.PROGRESS_UPDATE_TITLE }}
+        run: |
+          set -euo pipefail
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+
+          PR_DATA=$(gh pr list --head "${{ github.repository_owner }}:$BRANCH" \
+            --state open \
+            --json number,url,title,headRefName \
+            --jq '.[0] // {}' \
+            --repo "${{ github.repository }}" 2>/dev/null || echo "{}")
+          PR_NUMBER=$(echo "$PR_DATA" | jq -r '.number // empty')
+          PR_URL=$(echo "$PR_DATA" | jq -r '.url // empty')
+          PR_TITLE=$(echo "$PR_DATA" | jq -r '.title // empty')
+
+          if git ls-remote --exit-code --heads origin "$BRANCH" > "$RUNNER_TEMP/progress-branch-ref"; then
+            REMOTE_EXISTS=true
+            REMOTE_SHA=$(cut -f1 "$RUNNER_TEMP/progress-branch-ref")
+            git fetch origin "$BRANCH"
+          else
+            REMOTE_EXISTS=false
+            REMOTE_SHA=""
+          fi
+
+          if [ "$REMOTE_EXISTS" = "true" ]; then
+            if [ -z "$PR_NUMBER" ] || [ "$PR_TITLE" != "$TITLE" ]; then
+              echo "::error::Existing $BRANCH branch has no matching open PR with title '$TITLE'. Refusing to overwrite it."
+              exit 1
+            fi
+
+            NON_AUTOMATION_COMMITS=$(
+              git log --format=%s "origin/main..origin/$BRANCH" \
+                | grep -Fvx "$COMMIT_MESSAGE" || true
+            )
+            if [ -n "$NON_AUTOMATION_COMMITS" ]; then
+              echo "::error::Existing $BRANCH branch contains non-automation commits. Refusing to overwrite it."
+              echo "$NON_AUTOMATION_COMMITS"
+              exit 1
+            fi
+
+            if git diff --quiet "origin/$BRANCH" -- data/; then
+              echo "No changes detected compared to existing $BRANCH branch"
+              echo "pr_action=unchanged_existing_pr" >> $GITHUB_OUTPUT
+              echo "pr_number=$PR_NUMBER" >> $GITHUB_OUTPUT
+              echo "pr_url=$PR_URL" >> $GITHUB_OUTPUT
+              exit 0
+            fi
+          fi
+
+          git checkout -B "$BRANCH" origin/main
+          git add data/
+          if git diff --cached --quiet -- data/; then
+            echo "No changes detected compared to main"
+            echo "pr_action=noop" >> $GITHUB_OUTPUT
+            echo "pr_number=" >> $GITHUB_OUTPUT
+            echo "pr_url=" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          git commit -m "$COMMIT_MESSAGE"
+          if [ "$REMOTE_EXISTS" = "true" ]; then
+            git push --force-with-lease=refs/heads/$BRANCH:$REMOTE_SHA origin HEAD:refs/heads/$BRANCH
+            echo "pr_action=updated_existing_pr" >> $GITHUB_OUTPUT
+          else
+            git push origin HEAD:refs/heads/$BRANCH
+            echo "pr_action=created_branch" >> $GITHUB_OUTPUT
+          fi
+          echo "pr_number=$PR_NUMBER" >> $GITHUB_OUTPUT
+          echo "pr_url=$PR_URL" >> $GITHUB_OUTPUT
+
+      - name: Create or update pull request
+        id: create-pr
+        if: steps.stable-pr.outputs.pr_action == 'created_branch' || steps.stable-pr.outputs.pr_action == 'updated_existing_pr'
+        env:
+          BRANCH: ${{ env.PROGRESS_UPDATE_BRANCH }}
+          BODY_FILE: ${{ steps.pr-body.outputs.path }}
+          GH_TOKEN: ${{ steps.app-token.outputs.token || github.token }}
+          TITLE: ${{ env.PROGRESS_UPDATE_TITLE }}
+        run: |
+          set -euo pipefail
+
+          if [ -n "${{ steps.stable-pr.outputs.pr_number }}" ]; then
+            PR_NUMBER="${{ steps.stable-pr.outputs.pr_number }}"
+            gh pr edit "$PR_NUMBER" \
+              --title "$TITLE" \
+              --body-file "$BODY_FILE" \
+              --repo "${{ github.repository }}"
+            PR_URL=$(gh pr view "$PR_NUMBER" --json url --jq '.url' --repo "${{ github.repository }}")
+          else
+            PR_URL=$(gh pr create \
+              --title "$TITLE" \
+              --body-file "$BODY_FILE" \
+              --head "$BRANCH" \
+              --base main \
+              --repo "${{ github.repository }}")
+            PR_NUMBER=$(gh pr view "$PR_URL" --json number --jq '.number' --repo "${{ github.repository }}")
+          fi
+
+          echo "pull-request-number=$PR_NUMBER" >> $GITHUB_OUTPUT
+          echo "pull-request-url=$PR_URL" >> $GITHUB_OUTPUT
 
       - name: Apply label to pull request
         if: steps.create-pr.outputs.pull-request-number
