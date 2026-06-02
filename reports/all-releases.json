@@ -1,24 +1,24 @@
 {
   "metadata": {
-    "generated": "2026-05-30T06:02:59.974Z",
+    "generated": "2026-06-02T07:10:41.178Z",
     "meta_release": "All",
     "source": "Release Collector v3",
     "landscape_version": "1.1.0"
   },
   "statistics": {
     "repositories_count": 50,
-    "api_versions_count": 169,
+    "api_versions_count": 167,
     "unique_api_names_count": 75,
     "unique_apis_count": 74,
     "api_version_maturity": {
       "stable": 28,
       "initial": 133,
-      "rc": 8
+      "rc": 6
     },
     "unique_api_maturity": {
       "stable": 10,
-      "initial": 59,
-      "rc": 5
+      "initial": 60,
+      "rc": 4
     },
     "categories": {
       "Computing Services": 10,
@@ -132,22 +132,12 @@
     "ClickToDial": {
       "releases": [
         {
-          "tag": "r1.3",
-          "date": "2026-05-08T09:38:48Z",
-          "apis_count": 1
-        },
-        {
-          "tag": "r1.2",
-          "date": "2026-03-09T15:09:22Z",
-          "apis_count": 1
-        },
-        {
-          "tag": "r1.1",
-          "date": "2025-05-15T14:04:29Z",
+          "tag": "r1.4",
+          "date": "2026-06-01T17:46:34Z",
           "apis_count": 1
         }
       ],
-      "total_apis": 3,
+      "total_apis": 1,
       "unique_apis_count": 1
     },
     "ConnectedNetworkType": {
@@ -1218,75 +1208,22 @@
     },
     {
       "repository": "ClickToDial",
-      "release_tag": "r1.1",
-      "release_date": "2025-05-15T14:04:29Z",
+      "release_tag": "r1.4",
+      "release_date": "2026-06-01T17:46:34Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/ClickToDial/releases/tag/r1.1",
-      "release_type": "pre-release-alpha",
-      "apis": [
-        {
-          "api_name": "click-to-dial",
-          "api_version": "0.1.0-alpha.1",
-          "api_title": "Click to Dial Service API",
-          "commonalities": "0.5",
-          "maturity": "initial",
-          "portfolio_category": null,
-          "website_url": null,
-          "tooltip": null,
-          "display_name": "Click to Dial Service API",
-          "published": true,
-          "canonical_name": "click-to-dial",
-          "first_release": "Sandbox"
-        }
-      ]
-    },
-    {
-      "repository": "ClickToDial",
-      "release_tag": "r1.2",
-      "release_date": "2026-03-09T15:09:22Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/ClickToDial/releases/tag/r1.2",
-      "release_type": "pre-release-rc",
-      "src_commit_sha": "1ee48531b20738474525542f03be987b7c02b2b8",
+      "github_url": "https://github.com/camaraproject/ClickToDial/releases/tag/r1.4",
+      "release_type": "public-release",
+      "src_commit_sha": "b2308cb8035cb0237550a97e1caab297d3d88d03",
       "dependencies": {
-        "commonalities_release": "r4.1",
-        "identity_consent_management_release": "r4.1"
-      },
-      "apis": [
-        {
-          "api_name": "click-to-dial",
-          "api_version": "0.1.0-rc.1",
-          "api_title": "Click to Dial Service",
-          "commonalities": null,
-          "maturity": "initial",
-          "portfolio_category": null,
-          "website_url": null,
-          "tooltip": null,
-          "display_name": "Click to Dial Service",
-          "published": true,
-          "canonical_name": "click-to-dial",
-          "first_release": "Sandbox"
-        }
-      ]
-    },
-    {
-      "repository": "ClickToDial",
-      "release_tag": "r1.3",
-      "release_date": "2026-05-08T09:38:48Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/ClickToDial/releases/tag/r1.3",
-      "release_type": "pre-release-rc",
-      "src_commit_sha": "4cd13e8f0b8acb2026356b095dac55f5fe1c82c0",
-      "dependencies": {
-        "commonalities_release": "r4.2 (0.8.0-rc.2)",
+        "commonalities_release": "r4.3 (0.8.0)",
         "identity_consent_management_release": "r4.2 (0.5.0)"
       },
       "apis": [
         {
           "api_name": "click-to-dial",
-          "api_version": "0.1.0-rc.2",
+          "api_version": "0.1.0",
           "api_title": "Click to Dial Service",
-          "commonalities": "0.8.0-rc.2",
+          "commonalities": "0.8.0",
           "maturity": "initial",
           "portfolio_category": null,
           "website_url": null,
@@ -4793,29 +4730,9 @@
     },
     {
       "api_name": "click-to-dial",
-      "api_version": "0.1.0-alpha.1",
-      "api_title": "Click to Dial Service API",
-      "commonalities": "0.5",
-      "maturity": "initial",
-      "portfolio_category": null,
-      "website_url": null,
-      "tooltip": null,
-      "display_name": "Click to Dial Service API",
-      "published": true,
-      "canonical_name": "click-to-dial",
-      "first_release": "Sandbox",
-      "repository": "ClickToDial",
-      "release_tag": "r1.1",
-      "release_date": "2025-05-15T14:04:29Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/ClickToDial/releases/tag/r1.1",
-      "release_type": "pre-release-alpha"
-    },
-    {
-      "api_name": "click-to-dial",
-      "api_version": "0.1.0-rc.1",
+      "api_version": "0.1.0",
       "api_title": "Click to Dial Service",
-      "commonalities": null,
+      "commonalities": "0.8.0",
       "maturity": "initial",
       "portfolio_category": null,
       "website_url": null,
@@ -4825,31 +4742,11 @@
       "canonical_name": "click-to-dial",
       "first_release": "Sandbox",
       "repository": "ClickToDial",
-      "release_tag": "r1.2",
-      "release_date": "2026-03-09T15:09:22Z",
+      "release_tag": "r1.4",
+      "release_date": "2026-06-01T17:46:34Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/ClickToDial/releases/tag/r1.2",
-      "release_type": "pre-release-rc"
-    },
-    {
-      "api_name": "click-to-dial",
-      "api_version": "0.1.0-rc.2",
-      "api_title": "Click to Dial Service",
-      "commonalities": "0.8.0-rc.2",
-      "maturity": "initial",
-      "portfolio_category": null,
-      "website_url": null,
-      "tooltip": null,
-      "display_name": "Click to Dial Service",
-      "published": true,
-      "canonical_name": "click-to-dial",
-      "first_release": "Sandbox",
-      "repository": "ClickToDial",
-      "release_tag": "r1.3",
-      "release_date": "2026-05-08T09:38:48Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/ClickToDial/releases/tag/r1.3",
-      "release_type": "pre-release-rc"
+      "github_url": "https://github.com/camaraproject/ClickToDial/releases/tag/r1.4",
+      "release_type": "public-release"
     },
     {
       "api_name": "connected-network-type",

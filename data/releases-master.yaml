@@ -1,5 +1,5 @@
 metadata:
-  last_updated: '2026-05-30T06:02:59.858Z'
+  last_updated: '2026-06-02T07:10:41.056Z'
   workflow_version: 3.0.0
   schema_version: 3.1.0
 releases:
@@ -338,6 +338,7 @@ releases:
         api_version: 0.1.0-alpha.1
         api_title: Click to Dial Service API
         commonalities: '0.5'
+    superseded: true
   - repository: ClickToDial
     release_tag: r1.2
     release_date: '2026-03-09T15:09:22Z'
@@ -353,6 +354,7 @@ releases:
         api_version: 0.1.0-rc.1
         api_title: Click to Dial Service
         commonalities: null
+    superseded: true
   - repository: ClickToDial
     release_tag: r1.3
     release_date: '2026-05-08T09:38:48Z'
@@ -368,6 +370,22 @@ releases:
         api_version: 0.1.0-rc.2
         api_title: Click to Dial Service
         commonalities: 0.8.0-rc.2
+    superseded: true
+  - repository: ClickToDial
+    release_tag: r1.4
+    release_date: '2026-06-01T17:46:34Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/ClickToDial/releases/tag/r1.4
+    release_type: public-release
+    src_commit_sha: b2308cb8035cb0237550a97e1caab297d3d88d03
+    dependencies:
+      commonalities_release: r4.3 (0.8.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: click-to-dial
+        api_version: 0.1.0
+        api_title: Click to Dial Service
+        commonalities: 0.8.0
   - repository: ConnectedNetworkType
     release_tag: r1.1
     release_date: '2025-07-18T15:40:21Z'
@@ -2727,8 +2745,8 @@ repositories:
     newest_pre_release: null
   - repository: ClickToDial
     github_url: https://github.com/camaraproject/ClickToDial
-    latest_public_release: null
-    newest_pre_release: r1.3
+    latest_public_release: r1.4
+    newest_pre_release: null
   - repository: ConnectedNetworkType
     github_url: https://github.com/camaraproject/ConnectedNetworkType
     latest_public_release: r1.2
