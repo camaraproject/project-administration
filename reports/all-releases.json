@@ -1,24 +1,24 @@
 {
   "metadata": {
-    "generated": "2026-06-02T07:10:41.178Z",
+    "generated": "2026-06-03T07:25:57.270Z",
     "meta_release": "All",
     "source": "Release Collector v3",
     "landscape_version": "1.1.0"
   },
   "statistics": {
-    "repositories_count": 50,
-    "api_versions_count": 167,
-    "unique_api_names_count": 75,
-    "unique_apis_count": 74,
+    "repositories_count": 52,
+    "api_versions_count": 169,
+    "unique_api_names_count": 77,
+    "unique_apis_count": 76,
     "api_version_maturity": {
       "stable": 28,
-      "initial": 133,
-      "rc": 6
+      "initial": 134,
+      "rc": 7
     },
     "unique_api_maturity": {
       "stable": 10,
-      "initial": 60,
-      "rc": 4
+      "initial": 61,
+      "rc": 5
     },
     "categories": {
       "Computing Services": 10,
@@ -188,6 +188,17 @@
       "total_apis": 2,
       "unique_apis_count": 1
     },
+    "ConsentManagement": {
+      "releases": [
+        {
+          "tag": "r1.1",
+          "date": "2026-06-03T07:09:49Z",
+          "apis_count": 1
+        }
+      ],
+      "total_apis": 1,
+      "unique_apis_count": 1
+    },
     "CustomerInsights": {
       "releases": [
         {
@@ -335,6 +346,17 @@
         }
       ],
       "total_apis": 3,
+      "unique_apis_count": 1
+    },
+    "EdgeApplicationManagement": {
+      "releases": [
+        {
+          "tag": "r1.1",
+          "date": "2026-06-02T12:46:45Z",
+          "apis_count": 1
+        }
+      ],
+      "total_apis": 1,
       "unique_apis_count": 1
     },
     "EnergyFootprintNotification": {
@@ -1480,6 +1502,35 @@
       ]
     },
     {
+      "repository": "ConsentManagement",
+      "release_tag": "r1.1",
+      "release_date": "2026-06-03T07:09:49Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/ConsentManagement/releases/tag/r1.1",
+      "release_type": "pre-release-rc",
+      "src_commit_sha": "578d21f43445988f97843812841bb81cc78d2e23",
+      "dependencies": {
+        "commonalities_release": "r4.3 (0.8.0)",
+        "identity_consent_management_release": "r4.2 (0.5.0)"
+      },
+      "apis": [
+        {
+          "api_name": "consent-management",
+          "api_version": "0.1.0-rc.1",
+          "api_title": "Consent Management",
+          "commonalities": "0.8.0",
+          "maturity": "initial",
+          "portfolio_category": null,
+          "website_url": null,
+          "tooltip": null,
+          "display_name": "Consent Management",
+          "published": true,
+          "canonical_name": "consent-management",
+          "first_release": "Sandbox"
+        }
+      ]
+    },
+    {
       "repository": "CustomerInsights",
       "release_tag": "r1.2",
       "release_date": "2025-03-10T18:07:26Z",
@@ -2326,6 +2377,35 @@
           "canonical_name": "device-swap",
           "first_release": "Sandbox",
           "isNew": false
+        }
+      ]
+    },
+    {
+      "repository": "EdgeApplicationManagement",
+      "release_tag": "r1.1",
+      "release_date": "2026-06-02T12:46:45Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/EdgeApplicationManagement/releases/tag/r1.1",
+      "release_type": "pre-release-alpha",
+      "src_commit_sha": "dd8469efd9af6709820aacc1469cae09505ca84d",
+      "dependencies": {
+        "commonalities_release": "r4.3 (0.8.0)",
+        "identity_consent_management_release": "r4.2 (0.5.0)"
+      },
+      "apis": [
+        {
+          "api_name": "edge-application-management",
+          "api_version": "0.1.0-alpha.1",
+          "api_title": "Edge Application Management API",
+          "commonalities": "0.8.0",
+          "maturity": "initial",
+          "portfolio_category": null,
+          "website_url": null,
+          "tooltip": null,
+          "display_name": "Edge Application Management API",
+          "published": true,
+          "canonical_name": "edge-application-management",
+          "first_release": "Sandbox"
         }
       ]
     },
@@ -5000,6 +5080,26 @@
       "release_type": "public-release"
     },
     {
+      "api_name": "consent-management",
+      "api_version": "0.1.0-rc.1",
+      "api_title": "Consent Management",
+      "commonalities": "0.8.0",
+      "maturity": "initial",
+      "portfolio_category": null,
+      "website_url": null,
+      "tooltip": null,
+      "display_name": "Consent Management",
+      "published": true,
+      "canonical_name": "consent-management",
+      "first_release": "Sandbox",
+      "repository": "ConsentManagement",
+      "release_tag": "r1.1",
+      "release_date": "2026-06-03T07:09:49Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/ConsentManagement/releases/tag/r1.1",
+      "release_type": "pre-release-rc"
+    },
+    {
       "api_name": "customer-insights",
       "api_version": "0.1.0",
       "api_title": "Customer Insights",
@@ -5917,6 +6017,26 @@
       "meta_release": "Fall25",
       "github_url": "https://github.com/camaraproject/DeviceSwap/releases/tag/r3.2",
       "release_type": "public-release"
+    },
+    {
+      "api_name": "edge-application-management",
+      "api_version": "0.1.0-alpha.1",
+      "api_title": "Edge Application Management API",
+      "commonalities": "0.8.0",
+      "maturity": "initial",
+      "portfolio_category": null,
+      "website_url": null,
+      "tooltip": null,
+      "display_name": "Edge Application Management API",
+      "published": true,
+      "canonical_name": "edge-application-management",
+      "first_release": "Sandbox",
+      "repository": "EdgeApplicationManagement",
+      "release_tag": "r1.1",
+      "release_date": "2026-06-02T12:46:45Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/EdgeApplicationManagement/releases/tag/r1.1",
+      "release_type": "pre-release-alpha"
     },
     {
       "api_name": "energy-footprint-notification",
