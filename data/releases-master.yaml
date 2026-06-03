@@ -1,5 +1,5 @@
 metadata:
-  last_updated: '2026-06-02T07:10:41.056Z'
+  last_updated: '2026-06-03T07:25:57.151Z'
   workflow_version: 3.0.0
   schema_version: 3.1.0
 releases:
@@ -592,6 +592,21 @@ releases:
         api_version: 0.2.0
         api_title: Consent Info
         commonalities: 0.6.1
+  - repository: ConsentManagement
+    release_tag: r1.1
+    release_date: '2026-06-03T07:09:49Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/ConsentManagement/releases/tag/r1.1
+    release_type: pre-release-rc
+    src_commit_sha: 578d21f43445988f97843812841bb81cc78d2e23
+    dependencies:
+      commonalities_release: r4.3 (0.8.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: consent-management
+        api_version: 0.1.0-rc.1
+        api_title: Consent Management
+        commonalities: 0.8.0
   - repository: CustomerInsights
     release_tag: r1.1
     release_date: '2025-02-07T13:08:06Z'
@@ -1201,6 +1216,21 @@ releases:
         api_version: 1.0.0
         api_title: Device Swap
         commonalities: '0.6'
+  - repository: EdgeApplicationManagement
+    release_tag: r1.1
+    release_date: '2026-06-02T12:46:45Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/EdgeApplicationManagement/releases/tag/r1.1
+    release_type: pre-release-alpha
+    src_commit_sha: dd8469efd9af6709820aacc1469cae09505ca84d
+    dependencies:
+      commonalities_release: r4.3 (0.8.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: edge-application-management
+        api_version: 0.1.0-alpha.1
+        api_title: Edge Application Management API
+        commonalities: 0.8.0
   - repository: EnergyFootprintNotification
     release_tag: r1.1
     release_date: '2025-05-28T09:30:24Z'
@@ -2762,7 +2792,7 @@ repositories:
   - repository: ConsentManagement
     github_url: https://github.com/camaraproject/ConsentManagement
     latest_public_release: null
-    newest_pre_release: null
+    newest_pre_release: r1.1
   - repository: CustomerInsights
     github_url: https://github.com/camaraproject/CustomerInsights
     latest_public_release: r2.2
@@ -2814,7 +2844,7 @@ repositories:
   - repository: EdgeApplicationManagement
     github_url: https://github.com/camaraproject/EdgeApplicationManagement
     latest_public_release: null
-    newest_pre_release: null
+    newest_pre_release: r1.1
   - repository: EnergyFootprintNotification
     github_url: https://github.com/camaraproject/EnergyFootprintNotification
     latest_public_release: r1.3
