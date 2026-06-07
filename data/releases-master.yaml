@@ -1,5 +1,5 @@
 metadata:
-  last_updated: '2026-06-04T07:10:10.645Z'
+  last_updated: '2026-06-07T06:50:38.735Z'
   workflow_version: 3.0.0
   schema_version: 3.1.0
 releases:
@@ -2306,6 +2306,29 @@ releases:
         api_version: 0.1.0-alpha.1
         api_title: Sample Implicit Events
         commonalities: 0.8.0
+  - repository: ReleaseTest
+    release_tag: r1.2
+    release_date: '2026-06-06T15:47:36Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/ReleaseTest/releases/tag/r1.2
+    release_type: pre-release-alpha
+    src_commit_sha: 336e05ea550fd86a596a9e2e6930eab44c6a4167
+    dependencies:
+      commonalities_release: r4.3 (0.8.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: sample-service
+        api_version: 0.1.0-alpha.2
+        api_title: Sample Service
+        commonalities: 0.8.0
+      - api_name: sample-service-subscriptions
+        api_version: 0.1.0-alpha.2
+        api_title: Sample Service Subscription Template
+        commonalities: 0.8.0
+      - api_name: sample-implicit-events
+        api_version: 0.1.0-alpha.2
+        api_title: Sample Implicit Events
+        commonalities: 0.8.0
   - repository: SessionInsights
     release_tag: r1.1
     release_date: '2026-05-07T09:55:28Z'
@@ -2982,7 +3005,7 @@ repositories:
   - repository: ReleaseTest
     github_url: https://github.com/camaraproject/ReleaseTest
     latest_public_release: null
-    newest_pre_release: r1.1
+    newest_pre_release: r1.2
   - repository: SessionInsights
     github_url: https://github.com/camaraproject/SessionInsights
     latest_public_release: null
