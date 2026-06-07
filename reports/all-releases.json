@@ -1,18 +1,18 @@
 {
   "metadata": {
-    "generated": "2026-06-04T07:10:10.766Z",
+    "generated": "2026-06-07T06:50:38.846Z",
     "meta_release": "All",
     "source": "Release Collector v3",
     "landscape_version": "1.1.0"
   },
   "statistics": {
     "repositories_count": 52,
-    "api_versions_count": 167,
+    "api_versions_count": 170,
     "unique_api_names_count": 77,
     "unique_apis_count": 76,
     "api_version_maturity": {
       "stable": 28,
-      "initial": 136,
+      "initial": 139,
       "rc": 3
     },
     "unique_api_maturity": {
@@ -705,12 +705,17 @@
     "ReleaseTest": {
       "releases": [
         {
+          "tag": "r1.2",
+          "date": "2026-06-06T15:47:36Z",
+          "apis_count": 3
+        },
+        {
           "tag": "r1.1",
           "date": "2026-05-29T13:39:43Z",
           "apis_count": 3
         }
       ],
-      "total_apis": 3,
+      "total_apis": 6,
       "unique_apis_count": 3
     },
     "SessionInsights": {
@@ -3794,6 +3799,63 @@
         {
           "api_name": "sample-implicit-events",
           "api_version": "0.1.0-alpha.1",
+          "api_title": "Sample Implicit Events",
+          "commonalities": "0.8.0",
+          "maturity": "initial",
+          "portfolio_category": null,
+          "website_url": null,
+          "tooltip": null,
+          "display_name": "Sample Implicit Events",
+          "published": true,
+          "canonical_name": "sample-implicit-events",
+          "first_release": "Sandbox"
+        }
+      ]
+    },
+    {
+      "repository": "ReleaseTest",
+      "release_tag": "r1.2",
+      "release_date": "2026-06-06T15:47:36Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/ReleaseTest/releases/tag/r1.2",
+      "release_type": "pre-release-alpha",
+      "src_commit_sha": "336e05ea550fd86a596a9e2e6930eab44c6a4167",
+      "dependencies": {
+        "commonalities_release": "r4.3 (0.8.0)",
+        "identity_consent_management_release": "r4.2 (0.5.0)"
+      },
+      "apis": [
+        {
+          "api_name": "sample-service",
+          "api_version": "0.1.0-alpha.2",
+          "api_title": "Sample Service",
+          "commonalities": "0.8.0",
+          "maturity": "initial",
+          "portfolio_category": null,
+          "website_url": null,
+          "tooltip": null,
+          "display_name": "Sample Service",
+          "published": true,
+          "canonical_name": "sample-service",
+          "first_release": "Sandbox"
+        },
+        {
+          "api_name": "sample-service-subscriptions",
+          "api_version": "0.1.0-alpha.2",
+          "api_title": "Sample Service Subscription Template",
+          "commonalities": "0.8.0",
+          "maturity": "initial",
+          "portfolio_category": null,
+          "website_url": null,
+          "tooltip": null,
+          "display_name": "Sample Service Subscription Template",
+          "published": true,
+          "canonical_name": "sample-service-subscriptions",
+          "first_release": "Sandbox"
+        },
+        {
+          "api_name": "sample-implicit-events",
+          "api_version": "0.1.0-alpha.2",
           "api_title": "Sample Implicit Events",
           "commonalities": "0.8.0",
           "maturity": "initial",
@@ -7278,6 +7340,26 @@
       "release_type": "pre-release-alpha"
     },
     {
+      "api_name": "sample-implicit-events",
+      "api_version": "0.1.0-alpha.2",
+      "api_title": "Sample Implicit Events",
+      "commonalities": "0.8.0",
+      "maturity": "initial",
+      "portfolio_category": null,
+      "website_url": null,
+      "tooltip": null,
+      "display_name": "Sample Implicit Events",
+      "published": true,
+      "canonical_name": "sample-implicit-events",
+      "first_release": "Sandbox",
+      "repository": "ReleaseTest",
+      "release_tag": "r1.2",
+      "release_date": "2026-06-06T15:47:36Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/ReleaseTest/releases/tag/r1.2",
+      "release_type": "pre-release-alpha"
+    },
+    {
       "api_name": "sample-service",
       "api_version": "0.1.0-alpha.1",
       "api_title": "Sample Service",
@@ -7298,6 +7380,26 @@
       "release_type": "pre-release-alpha"
     },
     {
+      "api_name": "sample-service",
+      "api_version": "0.1.0-alpha.2",
+      "api_title": "Sample Service",
+      "commonalities": "0.8.0",
+      "maturity": "initial",
+      "portfolio_category": null,
+      "website_url": null,
+      "tooltip": null,
+      "display_name": "Sample Service",
+      "published": true,
+      "canonical_name": "sample-service",
+      "first_release": "Sandbox",
+      "repository": "ReleaseTest",
+      "release_tag": "r1.2",
+      "release_date": "2026-06-06T15:47:36Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/ReleaseTest/releases/tag/r1.2",
+      "release_type": "pre-release-alpha"
+    },
+    {
       "api_name": "sample-service-subscriptions",
       "api_version": "0.1.0-alpha.1",
       "api_title": "Sample Service Subscription Template",
@@ -7315,6 +7417,26 @@
       "release_date": "2026-05-29T13:39:43Z",
       "meta_release": "Independent",
       "github_url": "https://github.com/camaraproject/ReleaseTest/releases/tag/r1.1",
+      "release_type": "pre-release-alpha"
+    },
+    {
+      "api_name": "sample-service-subscriptions",
+      "api_version": "0.1.0-alpha.2",
+      "api_title": "Sample Service Subscription Template",
+      "commonalities": "0.8.0",
+      "maturity": "initial",
+      "portfolio_category": null,
+      "website_url": null,
+      "tooltip": null,
+      "display_name": "Sample Service Subscription Template",
+      "published": true,
+      "canonical_name": "sample-service-subscriptions",
+      "first_release": "Sandbox",
+      "repository": "ReleaseTest",
+      "release_tag": "r1.2",
+      "release_date": "2026-06-06T15:47:36Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/ReleaseTest/releases/tag/r1.2",
       "release_type": "pre-release-alpha"
     },
     {
