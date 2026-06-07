@@ -247,8 +247,8 @@ jobs:
         run: |
           set -euo pipefail
 
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "camara-release-automation[bot]"
+          git config user.email "261643975+camara-release-automation[bot]@users.noreply.github.com"
           git fetch origin main
 
           PR_DATA=$(gh pr list --head "${{ github.repository_owner }}:$BRANCH" \
