@@ -34,9 +34,29 @@ def test_data_pr_updates_stable_branch_safely():
     workflow_text = WORKFLOW_PATH.read_text()
 
     assert "--force-with-lease=refs/heads/$BRANCH:$REMOTE_SHA" in workflow_text
-    assert "Existing $BRANCH branch has no matching open PR" in workflow_text
     assert "origin/main..origin/$BRANCH" in workflow_text
     assert 'gh pr list --head "${{ github.repository_owner }}:$BRANCH"' in workflow_text
+
+
+def test_data_pr_refuses_branch_with_non_automation_commits():
+    # The non-automation-commit check is the primary safety gate against
+    # overwriting work that is not the tracker's own update commit.
+    workflow_text = WORKFLOW_PATH.read_text()
+
+    assert (
+        "contains non-automation commits. Refusing to overwrite it."
+        in workflow_text
+    )
+
+
+def test_data_pr_resets_stale_branch_without_open_pr():
+    # A leftover automation branch from a merged/closed PR (branch not deleted)
+    # must be reset and a fresh PR opened, not treated as an error.
+    workflow_text = WORKFLOW_PATH.read_text()
+
+    assert "has no open PR; resetting stale automation branch" in workflow_text
+    # The old hard-fail on a missing open PR must not return.
+    assert "has no matching open PR" not in workflow_text
 
 
 def test_data_pr_preserves_existing_pr_when_generated_tree_is_unchanged():

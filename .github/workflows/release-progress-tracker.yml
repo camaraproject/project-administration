@@ -270,11 +270,8 @@ jobs:
           fi
 
           if [ "$REMOTE_EXISTS" = "true" ]; then
-            if [ -z "$PR_NUMBER" ] || [ "$PR_TITLE" != "$TITLE" ]; then
-              echo "::error::Existing $BRANCH branch has no matching open PR with title '$TITLE'. Refusing to overwrite it."
-              exit 1
-            fi
-
+            # Primary safety gate: never overwrite a branch that carries any commit
+            # other than the tracker's own automation commit.
             NON_AUTOMATION_COMMITS=$(
               git log --format=%s "origin/main..origin/$BRANCH" \
                 | grep -Fvx "$COMMIT_MESSAGE" || true
@@ -285,12 +282,25 @@ jobs:
               exit 1
             fi
 
-            if git diff --quiet "origin/$BRANCH" -- data/; then
-              echo "No changes detected compared to existing $BRANCH branch"
-              echo "pr_action=unchanged_existing_pr" >> $GITHUB_OUTPUT
-              echo "pr_number=$PR_NUMBER" >> $GITHUB_OUTPUT
-              echo "pr_url=$PR_URL" >> $GITHUB_OUTPUT
-              exit 0
+            if [ -n "$PR_NUMBER" ]; then
+              # An open PR claims the branch: its title must be the automation title,
+              # otherwise a human has repurposed it and we must not overwrite.
+              if [ "$PR_TITLE" != "$TITLE" ]; then
+                echo "::error::Existing open PR #$PR_NUMBER on $BRANCH has unexpected title '$PR_TITLE'. Refusing to overwrite it."
+                exit 1
+              fi
+
+              if git diff --quiet "origin/$BRANCH" -- data/; then
+                echo "No changes detected compared to existing $BRANCH branch"
+                echo "pr_action=unchanged_existing_pr" >> $GITHUB_OUTPUT
+                echo "pr_number=$PR_NUMBER" >> $GITHUB_OUTPUT
+                echo "pr_url=$PR_URL" >> $GITHUB_OUTPUT
+                exit 0
+              fi
+            else
+              # Stale automation branch left over from a merged/closed PR whose
+              # branch was not deleted. Safe to reset and open a fresh PR.
+              echo "Existing $BRANCH branch has no open PR; resetting stale automation branch."
             fi
           fi
 
