@@ -1,18 +1,18 @@
 {
   "metadata": {
-    "generated": "2026-06-07T06:50:38.846Z",
+    "generated": "2026-06-12T07:07:44.721Z",
     "meta_release": "All",
     "source": "Release Collector v3",
     "landscape_version": "1.1.0"
   },
   "statistics": {
     "repositories_count": 52,
-    "api_versions_count": 170,
+    "api_versions_count": 171,
     "unique_api_names_count": 77,
     "unique_apis_count": 76,
     "api_version_maturity": {
       "stable": 28,
-      "initial": 139,
+      "initial": 140,
       "rc": 3
     },
     "unique_api_maturity": {
@@ -24,7 +24,7 @@
       "Computing Services": 10,
       "Communication Quality": 38,
       "Payments and Charging": 11,
-      "Authentication and Fraud Prevention": 46,
+      "Authentication and Fraud Prevention": 47,
       "Service Management": 2,
       "Device Information": 19,
       "Location Services": 16,
@@ -250,6 +250,11 @@
     "DeviceIdentifier": {
       "releases": [
         {
+          "tag": "r3.1",
+          "date": "2026-06-11T09:59:39Z",
+          "apis_count": 1
+        },
+        {
           "tag": "r2.2",
           "date": "2025-09-16T16:22:11Z",
           "apis_count": 1
@@ -260,7 +265,7 @@
           "apis_count": 1
         }
       ],
-      "total_apis": 2,
+      "total_apis": 3,
       "unique_apis_count": 1
     },
     "DeviceLocation": {
@@ -1818,6 +1823,35 @@
           "canonical_name": "device-identifier",
           "first_release": "Spring25",
           "isNew": false
+        }
+      ]
+    },
+    {
+      "repository": "DeviceIdentifier",
+      "release_tag": "r3.1",
+      "release_date": "2026-06-11T09:59:39Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/DeviceIdentifier/releases/tag/r3.1",
+      "release_type": "pre-release-alpha",
+      "src_commit_sha": "8b2e2951995408acfa10afbe6eb3edcd69851650",
+      "dependencies": {
+        "commonalities_release": "r4.3 (0.8.0)",
+        "identity_consent_management_release": "r4.2 (0.5.0)"
+      },
+      "apis": [
+        {
+          "api_name": "device-identifier",
+          "api_version": "0.4.0-alpha.1",
+          "api_title": "Device Identifier",
+          "commonalities": "0.8.0",
+          "maturity": "initial",
+          "portfolio_category": "Authentication and Fraud Prevention",
+          "website_url": "https://camaraproject.org/device-identifier/",
+          "tooltip": "Check the identity of the subscribers' device",
+          "display_name": "Device Identifier",
+          "published": true,
+          "canonical_name": "device-identifier",
+          "first_release": "Spring25"
         }
       ]
     },
@@ -5407,6 +5441,26 @@
       "meta_release": "Fall25",
       "github_url": "https://github.com/camaraproject/DeviceIdentifier/releases/tag/r2.2",
       "release_type": "public-release"
+    },
+    {
+      "api_name": "device-identifier",
+      "api_version": "0.4.0-alpha.1",
+      "api_title": "Device Identifier",
+      "commonalities": "0.8.0",
+      "maturity": "initial",
+      "portfolio_category": "Authentication and Fraud Prevention",
+      "website_url": "https://camaraproject.org/device-identifier/",
+      "tooltip": "Check the identity of the subscribers' device",
+      "display_name": "Device Identifier",
+      "published": true,
+      "canonical_name": "device-identifier",
+      "first_release": "Spring25",
+      "repository": "DeviceIdentifier",
+      "release_tag": "r3.1",
+      "release_date": "2026-06-11T09:59:39Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/DeviceIdentifier/releases/tag/r3.1",
+      "release_type": "pre-release-alpha"
     },
     {
       "api_name": "geofencing-subscriptions",
