@@ -1,5 +1,5 @@
 metadata:
-  last_updated: '2026-06-07T06:50:38.735Z'
+  last_updated: '2026-06-12T07:07:44.598Z'
   workflow_version: 3.0.0
   schema_version: 3.1.0
 releases:
@@ -835,6 +835,21 @@ releases:
         api_version: 0.3.0
         api_title: Device Identifier
         commonalities: '0.6'
+  - repository: DeviceIdentifier
+    release_tag: r3.1
+    release_date: '2026-06-11T09:59:39Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/DeviceIdentifier/releases/tag/r3.1
+    release_type: pre-release-alpha
+    src_commit_sha: 8b2e2951995408acfa10afbe6eb3edcd69851650
+    dependencies:
+      commonalities_release: r4.3 (0.8.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: device-identifier
+        api_version: 0.4.0-alpha.1
+        api_title: Device Identifier
+        commonalities: 0.8.0
   - repository: DeviceLocation
     release_tag: r1.1
     release_date: '2024-08-09T08:18:03Z'
@@ -2856,7 +2871,7 @@ repositories:
   - repository: DeviceIdentifier
     github_url: https://github.com/camaraproject/DeviceIdentifier
     latest_public_release: r2.2
-    newest_pre_release: null
+    newest_pre_release: r3.1
   - repository: DeviceLocation
     github_url: https://github.com/camaraproject/DeviceLocation
     latest_public_release: r3.2
