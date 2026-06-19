@@ -96,6 +96,12 @@ mappings:
     VerifiedCaller: "r1"
     WebRTC: "r2"
 
+  # Spring 2026 Meta-Release
+  # Target: March 2026
+  Spring26:
+    ClickToDial: "r1"
+    NetworkSliceBooking: "r2"
+
 # Special cases for repositories that don't follow standard patterns
 exceptions:
   # Repository splits (original -> new repositories)
@@ -110,8 +116,3 @@ exceptions:
         ConnectivityInsights:
           starts_from: "r1"
           contains_apis: ["connectivity-status", "device-reachability"]
-
-# Pre-Fall24 repositories that should be excluded
-excluded_repositories:
-  - "Test-repository"
-  - "Template-repository"
