@@ -9,8 +9,8 @@
 # =========================================================================================
 
 metadata:
-  version: 1.1.0
-  last_updated: '2025-09-22'
+  version: 1.1.1
+  last_updated: '2026-06-19'
   description: CAMARA API landscape enrichment data
   allowed_categories:
   - Authentication and Fraud Prevention
@@ -100,6 +100,18 @@ apis:
     tooltip: Determine if a call forwarding service is enabled
     published: true
     first_release: Fall24
+  iot-sim-fraud-prevention:
+    category: Authentication and Fraud Prevention
+    website_url: https://camaraproject.org/iot-sim-fraud-prevention/
+    tooltip: Allows enterprise customers to detect, alert on, and block unauthorized SIM usage
+    published: true
+    first_release: Independent
+  iot-sim-fraud-prevention-subscriptions:
+    category: Authentication and Fraud Prevention
+    website_url: https://camaraproject.org/iot-sim-fraud-prevention-subscriptions/
+    tooltip: Allows enterprise customers to get notified in case of unauthorized IoT SIM usage
+    published: true
+    first_release: Independent
   location-retrieval:
     category: Location Services
     website_url: https://camaraproject.org/location-retrieval/
@@ -148,6 +160,12 @@ apis:
     tooltip: Register brand for verified communications
     published: true
     first_release: Fall25
+  click-to-dial:
+    category: Communication Services
+    website_url: https://camaraproject.org/click-to-dial/
+    tooltip: Establish web-based communication by clicking an object
+    published: true
+    first_release: Spring26
   webrtc-call-handling:
     category: Communication Services
     website_url: https://camaraproject.org/webrtc-apis/
@@ -252,6 +270,12 @@ apis:
     tooltip: Reserve, dynamically provision, query, dynamically delete a slice
     published: true
     first_release: Fall25
+  network-slice-assignment:
+    category: Communication Quality
+    website_url: https://camaraproject.org/network-slice-assignment/
+    tooltip: Assign end user devices to slices. Check that slice capacity is not exceeded.
+    published: true
+    first_release: Spring26
   dedicated-network:
     category: Communication Quality
     website_url: https://camaraproject.org/dedicated-networks/#
@@ -393,13 +417,13 @@ apis:
 categories:
 - name: Authentication and Fraud Prevention
   description: APIs for identity verification, fraud prevention, and security
-  api_count: 13
+  api_count: 15
 - name: Communication Quality
   description: APIs for managing network quality and performance
-  api_count: 17
+  api_count: 18
 - name: Communication Services
   description: APIs for voice, video, and messaging services
-  api_count: 5
+  api_count: 6
 - name: Computing Services
   description: APIs for edge computing and AI services
   api_count: 8
