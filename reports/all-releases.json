@@ -1,9 +1,9 @@
 {
   "metadata": {
-    "generated": "2026-06-19T15:58:21.617Z",
+    "generated": "2026-06-19T17:57:41.268Z",
     "meta_release": "All",
     "source": "Release Collector v3",
-    "landscape_version": "1.1.0"
+    "landscape_version": "1.1.1"
   },
   "statistics": {
     "repositories_count": 51,
@@ -22,13 +22,13 @@
     },
     "categories": {
       "Computing Services": 10,
-      "Communication Quality": 38,
+      "Communication Quality": 39,
       "Payments and Charging": 11,
-      "Authentication and Fraud Prevention": 47,
+      "Authentication and Fraud Prevention": 49,
+      "Communication Services": 9,
       "Service Management": 2,
       "Device Information": 19,
-      "Location Services": 16,
-      "Communication Services": 8
+      "Location Services": 16
     },
     "apis_with_previous_names": 4
   },
@@ -1236,13 +1236,13 @@
           "api_title": "Click to Dial Service",
           "commonalities": "0.8.0",
           "maturity": "initial",
-          "portfolio_category": null,
-          "website_url": null,
-          "tooltip": null,
+          "portfolio_category": "Communication Services",
+          "website_url": "https://camaraproject.org/click-to-dial/",
+          "tooltip": "Establish web-based communication by clicking an object",
           "display_name": "Click to Dial Service",
           "published": true,
           "canonical_name": "click-to-dial",
-          "first_release": "Sandbox"
+          "first_release": "Spring26"
         }
       ]
     },
@@ -2521,13 +2521,13 @@
           "api_title": "IoT SIM Fraud Prevention",
           "commonalities": "0.6.1",
           "maturity": "initial",
-          "portfolio_category": null,
-          "website_url": null,
-          "tooltip": null,
+          "portfolio_category": "Authentication and Fraud Prevention",
+          "website_url": "https://camaraproject.org/iot-sim-fraud-prevention/",
+          "tooltip": "Allows enterprise customers to detect, alert on, and block unauthorized SIM usage",
           "display_name": "IoT SIM Fraud Prevention",
           "published": true,
           "canonical_name": "iot-sim-fraud-prevention",
-          "first_release": "Sandbox"
+          "first_release": "Independent"
         },
         {
           "api_name": "iot-sim-fraud-prevention-subscriptions",
@@ -2535,13 +2535,13 @@
           "api_title": "IoT SIM Fraud Prevention Subscriptions",
           "commonalities": "0.6.1",
           "maturity": "initial",
-          "portfolio_category": null,
-          "website_url": null,
-          "tooltip": null,
+          "portfolio_category": "Authentication and Fraud Prevention",
+          "website_url": "https://camaraproject.org/iot-sim-fraud-prevention-subscriptions/",
+          "tooltip": "Allows enterprise customers to get notified in case of unauthorized IoT SIM usage",
           "display_name": "IoT SIM Fraud Prevention Subscriptions",
           "published": true,
           "canonical_name": "iot-sim-fraud-prevention-subscriptions",
-          "first_release": "Sandbox"
+          "first_release": "Independent"
         }
       ]
     },
@@ -3057,13 +3057,13 @@
           "api_title": "Network Slice Assignment",
           "commonalities": "0.8.0",
           "maturity": "initial",
-          "portfolio_category": null,
-          "website_url": null,
-          "tooltip": null,
+          "portfolio_category": "Communication Quality",
+          "website_url": "https://camaraproject.org/network-slice-assignment/",
+          "tooltip": "Assign end user devices to slices. Check that slice capacity is not exceeded.",
           "display_name": "Network Slice Assignment",
           "published": true,
           "canonical_name": "network-slice-assignment",
-          "first_release": "Sandbox"
+          "first_release": "Spring26"
         }
       ]
     },
@@ -4737,13 +4737,13 @@
       "api_title": "Click to Dial Service",
       "commonalities": "0.8.0",
       "maturity": "initial",
-      "portfolio_category": null,
-      "website_url": null,
-      "tooltip": null,
+      "portfolio_category": "Communication Services",
+      "website_url": "https://camaraproject.org/click-to-dial/",
+      "tooltip": "Establish web-based communication by clicking an object",
       "display_name": "Click to Dial Service",
       "published": true,
       "canonical_name": "click-to-dial",
-      "first_release": "Sandbox",
+      "first_release": "Spring26",
       "repository": "ClickToDial",
       "release_tag": "r1.4",
       "release_date": "2026-06-01T17:46:34Z",
@@ -6050,13 +6050,13 @@
       "api_title": "IoT SIM Fraud Prevention",
       "commonalities": "0.6.1",
       "maturity": "initial",
-      "portfolio_category": null,
-      "website_url": null,
-      "tooltip": null,
+      "portfolio_category": "Authentication and Fraud Prevention",
+      "website_url": "https://camaraproject.org/iot-sim-fraud-prevention/",
+      "tooltip": "Allows enterprise customers to detect, alert on, and block unauthorized SIM usage",
       "display_name": "IoT SIM Fraud Prevention",
       "published": true,
       "canonical_name": "iot-sim-fraud-prevention",
-      "first_release": "Sandbox",
+      "first_release": "Independent",
       "repository": "IoTSIMFraudPrevention",
       "release_tag": "r1.2",
       "release_date": "2026-05-28T01:55:36Z",
@@ -6070,13 +6070,13 @@
       "api_title": "IoT SIM Fraud Prevention Subscriptions",
       "commonalities": "0.6.1",
       "maturity": "initial",
-      "portfolio_category": null,
-      "website_url": null,
-      "tooltip": null,
+      "portfolio_category": "Authentication and Fraud Prevention",
+      "website_url": "https://camaraproject.org/iot-sim-fraud-prevention-subscriptions/",
+      "tooltip": "Allows enterprise customers to get notified in case of unauthorized IoT SIM usage",
       "display_name": "IoT SIM Fraud Prevention Subscriptions",
       "published": true,
       "canonical_name": "iot-sim-fraud-prevention-subscriptions",
-      "first_release": "Sandbox",
+      "first_release": "Independent",
       "repository": "IoTSIMFraudPrevention",
       "release_tag": "r1.2",
       "release_date": "2026-05-28T01:55:36Z",
@@ -6525,13 +6525,13 @@
       "api_title": "Network Slice Assignment",
       "commonalities": "0.8.0",
       "maturity": "initial",
-      "portfolio_category": null,
-      "website_url": null,
-      "tooltip": null,
+      "portfolio_category": "Communication Quality",
+      "website_url": "https://camaraproject.org/network-slice-assignment/",
+      "tooltip": "Assign end user devices to slices. Check that slice capacity is not exceeded.",
       "display_name": "Network Slice Assignment",
       "published": true,
       "canonical_name": "network-slice-assignment",
-      "first_release": "Sandbox",
+      "first_release": "Spring26",
       "repository": "NetworkSliceBooking",
       "release_tag": "r2.3",
       "release_date": "2026-06-04T06:15:02Z",
