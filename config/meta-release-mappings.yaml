@@ -101,18 +101,3 @@ mappings:
   Spring26:
     ClickToDial: "r1"
     NetworkSliceBooking: "r2"
-
-# Special cases for repositories that don't follow standard patterns
-exceptions:
-  # Repository splits (original -> new repositories)
-  splits:
-    DeviceStatus:
-      # DeviceStatus was split into multiple repositories
-      original_release_cycles: ["r1", "r2"]
-      new_repositories:
-        DeviceRoaming:
-          starts_from: "r1"
-          contains_apis: ["roaming-status"]
-        ConnectivityInsights:
-          starts_from: "r1"
-          contains_apis: ["connectivity-status", "device-reachability"]
