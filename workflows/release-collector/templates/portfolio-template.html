@@ -354,7 +354,8 @@
               <th onclick="sortMetaReleaseTable(2)">Fall24 <span class="sort-arrow"></span></th>
               <th onclick="sortMetaReleaseTable(3)">Spring25 <span class="sort-arrow"></span></th>
               <th onclick="sortMetaReleaseTable(4)">Fall25 <span class="sort-arrow"></span></th>
-              <th onclick="sortMetaReleaseTable(5)">First Release <span class="sort-arrow"></span></th>
+              <th onclick="sortMetaReleaseTable(5)">Spring26 <span class="sort-arrow"></span></th>
+              <th onclick="sortMetaReleaseTable(6)">First Release <span class="sort-arrow"></span></th>
             </tr>
           </thead>
           <tbody id="metaReleaseTableBody">
@@ -362,7 +363,7 @@
         </table>
         <div class="footer-note"
           style="margin-top: 15px; padding: 10px; background: #f8f9fa; border-radius: 6px; font-size: 13px; color: #666;">
-          Note: This table shows only meta-releases (Fall24, Spring25, Fall25). Independent releases are shown in API
+          Note: This table shows only meta-releases (Fall24, Spring25, Fall25, Spring26). Independent releases are shown in API
           Evolution and Repository views.
         </div>
       </div>
@@ -397,7 +398,7 @@
     let showOnlyLatestPatches = true; // Default: show only latest patches
 
     // Meta-release constants
-    const META_RELEASES = ['Fall24', 'Spring25', 'Fall25'];
+    const META_RELEASES = ['Fall24', 'Spring25', 'Fall25', 'Spring26'];
     const INDEPENDENT_RELEASE = 'Independent';
 
     /**
@@ -533,7 +534,8 @@
           first_release: firstAPI.first_release,
           fall24: null,
           spring25: null,
-          fall25: null
+          fall25: null,
+          spring26: null
         };
 
         metaVersions.forEach(v => {
@@ -543,6 +545,8 @@
             row.spring25 = { api_version: v.api_version, maturity: v.maturity, isNew: v.isNew };
           } else if (v.meta_release === 'Fall25') {
             row.fall25 = { api_version: v.api_version, maturity: v.maturity, isNew: v.isNew };
+          } else if (v.meta_release === 'Spring26') {
+            row.spring26 = { api_version: v.api_version, maturity: v.maturity, isNew: v.isNew };
           }
         });
 
@@ -833,6 +837,19 @@
           fall25Cell.innerHTML = '<span class="empty-cell">-</span>';
         }
         tr.appendChild(fall25Cell);
+
+        // Spring26
+        const spring26Cell = document.createElement('td');
+        spring26Cell.className = 'release-cell';
+        if (row.spring26) {
+          spring26Cell.innerHTML = `
+            <div class="version-badge">${row.spring26.api_version}</div>
+            ${ViewerLib.renderMaturityBadge(row.spring26.maturity)}
+          `;
+        } else {
+          spring26Cell.innerHTML = '<span class="empty-cell">-</span>';
+        }
+        tr.appendChild(spring26Cell);
 
         // First Release
         const firstReleaseCell = document.createElement('td');
