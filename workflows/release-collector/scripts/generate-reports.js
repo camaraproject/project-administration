@@ -5,7 +5,7 @@
  *
  * Generates JSON report files for each meta-release from the master metadata.
  * Applies runtime enrichment from API landscape data.
- * Creates separate files for Fall24, Spring25, Fall25, PreFall24, Independent, etc.
+ * Creates separate files for Fall24, Spring25, Fall25, Spring26, PreFall24, Independent, etc.
  */
 
 const fs = require('fs');
@@ -27,6 +27,7 @@ const REPO_ROOT = path.join(__dirname, '..', '..', '..');
 const DATA_PATH = path.join(REPO_ROOT, 'data');
 const REPORTS_PATH = path.join(REPO_ROOT, 'reports');
 const MASTER_FILE = path.join(DATA_PATH, 'releases-master.yaml');
+const META_RELEASES = ['Fall24', 'Spring25', 'Fall25', 'Spring26'];
 
 /**
  * Load master metadata
@@ -148,10 +149,8 @@ async function main() {
   fs.writeFileSync(allFilepath, JSON.stringify(allReport, null, 2));
   console.log(`  ✓ all-releases.json - ${allReport.statistics.repositories_count} repos, ${allReport.statistics.apis_count} APIs`);
 
-  // 2. Generate reports for the three meta-releases only
-  const metaReleases = ['Fall24', 'Spring25', 'Fall25'];
-
-  for (const metaRelease of metaReleases) {
+  // 2. Generate reports for the public meta-releases only
+  for (const metaRelease of META_RELEASES) {
     if (grouped[metaRelease]) {
       // Re-enrich with specific meta-release for isNew calculation
       const metaReleaseData = landscape ?
@@ -208,6 +207,7 @@ if (require.main === module) {
 }
 
 module.exports = {
+  META_RELEASES,
   loadMaster,
   groupByMetaRelease,
   generateEnrichedReport

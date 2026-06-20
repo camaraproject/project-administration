@@ -44,7 +44,7 @@ This repository provides:
 Automated collection and tracking of CAMARA API releases.
 
 * **Location**: [workflows/release-collector/](workflows/release-collector/)
-* **Features**: Daily automated check for updates, creation of releases-master.yaml, data enrichment for reports, interactive HTML viewers for meta-releases (Fall24, Spring25, Fall25) and complete API portfolio. Manual deployment to production website with separate workflow.
+* **Features**: Daily automated check for updates, creation of releases-master.yaml, data enrichment for reports, interactive HTML viewers for meta-releases (Fall24, Spring25, Fall25, Spring26) and complete API portfolio. Manual deployment to production website with separate workflow.
 * **Documentation**: [workflows/release-collector/docs/README.md](workflows/release-collector/docs/README.md)
 * **Workflows**: `release-collector.yml`, `release-collector-production.yml`
 
@@ -53,14 +53,14 @@ Automated collection and tracking of CAMARA API releases.
 Configuration files used by the Release Collector (at repository root level):
 
 * **API Landscape**: [config/api-landscape.yaml](config/api-landscape.yaml) - Portfolio metadata (categories, URLs, tooltips) for API enrichment
-* **Meta-Release Mappings**: [config/meta-release-mappings.yaml](config/meta-release-mappings.yaml) - Maps repository release cycles (r1, r2, r3) to meta-releases (Fall24, Spring25, Fall25)
+* **Meta-Release Mappings**: [config/meta-release-mappings.yaml](config/meta-release-mappings.yaml) - Maps repository release cycles (r1, r2, r3) to meta-releases (Fall24, Spring25, Fall25, Spring26)
 
 #### Release Collector Outputs
 
 Generated and maintained by the Release Collector system:
 
 * **Data**: [data/releases-master.yaml](data/releases-master.yaml) - Master release metadata for all CAMARA API releases
-* **Reports**: [reports/](reports/) - JSON files (all-releases, fall24, spring25, fall25)
+* **Reports**: [reports/](reports/) - JSON files (all-releases, fall24, spring25, fall25, spring26)
 * **Viewers**: Interactive HTML viewers are not committed, but deployed for review in staging to https://camaraproject.github.io/project-administration/. Deployment to production website manually triggered with `release-collector-production.yml`.
 
 ### Campaigns

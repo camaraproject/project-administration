@@ -8,6 +8,7 @@
 const fs = require('fs');
 const path = require('path');
 const yaml = require('js-yaml');
+const META_RELEASES_WITH_IS_NEW = ['Fall24', 'Spring25', 'Fall25', 'Spring26'];
 
 /**
  * Load the API landscape configuration
@@ -99,7 +100,7 @@ function enrichAPI(api, landscape, currentMetaRelease = null) {
       canonical_name: api.api_name,
       first_release: 'Sandbox',  // Default for unknown APIs
       // Add isNew for meta-release reports
-      ...(currentMetaRelease && ['Fall24', 'Spring25', 'Fall25'].includes(currentMetaRelease) ? {
+      ...(currentMetaRelease && META_RELEASES_WITH_IS_NEW.includes(currentMetaRelease) ? {
         isNew: false  // Default to false for unknown APIs
       } : {})
     };
@@ -108,7 +109,7 @@ function enrichAPI(api, landscape, currentMetaRelease = null) {
   // Determine isNew based on first_release and current meta-release
   let isNew = false;
   if (currentMetaRelease && enrichment.first_release &&
-      ['Fall24', 'Spring25', 'Fall25'].includes(currentMetaRelease)) {
+      META_RELEASES_WITH_IS_NEW.includes(currentMetaRelease)) {
     isNew = enrichment.first_release === currentMetaRelease;
   }
 
@@ -128,7 +129,7 @@ function enrichAPI(api, landscape, currentMetaRelease = null) {
     // Include previous names if this was matched via previous name
     ...(enrichment.previous_names ? { previous_names: enrichment.previous_names } : {}),
     // Add isNew for meta-release reports
-    ...(currentMetaRelease && ['Fall24', 'Spring25', 'Fall25'].includes(currentMetaRelease) ? {
+    ...(currentMetaRelease && META_RELEASES_WITH_IS_NEW.includes(currentMetaRelease) ? {
       isNew: isNew
     } : {})
   };
