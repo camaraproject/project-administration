@@ -2,7 +2,7 @@ repository:
   repository_name: SimSwap
   release_tag: r3.1
   release_type: pre-release-rc
-  release_date: "2025-07-18T09:52:55Z"
+  release_date: '2025-07-18T09:52:55Z'
   src_commit_sha: null
 apis:
   - api_name: sim-swap-subscriptions
