@@ -5,7 +5,7 @@
 
 ## What This Workflow Does
 
-Automatically tracks all CAMARA API releases across repositories, categorizes them by meta-release (Fall24, Spring25, Fall25), and generates browsable HTML reports showing API versions, maturity levels, and portfolio information.
+Automatically tracks all CAMARA API releases across repositories, categorizes them by meta-release (Fall24, Spring25, Fall25, Spring26), and generates browsable HTML reports showing API versions, maturity levels, and portfolio information.
 
 **For Maintainers**: See [QUICKSTART.md](../QUICKSTART.md) for a 2-minute guide and [MAINTAINER-FAQ.md](../MAINTAINER-FAQ.md) for common questions.
 
@@ -240,7 +240,8 @@ reports/
 ├── all-releases.json             # Complete dataset (enriched)
 ├── fall24.json                   # Fall 2024 meta-release
 ├── spring25.json                 # Spring 2025 meta-release
-└── fall25.json                   # Fall 2025 meta-release
+├── fall25.json                   # Fall 2025 meta-release
+└── spring26.json                 # Spring 2026 meta-release
 ```
 
 #### Deployed to Staging / Available in Artifacts (Not Committed)
@@ -250,6 +251,7 @@ viewers/
 ├── fall24.html                   # Fall 2024 viewer
 ├── spring25.html                 # Spring 2025 viewer
 ├── fall25.html                   # Fall 2025 viewer
+├── spring26.html                 # Spring 2026 viewer
 ├── portfolio.html                # Portfolio overview viewer (Alpha)
 └── internal.html                 # Internal admin viewer (Alpha)
 ```

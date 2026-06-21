@@ -250,6 +250,7 @@ jobs:
             "viewers/fall24.html"
             "viewers/spring25.html"
             "viewers/fall25.html"
+            "viewers/spring26.html"
             "viewers/portfolio.html"
           )
 
@@ -328,6 +329,7 @@ jobs:
           cp artifact/fall24.html production-site/${{ env.PRODUCTION_PATH }}/
           cp artifact/spring25.html production-site/${{ env.PRODUCTION_PATH }}/
           cp artifact/fall25.html production-site/${{ env.PRODUCTION_PATH }}/
+          cp artifact/spring26.html production-site/${{ env.PRODUCTION_PATH }}/
           cp artifact/portfolio.html production-site/${{ env.PRODUCTION_PATH }}/
 
           # Copy production index as index.html
@@ -766,6 +768,7 @@ jobs:
             echo "| fall24.html | Fall 2024 meta-release viewer |" >> $GITHUB_STEP_SUMMARY
             echo "| spring25.html | Spring 2025 meta-release viewer |" >> $GITHUB_STEP_SUMMARY
             echo "| fall25.html | Fall 2025 meta-release viewer |" >> $GITHUB_STEP_SUMMARY
+            echo "| spring26.html | Spring 2026 meta-release viewer |" >> $GITHUB_STEP_SUMMARY
             echo "| portfolio.html | Portfolio overview |" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
           fi

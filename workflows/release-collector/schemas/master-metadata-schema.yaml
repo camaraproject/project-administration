@@ -93,7 +93,7 @@ properties:
         meta_release:
           type: string
           description: Assigned meta-release cycle from configuration
-          examples: ["Fall24", "Spring25", "Fall25", "Independent", "None"]
+          examples: ["Fall24", "Spring25", "Fall25", "Spring26", "Independent", "None"]
 
         github_url:
           type: string

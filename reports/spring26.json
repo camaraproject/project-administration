@@ -1,0 +1,195 @@
+{
+  "metadata": {
+    "generated": "2026-06-20T13:01:52.482Z",
+    "meta_release": "Spring26",
+    "source": "Release Collector v3",
+    "landscape_version": "1.1.1"
+  },
+  "statistics": {
+    "repositories_count": 2,
+    "api_versions_count": 3,
+    "unique_api_names_count": 3,
+    "unique_apis_count": 3,
+    "api_version_maturity": {
+      "stable": 0,
+      "initial": 3,
+      "rc": 0
+    },
+    "unique_api_maturity": {
+      "stable": 0,
+      "initial": 3,
+      "rc": 0
+    },
+    "categories": {
+      "Communication Services": 1,
+      "Communication Quality": 2
+    },
+    "apis_with_previous_names": 0
+  },
+  "repositories": {
+    "ClickToDial": {
+      "releases": [
+        {
+          "tag": "r1.4",
+          "date": "2026-06-01T17:46:34Z",
+          "apis_count": 1
+        }
+      ],
+      "total_apis": 1,
+      "unique_apis_count": 1
+    },
+    "NetworkSliceBooking": {
+      "releases": [
+        {
+          "tag": "r2.3",
+          "date": "2026-06-04T06:15:02Z",
+          "apis_count": 2
+        }
+      ],
+      "total_apis": 2,
+      "unique_apis_count": 2
+    }
+  },
+  "releases": [
+    {
+      "repository": "ClickToDial",
+      "release_tag": "r1.4",
+      "release_date": "2026-06-01T17:46:34Z",
+      "meta_release": "Spring26",
+      "github_url": "https://github.com/camaraproject/ClickToDial/releases/tag/r1.4",
+      "release_type": "public-release",
+      "src_commit_sha": "b2308cb8035cb0237550a97e1caab297d3d88d03",
+      "dependencies": {
+        "commonalities_release": "r4.3 (0.8.0)",
+        "identity_consent_management_release": "r4.2 (0.5.0)"
+      },
+      "apis": [
+        {
+          "api_name": "click-to-dial",
+          "api_version": "0.1.0",
+          "api_title": "Click to Dial Service",
+          "commonalities": "0.8.0",
+          "maturity": "initial",
+          "portfolio_category": "Communication Services",
+          "website_url": "https://camaraproject.org/click-to-dial/",
+          "tooltip": "Establish web-based communication by clicking an object",
+          "display_name": "Click to Dial Service",
+          "published": true,
+          "canonical_name": "click-to-dial",
+          "first_release": "Spring26",
+          "isNew": true
+        }
+      ]
+    },
+    {
+      "repository": "NetworkSliceBooking",
+      "release_tag": "r2.3",
+      "release_date": "2026-06-04T06:15:02Z",
+      "meta_release": "Spring26",
+      "github_url": "https://github.com/camaraproject/NetworkSliceBooking/releases/tag/r2.3",
+      "release_type": "public-release",
+      "src_commit_sha": "e64cf3d8830bcc61689c82cf5e600486cdd45fbc",
+      "dependencies": {
+        "commonalities_release": "r4.3 (0.8.0)",
+        "identity_consent_management_release": "r4.2 (0.5.0)"
+      },
+      "apis": [
+        {
+          "api_name": "network-slice-booking",
+          "api_version": "0.2.0",
+          "api_title": "Network Slice Booking",
+          "commonalities": "0.8.0",
+          "maturity": "initial",
+          "portfolio_category": "Communication Quality",
+          "website_url": "https://camaraproject.org/network-slice-booking/",
+          "tooltip": "Reserve, dynamically provision, query, dynamically delete a slice",
+          "display_name": "Network Slice Booking",
+          "published": true,
+          "canonical_name": "network-slice-booking",
+          "first_release": "Fall25",
+          "isNew": false
+        },
+        {
+          "api_name": "network-slice-assignment",
+          "api_version": "0.1.0",
+          "api_title": "Network Slice Assignment",
+          "commonalities": "0.8.0",
+          "maturity": "initial",
+          "portfolio_category": "Communication Quality",
+          "website_url": "https://camaraproject.org/network-slice-assignment/",
+          "tooltip": "Assign end user devices to slices. Check that slice capacity is not exceeded.",
+          "display_name": "Network Slice Assignment",
+          "published": true,
+          "canonical_name": "network-slice-assignment",
+          "first_release": "Spring26",
+          "isNew": true
+        }
+      ]
+    }
+  ],
+  "apis": [
+    {
+      "api_name": "click-to-dial",
+      "api_version": "0.1.0",
+      "api_title": "Click to Dial Service",
+      "commonalities": "0.8.0",
+      "maturity": "initial",
+      "portfolio_category": "Communication Services",
+      "website_url": "https://camaraproject.org/click-to-dial/",
+      "tooltip": "Establish web-based communication by clicking an object",
+      "display_name": "Click to Dial Service",
+      "published": true,
+      "canonical_name": "click-to-dial",
+      "first_release": "Spring26",
+      "isNew": true,
+      "repository": "ClickToDial",
+      "release_tag": "r1.4",
+      "release_date": "2026-06-01T17:46:34Z",
+      "meta_release": "Spring26",
+      "github_url": "https://github.com/camaraproject/ClickToDial/releases/tag/r1.4",
+      "release_type": "public-release"
+    },
+    {
+      "api_name": "network-slice-assignment",
+      "api_version": "0.1.0",
+      "api_title": "Network Slice Assignment",
+      "commonalities": "0.8.0",
+      "maturity": "initial",
+      "portfolio_category": "Communication Quality",
+      "website_url": "https://camaraproject.org/network-slice-assignment/",
+      "tooltip": "Assign end user devices to slices. Check that slice capacity is not exceeded.",
+      "display_name": "Network Slice Assignment",
+      "published": true,
+      "canonical_name": "network-slice-assignment",
+      "first_release": "Spring26",
+      "isNew": true,
+      "repository": "NetworkSliceBooking",
+      "release_tag": "r2.3",
+      "release_date": "2026-06-04T06:15:02Z",
+      "meta_release": "Spring26",
+      "github_url": "https://github.com/camaraproject/NetworkSliceBooking/releases/tag/r2.3",
+      "release_type": "public-release"
+    },
+    {
+      "api_name": "network-slice-booking",
+      "api_version": "0.2.0",
+      "api_title": "Network Slice Booking",
+      "commonalities": "0.8.0",
+      "maturity": "initial",
+      "portfolio_category": "Communication Quality",
+      "website_url": "https://camaraproject.org/network-slice-booking/",
+      "tooltip": "Reserve, dynamically provision, query, dynamically delete a slice",
+      "display_name": "Network Slice Booking",
+      "published": true,
+      "canonical_name": "network-slice-booking",
+      "first_release": "Fall25",
+      "isNew": false,
+      "repository": "NetworkSliceBooking",
+      "release_tag": "r2.3",
+      "release_date": "2026-06-04T06:15:02Z",
+      "meta_release": "Spring26",
+      "github_url": "https://github.com/camaraproject/NetworkSliceBooking/releases/tag/r2.3",
+      "release_type": "public-release"
+    }
+  ]
+}

@@ -511,7 +511,7 @@ jobs:
           done
 
           # Check HTML viewers exist
-          for viewer in fall24 spring25 fall25 portfolio internal; do
+          for viewer in fall24 spring25 fall25 spring26 portfolio internal; do
             if [ ! -f "viewers/${viewer}.html" ]; then
               echo "WARNING: Viewer ${viewer}.html not found"
             else
@@ -593,7 +593,7 @@ jobs:
             This PR updates the CAMARA release tracking data:
 
             - 📊 `data/releases-master.yaml` - Master release metadata
-            - 📈 `reports/*.json` - Meta-release reports (Fall24, Spring25, Fall25, All)
+            - 📈 `reports/*.json` - Meta-release reports (Fall24, Spring25, Fall25, Spring26, All)
             - 📦 `data/release-artifacts/` - Per-release metadata files (if generated)
 
             **Note**: Viewers are deployed to staging for preview. After merging, trigger the **Release Collector - Production Deploy** workflow to publish viewers and upload metadata to GitHub releases.
@@ -631,6 +631,7 @@ jobs:
             - [Fall24 Viewer](https://${{ github.repository_owner }}.github.io/project-administration/fall24.html)
             - [Spring25 Viewer](https://${{ github.repository_owner }}.github.io/project-administration/spring25.html)
             - [Fall25 Viewer](https://${{ github.repository_owner }}.github.io/project-administration/fall25.html)
+            - [Spring26 Viewer](https://${{ github.repository_owner }}.github.io/project-administration/spring26.html)
             - [Portfolio Viewer](https://${{ github.repository_owner }}.github.io/project-administration/portfolio.html)
             - [Internal Admin View](https://${{ github.repository_owner }}.github.io/project-administration/internal.html)
 

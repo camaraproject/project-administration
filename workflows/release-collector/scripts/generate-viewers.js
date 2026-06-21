@@ -19,6 +19,7 @@ const VIEWERS_DIR = path.join(ROOT_DIR, 'viewers');
 
 // Check for force regeneration flag from workflow
 const FORCE_REGENERATE = process.env.FORCE_REGENERATE === 'true';
+const META_RELEASE_VIEWERS = ['fall24', 'spring25', 'fall25', 'spring26'];
 
 /**
  * Check if viewer needs regeneration based on source file timestamps
@@ -41,6 +42,11 @@ async function shouldRegenerateViewer(release) {
     'fall25': {
       reportPath: path.join(REPORTS_DIR, 'fall25.json'),
       viewerPath: path.join(VIEWERS_DIR, 'fall25.html'),
+      template: 'meta-release-template.html'
+    },
+    'spring26': {
+      reportPath: path.join(REPORTS_DIR, 'spring26.json'),
+      viewerPath: path.join(VIEWERS_DIR, 'spring26.html'),
       template: 'meta-release-template.html'
     },
     'portfolio': {
@@ -342,7 +348,7 @@ async function generateAllViewers() {
     const results = [];
 
     // Determine which releases to generate
-    const releases = ['fall24', 'spring25', 'fall25'];
+    const releases = META_RELEASE_VIEWERS;
 
     // Check which reports exist
     const existingReleases = [];
@@ -464,12 +470,13 @@ Usage:
   node generate-viewers.js [release]
 
 Options:
-  release    Optional release name (fall24, spring25, fall25)
+  release    Optional release name (fall24, spring25, fall25, spring26)
              If omitted, generates all available releases
 
 Examples:
   node generate-viewers.js              # Generate all releases
   node generate-viewers.js fall25       # Generate only Fall25 viewer
+  node generate-viewers.js spring26     # Generate only Spring26 viewer
 `);
     process.exit(0);
   }
@@ -494,6 +501,7 @@ if (require.main === module) {
 
 // Export for potential use as module
 module.exports = {
+  META_RELEASE_VIEWERS,
   generateMetaReleaseViewer,
   generatePortfolioViewer,
   generateInternalViewer,
