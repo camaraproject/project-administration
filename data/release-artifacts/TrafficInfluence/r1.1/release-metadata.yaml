@@ -2,7 +2,7 @@ repository:
   repository_name: TrafficInfluence
   release_tag: r1.1
   release_type: pre-release-alpha
-  release_date: "2025-06-10T15:04:41Z"
+  release_date: '2025-06-10T15:04:41Z'
   src_commit_sha: null
 apis:
   - api_name: traffic-influence

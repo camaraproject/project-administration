@@ -1,5 +1,5 @@
 metadata:
-  last_updated: '2026-06-19T17:57:41.135Z'
+  last_updated: '2026-06-21T14:31:48.824Z'
   workflow_version: 3.0.0
   schema_version: 3.1.0
 releases:
@@ -2593,6 +2593,22 @@ releases:
         api_version: 0.2.0
         api_title: KYC Tenure
         commonalities: '0.6'
+  - repository: TestRepo
+    release_tag: r1.1
+    release_date: '2026-02-19T11:25:16Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/TestRepo/releases/tag/r1.1
+    release_type: pre-release-alpha
+    src_commit_sha: dad402dbb8e904e8953d459c248f80a60a8fe04b
+    dependencies:
+      commonalities_release: r3.4
+      identity_consent_management_release: r3.3
+    repository_archived: true
+    apis:
+      - api_name: release-test
+        api_version: 0.1.0-alpha.1
+        api_title: CAMARA Release Test
+        commonalities: null
   - repository: TrafficInfluence
     release_tag: r1.1
     release_date: '2025-06-10T15:04:41Z'
@@ -3005,6 +3021,11 @@ repositories:
     github_url: https://github.com/camaraproject/Tenure
     latest_public_release: r2.2
     newest_pre_release: null
+  - repository: TestRepo
+    github_url: https://github.com/camaraproject/TestRepo
+    repository_archived: true
+    latest_public_release: null
+    newest_pre_release: r1.1
   - repository: TrafficInfluence
     github_url: https://github.com/camaraproject/TrafficInfluence
     latest_public_release: r1.3

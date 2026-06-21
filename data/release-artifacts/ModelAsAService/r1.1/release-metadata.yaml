@@ -2,7 +2,7 @@ repository:
   repository_name: ModelAsAService
   release_tag: r1.1
   release_type: pre-release-rc
-  release_date: "2025-07-24T10:54:35Z"
+  release_date: '2025-07-24T10:54:35Z'
   src_commit_sha: null
 apis:
   - api_name: knowledge-base
