@@ -137,7 +137,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          npm install js-yaml axios @octokit/rest
+          npm install js-yaml@4.2.0 axios @octokit/rest
 
       - name: Detect repositories and releases
         id: detect
@@ -225,7 +225,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          npm install js-yaml axios @octokit/rest
+          npm install js-yaml@4.2.0 axios @octokit/rest
 
       - name: Analyze release group
         run: |
@@ -289,7 +289,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          npm install js-yaml axios
+          npm install js-yaml@4.2.0 axios
 
       - name: Download repositories data
         uses: actions/download-artifact@v8
@@ -381,7 +381,7 @@ jobs:
           node-version: '20'
 
       - name: Install dependencies
-        run: npm install js-yaml
+        run: npm install js-yaml@4.2.0
 
       - name: Generate release metadata files
         env:
@@ -436,7 +436,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          npm install js-yaml
+          npm install js-yaml@4.2.0
 
       - name: Generate HTML viewers
         env:
