@@ -2,7 +2,7 @@ repository:
   repository_name: Tenure
   release_tag: r2.1
   release_type: pre-release-rc
-  release_date: "2025-07-17T10:37:29Z"
+  release_date: '2025-07-17T10:37:29Z'
   src_commit_sha: null
 apis:
   - api_name: kyc-tenure
