@@ -2,7 +2,7 @@ repository:
   repository_name: NumberVerification
   release_tag: r2.4
   release_type: public-release
-  release_date: "2025-03-20T14:24:37Z"
+  release_date: '2025-03-20T14:24:37Z'
   src_commit_sha: null
 apis:
   - api_name: number-verification

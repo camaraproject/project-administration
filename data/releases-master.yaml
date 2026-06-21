@@ -1,5 +1,5 @@
 metadata:
-  last_updated: '2026-06-19T17:57:41.135Z'
+  last_updated: '2026-06-21T11:48:58.575Z'
   workflow_version: 3.0.0
   schema_version: 3.1.0
 releases:
@@ -394,10 +394,6 @@ releases:
     release_type: pre-release-rc
     superseded: true
     apis:
-      - api_name: connected-network-type-subscriptions
-        api_version: 0.2.0-rc.1
-        api_title: Connected Network Type Subscriptions
-        commonalities: '0.6'
       - api_name: connected-network-type
         api_version: 0.2.0-rc.1
         api_title: Connected Network Type
@@ -409,10 +405,6 @@ releases:
     github_url: https://github.com/camaraproject/ConnectedNetworkType/releases/tag/r1.2
     release_type: public-release
     apis:
-      - api_name: connected-network-type-subscriptions
-        api_version: 0.2.0
-        api_title: Connected Network Type Subscriptions
-        commonalities: '0.6'
       - api_name: connected-network-type
         api_version: 0.2.0
         api_title: Connected Network Type
@@ -975,10 +967,6 @@ releases:
     release_type: pre-release-rc
     superseded: true
     apis:
-      - api_name: device-reachability-status-subscriptions
-        api_version: 0.8.0-rc.1
-        api_title: Device Reachability Status Subscriptions
-        commonalities: '0.6'
       - api_name: device-reachability-status
         api_version: 1.1.0-rc.2
         api_title: Device Reachability Status
@@ -990,10 +978,6 @@ releases:
     github_url: https://github.com/camaraproject/DeviceReachabilityStatus/releases/tag/r1.2
     release_type: public-release
     apis:
-      - api_name: device-reachability-status-subscriptions
-        api_version: 0.8.0
-        api_title: Device Reachability Status Subscriptions
-        commonalities: '0.6'
       - api_name: device-reachability-status
         api_version: 1.1.0
         api_title: Device Reachability Status
@@ -1006,10 +990,6 @@ releases:
     release_type: pre-release-rc
     superseded: true
     apis:
-      - api_name: device-roaming-status-subscriptions
-        api_version: 0.8.0-rc.1
-        api_title: Device Roaming Status Subscriptions
-        commonalities: '0.6'
       - api_name: device-roaming-status
         api_version: 1.1.0-rc.2
         api_title: Device Roaming Status
@@ -1021,10 +1001,6 @@ releases:
     github_url: https://github.com/camaraproject/DeviceRoamingStatus/releases/tag/r1.2
     release_type: public-release
     apis:
-      - api_name: device-roaming-status-subscriptions
-        api_version: 0.8.0
-        api_title: Device Roaming Status Subscriptions
-        commonalities: '0.6'
       - api_name: device-roaming-status
         api_version: 1.1.0
         api_title: Device Roaming Status
@@ -1107,25 +1083,13 @@ releases:
     release_type: pre-release-rc
     superseded: true
     apis:
-      - api_name: connected-network-type-subscriptions
-        api_version: 0.1.0-rc.1
-        api_title: Connected Network Type Subscriptions
-        commonalities: '0.5'
       - api_name: connected-network-type
         api_version: 0.1.0-rc.1
         api_title: Connected Network Type
         commonalities: '0.5'
-      - api_name: device-reachability-status-subscriptions
-        api_version: 0.7.0-rc.1
-        api_title: Device Reachability Status Subscriptions
-        commonalities: '0.5'
       - api_name: device-reachability-status
         api_version: 1.0.0-rc.1
         api_title: Device Reachability Status
-        commonalities: '0.5'
-      - api_name: device-roaming-status-subscriptions
-        api_version: 0.7.0-rc.1
-        api_title: Device Roaming Status Subscriptions
         commonalities: '0.5'
       - api_name: device-roaming-status
         api_version: 1.0.0-rc.1
@@ -1138,25 +1102,13 @@ releases:
     github_url: https://github.com/camaraproject/DeviceStatus/releases/tag/r2.2
     release_type: public-release
     apis:
-      - api_name: connected-network-type-subscriptions
-        api_version: 0.1.0
-        api_title: Connected Network Type Subscriptions
-        commonalities: '0.5'
       - api_name: connected-network-type
         api_version: 0.1.0
         api_title: Connected Network Type
         commonalities: '0.5'
-      - api_name: device-reachability-status-subscriptions
-        api_version: 0.7.0
-        api_title: Device Reachability Status Subscriptions
-        commonalities: '0.5'
       - api_name: device-reachability-status
         api_version: 1.0.0
         api_title: Device Reachability Status
-        commonalities: '0.5'
-      - api_name: device-roaming-status-subscriptions
-        api_version: 0.7.0
-        api_title: Device Roaming Status Subscriptions
         commonalities: '0.5'
       - api_name: device-roaming-status
         api_version: 1.0.0
@@ -2593,6 +2545,22 @@ releases:
         api_version: 0.2.0
         api_title: KYC Tenure
         commonalities: '0.6'
+  - repository: TestRepo
+    release_tag: r1.1
+    release_date: '2026-02-19T11:25:16Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/TestRepo/releases/tag/r1.1
+    release_type: pre-release-alpha
+    src_commit_sha: dad402dbb8e904e8953d459c248f80a60a8fe04b
+    dependencies:
+      commonalities_release: r3.4
+      identity_consent_management_release: r3.3
+    repository_archived: true
+    apis:
+      - api_name: release-test
+        api_version: 0.1.0-alpha.1
+        api_title: CAMARA Release Test
+        commonalities: null
   - repository: TrafficInfluence
     release_tag: r1.1
     release_date: '2025-06-10T15:04:41Z'
@@ -2600,11 +2568,7 @@ releases:
     github_url: https://github.com/camaraproject/TrafficInfluence/releases/tag/r1.1
     release_type: pre-release-alpha
     superseded: true
-    apis:
-      - api_name: traffic-influence
-        api_version: 0.9.0-alpha.1
-        api_title: Traffic Influence API
-        commonalities: 0.5.0
+    apis: []
   - repository: TrafficInfluence
     release_tag: r1.2
     release_date: '2025-08-01T10:06:24Z'
@@ -3005,6 +2969,11 @@ repositories:
     github_url: https://github.com/camaraproject/Tenure
     latest_public_release: r2.2
     newest_pre_release: null
+  - repository: TestRepo
+    github_url: https://github.com/camaraproject/TestRepo
+    repository_archived: true
+    latest_public_release: null
+    newest_pre_release: r1.1
   - repository: TrafficInfluence
     github_url: https://github.com/camaraproject/TrafficInfluence
     latest_public_release: r1.3

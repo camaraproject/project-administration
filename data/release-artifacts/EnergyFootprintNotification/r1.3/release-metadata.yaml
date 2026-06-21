@@ -2,7 +2,7 @@ repository:
   repository_name: EnergyFootprintNotification
   release_tag: r1.3
   release_type: public-release
-  release_date: "2025-09-15T06:25:58Z"
+  release_date: '2025-09-15T06:25:58Z'
   src_commit_sha: null
 apis:
   - api_name: energy-footprint-notification

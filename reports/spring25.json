@@ -1,31 +1,31 @@
 {
   "metadata": {
-    "generated": "2026-06-20T13:01:52.469Z",
+    "generated": "2026-06-21T11:48:58.745Z",
     "meta_release": "Spring25",
     "source": "Release Collector v3",
     "landscape_version": "1.1.1"
   },
   "statistics": {
     "repositories_count": 19,
-    "api_versions_count": 38,
-    "unique_api_names_count": 36,
-    "unique_apis_count": 36,
+    "api_versions_count": 35,
+    "unique_api_names_count": 33,
+    "unique_apis_count": 33,
     "api_version_maturity": {
       "stable": 8,
-      "initial": 30,
+      "initial": 27,
       "rc": 0
     },
     "unique_api_maturity": {
       "stable": 8,
-      "initial": 28,
+      "initial": 25,
       "rc": 0
     },
     "categories": {
       "Payments and Charging": 3,
       "Authentication and Fraud Prevention": 15,
-      "Communication Quality": 8,
+      "Communication Quality": 7,
       "Location Services": 5,
-      "Device Information": 4,
+      "Device Information": 2,
       "Communication Services": 3
     },
     "apis_with_previous_names": 1
@@ -118,11 +118,11 @@
         {
           "tag": "r2.2",
           "date": "2025-03-14T11:49:32Z",
-          "apis_count": 6
+          "apis_count": 3
         }
       ],
-      "total_apis": 6,
-      "unique_apis_count": 6
+      "total_apis": 3,
+      "unique_apis_count": 3
     },
     "DeviceSwap": {
       "releases": [
@@ -541,21 +541,6 @@
       "release_type": "public-release",
       "apis": [
         {
-          "api_name": "connected-network-type-subscriptions",
-          "api_version": "0.1.0",
-          "api_title": "Connected Network Type Subscriptions",
-          "commonalities": "0.5",
-          "maturity": "initial",
-          "portfolio_category": "Communication Quality",
-          "website_url": "https://camaraproject.org/connected-network-type-subscriptions/",
-          "tooltip": "Receive notifications when the connected network type changes",
-          "display_name": "Connected Network Type Subscriptions",
-          "published": true,
-          "canonical_name": "connected-network-type-subscriptions",
-          "first_release": "Spring25",
-          "isNew": true
-        },
-        {
           "api_name": "connected-network-type",
           "api_version": "0.1.0",
           "api_title": "Connected Network Type",
@@ -571,21 +556,6 @@
           "isNew": true
         },
         {
-          "api_name": "device-reachability-status-subscriptions",
-          "api_version": "0.7.0",
-          "api_title": "Device Reachability Status Subscriptions",
-          "commonalities": "0.5",
-          "maturity": "initial",
-          "portfolio_category": "Device Information",
-          "website_url": "https://camaraproject.org/device-reachability-status-subscriptions/",
-          "tooltip": "Get notifications if the network connection status of a device changes",
-          "display_name": "Device Reachability Status Subscriptions",
-          "published": true,
-          "canonical_name": "device-reachability-status-subscriptions",
-          "first_release": "Fall24",
-          "isNew": false
-        },
-        {
           "api_name": "device-reachability-status",
           "api_version": "1.0.0",
           "api_title": "Device Reachability Status",
@@ -598,21 +568,6 @@
           "published": true,
           "canonical_name": "device-reachability-status",
           "first_release": "PreFall24",
-          "isNew": false
-        },
-        {
-          "api_name": "device-roaming-status-subscriptions",
-          "api_version": "0.7.0",
-          "api_title": "Device Roaming Status Subscriptions",
-          "commonalities": "0.5",
-          "maturity": "initial",
-          "portfolio_category": "Device Information",
-          "website_url": "https://camaraproject.org/device-roaming-status-subscriptions/",
-          "tooltip": "Get notifications if the roaming status of a device changes",
-          "display_name": "Device Roaming Status Subscriptions",
-          "published": true,
-          "canonical_name": "device-roaming-status-subscriptions",
-          "first_release": "Fall24",
           "isNew": false
         },
         {
@@ -1346,27 +1301,6 @@
       "release_type": "public-release"
     },
     {
-      "api_name": "connected-network-type-subscriptions",
-      "api_version": "0.1.0",
-      "api_title": "Connected Network Type Subscriptions",
-      "commonalities": "0.5",
-      "maturity": "initial",
-      "portfolio_category": "Communication Quality",
-      "website_url": "https://camaraproject.org/connected-network-type-subscriptions/",
-      "tooltip": "Receive notifications when the connected network type changes",
-      "display_name": "Connected Network Type Subscriptions",
-      "published": true,
-      "canonical_name": "connected-network-type-subscriptions",
-      "first_release": "Spring25",
-      "isNew": true,
-      "repository": "DeviceStatus",
-      "release_tag": "r2.2",
-      "release_date": "2025-03-14T11:49:32Z",
-      "meta_release": "Spring25",
-      "github_url": "https://github.com/camaraproject/DeviceStatus/releases/tag/r2.2",
-      "release_type": "public-release"
-    },
-    {
       "api_name": "device-reachability-status",
       "api_version": "1.0.0",
       "api_title": "Device Reachability Status",
@@ -1388,27 +1322,6 @@
       "release_type": "public-release"
     },
     {
-      "api_name": "device-reachability-status-subscriptions",
-      "api_version": "0.7.0",
-      "api_title": "Device Reachability Status Subscriptions",
-      "commonalities": "0.5",
-      "maturity": "initial",
-      "portfolio_category": "Device Information",
-      "website_url": "https://camaraproject.org/device-reachability-status-subscriptions/",
-      "tooltip": "Get notifications if the network connection status of a device changes",
-      "display_name": "Device Reachability Status Subscriptions",
-      "published": true,
-      "canonical_name": "device-reachability-status-subscriptions",
-      "first_release": "Fall24",
-      "isNew": false,
-      "repository": "DeviceStatus",
-      "release_tag": "r2.2",
-      "release_date": "2025-03-14T11:49:32Z",
-      "meta_release": "Spring25",
-      "github_url": "https://github.com/camaraproject/DeviceStatus/releases/tag/r2.2",
-      "release_type": "public-release"
-    },
-    {
       "api_name": "device-roaming-status",
       "api_version": "1.0.0",
       "api_title": "Device Roaming Status",
@@ -1421,27 +1334,6 @@
       "published": true,
       "canonical_name": "device-roaming-status",
       "first_release": "PreFall24",
-      "isNew": false,
-      "repository": "DeviceStatus",
-      "release_tag": "r2.2",
-      "release_date": "2025-03-14T11:49:32Z",
-      "meta_release": "Spring25",
-      "github_url": "https://github.com/camaraproject/DeviceStatus/releases/tag/r2.2",
-      "release_type": "public-release"
-    },
-    {
-      "api_name": "device-roaming-status-subscriptions",
-      "api_version": "0.7.0",
-      "api_title": "Device Roaming Status Subscriptions",
-      "commonalities": "0.5",
-      "maturity": "initial",
-      "portfolio_category": "Device Information",
-      "website_url": "https://camaraproject.org/device-roaming-status-subscriptions/",
-      "tooltip": "Get notifications if the roaming status of a device changes",
-      "display_name": "Device Roaming Status Subscriptions",
-      "published": true,
-      "canonical_name": "device-roaming-status-subscriptions",
-      "first_release": "Fall24",
       "isNew": false,
       "repository": "DeviceStatus",
       "release_tag": "r2.2",
