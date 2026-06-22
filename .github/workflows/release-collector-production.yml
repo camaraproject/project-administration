@@ -81,7 +81,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           # Use ref if provided, else current branch if allow_branch, else main
           ref: ${{ github.event.inputs.ref || (github.event.inputs.allow_branch == 'true' && github.ref_name) || 'main' }}
@@ -222,7 +222,7 @@ jobs:
 
     steps:
       - name: Checkout at deploy ref
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           ref: ${{ needs.validate-deployment.outputs.deploy_ref }}
 
@@ -301,7 +301,7 @@ jobs:
 
     steps:
       - name: Checkout source repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           ref: ${{ needs.validate-deployment.outputs.deploy_ref }}
 
@@ -312,7 +312,7 @@ jobs:
           path: artifact
 
       - name: Checkout production repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           repository: ${{ env.PRODUCTION_REPO }}
           path: production-site
@@ -403,7 +403,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           ref: ${{ needs.validate-deployment.outputs.deploy_ref }}
 

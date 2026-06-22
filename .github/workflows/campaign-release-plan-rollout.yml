@@ -70,7 +70,7 @@ jobs:
       repos: ${{ steps.sel.outputs.repos }}
     steps:
       - name: Checkout admin repo (self)
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           path: admin
 
@@ -226,12 +226,12 @@ jobs:
           owner: ${{ github.repository_owner }}
 
       - name: Checkout admin repo (self)
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           path: admin
 
       - name: Checkout target repo
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           repository: ${{ matrix.repo }}
           path: repo

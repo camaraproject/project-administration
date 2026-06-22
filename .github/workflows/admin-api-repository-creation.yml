@@ -175,7 +175,7 @@ jobs:
           
       - name: Checkout template repository
         if: ${{ github.event.inputs.dry_run != 'true' }}
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           repository: camaraproject/${{ env.TEMPLATE_REPO_NAME }}
           token: ${{ secrets.GH_REPO_CREATE_TOKEN }}
