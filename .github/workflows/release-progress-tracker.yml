@@ -53,7 +53,7 @@ jobs:
           owner: ${{ github.repository_owner }}
 
       - name: Checkout source repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           repository: ${{ env.SOURCE_REPO }}
           ref: ${{ env.SOURCE_REF }}
@@ -61,7 +61,7 @@ jobs:
           token: ${{ steps.app-token.outputs.token || github.token }}
 
       - name: Checkout caller repository (for existing data)
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           path: caller-repo
           sparse-checkout: data/
@@ -195,7 +195,7 @@ jobs:
           owner: ${{ github.repository_owner }}
 
       - name: Checkout caller repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           token: ${{ steps.app-token.outputs.token || github.token }}
           fetch-depth: 0
