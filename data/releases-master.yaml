@@ -1,5 +1,5 @@
 metadata:
-  last_updated: '2026-06-21T17:08:30.639Z'
+  last_updated: '2026-06-27T06:11:47.764Z'
   workflow_version: 3.0.0
   schema_version: 3.1.0
 releases:
@@ -1640,6 +1640,7 @@ releases:
         api_version: 0.1.0-alpha.1
         api_title: Network Traffic Analysis
         commonalities: 0.7.0-rc.1
+    superseded: true
   - repository: NetworkInsights
     release_tag: r1.2
     release_date: '2026-05-22T03:21:06Z'
@@ -1659,6 +1660,26 @@ releases:
         api_version: 0.1.0-rc.1
         api_title: Network Traffic Analysis
         commonalities: 0.8.0-rc.2
+    superseded: true
+  - repository: NetworkInsights
+    release_tag: r1.3
+    release_date: '2026-06-25T00:45:46Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/NetworkInsights/releases/tag/r1.3
+    release_type: public-release
+    src_commit_sha: 9f767931d88327b80aa06c63c5405a1b8898a5f3
+    dependencies:
+      commonalities_release: r4.3 (0.8.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: network-health-assessment
+        api_version: 0.1.0
+        api_title: Network Health Assessment
+        commonalities: 0.8.0
+      - api_name: network-traffic-analysis
+        api_version: 0.1.0
+        api_title: Network Traffic Analysis
+        commonalities: 0.8.0
   - repository: NetworkSliceBooking
     release_tag: r1.1
     release_date: '2025-08-01T08:01:19Z'
@@ -2593,6 +2614,21 @@ releases:
         api_version: 0.2.0
         api_title: KYC Tenure
         commonalities: '0.6'
+  - repository: Tenure
+    release_tag: r3.1
+    release_date: '2026-06-23T12:07:05Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/Tenure/releases/tag/r3.1
+    release_type: pre-release-alpha
+    src_commit_sha: 2030fccc2fb320c2338b3acd42526f2a5cc5fffd
+    dependencies:
+      commonalities_release: r4.3 (0.8.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: kyc-tenure
+        api_version: 0.3.0-alpha.1
+        api_title: KYC Tenure
+        commonalities: 0.8.0
   - repository: TrafficInfluence
     release_tag: r1.1
     release_date: '2025-06-10T15:04:41Z'
@@ -2925,8 +2961,8 @@ repositories:
     newest_pre_release: r2.1
   - repository: NetworkInsights
     github_url: https://github.com/camaraproject/NetworkInsights
-    latest_public_release: null
-    newest_pre_release: r1.2
+    latest_public_release: r1.3
+    newest_pre_release: null
   - repository: NetworkSliceBooking
     github_url: https://github.com/camaraproject/NetworkSliceBooking
     latest_public_release: r2.3
@@ -3004,7 +3040,7 @@ repositories:
   - repository: Tenure
     github_url: https://github.com/camaraproject/Tenure
     latest_public_release: r2.2
-    newest_pre_release: null
+    newest_pre_release: r3.1
   - repository: TrafficInfluence
     github_url: https://github.com/camaraproject/TrafficInfluence
     latest_public_release: r1.3
