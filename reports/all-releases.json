@@ -1,18 +1,18 @@
 {
   "metadata": {
-    "generated": "2026-06-25T06:34:24.416Z",
+    "generated": "2026-06-30T06:40:43.537Z",
     "meta_release": "All",
     "source": "Release Collector v3",
     "landscape_version": "1.1.1"
   },
   "statistics": {
     "repositories_count": 51,
-    "api_versions_count": 164,
+    "api_versions_count": 166,
     "unique_api_names_count": 74,
     "unique_apis_count": 73,
     "api_version_maturity": {
       "stable": 28,
-      "initial": 135,
+      "initial": 137,
       "rc": 1
     },
     "unique_api_maturity": {
@@ -25,7 +25,7 @@
       "Communication Quality": 39,
       "Payments and Charging": 11,
       "Authentication and Fraud Prevention": 50,
-      "Communication Services": 9,
+      "Communication Services": 11,
       "Service Management": 2,
       "Device Information": 19,
       "Location Services": 16
@@ -816,12 +816,17 @@
     "VerifiedCaller": {
       "releases": [
         {
+          "tag": "r2.1",
+          "date": "2026-06-30T06:06:19Z",
+          "apis_count": 2
+        },
+        {
           "tag": "r1.3",
           "date": "2025-09-15T15:00:09Z",
           "apis_count": 2
         }
       ],
-      "total_apis": 2,
+      "total_apis": 4,
       "unique_apis_count": 2
     },
     "WebRTC": {
@@ -4252,6 +4257,49 @@
       ]
     },
     {
+      "repository": "VerifiedCaller",
+      "release_tag": "r2.1",
+      "release_date": "2026-06-30T06:06:19Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/VerifiedCaller/releases/tag/r2.1",
+      "release_type": "pre-release-alpha",
+      "src_commit_sha": "f41f6799a9b64fc33f811aea2b33c0efaa529c86",
+      "dependencies": {
+        "commonalities_release": "r4.3 (0.8.0)",
+        "identity_consent_management_release": "r4.2 (0.5.0)"
+      },
+      "apis": [
+        {
+          "api_name": "brand-registration",
+          "api_version": "0.2.0-alpha.1",
+          "api_title": "Brand Registration",
+          "commonalities": "0.8.0",
+          "maturity": "initial",
+          "portfolio_category": "Communication Services",
+          "website_url": "https://camaraproject.org/brand-registration/",
+          "tooltip": "Register brand for verified communications",
+          "display_name": "Brand Registration",
+          "published": true,
+          "canonical_name": "brand-registration",
+          "first_release": "Fall25"
+        },
+        {
+          "api_name": "verified-caller",
+          "api_version": "0.2.0-alpha.1",
+          "api_title": "Verified Caller",
+          "commonalities": "0.8.0",
+          "maturity": "initial",
+          "portfolio_category": "Communication Services",
+          "website_url": "https://camaraproject.org/verified-caller/",
+          "tooltip": "Show certified information on the phone before a call is answered",
+          "display_name": "Verified Caller",
+          "published": true,
+          "canonical_name": "verified-caller",
+          "first_release": "Fall25"
+        }
+      ]
+    },
+    {
       "repository": "WebRTC",
       "release_tag": "r1.2",
       "release_date": "2025-03-18T12:39:09Z",
@@ -7656,6 +7704,26 @@
       "release_type": "public-release"
     },
     {
+      "api_name": "brand-registration",
+      "api_version": "0.2.0-alpha.1",
+      "api_title": "Brand Registration",
+      "commonalities": "0.8.0",
+      "maturity": "initial",
+      "portfolio_category": "Communication Services",
+      "website_url": "https://camaraproject.org/brand-registration/",
+      "tooltip": "Register brand for verified communications",
+      "display_name": "Brand Registration",
+      "published": true,
+      "canonical_name": "brand-registration",
+      "first_release": "Fall25",
+      "repository": "VerifiedCaller",
+      "release_tag": "r2.1",
+      "release_date": "2026-06-30T06:06:19Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/VerifiedCaller/releases/tag/r2.1",
+      "release_type": "pre-release-alpha"
+    },
+    {
       "api_name": "verified-caller",
       "api_version": "0.1.0",
       "api_title": "Verified Caller",
@@ -7675,6 +7743,26 @@
       "meta_release": "Fall25",
       "github_url": "https://github.com/camaraproject/VerifiedCaller/releases/tag/r1.3",
       "release_type": "public-release"
+    },
+    {
+      "api_name": "verified-caller",
+      "api_version": "0.2.0-alpha.1",
+      "api_title": "Verified Caller",
+      "commonalities": "0.8.0",
+      "maturity": "initial",
+      "portfolio_category": "Communication Services",
+      "website_url": "https://camaraproject.org/verified-caller/",
+      "tooltip": "Show certified information on the phone before a call is answered",
+      "display_name": "Verified Caller",
+      "published": true,
+      "canonical_name": "verified-caller",
+      "first_release": "Fall25",
+      "repository": "VerifiedCaller",
+      "release_tag": "r2.1",
+      "release_date": "2026-06-30T06:06:19Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/VerifiedCaller/releases/tag/r2.1",
+      "release_type": "pre-release-alpha"
     },
     {
       "api_name": "webrtc-call-handling",

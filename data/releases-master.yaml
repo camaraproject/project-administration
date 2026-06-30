@@ -1,5 +1,5 @@
 metadata:
-  last_updated: '2026-06-25T06:34:24.297Z'
+  last_updated: '2026-06-30T06:40:43.444Z'
   workflow_version: 3.0.0
   schema_version: 3.1.0
 releases:
@@ -2711,6 +2711,25 @@ releases:
         api_version: 0.1.0
         api_title: Verified Caller
         commonalities: '0.6'
+  - repository: VerifiedCaller
+    release_tag: r2.1
+    release_date: '2026-06-30T06:06:19Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/VerifiedCaller/releases/tag/r2.1
+    release_type: pre-release-alpha
+    src_commit_sha: f41f6799a9b64fc33f811aea2b33c0efaa529c86
+    dependencies:
+      commonalities_release: r4.3 (0.8.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: brand-registration
+        api_version: 0.2.0-alpha.1
+        api_title: Brand Registration
+        commonalities: 0.8.0
+      - api_name: verified-caller
+        api_version: 0.2.0-alpha.1
+        api_title: Verified Caller
+        commonalities: 0.8.0
   - repository: WebRTC
     release_tag: r1.1
     release_date: '2025-02-17T11:57:15Z'
@@ -3048,7 +3067,7 @@ repositories:
   - repository: VerifiedCaller
     github_url: https://github.com/camaraproject/VerifiedCaller
     latest_public_release: r1.3
-    newest_pre_release: null
+    newest_pre_release: r2.1
   - repository: VoiceNotification
     github_url: https://github.com/camaraproject/VoiceNotification
     latest_public_release: null
