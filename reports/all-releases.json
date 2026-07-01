@@ -1,23 +1,23 @@
 {
   "metadata": {
-    "generated": "2026-06-25T06:34:24.416Z",
+    "generated": "2026-07-01T06:54:32.422Z",
     "meta_release": "All",
     "source": "Release Collector v3",
     "landscape_version": "1.1.1"
   },
   "statistics": {
-    "repositories_count": 51,
-    "api_versions_count": 164,
-    "unique_api_names_count": 74,
-    "unique_apis_count": 73,
+    "repositories_count": 52,
+    "api_versions_count": 167,
+    "unique_api_names_count": 75,
+    "unique_apis_count": 74,
     "api_version_maturity": {
       "stable": 28,
-      "initial": 135,
+      "initial": 138,
       "rc": 1
     },
     "unique_api_maturity": {
       "stable": 10,
-      "initial": 62,
+      "initial": 63,
       "rc": 1
     },
     "categories": {
@@ -25,7 +25,7 @@
       "Communication Quality": 39,
       "Payments and Charging": 11,
       "Authentication and Fraud Prevention": 50,
-      "Communication Services": 9,
+      "Communication Services": 11,
       "Service Management": 2,
       "Device Information": 19,
       "Location Services": 16
@@ -385,6 +385,17 @@
       ],
       "total_apis": 1,
       "repository_archived": true,
+      "unique_apis_count": 1
+    },
+    "IoTDeviceManagement": {
+      "releases": [
+        {
+          "tag": "r1.1",
+          "date": "2026-06-30T07:59:58Z",
+          "apis_count": 1
+        }
+      ],
+      "total_apis": 1,
       "unique_apis_count": 1
     },
     "IoTNetworkOptimization": {
@@ -816,12 +827,17 @@
     "VerifiedCaller": {
       "releases": [
         {
+          "tag": "r2.1",
+          "date": "2026-06-30T06:06:19Z",
+          "apis_count": 2
+        },
+        {
           "tag": "r1.3",
           "date": "2025-09-15T15:00:09Z",
           "apis_count": 2
         }
       ],
-      "total_apis": 2,
+      "total_apis": 4,
       "unique_apis_count": 2
     },
     "WebRTC": {
@@ -2476,6 +2492,35 @@
           "canonical_name": "home-devices-qod",
           "first_release": "PreFall24",
           "isNew": false
+        }
+      ]
+    },
+    {
+      "repository": "IoTDeviceManagement",
+      "release_tag": "r1.1",
+      "release_date": "2026-06-30T07:59:58Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/IoTDeviceManagement/releases/tag/r1.1",
+      "release_type": "pre-release-alpha",
+      "src_commit_sha": "c924333eba96bbb1b985efc7b24f59a97e5d83e2",
+      "dependencies": {
+        "commonalities_release": "r4.3 (0.8.0)",
+        "identity_consent_management_release": "r4.2 (0.5.0)"
+      },
+      "apis": [
+        {
+          "api_name": "esim-profile-management",
+          "api_version": "0.1.0-alpha.1",
+          "api_title": "eSIM Profile Management API",
+          "commonalities": "0.8.0",
+          "maturity": "initial",
+          "portfolio_category": null,
+          "website_url": null,
+          "tooltip": null,
+          "display_name": "eSIM Profile Management API",
+          "published": true,
+          "canonical_name": "esim-profile-management",
+          "first_release": "Sandbox"
         }
       ]
     },
@@ -4252,6 +4297,49 @@
       ]
     },
     {
+      "repository": "VerifiedCaller",
+      "release_tag": "r2.1",
+      "release_date": "2026-06-30T06:06:19Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/VerifiedCaller/releases/tag/r2.1",
+      "release_type": "pre-release-alpha",
+      "src_commit_sha": "f41f6799a9b64fc33f811aea2b33c0efaa529c86",
+      "dependencies": {
+        "commonalities_release": "r4.3 (0.8.0)",
+        "identity_consent_management_release": "r4.2 (0.5.0)"
+      },
+      "apis": [
+        {
+          "api_name": "brand-registration",
+          "api_version": "0.2.0-alpha.1",
+          "api_title": "Brand Registration",
+          "commonalities": "0.8.0",
+          "maturity": "initial",
+          "portfolio_category": "Communication Services",
+          "website_url": "https://camaraproject.org/brand-registration/",
+          "tooltip": "Register brand for verified communications",
+          "display_name": "Brand Registration",
+          "published": true,
+          "canonical_name": "brand-registration",
+          "first_release": "Fall25"
+        },
+        {
+          "api_name": "verified-caller",
+          "api_version": "0.2.0-alpha.1",
+          "api_title": "Verified Caller",
+          "commonalities": "0.8.0",
+          "maturity": "initial",
+          "portfolio_category": "Communication Services",
+          "website_url": "https://camaraproject.org/verified-caller/",
+          "tooltip": "Show certified information on the phone before a call is answered",
+          "display_name": "Verified Caller",
+          "published": true,
+          "canonical_name": "verified-caller",
+          "first_release": "Fall25"
+        }
+      ]
+    },
+    {
       "repository": "WebRTC",
       "release_tag": "r1.2",
       "release_date": "2025-03-18T12:39:09Z",
@@ -6015,6 +6103,26 @@
       "repository_archived": true
     },
     {
+      "api_name": "esim-profile-management",
+      "api_version": "0.1.0-alpha.1",
+      "api_title": "eSIM Profile Management API",
+      "commonalities": "0.8.0",
+      "maturity": "initial",
+      "portfolio_category": null,
+      "website_url": null,
+      "tooltip": null,
+      "display_name": "eSIM Profile Management API",
+      "published": true,
+      "canonical_name": "esim-profile-management",
+      "first_release": "Sandbox",
+      "repository": "IoTDeviceManagement",
+      "release_tag": "r1.1",
+      "release_date": "2026-06-30T07:59:58Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/IoTDeviceManagement/releases/tag/r1.1",
+      "release_type": "pre-release-alpha"
+    },
+    {
       "api_name": "iot-network-optimization",
       "api_version": "0.1.0-alpha.1",
       "api_title": "IoT Network Optimization API",
@@ -7656,6 +7764,26 @@
       "release_type": "public-release"
     },
     {
+      "api_name": "brand-registration",
+      "api_version": "0.2.0-alpha.1",
+      "api_title": "Brand Registration",
+      "commonalities": "0.8.0",
+      "maturity": "initial",
+      "portfolio_category": "Communication Services",
+      "website_url": "https://camaraproject.org/brand-registration/",
+      "tooltip": "Register brand for verified communications",
+      "display_name": "Brand Registration",
+      "published": true,
+      "canonical_name": "brand-registration",
+      "first_release": "Fall25",
+      "repository": "VerifiedCaller",
+      "release_tag": "r2.1",
+      "release_date": "2026-06-30T06:06:19Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/VerifiedCaller/releases/tag/r2.1",
+      "release_type": "pre-release-alpha"
+    },
+    {
       "api_name": "verified-caller",
       "api_version": "0.1.0",
       "api_title": "Verified Caller",
@@ -7675,6 +7803,26 @@
       "meta_release": "Fall25",
       "github_url": "https://github.com/camaraproject/VerifiedCaller/releases/tag/r1.3",
       "release_type": "public-release"
+    },
+    {
+      "api_name": "verified-caller",
+      "api_version": "0.2.0-alpha.1",
+      "api_title": "Verified Caller",
+      "commonalities": "0.8.0",
+      "maturity": "initial",
+      "portfolio_category": "Communication Services",
+      "website_url": "https://camaraproject.org/verified-caller/",
+      "tooltip": "Show certified information on the phone before a call is answered",
+      "display_name": "Verified Caller",
+      "published": true,
+      "canonical_name": "verified-caller",
+      "first_release": "Fall25",
+      "repository": "VerifiedCaller",
+      "release_tag": "r2.1",
+      "release_date": "2026-06-30T06:06:19Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/VerifiedCaller/releases/tag/r2.1",
+      "release_type": "pre-release-alpha"
     },
     {
       "api_name": "webrtc-call-handling",
