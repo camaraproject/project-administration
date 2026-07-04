@@ -35,7 +35,10 @@ def test_data_pr_updates_stable_branch_safely():
 
     assert "--force-with-lease=refs/heads/$BRANCH:$REMOTE_SHA" in workflow_text
     assert "origin/main..origin/$BRANCH" in workflow_text
-    assert 'gh pr list --head "${{ github.repository_owner }}:$BRANCH"' in workflow_text
+    assert 'gh pr list --head "$BRANCH"' in workflow_text
+    assert '"${{ github.repository_owner }}:$BRANCH"' not in workflow_text
+    assert "headRepositoryOwner" in workflow_text
+    assert 'map(select(.headRepositoryOwner.login == "${{ github.repository_owner }}")) | .[0] // {}' in workflow_text
 
 
 def test_data_pr_refuses_branch_with_non_automation_commits():
