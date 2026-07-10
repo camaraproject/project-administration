@@ -252,6 +252,48 @@ tr.historical-row:hover td {
 .track-footer.hidden {
   display: none;
 }
+
+/* ===== Review Queue tab ===== */
+.view-tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 16px;
+  border-bottom: 2px solid var(--border-light);
+}
+.view-tab {
+  background: none;
+  border: none;
+  padding: 10px 18px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+}
+.view-tab:hover { color: var(--text-primary); }
+.view-tab.active {
+  color: var(--accent-primary);
+  border-bottom-color: var(--accent-primary);
+}
+#reviewTable td { vertical-align: top; }
+.rq-track { font-weight: 600; }
+.rq-tagtype { color: var(--text-primary); }
+.rq-type { color: var(--text-secondary); }
+.rq-api { font-size: 13px; line-height: 1.5; }
+.rq-api code { font-size: 12px; }
+.rq-muted { color: var(--text-secondary); }
+.rq-team { color: var(--text-secondary); font-style: italic; }
+.rq-reviewer { font-weight: 600; }
+.rq-nowrap { white-space: nowrap; }
+.rq-prog-line { font-size: 13px; line-height: 1.6; white-space: nowrap; }
+.rq-prog-label { color: var(--text-secondary); }
+.rq-discard-note { font-size: 12px; color: var(--text-secondary); margin-top: 3px; }
+.rq-ready { color: #1a7f37; font-weight: 600; }
+.rq-approved { color: #1a7f37; font-weight: 600; }
+.rq-changes { color: #cf222e; font-weight: 600; }
+.rq-done { color: #1a7f37; }
+.rq-discarded { color: #cf222e; font-size: 12px; margin-top: 3px; }
   </style>
 </head>
 <body>
@@ -271,6 +313,12 @@ tr.historical-row:hover td {
     </div>
 
     <div class="content" id="content">
+      <div class="view-tabs">
+        <button class="view-tab active" data-view="progress" onclick="switchView('progress')">Release Progress</button>
+        <button class="view-tab" data-view="review" onclick="switchView('review')">Review Queue</button>
+      </div>
+
+      <div id="view-progress">
       <div class="category-pills" id="trackPills"></div>
 
       <div class="filters">
@@ -341,6 +389,64 @@ tr.historical-row:hover td {
       </table>
 
       <div id="trackFooter" class="track-footer hidden"></div>
+      </div><!-- /view-progress -->
+
+      <div id="view-review" class="hidden">
+        <div class="filters">
+          <div class="filter-row">
+            <div class="filter-group">
+              <label for="reviewSearch">Search:</label>
+              <input type="text" id="reviewSearch" placeholder="Repo, API, tag or reviewer..." onkeyup="applyReviewFilters()">
+            </div>
+            <div class="filter-group">
+              <label for="reviewStateFilter">State:</label>
+              <select id="reviewStateFilter" onchange="applyReviewFilters()">
+                <option value="">All</option>
+                <option value="snapshot_active">Snapshot</option>
+                <option value="planned">Planned</option>
+                <option value="draft_ready">Draft Ready</option>
+                <option value="published">Published</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <label for="reviewTrackFilter">Track:</label>
+              <select id="reviewTrackFilter" onchange="applyReviewFilters()">
+                <option value="">All</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <label>
+                <input type="checkbox" id="reviewUnassigned" onchange="applyReviewFilters()" style="margin-right: 4px;">
+                Unassigned only
+              </label>
+            </div>
+            <button class="clear-filters-btn" onclick="clearReviewFilters()">Clear Filters</button>
+          </div>
+        </div>
+
+        <div id="reviewResultsCounter" class="results-counter hidden">
+          <div class="results-text"></div>
+          <div class="export-buttons">
+            <button class="export-btn" onclick="exportReviewCSV()">Export CSV</button>
+          </div>
+        </div>
+
+        <table id="reviewTable">
+          <thead>
+            <tr>
+              <th onclick="sortReviewTable(0)">Repository <span class="sort-arrow"></span></th>
+              <th onclick="sortReviewTable(1)">Track &middot; Type<br>&middot; Tag <span class="sort-arrow"></span></th>
+              <th>APIs &amp; Version(s)</th>
+              <th onclick="sortReviewTable(3)">State <span class="sort-arrow"></span></th>
+              <th onclick="sortReviewTable(4)">RI<br>Date <span class="sort-arrow"></span></th>
+              <th onclick="sortReviewTable(5)">Snapshot<br>Date <span class="sort-arrow"></span></th>
+              <th onclick="sortReviewTable(6)">Reviewer <span class="sort-arrow"></span></th>
+              <th onclick="sortReviewTable(7)">Review<br>Progress <span class="sort-arrow"></span></th>
+            </tr>
+          </thead>
+          <tbody id="reviewTableBody"></tbody>
+        </table>
+      </div><!-- /view-review -->
 
       <div id="footer-metadata" class="footer-metadata"></div>
     </div>
@@ -382,6 +488,12 @@ tr.historical-row:hover td {
     let filteredRows = [];
     let currentSort = { column: 3, ascending: true }; // Default: sort by Release State
     let currentTrackFilter = '';
+
+    // Review Queue view state
+    const REVIEW_STATES = new Set(['planned', 'snapshot_active', 'draft_ready', 'published']);
+    let reviewAllRows = [];
+    let reviewFilteredRows = [];
+    let reviewSort = { column: 5, ascending: false }; // Default: Snapshot date, newest first (no-date rows sink to bottom)
 
     /**
      * Flatten repo-centric progress data to API-centric rows.
@@ -1218,6 +1330,365 @@ tr.historical-row:hover td {
       footerDiv.innerHTML = parts.join(' | ');
     }
 
+    // ===== Review Queue view =====================================
+    // Repo/tag-grain rows (one per progress entry in an active state), flat and
+    // sortable. Parallels the progress-view machinery but targets #reviewTable
+    // and reuses the shared ViewerLib helpers and CSS.
+
+    /**
+     * Flatten progress data to one Review-Queue row per repo+tag, keeping only
+     * active states (planned -> published).
+     */
+    function flattenReviewData(data) {
+      const rows = [];
+      (data.progress || []).forEach(repo => {
+        if (!REVIEW_STATES.has(repo.state)) return;
+        const a = repo.artifacts || {};
+        const pr = a.release_pr || null;
+        const hist = a.review_history || null;
+        const ri = a.release_issue || null;
+        rows.push({
+          repository: repo.repository,
+          github_url: repo.github_url,
+          release_track: repo.release_track || '',
+          meta_release: repo.meta_release || '',
+          target_release_tag: repo.target_release_tag || '',
+          target_release_type: repo.target_release_type || '',
+          state: repo.state,
+          apis: repo.apis || [],
+          snapshot_api_versions: repo.snapshot_api_versions || null,
+          ri_date: ri ? (ri.created_at || null) : null,
+          ri_url: ri ? (ri.url || null) : null,
+          snapshot_date: pr ? (pr.created_at || null) : null,
+          pr_url: pr ? (pr.url || null) : null,
+          has_pr: !!pr,
+          assignees: pr ? (pr.assignees || []) : [],
+          review_decision: pr ? (pr.review_decision || null) : null,
+          codeowner_checked: pr ? pr.codeowner_checked : null,
+          codeowner_total: pr ? pr.codeowner_total : null,
+          ready_for_review: pr ? !!pr.ready_for_review : false,
+          rm_checked: pr ? pr.rm_checked : null,
+          rm_total: pr ? pr.rm_total : null,
+          discarded_count: hist ? (hist.discarded_count || 0) : 0,
+          last_reviewers: hist ? (hist.last_reviewers || []) : [],
+        });
+      });
+      return rows;
+    }
+
+    function reviewTrackKey(row) {
+      return row.release_track === 'independent' ? 'independent' : (row.meta_release || 'unknown');
+    }
+
+    // Lifecycle order for the release type, used for the compound-column sort.
+    function typeOrder(type) {
+      const t = (type || '').toLowerCase();
+      if (t.includes('alpha')) return 1;
+      if (t.includes('rc')) return 2;
+      if (t.includes('public')) return 3;
+      return 9;
+    }
+
+    function shortType(type) {
+      const t = (type || '').toLowerCase();
+      if (t.includes('alpha')) return 'alpha';
+      if (t.includes('rc')) return 'rc';
+      if (t.includes('public') || t.includes('stable') || t.includes('initial')) return 'public';
+      return t || '—';
+    }
+
+    function fmtDay(iso) {
+      const d = new Date(iso);
+      const pad = n => String(n).padStart(2, '0');
+      return `${d.getUTCFullYear()}-${pad(d.getUTCMonth() + 1)}-${pad(d.getUTCDate())}`;
+    }
+
+    function renderReviewDateCell(iso, url) {
+      if (!iso) return '<span class="rq-muted">—</span>';
+      const txt = fmtDay(iso);
+      return url
+        ? `<a href="${url}" target="_blank" rel="noopener">${txt}</a>`
+        : txt;
+    }
+
+    function renderTrackTypeTagCell(row) {
+      const track = row.release_track === 'independent'
+        ? 'Independent' : (row.meta_release || '—');
+      const tag = row.target_release_tag || '—';
+      const type = shortType(row.target_release_type);
+      const typeSuffix = (type && type !== '—')
+        ? ` <span class="rq-type">(${ViewerLib.escapeHtml(type)})</span>` : '';
+      return `<div class="rq-track">${ViewerLib.escapeHtml(track)}</div>` +
+             `<div class="rq-tagtype">${ViewerLib.escapeHtml(tag)}${typeSuffix}</div>`;
+    }
+
+    function renderReviewApisCell(row) {
+      if (!row.apis.length) return '<span class="rq-muted">—</span>';
+      const shown = row.apis.slice(0, 4).map(api => {
+        const v = (row.snapshot_api_versions && row.snapshot_api_versions[api.api_name])
+          || api.target_api_version || '';
+        const ver = v ? ` <code>${ViewerLib.escapeHtml(v)}</code>` : '';
+        return `<div class="rq-api">${ViewerLib.escapeHtml(api.api_name)}${ver}</div>`;
+      }).join('');
+      const more = row.apis.length > 4
+        ? `<div class="rq-muted">+${row.apis.length - 4} more</div>` : '';
+      return shown + more;
+    }
+
+    function renderReviewStateBadge(state) {
+      const cfg = STATE_CONFIG[state] || { label: state };
+      const tooltip = STATE_TOOLTIPS[state] || '';
+      const tip = tooltip
+        ? `<span class="state-tooltip">${ViewerLib.escapeHtml(tooltip)}</span>` : '';
+      return `<span class="state-badge state-${state}">${cfg.label}${tip}</span>`;
+    }
+
+    function renderReviewerCell(row) {
+      let html;
+      if (row.has_pr) {
+        html = row.assignees.length
+          ? row.assignees.map(a => `<span class="rq-reviewer">${ViewerLib.escapeHtml(a)}</span>`).join(', ')
+          : '<span class="rq-team">team</span>';
+      } else {
+        html = '<span class="rq-muted">—</span>';
+      }
+      // Review continuity: who reviewed the last (discarded) snapshot.
+      if (row.last_reviewers.length) {
+        const who = row.last_reviewers.map(ViewerLib.escapeHtml).join(', ');
+        html += `<div class="rq-discard-note">last: ${who}</div>`;
+      }
+      return html;
+    }
+
+    // RM approval = a verdict from the PR's assigned reviewer(s) (collector-derived,
+    // scoped to the assignee — not a checkbox, which codeowners can also tick).
+    function renderReviewProgressCell(row) {
+      if (row.state === 'published') return '<span class="rq-done">done ✓</span>';
+      if (row.state === 'draft_ready') return '<span class="rq-done">draft release created</span>';
+      if (row.state !== 'snapshot_active' || !row.has_pr) return '<span class="rq-muted">—</span>';
+
+      const co = row.ready_for_review
+        ? '<span class="rq-ready">ready for RM review</span>'
+        : `${row.codeowner_checked || 0}/${row.codeowner_total || 3}`;
+
+      let rm;
+      if (!row.assignees.length) rm = '<span class="rq-muted">unassigned</span>';
+      else if (row.review_decision === 'CHANGES_REQUESTED') rm = '<span class="rq-changes">changes requested</span>';
+      else if (row.review_decision === 'APPROVED') rm = '<span class="rq-approved">approved ✓</span>';
+      else rm = '<span class="rq-muted">in review</span>';
+
+      return `<div class="rq-prog-line"><span class="rq-prog-label">CO:</span> ${co}</div>` +
+             `<div class="rq-prog-line"><span class="rq-prog-label">RM:</span> ${rm}</div>`;
+    }
+
+    function renderSnapshotDateCell(row) {
+      const date = `<span class="rq-nowrap">${renderReviewDateCell(row.snapshot_date, row.pr_url)}</span>`;
+      if (row.discarded_count > 0) {
+        return `${date}<div class="rq-discarded">discarded &times;${row.discarded_count}</div>`;
+      }
+      return date;
+    }
+
+    function renderReviewRow(row) {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td><a href="${row.github_url}" target="_blank" rel="noopener">${ViewerLib.escapeHtml(row.repository)}</a></td>
+        <td>${renderTrackTypeTagCell(row)}</td>
+        <td>${renderReviewApisCell(row)}</td>
+        <td>${renderReviewStateBadge(row.state)}</td>
+        <td class="rq-nowrap">${renderReviewDateCell(row.ri_date, row.ri_url)}</td>
+        <td>${renderSnapshotDateCell(row)}</td>
+        <td>${renderReviewerCell(row)}</td>
+        <td>${renderReviewProgressCell(row)}</td>
+      `;
+      return tr;
+    }
+
+    function reviewerSortKey(row) {
+      if (row.has_pr) {
+        return row.assignees.length ? row.assignees[0].toLowerCase() : '~team';
+      }
+      return '~~none';
+    }
+
+    function sortReviewData(rows, columnIndex, ascending) {
+      const pad = n => String(n + 1).padStart(2, '0');
+      // ISO-8601 UTC timestamps compare correctly as strings; null = "no date".
+      const sortKeys = [
+        r => r.repository.toLowerCase(),                                          // 0 Repository
+        r => `${pad(trackSortKey(reviewTrackKey(r)))}|${typeOrder(r.target_release_type)}|${r.target_release_tag}`, // 1 Track·Type·Tag
+        r => (r.apis[0] ? r.apis[0].api_name.toLowerCase() : '~'),                // 2 APIs
+        r => (STATE_CONFIG[r.state] || {}).order ?? 99,                           // 3 State
+        r => r.ri_date || null,                                                   // 4 RI date
+        r => r.snapshot_date || null,                                             // 5 Snapshot date
+        r => reviewerSortKey(r),                                                  // 6 Reviewer
+        r => (STATE_CONFIG[r.state] || {}).order ?? 99,                           // 7 Review progress (by state)
+      ];
+      const getKey = sortKeys[columnIndex] || sortKeys[5];
+
+      rows.sort((a, b) => {
+        const aVal = getKey(a);
+        const bVal = getKey(b);
+        // Empty values (e.g. no snapshot/RI date) always sort last, in BOTH
+        // directions — so descending by snapshot date keeps planned/published
+        // rows at the bottom rather than jumping them to the top.
+        const aEmpty = aVal === null || aVal === undefined || aVal === '';
+        const bEmpty = bVal === null || bVal === undefined || bVal === '';
+        if (aEmpty && bEmpty) return 0;
+        if (aEmpty) return 1;
+        if (bEmpty) return -1;
+        let cmp;
+        if (typeof aVal === 'number' && typeof bVal === 'number') cmp = aVal - bVal;
+        else cmp = String(aVal).localeCompare(String(bVal));
+        return ascending ? cmp : -cmp;
+      });
+    }
+
+    function renderReviewTable(rows) {
+      sortReviewData(rows, reviewSort.column, reviewSort.ascending);
+      const tbody = document.getElementById('reviewTableBody');
+      tbody.innerHTML = '';
+      rows.forEach(row => tbody.appendChild(renderReviewRow(row)));
+      updateReviewResultsCounter(rows.length);
+    }
+
+    function updateReviewResultsCounter(count) {
+      const counter = document.getElementById('reviewResultsCounter');
+      const resultsText = counter.querySelector('.results-text');
+      if (count === 0) {
+        resultsText.textContent = 'No releases match the current filters';
+        counter.classList.add('no-results');
+      } else {
+        const repoCount = new Set(reviewFilteredRows.map(r => r.repository)).size;
+        resultsText.textContent = `Showing ${count} releases across ${repoCount} repositories`;
+        counter.classList.remove('no-results');
+      }
+      counter.classList.remove('hidden');
+    }
+
+    function buildReviewTrackOptions() {
+      const select = document.getElementById('reviewTrackFilter');
+      const counts = {};
+      reviewAllRows.forEach(r => {
+        const key = reviewTrackKey(r);
+        counts[key] = (counts[key] || 0) + 1;
+      });
+      const ordered = TRACK_ORDER.filter(t => counts[t]);
+      const unknown = Object.keys(counts).filter(t => !TRACK_ORDER.includes(t));
+      [...unknown, ...ordered].forEach(name => {
+        const label = name === 'independent' ? 'Independent' : name;
+        const opt = document.createElement('option');
+        opt.value = name;
+        opt.textContent = `${label} (${counts[name]})`;
+        select.appendChild(opt);
+      });
+    }
+
+    function applyReviewFilters() {
+      const q = document.getElementById('reviewSearch').value.toLowerCase();
+      const stateFilter = document.getElementById('reviewStateFilter').value;
+      const trackFilter = document.getElementById('reviewTrackFilter').value;
+      const unassignedOnly = document.getElementById('reviewUnassigned').checked;
+
+      reviewFilteredRows = reviewAllRows.filter(row => {
+        if (stateFilter && row.state !== stateFilter) return false;
+        if (trackFilter && reviewTrackKey(row) !== trackFilter) return false;
+        if (unassignedOnly && !(row.has_pr && row.assignees.length === 0)) return false;
+        if (q) {
+          const haystack = [
+            row.repository, row.target_release_tag,
+            row.apis.map(a => a.api_name).join(' '),
+            row.assignees.join(' '), row.last_reviewers.join(' '),
+          ].join(' ').toLowerCase();
+          if (!haystack.includes(q)) return false;
+        }
+        return true;
+      });
+
+      renderReviewTable(reviewFilteredRows);
+      updateReviewSortIndicators(reviewSort.column);
+    }
+
+    function clearReviewFilters() {
+      document.getElementById('reviewSearch').value = '';
+      document.getElementById('reviewStateFilter').value = '';
+      document.getElementById('reviewTrackFilter').value = '';
+      document.getElementById('reviewUnassigned').checked = false;
+      applyReviewFilters();
+    }
+
+    function sortReviewTable(columnIndex) {
+      if (reviewSort.column === columnIndex) {
+        reviewSort.ascending = !reviewSort.ascending;
+      } else {
+        reviewSort.column = columnIndex;
+        reviewSort.ascending = true;
+      }
+      renderReviewTable(reviewFilteredRows);
+      updateReviewSortIndicators(columnIndex);
+    }
+
+    function updateReviewSortIndicators(activeColumn) {
+      const headers = document.querySelectorAll('#reviewTable th');
+      headers.forEach((header, index) => {
+        const arrow = header.querySelector('.sort-arrow');
+        if (!arrow) return;
+        arrow.classList.remove('active-asc', 'active-desc');
+        if (index === activeColumn) {
+          arrow.classList.add(reviewSort.ascending ? 'active-asc' : 'active-desc');
+        }
+      });
+    }
+
+    function exportReviewCSV() {
+      const headers = [
+        'Repository', 'Release Track', 'Meta-Release', 'Release Type', 'Release Tag',
+        'APIs', 'State', 'RI Date', 'Snapshot Date',
+        'Reviewer', 'Codeowner Readiness', 'RM Approval',
+        'Discarded Snapshots', 'Last Reviewer',
+      ];
+      const rows = reviewFilteredRows.map(row => {
+        const apis = row.apis.map(a => {
+          const v = (row.snapshot_api_versions && row.snapshot_api_versions[a.api_name])
+            || a.target_api_version || '';
+          return v ? `${a.api_name} ${v}` : a.api_name;
+        }).join('; ');
+        const readiness = !row.has_pr ? ''
+          : (row.ready_for_review ? 'ready for RM review' : `${row.codeowner_checked || 0}/${row.codeowner_total || 3}`);
+        let rmApproval = '';
+        if (row.has_pr) {
+          if (!row.assignees.length) rmApproval = 'unassigned';
+          else if (row.review_decision === 'CHANGES_REQUESTED') rmApproval = 'changes requested';
+          else if (row.review_decision === 'APPROVED') rmApproval = 'approved';
+          else rmApproval = 'in review';
+        }
+        const reviewer = row.has_pr ? (row.assignees.join(', ') || 'team') : '';
+        return [
+          row.repository, row.release_track, row.meta_release,
+          row.target_release_type, row.target_release_tag,
+          apis, row.state,
+          row.ri_date || '', row.snapshot_date || '',
+          reviewer, readiness, rmApproval,
+          row.discarded_count || 0, row.last_reviewers.join(', '),
+        ];
+      });
+      const csv = [headers, ...rows]
+        .map(row => row.map(cell => `"${String(cell ?? '').replace(/"/g, '""')}"`).join(','))
+        .join('\n');
+      ViewerLib.downloadFile(csv, 'camara-review-queue.csv', 'text/csv');
+    }
+
+    /**
+     * Toggle between the Release Progress and Review Queue views.
+     */
+    function switchView(name) {
+      document.getElementById('view-progress').classList.toggle('hidden', name !== 'progress');
+      document.getElementById('view-review').classList.toggle('hidden', name !== 'review');
+      document.querySelectorAll('.view-tab').forEach(tab => {
+        tab.classList.toggle('active', tab.dataset.view === name);
+      });
+    }
+
     // ===== Initialization =====
 
     function initialize() {
@@ -1237,6 +1708,11 @@ tr.historical-row:hover td {
 
       applyFilters();           // calls updateHeader(), renderTable(), updateTrackPillStates()
       updateSortIndicators(currentSort.column);
+
+      // Review Queue view: built up-front, shown on tab switch.
+      reviewAllRows = flattenReviewData(PROGRESS_DATA);
+      buildReviewTrackOptions();
+      applyReviewFilters();
     }
 
     if (ViewerLib.isInIframe()) {
