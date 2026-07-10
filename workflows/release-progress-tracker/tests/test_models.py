@@ -47,6 +47,7 @@ class TestArtifactInfo:
         d = a.to_dict()
         assert d["snapshot_branch"] is None
         assert d["release_pr"] is None
+        assert d["review_history"] is None
 
     def test_populated_artifacts(self):
         a = ArtifactInfo(
@@ -56,6 +57,29 @@ class TestArtifactInfo:
         d = a.to_dict()
         assert d["snapshot_branch"] == "release-snapshot/r4.1-abc"
         assert d["release_pr"]["number"] == 42
+
+    def test_review_history_and_enriched_release_pr(self):
+        a = ArtifactInfo(
+            snapshot_branch="release-snapshot/r4.1-abc",
+            release_pr={
+                "number": 42, "state": "open", "url": "https://example.com/42",
+                "created_at": "2026-07-01T00:00:00Z", "assignees": ["alice"],
+                "review_decision": "APPROVED",
+                "codeowner_checked": 2, "codeowner_total": 3, "ready_for_review": True,
+                "rm_checked": 1, "rm_total": 4,
+            },
+            review_history={
+                "discarded_count": 1, "last_reviewers": ["bob"],
+                "last_pr_url": "https://example.com/40",
+                "last_closed_at": "2026-06-25T00:00:00Z",
+            },
+        )
+        d = a.to_dict()
+        assert d["release_pr"]["review_decision"] == "APPROVED"
+        assert d["release_pr"]["ready_for_review"] is True
+        assert d["release_pr"]["assignees"] == ["alice"]
+        assert d["review_history"]["discarded_count"] == 1
+        assert d["review_history"]["last_reviewers"] == ["bob"]
 
 
 class TestCycleReleases:
@@ -158,7 +182,7 @@ class TestProgressData:
         )
         d = data.to_dict()
 
-        assert d["metadata"]["schema_version"] == "1.5.0"
+        assert d["metadata"]["schema_version"] == "1.6.0"
         assert d["metadata"]["last_checked"] == "2026-03-15T10:00:00Z"
         assert d["metadata"]["releases_master_updated"] == "2026-03-15T04:35:00Z"
         assert "collection_stats" not in d["metadata"]  # Full stats removed from output
@@ -172,7 +196,7 @@ class TestProgressData:
         # Full YAML round-trip
         yaml_str = yaml.dump(d, default_flow_style=False, sort_keys=False)
         reloaded = yaml.safe_load(yaml_str)
-        assert reloaded["metadata"]["collector_version"] == "1.5.0"
+        assert reloaded["metadata"]["collector_version"] == "1.6.0"
 
 
 class TestNewStates:

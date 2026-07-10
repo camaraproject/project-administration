@@ -9,8 +9,8 @@ from enum import Enum
 from typing import Dict, List, Optional
 
 # Single source of truth for version constants — update here only
-SCHEMA_VERSION = "1.5.0"
-COLLECTOR_VERSION = "1.5.0"
+SCHEMA_VERSION = "1.6.0"
+COLLECTOR_VERSION = "1.6.0"
 
 
 class ProgressState(Enum):
@@ -57,9 +57,15 @@ class ApiEntry:
 class ArtifactInfo:
     """Release artifacts found in the repository."""
     snapshot_branch: Optional[str] = None
-    release_pr: Optional[Dict] = None       # {number, state, url}
+    # Current (open) Release Review PR: {number, state, url, created_at,
+    # assignees, review_decision, codeowner_checked, codeowner_total,
+    # ready_for_review, rm_checked, rm_total}. None when no open Review PR.
+    release_pr: Optional[Dict] = None
     draft_release: Optional[Dict] = None    # {name, url}
-    release_issue: Optional[Dict] = None    # {number, url}
+    release_issue: Optional[Dict] = None    # {number, url, created_at}
+    # Discarded-snapshot history for the tag: {discarded_count, last_reviewers,
+    # last_pr_url, last_closed_at}. None when no snapshot was ever discarded.
+    review_history: Optional[Dict] = None
     has_caller_workflow: Optional[bool] = None  # Transient — not serialized
 
     def to_dict(self) -> Dict:
@@ -68,6 +74,7 @@ class ArtifactInfo:
             "release_pr": self.release_pr,
             "draft_release": self.draft_release,
             "release_issue": self.release_issue,
+            "review_history": self.review_history,
         }
 
 
