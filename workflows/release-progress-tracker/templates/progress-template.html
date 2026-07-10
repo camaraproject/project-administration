@@ -1471,11 +1471,13 @@ tr.historical-row:hover td {
         ? '<span class="rq-ready">ready for RM review</span>'
         : `${row.codeowner_checked || 0}/${row.codeowner_total || 3}`;
 
+      // Verdict (from the assigned reviewer) when there is one; until then the
+      // RM checklist count is a rough progress indication.
       let rm;
-      if (!row.assignees.length) rm = '<span class="rq-muted">unassigned</span>';
-      else if (row.review_decision === 'CHANGES_REQUESTED') rm = '<span class="rq-changes">changes requested</span>';
+      if (row.review_decision === 'CHANGES_REQUESTED') rm = '<span class="rq-changes">changes requested</span>';
       else if (row.review_decision === 'APPROVED') rm = '<span class="rq-approved">approved ✓</span>';
-      else rm = '<span class="rq-muted">in review</span>';
+      else if (row.rm_total) rm = `<span class="rq-muted">${row.rm_checked || 0}/${row.rm_total}</span>`;
+      else rm = '<span class="rq-muted">—</span>';
 
       return `<div class="rq-prog-line"><span class="rq-prog-label">CO:</span> ${co}</div>` +
              `<div class="rq-prog-line"><span class="rq-prog-label">RM:</span> ${rm}</div>`;
@@ -1657,10 +1659,9 @@ tr.historical-row:hover td {
           : (row.ready_for_review ? 'ready for RM review' : `${row.codeowner_checked || 0}/${row.codeowner_total || 3}`);
         let rmApproval = '';
         if (row.has_pr) {
-          if (!row.assignees.length) rmApproval = 'unassigned';
-          else if (row.review_decision === 'CHANGES_REQUESTED') rmApproval = 'changes requested';
+          if (row.review_decision === 'CHANGES_REQUESTED') rmApproval = 'changes requested';
           else if (row.review_decision === 'APPROVED') rmApproval = 'approved';
-          else rmApproval = 'in review';
+          else if (row.rm_total) rmApproval = `${row.rm_checked || 0}/${row.rm_total}`;
         }
         const reviewer = row.has_pr ? (row.assignees.join(', ') || 'team') : '';
         return [
