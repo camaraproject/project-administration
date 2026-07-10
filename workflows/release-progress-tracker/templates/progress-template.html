@@ -294,6 +294,8 @@ tr.historical-row:hover td {
 .rq-changes { color: #cf222e; font-weight: 600; }
 .rq-done { color: #1a7f37; }
 .rq-discarded { color: #cf222e; font-size: 12px; margin-top: 3px; }
+.table-scroll { overflow-x: auto; }
+.rq-apis { color: var(--text-secondary); font-size: 12px; cursor: help; border-bottom: 1px dotted var(--border-light); display: inline-block; margin-top: 2px; }
   </style>
 </head>
 <body>
@@ -371,6 +373,7 @@ tr.historical-row:hover td {
         </div>
       </div>
 
+      <div class="table-scroll">
       <table id="progressTable">
         <thead>
           <tr>
@@ -387,6 +390,7 @@ tr.historical-row:hover td {
         </thead>
         <tbody id="tableBody"></tbody>
       </table>
+      </div>
 
       <div id="trackFooter" class="track-footer hidden"></div>
       </div><!-- /view-progress -->
@@ -431,21 +435,22 @@ tr.historical-row:hover td {
           </div>
         </div>
 
+        <div class="table-scroll">
         <table id="reviewTable">
           <thead>
             <tr>
               <th onclick="sortReviewTable(0)">Repository <span class="sort-arrow"></span></th>
               <th onclick="sortReviewTable(1)">Track &middot; Type<br>&middot; Tag <span class="sort-arrow"></span></th>
-              <th>APIs &amp; Version(s)</th>
-              <th onclick="sortReviewTable(3)">State <span class="sort-arrow"></span></th>
-              <th onclick="sortReviewTable(4)">RI<br>Date <span class="sort-arrow"></span></th>
-              <th onclick="sortReviewTable(5)">Snapshot<br>Date <span class="sort-arrow"></span></th>
-              <th onclick="sortReviewTable(6)">Reviewer <span class="sort-arrow"></span></th>
-              <th onclick="sortReviewTable(7)">Review<br>Progress <span class="sort-arrow"></span></th>
+              <th onclick="sortReviewTable(2)">State <span class="sort-arrow"></span></th>
+              <th onclick="sortReviewTable(3)">RI<br>Date <span class="sort-arrow"></span></th>
+              <th onclick="sortReviewTable(4)">Snapshot<br>Date <span class="sort-arrow"></span></th>
+              <th onclick="sortReviewTable(5)">Reviewer <span class="sort-arrow"></span></th>
+              <th onclick="sortReviewTable(6)">Review<br>Progress <span class="sort-arrow"></span></th>
             </tr>
           </thead>
           <tbody id="reviewTableBody"></tbody>
         </table>
+        </div>
       </div><!-- /view-review -->
 
       <div id="footer-metadata" class="footer-metadata"></div>
@@ -493,7 +498,7 @@ tr.historical-row:hover td {
     const REVIEW_STATES = new Set(['planned', 'snapshot_active', 'draft_ready', 'published']);
     let reviewAllRows = [];
     let reviewFilteredRows = [];
-    let reviewSort = { column: 5, ascending: false }; // Default: Snapshot date, newest first (no-date rows sink to bottom)
+    let reviewSort = { column: 4, ascending: false }; // Default: Snapshot date, newest first (no-date rows sink to bottom)
 
     /**
      * Flatten repo-centric progress data to API-centric rows.
@@ -1418,21 +1423,22 @@ tr.historical-row:hover td {
       const type = shortType(row.target_release_type);
       const typeSuffix = (type && type !== '—')
         ? ` <span class="rq-type">(${ViewerLib.escapeHtml(type)})</span>` : '';
+      // Bundled APIs live in a hover on the release to keep the table narrow;
+      // the full list is still in the CSV export.
+      const apis = row.apis || [];
+      let apisLine = '';
+      if (apis.length) {
+        const list = apis.map(a => {
+          const v = (row.snapshot_api_versions && row.snapshot_api_versions[a.api_name])
+            || a.target_api_version || '';
+          return v ? `${a.api_name} ${v}` : a.api_name;
+        }).join('\n');
+        apisLine = `<div class="rq-apis" title="${ViewerLib.escapeHtml(list)}">` +
+                   `${apis.length} API${apis.length > 1 ? 's' : ''}</div>`;
+      }
       return `<div class="rq-track">${ViewerLib.escapeHtml(track)}</div>` +
-             `<div class="rq-tagtype">${ViewerLib.escapeHtml(tag)}${typeSuffix}</div>`;
-    }
-
-    function renderReviewApisCell(row) {
-      if (!row.apis.length) return '<span class="rq-muted">—</span>';
-      const shown = row.apis.slice(0, 4).map(api => {
-        const v = (row.snapshot_api_versions && row.snapshot_api_versions[api.api_name])
-          || api.target_api_version || '';
-        const ver = v ? ` <code>${ViewerLib.escapeHtml(v)}</code>` : '';
-        return `<div class="rq-api">${ViewerLib.escapeHtml(api.api_name)}${ver}</div>`;
-      }).join('');
-      const more = row.apis.length > 4
-        ? `<div class="rq-muted">+${row.apis.length - 4} more</div>` : '';
-      return shown + more;
+             `<div class="rq-tagtype">${ViewerLib.escapeHtml(tag)}${typeSuffix}</div>` +
+             apisLine;
     }
 
     function renderReviewStateBadge(state) {
@@ -1496,7 +1502,6 @@ tr.historical-row:hover td {
       tr.innerHTML = `
         <td><a href="${row.github_url}" target="_blank" rel="noopener">${ViewerLib.escapeHtml(row.repository)}</a></td>
         <td>${renderTrackTypeTagCell(row)}</td>
-        <td>${renderReviewApisCell(row)}</td>
         <td>${renderReviewStateBadge(row.state)}</td>
         <td class="rq-nowrap">${renderReviewDateCell(row.ri_date, row.ri_url)}</td>
         <td>${renderSnapshotDateCell(row)}</td>
@@ -1519,14 +1524,13 @@ tr.historical-row:hover td {
       const sortKeys = [
         r => r.repository.toLowerCase(),                                          // 0 Repository
         r => `${pad(trackSortKey(reviewTrackKey(r)))}|${typeOrder(r.target_release_type)}|${r.target_release_tag}`, // 1 Track·Type·Tag
-        r => (r.apis[0] ? r.apis[0].api_name.toLowerCase() : '~'),                // 2 APIs
-        r => (STATE_CONFIG[r.state] || {}).order ?? 99,                           // 3 State
-        r => r.ri_date || null,                                                   // 4 RI date
-        r => r.snapshot_date || null,                                             // 5 Snapshot date
-        r => reviewerSortKey(r),                                                  // 6 Reviewer
-        r => (STATE_CONFIG[r.state] || {}).order ?? 99,                           // 7 Review progress (by state)
+        r => (STATE_CONFIG[r.state] || {}).order ?? 99,                           // 2 State
+        r => r.ri_date || null,                                                   // 3 RI date
+        r => r.snapshot_date || null,                                             // 4 Snapshot date
+        r => reviewerSortKey(r),                                                  // 5 Reviewer
+        r => (STATE_CONFIG[r.state] || {}).order ?? 99,                           // 6 Review progress (by state)
       ];
-      const getKey = sortKeys[columnIndex] || sortKeys[5];
+      const getKey = sortKeys[columnIndex] || sortKeys[4];
 
       rows.sort((a, b) => {
         const aVal = getKey(a);
