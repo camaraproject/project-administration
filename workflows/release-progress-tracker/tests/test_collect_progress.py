@@ -101,13 +101,16 @@ class MockGitHubAPI:
     """Mock GitHub API for testing."""
 
     def __init__(self, file_contents=None, branches=None, tags=None,
-                 draft_releases=None, release_issues=None, release_prs=None):
+                 draft_releases=None, release_issues=None, review_prs=None,
+                 pr_reviews=None):
         self.file_contents = file_contents or {}
         self.branches = branches or {}
         self.tags = tags or set()
         self.draft_releases = draft_releases or {}
         self.release_issues = release_issues or {}
-        self.release_prs = release_prs or {}
+        self.review_prs = review_prs or {}   # repo -> [normalized PR dict]
+        self.pr_reviews = pr_reviews or {}    # (repo, number) -> [review dict]
+        self.reviews_fetched = set()          # (repo, number) get_pr_reviews was called for
         self.api_calls = 0
 
     def get_file_content(self, repo, path, ref="main"):
@@ -131,9 +134,33 @@ class MockGitHubAPI:
         self.api_calls += 1
         return self.release_issues.get(repo)
 
-    def find_release_pr(self, repo, snapshot_branch):
+    def list_release_prs(self, repo, target_tag=None, not_before=None, max_pages=10):
         self.api_calls += 1
-        return self.release_prs.get(f"{repo}/{snapshot_branch}")
+        self.last_not_before = not_before
+        return list(self.review_prs.get(repo, []))
+
+    def get_pr_reviews(self, repo, pr_number):
+        self.api_calls += 1
+        self.reviews_fetched.add((repo, pr_number))
+        return list(self.pr_reviews.get((repo, pr_number), []))
+
+
+def _review_pr(number, state, base_ref, *, merged=False, assignees=(),
+               body="", created_at="2026-07-01T00:00:00Z",
+               closed_at=None):
+    """Build a normalized Review-PR dict as list_release_prs would return."""
+    return {
+        "number": number,
+        "state": state,
+        "url": f"https://github.com/camaraproject/QualityOnDemand/pull/{number}",
+        "created_at": created_at,
+        "closed_at": closed_at if closed_at is not None
+        else (None if state == "open" else "2026-07-05T00:00:00Z"),
+        "merged": merged,
+        "assignees": list(assignees),
+        "body": body,
+        "base_ref": base_ref,
+    }
 
 
 # --- Tests ---
@@ -192,10 +219,9 @@ class TestCollectRepoProgress:
         api = MockGitHubAPI(
             file_contents={"QualityOnDemand/release-plan.yaml": PLAN_RC},
             branches={"QualityOnDemand": ["release-snapshot/r4.1-abc123", "main"]},
-            release_prs={"QualityOnDemand/release-snapshot/r4.1-abc123": {
-                "number": 42, "state": "open",
-                "url": "https://github.com/camaraproject/QualityOnDemand/pull/42",
-            }},
+            review_prs={"QualityOnDemand": [_review_pr(
+                42, "open", "release-snapshot/r4.1-abc123", assignees=["alice"],
+            )]},
         )
         result = collect_repo_progress(
             "QualityOnDemand",
@@ -205,6 +231,169 @@ class TestCollectRepoProgress:
         assert result.state == ProgressState.SNAPSHOT_ACTIVE
         assert result.artifacts.snapshot_branch == "release-snapshot/r4.1-abc123"
         assert result.artifacts.release_pr["number"] == 42
+        assert result.artifacts.release_pr["assignees"] == ["alice"]
+
+    def test_current_reviewer_readiness_and_decision(self):
+        body = (
+            "### Codeowner Actions\n\n"
+            "- [x] **Update the CHANGELOG**\n"
+            "- [ ] **Document deferred validation warnings (and hints)**\n"
+            "- [x] **The release is ready for Release Management review**\n\n"
+            "### Release Management Actions\n\n"
+            "- [x] CHANGELOG follows the rules\n"
+            "- [ ] Breaking changes documented\n"
+            "- [ ] Assets present\n"
+            "- [ ] Warnings documented\n"
+        )
+        api = MockGitHubAPI(
+            file_contents={"QualityOnDemand/release-plan.yaml": PLAN_RC},
+            branches={"QualityOnDemand": ["release-snapshot/r4.1-abc123"]},
+            review_prs={"QualityOnDemand": [_review_pr(
+                42, "open", "release-snapshot/r4.1-abc123",
+                assignees=["alice"], body=body,
+            )]},
+            pr_reviews={("QualityOnDemand", 42): [
+                {"user": "kevin", "state": "APPROVED"},          # codeowner — ignored
+                {"user": "alice", "state": "CHANGES_REQUESTED"},  # assignee — decisive
+            ]},
+        )
+        result = collect_repo_progress(
+            "QualityOnDemand", "https://github.com/camaraproject/QualityOnDemand",
+            api, [], PublishedContext("r3.2", None),
+        )
+        pr = result.artifacts.release_pr
+        assert pr["assignees"] == ["alice"]
+        assert pr["ready_for_review"] is True
+        assert pr["codeowner_checked"] == 2
+        assert pr["codeowner_total"] == 3
+        # Verdict is the assignee's (alice), not the codeowner's (kevin).
+        assert pr["review_decision"] == "CHANGES_REQUESTED"
+        assert result.artifacts.review_history is None
+
+    def test_unassigned_pr_skips_reviews_and_has_no_verdict(self):
+        api = MockGitHubAPI(
+            file_contents={"QualityOnDemand/release-plan.yaml": PLAN_RC},
+            branches={"QualityOnDemand": ["release-snapshot/r4.1-abc123"]},
+            review_prs={"QualityOnDemand": [_review_pr(
+                42, "open", "release-snapshot/r4.1-abc123", assignees=[])]},
+            pr_reviews={("QualityOnDemand", 42): [
+                {"user": "kevin", "state": "APPROVED"},  # codeowner approved
+            ]},
+        )
+        calls_before = api.api_calls
+        result = collect_repo_progress(
+            "QualityOnDemand", "https://github.com/camaraproject/QualityOnDemand",
+            api, [], PublishedContext("r3.2", None),
+        )
+        pr = result.artifacts.release_pr
+        assert pr["assignees"] == []
+        assert pr["review_decision"] is None      # unassigned -> no RM verdict
+        # get_pr_reviews must not be called for an unassigned PR (efficiency).
+        assert ("QualityOnDemand", 42) not in api.reviews_fetched
+
+    def test_discard_history_from_closed_unmerged_prs(self):
+        api = MockGitHubAPI(
+            file_contents={"QualityOnDemand/release-plan.yaml": PLAN_RC},
+            branches={"QualityOnDemand": ["release-snapshot/r4.1-newsha"]},
+            review_prs={"QualityOnDemand": [
+                _review_pr(45, "open", "release-snapshot/r4.1-newsha",
+                           assignees=["alice"]),
+                _review_pr(43, "closed", "release-snapshot/r4.1-mid",
+                           assignees=["bob"], created_at="2026-06-20T00:00:00Z",
+                           closed_at="2026-06-25T00:00:00Z"),
+                _review_pr(40, "closed", "release-snapshot/r4.1-old",
+                           assignees=["carol"], created_at="2026-06-10T00:00:00Z",
+                           closed_at="2026-06-12T00:00:00Z"),
+            ]},
+        )
+        result = collect_repo_progress(
+            "QualityOnDemand", "https://github.com/camaraproject/QualityOnDemand",
+            api, [], PublishedContext("r3.2", None),
+        )
+        assert result.artifacts.release_pr["number"] == 45
+        hist = result.artifacts.review_history
+        assert hist["discarded_count"] == 2
+        assert hist["last_reviewers"] == ["bob"]   # most-recently closed discard
+        assert hist["last_pr_url"].endswith("/pull/43")
+
+    def test_planned_row_keeps_discard_history_without_current_pr(self):
+        # Snapshot discarded -> back to PLANNED (branch gone), but the closed
+        # Review PR still records who reviewed it.
+        api = MockGitHubAPI(
+            file_contents={"QualityOnDemand/release-plan.yaml": PLAN_RC},
+            review_prs={"QualityOnDemand": [
+                _review_pr(41, "closed", "release-snapshot/r4.1-gone",
+                           assignees=["dave"], closed_at="2026-06-30T00:00:00Z"),
+            ]},
+        )
+        result = collect_repo_progress(
+            "QualityOnDemand", "https://github.com/camaraproject/QualityOnDemand",
+            api, [], PublishedContext("r3.2", None),
+        )
+        assert result.state == ProgressState.PLANNED
+        assert result.artifacts.release_pr is None
+        assert result.artifacts.review_history["discarded_count"] == 1
+        assert result.artifacts.review_history["last_reviewers"] == ["dave"]
+
+    def test_merged_review_pr_is_not_a_discard(self):
+        api = MockGitHubAPI(
+            file_contents={"QualityOnDemand/release-plan.yaml": PLAN_RC},
+            tags={"QualityOnDemand/r4.1"},
+            review_prs={"QualityOnDemand": [
+                _review_pr(50, "closed", "release-snapshot/r4.1-final",
+                           merged=True, assignees=["alice"]),
+            ]},
+        )
+        result = collect_repo_progress(
+            "QualityOnDemand", "https://github.com/camaraproject/QualityOnDemand",
+            api, SAMPLE_MASTER["releases"], PublishedContext("r3.2", "r4.1"),
+        )
+        assert result.state == ProgressState.PUBLISHED
+        assert result.artifacts.review_history is None
+        assert result.artifacts.release_pr is None
+
+    def test_release_issue_created_at_captured(self):
+        api = MockGitHubAPI(
+            file_contents={"QualityOnDemand/release-plan.yaml": PLAN_RC},
+            release_issues={"QualityOnDemand": {
+                "number": 90,
+                "url": "https://github.com/camaraproject/QualityOnDemand/issues/90",
+                "created_at": "2026-06-01T09:00:00Z",
+                "labels": ["release-issue"],
+                "body": (
+                    "<!-- release-automation:workflow-owned -->\n"
+                    "<!-- release-automation:release-tag:r4.1 -->"
+                ),
+            }},
+        )
+        result = collect_repo_progress(
+            "QualityOnDemand", "https://github.com/camaraproject/QualityOnDemand",
+            api, [], PublishedContext("r3.2", None),
+        )
+        assert result.artifacts.release_issue["created_at"] == "2026-06-01T09:00:00Z"
+
+    def test_review_pr_scan_bounded_by_release_issue_date(self):
+        api = MockGitHubAPI(
+            file_contents={"QualityOnDemand/release-plan.yaml": PLAN_RC},
+            branches={"QualityOnDemand": ["release-snapshot/r4.1-abc"]},
+            release_issues={"QualityOnDemand": {
+                "number": 91,
+                "url": "https://github.com/camaraproject/QualityOnDemand/issues/91",
+                "created_at": "2026-06-01T09:00:00Z",
+                "labels": ["release-issue"],
+                "body": (
+                    "<!-- release-automation:workflow-owned -->\n"
+                    "<!-- release-automation:release-tag:r4.1 -->"
+                ),
+            }},
+            review_prs={"QualityOnDemand": [_review_pr(
+                42, "open", "release-snapshot/r4.1-abc", assignees=["alice"])]},
+        )
+        collect_repo_progress(
+            "QualityOnDemand", "https://github.com/camaraproject/QualityOnDemand",
+            api, [], PublishedContext("r3.2", None),
+        )
+        assert api.last_not_before == "2026-06-01T09:00:00Z"
 
     def test_draft_ready_state(self):
         api = MockGitHubAPI(
@@ -257,6 +446,7 @@ class TestCollectRepoProgress:
         assert result.artifacts.release_issue == {
             "number": 82,
             "url": "https://github.com/camaraproject/QualityOnDemand/issues/82",
+            "created_at": None,
         }
 
     def test_published_state(self):
@@ -447,7 +637,7 @@ class TestCollectAll:
         assert "last_updated" in meta
         assert "last_checked" in meta
         assert "releases_master_updated" in meta
-        assert meta["schema_version"] == "1.5.0"
+        assert meta["schema_version"] == "1.6.0"
         assert "collection_stats" not in meta  # Full stats removed from output
         assert meta["repos_scanned"] == 2      # Stable stats restored
         assert meta["repos_with_plan"] == 2

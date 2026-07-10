@@ -215,33 +215,117 @@ class GitHubAPI:
             return {
                 "number": issue["number"],
                 "url": issue["html_url"],
+                "created_at": issue.get("created_at"),
                 "body": body,
                 "labels": [label.get("name", "") for label in issue.get("labels", [])],
             }
         return None
 
-    def find_release_pr(self, repo: str, snapshot_branch: str) -> Optional[Dict]:
-        """Find a PR targeting a snapshot branch (release-review → snapshot).
+    @staticmethod
+    def _normalize_pr(pr: Dict) -> Dict:
+        """Reduce a raw PR object to the fields the Review Queue needs."""
+        return {
+            "number": pr.get("number"),
+            "state": pr.get("state"),
+            "url": pr.get("html_url"),
+            "created_at": pr.get("created_at"),
+            "closed_at": pr.get("closed_at"),
+            "merged": bool(pr.get("merged_at")),
+            "assignees": [
+                a.get("login")
+                for a in (pr.get("assignees") or [])
+                if a.get("login")
+            ],
+            "body": pr.get("body") or "",
+            "base_ref": ((pr.get("base") or {}).get("ref")) or "",
+        }
 
-        Returns {number, state, url} or None.
+    def list_release_prs(
+        self,
+        repo: str,
+        target_tag: str,
+        not_before: Optional[str] = None,
+        max_pages: int = 10,
+    ) -> List[Dict]:
+        """List all Release Review PRs for a tag — open and closed, newest first.
+
+        Release Review PRs target a ``release-snapshot/{tag}-{suffix}`` branch.
+        ``/discard-snapshot`` deletes that snapshot branch, so a discarded PR
+        points at a branch that no longer exists and cannot be found by an exact
+        ``base=`` query. We therefore page the repo's PRs (newest first) and
+        match the base branch by the ``release-snapshot/{tag}-`` prefix. The
+        trailing hyphen disambiguates ``r4.1`` from ``r4.10``.
+
+        ``not_before`` (the release-issue creation timestamp) bounds the scan:
+        no Review PR for a tag can predate its release issue, so once the
+        newest-first listing reaches a PR created before it, paging stops. This
+        keeps busy repos to the current cycle's PR window instead of their whole
+        history. (A rare release-issue recreation could set a later bound and
+        omit older discarded PRs; ``max_pages`` remains the hard backstop.)
         """
-        resp = self._get(
-            f"/repos/{ORG}/{repo}/pulls",
-            params={
-                "base": snapshot_branch,
-                "state": "all",
-                "per_page": 1,
-            },
-        )
-        if resp.status_code == 404:
-            return None
-        resp.raise_for_status()
-        prs = resp.json()
-        if prs:
-            pr = prs[0]
-            return {
-                "number": pr["number"],
-                "state": pr["state"],
-                "url": pr["html_url"],
-            }
-        return None
+        prefix = f"release-snapshot/{target_tag}-"
+        prs: List[Dict] = []
+        page = 1
+        while page <= max_pages:
+            resp = self._get(
+                f"/repos/{ORG}/{repo}/pulls",
+                params={
+                    "state": "all",
+                    "sort": "created",
+                    "direction": "desc",
+                    "per_page": 100,
+                    "page": page,
+                },
+            )
+            if resp.status_code == 404:
+                return prs
+            resp.raise_for_status()
+            data = resp.json()
+            if not data:
+                break
+            reached_bound = False
+            for pr in data:
+                if not_before and (pr.get("created_at") or "") < not_before:
+                    # Newest-first: everything from here on is older than the
+                    # release issue and cannot belong to this tag.
+                    reached_bound = True
+                    break
+                base_ref = ((pr.get("base") or {}).get("ref")) or ""
+                if base_ref.startswith(prefix):
+                    prs.append(self._normalize_pr(pr))
+            if reached_bound or len(data) < 100:
+                break
+            page += 1
+        else:
+            logger.warning(
+                "%s: Review-PR listing for %s hit the %d-page cap; "
+                "older discarded PRs may be omitted",
+                repo, target_tag, max_pages,
+            )
+        return prs
+
+    def get_pr_reviews(self, repo: str, pr_number: int) -> List[Dict]:
+        """List a PR's reviews (chronological) as {user, state, submitted_at}."""
+        reviews: List[Dict] = []
+        page = 1
+        while True:
+            resp = self._get(
+                f"/repos/{ORG}/{repo}/pulls/{pr_number}/reviews",
+                params={"per_page": 100, "page": page},
+            )
+            if resp.status_code == 404:
+                return reviews
+            resp.raise_for_status()
+            data = resp.json()
+            if not data:
+                break
+            for review in data:
+                reviews.append({
+                    "user": (review.get("user") or {}).get("login"),
+                    "state": review.get("state"),
+                    "submitted_at": review.get("submitted_at"),
+                })
+            if len(data) < 100:
+                break
+            page += 1
+        return reviews

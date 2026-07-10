@@ -58,6 +58,7 @@ def test_find_release_issue_retries_public_when_auth_returns_empty(monkeypatch):
         return FakeResponse(200, [{
             "number": 43,
             "html_url": "https://github.com/camaraproject/ReleaseTest/issues/43",
+            "created_at": "2026-06-01T09:00:00Z",
             "body": (
                 "<!-- release-automation:workflow-owned -->\n"
                 "<!-- release-automation:release-tag:r1.3 -->\n"
@@ -74,6 +75,7 @@ def test_find_release_issue_retries_public_when_auth_returns_empty(monkeypatch):
     assert issue == {
         "number": 43,
         "url": "https://github.com/camaraproject/ReleaseTest/issues/43",
+        "created_at": "2026-06-01T09:00:00Z",
         "body": (
             "<!-- release-automation:workflow-owned -->\n"
             "<!-- release-automation:release-tag:r1.3 -->\n"
@@ -144,3 +146,119 @@ def test_request_raises_rate_limit_immediately_no_retry():
     with pytest.raises(RateLimitError):
         api._get("/some/path")
     assert api.api_calls == 1
+
+
+# Review-PR listing for the Review Queue ----------------------------
+
+
+def _pr(number, state, base_ref, *, merged_at=None, assignees=(), created_at="2026-07-01T00:00:00Z"):
+    return {
+        "number": number,
+        "state": state,
+        "html_url": f"https://github.com/camaraproject/QualityOnDemand/pull/{number}",
+        "created_at": created_at,
+        "closed_at": None if state == "open" else "2026-07-05T00:00:00Z",
+        "merged_at": merged_at,
+        "assignees": [{"login": login} for login in assignees],
+        "body": "review body",
+        "base": {"ref": base_ref},
+    }
+
+
+def test_list_release_prs_matches_tag_prefix_across_states(monkeypatch):
+    api = GitHubAPI(token="t")
+    page = [
+        _pr(42, "open", "release-snapshot/r4.1-newsha", assignees=["alice"]),
+        _pr(40, "closed", "release-snapshot/r4.1-oldsha", assignees=["bob"]),   # discarded
+        _pr(39, "closed", "main", merged_at="2026-06-19T12:00:00Z"),            # unrelated
+        _pr(38, "open", "release-snapshot/r4.10-xyz"),                          # different tag
+    ]
+
+    def fake_get(path, public=False, params=None, **kwargs):
+        assert path.endswith("/pulls")
+        assert params["state"] == "all"
+        return FakeResponse(200, page if params.get("page", 1) == 1 else [])
+
+    monkeypatch.setattr(api, "_get", fake_get)
+
+    prs = api.list_release_prs("QualityOnDemand", "r4.1")
+
+    # Only the two r4.1 snapshot PRs; r4.10 (prefix disambiguation) and main excluded.
+    assert [p["number"] for p in prs] == [42, 40]
+    current, discarded = prs
+    assert current["state"] == "open"
+    assert current["assignees"] == ["alice"]
+    assert current["merged"] is False
+    assert discarded["state"] == "closed"
+    assert discarded["assignees"] == ["bob"]
+    assert discarded["merged"] is False
+    assert discarded["base_ref"] == "release-snapshot/r4.1-oldsha"
+
+
+def test_list_release_prs_paginates(monkeypatch):
+    api = GitHubAPI(token="t")
+    full_page = [_pr(1000 + i, "closed", "main") for i in range(100)]
+    match = _pr(50, "closed", "release-snapshot/r4.1-abc", assignees=["carol"])
+
+    def fake_get(path, public=False, params=None, **kwargs):
+        if params.get("page", 1) == 1:
+            return FakeResponse(200, full_page)   # 100 -> forces page 2
+        if params["page"] == 2:
+            return FakeResponse(200, [match])      # <100 -> stop
+        raise AssertionError("should not fetch page 3")
+
+    monkeypatch.setattr(api, "_get", fake_get)
+
+    prs = api.list_release_prs("QualityOnDemand", "r4.1")
+    assert [p["number"] for p in prs] == [50]
+
+
+def test_list_release_prs_404_returns_empty(monkeypatch):
+    api = GitHubAPI(token="t")
+    monkeypatch.setattr(api, "_get", lambda *a, **k: FakeResponse(404, None))
+    assert api.list_release_prs("QualityOnDemand", "r4.1") == []
+
+
+def test_list_release_prs_stops_at_release_issue_date(monkeypatch):
+    api = GitHubAPI(token="t")
+    # A full page (100) sorted newest-first: one recent Review PR, then 99 older
+    # PRs predating the release issue. The not_before cutoff must exclude the old
+    # ones AND halt paging (no Review PR can predate its release issue).
+    page1 = [_pr(42, "open", "release-snapshot/r4.1-new",
+                 created_at="2026-07-01T00:00:00Z", assignees=["alice"])]
+    page1 += [_pr(1000 + i, "closed", "main", created_at="2026-05-01T00:00:00Z")
+              for i in range(99)]
+
+    fetched = []
+
+    def fake_get(path, public=False, params=None, **kwargs):
+        fetched.append(params.get("page", 1))
+        return FakeResponse(200, page1 if params.get("page", 1) == 1 else [])
+
+    monkeypatch.setattr(api, "_get", fake_get)
+
+    prs = api.list_release_prs("QualityOnDemand", "r4.1",
+                               not_before="2026-06-15T00:00:00Z")
+    assert [p["number"] for p in prs] == [42]   # pre-release-issue PRs excluded
+    assert fetched == [1]                        # scan halted; page 2 never fetched
+
+
+def test_get_pr_reviews_normalizes(monkeypatch):
+    api = GitHubAPI(token="t")
+
+    def fake_get(path, public=False, params=None, **kwargs):
+        assert path.endswith("/pulls/42/reviews")
+        return FakeResponse(200, [
+            {"user": {"login": "alice"}, "state": "APPROVED",
+             "submitted_at": "2026-07-02T00:00:00Z"},
+            {"user": {"login": "bob"}, "state": "COMMENTED",
+             "submitted_at": "2026-07-03T00:00:00Z"},
+        ])
+
+    monkeypatch.setattr(api, "_get", fake_get)
+
+    reviews = api.get_pr_reviews("QualityOnDemand", 42)
+    assert reviews == [
+        {"user": "alice", "state": "APPROVED", "submitted_at": "2026-07-02T00:00:00Z"},
+        {"user": "bob", "state": "COMMENTED", "submitted_at": "2026-07-03T00:00:00Z"},
+    ]

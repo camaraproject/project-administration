@@ -41,6 +41,7 @@ from .models import (
     ProgressState,
     PublishedContext,
 )
+from .review_pr import derive_review_decision, parse_review_pr_body
 from .state_deriver import (
     derive_state,
     extract_draft_release_url_from_issue,
@@ -224,6 +225,68 @@ def collect_historical_entries(
     return entries
 
 
+def _collect_review_prs(
+    entry: ProgressEntry,
+    api: GitHubAPI,
+    repo_name: str,
+    target_tag: str,
+    not_before: Optional[str] = None,
+) -> None:
+    """Attach current-reviewer and discard-history data from Review PRs.
+
+    Lists every Release Review PR for the tag (current + discarded — the
+    discarded ones point at deleted snapshot branches). The open PR is the
+    current review: its assignee(s) are the concrete reviewer(s), its body
+    yields codeowner readiness / RM progress, and its reviews yield the
+    decision. Closed-but-unmerged PRs are discarded snapshots; a merged PR is
+    the accepted review, not a discard.
+    """
+    prs = api.list_release_prs(repo_name, target_tag, not_before=not_before)
+    if not prs:
+        return
+
+    open_prs = [p for p in prs if p.get("state") == "open"]
+    discarded = [
+        p for p in prs
+        if p.get("state") == "closed" and not p.get("merged")
+    ]
+
+    if open_prs:
+        current = max(open_prs, key=lambda p: p.get("created_at") or "")
+        parsed = parse_review_pr_body(current.get("body"))
+        assignees = current.get("assignees", [])
+        # The RM verdict is the assigned reviewer's — no assignee, no reviews call.
+        review_decision = None
+        if assignees:
+            reviews = api.get_pr_reviews(repo_name, current["number"])
+            review_decision = derive_review_decision(reviews, assignees)
+        entry.artifacts.release_pr = {
+            "number": current.get("number"),
+            "state": current.get("state"),
+            "url": current.get("url"),
+            "created_at": current.get("created_at"),
+            "assignees": assignees,
+            "review_decision": review_decision,
+            "codeowner_checked": parsed["codeowner_checked"],
+            "codeowner_total": parsed["codeowner_total"],
+            "ready_for_review": parsed["ready_for_review"],
+            "rm_checked": parsed["rm_checked"],
+            "rm_total": parsed["rm_total"],
+        }
+
+    if discarded:
+        last = max(
+            discarded,
+            key=lambda p: (p.get("closed_at") or p.get("created_at") or ""),
+        )
+        entry.artifacts.review_history = {
+            "discarded_count": len(discarded),
+            "last_reviewers": last.get("assignees", []),
+            "last_pr_url": last.get("url"),
+            "last_closed_at": last.get("closed_at"),
+        }
+
+
 def collect_repo_progress(
     repo_name: str,
     github_url: str,
@@ -320,10 +383,14 @@ def collect_repo_progress(
     snapshot = find_matching_snapshot(snapshot_branches, target_tag)
     if snapshot:
         entry.artifacts.snapshot_branch = snapshot
-        # Find release PR for the snapshot branch
-        pr = api.find_release_pr(repo_name, snapshot)
-        if pr:
-            entry.artifacts.release_pr = pr
+
+    # Review Queue data: the current Review PR's reviewer/readiness
+    # plus discard history. Runs for every active state — a PLANNED row can carry
+    # discard history from a snapshot that was already discarded. The release-issue
+    # date bounds the PR scan (no Review PR can predate its release issue).
+    if target_tag:
+        ri_created = release_issue.get("created_at") if release_issue else None
+        _collect_review_prs(entry, api, repo_name, target_tag, not_before=ri_created)
 
     matched_draft = find_matching_draft_release(
         draft_releases, target_tag, snapshot
@@ -346,6 +413,7 @@ def collect_repo_progress(
         entry.artifacts.release_issue = {
             "number": release_issue.get("number"),
             "url": release_issue.get("url"),
+            "created_at": release_issue.get("created_at"),
         }
 
     # Cross-reference M1/M3/M4 and last published from releases-master

@@ -197,6 +197,11 @@ properties:
               type: ["string", "null"]
             release_pr:
               type: ["object", "null"]
+              description: |
+                Current (open) Release Review PR for the tag. The assignee(s) are
+                the concrete reviewer(s); an empty list means the RM team still
+                owns the review. Checkbox counts and ready_for_review derive from
+                the PR body; review_decision approximates GitHub's PR review state.
               properties:
                 number:
                   type: integer
@@ -205,6 +210,28 @@ properties:
                 url:
                   type: string
                   format: uri
+                created_at:
+                  type: ["string", "null"]
+                  format: date-time
+                  description: Snapshot/queue-order key (Review PR creation time)
+                assignees:
+                  type: array
+                  items:
+                    type: string
+                review_decision:
+                  type: ["string", "null"]
+                  enum: ["APPROVED", "CHANGES_REQUESTED", null]
+                codeowner_checked:
+                  type: integer
+                codeowner_total:
+                  type: integer
+                ready_for_review:
+                  type: boolean
+                  description: Codeowner readiness box ("ready for RM review") ticked
+                rm_checked:
+                  type: integer
+                rm_total:
+                  type: integer
             draft_release:
               type: ["object", "null"]
               properties:
@@ -221,6 +248,28 @@ properties:
                 url:
                   type: string
                   format: uri
+                created_at:
+                  type: ["string", "null"]
+                  format: date-time
+                  description: Release-issue creation time (RI date column)
+            review_history:
+              type: ["object", "null"]
+              description: |
+                Discarded-snapshot history for the tag, recovered from closed
+                (unmerged) Review PRs so review continuity survives a discard.
+              properties:
+                discarded_count:
+                  type: integer
+                last_reviewers:
+                  type: array
+                  items:
+                    type: string
+                last_pr_url:
+                  type: ["string", "null"]
+                  format: uri
+                last_closed_at:
+                  type: ["string", "null"]
+                  format: date-time
 
         published_context:
           type: object
