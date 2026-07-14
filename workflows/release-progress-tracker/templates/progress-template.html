@@ -292,6 +292,8 @@ tr.historical-row:hover td {
 .rq-ready { color: #1a7f37; font-weight: 600; }
 .rq-approved { color: #1a7f37; font-weight: 600; }
 .rq-changes { color: #cf222e; font-weight: 600; }
+.rq-comments { color: #0969da; font-weight: 600; }
+.rq-waiting { color: #9a6700; font-weight: 600; }
 .rq-done { color: #1a7f37; }
 .rq-discarded { color: #cf222e; font-size: 12px; margin-top: 3px; }
 .table-scroll { overflow-x: auto; }
@@ -1369,6 +1371,7 @@ tr.historical-row:hover td {
           has_pr: !!pr,
           assignees: pr ? (pr.assignees || []) : [],
           review_decision: pr ? (pr.review_decision || null) : null,
+          codeowner_approved: pr ? !!pr.codeowner_approved : false,
           codeowner_checked: pr ? pr.codeowner_checked : null,
           codeowner_total: pr ? pr.codeowner_total : null,
           ready_for_review: pr ? !!pr.ready_for_review : false,
@@ -1466,27 +1469,46 @@ tr.historical-row:hover td {
       return html;
     }
 
-    // RM approval = a verdict from the PR's assigned reviewer(s) (collector-derived,
-    // scoped to the assignee — not a checkbox, which codeowners can also tick).
+    // RM status derives from the assigned reviewer's own reviews
+    // (review_decision, including the 'review comments' interim state for a
+    // comment-only review before any verdict lands) — not a checkbox, which
+    // codeowners can also tick. CO status layers on top, since "waiting for
+    // approval" depends on RM already being approved.
+    function reviewRmStatus(row) {
+      if (row.review_decision === 'CHANGES_REQUESTED') return { text: 'change requested', cls: 'rq-changes' };
+      if (row.review_decision === 'APPROVED') return { text: 'approved', cls: 'rq-approved' };
+      if (row.review_decision === 'COMMENTED') return { text: 'review comments', cls: 'rq-comments' };
+      if (row.assignees.length) return { text: 'reviewer assigned', cls: 'rq-muted' };
+      return { text: '-', cls: 'rq-muted' };
+    }
+
+    function reviewCoStatus(row, rm) {
+      // A codeowner approval only becomes the relevant CO signal once RM has
+      // also approved — before that, nothing can proceed on the CO axis
+      // regardless of whether a codeowner already approved, so the status
+      // stays capped at "ready for RM review".
+      if (rm.text !== 'approved') {
+        return row.ready_for_review
+          ? { text: 'ready for RM review', cls: 'rq-ready' }
+          : { text: '-', cls: 'rq-muted' };
+      }
+      return row.codeowner_approved
+        ? { text: 'approved', cls: 'rq-approved' }
+        : { text: 'waiting for approval', cls: 'rq-waiting' };
+    }
+
     function renderReviewProgressCell(row) {
       if (row.state === 'published') return '<span class="rq-done">done ✓</span>';
       if (row.state === 'draft_ready') return '<span class="rq-done">draft release created</span>';
       if (row.state !== 'snapshot_active' || !row.has_pr) return '<span class="rq-muted">—</span>';
 
-      const co = row.ready_for_review
-        ? '<span class="rq-ready">ready for RM review</span>'
-        : `${row.codeowner_checked || 0}/${row.codeowner_total || 3}`;
-
-      // Verdict (from the assigned reviewer) when there is one; until then the
-      // RM checklist count is a rough progress indication.
-      let rm;
-      if (row.review_decision === 'CHANGES_REQUESTED') rm = '<span class="rq-changes">changes requested</span>';
-      else if (row.review_decision === 'APPROVED') rm = '<span class="rq-approved">approved ✓</span>';
-      else if (row.rm_total) rm = `<span class="rq-muted">${row.rm_checked || 0}/${row.rm_total}</span>`;
-      else rm = '<span class="rq-muted">—</span>';
-
-      return `<div class="rq-prog-line"><span class="rq-prog-label">CO:</span> ${co}</div>` +
-             `<div class="rq-prog-line"><span class="rq-prog-label">RM:</span> ${rm}</div>`;
+      const rm = reviewRmStatus(row);
+      const co = reviewCoStatus(row, rm);
+      // Always show the live checklist count and the status word together.
+      const coLine = `<span class="rq-prog-label">CO</span> ${row.codeowner_checked || 0}/${row.codeowner_total || 0} <span class="${co.cls}">${co.text}</span>`;
+      const rmLine = `<span class="rq-prog-label">RM</span> ${row.rm_checked || 0}/${row.rm_total || 0} <span class="${rm.cls}">${rm.text}</span>`;
+      return `<div class="rq-prog-line">${coLine}</div>` +
+             `<div class="rq-prog-line">${rmLine}</div>`;
     }
 
     function renderSnapshotDateCell(row) {
@@ -1659,13 +1681,13 @@ tr.historical-row:hover td {
             || a.target_api_version || '';
           return v ? `${a.api_name} ${v}` : a.api_name;
         }).join('; ');
-        const readiness = !row.has_pr ? ''
-          : (row.ready_for_review ? 'ready for RM review' : `${row.codeowner_checked || 0}/${row.codeowner_total || 3}`);
+        let readiness = '';
         let rmApproval = '';
         if (row.has_pr) {
-          if (row.review_decision === 'CHANGES_REQUESTED') rmApproval = 'changes requested';
-          else if (row.review_decision === 'APPROVED') rmApproval = 'approved';
-          else if (row.rm_total) rmApproval = `${row.rm_checked || 0}/${row.rm_total}`;
+          const rm = reviewRmStatus(row);
+          const co = reviewCoStatus(row, rm);
+          readiness = `${row.codeowner_checked || 0}/${row.codeowner_total || 0} ${co.text}`;
+          rmApproval = `${row.rm_checked || 0}/${row.rm_total || 0} ${rm.text}`;
         }
         const reviewer = row.has_pr ? (row.assignees.join(', ') || 'team') : '';
         return [

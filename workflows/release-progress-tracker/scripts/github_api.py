@@ -41,6 +41,7 @@ class GitHubAPI:
         self.api_calls = 0
         # Injectable so tests can avoid real backoff sleeps.
         self._sleep = sleep
+        self._codeowners_cache: Dict[str, Optional[str]] = {}
 
     def _request(
         self,
@@ -134,6 +135,16 @@ class GitHubAPI:
         if data.get("encoding") == "base64":
             return base64.b64decode(data["content"]).decode("utf-8")
         return data.get("content")
+
+    def get_codeowners(self, repo: str) -> Optional[str]:
+        """Get a repo's CODEOWNERS file content from its default branch.
+
+        Cached per repo within a run — the Review Queue only needs one fetch
+        per repo even when a repo has more than one ongoing review row.
+        """
+        if repo not in self._codeowners_cache:
+            self._codeowners_cache[repo] = self.get_file_content(repo, "CODEOWNERS")
+        return self._codeowners_cache[repo]
 
     def list_branches(self, repo: str, prefix: str = "") -> List[str]:
         """List branch names, optionally filtered by prefix. Handles pagination."""

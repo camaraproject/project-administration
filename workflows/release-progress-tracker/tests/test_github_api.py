@@ -262,3 +262,24 @@ def test_get_pr_reviews_normalizes(monkeypatch):
         {"user": "alice", "state": "APPROVED", "submitted_at": "2026-07-02T00:00:00Z"},
         {"user": "bob", "state": "COMMENTED", "submitted_at": "2026-07-03T00:00:00Z"},
     ]
+
+
+def test_get_codeowners_caches_per_repo(monkeypatch):
+    api = GitHubAPI(token="t")
+    calls = []
+
+    def fake_get_file_content(repo, path, ref="main"):
+        calls.append((repo, path))
+        return {"QualityOnDemand": "* @alice"}.get(repo)
+
+    monkeypatch.setattr(api, "get_file_content", fake_get_file_content)
+
+    first = api.get_codeowners("QualityOnDemand")
+    second = api.get_codeowners("QualityOnDemand")
+    other_repo = api.get_codeowners("EdgeApplicationManagement")
+
+    assert first == "* @alice"
+    assert second == "* @alice"
+    assert other_repo is None
+    # One fetch per distinct repo, not per call.
+    assert calls == [("QualityOnDemand", "CODEOWNERS"), ("EdgeApplicationManagement", "CODEOWNERS")]
