@@ -102,7 +102,7 @@ class MockGitHubAPI:
 
     def __init__(self, file_contents=None, branches=None, tags=None,
                  draft_releases=None, release_issues=None, review_prs=None,
-                 pr_reviews=None):
+                 pr_reviews=None, codeowners=None):
         self.file_contents = file_contents or {}
         self.branches = branches or {}
         self.tags = tags or set()
@@ -110,7 +110,9 @@ class MockGitHubAPI:
         self.release_issues = release_issues or {}
         self.review_prs = review_prs or {}   # repo -> [normalized PR dict]
         self.pr_reviews = pr_reviews or {}    # (repo, number) -> [review dict]
+        self.codeowners = codeowners or {}    # repo -> CODEOWNERS content
         self.reviews_fetched = set()          # (repo, number) get_pr_reviews was called for
+        self.codeowners_fetched = set()       # repo names get_codeowners was called for
         self.api_calls = 0
 
     def get_file_content(self, repo, path, ref="main"):
@@ -143,6 +145,11 @@ class MockGitHubAPI:
         self.api_calls += 1
         self.reviews_fetched.add((repo, pr_number))
         return list(self.pr_reviews.get((repo, pr_number), []))
+
+    def get_codeowners(self, repo):
+        self.api_calls += 1
+        self.codeowners_fetched.add(repo)
+        return self.codeowners.get(repo)
 
 
 def _review_pr(number, state, base_ref, *, merged=False, assignees=(),
@@ -269,6 +276,10 @@ class TestCollectRepoProgress:
         # Verdict is the assignee's (alice), not the codeowner's (kevin).
         assert pr["review_decision"] == "CHANGES_REQUESTED"
         assert result.artifacts.review_history is None
+        # Changes requested, not approved -> codeowner approval can't change
+        # what's displayed either way, so the CODEOWNERS lookup is skipped.
+        assert pr["codeowner_approved"] is False
+        assert "QualityOnDemand" not in api.codeowners_fetched
 
     def test_unassigned_pr_skips_reviews_and_has_no_verdict(self):
         api = MockGitHubAPI(
@@ -279,8 +290,8 @@ class TestCollectRepoProgress:
             pr_reviews={("QualityOnDemand", 42): [
                 {"user": "kevin", "state": "APPROVED"},  # codeowner approved
             ]},
+            codeowners={"QualityOnDemand": "* @kevin @rafal"},
         )
-        calls_before = api.api_calls
         result = collect_repo_progress(
             "QualityOnDemand", "https://github.com/camaraproject/QualityOnDemand",
             api, [], PublishedContext("r3.2", None),
@@ -288,8 +299,64 @@ class TestCollectRepoProgress:
         pr = result.artifacts.release_pr
         assert pr["assignees"] == []
         assert pr["review_decision"] is None      # unassigned -> no RM verdict
+        assert pr["codeowner_approved"] is False   # can't surface without an RM approval either
         # get_pr_reviews must not be called for an unassigned PR (efficiency).
         assert ("QualityOnDemand", 42) not in api.reviews_fetched
+        assert "QualityOnDemand" not in api.codeowners_fetched
+
+    def test_separation_of_duties_assignee_codeowner_approval_not_counted(self):
+        # kevin is both the RM assignee and a listed codeowner. His own
+        # approval satisfies the RM axis only — the codeowner axis needs a
+        # second, distinct codeowner to approve.
+        api = MockGitHubAPI(
+            file_contents={"QualityOnDemand/release-plan.yaml": PLAN_RC},
+            branches={"QualityOnDemand": ["release-snapshot/r4.1-abc123"]},
+            review_prs={"QualityOnDemand": [_review_pr(
+                42, "open", "release-snapshot/r4.1-abc123", assignees=["kevin"])]},
+            pr_reviews={("QualityOnDemand", 42): [
+                {"user": "kevin", "state": "APPROVED"},
+            ]},
+            codeowners={"QualityOnDemand": "* @kevin @rafal"},
+        )
+        result = collect_repo_progress(
+            "QualityOnDemand", "https://github.com/camaraproject/QualityOnDemand",
+            api, [], PublishedContext("r3.2", None),
+        )
+        pr = result.artifacts.release_pr
+        assert pr["review_decision"] == "APPROVED"
+        assert pr["codeowner_approved"] is False
+        # RM is approved, so the CODEOWNERS lookup does need to happen here.
+        assert "QualityOnDemand" in api.codeowners_fetched
+
+        # A second, distinct codeowner approves -> codeowner axis satisfied.
+        api.pr_reviews[("QualityOnDemand", 42)].append(
+            {"user": "rafal", "state": "APPROVED"}
+        )
+        result = collect_repo_progress(
+            "QualityOnDemand", "https://github.com/camaraproject/QualityOnDemand",
+            api, [], PublishedContext("r3.2", None),
+        )
+        assert result.artifacts.release_pr["codeowner_approved"] is True
+
+    def test_review_decision_surfaces_comment_only_state(self):
+        # Assignee has left a comment-only review, no verdict yet.
+        api = MockGitHubAPI(
+            file_contents={"QualityOnDemand/release-plan.yaml": PLAN_RC},
+            branches={"QualityOnDemand": ["release-snapshot/r4.1-abc123"]},
+            review_prs={"QualityOnDemand": [_review_pr(
+                42, "open", "release-snapshot/r4.1-abc123", assignees=["alice"])]},
+            pr_reviews={("QualityOnDemand", 42): [
+                {"user": "alice", "state": "COMMENTED"},
+            ]},
+        )
+        result = collect_repo_progress(
+            "QualityOnDemand", "https://github.com/camaraproject/QualityOnDemand",
+            api, [], PublishedContext("r3.2", None),
+        )
+        pr = result.artifacts.release_pr
+        assert pr["review_decision"] == "COMMENTED"
+        assert pr["codeowner_approved"] is False
+        assert "QualityOnDemand" not in api.codeowners_fetched
 
     def test_discard_history_from_closed_unmerged_prs(self):
         api = MockGitHubAPI(
@@ -637,7 +704,7 @@ class TestCollectAll:
         assert "last_updated" in meta
         assert "last_checked" in meta
         assert "releases_master_updated" in meta
-        assert meta["schema_version"] == "1.6.0"
+        assert meta["schema_version"] == "1.7.0"
         assert "collection_stats" not in meta  # Full stats removed from output
         assert meta["repos_scanned"] == 2      # Stable stats restored
         assert meta["repos_with_plan"] == 2

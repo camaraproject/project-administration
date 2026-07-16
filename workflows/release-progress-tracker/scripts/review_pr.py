@@ -126,3 +126,81 @@ def derive_review_decision(
     if "APPROVED" in effective:
         return "APPROVED"
     return None
+
+
+def derive_review_state(reviews: List[Dict], assignees: List[str]) -> Optional[str]:
+    """Reduce a PR's reviews to APPROVED / CHANGES_REQUESTED / COMMENTED / None.
+
+    Layers a "review comments" interim state onto derive_review_decision's
+    verdict reduction: a comment-only review never clears a standing verdict
+    (matches GitHub's own semantics), so COMMENTED is only surfaced when the
+    assignee has never submitted a verdict-bearing review.
+    """
+    verdict = derive_review_decision(reviews, assignees)
+    if verdict:
+        return verdict
+
+    assignee_set = {a for a in (assignees or []) if a}
+    if not assignee_set:
+        return None
+
+    has_comment = any(
+        review.get("user") in assignee_set
+        and (review.get("state") or "").upper() == "COMMENTED"
+        for review in reviews
+    )
+    return "COMMENTED" if has_comment else None
+
+
+# The tooling `/publish-release` gate's CODEOWNERS wildcard-line pattern
+# (release-automation-reusable.yml): a line that is exactly "*" or starts
+# with "* " (the root wildcard applying to all files).
+_CODEOWNERS_WILDCARD_RE = re.compile(r"^\*(\s|$)")
+_CODEOWNERS_USERNAME_RE = re.compile(r"@(\S+)")
+
+
+def parse_codeowners(content: Optional[str]) -> set:
+    """Extract the codeowner set from a CODEOWNERS file.
+
+    Mirrors tooling's `/publish-release` CODEOWNERS gate exactly: skip
+    comments and blank lines, take only the first line matching the root
+    wildcard pattern (``* @user1 @user2``), and lower-case the extracted
+    usernames. No path-aware matching or team-entry resolution.
+    """
+    if not content:
+        return set()
+
+    for line in content.splitlines():
+        stripped = line.strip()
+        if not stripped or stripped.startswith("#"):
+            continue
+        if _CODEOWNERS_WILDCARD_RE.match(stripped):
+            return {m.lower() for m in _CODEOWNERS_USERNAME_RE.findall(stripped)}
+    return set()
+
+
+def derive_codeowner_decision(
+    reviews: List[Dict], codeowners: set, assignees: List[str]
+) -> Optional[str]:
+    """Latest non-dismissed APPROVED from a codeowner who isn't an assignee.
+
+    Separation of duties: the RM-assigned reviewer's own approval never
+    double-counts as the codeowner approval, even when that person is also
+    listed in CODEOWNERS — the codeowner axis requires a second, distinct
+    codeowner to approve.
+    """
+    assignee_set = {a.lower() for a in (assignees or []) if a}
+    eligible = {c.lower() for c in (codeowners or [])} - assignee_set
+    if not eligible:
+        return None
+
+    latest: Dict[str, str] = {}
+    for review in reviews:
+        user = (review.get("user") or "").lower()
+        state = (review.get("state") or "").upper()
+        if user in eligible and state in _VERDICT_STATES:
+            latest[user] = state
+
+    if "APPROVED" in latest.values():
+        return "APPROVED"
+    return None

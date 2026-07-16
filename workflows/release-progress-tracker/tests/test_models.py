@@ -182,7 +182,7 @@ class TestProgressData:
         )
         d = data.to_dict()
 
-        assert d["metadata"]["schema_version"] == "1.6.0"
+        assert d["metadata"]["schema_version"] == "1.7.0"
         assert d["metadata"]["last_checked"] == "2026-03-15T10:00:00Z"
         assert d["metadata"]["releases_master_updated"] == "2026-03-15T04:35:00Z"
         assert "collection_stats" not in d["metadata"]  # Full stats removed from output
@@ -196,7 +196,7 @@ class TestProgressData:
         # Full YAML round-trip
         yaml_str = yaml.dump(d, default_flow_style=False, sort_keys=False)
         reloaded = yaml.safe_load(yaml_str)
-        assert reloaded["metadata"]["collector_version"] == "1.6.0"
+        assert reloaded["metadata"]["collector_version"] == "1.7.0"
 
 
 class TestNewStates:

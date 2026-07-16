@@ -201,7 +201,11 @@ properties:
                 Current (open) Release Review PR for the tag. The assignee(s) are
                 the concrete reviewer(s); an empty list means the RM team still
                 owns the review. Checkbox counts and ready_for_review derive from
-                the PR body; review_decision approximates GitHub's PR review state.
+                the PR body; review_decision approximates GitHub's PR review state
+                for the assignee(s); codeowner_approved is a separate signal for a
+                distinct codeowner's actual GitHub approval, only computed once
+                the RM axis has approved (a codeowner approving earlier doesn't
+                change anything the Review Queue displays).
               properties:
                 number:
                   type: integer
@@ -220,7 +224,17 @@ properties:
                     type: string
                 review_decision:
                   type: ["string", "null"]
-                  enum: ["APPROVED", "CHANGES_REQUESTED", null]
+                  enum: ["APPROVED", "CHANGES_REQUESTED", "COMMENTED", null]
+                codeowner_approved:
+                  type: boolean
+                  description: |
+                    A codeowner other than the assignee(s) has an outstanding
+                    APPROVED review — the assignee's own approval never counts
+                    here (separation of duties). Defaults to false whenever
+                    review_decision isn't APPROVED, whether or not a codeowner
+                    has actually approved — false means either "checked, and
+                    no" or "not checked because it can't change what's
+                    displayed yet", not a confirmed absence of approval.
                 codeowner_checked:
                   type: integer
                 codeowner_total:

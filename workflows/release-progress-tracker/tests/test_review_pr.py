@@ -1,6 +1,12 @@
 """Tests for Review-PR body parsing and review-decision derivation."""
 
-from scripts.review_pr import derive_review_decision, parse_review_pr_body
+from scripts.review_pr import (
+    derive_codeowner_decision,
+    derive_review_decision,
+    derive_review_state,
+    parse_codeowners,
+    parse_review_pr_body,
+)
 
 
 # A representative rendered Release Review PR body (release_review_pr.mustache),
@@ -161,3 +167,127 @@ class TestDeriveReviewDecision:
             {"user": "alice", "state": "PENDING"},
         ]
         assert derive_review_decision(reviews, ["alice"]) is None
+
+
+class TestDeriveReviewState:
+    """derive_review_state layers a 'COMMENTED' interim state onto
+    derive_review_decision's verdict reduction — surfaced only when the
+    assignee has never submitted a verdict-bearing review."""
+
+    def test_no_assignee_means_no_state(self):
+        reviews = [{"user": "alice", "state": "COMMENTED"}]
+        assert derive_review_state(reviews, []) is None
+
+    def test_no_reviews_means_no_state(self):
+        # Caller distinguishes "no reviews" (None) from "no assignee" (also
+        # None) using presence of assignees for the display-level fallback.
+        assert derive_review_state([], ["alice"]) is None
+
+    def test_comment_only_surfaces_as_commented(self):
+        reviews = [{"user": "alice", "state": "COMMENTED"}]
+        assert derive_review_state(reviews, ["alice"]) == "COMMENTED"
+
+    def test_verdict_takes_priority_over_comment(self):
+        reviews = [
+            {"user": "alice", "state": "COMMENTED"},
+            {"user": "alice", "state": "APPROVED"},
+        ]
+        assert derive_review_state(reviews, ["alice"]) == "APPROVED"
+
+    def test_comment_after_verdict_does_not_clear_it(self):
+        # A comment-only review never clears a standing verdict.
+        reviews = [
+            {"user": "alice", "state": "APPROVED"},
+            {"user": "alice", "state": "COMMENTED"},
+        ]
+        assert derive_review_state(reviews, ["alice"]) == "APPROVED"
+
+    def test_non_assignee_comment_ignored(self):
+        reviews = [{"user": "bob", "state": "COMMENTED"}]
+        assert derive_review_state(reviews, ["alice"]) is None
+
+    def test_changes_requested_dominates_over_comment_from_other_assignee(self):
+        reviews = [
+            {"user": "alice", "state": "COMMENTED"},
+            {"user": "bob", "state": "CHANGES_REQUESTED"},
+        ]
+        assert derive_review_state(reviews, ["alice", "bob"]) == "CHANGES_REQUESTED"
+
+
+class TestParseCodeowners:
+    """Reuses tooling's /publish-release CODEOWNERS parse — first
+    ``* @user...`` line only, lower-cased usernames, no path-aware matching."""
+
+    def test_extracts_usernames_from_first_wildcard_line(self):
+        content = "# comment\n* @hdamker @rartych\n/docs/ @someoneelse\n"
+        assert parse_codeowners(content) == {"hdamker", "rartych"}
+
+    def test_lowercases_usernames(self):
+        assert parse_codeowners("* @HDamker") == {"hdamker"}
+
+    def test_only_first_wildcard_line_used(self):
+        content = "* @alice\n* @bob\n"
+        assert parse_codeowners(content) == {"alice"}
+
+    def test_skips_comments_and_blank_lines(self):
+        content = "\n# top comment\n\n* @alice\n"
+        assert parse_codeowners(content) == {"alice"}
+
+    def test_bare_star_with_no_owners(self):
+        assert parse_codeowners("*\n") == set()
+
+    def test_none_content_returns_empty_set(self):
+        assert parse_codeowners(None) == set()
+
+    def test_no_wildcard_line_returns_empty_set(self):
+        assert parse_codeowners("/docs/ @alice\n") == set()
+
+
+class TestDeriveCodeownerDecision:
+    """Latest non-dismissed APPROVED from codeowners_set - assignees."""
+
+    def test_codeowner_approval_detected(self):
+        reviews = [{"user": "rartych", "state": "APPROVED"}]
+        result = derive_codeowner_decision(reviews, {"hdamker", "rartych"}, ["alice"])
+        assert result == "APPROVED"
+
+    def test_no_codeowners_means_no_decision(self):
+        reviews = [{"user": "rartych", "state": "APPROVED"}]
+        assert derive_codeowner_decision(reviews, set(), ["alice"]) is None
+
+    def test_separation_of_duties_assignee_approval_not_counted(self):
+        # hdamker is both the RM assignee and a listed codeowner — their own
+        # approval never double-counts as the codeowner axis.
+        reviews = [{"user": "hdamker", "state": "APPROVED"}]
+        result = derive_codeowner_decision(
+            reviews, {"hdamker", "rartych"}, ["hdamker"],
+        )
+        assert result is None
+
+    def test_second_distinct_codeowner_satisfies_the_axis(self):
+        reviews = [
+            {"user": "hdamker", "state": "APPROVED"},
+            {"user": "rartych", "state": "APPROVED"},
+        ]
+        result = derive_codeowner_decision(
+            reviews, {"hdamker", "rartych"}, ["hdamker"],
+        )
+        assert result == "APPROVED"
+
+    def test_dismissed_codeowner_approval_not_counted(self):
+        reviews = [
+            {"user": "rartych", "state": "APPROVED"},
+            {"user": "rartych", "state": "DISMISSED"},
+        ]
+        result = derive_codeowner_decision(reviews, {"rartych"}, ["alice"])
+        assert result is None
+
+    def test_changes_requested_from_codeowner_does_not_yield_approval(self):
+        reviews = [{"user": "rartych", "state": "CHANGES_REQUESTED"}]
+        result = derive_codeowner_decision(reviews, {"rartych"}, ["alice"])
+        assert result is None
+
+    def test_case_insensitive_matching(self):
+        reviews = [{"user": "RARTYCH", "state": "APPROVED"}]
+        result = derive_codeowner_decision(reviews, {"rartych"}, ["alice"])
+        assert result == "APPROVED"

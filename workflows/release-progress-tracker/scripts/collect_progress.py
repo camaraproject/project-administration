@@ -41,7 +41,12 @@ from .models import (
     ProgressState,
     PublishedContext,
 )
-from .review_pr import derive_review_decision, parse_review_pr_body
+from .review_pr import (
+    derive_codeowner_decision,
+    derive_review_state,
+    parse_codeowners,
+    parse_review_pr_body,
+)
 from .state_deriver import (
     derive_state,
     extract_draft_release_url_from_issue,
@@ -236,10 +241,15 @@ def _collect_review_prs(
 
     Lists every Release Review PR for the tag (current + discarded — the
     discarded ones point at deleted snapshot branches). The open PR is the
-    current review: its assignee(s) are the concrete reviewer(s), its body
-    yields codeowner readiness / RM progress, and its reviews yield the
-    decision. Closed-but-unmerged PRs are discarded snapshots; a merged PR is
-    the accepted review, not a discard.
+    current review: its assignee(s) are the concrete RM reviewer(s), its body
+    yields codeowner readiness / RM checklist progress, and its reviews yield
+    the RM decision. A distinct codeowner's approval only ever changes what
+    gets displayed once the RM reviewer has also approved (the RM axis is the
+    real gate; a codeowner approving earlier doesn't move anything forward),
+    so the CODEOWNERS lookup and the codeowner-approval check both stay
+    behind that same "RM approved" condition to avoid two API calls that
+    could never affect the output. Closed-but-unmerged PRs are discarded
+    snapshots; a merged PR is the accepted review, not a discard.
     """
     prs = api.list_release_prs(repo_name, target_tag, not_before=not_before)
     if not prs:
@@ -255,11 +265,19 @@ def _collect_review_prs(
         current = max(open_prs, key=lambda p: p.get("created_at") or "")
         parsed = parse_review_pr_body(current.get("body"))
         assignees = current.get("assignees", [])
-        # The RM verdict is the assigned reviewer's — no assignee, no reviews call.
+        # The RM state is the assigned reviewer's — no assignee, no reviews call.
         review_decision = None
+        # False here means either "checked, and no codeowner has approved" or
+        # "not checked at all" (when RM isn't approved yet) — not a confirmed
+        # absence of a codeowner approval.
+        codeowner_approved = False
         if assignees:
             reviews = api.get_pr_reviews(repo_name, current["number"])
-            review_decision = derive_review_decision(reviews, assignees)
+            review_decision = derive_review_state(reviews, assignees)
+            if review_decision == "APPROVED":
+                codeowners = parse_codeowners(api.get_codeowners(repo_name))
+                codeowner_decision = derive_codeowner_decision(reviews, codeowners, assignees)
+                codeowner_approved = codeowner_decision == "APPROVED"
         entry.artifacts.release_pr = {
             "number": current.get("number"),
             "state": current.get("state"),
@@ -267,6 +285,7 @@ def _collect_review_prs(
             "created_at": current.get("created_at"),
             "assignees": assignees,
             "review_decision": review_decision,
+            "codeowner_approved": codeowner_approved,
             "codeowner_checked": parsed["codeowner_checked"],
             "codeowner_total": parsed["codeowner_total"],
             "ready_for_review": parsed["ready_for_review"],

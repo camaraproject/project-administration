@@ -9,8 +9,8 @@ from enum import Enum
 from typing import Dict, List, Optional
 
 # Single source of truth for version constants — update here only
-SCHEMA_VERSION = "1.6.0"
-COLLECTOR_VERSION = "1.6.0"
+SCHEMA_VERSION = "1.7.0"
+COLLECTOR_VERSION = "1.7.0"
 
 
 class ProgressState(Enum):
@@ -58,8 +58,9 @@ class ArtifactInfo:
     """Release artifacts found in the repository."""
     snapshot_branch: Optional[str] = None
     # Current (open) Release Review PR: {number, state, url, created_at,
-    # assignees, review_decision, codeowner_checked, codeowner_total,
-    # ready_for_review, rm_checked, rm_total}. None when no open Review PR.
+    # assignees, review_decision, codeowner_approved, codeowner_checked,
+    # codeowner_total, ready_for_review, rm_checked, rm_total}. None when no
+    # open Review PR.
     release_pr: Optional[Dict] = None
     draft_release: Optional[Dict] = None    # {name, url}
     release_issue: Optional[Dict] = None    # {number, url, created_at}
