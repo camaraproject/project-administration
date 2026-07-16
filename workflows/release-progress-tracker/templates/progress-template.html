@@ -1486,10 +1486,10 @@ tr.historical-row:hover td {
       // A codeowner approval only becomes the relevant CO signal once RM has
       // also approved — before that, nothing can proceed on the CO axis
       // regardless of whether a codeowner already approved, so the status
-      // stays capped at "ready for RM review".
+      // stays capped at "done" (codeowner preparation finished).
       if (rm.text !== 'approved') {
         return row.ready_for_review
-          ? { text: 'ready for RM review', cls: 'rq-ready' }
+          ? { text: 'done', cls: 'rq-ready' }
           : { text: '-', cls: 'rq-muted' };
       }
       return row.codeowner_approved
