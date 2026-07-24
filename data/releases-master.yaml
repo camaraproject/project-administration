@@ -1,5 +1,5 @@
 metadata:
-  last_updated: '2026-07-15T05:17:15.285Z'
+  last_updated: '2026-07-24T05:36:51.983Z'
   workflow_version: 3.0.0
   schema_version: 3.1.0
 releases:
@@ -679,6 +679,21 @@ releases:
         api_version: 0.2.0
         api_title: Customer Insights
         commonalities: '0.6'
+  - repository: CustomerInsights
+    release_tag: r3.1
+    release_date: '2026-07-23T16:06:40Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/CustomerInsights/releases/tag/r3.1
+    release_type: pre-release-rc
+    src_commit_sha: 44c1faeaf13f40d10defab1a3aaf330fa96470c1
+    dependencies:
+      commonalities_release: r4.3 (0.8.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: customer-insights
+        api_version: 0.3.0-rc.1
+        api_title: Customer Insights
+        commonalities: 0.8.0
   - repository: DedicatedNetworks
     release_tag: r1.1
     release_date: '2025-07-21T11:45:44Z'
@@ -2894,7 +2909,7 @@ repositories:
   - repository: CustomerInsights
     github_url: https://github.com/camaraproject/CustomerInsights
     latest_public_release: r2.2
-    newest_pre_release: null
+    newest_pre_release: r3.1
   - repository: DedicatedNetworks
     github_url: https://github.com/camaraproject/DedicatedNetworks
     latest_public_release: r1.2
