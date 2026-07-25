@@ -1,5 +1,5 @@
 metadata:
-  last_updated: '2026-07-24T05:36:51.983Z'
+  last_updated: '2026-07-25T05:32:13.551Z'
   workflow_version: 3.0.0
   schema_version: 3.1.0
 releases:
@@ -1666,6 +1666,25 @@ releases:
         api_version: 0.2.0-alpha.1
         api_title: Home Devices - Network Access Management
         commonalities: 0.8.0-rc.2
+  - repository: NetworkAccessManagement
+    release_tag: r3.1
+    release_date: '2026-07-24T17:11:46Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/NetworkAccessManagement/releases/tag/r3.1
+    release_type: pre-release-rc
+    src_commit_sha: d1b328d2a0c3d614b849f7e578fe8b62709716d1
+    dependencies:
+      commonalities_release: r4.3 (0.8.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: network-access-devices
+        api_version: 0.3.0-rc.1
+        api_title: Home Devices - Network Access Devices
+        commonalities: 0.8.0
+      - api_name: network-access-domains
+        api_version: 0.3.0-rc.1
+        api_title: Home Devices - Network Access Domains
+        commonalities: 0.8.0
   - repository: NetworkInsights
     release_tag: r1.1
     release_date: '2026-04-16T01:13:01Z'
@@ -3022,7 +3041,7 @@ repositories:
   - repository: NetworkAccessManagement
     github_url: https://github.com/camaraproject/NetworkAccessManagement
     latest_public_release: null
-    newest_pre_release: r2.1
+    newest_pre_release: r3.1
   - repository: NetworkInsights
     github_url: https://github.com/camaraproject/NetworkInsights
     latest_public_release: r1.3
