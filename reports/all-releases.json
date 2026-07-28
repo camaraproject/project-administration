@@ -1,27 +1,27 @@
 {
   "metadata": {
-    "generated": "2026-07-25T05:32:13.657Z",
+    "generated": "2026-07-28T05:33:53.757Z",
     "meta_release": "All",
     "source": "Release Collector v3",
     "landscape_version": "1.1.1"
   },
   "statistics": {
     "repositories_count": 52,
-    "api_versions_count": 171,
+    "api_versions_count": 174,
     "unique_api_names_count": 77,
     "unique_apis_count": 76,
     "api_version_maturity": {
       "stable": 28,
       "initial": 138,
-      "rc": 5
+      "rc": 8
     },
     "unique_api_maturity": {
       "stable": 10,
-      "initial": 61,
-      "rc": 5
+      "initial": 58,
+      "rc": 8
     },
     "categories": {
-      "Computing Services": 10,
+      "Computing Services": 13,
       "Communication Quality": 39,
       "Payments and Charging": 11,
       "Authentication and Fraud Prevention": 51,
@@ -492,12 +492,17 @@
     "ModelAsAService": {
       "releases": [
         {
+          "tag": "r2.1",
+          "date": "2026-07-28T01:55:13Z",
+          "apis_count": 3
+        },
+        {
           "tag": "r1.2",
           "date": "2025-09-18T14:51:41Z",
           "apis_count": 3
         }
       ],
-      "total_apis": 3,
+      "total_apis": 6,
       "unique_apis_count": 3
     },
     "MostFrequentLocation": {
@@ -2951,6 +2956,63 @@
           "canonical_name": "qa-assistant-service",
           "first_release": "Fall25",
           "isNew": true
+        }
+      ]
+    },
+    {
+      "repository": "ModelAsAService",
+      "release_tag": "r2.1",
+      "release_date": "2026-07-28T01:55:13Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/ModelAsAService/releases/tag/r2.1",
+      "release_type": "pre-release-rc",
+      "src_commit_sha": "11d2f0400c021cd14ec429181aa00db1ff0c5448",
+      "dependencies": {
+        "commonalities_release": "r4.3 (0.8.0)",
+        "identity_consent_management_release": "r4.2 (0.5.0)"
+      },
+      "apis": [
+        {
+          "api_name": "knowledge-base",
+          "api_version": "0.2.0-rc.1",
+          "api_title": "Knowledge Base",
+          "commonalities": "0.8.0",
+          "maturity": "initial",
+          "portfolio_category": "Computing Services",
+          "website_url": "https://camaraproject.org/model-as-a-service/",
+          "tooltip": "Build and manage personalized knowledge bases",
+          "display_name": "Knowledge Base",
+          "published": true,
+          "canonical_name": "knowledge-base",
+          "first_release": "Fall25"
+        },
+        {
+          "api_name": "qa-assistant-manage",
+          "api_version": "0.2.0-rc.1",
+          "api_title": "Q&A Assistant - Manage",
+          "commonalities": "0.8.0",
+          "maturity": "initial",
+          "portfolio_category": "Computing Services",
+          "website_url": "https://camaraproject.org/model-as-a-service/",
+          "tooltip": "Quickly construct unique Q&A assistant applications",
+          "display_name": "Q&A Assistant - Manage",
+          "published": true,
+          "canonical_name": "qa-assistant-manage",
+          "first_release": "Fall25"
+        },
+        {
+          "api_name": "qa-assistant-service",
+          "api_version": "0.2.0-rc.1",
+          "api_title": "Q&A Assistant - Service",
+          "commonalities": "0.8.0",
+          "maturity": "initial",
+          "portfolio_category": "Computing Services",
+          "website_url": "https://camaraproject.org/model-as-a-service/",
+          "tooltip": "Provide Q&A services to the users of the application",
+          "display_name": "Q&A Assistant - Service",
+          "published": true,
+          "canonical_name": "qa-assistant-service",
+          "first_release": "Fall25"
         }
       ]
     },
@@ -6591,6 +6653,26 @@
       "release_type": "public-release"
     },
     {
+      "api_name": "knowledge-base",
+      "api_version": "0.2.0-rc.1",
+      "api_title": "Knowledge Base",
+      "commonalities": "0.8.0",
+      "maturity": "initial",
+      "portfolio_category": "Computing Services",
+      "website_url": "https://camaraproject.org/model-as-a-service/",
+      "tooltip": "Build and manage personalized knowledge bases",
+      "display_name": "Knowledge Base",
+      "published": true,
+      "canonical_name": "knowledge-base",
+      "first_release": "Fall25",
+      "repository": "ModelAsAService",
+      "release_tag": "r2.1",
+      "release_date": "2026-07-28T01:55:13Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/ModelAsAService/releases/tag/r2.1",
+      "release_type": "pre-release-rc"
+    },
+    {
       "api_name": "qa-assistant-manage",
       "api_version": "0.1.0",
       "api_title": "Q&A Assistant - Manage",
@@ -6612,6 +6694,26 @@
       "release_type": "public-release"
     },
     {
+      "api_name": "qa-assistant-manage",
+      "api_version": "0.2.0-rc.1",
+      "api_title": "Q&A Assistant - Manage",
+      "commonalities": "0.8.0",
+      "maturity": "initial",
+      "portfolio_category": "Computing Services",
+      "website_url": "https://camaraproject.org/model-as-a-service/",
+      "tooltip": "Quickly construct unique Q&A assistant applications",
+      "display_name": "Q&A Assistant - Manage",
+      "published": true,
+      "canonical_name": "qa-assistant-manage",
+      "first_release": "Fall25",
+      "repository": "ModelAsAService",
+      "release_tag": "r2.1",
+      "release_date": "2026-07-28T01:55:13Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/ModelAsAService/releases/tag/r2.1",
+      "release_type": "pre-release-rc"
+    },
+    {
       "api_name": "qa-assistant-service",
       "api_version": "0.1.0",
       "api_title": "Q&A Assistant - Service",
@@ -6631,6 +6733,26 @@
       "meta_release": "Fall25",
       "github_url": "https://github.com/camaraproject/ModelAsAService/releases/tag/r1.2",
       "release_type": "public-release"
+    },
+    {
+      "api_name": "qa-assistant-service",
+      "api_version": "0.2.0-rc.1",
+      "api_title": "Q&A Assistant - Service",
+      "commonalities": "0.8.0",
+      "maturity": "initial",
+      "portfolio_category": "Computing Services",
+      "website_url": "https://camaraproject.org/model-as-a-service/",
+      "tooltip": "Provide Q&A services to the users of the application",
+      "display_name": "Q&A Assistant - Service",
+      "published": true,
+      "canonical_name": "qa-assistant-service",
+      "first_release": "Fall25",
+      "repository": "ModelAsAService",
+      "release_tag": "r2.1",
+      "release_date": "2026-07-28T01:55:13Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/ModelAsAService/releases/tag/r2.1",
+      "release_type": "pre-release-rc"
     },
     {
       "api_name": "most-frequent-location",
