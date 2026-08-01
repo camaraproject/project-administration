@@ -1,5 +1,5 @@
 metadata:
-  last_updated: '2026-07-28T05:33:53.650Z'
+  last_updated: '2026-08-01T05:42:38.120Z'
   workflow_version: 3.0.0
   schema_version: 3.1.0
 releases:
@@ -620,6 +620,22 @@ releases:
     apis:
       - api_name: consent-management
         api_version: 0.1.0-rc.1
+        api_title: Consent Management
+        commonalities: 0.8.0
+    superseded: true
+  - repository: ConsentManagement
+    release_tag: r1.2
+    release_date: '2026-07-31T07:19:13Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/ConsentManagement/releases/tag/r1.2
+    release_type: public-release
+    src_commit_sha: 63e05e0ec93ce89add302ecc959a374439d7b6af
+    dependencies:
+      commonalities_release: r4.3 (0.8.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: consent-management
+        api_version: 0.1.0
         api_title: Consent Management
         commonalities: 0.8.0
   - repository: CustomerInsights
@@ -2946,8 +2962,8 @@ repositories:
     newest_pre_release: null
   - repository: ConsentManagement
     github_url: https://github.com/camaraproject/ConsentManagement
-    latest_public_release: null
-    newest_pre_release: r1.1
+    latest_public_release: r1.2
+    newest_pre_release: null
   - repository: CustomerInsights
     github_url: https://github.com/camaraproject/CustomerInsights
     latest_public_release: r2.2
