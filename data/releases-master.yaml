@@ -1,5 +1,5 @@
 metadata:
-  last_updated: '2026-08-01T05:42:38.120Z'
+  last_updated: '2026-08-06T05:34:55.288Z'
   workflow_version: 3.0.0
   schema_version: 3.1.0
 releases:
@@ -2510,6 +2510,21 @@ releases:
         api_version: 2.0.1
         api_title: Simple Edge Discovery
         commonalities: 0.6.1
+  - repository: SimpleEdgeDiscovery
+    release_tag: r3.1
+    release_date: '2026-08-05T13:39:06Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/SimpleEdgeDiscovery/releases/tag/r3.1
+    release_type: pre-release-rc
+    src_commit_sha: bc38e3dd37616d3c9fa216cfc99f05b28629781b
+    dependencies:
+      commonalities_release: r4.3 (0.8.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: simple-edge-discovery
+        api_version: 2.1.0-rc.2
+        api_title: Simple Edge Discovery
+        commonalities: 0.8.0
   - repository: SimSwap
     release_tag: r1.1
     release_date: '2024-08-09T07:45:06Z'
@@ -3141,7 +3156,7 @@ repositories:
   - repository: SimpleEdgeDiscovery
     github_url: https://github.com/camaraproject/SimpleEdgeDiscovery
     latest_public_release: r2.3
-    newest_pre_release: null
+    newest_pre_release: r3.1
   - repository: SimSwap
     github_url: https://github.com/camaraproject/SimSwap
     latest_public_release: r3.3
