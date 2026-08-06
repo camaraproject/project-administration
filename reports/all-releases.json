@@ -1,27 +1,27 @@
 {
   "metadata": {
-    "generated": "2026-08-01T05:42:38.193Z",
+    "generated": "2026-08-06T05:34:55.371Z",
     "meta_release": "All",
     "source": "Release Collector v3",
     "landscape_version": "1.1.1"
   },
   "statistics": {
     "repositories_count": 52,
-    "api_versions_count": 174,
+    "api_versions_count": 175,
     "unique_api_names_count": 77,
     "unique_apis_count": 76,
     "api_version_maturity": {
       "stable": 28,
       "initial": 139,
-      "rc": 7
+      "rc": 8
     },
     "unique_api_maturity": {
-      "stable": 10,
+      "stable": 9,
       "initial": 59,
-      "rc": 7
+      "rc": 8
     },
     "categories": {
-      "Computing Services": 13,
+      "Computing Services": 14,
       "Communication Quality": 39,
       "Payments and Charging": 11,
       "Authentication and Fraud Prevention": 51,
@@ -747,6 +747,11 @@
     "SimpleEdgeDiscovery": {
       "releases": [
         {
+          "tag": "r3.1",
+          "date": "2026-08-05T13:39:06Z",
+          "apis_count": 1
+        },
+        {
           "tag": "r2.3",
           "date": "2026-04-23T09:19:18Z",
           "apis_count": 1
@@ -762,7 +767,7 @@
           "apis_count": 1
         }
       ],
-      "total_apis": 3,
+      "total_apis": 4,
       "unique_apis_count": 1
     },
     "SimSwap": {
@@ -4062,6 +4067,35 @@
           "canonical_name": "simple-edge-discovery",
           "first_release": "PreFall24",
           "isNew": false
+        }
+      ]
+    },
+    {
+      "repository": "SimpleEdgeDiscovery",
+      "release_tag": "r3.1",
+      "release_date": "2026-08-05T13:39:06Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/SimpleEdgeDiscovery/releases/tag/r3.1",
+      "release_type": "pre-release-rc",
+      "src_commit_sha": "bc38e3dd37616d3c9fa216cfc99f05b28629781b",
+      "dependencies": {
+        "commonalities_release": "r4.3 (0.8.0)",
+        "identity_consent_management_release": "r4.2 (0.5.0)"
+      },
+      "apis": [
+        {
+          "api_name": "simple-edge-discovery",
+          "api_version": "2.1.0-rc.2",
+          "api_title": "Simple Edge Discovery",
+          "commonalities": "0.8.0",
+          "maturity": "stable",
+          "portfolio_category": "Computing Services",
+          "website_url": "https://camaraproject.org/simple-edge-discovery/",
+          "tooltip": "Discover the closest edge cloud zone to a given device",
+          "display_name": "Simple Edge Discovery",
+          "published": true,
+          "canonical_name": "simple-edge-discovery",
+          "first_release": "PreFall24"
         }
       ]
     },
@@ -7703,6 +7737,26 @@
       "meta_release": "Fall25",
       "github_url": "https://github.com/camaraproject/SimpleEdgeDiscovery/releases/tag/r2.3",
       "release_type": "maintenance-release"
+    },
+    {
+      "api_name": "simple-edge-discovery",
+      "api_version": "2.1.0-rc.2",
+      "api_title": "Simple Edge Discovery",
+      "commonalities": "0.8.0",
+      "maturity": "stable",
+      "portfolio_category": "Computing Services",
+      "website_url": "https://camaraproject.org/simple-edge-discovery/",
+      "tooltip": "Discover the closest edge cloud zone to a given device",
+      "display_name": "Simple Edge Discovery",
+      "published": true,
+      "canonical_name": "simple-edge-discovery",
+      "first_release": "PreFall24",
+      "repository": "SimpleEdgeDiscovery",
+      "release_tag": "r3.1",
+      "release_date": "2026-08-05T13:39:06Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/SimpleEdgeDiscovery/releases/tag/r3.1",
+      "release_type": "pre-release-rc"
     },
     {
       "api_name": "sim-swap",
