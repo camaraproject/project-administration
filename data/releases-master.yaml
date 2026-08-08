@@ -1,5 +1,5 @@
 metadata:
-  last_updated: '2026-08-06T05:34:55.288Z'
+  last_updated: '2026-08-08T03:54:59.176Z'
   workflow_version: 3.0.0
   schema_version: 3.1.0
 releases:
@@ -1044,6 +1044,25 @@ releases:
         api_version: 1.1.0
         api_title: Device Reachability Status
         commonalities: '0.6'
+  - repository: DeviceReachabilityStatus
+    release_tag: r2.1
+    release_date: '2026-08-07T10:35:15Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/DeviceReachabilityStatus/releases/tag/r2.1
+    release_type: pre-release-rc
+    src_commit_sha: 0941f992d6d95412fd3fa39c6e0c8ceea7775b7c
+    dependencies:
+      commonalities_release: r4.3 (0.8.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: device-reachability-status-subscriptions
+        api_version: 0.9.0-rc.1
+        api_title: Device Reachability Status Subscriptions
+        commonalities: 0.8.0
+      - api_name: device-reachability-status
+        api_version: 1.2.0-rc.3
+        api_title: Device Reachability Status
+        commonalities: 0.8.0
   - repository: DeviceRoamingStatus
     release_tag: r1.1
     release_date: '2025-07-17T15:49:44Z'
@@ -1075,6 +1094,25 @@ releases:
         api_version: 1.1.0
         api_title: Device Roaming Status
         commonalities: '0.6'
+  - repository: DeviceRoamingStatus
+    release_tag: r2.1
+    release_date: '2026-08-07T09:58:54Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/DeviceRoamingStatus/releases/tag/r2.1
+    release_type: pre-release-rc
+    src_commit_sha: 9be6fb27d6397086db4405fbd28c49f6314a6574
+    dependencies:
+      commonalities_release: r4.3 (0.8.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: device-roaming-status-subscriptions
+        api_version: 0.9.0-rc.1
+        api_title: Device Roaming Status Subscriptions
+        commonalities: 0.8.0
+      - api_name: device-roaming-status
+        api_version: 1.2.0-rc.3
+        api_title: Device Roaming Status
+        commonalities: 0.8.0
   - repository: DeviceStatus
     release_tag: r1.1
     release_date: '2024-08-02T06:43:41Z'
@@ -3010,11 +3048,11 @@ repositories:
   - repository: DeviceReachabilityStatus
     github_url: https://github.com/camaraproject/DeviceReachabilityStatus
     latest_public_release: r1.2
-    newest_pre_release: null
+    newest_pre_release: r2.1
   - repository: DeviceRoamingStatus
     github_url: https://github.com/camaraproject/DeviceRoamingStatus
     latest_public_release: r1.2
-    newest_pre_release: null
+    newest_pre_release: r2.1
   - repository: DeviceStatus
     github_url: https://github.com/camaraproject/DeviceStatus
     latest_public_release: r2.2
