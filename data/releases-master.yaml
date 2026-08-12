@@ -1,5 +1,5 @@
 metadata:
-  last_updated: '2026-08-10T04:16:35.921Z'
+  last_updated: '2026-08-12T04:25:49.744Z'
   workflow_version: 3.0.0
   schema_version: 3.1.0
 releases:
@@ -432,6 +432,25 @@ releases:
         api_version: 0.2.0
         api_title: Connected Network Type
         commonalities: '0.6'
+  - repository: ConnectedNetworkType
+    release_tag: r2.1
+    release_date: '2026-08-11T15:01:59Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/ConnectedNetworkType/releases/tag/r2.1
+    release_type: pre-release-rc
+    src_commit_sha: 8f05564fbf29825e58bfecf27811070524da5361
+    dependencies:
+      commonalities_release: r4.3 (0.8.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: connected-network-type-subscriptions
+        api_version: 0.3.0-rc.1
+        api_title: Connected Network Type Subscriptions
+        commonalities: 0.8.0
+      - api_name: connected-network-type
+        api_version: 0.3.0-rc.1
+        api_title: Connected Network Type
+        commonalities: 0.8.0
   - repository: ConnectivityInsights
     release_tag: r1.1
     release_date: '2024-08-23T16:54:17Z'
@@ -2221,6 +2240,21 @@ releases:
         api_version: 0.3.0
         api_title: Population Density Data
         commonalities: '0.6'
+  - repository: PopulationDensityData
+    release_tag: r4.1
+    release_date: '2026-08-11T10:11:52Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/PopulationDensityData/releases/tag/r4.1
+    release_type: pre-release-rc
+    src_commit_sha: faa2511f5d4b5decf7bbceacbbed986c001a4163
+    dependencies:
+      commonalities_release: r4.3 (0.8.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: population-density-data
+        api_version: 1.0.0-rc.1
+        api_title: Population Density Data
+        commonalities: 0.8.0
   - repository: PredictiveConnectivityData
     release_tag: r1.1
     release_date: '2025-07-24T08:21:30Z'
@@ -2244,6 +2278,21 @@ releases:
         api_version: 0.1.0
         api_title: Predictive Connectivity Data
         commonalities: '0.6'
+  - repository: PredictiveConnectivityData
+    release_tag: r2.1
+    release_date: '2026-08-11T09:54:02Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/PredictiveConnectivityData/releases/tag/r2.1
+    release_type: pre-release-rc
+    src_commit_sha: ecd8a33c2314f10bb56d1b210fa4e2d944d9ee1a
+    dependencies:
+      commonalities_release: r4.3 (0.8.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: predictive-connectivity-data
+        api_version: 0.2.0-rc.1
+        api_title: Predictive Connectivity Data
+        commonalities: 0.8.0
   - repository: QoSBooking
     release_tag: r1.1
     release_date: '2025-07-17T16:26:18Z'
@@ -2785,6 +2834,21 @@ releases:
         api_version: 0.3.0-alpha.1
         api_title: KYC Tenure
         commonalities: 0.8.0
+  - repository: Tenure
+    release_tag: r3.2
+    release_date: '2026-08-11T08:25:04Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/Tenure/releases/tag/r3.2
+    release_type: pre-release-rc
+    src_commit_sha: 91eea01c3cf00eaf960ba67c062efa526a402469
+    dependencies:
+      commonalities_release: r4.3 (0.8.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: kyc-tenure
+        api_version: 0.3.0-rc.1
+        api_title: KYC Tenure
+        commonalities: 0.8.0
   - repository: TrafficInfluence
     release_tag: r1.1
     release_date: '2025-06-10T15:04:41Z'
@@ -3004,7 +3068,7 @@ repositories:
   - repository: ConnectedNetworkType
     github_url: https://github.com/camaraproject/ConnectedNetworkType
     latest_public_release: r1.2
-    newest_pre_release: null
+    newest_pre_release: r2.1
   - repository: ConnectivityInsights
     github_url: https://github.com/camaraproject/ConnectivityInsights
     latest_public_release: r3.2
@@ -3161,11 +3225,11 @@ repositories:
   - repository: PopulationDensityData
     github_url: https://github.com/camaraproject/PopulationDensityData
     latest_public_release: r3.2
-    newest_pre_release: null
+    newest_pre_release: r4.1
   - repository: PredictiveConnectivityData
     github_url: https://github.com/camaraproject/PredictiveConnectivityData
     latest_public_release: r1.2
-    newest_pre_release: null
+    newest_pre_release: r2.1
   - repository: QoSBooking
     github_url: https://github.com/camaraproject/QoSBooking
     latest_public_release: r1.2
@@ -3215,7 +3279,7 @@ repositories:
   - repository: Tenure
     github_url: https://github.com/camaraproject/Tenure
     latest_public_release: r2.2
-    newest_pre_release: r3.1
+    newest_pre_release: r3.2
   - repository: TrafficInfluence
     github_url: https://github.com/camaraproject/TrafficInfluence
     latest_public_release: r1.3
