@@ -1,28 +1,28 @@
 {
   "metadata": {
-    "generated": "2026-08-12T04:25:49.832Z",
+    "generated": "2026-08-20T03:27:14.512Z",
     "meta_release": "All",
     "source": "Release Collector v3",
     "landscape_version": "1.1.1"
   },
   "statistics": {
     "repositories_count": 52,
-    "api_versions_count": 184,
+    "api_versions_count": 187,
     "unique_api_names_count": 77,
     "unique_apis_count": 76,
     "api_version_maturity": {
       "stable": 28,
       "initial": 139,
-      "rc": 17
+      "rc": 20
     },
     "unique_api_maturity": {
       "stable": 7,
-      "initial": 52,
-      "rc": 17
+      "initial": 49,
+      "rc": 20
     },
     "categories": {
-      "Computing Services": 14,
-      "Communication Quality": 42,
+      "Computing Services": 15,
+      "Communication Quality": 43,
       "Payments and Charging": 11,
       "Authentication and Fraud Prevention": 52,
       "Communication Services": 12,
@@ -47,23 +47,33 @@
     "ApplicationEndpointRegistration": {
       "releases": [
         {
+          "tag": "r2.1",
+          "date": "2026-08-20T02:02:26Z",
+          "apis_count": 1
+        },
+        {
           "tag": "r1.2",
           "date": "2025-09-17T09:17:03Z",
           "apis_count": 1
         }
       ],
-      "total_apis": 1,
+      "total_apis": 2,
       "unique_apis_count": 1
     },
     "ApplicationProfiles": {
       "releases": [
+        {
+          "tag": "r2.1",
+          "date": "2026-08-19T23:33:53Z",
+          "apis_count": 1
+        },
         {
           "tag": "r1.2",
           "date": "2025-09-17T15:37:44Z",
           "apis_count": 1
         }
       ],
-      "total_apis": 1,
+      "total_apis": 2,
       "unique_apis_count": 1
     },
     "BlockchainPublicAddress": {
@@ -761,12 +771,17 @@
     "SessionInsights": {
       "releases": [
         {
+          "tag": "r2.1",
+          "date": "2026-08-19T16:29:52Z",
+          "apis_count": 1
+        },
+        {
           "tag": "r1.1",
           "date": "2026-05-07T09:55:28Z",
           "apis_count": 1
         }
       ],
-      "total_apis": 1,
+      "total_apis": 2,
       "unique_apis_count": 1
     },
     "SimpleEdgeDiscovery": {
@@ -964,6 +979,35 @@
       ]
     },
     {
+      "repository": "ApplicationEndpointRegistration",
+      "release_tag": "r2.1",
+      "release_date": "2026-08-20T02:02:26Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/ApplicationEndpointRegistration/releases/tag/r2.1",
+      "release_type": "pre-release-rc",
+      "src_commit_sha": "04795c6bc137f898a2ff663a573072e58e1f019f",
+      "dependencies": {
+        "commonalities_release": "r4.3 (0.8.0)",
+        "identity_consent_management_release": "r4.2 (0.5.0)"
+      },
+      "apis": [
+        {
+          "api_name": "application-endpoint-registration",
+          "api_version": "0.2.0-rc.1",
+          "api_title": "Application Endpoints Registration",
+          "commonalities": "0.8.0",
+          "maturity": "initial",
+          "portfolio_category": "Computing Services",
+          "website_url": "https://camaraproject.org/application-endpoint-registration/",
+          "tooltip": "Register application endpoints",
+          "display_name": "Application Endpoints Registration",
+          "published": true,
+          "canonical_name": "application-endpoint-registration",
+          "first_release": "Fall25"
+        }
+      ]
+    },
+    {
       "repository": "ApplicationProfiles",
       "release_tag": "r1.2",
       "release_date": "2025-09-17T15:37:44Z",
@@ -985,6 +1029,35 @@
           "canonical_name": "application-profiles",
           "first_release": "Fall24",
           "isNew": false
+        }
+      ]
+    },
+    {
+      "repository": "ApplicationProfiles",
+      "release_tag": "r2.1",
+      "release_date": "2026-08-19T23:33:53Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/ApplicationProfiles/releases/tag/r2.1",
+      "release_type": "pre-release-rc",
+      "src_commit_sha": "308e84d5b8eb923cf6fdd837e6a66780c0988b33",
+      "dependencies": {
+        "commonalities_release": "r4.3 (0.8.0)",
+        "identity_consent_management_release": "r4.2 (0.5.0)"
+      },
+      "apis": [
+        {
+          "api_name": "application-profiles",
+          "api_version": "0.6.0-rc.1",
+          "api_title": "Connectivity Insights - Application Profiles",
+          "commonalities": "0.8.0",
+          "maturity": "initial",
+          "portfolio_category": "Communication Quality",
+          "website_url": "https://camaraproject.org/application-profiles/",
+          "tooltip": "Share information about applications relevant for network related decision making",
+          "display_name": "Connectivity Insights - Application Profiles",
+          "published": true,
+          "canonical_name": "application-profiles",
+          "first_release": "Fall24"
         }
       ]
     },
@@ -4208,6 +4281,35 @@
       ]
     },
     {
+      "repository": "SessionInsights",
+      "release_tag": "r2.1",
+      "release_date": "2026-08-19T16:29:52Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/SessionInsights/releases/tag/r2.1",
+      "release_type": "pre-release-rc",
+      "src_commit_sha": "55f5c9c77d868bd294306158a01a75e2e1ea9c55",
+      "dependencies": {
+        "commonalities_release": "r4.3 (0.8.0)",
+        "identity_consent_management_release": "r4.2 (0.5.0)"
+      },
+      "apis": [
+        {
+          "api_name": "session-insights",
+          "api_version": "0.2.0-rc.1",
+          "api_title": "Session Insights",
+          "commonalities": "0.8.0",
+          "maturity": "initial",
+          "portfolio_category": null,
+          "website_url": null,
+          "tooltip": null,
+          "display_name": "Session Insights",
+          "published": true,
+          "canonical_name": "session-insights",
+          "first_release": "Sandbox"
+        }
+      ]
+    },
+    {
       "repository": "SimpleEdgeDiscovery",
       "release_tag": "r1.3",
       "release_date": "2024-09-11T10:39:25Z",
@@ -4952,6 +5054,26 @@
       "release_type": "public-release"
     },
     {
+      "api_name": "application-endpoint-registration",
+      "api_version": "0.2.0-rc.1",
+      "api_title": "Application Endpoints Registration",
+      "commonalities": "0.8.0",
+      "maturity": "initial",
+      "portfolio_category": "Computing Services",
+      "website_url": "https://camaraproject.org/application-endpoint-registration/",
+      "tooltip": "Register application endpoints",
+      "display_name": "Application Endpoints Registration",
+      "published": true,
+      "canonical_name": "application-endpoint-registration",
+      "first_release": "Fall25",
+      "repository": "ApplicationEndpointRegistration",
+      "release_tag": "r2.1",
+      "release_date": "2026-08-20T02:02:26Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/ApplicationEndpointRegistration/releases/tag/r2.1",
+      "release_type": "pre-release-rc"
+    },
+    {
       "api_name": "application-profiles",
       "api_version": "0.5.0",
       "api_title": "Connectivity Insights - Application Profiles",
@@ -4971,6 +5093,26 @@
       "meta_release": "Fall25",
       "github_url": "https://github.com/camaraproject/ApplicationProfiles/releases/tag/r1.2",
       "release_type": "public-release"
+    },
+    {
+      "api_name": "application-profiles",
+      "api_version": "0.6.0-rc.1",
+      "api_title": "Connectivity Insights - Application Profiles",
+      "commonalities": "0.8.0",
+      "maturity": "initial",
+      "portfolio_category": "Communication Quality",
+      "website_url": "https://camaraproject.org/application-profiles/",
+      "tooltip": "Share information about applications relevant for network related decision making",
+      "display_name": "Connectivity Insights - Application Profiles",
+      "published": true,
+      "canonical_name": "application-profiles",
+      "first_release": "Fall24",
+      "repository": "ApplicationProfiles",
+      "release_tag": "r2.1",
+      "release_date": "2026-08-19T23:33:53Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/ApplicationProfiles/releases/tag/r2.1",
+      "release_type": "pre-release-rc"
     },
     {
       "api_name": "blockchain-public-address",
@@ -8080,6 +8222,26 @@
       "meta_release": "Independent",
       "github_url": "https://github.com/camaraproject/SessionInsights/releases/tag/r1.1",
       "release_type": "pre-release-alpha"
+    },
+    {
+      "api_name": "session-insights",
+      "api_version": "0.2.0-rc.1",
+      "api_title": "Session Insights",
+      "commonalities": "0.8.0",
+      "maturity": "initial",
+      "portfolio_category": null,
+      "website_url": null,
+      "tooltip": null,
+      "display_name": "Session Insights",
+      "published": true,
+      "canonical_name": "session-insights",
+      "first_release": "Sandbox",
+      "repository": "SessionInsights",
+      "release_tag": "r2.1",
+      "release_date": "2026-08-19T16:29:52Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/SessionInsights/releases/tag/r2.1",
+      "release_type": "pre-release-rc"
     },
     {
       "api_name": "simple-edge-discovery",
