@@ -1,28 +1,28 @@
 {
   "metadata": {
-    "generated": "2026-08-20T03:27:14.512Z",
+    "generated": "2026-08-20T14:16:20.822Z",
     "meta_release": "All",
     "source": "Release Collector v3",
     "landscape_version": "1.1.1"
   },
   "statistics": {
     "repositories_count": 52,
-    "api_versions_count": 187,
+    "api_versions_count": 190,
     "unique_api_names_count": 77,
     "unique_apis_count": 76,
     "api_version_maturity": {
       "stable": 28,
       "initial": 139,
-      "rc": 20
+      "rc": 23
     },
     "unique_api_maturity": {
-      "stable": 7,
-      "initial": 49,
-      "rc": 20
+      "stable": 5,
+      "initial": 48,
+      "rc": 23
     },
     "categories": {
       "Computing Services": 15,
-      "Communication Quality": 43,
+      "Communication Quality": 46,
       "Payments and Charging": 11,
       "Authentication and Fraud Prevention": 52,
       "Communication Services": 12,
@@ -30,7 +30,7 @@
       "Device Information": 23,
       "Location Services": 17
     },
-    "apis_with_previous_names": 4
+    "apis_with_previous_names": 5
   },
   "repositories": {
     "ApplicationEndpointDiscovery": {
@@ -724,6 +724,11 @@
     "QualityOnDemand": {
       "releases": [
         {
+          "tag": "r4.1",
+          "date": "2026-08-20T10:09:32Z",
+          "apis_count": 3
+        },
+        {
           "tag": "r3.2",
           "date": "2025-09-16T12:19:48Z",
           "apis_count": 3
@@ -744,7 +749,7 @@
           "apis_count": 3
         }
       ],
-      "total_apis": 12,
+      "total_apis": 15,
       "unique_apis_count": 3
     },
     "RegionDeviceCount": {
@@ -4189,6 +4194,66 @@
           "canonical_name": "quality-on-demand",
           "first_release": "PreFall24",
           "isNew": false
+        }
+      ]
+    },
+    {
+      "repository": "QualityOnDemand",
+      "release_tag": "r4.1",
+      "release_date": "2026-08-20T10:09:32Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/QualityOnDemand/releases/tag/r4.1",
+      "release_type": "pre-release-rc",
+      "src_commit_sha": "61fc7f9bfdf51d5544d1b8227d2be8fb77239047",
+      "dependencies": {
+        "commonalities_release": "r4.3 (0.8.0)",
+        "identity_consent_management_release": "r4.2 (0.5.0)"
+      },
+      "apis": [
+        {
+          "api_name": "qos-profiles",
+          "api_version": "1.2.0-rc.3",
+          "api_title": "QoS Profiles",
+          "commonalities": "0.8.0",
+          "maturity": "stable",
+          "portfolio_category": "Communication Quality",
+          "website_url": "https://camaraproject.org/qos-profiles/",
+          "tooltip": "Provide the ability to set certain profile of QoS",
+          "display_name": "QoS Profiles",
+          "published": true,
+          "canonical_name": "qos-profiles",
+          "first_release": "PreFall24"
+        },
+        {
+          "api_name": "qos-provisioning",
+          "api_version": "0.4.0-rc.1",
+          "api_title": "QoS Provisioning",
+          "commonalities": "0.8.0",
+          "maturity": "initial",
+          "portfolio_category": "Communication Quality",
+          "website_url": "https://camaraproject.org/qod-provisioning/",
+          "tooltip": "Creating, getting, updating, removing a QoD provision for a device",
+          "display_name": "QoS Provisioning",
+          "published": true,
+          "canonical_name": "qos-provisioning",
+          "first_release": "Fall24",
+          "previous_names": [
+            "qod-provisioning"
+          ]
+        },
+        {
+          "api_name": "quality-on-demand",
+          "api_version": "1.2.0-rc.3",
+          "api_title": "Quality-On-Demand",
+          "commonalities": "0.8.0",
+          "maturity": "stable",
+          "portfolio_category": "Communication Quality",
+          "website_url": "https://camaraproject.org/quality-on-demand/",
+          "tooltip": "Allows users to set mobile connection quality and get notifications",
+          "display_name": "Quality-On-Demand",
+          "published": true,
+          "canonical_name": "quality-on-demand",
+          "first_release": "PreFall24"
         }
       ]
     },
@@ -7982,6 +8047,26 @@
       "release_type": "public-release"
     },
     {
+      "api_name": "qos-profiles",
+      "api_version": "1.2.0-rc.3",
+      "api_title": "QoS Profiles",
+      "commonalities": "0.8.0",
+      "maturity": "stable",
+      "portfolio_category": "Communication Quality",
+      "website_url": "https://camaraproject.org/qos-profiles/",
+      "tooltip": "Provide the ability to set certain profile of QoS",
+      "display_name": "QoS Profiles",
+      "published": true,
+      "canonical_name": "qos-profiles",
+      "first_release": "PreFall24",
+      "repository": "QualityOnDemand",
+      "release_tag": "r4.1",
+      "release_date": "2026-08-20T10:09:32Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/QualityOnDemand/releases/tag/r4.1",
+      "release_type": "pre-release-rc"
+    },
+    {
       "api_name": "qod-provisioning",
       "api_version": "0.1.0",
       "api_title": "QoD Provisioning API",
@@ -8078,6 +8163,29 @@
       "release_type": "public-release"
     },
     {
+      "api_name": "qos-provisioning",
+      "api_version": "0.4.0-rc.1",
+      "api_title": "QoS Provisioning",
+      "commonalities": "0.8.0",
+      "maturity": "initial",
+      "portfolio_category": "Communication Quality",
+      "website_url": "https://camaraproject.org/qod-provisioning/",
+      "tooltip": "Creating, getting, updating, removing a QoD provision for a device",
+      "display_name": "QoS Provisioning",
+      "published": true,
+      "canonical_name": "qos-provisioning",
+      "first_release": "Fall24",
+      "previous_names": [
+        "qod-provisioning"
+      ],
+      "repository": "QualityOnDemand",
+      "release_tag": "r4.1",
+      "release_date": "2026-08-20T10:09:32Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/QualityOnDemand/releases/tag/r4.1",
+      "release_type": "pre-release-rc"
+    },
+    {
       "api_name": "quality-on-demand",
       "api_version": "0.11.0",
       "api_title": "Quality-On-Demand",
@@ -8160,6 +8268,26 @@
       "meta_release": "Fall25",
       "github_url": "https://github.com/camaraproject/QualityOnDemand/releases/tag/r3.2",
       "release_type": "public-release"
+    },
+    {
+      "api_name": "quality-on-demand",
+      "api_version": "1.2.0-rc.3",
+      "api_title": "Quality-On-Demand",
+      "commonalities": "0.8.0",
+      "maturity": "stable",
+      "portfolio_category": "Communication Quality",
+      "website_url": "https://camaraproject.org/quality-on-demand/",
+      "tooltip": "Allows users to set mobile connection quality and get notifications",
+      "display_name": "Quality-On-Demand",
+      "published": true,
+      "canonical_name": "quality-on-demand",
+      "first_release": "PreFall24",
+      "repository": "QualityOnDemand",
+      "release_tag": "r4.1",
+      "release_date": "2026-08-20T10:09:32Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/QualityOnDemand/releases/tag/r4.1",
+      "release_type": "pre-release-rc"
     },
     {
       "api_name": "region-device-count",

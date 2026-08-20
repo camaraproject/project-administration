@@ -1,5 +1,5 @@
 metadata:
-  last_updated: '2026-08-20T03:27:14.407Z'
+  last_updated: '2026-08-20T14:16:20.717Z'
   workflow_version: 3.0.0
   schema_version: 3.1.0
 releases:
@@ -2490,6 +2490,29 @@ releases:
         api_version: 1.1.0
         api_title: Quality-On-Demand
         commonalities: '0.6'
+  - repository: QualityOnDemand
+    release_tag: r4.1
+    release_date: '2026-08-20T10:09:32Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/QualityOnDemand/releases/tag/r4.1
+    release_type: pre-release-rc
+    src_commit_sha: 61fc7f9bfdf51d5544d1b8227d2be8fb77239047
+    dependencies:
+      commonalities_release: r4.3 (0.8.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: qos-profiles
+        api_version: 1.2.0-rc.3
+        api_title: QoS Profiles
+        commonalities: 0.8.0
+      - api_name: qos-provisioning
+        api_version: 0.4.0-rc.1
+        api_title: QoS Provisioning
+        commonalities: 0.8.0
+      - api_name: quality-on-demand
+        api_version: 1.2.0-rc.3
+        api_title: Quality-On-Demand
+        commonalities: 0.8.0
   - repository: RegionDeviceCount
     release_tag: r1.1
     release_date: '2025-02-13T09:46:14Z'
@@ -3282,7 +3305,7 @@ repositories:
   - repository: QualityOnDemand
     github_url: https://github.com/camaraproject/QualityOnDemand
     latest_public_release: r3.2
-    newest_pre_release: null
+    newest_pre_release: r4.1
   - repository: RainfallIntensity
     github_url: https://github.com/camaraproject/RainfallIntensity
     latest_public_release: null
