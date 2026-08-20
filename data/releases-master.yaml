@@ -1,5 +1,5 @@
 metadata:
-  last_updated: '2026-08-12T04:25:49.744Z'
+  last_updated: '2026-08-20T03:27:14.407Z'
   workflow_version: 3.0.0
   schema_version: 3.1.0
 releases:
@@ -49,6 +49,21 @@ releases:
         api_version: 0.1.0
         api_title: Application Endpoints Registration
         commonalities: '0.6'
+  - repository: ApplicationEndpointRegistration
+    release_tag: r2.1
+    release_date: '2026-08-20T02:02:26Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/ApplicationEndpointRegistration/releases/tag/r2.1
+    release_type: pre-release-rc
+    src_commit_sha: 04795c6bc137f898a2ff663a573072e58e1f019f
+    dependencies:
+      commonalities_release: r4.3 (0.8.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: application-endpoint-registration
+        api_version: 0.2.0-rc.1
+        api_title: Application Endpoints Registration
+        commonalities: 0.8.0
   - repository: ApplicationProfiles
     release_tag: r1.1
     release_date: '2025-07-29T16:08:11Z'
@@ -72,6 +87,21 @@ releases:
         api_version: 0.5.0
         api_title: Connectivity Insights - Application Profiles
         commonalities: '0.6'
+  - repository: ApplicationProfiles
+    release_tag: r2.1
+    release_date: '2026-08-19T23:33:53Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/ApplicationProfiles/releases/tag/r2.1
+    release_type: pre-release-rc
+    src_commit_sha: 308e84d5b8eb923cf6fdd837e6a66780c0988b33
+    dependencies:
+      commonalities_release: r4.3 (0.8.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: application-profiles
+        api_version: 0.6.0-rc.1
+        api_title: Connectivity Insights - Application Profiles
+        commonalities: 0.8.0
   - repository: BlockchainPublicAddress
     release_tag: r1.1
     release_date: '2025-02-20T07:58:47Z'
@@ -2524,6 +2554,21 @@ releases:
         api_version: 0.1.0-alpha.1
         api_title: Session Insights
         commonalities: 0.6.1
+  - repository: SessionInsights
+    release_tag: r2.1
+    release_date: '2026-08-19T16:29:52Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/SessionInsights/releases/tag/r2.1
+    release_type: pre-release-rc
+    src_commit_sha: 55f5c9c77d868bd294306158a01a75e2e1ea9c55
+    dependencies:
+      commonalities_release: r4.3 (0.8.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: session-insights
+        api_version: 0.2.0-rc.1
+        api_title: Session Insights
+        commonalities: 0.8.0
   - repository: SimpleEdgeDiscovery
     release_tag: r1.1
     release_date: '2024-07-30T17:33:27Z'
@@ -3040,11 +3085,11 @@ repositories:
   - repository: ApplicationEndpointRegistration
     github_url: https://github.com/camaraproject/ApplicationEndpointRegistration
     latest_public_release: r1.2
-    newest_pre_release: null
+    newest_pre_release: r2.1
   - repository: ApplicationProfiles
     github_url: https://github.com/camaraproject/ApplicationProfiles
     latest_public_release: r1.2
-    newest_pre_release: null
+    newest_pre_release: r2.1
   - repository: BlockchainPublicAddress
     github_url: https://github.com/camaraproject/BlockchainPublicAddress
     latest_public_release: r2.2
@@ -3249,7 +3294,7 @@ repositories:
   - repository: SessionInsights
     github_url: https://github.com/camaraproject/SessionInsights
     latest_public_release: null
-    newest_pre_release: r1.1
+    newest_pre_release: r2.1
   - repository: ShortMessageService
     github_url: https://github.com/camaraproject/ShortMessageService
     repository_archived: true
