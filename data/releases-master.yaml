@@ -1,5 +1,5 @@
 metadata:
-  last_updated: '2026-08-21T03:32:36.140Z'
+  last_updated: '2026-08-28T14:34:51.497Z'
   workflow_version: 3.0.0
   schema_version: 3.1.0
 releases:
@@ -1471,6 +1471,21 @@ releases:
     apis:
       - api_name: esim-profile-management
         api_version: 0.1.0-alpha.1
+        api_title: eSIM Profile Management API
+        commonalities: 0.8.0
+  - repository: IoTDeviceManagement
+    release_tag: r1.2
+    release_date: '2026-08-28T05:15:54Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/IoTDeviceManagement/releases/tag/r1.2
+    release_type: pre-release-rc
+    src_commit_sha: 6082d658acfe5722f8724a928da31a7dc5f3cdd9
+    dependencies:
+      commonalities_release: r4.3 (0.8.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: esim-profile-management
+        api_version: 0.1.0-rc.1
         api_title: eSIM Profile Management API
         commonalities: 0.8.0
   - repository: IoTNetworkOptimization
@@ -3244,7 +3259,7 @@ repositories:
   - repository: IoTDeviceManagement
     github_url: https://github.com/camaraproject/IoTDeviceManagement
     latest_public_release: null
-    newest_pre_release: r1.1
+    newest_pre_release: r1.2
   - repository: IoTNetworkOptimization
     github_url: https://github.com/camaraproject/IoTNetworkOptimization
     latest_public_release: null
@@ -3320,6 +3335,10 @@ repositories:
   - repository: QoSBooking
     github_url: https://github.com/camaraproject/QoSBooking
     latest_public_release: r1.2
+    newest_pre_release: null
+  - repository: QoSProfiles
+    github_url: https://github.com/camaraproject/QoSProfiles
+    latest_public_release: null
     newest_pre_release: null
   - repository: QualityOnDemand
     github_url: https://github.com/camaraproject/QualityOnDemand
