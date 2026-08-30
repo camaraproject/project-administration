@@ -1,5 +1,5 @@
 metadata:
-  last_updated: '2026-08-28T14:34:51.497Z'
+  last_updated: '2026-08-30T08:31:56.537Z'
   workflow_version: 3.0.0
   schema_version: 3.1.0
 releases:
@@ -2388,6 +2388,25 @@ releases:
         api_version: 0.1.0
         api_title: QoS Booking
         commonalities: '0.6'
+  - repository: QoSBooking
+    release_tag: r2.1
+    release_date: '2026-08-28T16:58:33Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/QoSBooking/releases/tag/r2.1
+    release_type: pre-release-rc
+    src_commit_sha: c60335beceb0dae021bc8dfc803fdb6c15318b95
+    dependencies:
+      commonalities_release: r4.3 (0.8.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: qos-booking-and-assignment
+        api_version: 0.2.0-rc.1
+        api_title: QoS Booking and Assignment
+        commonalities: 0.8.0
+      - api_name: qos-booking
+        api_version: 0.2.0-rc.1
+        api_title: QoS Booking
+        commonalities: 0.8.0
   - repository: QualityOnDemand
     release_tag: r1.1
     release_date: '2024-08-09T13:30:59Z'
@@ -3335,7 +3354,7 @@ repositories:
   - repository: QoSBooking
     github_url: https://github.com/camaraproject/QoSBooking
     latest_public_release: r1.2
-    newest_pre_release: null
+    newest_pre_release: r2.1
   - repository: QoSProfiles
     github_url: https://github.com/camaraproject/QoSProfiles
     latest_public_release: null
