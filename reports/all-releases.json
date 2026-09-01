@@ -1,30 +1,30 @@
 {
   "metadata": {
-    "generated": "2026-08-30T08:31:56.643Z",
+    "generated": "2026-09-01T07:59:02.943Z",
     "meta_release": "All",
     "source": "Release Collector v3",
     "landscape_version": "1.1.1"
   },
   "statistics": {
     "repositories_count": 52,
-    "api_versions_count": 195,
+    "api_versions_count": 198,
     "unique_api_names_count": 77,
     "unique_apis_count": 76,
     "api_version_maturity": {
       "stable": 28,
       "initial": 139,
-      "rc": 28
+      "rc": 31
     },
     "unique_api_maturity": {
       "stable": 5,
-      "initial": 43,
-      "rc": 28
+      "initial": 40,
+      "rc": 31
     },
     "categories": {
       "Computing Services": 15,
       "Communication Quality": 50,
       "Payments and Charging": 11,
-      "Authentication and Fraud Prevention": 52,
+      "Authentication and Fraud Prevention": 55,
       "Communication Services": 12,
       "Service Management": 2,
       "Device Information": 23,
@@ -489,16 +489,26 @@
     "KnowYourCustomerAgeVerification": {
       "releases": [
         {
+          "tag": "r2.1",
+          "date": "2026-09-01T05:15:38Z",
+          "apis_count": 1
+        },
+        {
           "tag": "r1.3",
           "date": "2025-09-14T03:25:04Z",
           "apis_count": 1
         }
       ],
-      "total_apis": 1,
+      "total_apis": 2,
       "unique_apis_count": 1
     },
     "KnowYourCustomerFill-in": {
       "releases": [
+        {
+          "tag": "r2.1",
+          "date": "2026-09-01T05:11:26Z",
+          "apis_count": 1
+        },
         {
           "tag": "r1.3",
           "date": "2025-12-15T09:02:43Z",
@@ -510,18 +520,23 @@
           "apis_count": 1
         }
       ],
-      "total_apis": 2,
+      "total_apis": 3,
       "unique_apis_count": 1
     },
     "KnowYourCustomerMatch": {
       "releases": [
+        {
+          "tag": "r2.1",
+          "date": "2026-09-01T05:04:32Z",
+          "apis_count": 1
+        },
         {
           "tag": "r1.2",
           "date": "2025-09-14T03:35:29Z",
           "apis_count": 1
         }
       ],
-      "total_apis": 1,
+      "total_apis": 2,
       "unique_apis_count": 1
     },
     "ModelAsAService": {
@@ -3159,6 +3174,35 @@
       ]
     },
     {
+      "repository": "KnowYourCustomerAgeVerification",
+      "release_tag": "r2.1",
+      "release_date": "2026-09-01T05:15:38Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/KnowYourCustomerAgeVerification/releases/tag/r2.1",
+      "release_type": "pre-release-rc",
+      "src_commit_sha": "f1d12f34fb16543390b072409aebe06af27a972a",
+      "dependencies": {
+        "commonalities_release": "r4.3 (0.8.0)",
+        "identity_consent_management_release": "r4.2 (0.5.0)"
+      },
+      "apis": [
+        {
+          "api_name": "kyc-age-verification",
+          "api_version": "0.3.0-rc.1",
+          "api_title": "Know Your Customer Age Verification",
+          "commonalities": "0.8.0",
+          "maturity": "initial",
+          "portfolio_category": "Authentication and Fraud Prevention",
+          "website_url": "https://camaraproject.org/know-your-customer-age-verification/",
+          "tooltip": "Allows service providers to validate age information with operators",
+          "display_name": "Know Your Customer Age Verification",
+          "published": true,
+          "canonical_name": "kyc-age-verification",
+          "first_release": "Spring25"
+        }
+      ]
+    },
+    {
       "repository": "KnowYourCustomerFill-in",
       "release_tag": "r1.2",
       "release_date": "2025-09-15T02:58:21Z",
@@ -3209,6 +3253,35 @@
       ]
     },
     {
+      "repository": "KnowYourCustomerFill-in",
+      "release_tag": "r2.1",
+      "release_date": "2026-09-01T05:11:26Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/KnowYourCustomerFill-in/releases/tag/r2.1",
+      "release_type": "pre-release-rc",
+      "src_commit_sha": "9579a5e809d8b1fe1547a3e03ad45837eb2c19d3",
+      "dependencies": {
+        "commonalities_release": "r4.3 (0.8.0)",
+        "identity_consent_management_release": "r4.2 (0.5.0)"
+      },
+      "apis": [
+        {
+          "api_name": "kyc-fill-in",
+          "api_version": "0.5.0-rc.1",
+          "api_title": "Know Your Customer Fill-in",
+          "commonalities": "0.8.0",
+          "maturity": "initial",
+          "portfolio_category": "Authentication and Fraud Prevention",
+          "website_url": "https://camaraproject.org/know-your-customer-fill-in/",
+          "tooltip": "Fill in web dialogues using operator data",
+          "display_name": "Know Your Customer Fill-in",
+          "published": true,
+          "canonical_name": "kyc-fill-in",
+          "first_release": "PreFall24"
+        }
+      ]
+    },
+    {
       "repository": "KnowYourCustomerMatch",
       "release_tag": "r1.2",
       "release_date": "2025-09-14T03:35:29Z",
@@ -3230,6 +3303,35 @@
           "canonical_name": "kyc-match",
           "first_release": "PreFall24",
           "isNew": false
+        }
+      ]
+    },
+    {
+      "repository": "KnowYourCustomerMatch",
+      "release_tag": "r2.1",
+      "release_date": "2026-09-01T05:04:32Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/KnowYourCustomerMatch/releases/tag/r2.1",
+      "release_type": "pre-release-rc",
+      "src_commit_sha": "6e7c2418dbec252740a5ab0ccaf404b8f6d26024",
+      "dependencies": {
+        "commonalities_release": "r4.3 (0.8.0)",
+        "identity_consent_management_release": "r4.2 (0.5.0)"
+      },
+      "apis": [
+        {
+          "api_name": "kyc-match",
+          "api_version": "0.5.0-rc.1",
+          "api_title": "Know Your Customer Match",
+          "commonalities": "0.8.0",
+          "maturity": "initial",
+          "portfolio_category": "Authentication and Fraud Prevention",
+          "website_url": "https://camaraproject.org/know-your-customer-match/",
+          "tooltip": "Allows service providers to validate user information with operators",
+          "display_name": "Know Your Customer Match",
+          "published": true,
+          "canonical_name": "kyc-match",
+          "first_release": "PreFall24"
         }
       ]
     },
@@ -7366,6 +7468,26 @@
       "release_type": "public-release"
     },
     {
+      "api_name": "kyc-age-verification",
+      "api_version": "0.3.0-rc.1",
+      "api_title": "Know Your Customer Age Verification",
+      "commonalities": "0.8.0",
+      "maturity": "initial",
+      "portfolio_category": "Authentication and Fraud Prevention",
+      "website_url": "https://camaraproject.org/know-your-customer-age-verification/",
+      "tooltip": "Allows service providers to validate age information with operators",
+      "display_name": "Know Your Customer Age Verification",
+      "published": true,
+      "canonical_name": "kyc-age-verification",
+      "first_release": "Spring25",
+      "repository": "KnowYourCustomerAgeVerification",
+      "release_tag": "r2.1",
+      "release_date": "2026-09-01T05:15:38Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/KnowYourCustomerAgeVerification/releases/tag/r2.1",
+      "release_type": "pre-release-rc"
+    },
+    {
       "api_name": "kyc-fill-in",
       "api_version": "0.4.0",
       "api_title": "Know Your Customer Fill-in",
@@ -7408,6 +7530,26 @@
       "release_type": "maintenance-release"
     },
     {
+      "api_name": "kyc-fill-in",
+      "api_version": "0.5.0-rc.1",
+      "api_title": "Know Your Customer Fill-in",
+      "commonalities": "0.8.0",
+      "maturity": "initial",
+      "portfolio_category": "Authentication and Fraud Prevention",
+      "website_url": "https://camaraproject.org/know-your-customer-fill-in/",
+      "tooltip": "Fill in web dialogues using operator data",
+      "display_name": "Know Your Customer Fill-in",
+      "published": true,
+      "canonical_name": "kyc-fill-in",
+      "first_release": "PreFall24",
+      "repository": "KnowYourCustomerFill-in",
+      "release_tag": "r2.1",
+      "release_date": "2026-09-01T05:11:26Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/KnowYourCustomerFill-in/releases/tag/r2.1",
+      "release_type": "pre-release-rc"
+    },
+    {
       "api_name": "kyc-match",
       "api_version": "0.4.0",
       "api_title": "Know Your Customer Match",
@@ -7427,6 +7569,26 @@
       "meta_release": "Fall25",
       "github_url": "https://github.com/camaraproject/KnowYourCustomerMatch/releases/tag/r1.2",
       "release_type": "public-release"
+    },
+    {
+      "api_name": "kyc-match",
+      "api_version": "0.5.0-rc.1",
+      "api_title": "Know Your Customer Match",
+      "commonalities": "0.8.0",
+      "maturity": "initial",
+      "portfolio_category": "Authentication and Fraud Prevention",
+      "website_url": "https://camaraproject.org/know-your-customer-match/",
+      "tooltip": "Allows service providers to validate user information with operators",
+      "display_name": "Know Your Customer Match",
+      "published": true,
+      "canonical_name": "kyc-match",
+      "first_release": "PreFall24",
+      "repository": "KnowYourCustomerMatch",
+      "release_tag": "r2.1",
+      "release_date": "2026-09-01T05:04:32Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/KnowYourCustomerMatch/releases/tag/r2.1",
+      "release_type": "pre-release-rc"
     },
     {
       "api_name": "knowledge-base",

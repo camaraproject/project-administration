@@ -1,5 +1,5 @@
 metadata:
-  last_updated: '2026-08-30T08:31:56.537Z'
+  last_updated: '2026-09-01T07:59:02.836Z'
   workflow_version: 3.0.0
   schema_version: 3.1.0
 releases:
@@ -1646,6 +1646,21 @@ releases:
         api_version: 0.2.1
         api_title: Know Your Customer Age Verification
         commonalities: '0.6'
+  - repository: KnowYourCustomerAgeVerification
+    release_tag: r2.1
+    release_date: '2026-09-01T05:15:38Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/KnowYourCustomerAgeVerification/releases/tag/r2.1
+    release_type: pre-release-rc
+    src_commit_sha: f1d12f34fb16543390b072409aebe06af27a972a
+    dependencies:
+      commonalities_release: r4.3 (0.8.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: kyc-age-verification
+        api_version: 0.3.0-rc.1
+        api_title: Know Your Customer Age Verification
+        commonalities: 0.8.0
   - repository: KnowYourCustomerFill-in
     release_tag: r1.1
     release_date: '2025-07-22T09:43:39Z'
@@ -1680,6 +1695,21 @@ releases:
         api_version: 0.4.1
         api_title: Know Your Customer Fill-in
         commonalities: '0.6'
+  - repository: KnowYourCustomerFill-in
+    release_tag: r2.1
+    release_date: '2026-09-01T05:11:26Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/KnowYourCustomerFill-in/releases/tag/r2.1
+    release_type: pre-release-rc
+    src_commit_sha: 9579a5e809d8b1fe1547a3e03ad45837eb2c19d3
+    dependencies:
+      commonalities_release: r4.3 (0.8.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: kyc-fill-in
+        api_version: 0.5.0-rc.1
+        api_title: Know Your Customer Fill-in
+        commonalities: 0.8.0
   - repository: KnowYourCustomerMatch
     release_tag: r1.1
     release_date: '2025-07-22T09:51:48Z'
@@ -1703,6 +1733,21 @@ releases:
         api_version: 0.4.0
         api_title: Know Your Customer Match
         commonalities: '0.6'
+  - repository: KnowYourCustomerMatch
+    release_tag: r2.1
+    release_date: '2026-09-01T05:04:32Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/KnowYourCustomerMatch/releases/tag/r2.1
+    release_type: pre-release-rc
+    src_commit_sha: 6e7c2418dbec252740a5ab0ccaf404b8f6d26024
+    dependencies:
+      commonalities_release: r4.3 (0.8.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: kyc-match
+        api_version: 0.5.0-rc.1
+        api_title: Know Your Customer Match
+        commonalities: 0.8.0
   - repository: ModelAsAService
     release_tag: r1.1
     release_date: '2025-07-24T10:54:35Z'
@@ -3294,15 +3339,15 @@ repositories:
   - repository: KnowYourCustomerAgeVerification
     github_url: https://github.com/camaraproject/KnowYourCustomerAgeVerification
     latest_public_release: r1.3
-    newest_pre_release: null
+    newest_pre_release: r2.1
   - repository: KnowYourCustomerFill-in
     github_url: https://github.com/camaraproject/KnowYourCustomerFill-in
     latest_public_release: r1.3
-    newest_pre_release: null
+    newest_pre_release: r2.1
   - repository: KnowYourCustomerMatch
     github_url: https://github.com/camaraproject/KnowYourCustomerMatch
     latest_public_release: r1.2
-    newest_pre_release: null
+    newest_pre_release: r2.1
   - repository: ModelAsAService
     github_url: https://github.com/camaraproject/ModelAsAService
     latest_public_release: r1.2
