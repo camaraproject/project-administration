@@ -1,5 +1,5 @@
 metadata:
-  last_updated: '2026-09-01T07:59:02.836Z'
+  last_updated: '2026-09-02T07:18:47.624Z'
   workflow_version: 3.0.0
   schema_version: 3.1.0
 releases:
@@ -964,6 +964,21 @@ releases:
         api_version: 0.4.0-alpha.1
         api_title: Device Identifier
         commonalities: 0.8.0
+  - repository: DeviceIdentifier
+    release_tag: r3.2
+    release_date: '2026-09-01T16:11:38Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/DeviceIdentifier/releases/tag/r3.2
+    release_type: pre-release-rc
+    src_commit_sha: 5dcccd77e4b47b20aaf42b7e54affbf860f40c46
+    dependencies:
+      commonalities_release: r4.3 (0.8.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: device-identifier
+        api_version: 0.4.0-rc.1
+        api_title: Device Identifier
+        commonalities: 0.8.0
   - repository: DeviceLocation
     release_tag: r1.1
     release_date: '2024-08-09T08:18:03Z'
@@ -1081,6 +1096,44 @@ releases:
         api_version: 3.0.0
         api_title: Device Location Verification
         commonalities: '0.6'
+  - repository: DeviceLocation
+    release_tag: r4.1
+    release_date: '2026-09-01T08:31:47Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/DeviceLocation/releases/tag/r4.1
+    release_type: pre-release-rc
+    src_commit_sha: baf86c823cb723e866c7348459999aea83f999ce
+    dependencies:
+      commonalities_release: r4.3 (0.8.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: geofencing-subscriptions
+        api_version: 0.6.0-rc.1
+        api_title: Device Geofencing Subscriptions
+        commonalities: 0.8.0
+      - api_name: location-retrieval
+        api_version: 1.0.0-rc.1
+        api_title: Device Location Retrieval
+        commonalities: 0.8.0
+      - api_name: location-verification
+        api_version: 3.1.0-rc.2
+        api_title: Device Location Verification
+        commonalities: 0.8.0
+  - repository: DeviceMediaStreamingRate
+    release_tag: r1.1
+    release_date: '2026-09-01T10:22:49Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/DeviceMediaStreamingRate/releases/tag/r1.1
+    release_type: pre-release-alpha
+    src_commit_sha: 235132f7c43f664423d65380296924bee287592f
+    dependencies:
+      commonalities_release: r4.3 (0.8.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: media-streaming-rate
+        api_version: 0.1.0-alpha.1
+        api_title: Media Streaming Rate
+        commonalities: 0.8.0
   - repository: DeviceReachabilityStatus
     release_tag: r1.1
     release_date: '2025-07-18T07:21:01Z'
@@ -3266,15 +3319,15 @@ repositories:
   - repository: DeviceIdentifier
     github_url: https://github.com/camaraproject/DeviceIdentifier
     latest_public_release: r2.2
-    newest_pre_release: r3.1
+    newest_pre_release: r3.2
   - repository: DeviceLocation
     github_url: https://github.com/camaraproject/DeviceLocation
     latest_public_release: r3.2
-    newest_pre_release: null
+    newest_pre_release: r4.1
   - repository: DeviceMediaStreamingRate
     github_url: https://github.com/camaraproject/DeviceMediaStreamingRate
     latest_public_release: null
-    newest_pre_release: null
+    newest_pre_release: r1.1
   - repository: DeviceReachabilityStatus
     github_url: https://github.com/camaraproject/DeviceReachabilityStatus
     latest_public_release: r1.2

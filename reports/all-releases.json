@@ -1,34 +1,34 @@
 {
   "metadata": {
-    "generated": "2026-09-01T07:59:02.943Z",
+    "generated": "2026-09-02T07:18:47.729Z",
     "meta_release": "All",
     "source": "Release Collector v3",
     "landscape_version": "1.1.1"
   },
   "statistics": {
-    "repositories_count": 52,
-    "api_versions_count": 198,
-    "unique_api_names_count": 77,
-    "unique_apis_count": 76,
+    "repositories_count": 53,
+    "api_versions_count": 203,
+    "unique_api_names_count": 78,
+    "unique_apis_count": 77,
     "api_version_maturity": {
       "stable": 28,
-      "initial": 139,
-      "rc": 31
+      "initial": 140,
+      "rc": 35
     },
     "unique_api_maturity": {
-      "stable": 5,
-      "initial": 40,
-      "rc": 31
+      "stable": 4,
+      "initial": 38,
+      "rc": 35
     },
     "categories": {
       "Computing Services": 15,
       "Communication Quality": 50,
       "Payments and Charging": 11,
-      "Authentication and Fraud Prevention": 55,
+      "Authentication and Fraud Prevention": 56,
       "Communication Services": 12,
       "Service Management": 2,
       "Device Information": 23,
-      "Location Services": 17
+      "Location Services": 20
     },
     "apis_with_previous_names": 5
   },
@@ -280,6 +280,11 @@
     "DeviceIdentifier": {
       "releases": [
         {
+          "tag": "r3.2",
+          "date": "2026-09-01T16:11:38Z",
+          "apis_count": 1
+        },
+        {
           "tag": "r3.1",
           "date": "2026-06-11T09:59:39Z",
           "apis_count": 1
@@ -295,11 +300,16 @@
           "apis_count": 1
         }
       ],
-      "total_apis": 3,
+      "total_apis": 4,
       "unique_apis_count": 1
     },
     "DeviceLocation": {
       "releases": [
+        {
+          "tag": "r4.1",
+          "date": "2026-09-01T08:31:47Z",
+          "apis_count": 3
+        },
         {
           "tag": "r3.2",
           "date": "2025-09-16T11:41:00Z",
@@ -316,8 +326,19 @@
           "apis_count": 3
         }
       ],
-      "total_apis": 9,
+      "total_apis": 12,
       "unique_apis_count": 3
+    },
+    "DeviceMediaStreamingRate": {
+      "releases": [
+        {
+          "tag": "r1.1",
+          "date": "2026-09-01T10:22:49Z",
+          "apis_count": 1
+        }
+      ],
+      "total_apis": 1,
+      "unique_apis_count": 1
     },
     "DeviceReachabilityStatus": {
       "releases": [
@@ -2164,6 +2185,35 @@
       ]
     },
     {
+      "repository": "DeviceIdentifier",
+      "release_tag": "r3.2",
+      "release_date": "2026-09-01T16:11:38Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/DeviceIdentifier/releases/tag/r3.2",
+      "release_type": "pre-release-rc",
+      "src_commit_sha": "5dcccd77e4b47b20aaf42b7e54affbf860f40c46",
+      "dependencies": {
+        "commonalities_release": "r4.3 (0.8.0)",
+        "identity_consent_management_release": "r4.2 (0.5.0)"
+      },
+      "apis": [
+        {
+          "api_name": "device-identifier",
+          "api_version": "0.4.0-rc.1",
+          "api_title": "Device Identifier",
+          "commonalities": "0.8.0",
+          "maturity": "initial",
+          "portfolio_category": "Authentication and Fraud Prevention",
+          "website_url": "https://camaraproject.org/device-identifier/",
+          "tooltip": "Check the identity of the subscribers' device",
+          "display_name": "Device Identifier",
+          "published": true,
+          "canonical_name": "device-identifier",
+          "first_release": "Spring25"
+        }
+      ]
+    },
+    {
       "repository": "DeviceLocation",
       "release_tag": "r1.2",
       "release_date": "2024-09-10T15:00:47Z",
@@ -2325,6 +2375,92 @@
           "canonical_name": "location-verification",
           "first_release": "PreFall24",
           "isNew": false
+        }
+      ]
+    },
+    {
+      "repository": "DeviceLocation",
+      "release_tag": "r4.1",
+      "release_date": "2026-09-01T08:31:47Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/DeviceLocation/releases/tag/r4.1",
+      "release_type": "pre-release-rc",
+      "src_commit_sha": "baf86c823cb723e866c7348459999aea83f999ce",
+      "dependencies": {
+        "commonalities_release": "r4.3 (0.8.0)",
+        "identity_consent_management_release": "r4.2 (0.5.0)"
+      },
+      "apis": [
+        {
+          "api_name": "geofencing-subscriptions",
+          "api_version": "0.6.0-rc.1",
+          "api_title": "Device Geofencing Subscriptions",
+          "commonalities": "0.8.0",
+          "maturity": "initial",
+          "portfolio_category": "Location Services",
+          "website_url": "https://camaraproject.org/geofencing-subscriptions/",
+          "tooltip": "Get notifications if a device reaches an area",
+          "display_name": "Device Geofencing Subscriptions",
+          "published": true,
+          "canonical_name": "geofencing-subscriptions",
+          "first_release": "Fall24"
+        },
+        {
+          "api_name": "location-retrieval",
+          "api_version": "1.0.0-rc.1",
+          "api_title": "Device Location Retrieval",
+          "commonalities": "0.8.0",
+          "maturity": "stable",
+          "portfolio_category": "Location Services",
+          "website_url": "https://camaraproject.org/location-retrieval/",
+          "tooltip": "Provide the location of a device",
+          "display_name": "Device Location Retrieval",
+          "published": true,
+          "canonical_name": "location-retrieval",
+          "first_release": "PreFall24"
+        },
+        {
+          "api_name": "location-verification",
+          "api_version": "3.1.0-rc.2",
+          "api_title": "Device Location Verification",
+          "commonalities": "0.8.0",
+          "maturity": "stable",
+          "portfolio_category": "Location Services",
+          "website_url": "https://camaraproject.org/location-verification/",
+          "tooltip": "Check the location of a device",
+          "display_name": "Device Location Verification",
+          "published": true,
+          "canonical_name": "location-verification",
+          "first_release": "PreFall24"
+        }
+      ]
+    },
+    {
+      "repository": "DeviceMediaStreamingRate",
+      "release_tag": "r1.1",
+      "release_date": "2026-09-01T10:22:49Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/DeviceMediaStreamingRate/releases/tag/r1.1",
+      "release_type": "pre-release-alpha",
+      "src_commit_sha": "235132f7c43f664423d65380296924bee287592f",
+      "dependencies": {
+        "commonalities_release": "r4.3 (0.8.0)",
+        "identity_consent_management_release": "r4.2 (0.5.0)"
+      },
+      "apis": [
+        {
+          "api_name": "media-streaming-rate",
+          "api_version": "0.1.0-alpha.1",
+          "api_title": "Media Streaming Rate",
+          "commonalities": "0.8.0",
+          "maturity": "initial",
+          "portfolio_category": null,
+          "website_url": null,
+          "tooltip": null,
+          "display_name": "Media Streaming Rate",
+          "published": true,
+          "canonical_name": "media-streaming-rate",
+          "first_release": "Sandbox"
         }
       ]
     },
@@ -6428,6 +6564,26 @@
       "release_type": "pre-release-alpha"
     },
     {
+      "api_name": "device-identifier",
+      "api_version": "0.4.0-rc.1",
+      "api_title": "Device Identifier",
+      "commonalities": "0.8.0",
+      "maturity": "initial",
+      "portfolio_category": "Authentication and Fraud Prevention",
+      "website_url": "https://camaraproject.org/device-identifier/",
+      "tooltip": "Check the identity of the subscribers' device",
+      "display_name": "Device Identifier",
+      "published": true,
+      "canonical_name": "device-identifier",
+      "first_release": "Spring25",
+      "repository": "DeviceIdentifier",
+      "release_tag": "r3.2",
+      "release_date": "2026-09-01T16:11:38Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/DeviceIdentifier/releases/tag/r3.2",
+      "release_type": "pre-release-rc"
+    },
+    {
       "api_name": "geofencing-subscriptions",
       "api_version": "0.3.0",
       "api_title": "Device Geofencing Subscriptions",
@@ -6491,6 +6647,26 @@
       "release_type": "public-release"
     },
     {
+      "api_name": "geofencing-subscriptions",
+      "api_version": "0.6.0-rc.1",
+      "api_title": "Device Geofencing Subscriptions",
+      "commonalities": "0.8.0",
+      "maturity": "initial",
+      "portfolio_category": "Location Services",
+      "website_url": "https://camaraproject.org/geofencing-subscriptions/",
+      "tooltip": "Get notifications if a device reaches an area",
+      "display_name": "Device Geofencing Subscriptions",
+      "published": true,
+      "canonical_name": "geofencing-subscriptions",
+      "first_release": "Fall24",
+      "repository": "DeviceLocation",
+      "release_tag": "r4.1",
+      "release_date": "2026-09-01T08:31:47Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/DeviceLocation/releases/tag/r4.1",
+      "release_type": "pre-release-rc"
+    },
+    {
       "api_name": "location-retrieval",
       "api_version": "0.3.0",
       "api_title": "Device Location Retrieval",
@@ -6554,6 +6730,26 @@
       "release_type": "public-release"
     },
     {
+      "api_name": "location-retrieval",
+      "api_version": "1.0.0-rc.1",
+      "api_title": "Device Location Retrieval",
+      "commonalities": "0.8.0",
+      "maturity": "stable",
+      "portfolio_category": "Location Services",
+      "website_url": "https://camaraproject.org/location-retrieval/",
+      "tooltip": "Provide the location of a device",
+      "display_name": "Device Location Retrieval",
+      "published": true,
+      "canonical_name": "location-retrieval",
+      "first_release": "PreFall24",
+      "repository": "DeviceLocation",
+      "release_tag": "r4.1",
+      "release_date": "2026-09-01T08:31:47Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/DeviceLocation/releases/tag/r4.1",
+      "release_type": "pre-release-rc"
+    },
+    {
       "api_name": "location-verification",
       "api_version": "1.0.0",
       "api_title": "Device Location Verification",
@@ -6615,6 +6811,46 @@
       "meta_release": "Fall25",
       "github_url": "https://github.com/camaraproject/DeviceLocation/releases/tag/r3.2",
       "release_type": "public-release"
+    },
+    {
+      "api_name": "location-verification",
+      "api_version": "3.1.0-rc.2",
+      "api_title": "Device Location Verification",
+      "commonalities": "0.8.0",
+      "maturity": "stable",
+      "portfolio_category": "Location Services",
+      "website_url": "https://camaraproject.org/location-verification/",
+      "tooltip": "Check the location of a device",
+      "display_name": "Device Location Verification",
+      "published": true,
+      "canonical_name": "location-verification",
+      "first_release": "PreFall24",
+      "repository": "DeviceLocation",
+      "release_tag": "r4.1",
+      "release_date": "2026-09-01T08:31:47Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/DeviceLocation/releases/tag/r4.1",
+      "release_type": "pre-release-rc"
+    },
+    {
+      "api_name": "media-streaming-rate",
+      "api_version": "0.1.0-alpha.1",
+      "api_title": "Media Streaming Rate",
+      "commonalities": "0.8.0",
+      "maturity": "initial",
+      "portfolio_category": null,
+      "website_url": null,
+      "tooltip": null,
+      "display_name": "Media Streaming Rate",
+      "published": true,
+      "canonical_name": "media-streaming-rate",
+      "first_release": "Sandbox",
+      "repository": "DeviceMediaStreamingRate",
+      "release_tag": "r1.1",
+      "release_date": "2026-09-01T10:22:49Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/DeviceMediaStreamingRate/releases/tag/r1.1",
+      "release_type": "pre-release-alpha"
     },
     {
       "api_name": "device-reachability-status",
