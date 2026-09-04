@@ -1,30 +1,30 @@
 {
   "metadata": {
-    "generated": "2026-09-02T07:18:47.729Z",
+    "generated": "2026-09-04T07:24:52.427Z",
     "meta_release": "All",
     "source": "Release Collector v3",
     "landscape_version": "1.1.1"
   },
   "statistics": {
     "repositories_count": 53,
-    "api_versions_count": 203,
+    "api_versions_count": 204,
     "unique_api_names_count": 78,
     "unique_apis_count": 77,
     "api_version_maturity": {
       "stable": 28,
       "initial": 140,
-      "rc": 35
+      "rc": 36
     },
     "unique_api_maturity": {
       "stable": 4,
-      "initial": 38,
-      "rc": 35
+      "initial": 37,
+      "rc": 36
     },
     "categories": {
       "Computing Services": 15,
       "Communication Quality": 50,
       "Payments and Charging": 11,
-      "Authentication and Fraud Prevention": 56,
+      "Authentication and Fraud Prevention": 57,
       "Communication Services": 12,
       "Service Management": 2,
       "Device Information": 23,
@@ -638,6 +638,11 @@
     "NumberRecycling": {
       "releases": [
         {
+          "tag": "r3.1",
+          "date": "2026-09-03T19:08:44Z",
+          "apis_count": 1
+        },
+        {
           "tag": "r2.2",
           "date": "2025-09-11T11:13:24Z",
           "apis_count": 1
@@ -653,7 +658,7 @@
           "apis_count": 1
         }
       ],
-      "total_apis": 3,
+      "total_apis": 4,
       "unique_apis_count": 1
     },
     "NumberVerification": {
@@ -3889,6 +3894,35 @@
           "canonical_name": "number-recycling",
           "first_release": "Spring25",
           "isNew": false
+        }
+      ]
+    },
+    {
+      "repository": "NumberRecycling",
+      "release_tag": "r3.1",
+      "release_date": "2026-09-03T19:08:44Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/NumberRecycling/releases/tag/r3.1",
+      "release_type": "pre-release-rc",
+      "src_commit_sha": "4d69523a875a718c0bad51293e2cfdf6b71588a0",
+      "dependencies": {
+        "commonalities_release": "r4.3 (0.8.0)",
+        "identity_consent_management_release": "r4.2 (0.5.0)"
+      },
+      "apis": [
+        {
+          "api_name": "number-recycling",
+          "api_version": "0.3.0-rc.1",
+          "api_title": "Number Recycling",
+          "commonalities": "0.8.0",
+          "maturity": "initial",
+          "portfolio_category": "Authentication and Fraud Prevention",
+          "website_url": "https://camaraproject.org/number-recycling/",
+          "tooltip": "Check whether the subscriber of the phone number has changed",
+          "display_name": "Number Recycling",
+          "published": true,
+          "canonical_name": "number-recycling",
+          "first_release": "Spring25"
         }
       ]
     },
@@ -8215,6 +8249,26 @@
       "meta_release": "Fall25",
       "github_url": "https://github.com/camaraproject/NumberRecycling/releases/tag/r2.2",
       "release_type": "public-release"
+    },
+    {
+      "api_name": "number-recycling",
+      "api_version": "0.3.0-rc.1",
+      "api_title": "Number Recycling",
+      "commonalities": "0.8.0",
+      "maturity": "initial",
+      "portfolio_category": "Authentication and Fraud Prevention",
+      "website_url": "https://camaraproject.org/number-recycling/",
+      "tooltip": "Check whether the subscriber of the phone number has changed",
+      "display_name": "Number Recycling",
+      "published": true,
+      "canonical_name": "number-recycling",
+      "first_release": "Spring25",
+      "repository": "NumberRecycling",
+      "release_tag": "r3.1",
+      "release_date": "2026-09-03T19:08:44Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/NumberRecycling/releases/tag/r3.1",
+      "release_type": "pre-release-rc"
     },
     {
       "api_name": "number-verification",
