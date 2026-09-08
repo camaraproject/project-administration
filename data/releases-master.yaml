@@ -1,5 +1,5 @@
 metadata:
-  last_updated: '2026-09-04T07:24:52.313Z'
+  last_updated: '2026-09-08T07:25:01.889Z'
   workflow_version: 3.0.0
   schema_version: 3.1.0
 releases:
@@ -3435,6 +3435,10 @@ repositories:
   - repository: NetworkInsights
     github_url: https://github.com/camaraproject/NetworkInsights
     latest_public_release: r1.3
+    newest_pre_release: null
+  - repository: NetworkServiceAreas
+    github_url: https://github.com/camaraproject/NetworkServiceAreas
+    latest_public_release: null
     newest_pre_release: null
   - repository: NetworkSliceBooking
     github_url: https://github.com/camaraproject/NetworkSliceBooking
