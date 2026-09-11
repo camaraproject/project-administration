@@ -1,5 +1,5 @@
 metadata:
-  last_updated: '2026-09-08T07:25:01.889Z'
+  last_updated: '2026-09-11T07:28:56.351Z'
   workflow_version: 3.0.0
   schema_version: 3.1.0
 releases:
@@ -2267,6 +2267,21 @@ releases:
         api_version: 0.1.0
         api_title: Optimal Edge Discovery
         commonalities: '0.6'
+  - repository: OptimalEdgeDiscovery
+    release_tag: r2.1
+    release_date: '2026-09-10T20:04:23Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/OptimalEdgeDiscovery/releases/tag/r2.1
+    release_type: pre-release-rc
+    src_commit_sha: df47291e3ef8b0671f16ae5824d906a1ec0680a5
+    dependencies:
+      commonalities_release: r4.3 (0.8.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: optimal-edge-discovery
+        api_version: 0.2.0-rc.1
+        api_title: Optimal Edge Discovery
+        commonalities: 0.8.0
   - repository: OTPValidation
     release_tag: r1.1
     release_date: '2024-08-08T10:14:37Z'
@@ -3184,6 +3199,25 @@ releases:
         api_version: 0.2.0-alpha.1
         api_title: Verified Caller
         commonalities: 0.8.0
+  - repository: VerifiedCaller
+    release_tag: r2.2
+    release_date: '2026-09-10T13:07:52Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/VerifiedCaller/releases/tag/r2.2
+    release_type: pre-release-rc
+    src_commit_sha: e81b70fcfcb8e289daffb9e1667eac404b9aa097
+    dependencies:
+      commonalities_release: r4.3 (0.8.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: brand-registration
+        api_version: 0.2.0-rc.1
+        api_title: Brand Registration
+        commonalities: 0.8.0
+      - api_name: verified-caller
+        api_version: 0.2.0-rc.1
+        api_title: Verified Caller
+        commonalities: 0.8.0
   - repository: WebRTC
     release_tag: r1.1
     release_date: '2025-02-17T11:57:15Z'
@@ -3455,7 +3489,7 @@ repositories:
   - repository: OptimalEdgeDiscovery
     github_url: https://github.com/camaraproject/OptimalEdgeDiscovery
     latest_public_release: r1.2
-    newest_pre_release: null
+    newest_pre_release: r2.1
   - repository: OTPValidation
     github_url: https://github.com/camaraproject/OTPValidation
     latest_public_release: r3.2
@@ -3529,7 +3563,7 @@ repositories:
   - repository: VerifiedCaller
     github_url: https://github.com/camaraproject/VerifiedCaller
     latest_public_release: r1.3
-    newest_pre_release: r2.1
+    newest_pre_release: r2.2
   - repository: VoiceNotification
     github_url: https://github.com/camaraproject/VoiceNotification
     latest_public_release: null
