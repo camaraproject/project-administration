@@ -1,19 +1,19 @@
 {
   "metadata": {
-    "generated": "2026-09-11T07:28:56.473Z",
+    "generated": "2026-09-14T08:06:12.393Z",
     "meta_release": "All",
     "source": "Release Collector v3",
     "landscape_version": "1.1.1"
   },
   "statistics": {
     "repositories_count": 53,
-    "api_versions_count": 207,
+    "api_versions_count": 208,
     "unique_api_names_count": 78,
     "unique_apis_count": 77,
     "api_version_maturity": {
       "stable": 28,
       "initial": 140,
-      "rc": 39
+      "rc": 40
     },
     "unique_api_maturity": {
       "stable": 4,
@@ -21,7 +21,7 @@
       "rc": 39
     },
     "categories": {
-      "Computing Services": 16,
+      "Computing Services": 17,
       "Communication Quality": 50,
       "Payments and Charging": 11,
       "Authentication and Fraud Prevention": 57,
@@ -853,6 +853,11 @@
     "SimpleEdgeDiscovery": {
       "releases": [
         {
+          "tag": "r3.2",
+          "date": "2026-09-11T15:03:54Z",
+          "apis_count": 1
+        },
+        {
           "tag": "r3.1",
           "date": "2026-08-05T13:39:06Z",
           "apis_count": 1
@@ -873,7 +878,7 @@
           "apis_count": 1
         }
       ],
-      "total_apis": 4,
+      "total_apis": 5,
       "unique_apis_count": 1
     },
     "SimSwap": {
@@ -4913,6 +4918,35 @@
           "api_version": "2.1.0-rc.2",
           "api_title": "Simple Edge Discovery",
           "commonalities": "0.8.0",
+          "maturity": "stable",
+          "portfolio_category": "Computing Services",
+          "website_url": "https://camaraproject.org/simple-edge-discovery/",
+          "tooltip": "Discover the closest edge cloud zone to a given device",
+          "display_name": "Simple Edge Discovery",
+          "published": true,
+          "canonical_name": "simple-edge-discovery",
+          "first_release": "PreFall24"
+        }
+      ]
+    },
+    {
+      "repository": "SimpleEdgeDiscovery",
+      "release_tag": "r3.2",
+      "release_date": "2026-09-11T15:03:54Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/SimpleEdgeDiscovery/releases/tag/r3.2",
+      "release_type": "pre-release-rc",
+      "src_commit_sha": "caa7fe91a12fbc45968ac3f268aaa126c47412d6",
+      "dependencies": {
+        "commonalities_release": "r4.4 (0.9.0)",
+        "identity_consent_management_release": "r4.2 (0.5.0)"
+      },
+      "apis": [
+        {
+          "api_name": "simple-edge-discovery",
+          "api_version": "2.1.0-rc.3",
+          "api_title": "Simple Edge Discovery",
+          "commonalities": "0.9.0",
           "maturity": "stable",
           "portfolio_category": "Computing Services",
           "website_url": "https://camaraproject.org/simple-edge-discovery/",
@@ -9236,6 +9270,26 @@
       "release_date": "2026-08-05T13:39:06Z",
       "meta_release": "Independent",
       "github_url": "https://github.com/camaraproject/SimpleEdgeDiscovery/releases/tag/r3.1",
+      "release_type": "pre-release-rc"
+    },
+    {
+      "api_name": "simple-edge-discovery",
+      "api_version": "2.1.0-rc.3",
+      "api_title": "Simple Edge Discovery",
+      "commonalities": "0.9.0",
+      "maturity": "stable",
+      "portfolio_category": "Computing Services",
+      "website_url": "https://camaraproject.org/simple-edge-discovery/",
+      "tooltip": "Discover the closest edge cloud zone to a given device",
+      "display_name": "Simple Edge Discovery",
+      "published": true,
+      "canonical_name": "simple-edge-discovery",
+      "first_release": "PreFall24",
+      "repository": "SimpleEdgeDiscovery",
+      "release_tag": "r3.2",
+      "release_date": "2026-09-11T15:03:54Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/SimpleEdgeDiscovery/releases/tag/r3.2",
       "release_type": "pre-release-rc"
     },
     {
