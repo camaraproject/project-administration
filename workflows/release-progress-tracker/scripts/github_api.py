@@ -1,8 +1,7 @@
 """Thin GitHub REST API client for release progress collection.
 
-Uses authenticated requests when available and can fall back to public
-requests for artifacts that do not require repository-scoped access.
-All methods return parsed data or None on 404.
+Requires an authenticated token. All methods return parsed data or None
+on 404.
 """
 
 import base64
@@ -30,25 +29,27 @@ class GitHubAPI:
     """Thin REST client for GitHub API operations needed by the collector."""
 
     def __init__(self, token: Optional[str] = None, sleep=time.sleep):
-        self.session = requests.Session()
-        self.public_session = requests.Session()
         self.token = token or os.environ.get("GITHUB_TOKEN", "")
-        if self.token:
-            self.session.headers["Authorization"] = f"token {self.token}"
-        for session in (self.session, self.public_session):
-            session.headers["Accept"] = "application/vnd.github+json"
-            session.headers["X-GitHub-Api-Version"] = "2022-11-28"
+        if not self.token:
+            raise RuntimeError(
+                "GitHubAPI requires an authenticated token: collection needs "
+                "~390 calls, and the unauthenticated limit is 60/hour. Set "
+                "GITHUB_TOKEN."
+            )
+        self.session = requests.Session()
+        self.session.headers["Authorization"] = f"token {self.token}"
+        self.session.headers["Accept"] = "application/vnd.github+json"
+        self.session.headers["X-GitHub-Api-Version"] = "2022-11-28"
         self.api_calls = 0
         # Injectable so tests can avoid real backoff sleeps.
         self._sleep = sleep
         self._codeowners_cache: Dict[str, Optional[str]] = {}
+        self._budget_logged = False
 
     def _request(
         self,
         method: str,
         url: str,
-        *,
-        public: bool = False,
         **kwargs,
     ) -> Optional[requests.Response]:
         """Make an API request with rate-limit monitoring and transient retry.
@@ -58,7 +59,7 @@ class GitHubAPI:
         404 and other 4xx responses are returned to the caller without
         retry. Rate-limit exhaustion raises RateLimitError immediately.
         """
-        session = self.public_session if public or not self.token else self.session
+        session = self.session
 
         for attempt in range(RETRY_ATTEMPTS + 1):
             try:
@@ -85,14 +86,26 @@ class GitHubAPI:
             # Rate-limit check first: an exhausted budget should abort
             # collection regardless of status code on this response.
             remaining = resp.headers.get("X-RateLimit-Remaining")
+            limit = resp.headers.get("X-RateLimit-Limit")
             if remaining is not None:
                 remaining_int = int(remaining)
+                if not self._budget_logged and limit is not None:
+                    logger.info(
+                        "GitHub API budget: %s/hour (%d remaining)", limit, remaining_int
+                    )
+                    self._budget_logged = True
                 if remaining_int == 0:
                     raise RateLimitError(
                         f"GitHub API rate limit exhausted after {self.api_calls} calls"
                     )
                 if remaining_int < 50:
-                    logger.warning("GitHub API rate limit low: %d remaining", remaining_int)
+                    if limit is not None:
+                        logger.warning(
+                            "GitHub API rate limit low: %d of %s remaining",
+                            remaining_int, limit,
+                        )
+                    else:
+                        logger.warning("GitHub API rate limit low: %d remaining", remaining_int)
 
             if resp.status_code in RETRY_STATUS_CODES and attempt < RETRY_ATTEMPTS:
                 delay = RETRY_BACKOFF_SECONDS[attempt]
@@ -114,10 +127,10 @@ class GitHubAPI:
 
         raise RuntimeError(f"Request to {url} exhausted retries unexpectedly")
 
-    def _get(self, path: str, public: bool = False, **kwargs) -> Optional[requests.Response]:
+    def _get(self, path: str, **kwargs) -> Optional[requests.Response]:
         """GET request to GitHub API."""
         url = f"https://api.github.com{path}"
-        return self._request("GET", url, public=public, **kwargs)
+        return self._request("GET", url, **kwargs)
 
     def get_file_content(
         self, repo: str, path: str, ref: str = "main"
@@ -190,18 +203,6 @@ class GitHubAPI:
         target_tag: Optional[str] = None,
     ) -> Optional[Dict]:
         """Find an open workflow-owned release issue for a release tag."""
-        issue = self._find_release_issue(repo, target_tag, public=False)
-        if issue is None and self.token:
-            issue = self._find_release_issue(repo, target_tag, public=True)
-        return issue
-
-    def _find_release_issue(
-        self,
-        repo: str,
-        target_tag: Optional[str],
-        *,
-        public: bool,
-    ) -> Optional[Dict]:
         resp = self._get(
             f"/repos/{ORG}/{repo}/issues",
             params={
@@ -209,7 +210,6 @@ class GitHubAPI:
                 "state": "open",
                 "per_page": 20,
             },
-            public=public,
         )
         if resp.status_code == 404:
             return None
