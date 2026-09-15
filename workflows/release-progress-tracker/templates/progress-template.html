@@ -157,6 +157,15 @@ a.milestone-tag:hover {
   font-size: 12px;
 }
 
+/* Commonalities column: a bare rN.M token, labelled by its header */
+.comm-cell {
+  white-space: nowrap;
+}
+
+.comm-tag {
+  font-weight: 500;
+}
+
 /* Track pill count */
 .track-pill-count {
   opacity: 0.7;
@@ -297,7 +306,26 @@ tr.historical-row:hover td {
 .rq-done { color: #1a7f37; }
 .rq-discarded { color: #cf222e; font-size: 12px; margin-top: 3px; }
 .table-scroll { overflow-x: auto; }
-.rq-apis { color: var(--text-secondary); font-size: 12px; cursor: help; border-bottom: 1px dotted var(--border-light); display: inline-block; margin-top: 2px; }
+/* Bundled APIs of the release, written out under the repository name. */
+.rq-api-list { margin-top: 2px; }
+.rq-api-item {
+  display: flex;
+  gap: 4px;
+  color: var(--text-secondary);
+  font-size: 12px;
+  line-height: 1.4;
+}
+/* Only the name clips. The version is never truncated — it is the part a reviewer
+   needs, and as the tail of the string it would otherwise be cut first. 28ch clears
+   the longest base name that has a `-subscriptions` sibling in the same cell
+   (`device-reachability-status`, 26), so the two never render identically. */
+.rq-api-name {
+  max-width: 28ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.rq-api-ver { flex: none; }
   </style>
 </head>
 <body>
@@ -352,6 +380,12 @@ tr.historical-row:hover td {
             </select>
           </div>
           <div class="filter-group">
+            <label for="filterCommonalities">Commonalities:</label>
+            <select id="filterCommonalities" onchange="applyFilters()">
+              <option value="">All</option>
+            </select>
+          </div>
+          <div class="filter-group">
             <label>
               <input type="checkbox" id="filterWarnings" onchange="applyFilters()" style="margin-right: 4px;">
               Has warnings
@@ -382,12 +416,13 @@ tr.historical-row:hover td {
             <th onclick="sortTable(0)">API Name <span class="sort-arrow"></span></th>
             <th onclick="sortTable(1)">Target API<br>Version <span class="sort-arrow"></span></th>
             <th onclick="sortTable(2)">Ongoing<br>Release <span class="sort-arrow"></span></th>
-            <th onclick="sortTable(3)">Release<br>State <span class="sort-arrow"></span></th>
-            <th onclick="sortTable(4)">Last<br>Published <span class="sort-arrow"></span></th>
-            <th onclick="sortTable(5)">1st Alpha<br>(M1) <span class="sort-arrow"></span></th>
-            <th onclick="sortTable(6)">1st RC<br>(M3) <span class="sort-arrow"></span></th>
-            <th onclick="sortTable(7)">1st Public<br>(M4) <span class="sort-arrow"></span></th>
-            <th onclick="sortTable(8)">Repository <span class="sort-arrow"></span></th>
+            <th onclick="sortTable(3)" title="Commonalities release declared in release-plan.yaml">Comm <span class="sort-arrow"></span></th>
+            <th onclick="sortTable(4)">Release<br>State <span class="sort-arrow"></span></th>
+            <th onclick="sortTable(5)">Last<br>Published <span class="sort-arrow"></span></th>
+            <th onclick="sortTable(6)">1st Alpha<br>(M1) <span class="sort-arrow"></span></th>
+            <th onclick="sortTable(7)">1st RC<br>(M3) <span class="sort-arrow"></span></th>
+            <th onclick="sortTable(8)">1st Public<br>(M4) <span class="sort-arrow"></span></th>
+            <th onclick="sortTable(9)">Repository <span class="sort-arrow"></span></th>
           </tr>
         </thead>
         <tbody id="tableBody"></tbody>
@@ -421,6 +456,12 @@ tr.historical-row:hover td {
               </select>
             </div>
             <div class="filter-group">
+              <label for="reviewCommonalitiesFilter">Commonalities:</label>
+              <select id="reviewCommonalitiesFilter" onchange="applyReviewFilters()">
+                <option value="">All</option>
+              </select>
+            </div>
+            <div class="filter-group">
               <label>
                 <input type="checkbox" id="reviewUnassigned" onchange="applyReviewFilters()" style="margin-right: 4px;">
                 Unassigned only
@@ -443,11 +484,12 @@ tr.historical-row:hover td {
             <tr>
               <th onclick="sortReviewTable(0)">Repository <span class="sort-arrow"></span></th>
               <th onclick="sortReviewTable(1)">Track &middot; Type<br>&middot; Tag <span class="sort-arrow"></span></th>
-              <th onclick="sortReviewTable(2)">State <span class="sort-arrow"></span></th>
-              <th onclick="sortReviewTable(3)">RI<br>Date <span class="sort-arrow"></span></th>
-              <th onclick="sortReviewTable(4)">Snapshot<br>Date <span class="sort-arrow"></span></th>
-              <th onclick="sortReviewTable(5)">Reviewer <span class="sort-arrow"></span></th>
-              <th onclick="sortReviewTable(6)">Review<br>Progress <span class="sort-arrow"></span></th>
+              <th onclick="sortReviewTable(2)" title="Commonalities release declared in release-plan.yaml">Comm <span class="sort-arrow"></span></th>
+              <th onclick="sortReviewTable(3)">State <span class="sort-arrow"></span></th>
+              <th onclick="sortReviewTable(4)">RI<br>Date <span class="sort-arrow"></span></th>
+              <th onclick="sortReviewTable(5)">Snapshot<br>Date <span class="sort-arrow"></span></th>
+              <th onclick="sortReviewTable(6)">Reviewer <span class="sort-arrow"></span></th>
+              <th onclick="sortReviewTable(7)">Review<br>Progress <span class="sort-arrow"></span></th>
             </tr>
           </thead>
           <tbody id="reviewTableBody"></tbody>
@@ -485,7 +527,7 @@ tr.historical-row:hover td {
       'historical':      'Historical: no active release-plan.yaml; entry derived from releases-master.yaml',
     };
 
-    const COL_COUNT = 9;
+    const COL_COUNT = 10;
 
     // Release track display order — update when new meta-releases are added
     const TRACK_ORDER = ['Sync26', 'Signal27', 'independent', 'Spring26', 'Fall25', 'Spring25', 'Fall24'];
@@ -493,14 +535,14 @@ tr.historical-row:hover td {
     // Global state
     let allRows = [];
     let filteredRows = [];
-    let currentSort = { column: 3, ascending: true }; // Default: sort by Release State
+    let currentSort = { column: 4, ascending: true }; // Default: sort by Release State
     let currentTrackFilter = '';
 
     // Review Queue view state
     const REVIEW_STATES = new Set(['planned', 'snapshot_active', 'draft_ready', 'published']);
     let reviewAllRows = [];
     let reviewFilteredRows = [];
-    let reviewSort = { column: 4, ascending: false }; // Default: Snapshot date, newest first (no-date rows sink to bottom)
+    let reviewSort = { column: 5, ascending: false }; // Default: Snapshot date, newest first (no-date rows sink to bottom)
 
     /**
      * Flatten repo-centric progress data to API-centric rows.
@@ -562,6 +604,43 @@ tr.historical-row:hover td {
       });
 
       return rows;
+    }
+
+    /**
+     * Commonalities release declared in the repo's release-plan.yaml.
+     * Absent for historical entries, which have no release-plan.yaml.
+     */
+    function getCommonalities(row) {
+      return (row.dependencies || {}).commonalities_release || '';
+    }
+
+    /**
+     * Render the Commonalities cell. The column header supplies the label, so the
+     * value renders bare — unlike the other rN.M tokens on the row it needs no prefix.
+     */
+    function renderCommonalitiesCell(row) {
+      const value = getCommonalities(row);
+      if (!value) return '<span class="milestone-empty">&mdash;</span>';
+      return `<span class="comm-tag">${ViewerLib.escapeHtml(value)}</span>`;
+    }
+
+    /**
+     * Distinct Commonalities values present in the data, ascending.
+     */
+    function commonalitiesValues(rows) {
+      return [...new Set(rows.map(getCommonalities).filter(Boolean))].sort();
+    }
+
+    /**
+     * Populate a Commonalities filter <select> from the data, preserving selection.
+     */
+    function buildCommonalitiesOptions(selectId, rows) {
+      const select = document.getElementById(selectId);
+      const previous = select.value;
+      select.innerHTML = '<option value="">All</option>' +
+        commonalitiesValues(rows)
+          .map(v => `<option value="${v}">${v}</option>`).join('');
+      select.value = previous;
     }
 
     /**
@@ -930,6 +1009,9 @@ tr.historical-row:hover td {
       // Ongoing Release (3-line cell)
       const ongoingCell = renderOngoingReleaseCell(row);
 
+      // Commonalities release
+      const commCell = renderCommonalitiesCell(row);
+
       // Release State
       const stateCell = renderStateCell(row);
 
@@ -948,6 +1030,7 @@ tr.historical-row:hover td {
         <td>${apiNameText}</td>
         <td>${versionCell}</td>
         <td class="milestone-cell">${ongoingCell}</td>
+        <td class="comm-cell">${commCell}</td>
         <td>${stateCell}</td>
         <td class="milestone-cell">${lastPubCell}</td>
         <td class="milestone-cell">${m1Cell}</td>
@@ -1020,6 +1103,7 @@ tr.historical-row:hover td {
       const searchFilter = document.getElementById('filterSearch').value.toLowerCase();
       const stateFilter = document.getElementById('filterState').value;
       const maturityFilter = document.getElementById('filterMaturity').value;
+      const commonalitiesFilter = document.getElementById('filterCommonalities').value;
       const warningsFilter = document.getElementById('filterWarnings').checked;
       const showHistoryFilter = document.getElementById('filterShowHistory').checked;
 
@@ -1045,6 +1129,8 @@ tr.historical-row:hover td {
           const mat = getMaturity(row.target_api_version);
           if (mat !== maturityFilter) return false;
         }
+
+        if (commonalitiesFilter && getCommonalities(row) !== commonalitiesFilter) return false;
 
         if (warningsFilter && (!row.warnings || row.warnings.length === 0)) return false;
 
@@ -1081,12 +1167,13 @@ tr.historical-row:hover td {
         r => r.api_name.toLowerCase(),                           // 0: API Name
         r => r.target_api_version,                               // 1: Target API Version
         r => r.target_release_tag || '',                         // 2: Ongoing Release (by tag)
-        r => (STATE_CONFIG[r.state] || {}).order ?? 99,          // 3: Release State
-        r => getLastPublishedDate(r),                            // 4: Last Published (by date)
-        r => getMilestoneDate(r.cycle_releases, 'm1'),           // 5: 1st Alpha (M1)
-        r => getMilestoneDate(r.cycle_releases, 'm3'),           // 6: 1st RC (M3)
-        r => getMilestoneDate(r.cycle_releases, 'm4'),           // 7: 1st Public (M4)
-        r => r.repository.toLowerCase(),                         // 8: Repository
+        r => getCommonalities(r),                                // 3: Commonalities
+        r => (STATE_CONFIG[r.state] || {}).order ?? 99,          // 4: Release State
+        r => getLastPublishedDate(r),                            // 5: Last Published (by date)
+        r => getMilestoneDate(r.cycle_releases, 'm1'),           // 6: 1st Alpha (M1)
+        r => getMilestoneDate(r.cycle_releases, 'm3'),           // 7: 1st RC (M3)
+        r => getMilestoneDate(r.cycle_releases, 'm4'),           // 8: 1st Public (M4)
+        r => r.repository.toLowerCase(),                         // 9: Repository
       ];
 
       const getKey = sortKeys[columnIndex] || sortKeys[0];
@@ -1195,6 +1282,7 @@ tr.historical-row:hover td {
       document.getElementById('filterSearch').value = '';
       document.getElementById('filterState').value = '';
       document.getElementById('filterMaturity').value = '';
+      document.getElementById('filterCommonalities').value = '';
       document.getElementById('filterWarnings').checked = false;
       document.getElementById('filterShowHistory').checked = true;
       currentTrackFilter = '';
@@ -1211,10 +1299,11 @@ tr.historical-row:hover td {
       if (params.has('state')) document.getElementById('filterState').value = params.get('state');
       if (params.has('release_track')) currentTrackFilter = params.get('release_track');
       if (params.has('maturity')) document.getElementById('filterMaturity').value = params.get('maturity');
+      if (params.has('commonalities')) document.getElementById('filterCommonalities').value = params.get('commonalities');
       if (params.get('warnings') === 'true') document.getElementById('filterWarnings').checked = true;
 
       if (params.has('sort')) {
-        currentSort.column = parseInt(params.get('sort')) || 3;
+        currentSort.column = parseInt(params.get('sort')) || 4;
       }
       if (params.has('order')) {
         currentSort.ascending = params.get('order') !== 'desc';
@@ -1230,14 +1319,16 @@ tr.historical-row:hover td {
       const search = document.getElementById('filterSearch').value;
       const state = document.getElementById('filterState').value;
       const maturity = document.getElementById('filterMaturity').value;
+      const commonalities = document.getElementById('filterCommonalities').value;
       const warnings = document.getElementById('filterWarnings').checked;
 
       if (search) params.set('search', search);
       if (state) params.set('state', state);
       if (currentTrackFilter) params.set('release_track', currentTrackFilter);
       if (maturity) params.set('maturity', maturity);
+      if (commonalities) params.set('commonalities', commonalities);
       if (warnings) params.set('warnings', 'true');
-      if (currentSort.column !== 3) params.set('sort', currentSort.column);
+      if (currentSort.column !== 4) params.set('sort', currentSort.column);
       if (!currentSort.ascending) params.set('order', 'desc');
 
       const newUrl = params.toString()
@@ -1254,6 +1345,7 @@ tr.historical-row:hover td {
       const headers = [
         'API Name', 'Target API Version',
         'Ongoing Release Tag', 'Ongoing Release Version', 'Ongoing Release Status',
+        'Commonalities',
         'Release State',
         'Last Published Tag', 'Last Published Version', 'Last Published Date',
         'Release Track', 'Meta-Release',
@@ -1282,6 +1374,7 @@ tr.historical-row:hover td {
           row.target_release_tag,
           ongoingVer,
           row.target_api_status,
+          getCommonalities(row),
           row.state,
           lpApi ? (lp.release_tag || '') : '',
           (lpApi && lpApi.api_version) || '',
@@ -1362,6 +1455,7 @@ tr.historical-row:hover td {
           target_release_tag: repo.target_release_tag || '',
           target_release_type: repo.target_release_type || '',
           state: repo.state,
+          dependencies: repo.dependencies || {},
           apis: repo.apis || [],
           snapshot_api_versions: repo.snapshot_api_versions || null,
           ri_date: ri ? (ri.created_at || null) : null,
@@ -1419,6 +1513,55 @@ tr.historical-row:hover td {
         : txt;
     }
 
+    /**
+     * The bundled APIs of this release, as `name version` strings.
+     */
+    function reviewApiItems(row) {
+      return (row.apis || []).map(a => ({
+        name: a.api_name,
+        version: (row.snapshot_api_versions && row.snapshot_api_versions[a.api_name])
+          || a.target_api_version || '',
+      }));
+    }
+
+    /**
+     * Flatten the bundled APIs to `name version` strings, for CSV export.
+     */
+    function reviewApiStrings(row) {
+      return reviewApiItems(row).map(a => a.version ? `${a.name} ${a.version}` : a.name);
+    }
+
+    /**
+     * Repository cell: the repo link, with the release's bundled APIs and their
+     * versions written out beneath it.
+     *
+     * The names are written out rather than hidden behind a hover so they survive a
+     * screenshot or a CSV export.
+     *
+     * Only the name clips (.rq-api-name); the version always renders in full. The
+     * version sits at the tail of the string, so clipping the pair as one unit would
+     * drop the version first — the part a reviewer most needs.
+     *
+     * The name is clipped by CSS, never by character count: CAMARA API names are
+     * prefix-collided — many releases bundle both `<base>` and `<base>-subscriptions`
+     * — so a short cut would render two sibling APIs identically. 28ch clears the
+     * longest such base name (`device-reachability-status`, 26). The full string stays
+     * in the title for the few that still clip.
+     */
+    function renderReviewRepoCell(row) {
+      const link = `<a href="${row.github_url}" target="_blank" rel="noopener">` +
+                   `${ViewerLib.escapeHtml(row.repository)}</a>`;
+      const items = reviewApiItems(row).map(api => {
+        const full = api.version ? `${api.name} ${api.version}` : api.name;
+        const version = api.version
+          ? `<span class="rq-api-ver">${ViewerLib.escapeHtml(api.version)}</span>` : '';
+        return `<div class="rq-api-item" title="${ViewerLib.escapeHtml(full)}">` +
+               `<span class="rq-api-name">${ViewerLib.escapeHtml(api.name)}</span>` +
+               `${version}</div>`;
+      }).join('');
+      return items ? `${link}<div class="rq-api-list">${items}</div>` : link;
+    }
+
     function renderTrackTypeTagCell(row) {
       const track = row.release_track === 'independent'
         ? 'Independent' : (row.meta_release || '—');
@@ -1426,22 +1569,8 @@ tr.historical-row:hover td {
       const type = shortType(row.target_release_type);
       const typeSuffix = (type && type !== '—')
         ? ` <span class="rq-type">(${ViewerLib.escapeHtml(type)})</span>` : '';
-      // Bundled APIs live in a hover on the release to keep the table narrow;
-      // the full list is still in the CSV export.
-      const apis = row.apis || [];
-      let apisLine = '';
-      if (apis.length) {
-        const list = apis.map(a => {
-          const v = (row.snapshot_api_versions && row.snapshot_api_versions[a.api_name])
-            || a.target_api_version || '';
-          return v ? `${a.api_name} ${v}` : a.api_name;
-        }).join('\n');
-        apisLine = `<div class="rq-apis" title="${ViewerLib.escapeHtml(list)}">` +
-                   `${apis.length} API${apis.length > 1 ? 's' : ''}</div>`;
-      }
       return `<div class="rq-track">${ViewerLib.escapeHtml(track)}</div>` +
-             `<div class="rq-tagtype">${ViewerLib.escapeHtml(tag)}${typeSuffix}</div>` +
-             apisLine;
+             `<div class="rq-tagtype">${ViewerLib.escapeHtml(tag)}${typeSuffix}</div>`;
     }
 
     function renderReviewStateBadge(state) {
@@ -1522,8 +1651,9 @@ tr.historical-row:hover td {
     function renderReviewRow(row) {
       const tr = document.createElement('tr');
       tr.innerHTML = `
-        <td><a href="${row.github_url}" target="_blank" rel="noopener">${ViewerLib.escapeHtml(row.repository)}</a></td>
+        <td>${renderReviewRepoCell(row)}</td>
         <td>${renderTrackTypeTagCell(row)}</td>
+        <td class="comm-cell">${renderCommonalitiesCell(row)}</td>
         <td>${renderReviewStateBadge(row.state)}</td>
         <td class="rq-nowrap">${renderReviewDateCell(row.ri_date, row.ri_url)}</td>
         <td>${renderSnapshotDateCell(row)}</td>
@@ -1546,13 +1676,14 @@ tr.historical-row:hover td {
       const sortKeys = [
         r => r.repository.toLowerCase(),                                          // 0 Repository
         r => `${pad(trackSortKey(reviewTrackKey(r)))}|${typeOrder(r.target_release_type)}|${r.target_release_tag}`, // 1 Track·Type·Tag
-        r => (STATE_CONFIG[r.state] || {}).order ?? 99,                           // 2 State
-        r => r.ri_date || null,                                                   // 3 RI date
-        r => r.snapshot_date || null,                                             // 4 Snapshot date
-        r => reviewerSortKey(r),                                                  // 5 Reviewer
-        r => (STATE_CONFIG[r.state] || {}).order ?? 99,                           // 6 Review progress (by state)
+        r => getCommonalities(r),                                                 // 2 Commonalities
+        r => (STATE_CONFIG[r.state] || {}).order ?? 99,                           // 3 State
+        r => r.ri_date || null,                                                   // 4 RI date
+        r => r.snapshot_date || null,                                             // 5 Snapshot date
+        r => reviewerSortKey(r),                                                  // 6 Reviewer
+        r => (STATE_CONFIG[r.state] || {}).order ?? 99,                           // 7 Review progress (by state)
       ];
-      const getKey = sortKeys[columnIndex] || sortKeys[4];
+      const getKey = sortKeys[columnIndex] || sortKeys[5];
 
       rows.sort((a, b) => {
         const aVal = getKey(a);
@@ -1616,11 +1747,13 @@ tr.historical-row:hover td {
       const q = document.getElementById('reviewSearch').value.toLowerCase();
       const stateFilter = document.getElementById('reviewStateFilter').value;
       const trackFilter = document.getElementById('reviewTrackFilter').value;
+      const commonalitiesFilter = document.getElementById('reviewCommonalitiesFilter').value;
       const unassignedOnly = document.getElementById('reviewUnassigned').checked;
 
       reviewFilteredRows = reviewAllRows.filter(row => {
         if (stateFilter && row.state !== stateFilter) return false;
         if (trackFilter && reviewTrackKey(row) !== trackFilter) return false;
+        if (commonalitiesFilter && getCommonalities(row) !== commonalitiesFilter) return false;
         if (unassignedOnly && !(row.has_pr && row.assignees.length === 0)) return false;
         if (q) {
           const haystack = [
@@ -1641,6 +1774,7 @@ tr.historical-row:hover td {
       document.getElementById('reviewSearch').value = '';
       document.getElementById('reviewStateFilter').value = '';
       document.getElementById('reviewTrackFilter').value = '';
+      document.getElementById('reviewCommonalitiesFilter').value = '';
       document.getElementById('reviewUnassigned').checked = false;
       applyReviewFilters();
     }
@@ -1671,16 +1805,12 @@ tr.historical-row:hover td {
     function exportReviewCSV() {
       const headers = [
         'Repository', 'Release Track', 'Meta-Release', 'Release Type', 'Release Tag',
-        'APIs', 'State', 'RI Date', 'Snapshot Date',
+        'APIs', 'Commonalities', 'State', 'RI Date', 'Snapshot Date',
         'Reviewer', 'Codeowner Readiness', 'RM Approval',
         'Discarded Snapshots', 'Last Reviewer',
       ];
       const rows = reviewFilteredRows.map(row => {
-        const apis = row.apis.map(a => {
-          const v = (row.snapshot_api_versions && row.snapshot_api_versions[a.api_name])
-            || a.target_api_version || '';
-          return v ? `${a.api_name} ${v}` : a.api_name;
-        }).join('; ');
+        const apis = reviewApiStrings(row).join('; ');
         let readiness = '';
         let rmApproval = '';
         if (row.has_pr) {
@@ -1693,7 +1823,7 @@ tr.historical-row:hover td {
         return [
           row.repository, row.release_track, row.meta_release,
           row.target_release_type, row.target_release_tag,
-          apis, row.state,
+          apis, getCommonalities(row), row.state,
           row.ri_date || '', row.snapshot_date || '',
           reviewer, readiness, rmApproval,
           row.discarded_count || 0, row.last_reviewers.join(', '),
@@ -1723,6 +1853,9 @@ tr.historical-row:hover td {
 
       renderFooter(PROGRESS_DATA);
 
+      // Before parseUrlParams: setting a <select> value with no matching option is a no-op.
+      buildCommonalitiesOptions('filterCommonalities', allRows);
+
       parseUrlParams();
 
       // In iframe with a track param: suppress pills (track can't be changed)
@@ -1739,6 +1872,7 @@ tr.historical-row:hover td {
       // Review Queue view: built up-front, shown on tab switch.
       reviewAllRows = flattenReviewData(PROGRESS_DATA);
       buildReviewTrackOptions();
+      buildCommonalitiesOptions('reviewCommonalitiesFilter', reviewAllRows);
       applyReviewFilters();
     }
 
