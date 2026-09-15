@@ -54,8 +54,10 @@ The viewer embeds shared CSS (`viewer-styles.css`) and JS (`viewer-lib.js`) from
 **Template**: `templates/progress-template.html` — uses `{{VIEWER_STYLES}}`, `{{VIEWER_LIBRARY}}`, and `{{PROGRESS_DATA}}` placeholders.
 
 **Features**: two tabs sharing one artifact —
-- **Release Progress**: API-centric table, state badges, M1/M3/M4 milestone columns, filtering (state/track/maturity/text/warnings), sortable columns, URL parameters for bookmarkable views, CSV/JSON export.
-- **Review Queue**: one row per ongoing release (repository + tag, states `planned`→`published`), flat and sortable, showing track/type/tag, bundled APIs, state, release-issue and snapshot dates, the assigned reviewer (or `team`), discard history (count + last reviewer), and state-adaptive review progress. Default sort is snapshot date ascending (oldest-waiting first); CSV export.
+- **Release Progress**: API-centric table, state badges, the declared Commonalities release, M1/M3/M4 milestone columns, filtering (state/track/maturity/commonalities/text/warnings), sortable columns, URL parameters for bookmarkable views, CSV/JSON export.
+- **Review Queue**: one row per ongoing release (repository + tag, states `planned`→`published`), flat and sortable, showing the repository with its bundled APIs and versions written out beneath, track/type/tag, the declared Commonalities release, state, release-issue and snapshot dates, the assigned reviewer (or `team`), discard history (count + last reviewer), and state-adaptive review progress. Default sort is snapshot date ascending (oldest-waiting first); CSV export.
+
+The `Comm` column on both tabs shows `dependencies.commonalities_release` from the repository's `release-plan.yaml` and marks nothing as out of date — the tracker has no source for the current Commonalities target, so sorting the column and the Commonalities filter are what surface which releases are still on an older one. Historical entries have no `release-plan.yaml` and show an em-dash.
 
 Both tabs share dark mode and the shared CSS/JS.
 
