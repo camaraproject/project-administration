@@ -1,19 +1,19 @@
 {
   "metadata": {
-    "generated": "2026-09-14T08:06:12.393Z",
+    "generated": "2026-09-15T08:00:46.804Z",
     "meta_release": "All",
     "source": "Release Collector v3",
     "landscape_version": "1.1.1"
   },
   "statistics": {
     "repositories_count": 53,
-    "api_versions_count": 208,
+    "api_versions_count": 209,
     "unique_api_names_count": 78,
     "unique_apis_count": 77,
     "api_version_maturity": {
       "stable": 28,
       "initial": 140,
-      "rc": 40
+      "rc": 41
     },
     "unique_api_maturity": {
       "stable": 4,
@@ -25,7 +25,7 @@
       "Communication Quality": 50,
       "Payments and Charging": 11,
       "Authentication and Fraud Prevention": 57,
-      "Communication Services": 14,
+      "Communication Services": 15,
       "Service Management": 2,
       "Device Information": 23,
       "Location Services": 20
@@ -142,6 +142,11 @@
     "ClickToDial": {
       "releases": [
         {
+          "tag": "r2.2",
+          "date": "2026-09-15T02:34:18Z",
+          "apis_count": 1
+        },
+        {
           "tag": "r2.1",
           "date": "2026-07-15T03:28:17Z",
           "apis_count": 1
@@ -152,7 +157,7 @@
           "apis_count": 1
         }
       ],
-      "total_apis": 2,
+      "total_apis": 3,
       "unique_apis_count": 1
     },
     "ConnectedNetworkType": {
@@ -1485,6 +1490,35 @@
           "api_version": "0.2.0-rc.1",
           "api_title": "Click to Dial Service",
           "commonalities": "0.8.0",
+          "maturity": "initial",
+          "portfolio_category": "Communication Services",
+          "website_url": "https://camaraproject.org/click-to-dial/",
+          "tooltip": "Establish web-based communication by clicking an object",
+          "display_name": "Click to Dial Service",
+          "published": true,
+          "canonical_name": "click-to-dial",
+          "first_release": "Spring26"
+        }
+      ]
+    },
+    {
+      "repository": "ClickToDial",
+      "release_tag": "r2.2",
+      "release_date": "2026-09-15T02:34:18Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/ClickToDial/releases/tag/r2.2",
+      "release_type": "pre-release-rc",
+      "src_commit_sha": "5bf44bfc783aa7f742c9cdab8c06a12c796a1b53",
+      "dependencies": {
+        "commonalities_release": "r4.4 (0.9.0)",
+        "identity_consent_management_release": "r4.2 (0.5.0)"
+      },
+      "apis": [
+        {
+          "api_name": "click-to-dial",
+          "api_version": "0.2.0-rc.2",
+          "api_title": "Click to Dial Service",
+          "commonalities": "0.9.0",
           "maturity": "initial",
           "portfolio_category": "Communication Services",
           "website_url": "https://camaraproject.org/click-to-dial/",
@@ -6030,6 +6064,26 @@
       "release_date": "2026-07-15T03:28:17Z",
       "meta_release": "Independent",
       "github_url": "https://github.com/camaraproject/ClickToDial/releases/tag/r2.1",
+      "release_type": "pre-release-rc"
+    },
+    {
+      "api_name": "click-to-dial",
+      "api_version": "0.2.0-rc.2",
+      "api_title": "Click to Dial Service",
+      "commonalities": "0.9.0",
+      "maturity": "initial",
+      "portfolio_category": "Communication Services",
+      "website_url": "https://camaraproject.org/click-to-dial/",
+      "tooltip": "Establish web-based communication by clicking an object",
+      "display_name": "Click to Dial Service",
+      "published": true,
+      "canonical_name": "click-to-dial",
+      "first_release": "Spring26",
+      "repository": "ClickToDial",
+      "release_tag": "r2.2",
+      "release_date": "2026-09-15T02:34:18Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/ClickToDial/releases/tag/r2.2",
       "release_type": "pre-release-rc"
     },
     {
