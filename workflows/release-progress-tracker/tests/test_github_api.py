@@ -43,18 +43,21 @@ class ScriptedSession:
 def _api_with_session(script):
     api = GitHubAPI(token="test-token", sleep=lambda _s: None)
     api.session = ScriptedSession(script)
-    api.public_session = api.session
     return api
 
 
-def test_find_release_issue_retries_public_when_auth_returns_empty(monkeypatch):
+def test_constructor_raises_without_token(monkeypatch):
+    monkeypatch.delenv("GITHUB_TOKEN", raising=False)
+    with pytest.raises(RuntimeError):
+        GitHubAPI(token="")
+
+
+def test_find_release_issue_issues_exactly_one_request(monkeypatch):
     api = GitHubAPI(token="test-token")
     calls = []
 
-    def fake_get(path, public=False, **kwargs):
-        calls.append(public)
-        if not public:
-            return FakeResponse(200, [])
+    def fake_get(path, **kwargs):
+        calls.append(path)
         return FakeResponse(200, [{
             "number": 43,
             "html_url": "https://github.com/camaraproject/ReleaseTest/issues/43",
@@ -71,7 +74,7 @@ def test_find_release_issue_retries_public_when_auth_returns_empty(monkeypatch):
 
     issue = api.find_release_issue("ReleaseTest", "r1.3")
 
-    assert calls == [False, True]
+    assert len(calls) == 1
     assert issue == {
         "number": 43,
         "url": "https://github.com/camaraproject/ReleaseTest/issues/43",
@@ -146,6 +149,34 @@ def test_request_raises_rate_limit_immediately_no_retry():
     with pytest.raises(RateLimitError):
         api._get("/some/path")
     assert api.api_calls == 1
+
+
+def test_request_low_remaining_warning_includes_limit(caplog):
+    script_response = FakeResponse(200, {"ok": True}, rate_limit_remaining="29")
+    script_response.headers["X-RateLimit-Limit"] = "60"
+    api = _api_with_session([script_response])
+
+    with caplog.at_level("WARNING"):
+        api._get("/some/path")
+
+    assert any("29 of 60 remaining" in record.message for record in caplog.records)
+
+
+def test_request_logs_budget_once_from_first_response(caplog):
+    first = FakeResponse(200, {"ok": True}, rate_limit_remaining="4998")
+    first.headers["X-RateLimit-Limit"] = "5000"
+    second = FakeResponse(200, {"ok": True}, rate_limit_remaining="4997")
+    second.headers["X-RateLimit-Limit"] = "5000"
+    api = _api_with_session([first, second])
+
+    with caplog.at_level("INFO"):
+        api._get("/first")
+        api._get("/second")
+
+    budget_logs = [r for r in caplog.records if "GitHub API budget" in r.message]
+    assert len(budget_logs) == 1
+    assert "5000/hour" in budget_logs[0].message
+    assert "4998 remaining" in budget_logs[0].message
 
 
 # Review-PR listing for the Review Queue ----------------------------
