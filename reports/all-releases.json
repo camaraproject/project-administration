@@ -1,30 +1,30 @@
 {
   "metadata": {
-    "generated": "2026-09-15T08:00:46.804Z",
+    "generated": "2026-09-16T07:53:32.587Z",
     "meta_release": "All",
     "source": "Release Collector v3",
     "landscape_version": "1.1.1"
   },
   "statistics": {
     "repositories_count": 53,
-    "api_versions_count": 209,
+    "api_versions_count": 211,
     "unique_api_names_count": 78,
     "unique_apis_count": 77,
     "api_version_maturity": {
       "stable": 28,
       "initial": 140,
-      "rc": 41
+      "rc": 43
     },
     "unique_api_maturity": {
-      "stable": 4,
+      "stable": 3,
       "initial": 34,
-      "rc": 39
+      "rc": 40
     },
     "categories": {
       "Computing Services": 17,
       "Communication Quality": 50,
       "Payments and Charging": 11,
-      "Authentication and Fraud Prevention": 57,
+      "Authentication and Fraud Prevention": 58,
       "Communication Services": 15,
       "Service Management": 2,
       "Device Information": 23,
@@ -456,6 +456,11 @@
     "IoTDeviceManagement": {
       "releases": [
         {
+          "tag": "r1.3",
+          "date": "2026-09-15T11:13:37Z",
+          "apis_count": 1
+        },
+        {
           "tag": "r1.2",
           "date": "2026-08-28T05:15:54Z",
           "apis_count": 1
@@ -466,7 +471,7 @@
           "apis_count": 1
         }
       ],
-      "total_apis": 2,
+      "total_apis": 3,
       "unique_apis_count": 1
     },
     "IoTNetworkOptimization": {
@@ -711,6 +716,11 @@
     "OTPValidation": {
       "releases": [
         {
+          "tag": "r4.1",
+          "date": "2026-09-15T13:33:35Z",
+          "apis_count": 1
+        },
+        {
           "tag": "r3.2",
           "date": "2025-09-16T09:27:12Z",
           "apis_count": 1
@@ -726,7 +736,7 @@
           "apis_count": 1
         }
       ],
-      "total_apis": 3,
+      "total_apis": 4,
       "unique_apis_count": 1
     },
     "PopulationDensityData": {
@@ -3137,6 +3147,35 @@
       ]
     },
     {
+      "repository": "IoTDeviceManagement",
+      "release_tag": "r1.3",
+      "release_date": "2026-09-15T11:13:37Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/IoTDeviceManagement/releases/tag/r1.3",
+      "release_type": "pre-release-rc",
+      "src_commit_sha": "98d22029d4a121a6708781fa51f0dc9eeade20af",
+      "dependencies": {
+        "commonalities_release": "r4.4 (0.9.0)",
+        "identity_consent_management_release": "r4.2 (0.5.0)"
+      },
+      "apis": [
+        {
+          "api_name": "esim-profile-management",
+          "api_version": "0.1.0-rc.2",
+          "api_title": "eSIM Profile Management API",
+          "commonalities": "0.9.0",
+          "maturity": "initial",
+          "portfolio_category": null,
+          "website_url": null,
+          "tooltip": null,
+          "display_name": "eSIM Profile Management API",
+          "published": true,
+          "canonical_name": "esim-profile-management",
+          "first_release": "Sandbox"
+        }
+      ]
+    },
+    {
       "repository": "IoTNetworkOptimization",
       "release_tag": "r1.1",
       "release_date": "2025-12-11T13:11:28Z",
@@ -4201,6 +4240,35 @@
           "canonical_name": "one-time-password-sms",
           "first_release": "PreFall24",
           "isNew": false
+        }
+      ]
+    },
+    {
+      "repository": "OTPValidation",
+      "release_tag": "r4.1",
+      "release_date": "2026-09-15T13:33:35Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/OTPValidation/releases/tag/r4.1",
+      "release_type": "pre-release-rc",
+      "src_commit_sha": "e9b67298c7d0490327eb182f0f22f2502fbd11df",
+      "dependencies": {
+        "commonalities_release": "r4.3 (0.8.0)",
+        "identity_consent_management_release": "r4.2 (0.5.0)"
+      },
+      "apis": [
+        {
+          "api_name": "one-time-password-sms",
+          "api_version": "2.0.0-rc.1",
+          "api_title": "One Time Password SMS",
+          "commonalities": "0.8.0",
+          "maturity": "stable",
+          "portfolio_category": "Authentication and Fraud Prevention",
+          "website_url": "https://camaraproject.org/one-time-password-sms/",
+          "tooltip": "To offer secure user authentication to service providers",
+          "display_name": "One Time Password SMS",
+          "published": true,
+          "canonical_name": "one-time-password-sms",
+          "first_release": "PreFall24"
         }
       ]
     },
@@ -7680,6 +7748,26 @@
       "release_type": "pre-release-rc"
     },
     {
+      "api_name": "esim-profile-management",
+      "api_version": "0.1.0-rc.2",
+      "api_title": "eSIM Profile Management API",
+      "commonalities": "0.9.0",
+      "maturity": "initial",
+      "portfolio_category": null,
+      "website_url": null,
+      "tooltip": null,
+      "display_name": "eSIM Profile Management API",
+      "published": true,
+      "canonical_name": "esim-profile-management",
+      "first_release": "Sandbox",
+      "repository": "IoTDeviceManagement",
+      "release_tag": "r1.3",
+      "release_date": "2026-09-15T11:13:37Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/IoTDeviceManagement/releases/tag/r1.3",
+      "release_type": "pre-release-rc"
+    },
+    {
       "api_name": "iot-network-optimization",
       "api_version": "0.1.0-alpha.1",
       "api_title": "IoT Network Optimization API",
@@ -8627,6 +8715,26 @@
       "meta_release": "Fall25",
       "github_url": "https://github.com/camaraproject/OTPValidation/releases/tag/r3.2",
       "release_type": "public-release"
+    },
+    {
+      "api_name": "one-time-password-sms",
+      "api_version": "2.0.0-rc.1",
+      "api_title": "One Time Password SMS",
+      "commonalities": "0.8.0",
+      "maturity": "stable",
+      "portfolio_category": "Authentication and Fraud Prevention",
+      "website_url": "https://camaraproject.org/one-time-password-sms/",
+      "tooltip": "To offer secure user authentication to service providers",
+      "display_name": "One Time Password SMS",
+      "published": true,
+      "canonical_name": "one-time-password-sms",
+      "first_release": "PreFall24",
+      "repository": "OTPValidation",
+      "release_tag": "r4.1",
+      "release_date": "2026-09-15T13:33:35Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/OTPValidation/releases/tag/r4.1",
+      "release_type": "pre-release-rc"
     },
     {
       "api_name": "population-density-data",
