@@ -1,33 +1,33 @@
 {
   "metadata": {
-    "generated": "2026-09-16T07:53:32.587Z",
+    "generated": "2026-09-17T07:58:18.856Z",
     "meta_release": "All",
     "source": "Release Collector v3",
     "landscape_version": "1.1.1"
   },
   "statistics": {
     "repositories_count": 53,
-    "api_versions_count": 211,
+    "api_versions_count": 218,
     "unique_api_names_count": 78,
     "unique_apis_count": 77,
     "api_version_maturity": {
       "stable": 28,
       "initial": 140,
-      "rc": 43
+      "rc": 50
     },
     "unique_api_maturity": {
       "stable": 3,
-      "initial": 34,
-      "rc": 40
+      "initial": 27,
+      "rc": 47
     },
     "categories": {
-      "Computing Services": 17,
-      "Communication Quality": 50,
+      "Computing Services": 18,
+      "Communication Quality": 53,
       "Payments and Charging": 11,
       "Authentication and Fraud Prevention": 58,
       "Communication Services": 15,
       "Service Management": 2,
-      "Device Information": 23,
+      "Device Information": 25,
       "Location Services": 20
     },
     "apis_with_previous_names": 5
@@ -36,12 +36,17 @@
     "ApplicationEndpointDiscovery": {
       "releases": [
         {
+          "tag": "r2.1",
+          "date": "2026-09-16T13:16:44Z",
+          "apis_count": 1
+        },
+        {
           "tag": "r1.2",
           "date": "2025-09-16T19:23:11Z",
           "apis_count": 1
         }
       ],
-      "total_apis": 1,
+      "total_apis": 2,
       "unique_apis_count": 1
     },
     "ApplicationEndpointRegistration": {
@@ -258,6 +263,11 @@
     "DedicatedNetworks": {
       "releases": [
         {
+          "tag": "r2.2",
+          "date": "2026-09-16T19:09:08Z",
+          "apis_count": 4
+        },
+        {
           "tag": "r2.1",
           "date": "2026-05-26T09:40:59Z",
           "apis_count": 4
@@ -268,18 +278,23 @@
           "apis_count": 3
         }
       ],
-      "total_apis": 7,
+      "total_apis": 11,
       "unique_apis_count": 4
     },
     "DeviceDataVolume": {
       "releases": [
+        {
+          "tag": "r2.1",
+          "date": "2026-09-16T12:46:52Z",
+          "apis_count": 2
+        },
         {
           "tag": "r1.3",
           "date": "2025-09-12T09:19:47Z",
           "apis_count": 2
         }
       ],
-      "total_apis": 2,
+      "total_apis": 4,
       "unique_apis_count": 2
     },
     "DeviceIdentifier": {
@@ -1041,6 +1056,35 @@
           "canonical_name": "application-endpoint-discovery",
           "first_release": "Fall25",
           "isNew": true
+        }
+      ]
+    },
+    {
+      "repository": "ApplicationEndpointDiscovery",
+      "release_tag": "r2.1",
+      "release_date": "2026-09-16T13:16:44Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/ApplicationEndpointDiscovery/releases/tag/r2.1",
+      "release_type": "pre-release-rc",
+      "src_commit_sha": "23a7d7fa720dc51c5406870b8fdf8c80f71c547d",
+      "dependencies": {
+        "commonalities_release": "r4.3 (0.8.0)",
+        "identity_consent_management_release": "r4.2 (0.5.0)"
+      },
+      "apis": [
+        {
+          "api_name": "application-endpoint-discovery",
+          "api_version": "0.2.0-rc.1",
+          "api_title": "Application Endpoint Discovery",
+          "commonalities": "0.8.0",
+          "maturity": "initial",
+          "portfolio_category": "Computing Services",
+          "website_url": "https://camaraproject.org/application-endpoint-discovery/",
+          "tooltip": "Locating the nearest edge cloud zone but also directly linking to the application endpoints",
+          "display_name": "Application Endpoint Discovery",
+          "published": true,
+          "canonical_name": "application-endpoint-discovery",
+          "first_release": "Fall25"
         }
       ]
     },
@@ -2130,6 +2174,77 @@
       ]
     },
     {
+      "repository": "DedicatedNetworks",
+      "release_tag": "r2.2",
+      "release_date": "2026-09-16T19:09:08Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/DedicatedNetworks/releases/tag/r2.2",
+      "release_type": "pre-release-rc",
+      "src_commit_sha": "28c4b3f37779b8018d78ed0c8f5c0f03c020ed90",
+      "dependencies": {
+        "commonalities_release": "r4.3 (0.8.0)",
+        "identity_consent_management_release": "r4.2 (0.5.0)"
+      },
+      "apis": [
+        {
+          "api_name": "dedicated-network-accesses",
+          "api_version": "0.2.0-rc.1",
+          "api_title": "Dedicated Network - Accesses",
+          "commonalities": "0.8.0",
+          "maturity": "initial",
+          "portfolio_category": "Communication Quality",
+          "website_url": "https://camaraproject.org/dedicated-networks/#",
+          "tooltip": "Control access to dedicated networks",
+          "display_name": "Dedicated Network - Accesses",
+          "published": true,
+          "canonical_name": "dedicated-network-accesses",
+          "first_release": "Fall25"
+        },
+        {
+          "api_name": "dedicated-network-profiles",
+          "api_version": "0.2.0-rc.1",
+          "api_title": "Dedicated Network - Network Profiles",
+          "commonalities": "0.8.0",
+          "maturity": "initial",
+          "portfolio_category": "Communication Quality",
+          "website_url": "https://camaraproject.org/dedicated-networks/#",
+          "tooltip": "Configure dedicated network profiles",
+          "display_name": "Dedicated Network - Network Profiles",
+          "published": true,
+          "canonical_name": "dedicated-network-profiles",
+          "first_release": "Fall25"
+        },
+        {
+          "api_name": "dedicated-network",
+          "api_version": "0.2.0-rc.1",
+          "api_title": "Dedicated Network - Networks",
+          "commonalities": "0.8.0",
+          "maturity": "initial",
+          "portfolio_category": "Communication Quality",
+          "website_url": "https://camaraproject.org/dedicated-networks/#",
+          "tooltip": "Manage dedicated private networks",
+          "display_name": "Dedicated Network - Networks",
+          "published": true,
+          "canonical_name": "dedicated-network",
+          "first_release": "Fall25"
+        },
+        {
+          "api_name": "dedicated-network-areas",
+          "api_version": "0.1.0-rc.1",
+          "api_title": "Dedicated Network - Areas",
+          "commonalities": "0.8.0",
+          "maturity": "initial",
+          "portfolio_category": null,
+          "website_url": null,
+          "tooltip": null,
+          "display_name": "Dedicated Network - Areas",
+          "published": true,
+          "canonical_name": "dedicated-network-areas",
+          "first_release": "Sandbox"
+        }
+      ]
+    },
+    {
       "repository": "DeviceDataVolume",
       "release_tag": "r1.3",
       "release_date": "2025-09-12T09:19:47Z",
@@ -2166,6 +2281,49 @@
           "canonical_name": "device-data-volume",
           "first_release": "Fall25",
           "isNew": true
+        }
+      ]
+    },
+    {
+      "repository": "DeviceDataVolume",
+      "release_tag": "r2.1",
+      "release_date": "2026-09-16T12:46:52Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/DeviceDataVolume/releases/tag/r2.1",
+      "release_type": "pre-release-rc",
+      "src_commit_sha": "83f20e083da2cdd4a1d23f51ba76b0d4523d3426",
+      "dependencies": {
+        "commonalities_release": "r4.4 (0.9.0)",
+        "identity_consent_management_release": "r4.2 (0.5.0)"
+      },
+      "apis": [
+        {
+          "api_name": "device-data-volume-subscriptions",
+          "api_version": "0.2.0-rc.1",
+          "api_title": "Device Data Volume Subscriptions",
+          "commonalities": "0.9.0",
+          "maturity": "initial",
+          "portfolio_category": "Device Information",
+          "website_url": "https://camaraproject.org/device-data-volume-subscriptions/",
+          "tooltip": "Receive notifications regarding data volume usage thresholds",
+          "display_name": "Device Data Volume Subscriptions",
+          "published": true,
+          "canonical_name": "device-data-volume-subscriptions",
+          "first_release": "Fall25"
+        },
+        {
+          "api_name": "device-data-volume",
+          "api_version": "0.2.0-rc.1",
+          "api_title": "Device Data Volume",
+          "commonalities": "0.9.0",
+          "maturity": "initial",
+          "portfolio_category": "Device Information",
+          "website_url": "https://camaraproject.org/device-data-volume/",
+          "tooltip": "Provide insights into the customer's data usage status",
+          "display_name": "Device Data Volume",
+          "published": true,
+          "canonical_name": "device-data-volume",
+          "first_release": "Fall25"
         }
       ]
     },
@@ -5718,6 +5876,26 @@
       "release_type": "public-release"
     },
     {
+      "api_name": "application-endpoint-discovery",
+      "api_version": "0.2.0-rc.1",
+      "api_title": "Application Endpoint Discovery",
+      "commonalities": "0.8.0",
+      "maturity": "initial",
+      "portfolio_category": "Computing Services",
+      "website_url": "https://camaraproject.org/application-endpoint-discovery/",
+      "tooltip": "Locating the nearest edge cloud zone but also directly linking to the application endpoints",
+      "display_name": "Application Endpoint Discovery",
+      "published": true,
+      "canonical_name": "application-endpoint-discovery",
+      "first_release": "Fall25",
+      "repository": "ApplicationEndpointDiscovery",
+      "release_tag": "r2.1",
+      "release_date": "2026-09-16T13:16:44Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/ApplicationEndpointDiscovery/releases/tag/r2.1",
+      "release_type": "pre-release-rc"
+    },
+    {
       "api_name": "application-endpoint-registration",
       "api_version": "0.1.0",
       "api_title": "Application Endpoints Registration",
@@ -6630,6 +6808,26 @@
       "release_type": "pre-release-alpha"
     },
     {
+      "api_name": "dedicated-network",
+      "api_version": "0.2.0-rc.1",
+      "api_title": "Dedicated Network - Networks",
+      "commonalities": "0.8.0",
+      "maturity": "initial",
+      "portfolio_category": "Communication Quality",
+      "website_url": "https://camaraproject.org/dedicated-networks/#",
+      "tooltip": "Manage dedicated private networks",
+      "display_name": "Dedicated Network - Networks",
+      "published": true,
+      "canonical_name": "dedicated-network",
+      "first_release": "Fall25",
+      "repository": "DedicatedNetworks",
+      "release_tag": "r2.2",
+      "release_date": "2026-09-16T19:09:08Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/DedicatedNetworks/releases/tag/r2.2",
+      "release_type": "pre-release-rc"
+    },
+    {
       "api_name": "dedicated-network-accesses",
       "api_version": "0.1.0",
       "api_title": "Dedicated Network - Accesses",
@@ -6669,6 +6867,26 @@
       "meta_release": "Independent",
       "github_url": "https://github.com/camaraproject/DedicatedNetworks/releases/tag/r2.1",
       "release_type": "pre-release-alpha"
+    },
+    {
+      "api_name": "dedicated-network-accesses",
+      "api_version": "0.2.0-rc.1",
+      "api_title": "Dedicated Network - Accesses",
+      "commonalities": "0.8.0",
+      "maturity": "initial",
+      "portfolio_category": "Communication Quality",
+      "website_url": "https://camaraproject.org/dedicated-networks/#",
+      "tooltip": "Control access to dedicated networks",
+      "display_name": "Dedicated Network - Accesses",
+      "published": true,
+      "canonical_name": "dedicated-network-accesses",
+      "first_release": "Fall25",
+      "repository": "DedicatedNetworks",
+      "release_tag": "r2.2",
+      "release_date": "2026-09-16T19:09:08Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/DedicatedNetworks/releases/tag/r2.2",
+      "release_type": "pre-release-rc"
     },
     {
       "api_name": "dedicated-network-areas",
@@ -6691,6 +6909,26 @@
       "release_type": "pre-release-alpha"
     },
     {
+      "api_name": "dedicated-network-areas",
+      "api_version": "0.1.0-rc.1",
+      "api_title": "Dedicated Network - Areas",
+      "commonalities": "0.8.0",
+      "maturity": "initial",
+      "portfolio_category": null,
+      "website_url": null,
+      "tooltip": null,
+      "display_name": "Dedicated Network - Areas",
+      "published": true,
+      "canonical_name": "dedicated-network-areas",
+      "first_release": "Sandbox",
+      "repository": "DedicatedNetworks",
+      "release_tag": "r2.2",
+      "release_date": "2026-09-16T19:09:08Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/DedicatedNetworks/releases/tag/r2.2",
+      "release_type": "pre-release-rc"
+    },
+    {
       "api_name": "dedicated-network-profiles",
       "api_version": "0.1.0",
       "api_title": "Dedicated Network - Network Profiles",
@@ -6730,6 +6968,26 @@
       "meta_release": "Independent",
       "github_url": "https://github.com/camaraproject/DedicatedNetworks/releases/tag/r2.1",
       "release_type": "pre-release-alpha"
+    },
+    {
+      "api_name": "dedicated-network-profiles",
+      "api_version": "0.2.0-rc.1",
+      "api_title": "Dedicated Network - Network Profiles",
+      "commonalities": "0.8.0",
+      "maturity": "initial",
+      "portfolio_category": "Communication Quality",
+      "website_url": "https://camaraproject.org/dedicated-networks/#",
+      "tooltip": "Configure dedicated network profiles",
+      "display_name": "Dedicated Network - Network Profiles",
+      "published": true,
+      "canonical_name": "dedicated-network-profiles",
+      "first_release": "Fall25",
+      "repository": "DedicatedNetworks",
+      "release_tag": "r2.2",
+      "release_date": "2026-09-16T19:09:08Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/DedicatedNetworks/releases/tag/r2.2",
+      "release_type": "pre-release-rc"
     },
     {
       "api_name": "device-data-volume",
@@ -6753,6 +7011,26 @@
       "release_type": "public-release"
     },
     {
+      "api_name": "device-data-volume",
+      "api_version": "0.2.0-rc.1",
+      "api_title": "Device Data Volume",
+      "commonalities": "0.9.0",
+      "maturity": "initial",
+      "portfolio_category": "Device Information",
+      "website_url": "https://camaraproject.org/device-data-volume/",
+      "tooltip": "Provide insights into the customer's data usage status",
+      "display_name": "Device Data Volume",
+      "published": true,
+      "canonical_name": "device-data-volume",
+      "first_release": "Fall25",
+      "repository": "DeviceDataVolume",
+      "release_tag": "r2.1",
+      "release_date": "2026-09-16T12:46:52Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/DeviceDataVolume/releases/tag/r2.1",
+      "release_type": "pre-release-rc"
+    },
+    {
       "api_name": "device-data-volume-subscriptions",
       "api_version": "0.1.0",
       "api_title": "Device Data Volume Subscriptions",
@@ -6772,6 +7050,26 @@
       "meta_release": "Fall25",
       "github_url": "https://github.com/camaraproject/DeviceDataVolume/releases/tag/r1.3",
       "release_type": "public-release"
+    },
+    {
+      "api_name": "device-data-volume-subscriptions",
+      "api_version": "0.2.0-rc.1",
+      "api_title": "Device Data Volume Subscriptions",
+      "commonalities": "0.9.0",
+      "maturity": "initial",
+      "portfolio_category": "Device Information",
+      "website_url": "https://camaraproject.org/device-data-volume-subscriptions/",
+      "tooltip": "Receive notifications regarding data volume usage thresholds",
+      "display_name": "Device Data Volume Subscriptions",
+      "published": true,
+      "canonical_name": "device-data-volume-subscriptions",
+      "first_release": "Fall25",
+      "repository": "DeviceDataVolume",
+      "release_tag": "r2.1",
+      "release_date": "2026-09-16T12:46:52Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/DeviceDataVolume/releases/tag/r2.1",
+      "release_type": "pre-release-rc"
     },
     {
       "api_name": "device-identifier",
