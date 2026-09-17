@@ -1,5 +1,5 @@
 metadata:
-  last_updated: '2026-09-16T07:53:32.480Z'
+  last_updated: '2026-09-17T07:58:18.749Z'
   workflow_version: 3.0.0
   schema_version: 3.1.0
 releases:
@@ -26,6 +26,21 @@ releases:
         api_version: 0.1.0
         api_title: Application Endpoint Discovery
         commonalities: '0.6'
+  - repository: ApplicationEndpointDiscovery
+    release_tag: r2.1
+    release_date: '2026-09-16T13:16:44Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/ApplicationEndpointDiscovery/releases/tag/r2.1
+    release_type: pre-release-rc
+    src_commit_sha: 23a7d7fa720dc51c5406870b8fdf8c80f71c547d
+    dependencies:
+      commonalities_release: r4.3 (0.8.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: application-endpoint-discovery
+        api_version: 0.2.0-rc.1
+        api_title: Application Endpoint Discovery
+        commonalities: 0.8.0
   - repository: ApplicationEndpointRegistration
     release_tag: r1.1
     release_date: '2025-07-31T09:55:23Z'
@@ -859,6 +874,33 @@ releases:
         api_version: 0.1.0-alpha.1
         api_title: Dedicated Network - Areas
         commonalities: 0.6.1
+  - repository: DedicatedNetworks
+    release_tag: r2.2
+    release_date: '2026-09-16T19:09:08Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/DedicatedNetworks/releases/tag/r2.2
+    release_type: pre-release-rc
+    src_commit_sha: 28c4b3f37779b8018d78ed0c8f5c0f03c020ed90
+    dependencies:
+      commonalities_release: r4.3 (0.8.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: dedicated-network-accesses
+        api_version: 0.2.0-rc.1
+        api_title: Dedicated Network - Accesses
+        commonalities: 0.8.0
+      - api_name: dedicated-network-profiles
+        api_version: 0.2.0-rc.1
+        api_title: Dedicated Network - Network Profiles
+        commonalities: 0.8.0
+      - api_name: dedicated-network
+        api_version: 0.2.0-rc.1
+        api_title: Dedicated Network - Networks
+        commonalities: 0.8.0
+      - api_name: dedicated-network-areas
+        api_version: 0.1.0-rc.1
+        api_title: Dedicated Network - Areas
+        commonalities: 0.8.0
   - repository: DeviceDataVolume
     release_tag: r1.1
     release_date: '2025-01-16T16:32:33Z'
@@ -906,6 +948,25 @@ releases:
         api_version: 0.1.0
         api_title: Device Data Volume
         commonalities: '0.6'
+  - repository: DeviceDataVolume
+    release_tag: r2.1
+    release_date: '2026-09-16T12:46:52Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/DeviceDataVolume/releases/tag/r2.1
+    release_type: pre-release-rc
+    src_commit_sha: 83f20e083da2cdd4a1d23f51ba76b0d4523d3426
+    dependencies:
+      commonalities_release: r4.4 (0.9.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: device-data-volume-subscriptions
+        api_version: 0.2.0-rc.1
+        api_title: Device Data Volume Subscriptions
+        commonalities: 0.9.0
+      - api_name: device-data-volume
+        api_version: 0.2.0-rc.1
+        api_title: Device Data Volume
+        commonalities: 0.9.0
   - repository: DeviceIdentifier
     release_tag: r1.1
     release_date: '2024-10-15T08:39:48Z'
@@ -3364,7 +3425,7 @@ repositories:
   - repository: ApplicationEndpointDiscovery
     github_url: https://github.com/camaraproject/ApplicationEndpointDiscovery
     latest_public_release: r1.2
-    newest_pre_release: null
+    newest_pre_release: r2.1
   - repository: ApplicationEndpointRegistration
     github_url: https://github.com/camaraproject/ApplicationEndpointRegistration
     latest_public_release: r1.2
@@ -3416,7 +3477,7 @@ repositories:
   - repository: DedicatedNetworks
     github_url: https://github.com/camaraproject/DedicatedNetworks
     latest_public_release: r1.2
-    newest_pre_release: r2.1
+    newest_pre_release: r2.2
   - repository: DeviceAuthenticity
     github_url: https://github.com/camaraproject/DeviceAuthenticity
     latest_public_release: null
@@ -3424,7 +3485,7 @@ repositories:
   - repository: DeviceDataVolume
     github_url: https://github.com/camaraproject/DeviceDataVolume
     latest_public_release: r1.3
-    newest_pre_release: null
+    newest_pre_release: r2.1
   - repository: DeviceIdentifier
     github_url: https://github.com/camaraproject/DeviceIdentifier
     latest_public_release: r2.2
