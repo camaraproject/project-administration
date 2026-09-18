@@ -1,5 +1,5 @@
 metadata:
-  last_updated: '2026-09-17T07:58:18.749Z'
+  last_updated: '2026-09-18T07:36:17.416Z'
   workflow_version: 3.0.0
   schema_version: 3.1.0
 releases:
@@ -264,6 +264,21 @@ releases:
         api_version: 0.4.0
         api_title: Call Forwarding Signal
         commonalities: '0.6'
+  - repository: CallForwardingSignal
+    release_tag: r4.1
+    release_date: '2026-09-17T16:03:57Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/CallForwardingSignal/releases/tag/r4.1
+    release_type: pre-release-rc
+    src_commit_sha: 418bb790669f54aa4e314ce7cf07e292c5f60705
+    dependencies:
+      commonalities_release: r4.3 (0.8.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: call-forwarding-signal
+        api_version: 0.5.0-rc.1
+        api_title: Call Forwarding Signal
+        commonalities: 0.8.0
   - repository: CarrierBillingCheckOut
     release_tag: r1.1
     release_date: '2024-08-13T13:15:38Z'
@@ -1512,6 +1527,21 @@ releases:
         api_version: 1.0.0
         api_title: Device Swap
         commonalities: '0.6'
+  - repository: DeviceSwap
+    release_tag: r4.1
+    release_date: '2026-09-17T08:26:11Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/DeviceSwap/releases/tag/r4.1
+    release_type: pre-release-rc
+    src_commit_sha: 579cee15b716d2d4c9f6a1be3a35411dece63d20
+    dependencies:
+      commonalities_release: r4.3 (0.8.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: device-swap
+        api_version: 1.1.0-rc.2
+        api_title: Device Swap
+        commonalities: 0.8.0
   - repository: EdgeApplicationManagement
     release_tag: r1.1
     release_date: '2026-06-02T12:46:45Z'
@@ -3441,7 +3471,7 @@ repositories:
   - repository: CallForwardingSignal
     github_url: https://github.com/camaraproject/CallForwardingSignal
     latest_public_release: r3.3
-    newest_pre_release: null
+    newest_pre_release: r4.1
   - repository: CapabilitiesAndRuntimeRestrictions
     github_url: https://github.com/camaraproject/CapabilitiesAndRuntimeRestrictions
     latest_public_release: null
@@ -3513,7 +3543,7 @@ repositories:
   - repository: DeviceSwap
     github_url: https://github.com/camaraproject/DeviceSwap
     latest_public_release: r3.2
-    newest_pre_release: null
+    newest_pre_release: r4.1
   - repository: DeviceVisitLocation
     github_url: https://github.com/camaraproject/DeviceVisitLocation
     latest_public_release: null

@@ -1,30 +1,30 @@
 {
   "metadata": {
-    "generated": "2026-09-17T07:58:18.856Z",
+    "generated": "2026-09-18T07:36:17.524Z",
     "meta_release": "All",
     "source": "Release Collector v3",
     "landscape_version": "1.1.1"
   },
   "statistics": {
     "repositories_count": 53,
-    "api_versions_count": 218,
+    "api_versions_count": 220,
     "unique_api_names_count": 78,
     "unique_apis_count": 77,
     "api_version_maturity": {
       "stable": 28,
       "initial": 140,
-      "rc": 50
+      "rc": 52
     },
     "unique_api_maturity": {
-      "stable": 3,
-      "initial": 27,
-      "rc": 47
+      "stable": 2,
+      "initial": 26,
+      "rc": 49
     },
     "categories": {
       "Computing Services": 18,
       "Communication Quality": 53,
       "Payments and Charging": 11,
-      "Authentication and Fraud Prevention": 58,
+      "Authentication and Fraud Prevention": 60,
       "Communication Services": 15,
       "Service Management": 2,
       "Device Information": 25,
@@ -100,6 +100,11 @@
     "CallForwardingSignal": {
       "releases": [
         {
+          "tag": "r4.1",
+          "date": "2026-09-17T16:03:57Z",
+          "apis_count": 1
+        },
+        {
           "tag": "r3.3",
           "date": "2025-09-16T14:38:30Z",
           "apis_count": 1
@@ -115,7 +120,7 @@
           "apis_count": 1
         }
       ],
-      "total_apis": 3,
+      "total_apis": 4,
       "unique_apis_count": 1
     },
     "CarrierBillingCheckOut": {
@@ -416,6 +421,11 @@
     "DeviceSwap": {
       "releases": [
         {
+          "tag": "r4.1",
+          "date": "2026-09-17T08:26:11Z",
+          "apis_count": 1
+        },
+        {
           "tag": "r3.2",
           "date": "2025-09-18T11:54:24Z",
           "apis_count": 1
@@ -431,7 +441,7 @@
           "apis_count": 1
         }
       ],
-      "total_apis": 3,
+      "total_apis": 4,
       "unique_apis_count": 1
     },
     "EdgeApplicationManagement": {
@@ -1333,6 +1343,35 @@
           "canonical_name": "call-forwarding-signal",
           "first_release": "Fall24",
           "isNew": false
+        }
+      ]
+    },
+    {
+      "repository": "CallForwardingSignal",
+      "release_tag": "r4.1",
+      "release_date": "2026-09-17T16:03:57Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/CallForwardingSignal/releases/tag/r4.1",
+      "release_type": "pre-release-rc",
+      "src_commit_sha": "418bb790669f54aa4e314ce7cf07e292c5f60705",
+      "dependencies": {
+        "commonalities_release": "r4.3 (0.8.0)",
+        "identity_consent_management_release": "r4.2 (0.5.0)"
+      },
+      "apis": [
+        {
+          "api_name": "call-forwarding-signal",
+          "api_version": "0.5.0-rc.1",
+          "api_title": "Call Forwarding Signal",
+          "commonalities": "0.8.0",
+          "maturity": "initial",
+          "portfolio_category": "Authentication and Fraud Prevention",
+          "website_url": "https://camaraproject.org/call-forwarding-signal/",
+          "tooltip": "Determine if a call forwarding service is enabled",
+          "display_name": "Call Forwarding Signal",
+          "published": true,
+          "canonical_name": "call-forwarding-signal",
+          "first_release": "Fall24"
         }
       ]
     },
@@ -3163,6 +3202,35 @@
           "canonical_name": "device-swap",
           "first_release": "Sandbox",
           "isNew": false
+        }
+      ]
+    },
+    {
+      "repository": "DeviceSwap",
+      "release_tag": "r4.1",
+      "release_date": "2026-09-17T08:26:11Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/DeviceSwap/releases/tag/r4.1",
+      "release_type": "pre-release-rc",
+      "src_commit_sha": "579cee15b716d2d4c9f6a1be3a35411dece63d20",
+      "dependencies": {
+        "commonalities_release": "r4.3 (0.8.0)",
+        "identity_consent_management_release": "r4.2 (0.5.0)"
+      },
+      "apis": [
+        {
+          "api_name": "device-swap",
+          "api_version": "1.1.0-rc.2",
+          "api_title": "Device Swap",
+          "commonalities": "0.8.0",
+          "maturity": "stable",
+          "portfolio_category": "Authentication and Fraud Prevention",
+          "website_url": "https://camaraproject.org/device-swap/",
+          "tooltip": "Check if the MSISDN has had a change of device in the last 30 days",
+          "display_name": "Device Swap",
+          "published": true,
+          "canonical_name": "device-swap",
+          "first_release": "Sandbox"
         }
       ]
     },
@@ -6104,6 +6172,26 @@
       "release_type": "public-release"
     },
     {
+      "api_name": "call-forwarding-signal",
+      "api_version": "0.5.0-rc.1",
+      "api_title": "Call Forwarding Signal",
+      "commonalities": "0.8.0",
+      "maturity": "initial",
+      "portfolio_category": "Authentication and Fraud Prevention",
+      "website_url": "https://camaraproject.org/call-forwarding-signal/",
+      "tooltip": "Determine if a call forwarding service is enabled",
+      "display_name": "Call Forwarding Signal",
+      "published": true,
+      "canonical_name": "call-forwarding-signal",
+      "first_release": "Fall24",
+      "repository": "CallForwardingSignal",
+      "release_tag": "r4.1",
+      "release_date": "2026-09-17T16:03:57Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/CallForwardingSignal/releases/tag/r4.1",
+      "release_type": "pre-release-rc"
+    },
+    {
       "api_name": "carrier-billing",
       "api_version": "0.3.0",
       "api_title": "Carrier Billing",
@@ -7941,6 +8029,26 @@
       "meta_release": "Fall25",
       "github_url": "https://github.com/camaraproject/DeviceSwap/releases/tag/r3.2",
       "release_type": "public-release"
+    },
+    {
+      "api_name": "device-swap",
+      "api_version": "1.1.0-rc.2",
+      "api_title": "Device Swap",
+      "commonalities": "0.8.0",
+      "maturity": "stable",
+      "portfolio_category": "Authentication and Fraud Prevention",
+      "website_url": "https://camaraproject.org/device-swap/",
+      "tooltip": "Check if the MSISDN has had a change of device in the last 30 days",
+      "display_name": "Device Swap",
+      "published": true,
+      "canonical_name": "device-swap",
+      "first_release": "Sandbox",
+      "repository": "DeviceSwap",
+      "release_tag": "r4.1",
+      "release_date": "2026-09-17T08:26:11Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/DeviceSwap/releases/tag/r4.1",
+      "release_type": "pre-release-rc"
     },
     {
       "api_name": "edge-application-management",
