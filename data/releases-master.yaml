@@ -1,5 +1,5 @@
 metadata:
-  last_updated: '2026-09-18T07:36:17.416Z'
+  last_updated: '2026-09-26T07:59:21.853Z'
   workflow_version: 3.0.0
   schema_version: 3.1.0
 releases:
@@ -1070,6 +1070,21 @@ releases:
         api_version: 0.4.0-rc.1
         api_title: Device Identifier
         commonalities: 0.8.0
+  - repository: DeviceIdentifier
+    release_tag: r3.3
+    release_date: '2026-09-25T13:20:11Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/DeviceIdentifier/releases/tag/r3.3
+    release_type: pre-release-rc
+    src_commit_sha: f591baf08b6f6e027dc9f71048dfad0a4cc8c85c
+    dependencies:
+      commonalities_release: r4.4 (0.9.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: device-identifier
+        api_version: 0.4.0-rc.2
+        api_title: Device Identifier
+        commonalities: 0.9.0
   - repository: DeviceLocation
     release_tag: r1.1
     release_date: '2024-08-09T08:18:03Z'
@@ -3451,6 +3466,29 @@ releases:
         api_version: 0.3.0
         api_title: WebRTC Registration Service
         commonalities: '0.6'
+  - repository: WebRTC
+    release_tag: r3.1
+    release_date: '2026-09-25T10:57:02Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/WebRTC/releases/tag/r3.1
+    release_type: pre-release-rc
+    src_commit_sha: 8eaef812eca5e0abcdda013ae23a92221c4c5f74
+    dependencies:
+      commonalities_release: r4.3 (0.8.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: webrtc-call-handling
+        api_version: 0.4.0-rc.1
+        api_title: WebRTC Call Handling
+        commonalities: 0.8.0
+      - api_name: webrtc-events-subscriptions
+        api_version: 0.3.0-rc.1
+        api_title: WebRTC Events Subscriptions
+        commonalities: 0.8.0
+      - api_name: webrtc-registration
+        api_version: 0.4.0-rc.1
+        api_title: WebRTC Registration Service
+        commonalities: 0.8.0
 repositories:
   - repository: ApplicationEndpointDiscovery
     github_url: https://github.com/camaraproject/ApplicationEndpointDiscovery
@@ -3519,7 +3557,7 @@ repositories:
   - repository: DeviceIdentifier
     github_url: https://github.com/camaraproject/DeviceIdentifier
     latest_public_release: r2.2
-    newest_pre_release: r3.2
+    newest_pre_release: r3.3
   - repository: DeviceLocation
     github_url: https://github.com/camaraproject/DeviceLocation
     latest_public_release: r3.2
@@ -3726,4 +3764,4 @@ repositories:
   - repository: WebRTC
     github_url: https://github.com/camaraproject/WebRTC
     latest_public_release: r2.2
-    newest_pre_release: null
+    newest_pre_release: r3.1

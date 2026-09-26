@@ -1,31 +1,31 @@
 {
   "metadata": {
-    "generated": "2026-09-18T07:36:17.524Z",
+    "generated": "2026-09-26T07:59:21.966Z",
     "meta_release": "All",
     "source": "Release Collector v3",
     "landscape_version": "1.1.1"
   },
   "statistics": {
     "repositories_count": 53,
-    "api_versions_count": 220,
-    "unique_api_names_count": 78,
-    "unique_apis_count": 77,
+    "api_versions_count": 224,
+    "unique_api_names_count": 79,
+    "unique_apis_count": 78,
     "api_version_maturity": {
       "stable": 28,
       "initial": 140,
-      "rc": 52
+      "rc": 56
     },
     "unique_api_maturity": {
       "stable": 2,
-      "initial": 26,
-      "rc": 49
+      "initial": 24,
+      "rc": 52
     },
     "categories": {
       "Computing Services": 18,
       "Communication Quality": 53,
       "Payments and Charging": 11,
-      "Authentication and Fraud Prevention": 60,
-      "Communication Services": 15,
+      "Authentication and Fraud Prevention": 61,
+      "Communication Services": 17,
       "Service Management": 2,
       "Device Information": 25,
       "Location Services": 20
@@ -305,6 +305,11 @@
     "DeviceIdentifier": {
       "releases": [
         {
+          "tag": "r3.3",
+          "date": "2026-09-25T13:20:11Z",
+          "apis_count": 1
+        },
+        {
           "tag": "r3.2",
           "date": "2026-09-01T16:11:38Z",
           "apis_count": 1
@@ -325,7 +330,7 @@
           "apis_count": 1
         }
       ],
-      "total_apis": 4,
+      "total_apis": 5,
       "unique_apis_count": 1
     },
     "DeviceLocation": {
@@ -1029,6 +1034,11 @@
     "WebRTC": {
       "releases": [
         {
+          "tag": "r3.1",
+          "date": "2026-09-25T10:57:02Z",
+          "apis_count": 3
+        },
+        {
           "tag": "r2.2",
           "date": "2025-09-23T14:44:21Z",
           "apis_count": 3
@@ -1039,8 +1049,8 @@
           "apis_count": 3
         }
       ],
-      "total_apis": 6,
-      "unique_apis_count": 3
+      "total_apis": 9,
+      "unique_apis_count": 4
     }
   },
   "releases": [
@@ -2463,6 +2473,35 @@
           "api_version": "0.4.0-rc.1",
           "api_title": "Device Identifier",
           "commonalities": "0.8.0",
+          "maturity": "initial",
+          "portfolio_category": "Authentication and Fraud Prevention",
+          "website_url": "https://camaraproject.org/device-identifier/",
+          "tooltip": "Check the identity of the subscribers' device",
+          "display_name": "Device Identifier",
+          "published": true,
+          "canonical_name": "device-identifier",
+          "first_release": "Spring25"
+        }
+      ]
+    },
+    {
+      "repository": "DeviceIdentifier",
+      "release_tag": "r3.3",
+      "release_date": "2026-09-25T13:20:11Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/DeviceIdentifier/releases/tag/r3.3",
+      "release_type": "pre-release-rc",
+      "src_commit_sha": "f591baf08b6f6e027dc9f71048dfad0a4cc8c85c",
+      "dependencies": {
+        "commonalities_release": "r4.4 (0.9.0)",
+        "identity_consent_management_release": "r4.2 (0.5.0)"
+      },
+      "apis": [
+        {
+          "api_name": "device-identifier",
+          "api_version": "0.4.0-rc.2",
+          "api_title": "Device Identifier",
+          "commonalities": "0.9.0",
           "maturity": "initial",
           "portfolio_category": "Authentication and Fraud Prevention",
           "website_url": "https://camaraproject.org/device-identifier/",
@@ -5919,6 +5958,63 @@
           "isNew": false
         }
       ]
+    },
+    {
+      "repository": "WebRTC",
+      "release_tag": "r3.1",
+      "release_date": "2026-09-25T10:57:02Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/WebRTC/releases/tag/r3.1",
+      "release_type": "pre-release-rc",
+      "src_commit_sha": "8eaef812eca5e0abcdda013ae23a92221c4c5f74",
+      "dependencies": {
+        "commonalities_release": "r4.3 (0.8.0)",
+        "identity_consent_management_release": "r4.2 (0.5.0)"
+      },
+      "apis": [
+        {
+          "api_name": "webrtc-call-handling",
+          "api_version": "0.4.0-rc.1",
+          "api_title": "WebRTC Call Handling",
+          "commonalities": "0.8.0",
+          "maturity": "initial",
+          "portfolio_category": "Communication Services",
+          "website_url": "https://camaraproject.org/webrtc-apis/",
+          "tooltip": "Create, recover, update and terminate 1-1 voice and video sessions",
+          "display_name": "WebRTC Call Handling",
+          "published": true,
+          "canonical_name": "webrtc-call-handling",
+          "first_release": "Spring25"
+        },
+        {
+          "api_name": "webrtc-events-subscriptions",
+          "api_version": "0.3.0-rc.1",
+          "api_title": "WebRTC Events Subscriptions",
+          "commonalities": "0.8.0",
+          "maturity": "initial",
+          "portfolio_category": null,
+          "website_url": null,
+          "tooltip": null,
+          "display_name": "WebRTC Events Subscriptions",
+          "published": true,
+          "canonical_name": "webrtc-events-subscriptions",
+          "first_release": "Sandbox"
+        },
+        {
+          "api_name": "webrtc-registration",
+          "api_version": "0.4.0-rc.1",
+          "api_title": "WebRTC Registration Service",
+          "commonalities": "0.8.0",
+          "maturity": "initial",
+          "portfolio_category": "Communication Services",
+          "website_url": "https://camaraproject.org/webrtc-apis/",
+          "tooltip": "Manage registration and connectivity (RACM) towards MNO's IMS Network",
+          "display_name": "WebRTC Registration Service",
+          "published": true,
+          "canonical_name": "webrtc-registration",
+          "first_release": "Spring25"
+        }
+      ]
     }
   ],
   "apis": [
@@ -7239,6 +7335,26 @@
       "release_date": "2026-09-01T16:11:38Z",
       "meta_release": "Independent",
       "github_url": "https://github.com/camaraproject/DeviceIdentifier/releases/tag/r3.2",
+      "release_type": "pre-release-rc"
+    },
+    {
+      "api_name": "device-identifier",
+      "api_version": "0.4.0-rc.2",
+      "api_title": "Device Identifier",
+      "commonalities": "0.9.0",
+      "maturity": "initial",
+      "portfolio_category": "Authentication and Fraud Prevention",
+      "website_url": "https://camaraproject.org/device-identifier/",
+      "tooltip": "Check the identity of the subscribers' device",
+      "display_name": "Device Identifier",
+      "published": true,
+      "canonical_name": "device-identifier",
+      "first_release": "Spring25",
+      "repository": "DeviceIdentifier",
+      "release_tag": "r3.3",
+      "release_date": "2026-09-25T13:20:11Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/DeviceIdentifier/releases/tag/r3.3",
       "release_type": "pre-release-rc"
     },
     {
@@ -10401,6 +10517,26 @@
       "release_type": "public-release"
     },
     {
+      "api_name": "webrtc-call-handling",
+      "api_version": "0.4.0-rc.1",
+      "api_title": "WebRTC Call Handling",
+      "commonalities": "0.8.0",
+      "maturity": "initial",
+      "portfolio_category": "Communication Services",
+      "website_url": "https://camaraproject.org/webrtc-apis/",
+      "tooltip": "Create, recover, update and terminate 1-1 voice and video sessions",
+      "display_name": "WebRTC Call Handling",
+      "published": true,
+      "canonical_name": "webrtc-call-handling",
+      "first_release": "Spring25",
+      "repository": "WebRTC",
+      "release_tag": "r3.1",
+      "release_date": "2026-09-25T10:57:02Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/WebRTC/releases/tag/r3.1",
+      "release_type": "pre-release-rc"
+    },
+    {
       "api_name": "webrtc-events",
       "api_version": "0.1.0",
       "api_title": "WebRTC Event Subscription",
@@ -10443,6 +10579,26 @@
       "release_type": "public-release"
     },
     {
+      "api_name": "webrtc-events-subscriptions",
+      "api_version": "0.3.0-rc.1",
+      "api_title": "WebRTC Events Subscriptions",
+      "commonalities": "0.8.0",
+      "maturity": "initial",
+      "portfolio_category": null,
+      "website_url": null,
+      "tooltip": null,
+      "display_name": "WebRTC Events Subscriptions",
+      "published": true,
+      "canonical_name": "webrtc-events-subscriptions",
+      "first_release": "Sandbox",
+      "repository": "WebRTC",
+      "release_tag": "r3.1",
+      "release_date": "2026-09-25T10:57:02Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/WebRTC/releases/tag/r3.1",
+      "release_type": "pre-release-rc"
+    },
+    {
       "api_name": "webrtc-registration",
       "api_version": "0.2.0",
       "api_title": "WebRTC Registration Service API",
@@ -10483,6 +10639,26 @@
       "meta_release": "Fall25",
       "github_url": "https://github.com/camaraproject/WebRTC/releases/tag/r2.2",
       "release_type": "public-release"
+    },
+    {
+      "api_name": "webrtc-registration",
+      "api_version": "0.4.0-rc.1",
+      "api_title": "WebRTC Registration Service",
+      "commonalities": "0.8.0",
+      "maturity": "initial",
+      "portfolio_category": "Communication Services",
+      "website_url": "https://camaraproject.org/webrtc-apis/",
+      "tooltip": "Manage registration and connectivity (RACM) towards MNO's IMS Network",
+      "display_name": "WebRTC Registration Service",
+      "published": true,
+      "canonical_name": "webrtc-registration",
+      "first_release": "Spring25",
+      "repository": "WebRTC",
+      "release_tag": "r3.1",
+      "release_date": "2026-09-25T10:57:02Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/WebRTC/releases/tag/r3.1",
+      "release_type": "pre-release-rc"
     }
   ]
 }
