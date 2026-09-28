@@ -1,24 +1,24 @@
 {
   "metadata": {
-    "generated": "2026-09-27T08:32:11.982Z",
+    "generated": "2026-09-28T08:56:26.623Z",
     "meta_release": "All",
     "source": "Release Collector v3",
     "landscape_version": "1.1.1"
   },
   "statistics": {
     "repositories_count": 53,
-    "api_versions_count": 225,
+    "api_versions_count": 226,
     "unique_api_names_count": 79,
     "unique_apis_count": 78,
     "api_version_maturity": {
       "stable": 28,
       "initial": 140,
-      "rc": 57
+      "rc": 58
     },
     "unique_api_maturity": {
       "stable": 1,
-      "initial": 24,
-      "rc": 53
+      "initial": 23,
+      "rc": 54
     },
     "categories": {
       "Computing Services": 18,
@@ -27,7 +27,7 @@
       "Authentication and Fraud Prevention": 62,
       "Communication Services": 17,
       "Service Management": 2,
-      "Device Information": 25,
+      "Device Information": 26,
       "Location Services": 20
     },
     "apis_with_previous_names": 5
@@ -970,12 +970,17 @@
     "SubscriptionStatus": {
       "releases": [
         {
+          "tag": "r2.1",
+          "date": "2026-09-28T08:08:39Z",
+          "apis_count": 1
+        },
+        {
           "tag": "r1.2",
           "date": "2025-09-15T07:00:03Z",
           "apis_count": 1
         }
       ],
-      "total_apis": 1,
+      "total_apis": 2,
       "unique_apis_count": 1
     },
     "Tenure": {
@@ -5621,6 +5626,35 @@
           "canonical_name": "subscription-status",
           "first_release": "Fall25",
           "isNew": true
+        }
+      ]
+    },
+    {
+      "repository": "SubscriptionStatus",
+      "release_tag": "r2.1",
+      "release_date": "2026-09-28T08:08:39Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/SubscriptionStatus/releases/tag/r2.1",
+      "release_type": "pre-release-rc",
+      "src_commit_sha": "9adaaa9a815eb8ce3b58c5281a013361b4da2ad9",
+      "dependencies": {
+        "commonalities_release": "r4.3 (0.8.0)",
+        "identity_consent_management_release": "r4.2 (0.5.0)"
+      },
+      "apis": [
+        {
+          "api_name": "subscription-status",
+          "api_version": "0.2.0-rc.1",
+          "api_title": "SubscriptionStatus",
+          "commonalities": "0.8.0",
+          "maturity": "initial",
+          "portfolio_category": "Device Information",
+          "website_url": "https://camaraproject.org/subscription-status/",
+          "tooltip": "Obtain the current subscription status of a certain phone number",
+          "display_name": "SubscriptionStatus",
+          "published": true,
+          "canonical_name": "subscription-status",
+          "first_release": "Fall25"
         }
       ]
     },
@@ -10302,6 +10336,26 @@
       "meta_release": "Fall25",
       "github_url": "https://github.com/camaraproject/SubscriptionStatus/releases/tag/r1.2",
       "release_type": "public-release"
+    },
+    {
+      "api_name": "subscription-status",
+      "api_version": "0.2.0-rc.1",
+      "api_title": "SubscriptionStatus",
+      "commonalities": "0.8.0",
+      "maturity": "initial",
+      "portfolio_category": "Device Information",
+      "website_url": "https://camaraproject.org/subscription-status/",
+      "tooltip": "Obtain the current subscription status of a certain phone number",
+      "display_name": "SubscriptionStatus",
+      "published": true,
+      "canonical_name": "subscription-status",
+      "first_release": "Fall25",
+      "repository": "SubscriptionStatus",
+      "release_tag": "r2.1",
+      "release_date": "2026-09-28T08:08:39Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/SubscriptionStatus/releases/tag/r2.1",
+      "release_type": "pre-release-rc"
     },
     {
       "api_name": "kyc-tenure",
