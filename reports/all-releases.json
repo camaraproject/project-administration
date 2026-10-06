@@ -1,30 +1,30 @@
 {
   "metadata": {
-    "generated": "2026-09-28T08:56:26.623Z",
+    "generated": "2026-10-06T09:22:38.712Z",
     "meta_release": "All",
     "source": "Release Collector v3",
     "landscape_version": "1.1.1"
   },
   "statistics": {
     "repositories_count": 53,
-    "api_versions_count": 226,
+    "api_versions_count": 230,
     "unique_api_names_count": 79,
     "unique_apis_count": 78,
     "api_version_maturity": {
       "stable": 28,
       "initial": 140,
-      "rc": 58
+      "rc": 62
     },
     "unique_api_maturity": {
-      "stable": 1,
-      "initial": 23,
-      "rc": 54
+      "stable": 0,
+      "initial": 22,
+      "rc": 56
     },
     "categories": {
       "Computing Services": 18,
       "Communication Quality": 53,
       "Payments and Charging": 11,
-      "Authentication and Fraud Prevention": 62,
+      "Authentication and Fraud Prevention": 66,
       "Communication Services": 17,
       "Service Management": 2,
       "Device Information": 26,
@@ -426,6 +426,11 @@
     "DeviceSwap": {
       "releases": [
         {
+          "tag": "r4.2",
+          "date": "2026-10-05T12:04:57Z",
+          "apis_count": 1
+        },
+        {
           "tag": "r4.1",
           "date": "2026-09-17T08:26:11Z",
           "apis_count": 1
@@ -446,7 +451,7 @@
           "apis_count": 1
         }
       ],
-      "total_apis": 4,
+      "total_apis": 5,
       "unique_apis_count": 1
     },
     "EdgeApplicationManagement": {
@@ -751,6 +756,11 @@
     "OTPValidation": {
       "releases": [
         {
+          "tag": "r4.2",
+          "date": "2026-10-05T12:07:17Z",
+          "apis_count": 1
+        },
+        {
           "tag": "r4.1",
           "date": "2026-09-15T13:33:35Z",
           "apis_count": 1
@@ -771,7 +781,7 @@
           "apis_count": 1
         }
       ],
-      "total_apis": 4,
+      "total_apis": 5,
       "unique_apis_count": 1
     },
     "PopulationDensityData": {
@@ -934,6 +944,11 @@
     "SimSwap": {
       "releases": [
         {
+          "tag": "r4.1",
+          "date": "2026-10-06T07:35:46Z",
+          "apis_count": 2
+        },
+        {
           "tag": "r3.3",
           "date": "2025-12-01T10:30:21Z",
           "apis_count": 2
@@ -964,7 +979,7 @@
           "apis_count": 2
         }
       ],
-      "total_apis": 12,
+      "total_apis": 14,
       "unique_apis_count": 2
     },
     "SubscriptionStatus": {
@@ -3284,6 +3299,35 @@
       ]
     },
     {
+      "repository": "DeviceSwap",
+      "release_tag": "r4.2",
+      "release_date": "2026-10-05T12:04:57Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/DeviceSwap/releases/tag/r4.2",
+      "release_type": "pre-release-rc",
+      "src_commit_sha": "836543d5e7d70e80e0c560ab36c080ef84b096e0",
+      "dependencies": {
+        "commonalities_release": "r4.4 (0.9.0)",
+        "identity_consent_management_release": "r4.2 (0.5.0)"
+      },
+      "apis": [
+        {
+          "api_name": "device-swap",
+          "api_version": "1.1.0-rc.3",
+          "api_title": "Device Swap",
+          "commonalities": "0.9.0",
+          "maturity": "stable",
+          "portfolio_category": "Authentication and Fraud Prevention",
+          "website_url": "https://camaraproject.org/device-swap/",
+          "tooltip": "Check if the MSISDN has had a change of device in the last 30 days",
+          "display_name": "Device Swap",
+          "published": true,
+          "canonical_name": "device-swap",
+          "first_release": "Sandbox"
+        }
+      ]
+    },
+    {
       "repository": "EdgeApplicationManagement",
       "release_tag": "r1.1",
       "release_date": "2026-06-02T12:46:45Z",
@@ -4577,6 +4621,35 @@
       ]
     },
     {
+      "repository": "OTPValidation",
+      "release_tag": "r4.2",
+      "release_date": "2026-10-05T12:07:17Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/OTPValidation/releases/tag/r4.2",
+      "release_type": "pre-release-rc",
+      "src_commit_sha": "da68f8586e1424d52cd059861afdaf576dc7bbb1",
+      "dependencies": {
+        "commonalities_release": "r4.4 (0.9.0)",
+        "identity_consent_management_release": "r4.2 (0.5.0)"
+      },
+      "apis": [
+        {
+          "api_name": "one-time-password-sms",
+          "api_version": "2.0.0-rc.2",
+          "api_title": "One Time Password SMS",
+          "commonalities": "0.9.0",
+          "maturity": "stable",
+          "portfolio_category": "Authentication and Fraud Prevention",
+          "website_url": "https://camaraproject.org/one-time-password-sms/",
+          "tooltip": "To offer secure user authentication to service providers",
+          "display_name": "One Time Password SMS",
+          "published": true,
+          "canonical_name": "one-time-password-sms",
+          "first_release": "PreFall24"
+        }
+      ]
+    },
+    {
       "repository": "PopulationDensityData",
       "release_tag": "r1.2",
       "release_date": "2024-09-11T17:46:08Z",
@@ -5601,6 +5674,49 @@
           "canonical_name": "sim-swap",
           "first_release": "PreFall24",
           "isNew": false
+        }
+      ]
+    },
+    {
+      "repository": "SimSwap",
+      "release_tag": "r4.1",
+      "release_date": "2026-10-06T07:35:46Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/SimSwap/releases/tag/r4.1",
+      "release_type": "pre-release-rc",
+      "src_commit_sha": "7b7e46e887daa160d98499043b422c5a7a17f297",
+      "dependencies": {
+        "commonalities_release": "r4.3 (0.8.0)",
+        "identity_consent_management_release": "r4.2 (0.5.0)"
+      },
+      "apis": [
+        {
+          "api_name": "sim-swap-subscriptions",
+          "api_version": "0.4.0-rc.1",
+          "api_title": "Sim Swap Subscriptions",
+          "commonalities": "0.8.0",
+          "maturity": "initial",
+          "portfolio_category": "Authentication and Fraud Prevention",
+          "website_url": "https://camaraproject.org/sim-swap-subscriptions/",
+          "tooltip": "Get notifications if a SIM changes",
+          "display_name": "Sim Swap Subscriptions",
+          "published": true,
+          "canonical_name": "sim-swap-subscriptions",
+          "first_release": "Fall24"
+        },
+        {
+          "api_name": "sim-swap",
+          "api_version": "2.2.0-rc.3",
+          "api_title": "SIM Swap",
+          "commonalities": "0.8.0",
+          "maturity": "stable",
+          "portfolio_category": "Authentication and Fraud Prevention",
+          "website_url": "https://camaraproject.org/sim-swap/",
+          "tooltip": "Allows users to get information on SIM pairing changes",
+          "display_name": "SIM Swap",
+          "published": true,
+          "canonical_name": "sim-swap",
+          "first_release": "PreFall24"
         }
       ]
     },
@@ -8235,6 +8351,26 @@
       "release_type": "pre-release-rc"
     },
     {
+      "api_name": "device-swap",
+      "api_version": "1.1.0-rc.3",
+      "api_title": "Device Swap",
+      "commonalities": "0.9.0",
+      "maturity": "stable",
+      "portfolio_category": "Authentication and Fraud Prevention",
+      "website_url": "https://camaraproject.org/device-swap/",
+      "tooltip": "Check if the MSISDN has had a change of device in the last 30 days",
+      "display_name": "Device Swap",
+      "published": true,
+      "canonical_name": "device-swap",
+      "first_release": "Sandbox",
+      "repository": "DeviceSwap",
+      "release_tag": "r4.2",
+      "release_date": "2026-10-05T12:04:57Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/DeviceSwap/releases/tag/r4.2",
+      "release_type": "pre-release-rc"
+    },
+    {
       "api_name": "edge-application-management",
       "api_version": "0.1.0-alpha.1",
       "api_title": "Edge Application Management API",
@@ -9347,6 +9483,26 @@
       "release_type": "pre-release-rc"
     },
     {
+      "api_name": "one-time-password-sms",
+      "api_version": "2.0.0-rc.2",
+      "api_title": "One Time Password SMS",
+      "commonalities": "0.9.0",
+      "maturity": "stable",
+      "portfolio_category": "Authentication and Fraud Prevention",
+      "website_url": "https://camaraproject.org/one-time-password-sms/",
+      "tooltip": "To offer secure user authentication to service providers",
+      "display_name": "One Time Password SMS",
+      "published": true,
+      "canonical_name": "one-time-password-sms",
+      "first_release": "PreFall24",
+      "repository": "OTPValidation",
+      "release_tag": "r4.2",
+      "release_date": "2026-10-05T12:07:17Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/OTPValidation/releases/tag/r4.2",
+      "release_type": "pre-release-rc"
+    },
+    {
       "api_name": "population-density-data",
       "api_version": "0.1.1",
       "api_title": "Population Density Data",
@@ -10191,6 +10347,26 @@
       "release_type": "maintenance-release"
     },
     {
+      "api_name": "sim-swap",
+      "api_version": "2.2.0-rc.3",
+      "api_title": "SIM Swap",
+      "commonalities": "0.8.0",
+      "maturity": "stable",
+      "portfolio_category": "Authentication and Fraud Prevention",
+      "website_url": "https://camaraproject.org/sim-swap/",
+      "tooltip": "Allows users to get information on SIM pairing changes",
+      "display_name": "SIM Swap",
+      "published": true,
+      "canonical_name": "sim-swap",
+      "first_release": "PreFall24",
+      "repository": "SimSwap",
+      "release_tag": "r4.1",
+      "release_date": "2026-10-06T07:35:46Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/SimSwap/releases/tag/r4.1",
+      "release_type": "pre-release-rc"
+    },
+    {
       "api_name": "sim-swap-subscriptions",
       "api_version": "0.1.0",
       "api_title": "Sim Swap Subscriptions",
@@ -10315,6 +10491,26 @@
       "meta_release": "Fall25",
       "github_url": "https://github.com/camaraproject/SimSwap/releases/tag/r3.3",
       "release_type": "maintenance-release"
+    },
+    {
+      "api_name": "sim-swap-subscriptions",
+      "api_version": "0.4.0-rc.1",
+      "api_title": "Sim Swap Subscriptions",
+      "commonalities": "0.8.0",
+      "maturity": "initial",
+      "portfolio_category": "Authentication and Fraud Prevention",
+      "website_url": "https://camaraproject.org/sim-swap-subscriptions/",
+      "tooltip": "Get notifications if a SIM changes",
+      "display_name": "Sim Swap Subscriptions",
+      "published": true,
+      "canonical_name": "sim-swap-subscriptions",
+      "first_release": "Fall24",
+      "repository": "SimSwap",
+      "release_tag": "r4.1",
+      "release_date": "2026-10-06T07:35:46Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/SimSwap/releases/tag/r4.1",
+      "release_type": "pre-release-rc"
     },
     {
       "api_name": "subscription-status",
