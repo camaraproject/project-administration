@@ -1,19 +1,19 @@
 {
   "metadata": {
-    "generated": "2026-10-06T09:22:38.712Z",
+    "generated": "2026-10-09T09:35:27.787Z",
     "meta_release": "All",
     "source": "Release Collector v3",
     "landscape_version": "1.1.1"
   },
   "statistics": {
     "repositories_count": 53,
-    "api_versions_count": 230,
+    "api_versions_count": 231,
     "unique_api_names_count": 79,
     "unique_apis_count": 78,
     "api_version_maturity": {
       "stable": 28,
       "initial": 140,
-      "rc": 62
+      "rc": 63
     },
     "unique_api_maturity": {
       "stable": 0,
@@ -28,7 +28,7 @@
       "Communication Services": 17,
       "Service Management": 2,
       "Device Information": 26,
-      "Location Services": 20
+      "Location Services": 21
     },
     "apis_with_previous_names": 5
   },
@@ -787,6 +787,11 @@
     "PopulationDensityData": {
       "releases": [
         {
+          "tag": "r4.2",
+          "date": "2026-10-08T14:04:38Z",
+          "apis_count": 1
+        },
+        {
           "tag": "r4.1",
           "date": "2026-08-11T10:11:52Z",
           "apis_count": 1
@@ -807,7 +812,7 @@
           "apis_count": 1
         }
       ],
-      "total_apis": 4,
+      "total_apis": 5,
       "unique_apis_count": 1
     },
     "PredictiveConnectivityData": {
@@ -4742,6 +4747,35 @@
           "api_version": "1.0.0-rc.1",
           "api_title": "Population Density Data",
           "commonalities": "0.8.0",
+          "maturity": "stable",
+          "portfolio_category": "Location Services",
+          "website_url": "https://camaraproject.org/population-density-data/",
+          "tooltip": "Get dynamic population density data in a specific area for a future date & time",
+          "display_name": "Population Density Data",
+          "published": true,
+          "canonical_name": "population-density-data",
+          "first_release": "Fall24"
+        }
+      ]
+    },
+    {
+      "repository": "PopulationDensityData",
+      "release_tag": "r4.2",
+      "release_date": "2026-10-08T14:04:38Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/PopulationDensityData/releases/tag/r4.2",
+      "release_type": "pre-release-rc",
+      "src_commit_sha": "cfd33fd6fda89c131f9b9010675500443d276d72",
+      "dependencies": {
+        "commonalities_release": "r4.4 (0.9.0)",
+        "identity_consent_management_release": "r4.2 (0.5.0)"
+      },
+      "apis": [
+        {
+          "api_name": "population-density-data",
+          "api_version": "1.0.0-rc.2",
+          "api_title": "Population Density Data",
+          "commonalities": "0.9.0",
           "maturity": "stable",
           "portfolio_category": "Location Services",
           "website_url": "https://camaraproject.org/population-density-data/",
@@ -9583,6 +9617,26 @@
       "release_date": "2026-08-11T10:11:52Z",
       "meta_release": "Independent",
       "github_url": "https://github.com/camaraproject/PopulationDensityData/releases/tag/r4.1",
+      "release_type": "pre-release-rc"
+    },
+    {
+      "api_name": "population-density-data",
+      "api_version": "1.0.0-rc.2",
+      "api_title": "Population Density Data",
+      "commonalities": "0.9.0",
+      "maturity": "stable",
+      "portfolio_category": "Location Services",
+      "website_url": "https://camaraproject.org/population-density-data/",
+      "tooltip": "Get dynamic population density data in a specific area for a future date & time",
+      "display_name": "Population Density Data",
+      "published": true,
+      "canonical_name": "population-density-data",
+      "first_release": "Fall24",
+      "repository": "PopulationDensityData",
+      "release_tag": "r4.2",
+      "release_date": "2026-10-08T14:04:38Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/PopulationDensityData/releases/tag/r4.2",
       "release_type": "pre-release-rc"
     },
     {
