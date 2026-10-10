@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "generated": "2026-10-09T09:35:27.787Z",
+    "generated": "2026-10-10T14:38:02.401Z",
     "meta_release": "All",
     "source": "Release Collector v3",
     "landscape_version": "1.1.1"
@@ -363,7 +363,7 @@
       "releases": [
         {
           "tag": "r1.1",
-          "date": "2026-09-01T10:22:49Z",
+          "date": "2026-09-14T16:17:02Z",
           "apis_count": 1
         }
       ],
@@ -2768,11 +2768,11 @@
     {
       "repository": "DeviceMediaStreamingRate",
       "release_tag": "r1.1",
-      "release_date": "2026-09-01T10:22:49Z",
+      "release_date": "2026-09-14T16:17:02Z",
       "meta_release": "Independent",
       "github_url": "https://github.com/camaraproject/DeviceMediaStreamingRate/releases/tag/r1.1",
       "release_type": "pre-release-alpha",
-      "src_commit_sha": "235132f7c43f664423d65380296924bee287592f",
+      "src_commit_sha": "928b9150a2db04291a8bcf25e196bcb2b38a2553",
       "dependencies": {
         "commonalities_release": "r4.3 (0.8.0)",
         "identity_consent_management_release": "r4.2 (0.5.0)"
@@ -7839,7 +7839,7 @@
       "first_release": "Sandbox",
       "repository": "DeviceMediaStreamingRate",
       "release_tag": "r1.1",
-      "release_date": "2026-09-01T10:22:49Z",
+      "release_date": "2026-09-14T16:17:02Z",
       "meta_release": "Independent",
       "github_url": "https://github.com/camaraproject/DeviceMediaStreamingRate/releases/tag/r1.1",
       "release_type": "pre-release-alpha"

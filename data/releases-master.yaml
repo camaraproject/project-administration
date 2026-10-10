@@ -1,7 +1,18 @@
 metadata:
-  last_updated: '2026-10-09T09:35:27.671Z'
+  last_updated: '2026-10-10T14:38:01.161Z'
   workflow_version: 3.0.0
-  schema_version: 3.1.0
+  schema_version: 3.2.0
+  collector_run:
+    analysis_scope: full
+    workflow_run_id: '38060240144'
+    workflow_run_number: 354
+    workflow_run_url: https://github.com/camaraproject/project-administration/actions/runs/38060240144
+    source_sha: 92270a8adb9608087850bd9a8f8d395fa783451d
+    node_version: v24.21.0
+    npm_version: 11.19.0
+    dependencies:
+      '@octokit/rest': 22.0.1
+      js-yaml: 4.3.2
 releases:
   - repository: ApplicationEndpointDiscovery
     release_tag: r1.1
@@ -730,12 +741,12 @@ releases:
     dependencies:
       commonalities_release: r4.3 (0.8.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: consent-management
         api_version: 0.1.0-rc.1
         api_title: Consent Management
         commonalities: 0.8.0
-    superseded: true
   - repository: ConsentManagement
     release_tag: r1.2
     release_date: '2026-07-31T07:19:13Z'
@@ -1227,11 +1238,11 @@ releases:
         commonalities: 0.8.0
   - repository: DeviceMediaStreamingRate
     release_tag: r1.1
-    release_date: '2026-09-01T10:22:49Z'
+    release_date: '2026-09-14T16:17:02Z'
     meta_release: Independent
     github_url: https://github.com/camaraproject/DeviceMediaStreamingRate/releases/tag/r1.1
     release_type: pre-release-alpha
-    src_commit_sha: 235132f7c43f664423d65380296924bee287592f
+    src_commit_sha: 928b9150a2db04291a8bcf25e196bcb2b38a2553
     dependencies:
       commonalities_release: r4.3 (0.8.0)
       identity_consent_management_release: r4.2 (0.5.0)
@@ -2104,6 +2115,7 @@ releases:
     dependencies:
       commonalities_release: r4.1 (0.7.0-rc.1)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: network-health-assessment
         api_version: 0.1.0-alpha.1
@@ -2113,7 +2125,6 @@ releases:
         api_version: 0.1.0-alpha.1
         api_title: Network Traffic Analysis
         commonalities: 0.7.0-rc.1
-    superseded: true
   - repository: NetworkInsights
     release_tag: r1.2
     release_date: '2026-05-22T03:21:06Z'
@@ -2124,6 +2135,7 @@ releases:
     dependencies:
       commonalities_release: r4.2 (0.8.0-rc.2)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: network-health-assessment
         api_version: 0.1.0-rc.1
@@ -2133,7 +2145,6 @@ releases:
         api_version: 0.1.0-rc.1
         api_title: Network Traffic Analysis
         commonalities: 0.8.0-rc.2
-    superseded: true
   - repository: NetworkInsights
     release_tag: r1.3
     release_date: '2026-06-25T00:45:46Z'
