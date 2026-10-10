@@ -15,11 +15,15 @@
 const fs = require('fs');
 const path = require('path');
 const yaml = require('js-yaml');
+const { buildDiagnostics } = require('./lib/diagnostics');
+const { collectRunProvenance, applyRunProvenance } = require('./lib/provenance');
+
+const SCHEMA_VERSION = '3.2.0';
 
 // Paths
 // Paths (relative to repository root)
 const REPO_ROOT = path.join(__dirname, '..', '..', '..');
-const DATA_PATH = path.join(REPO_ROOT, 'data');
+const DATA_PATH = process.env.COLLECTOR_DATA_DIR || path.join(REPO_ROOT, 'data');
 const CONFIG_PATH = path.join(__dirname, '..', '..', '..', 'config'); // /config at repository root
 const MASTER_FILE = path.join(DATA_PATH, 'releases-master.yaml');
 
@@ -41,7 +45,7 @@ function loadMaster() {
       metadata: {
         last_updated: null,
         workflow_version: "3.0.0",
-        schema_version: "3.1.0"
+        schema_version: SCHEMA_VERSION
       },
       releases: [],
       repositories: []
@@ -53,7 +57,7 @@ function loadMaster() {
     master.repositories = [];
   }
   // Update schema version if needed
-  master.metadata.schema_version = "3.1.0";
+  master.metadata.schema_version = SCHEMA_VERSION;
   return master;
 }
 
@@ -369,6 +373,7 @@ async function main() {
   let mode = 'incremental';
   let inputFile = null;
   let reposFile = null;
+  let diagnosticsFile = null;
 
   for (let i = 0; i < args.length; i++) {
     if (args[i] === '--mode' && i + 1 < args.length) {
@@ -380,11 +385,14 @@ async function main() {
     } else if (args[i] === '--repos' && i + 1 < args.length) {
       reposFile = args[i + 1];
       i++;
+    } else if (args[i] === '--diagnostics' && i + 1 < args.length) {
+      diagnosticsFile = args[i + 1];
+      i++;
     }
   }
 
   if (!inputFile) {
-    console.error('Usage: node update-master.js --mode [incremental|full] --input <analysis-results.json> [--repos <repositories.json>]');
+    console.error('Usage: node update-master.js --mode [incremental|full] --input <analysis-results.json> [--repos <repositories.json>] [--diagnostics <diagnostics.json>]');
     process.exit(1);
   }
 
@@ -399,6 +407,13 @@ async function main() {
       process.exit(1);
     }
     const analysisResults = JSON.parse(fs.readFileSync(inputFile, 'utf8'));
+
+    // Keep the previous API names per release for the removal diagnostics
+    const previousReleases = master.releases.map(r => ({
+      repository: r.repository,
+      release_tag: r.release_tag,
+      apis: r.apis
+    }));
 
     // If full mode, completely rebuild from scratch
     if (mode === 'full') {
@@ -439,6 +454,7 @@ async function main() {
     if (hasContentChanges) {
       const timestamp = new Date().toISOString();
       updatedMaster.metadata.last_updated = timestamp;
+      applyRunProvenance(updatedMaster, collectRunProvenance(mode));
       console.log(`\nContent changes detected - updated last_updated to ${timestamp}`);
     } else {
       console.log(`\nNo content changes - last_updated unchanged`);
@@ -455,6 +471,17 @@ async function main() {
     });
 
     fs.writeFileSync(MASTER_FILE, yamlContent);
+
+    // Review signals only: never affects the data written above
+    if (diagnosticsFile) {
+      const diagnostics = buildDiagnostics({
+        analysisResults,
+        previousReleases,
+        run: collectRunProvenance(mode)
+      });
+      fs.writeFileSync(diagnosticsFile, JSON.stringify(diagnostics, null, 2));
+      console.log(`Diagnostics written: ${diagnostics.removed_apis.length} potential API removal(s), ${diagnostics.file_issues.length} file issue(s)`);
+    }
     console.log(`\nMaster metadata updated successfully`);
     console.log(`Total releases: ${updatedMaster.releases.length}`);
 

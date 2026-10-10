@@ -136,8 +136,7 @@ jobs:
           fi
 
       - name: Install dependencies
-        run: |
-          npm install js-yaml@4.2.0 axios @octokit/rest
+        run: npm ci --prefix workflows/release-collector
 
       - name: Detect repositories and releases
         id: detect
@@ -224,8 +223,7 @@ jobs:
           node-version: '24'
 
       - name: Install dependencies
-        run: |
-          npm install js-yaml@4.2.0 axios @octokit/rest
+        run: npm ci --prefix workflows/release-collector
 
       - name: Analyze release group
         run: |
@@ -288,8 +286,7 @@ jobs:
           node-version: '24'
 
       - name: Install dependencies
-        run: |
-          npm install js-yaml@4.2.0 axios
+        run: npm ci --prefix workflows/release-collector
 
       - name: Download repositories data
         uses: actions/download-artifact@v8
@@ -333,9 +330,29 @@ jobs:
           node workflows/release-collector/scripts/update-master.js \
             --mode ${{ env.ANALYSIS_SCOPE }} \
             --input temp/combined-analysis.json \
-            --repos "$REPOS_FILE"
+            --repos "$REPOS_FILE" \
+            --diagnostics temp/collector-diagnostics.json
 
           echo "Master metadata updated with $(jq '. | length' temp/combined-analysis.json) releases"
+
+      - name: Summarize diagnostics
+        run: |
+          node workflows/release-collector/scripts/summarize-diagnostics.js \
+            temp/collector-diagnostics.json > temp/collector-diagnostics.md
+
+          {
+            echo "### Review signals"
+            echo ""
+            cat temp/collector-diagnostics.md
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload diagnostics
+        uses: actions/upload-artifact@v7
+        with:
+          name: collector-diagnostics-${{ github.run_number }}
+          path: |
+            temp/collector-diagnostics.json
+            temp/collector-diagnostics.md
 
       - name: Generate meta-release reports
         run: |
@@ -381,7 +398,7 @@ jobs:
           node-version: '24'
 
       - name: Install dependencies
-        run: npm install js-yaml@4.2.0
+        run: npm ci --prefix workflows/release-collector
 
       - name: Generate release metadata files
         env:
@@ -435,8 +452,7 @@ jobs:
           node-version: '24'
 
       - name: Install dependencies
-        run: |
-          npm install js-yaml@4.2.0
+        run: npm ci --prefix workflows/release-collector
 
       - name: Generate HTML viewers
         env:
@@ -461,7 +477,7 @@ jobs:
   # =========================================================================================
   publish-changes:
     name: Publish Changes
-    needs: [detect-releases, generate-viewers, generate-release-metadata]
+    needs: [detect-releases, update-metadata, generate-viewers, generate-release-metadata]
     if: |
       always() &&
       (github.event.inputs.execution_mode || 'pr') != 'dry-run' &&
@@ -486,6 +502,13 @@ jobs:
         with:
           name: release-metadata-${{ github.run_number }}
           path: data/release-artifacts
+
+      - name: Download diagnostics (if generated)
+        if: needs.update-metadata.result == 'success'
+        uses: actions/download-artifact@v8
+        with:
+          name: collector-diagnostics-${{ github.run_number }}
+          path: ${{ runner.temp }}/diagnostics
 
       - name: Validate generated files
         if: env.EXECUTION_MODE == 'pr'
@@ -573,6 +596,19 @@ jobs:
             } >> $GITHUB_OUTPUT
           fi
 
+      - name: Prepare diagnostics text
+        id: diagnostics
+        run: |
+          {
+            echo "text<<DIAGNOSTICS_EOF"
+            if [ -f "$RUNNER_TEMP/diagnostics/collector-diagnostics.md" ]; then
+              cat "$RUNNER_TEMP/diagnostics/collector-diagnostics.md"
+            else
+              echo "No diagnostics generated for this run."
+            fi
+            echo "DIAGNOSTICS_EOF"
+          } >> "$GITHUB_OUTPUT"
+
       - name: Create pull request
         id: create-pr
         if: env.EXECUTION_MODE == 'pr' && steps.diff.outputs.has_changes == 'true'
@@ -608,12 +644,19 @@ jobs:
 
             ${{ steps.warnings.outputs.text }}
 
+            ### Review Signals
+
+            Potential API removals are warnings only: confirm each is an intended repository change before merging. Details are in the `collector-diagnostics-${{ github.run_number }}` artifact.
+
+            ${{ steps.diagnostics.outputs.text }}
+
             ### Review Checklist
 
             - [ ] Master YAML contains expected releases
             - [ ] JSON reports are valid and complete
             - [ ] No sensitive data exposed
             - [ ] Data changes are accurate and complete
+            - [ ] Potential API removals are intended (or the run is regenerated)
 
             ### Merge Instructions
 
