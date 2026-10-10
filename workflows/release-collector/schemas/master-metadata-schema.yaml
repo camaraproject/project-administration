@@ -1,6 +1,12 @@
 # Master Metadata Schema
 # Schema for releases-master.yaml containing GitHub facts with format corrections only
-# Version: 3.1.0
+# Version: 3.2.0
+#
+# Changes in 3.2.0:
+# - Added optional metadata.collector_run: run provenance (workflow run, source commit,
+#   runtime and dependency versions), written only when the master file is updated
+# - metadata.last_checked is no longer required; it is removed on update and kept in the
+#   schema only as a historical field
 #
 # Changes in 3.1.0:
 # - Renamed meta_release value "None (Sandbox)" to "Independent" for releases outside
@@ -41,7 +47,6 @@ properties:
     description: Metadata about the collection process
     required:
       - last_updated
-      - last_checked
       - workflow_version
       - schema_version
     properties:
@@ -52,7 +57,7 @@ properties:
       last_checked:
         type: string
         format: date-time
-        description: When repositories were last scanned
+        description: Historical, no longer written. When repositories were last scanned
       workflow_version:
         type: string
         pattern: "^\\d+\\.\\d+\\.\\d+$"
@@ -61,6 +66,37 @@ properties:
         type: string
         pattern: "^\\d+\\.\\d+\\.\\d+$"
         description: Version of this schema
+      collector_run:
+        type: object
+        description: >-
+          Provenance of the Release Collector run that last updated this file.
+          Top level only; not repeated on releases or APIs.
+        required:
+          - analysis_scope
+        properties:
+          analysis_scope:
+            type: string
+            enum: [full, incremental]
+          workflow_run_id:
+            type: string
+            description: GitHub Actions run ID
+          workflow_run_number:
+            type: integer
+          workflow_run_url:
+            type: string
+            format: uri
+          source_sha:
+            type: string
+            description: Commit of the collector code that ran
+          node_version:
+            type: string
+          npm_version:
+            type: string
+          dependencies:
+            type: object
+            description: Versions of the packages Node loaded at run time
+            additionalProperties:
+              type: string
 
   releases:
     type: array

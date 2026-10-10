@@ -25,7 +25,10 @@ The workflow implements a clean separation of concerns:
 - **Purpose**: Analyzes individual releases to extract API specifications
 - **Used by**: GitHub workflow (Phase 2)
 - **Key Features**:
-  - Extracts API metadata from OpenAPI specs
+  - Extracts API metadata from OpenAPI specs (metadata-only for releases without native
+    `release-metadata.yaml`: only top-level `info` and `servers` are read, the rest of the
+    document is never parsed)
+  - Adds per-release `diagnostics` (files without extractable metadata, native metadata errors)
   - **Applies format corrections** (v-prefix removal, commonalities as numbers)
   - Preserves historical facts (API names unchanged)
 - **Modes**:
@@ -36,7 +39,9 @@ The workflow implements a clean separation of concerns:
 - **Purpose**: Updates master metadata with analyzed release data
 - **Used by**: GitHub workflow (Phase 3)
 - **Note**: Receives data with format corrections already applied
-- **Output**: Updated `data/releases-master.yaml`
+- **Output**: Updated `data/releases-master.yaml`; with `--diagnostics <file>` also a diagnostics
+  JSON (potential API removals, file issues). Removals are warnings only and never change the data.
+- **Provenance**: Writes top-level `metadata.collector_run` only when the master file changes
 
 #### 4. `generate-reports.js`
 - **Purpose**: Generates JSON reports for each meta-release
@@ -63,7 +68,14 @@ The workflow implements a clean separation of concerns:
   - Previous names handling
 - **Output**: Validation report with statistics
 
+#### 7. `summarize-diagnostics.js`
+- **Purpose**: Renders a diagnostics JSON as markdown for the workflow summary and PR body
+- **Usage**: `node scripts/summarize-diagnostics.js <diagnostics.json>`
+
 ### Library
+
+#### `lib/legacy-metadata.js`, `lib/diagnostics.js`, `lib/provenance.js`
+- Metadata-only OpenAPI extraction, diagnostics build/render, and run provenance
 
 #### `lib/enrichment.js`
 - **Purpose**: Utility functions for runtime enrichment
@@ -130,6 +142,17 @@ The following are NOT changed (preserved as historical facts):
 - `GITHUB_TOKEN`: GitHub API authentication (optional but recommended)
 - `GITHUB_ORG`: GitHub organization (default: 'camaraproject')
 - `API_LANDSCAPE_PATH`: Custom path to landscape file (optional)
+
+## Dependencies and tests
+
+Dependencies are declared in `workflows/release-collector/package.json` and locked in
+`package-lock.json`. Install with `npm ci --prefix workflows/release-collector` (the workflow does
+the same). `js-yaml` stays on the 4.x line; Dependabot ignores its major updates.
+
+```bash
+npm ci --prefix workflows/release-collector
+npm test --prefix workflows/release-collector   # node:test unit tests in tests/*.test.js
+```
 
 ## Testing
 

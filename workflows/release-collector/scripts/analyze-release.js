@@ -12,6 +12,7 @@
 const fs = require('fs');
 const path = require('path');
 const yaml = require('js-yaml');
+const { extractLegacyMetadata } = require('./lib/legacy-metadata');
 const { Octokit } = require('@octokit/rest');
 const { exec } = require('child_process');
 const { promisify } = require('util');
@@ -61,7 +62,10 @@ function extractAPINameFromSpec(spec) {
   }
 
   // Take first server URL
-  const serverUrl = spec.servers[0].url;
+  const serverUrl = spec.servers[0] && spec.servers[0].url;
+  if (typeof serverUrl !== 'string') {
+    return null;
+  }
 
   // Match pattern /{api-name}/{version}
   // API name is between first and second slash from the end
@@ -263,6 +267,69 @@ function getMetaRelease(repository, releaseTag, mappings) {
 }
 
 /**
+ * Analyze legacy OpenAPI files (releases without native release-metadata.yaml).
+ *
+ * Only the top-level info and servers sections are read (metadata-only
+ * extraction); the rest of each document is never parsed. A file that yields
+ * no usable info is recorded in diagnostics.file_issues and skipped.
+ *
+ * @param {Array<{path: string, content: string}>} files - API definition files
+ * @param {string} repository - Repository name
+ * @param {string} releaseTag - Release tag
+ * @returns {{apis: Array, diagnostics: {files_analyzed: number, file_issues: Array}}}
+ */
+function analyzeLegacyFiles(files, repository, releaseTag) {
+  const apis = [];
+  const diagnostics = { files_analyzed: files.length, file_issues: [] };
+
+  for (const file of files) {
+    try {
+      const spec = extractLegacyMetadata(file.content);
+
+      const fileName = extractFileName(file.path);
+      const apiName = extractAPINameFromSpec(spec);
+
+      const apiData = {
+        api_name: apiName || fileName,        // Use filename as fallback for legacy releases
+        api_version: spec.info.version || 'unknown',
+        api_title: spec.info.title || 'Untitled',
+        commonalities: spec.info['x-camara-commonalities'] || null
+      };
+
+      // Apply format corrections only (not content changes)
+      const correctedApi = applyFormatCorrections(apiData);
+
+      // Repository/release-specific corrections
+      if (repository === 'ConnectivityInsights' && releaseTag === 'r1.2' &&
+          correctedApi.api_name === 'v0.4') {
+        console.error(`Applying correction: ConnectivityInsights r1.2 - mapping 'v0.4' to 'connectivity-insights-subscriptions'`);
+        correctedApi.api_name = 'connectivity-insights-subscriptions';
+      }
+
+      // Fix incorrect api_title for connectivity-insights-subscriptions in r1.2 and r2.2
+      if (repository === 'ConnectivityInsights' && (releaseTag === 'r1.2' || releaseTag === 'r2.2') &&
+          correctedApi.api_name === 'connectivity-insights-subscriptions' && correctedApi.api_title === 'Connectivity Insights') {
+        console.error(`Applying correction: ConnectivityInsights ${releaseTag} - fixing api_title to 'Connectivity Insights Subscriptions'`);
+        correctedApi.api_title = 'Connectivity Insights Subscriptions';
+      }
+
+      // Exclude known invalid RC release
+      if (correctedApi.api_name === 'region-device-count' && correctedApi.api_version === '0.1.0-rc.1') {
+        console.error(`Excluding invalid RC release: ${correctedApi.api_name} ${correctedApi.api_version}`);
+        continue;
+      }
+
+      apis.push(correctedApi);
+    } catch (error) {
+      console.error(`Error extracting metadata from ${file.path}:`, error.message);
+      diagnostics.file_issues.push({ file: file.path, recovered: false, error: error.message });
+    }
+  }
+
+  return { apis, diagnostics };
+}
+
+/**
  * Analyze release from local repository (for testing)
  * @param {string} repoPath - Path to local repository
  * @param {string} releaseTag - Release tag to analyze
@@ -286,54 +353,12 @@ async function analyzeLocalRelease(repoPath, releaseTag, isPrerelease = false) {
       .map(file => path.join(apiSpecPath, file));
   }
 
-  // Extract API information
-  const apis = [];
-
-  for (const apiFile of apiFiles) {
-    try {
-      const content = fs.readFileSync(apiFile, 'utf8');
-      const spec = yaml.load(content);
-
-      const fileName = extractFileName(apiFile);
-      const apiName = extractAPINameFromSpec(spec);
-
-      if (spec && spec.info) {
-        const apiData = {
-          api_name: apiName || fileName,        // Use filename as fallback for legacy releases
-          api_version: spec.info.version || 'unknown',
-          api_title: spec.info.title || 'Untitled',
-          commonalities: spec.info['x-camara-commonalities'] || null
-        };
-
-        // Apply format corrections only (not content changes)
-        const correctedApi = applyFormatCorrections(apiData);
-
-        // Repository/release-specific corrections
-        if (repoName === 'ConnectivityInsights' && releaseTag === 'r1.2' &&
-            correctedApi.api_name === 'v0.4') {
-          console.error(`Applying correction: ConnectivityInsights r1.2 - mapping 'v0.4' to 'connectivity-insights-subscriptions'`);
-          correctedApi.api_name = 'connectivity-insights-subscriptions';
-        }
-
-        // Fix incorrect api_title for connectivity-insights-subscriptions in r1.2 and r2.2
-        if (repoName === 'ConnectivityInsights' && (releaseTag === 'r1.2' || releaseTag === 'r2.2') &&
-            correctedApi.api_name === 'connectivity-insights-subscriptions' && correctedApi.api_title === 'Connectivity Insights') {
-          console.error(`Applying correction: ConnectivityInsights ${releaseTag} - fixing api_title to 'Connectivity Insights Subscriptions'`);
-          correctedApi.api_title = 'Connectivity Insights Subscriptions';
-        }
-
-        // Exclude known invalid RC release
-        if (correctedApi.api_name === 'region-device-count' && correctedApi.api_version === '0.1.0-rc.1') {
-          console.error(`Excluding invalid RC release: ${correctedApi.api_name} ${correctedApi.api_version}`);
-          continue;
-        }
-
-        apis.push(correctedApi);
-      }
-    } catch (error) {
-      console.error(`Error parsing ${apiFile}:`, error.message);
-    }
-  }
+  // Extract API information (metadata-only)
+  const files = apiFiles.map(apiFile => ({
+    path: path.relative(repoPath, apiFile),
+    content: fs.readFileSync(apiFile, 'utf8')
+  }));
+  const { apis, diagnostics } = analyzeLegacyFiles(files, repoName, releaseTag);
 
   // Get release date
   const { stdout: releaseDate } = await execAsync(
@@ -357,6 +382,7 @@ async function analyzeLocalRelease(repoPath, releaseTag, isPrerelease = false) {
     src_commit_sha: null,
     dependencies: null,
     native_metadata: false,
+    diagnostics: diagnostics,
     apis: apis
   };
 }
@@ -375,6 +401,7 @@ async function analyzeGitHubRelease(repository, releaseTag) {
   });
 
   // Check for native release-metadata.yaml (ADR-0004: native metadata is authoritative)
+  let nativeMetadataError = null;
   try {
     const nativeMetadata = await fetchNativeReleaseMetadata(repository, releaseTag);
     if (nativeMetadata) {
@@ -384,6 +411,7 @@ async function analyzeGitHubRelease(repository, releaseTag) {
     console.error(`  → No native metadata, falling back to OpenAPI analysis`);
   } catch (error) {
     console.error(`  → Error checking native metadata, falling back to OpenAPI analysis: ${error.message}`);
+    nativeMetadataError = error.message;
   }
 
   // Legacy path: analyze OpenAPI specs from tag tree
@@ -407,61 +435,32 @@ async function analyzeGitHubRelease(repository, releaseTag) {
     item.type === 'blob'
   );
 
-  // Extract API information
-  const apis = [];
-
+  // Fetch file contents; a failed fetch is recorded like an extraction issue
+  const files = [];
+  const fetchIssues = [];
   for (const file of apiFiles) {
     try {
-      // Get file content
       const { data: blob } = await octokit.git.getBlob({
         owner: GITHUB_ORG,
         repo: repository,
         file_sha: file.sha
       });
-
-      // Decode base64 content
-      const content = Buffer.from(blob.content, 'base64').toString('utf8');
-      const spec = yaml.load(content);
-
-      const fileName = extractFileName(file.path);
-      const apiName = extractAPINameFromSpec(spec);
-
-      if (spec && spec.info) {
-        const apiData = {
-          api_name: apiName || fileName,        // Use filename as fallback for legacy releases
-          api_version: spec.info.version || 'unknown',
-          api_title: spec.info.title || 'Untitled',
-          commonalities: spec.info['x-camara-commonalities'] || null
-        };
-
-        // Apply format corrections only (not content changes)
-        const correctedApi = applyFormatCorrections(apiData);
-
-        // Repository/release-specific corrections
-        if (repository === 'ConnectivityInsights' && releaseTag === 'r1.2' &&
-            correctedApi.api_name === 'v0.4') {
-          console.error(`Applying correction: ConnectivityInsights r1.2 - mapping 'v0.4' to 'connectivity-insights-subscriptions'`);
-          correctedApi.api_name = 'connectivity-insights-subscriptions';
-        }
-
-        // Fix incorrect api_title for connectivity-insights-subscriptions in r1.2 and r2.2
-        if (repository === 'ConnectivityInsights' && (releaseTag === 'r1.2' || releaseTag === 'r2.2') &&
-            correctedApi.api_name === 'connectivity-insights-subscriptions' && correctedApi.api_title === 'Connectivity Insights') {
-          console.error(`Applying correction: ConnectivityInsights ${releaseTag} - fixing api_title to 'Connectivity Insights Subscriptions'`);
-          correctedApi.api_title = 'Connectivity Insights Subscriptions';
-        }
-
-        // Exclude known invalid RC release
-        if (correctedApi.api_name === 'region-device-count' && correctedApi.api_version === '0.1.0-rc.1') {
-          console.error(`Excluding invalid RC release: ${correctedApi.api_name} ${correctedApi.api_version}`);
-          continue;
-        }
-
-        apis.push(correctedApi);
-      }
+      files.push({
+        path: file.path,
+        content: Buffer.from(blob.content, 'base64').toString('utf8')
+      });
     } catch (error) {
-      console.error(`Error parsing ${file.path}:`, error.message);
+      console.error(`Error fetching ${file.path}:`, error.message);
+      fetchIssues.push({ file: file.path, recovered: false, error: `fetch failed: ${error.message}` });
     }
+  }
+
+  // Extract API information (metadata-only)
+  const { apis, diagnostics } = analyzeLegacyFiles(files, repository, releaseTag);
+  diagnostics.files_analyzed += fetchIssues.length;
+  diagnostics.file_issues.push(...fetchIssues);
+  if (nativeMetadataError) {
+    diagnostics.native_metadata_error = nativeMetadataError;
   }
 
   // Determine release_type for pre-releases (public/maintenance determined in update-master.js)
@@ -477,6 +476,7 @@ async function analyzeGitHubRelease(repository, releaseTag) {
     src_commit_sha: null,
     dependencies: null,
     native_metadata: false,
+    diagnostics: diagnostics,
     apis: apis
   };
 }
@@ -530,6 +530,7 @@ if (require.main === module) {
 }
 
 module.exports = {
+  analyzeLegacyFiles,
   analyzeLocalRelease,
   analyzeGitHubRelease,
   getMetaRelease,

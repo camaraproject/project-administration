@@ -43,3 +43,20 @@ updates:
     labels:
       - "dependencies"
       - "github-actions"
+
+  # Release Collector npm dependencies (workflows/release-collector/package.json)
+  - package-ecosystem: "npm"
+    directory: "/workflows/release-collector"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    commit-message:
+      prefix: "chore(deps)"
+    labels:
+      - "dependencies"
+    open-pull-requests-limit: 5
+    ignore:
+      # js-yaml stays on the tolerant 4.x line: the collector reads published
+      # release history that cannot be corrected
+      - dependency-name: "js-yaml"
+        update-types: ["version-update:semver-major"]

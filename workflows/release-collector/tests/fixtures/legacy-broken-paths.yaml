@@ -1,0 +1,25 @@
+openapi: 3.0.3
+info:
+  title: Device Status
+  description: |
+    Multi-line description.
+
+    Includes a code block:
+        indented text
+  version: v2.1.0
+  x-camara-commonalities: 0.4.0
+servers:
+  - url: "{apiRoot}/device-status/v2"
+    variables:
+      apiRoot:
+        default: http://localhost:9091
+paths:
+  /broken:
+    get:
+      responses:
+        '200':
+          description: [unclosed
+          content:
+             application/json:
+            schema:
+              type: string
