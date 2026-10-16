@@ -1,19 +1,19 @@
 {
   "metadata": {
-    "generated": "2026-10-15T07:42:52.623Z",
+    "generated": "2026-10-16T07:29:46.897Z",
     "meta_release": "All",
     "source": "Release Collector v3",
     "landscape_version": "1.1.1"
   },
   "statistics": {
     "repositories_count": 53,
-    "api_versions_count": 235,
+    "api_versions_count": 236,
     "unique_api_names_count": 79,
     "unique_apis_count": 78,
     "api_version_maturity": {
       "stable": 28,
       "initial": 140,
-      "rc": 67
+      "rc": 68
     },
     "unique_api_maturity": {
       "stable": 0,
@@ -912,6 +912,11 @@
     "SessionInsights": {
       "releases": [
         {
+          "tag": "r2.2",
+          "date": "2026-10-16T00:14:59Z",
+          "apis_count": 1
+        },
+        {
           "tag": "r2.1",
           "date": "2026-08-19T16:29:52Z",
           "apis_count": 1
@@ -922,7 +927,7 @@
           "apis_count": 1
         }
       ],
-      "total_apis": 2,
+      "total_apis": 3,
       "unique_apis_count": 1
     },
     "SimpleEdgeDiscovery": {
@@ -5418,6 +5423,35 @@
           "api_version": "0.2.0-rc.1",
           "api_title": "Session Insights",
           "commonalities": "0.8.0",
+          "maturity": "initial",
+          "portfolio_category": null,
+          "website_url": null,
+          "tooltip": null,
+          "display_name": "Session Insights",
+          "published": true,
+          "canonical_name": "session-insights",
+          "first_release": "Sandbox"
+        }
+      ]
+    },
+    {
+      "repository": "SessionInsights",
+      "release_tag": "r2.2",
+      "release_date": "2026-10-16T00:14:59Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/SessionInsights/releases/tag/r2.2",
+      "release_type": "pre-release-rc",
+      "src_commit_sha": "5921d6da73b2ca39f592c987ab6e503938d9b019",
+      "dependencies": {
+        "commonalities_release": "r4.4 (0.9.0)",
+        "identity_consent_management_release": "r4.2 (0.5.0)"
+      },
+      "apis": [
+        {
+          "api_name": "session-insights",
+          "api_version": "0.2.0-rc.2",
+          "api_title": "Session Insights",
+          "commonalities": "0.9.0",
           "maturity": "initial",
           "portfolio_category": null,
           "website_url": null,
@@ -10345,6 +10379,26 @@
       "release_date": "2026-08-19T16:29:52Z",
       "meta_release": "Independent",
       "github_url": "https://github.com/camaraproject/SessionInsights/releases/tag/r2.1",
+      "release_type": "pre-release-rc"
+    },
+    {
+      "api_name": "session-insights",
+      "api_version": "0.2.0-rc.2",
+      "api_title": "Session Insights",
+      "commonalities": "0.9.0",
+      "maturity": "initial",
+      "portfolio_category": null,
+      "website_url": null,
+      "tooltip": null,
+      "display_name": "Session Insights",
+      "published": true,
+      "canonical_name": "session-insights",
+      "first_release": "Sandbox",
+      "repository": "SessionInsights",
+      "release_tag": "r2.2",
+      "release_date": "2026-10-16T00:14:59Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/SessionInsights/releases/tag/r2.2",
       "release_type": "pre-release-rc"
     },
     {
