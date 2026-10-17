@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "generated": "2026-10-16T07:29:46.897Z",
+    "generated": "2026-10-17T07:10:31.045Z",
     "meta_release": "All",
     "source": "Release Collector v3",
     "landscape_version": "1.1.1"
@@ -11,18 +11,18 @@
     "unique_api_names_count": 79,
     "unique_apis_count": 78,
     "api_version_maturity": {
-      "stable": 28,
+      "stable": 29,
       "initial": 140,
-      "rc": 68
+      "rc": 67
     },
     "unique_api_maturity": {
-      "stable": 0,
+      "stable": 1,
       "initial": 20,
-      "rc": 58
+      "rc": 57
     },
     "categories": {
-      "Computing Services": 18,
-      "Communication Quality": 53,
+      "Computing Services": 17,
+      "Communication Quality": 54,
       "Payments and Charging": 11,
       "Authentication and Fraud Prevention": 68,
       "Communication Services": 17,
@@ -68,6 +68,11 @@
     "ApplicationProfiles": {
       "releases": [
         {
+          "tag": "r2.2",
+          "date": "2026-10-17T05:51:38Z",
+          "apis_count": 1
+        },
+        {
           "tag": "r2.1",
           "date": "2026-08-19T23:33:53Z",
           "apis_count": 1
@@ -78,7 +83,7 @@
           "apis_count": 1
         }
       ],
-      "total_apis": 2,
+      "total_apis": 3,
       "unique_apis_count": 1
     },
     "BlockchainPublicAddress": {
@@ -933,13 +938,8 @@
     "SimpleEdgeDiscovery": {
       "releases": [
         {
-          "tag": "r3.2",
-          "date": "2026-09-11T15:03:54Z",
-          "apis_count": 1
-        },
-        {
-          "tag": "r3.1",
-          "date": "2026-08-05T13:39:06Z",
+          "tag": "r3.3",
+          "date": "2026-10-16T09:46:03Z",
           "apis_count": 1
         },
         {
@@ -958,7 +958,7 @@
           "apis_count": 1
         }
       ],
-      "total_apis": 5,
+      "total_apis": 4,
       "unique_apis_count": 1
     },
     "SimSwap": {
@@ -1250,6 +1250,35 @@
           "api_version": "0.6.0-rc.1",
           "api_title": "Connectivity Insights - Application Profiles",
           "commonalities": "0.8.0",
+          "maturity": "initial",
+          "portfolio_category": "Communication Quality",
+          "website_url": "https://camaraproject.org/application-profiles/",
+          "tooltip": "Share information about applications relevant for network related decision making",
+          "display_name": "Connectivity Insights - Application Profiles",
+          "published": true,
+          "canonical_name": "application-profiles",
+          "first_release": "Fall24"
+        }
+      ]
+    },
+    {
+      "repository": "ApplicationProfiles",
+      "release_tag": "r2.2",
+      "release_date": "2026-10-17T05:51:38Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/ApplicationProfiles/releases/tag/r2.2",
+      "release_type": "pre-release-rc",
+      "src_commit_sha": "b3511ecc381cbd0c32d2f4f7dd0c17261d0a28d3",
+      "dependencies": {
+        "commonalities_release": "r4.4 (0.9.0)",
+        "identity_consent_management_release": "r4.2 (0.5.0)"
+      },
+      "apis": [
+        {
+          "api_name": "application-profiles",
+          "api_version": "0.6.0-rc.2",
+          "api_title": "Connectivity Insights - Application Profiles",
+          "commonalities": "0.9.0",
           "maturity": "initial",
           "portfolio_category": "Communication Quality",
           "website_url": "https://camaraproject.org/application-profiles/",
@@ -5545,41 +5574,12 @@
     },
     {
       "repository": "SimpleEdgeDiscovery",
-      "release_tag": "r3.1",
-      "release_date": "2026-08-05T13:39:06Z",
+      "release_tag": "r3.3",
+      "release_date": "2026-10-16T09:46:03Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/SimpleEdgeDiscovery/releases/tag/r3.1",
-      "release_type": "pre-release-rc",
-      "src_commit_sha": "bc38e3dd37616d3c9fa216cfc99f05b28629781b",
-      "dependencies": {
-        "commonalities_release": "r4.3 (0.8.0)",
-        "identity_consent_management_release": "r4.2 (0.5.0)"
-      },
-      "apis": [
-        {
-          "api_name": "simple-edge-discovery",
-          "api_version": "2.1.0-rc.2",
-          "api_title": "Simple Edge Discovery",
-          "commonalities": "0.8.0",
-          "maturity": "stable",
-          "portfolio_category": "Computing Services",
-          "website_url": "https://camaraproject.org/simple-edge-discovery/",
-          "tooltip": "Discover the closest edge cloud zone to a given device",
-          "display_name": "Simple Edge Discovery",
-          "published": true,
-          "canonical_name": "simple-edge-discovery",
-          "first_release": "PreFall24"
-        }
-      ]
-    },
-    {
-      "repository": "SimpleEdgeDiscovery",
-      "release_tag": "r3.2",
-      "release_date": "2026-09-11T15:03:54Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/SimpleEdgeDiscovery/releases/tag/r3.2",
-      "release_type": "pre-release-rc",
-      "src_commit_sha": "caa7fe91a12fbc45968ac3f268aaa126c47412d6",
+      "github_url": "https://github.com/camaraproject/SimpleEdgeDiscovery/releases/tag/r3.3",
+      "release_type": "public-release",
+      "src_commit_sha": "084c86574c89f842c8419bc0ebd90509f09390b0",
       "dependencies": {
         "commonalities_release": "r4.4 (0.9.0)",
         "identity_consent_management_release": "r4.2 (0.5.0)"
@@ -5587,7 +5587,7 @@
       "apis": [
         {
           "api_name": "simple-edge-discovery",
-          "api_version": "2.1.0-rc.3",
+          "api_version": "2.1.0",
           "api_title": "Simple Edge Discovery",
           "commonalities": "0.9.0",
           "maturity": "stable",
@@ -6487,6 +6487,26 @@
       "release_date": "2026-08-19T23:33:53Z",
       "meta_release": "Independent",
       "github_url": "https://github.com/camaraproject/ApplicationProfiles/releases/tag/r2.1",
+      "release_type": "pre-release-rc"
+    },
+    {
+      "api_name": "application-profiles",
+      "api_version": "0.6.0-rc.2",
+      "api_title": "Connectivity Insights - Application Profiles",
+      "commonalities": "0.9.0",
+      "maturity": "initial",
+      "portfolio_category": "Communication Quality",
+      "website_url": "https://camaraproject.org/application-profiles/",
+      "tooltip": "Share information about applications relevant for network related decision making",
+      "display_name": "Connectivity Insights - Application Profiles",
+      "published": true,
+      "canonical_name": "application-profiles",
+      "first_release": "Fall24",
+      "repository": "ApplicationProfiles",
+      "release_tag": "r2.2",
+      "release_date": "2026-10-17T05:51:38Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/ApplicationProfiles/releases/tag/r2.2",
       "release_type": "pre-release-rc"
     },
     {
@@ -10466,27 +10486,7 @@
     },
     {
       "api_name": "simple-edge-discovery",
-      "api_version": "2.1.0-rc.2",
-      "api_title": "Simple Edge Discovery",
-      "commonalities": "0.8.0",
-      "maturity": "stable",
-      "portfolio_category": "Computing Services",
-      "website_url": "https://camaraproject.org/simple-edge-discovery/",
-      "tooltip": "Discover the closest edge cloud zone to a given device",
-      "display_name": "Simple Edge Discovery",
-      "published": true,
-      "canonical_name": "simple-edge-discovery",
-      "first_release": "PreFall24",
-      "repository": "SimpleEdgeDiscovery",
-      "release_tag": "r3.1",
-      "release_date": "2026-08-05T13:39:06Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/SimpleEdgeDiscovery/releases/tag/r3.1",
-      "release_type": "pre-release-rc"
-    },
-    {
-      "api_name": "simple-edge-discovery",
-      "api_version": "2.1.0-rc.3",
+      "api_version": "2.1.0",
       "api_title": "Simple Edge Discovery",
       "commonalities": "0.9.0",
       "maturity": "stable",
@@ -10498,11 +10498,11 @@
       "canonical_name": "simple-edge-discovery",
       "first_release": "PreFall24",
       "repository": "SimpleEdgeDiscovery",
-      "release_tag": "r3.2",
-      "release_date": "2026-09-11T15:03:54Z",
+      "release_tag": "r3.3",
+      "release_date": "2026-10-16T09:46:03Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/SimpleEdgeDiscovery/releases/tag/r3.2",
-      "release_type": "pre-release-rc"
+      "github_url": "https://github.com/camaraproject/SimpleEdgeDiscovery/releases/tag/r3.3",
+      "release_type": "public-release"
     },
     {
       "api_name": "sim-swap",
