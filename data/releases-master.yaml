@@ -1,13 +1,13 @@
 metadata:
-  last_updated: '2026-10-16T07:29:45.771Z'
+  last_updated: '2026-10-18T07:24:32.806Z'
   workflow_version: 3.0.0
   schema_version: 3.2.0
   collector_run:
     analysis_scope: incremental
-    workflow_run_id: '38867455079'
-    workflow_run_number: 360
-    workflow_run_url: https://github.com/camaraproject/project-administration/actions/runs/38867455079
-    source_sha: 0751a53278e6187d8c1c980d783317a0a0eb7392
+    workflow_run_id: '39107483483'
+    workflow_run_number: 362
+    workflow_run_url: https://github.com/camaraproject/project-administration/actions/runs/39107483483
+    source_sha: 37b3e925e29b36e0cf683dd358b35a8759027176
     node_version: v24.21.0
     npm_version: 11.19.0
     dependencies:
@@ -128,6 +128,21 @@ releases:
         api_version: 0.6.0-rc.1
         api_title: Connectivity Insights - Application Profiles
         commonalities: 0.8.0
+  - repository: ApplicationProfiles
+    release_tag: r2.2
+    release_date: '2026-10-17T05:51:38Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/ApplicationProfiles/releases/tag/r2.2
+    release_type: pre-release-rc
+    src_commit_sha: b3511ecc381cbd0c32d2f4f7dd0c17261d0a28d3
+    dependencies:
+      commonalities_release: r4.4 (0.9.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: application-profiles
+        api_version: 0.6.0-rc.2
+        api_title: Connectivity Insights - Application Profiles
+        commonalities: 0.9.0
   - repository: BlockchainPublicAddress
     release_tag: r1.1
     release_date: '2025-02-20T07:58:47Z'
@@ -3136,6 +3151,7 @@ releases:
         api_version: 2.1.0-rc.2
         api_title: Simple Edge Discovery
         commonalities: 0.8.0
+    superseded: true
   - repository: SimpleEdgeDiscovery
     release_tag: r3.2
     release_date: '2026-09-11T15:03:54Z'
@@ -3149,6 +3165,22 @@ releases:
     apis:
       - api_name: simple-edge-discovery
         api_version: 2.1.0-rc.3
+        api_title: Simple Edge Discovery
+        commonalities: 0.9.0
+    superseded: true
+  - repository: SimpleEdgeDiscovery
+    release_tag: r3.3
+    release_date: '2026-10-16T09:46:03Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/SimpleEdgeDiscovery/releases/tag/r3.3
+    release_type: public-release
+    src_commit_sha: 084c86574c89f842c8419bc0ebd90509f09390b0
+    dependencies:
+      commonalities_release: r4.4 (0.9.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: simple-edge-discovery
+        api_version: 2.1.0
         api_title: Simple Edge Discovery
         commonalities: 0.9.0
   - repository: SimSwap
@@ -3659,7 +3691,7 @@ repositories:
   - repository: ApplicationProfiles
     github_url: https://github.com/camaraproject/ApplicationProfiles
     latest_public_release: r1.2
-    newest_pre_release: r2.1
+    newest_pre_release: r2.2
   - repository: BlockchainPublicAddress
     github_url: https://github.com/camaraproject/BlockchainPublicAddress
     latest_public_release: r2.2
@@ -3880,8 +3912,8 @@ repositories:
     newest_pre_release: null
   - repository: SimpleEdgeDiscovery
     github_url: https://github.com/camaraproject/SimpleEdgeDiscovery
-    latest_public_release: r2.3
-    newest_pre_release: r3.2
+    latest_public_release: r3.3
+    newest_pre_release: null
   - repository: SimSwap
     github_url: https://github.com/camaraproject/SimSwap
     latest_public_release: r3.3
