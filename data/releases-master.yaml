@@ -1,15 +1,15 @@
 metadata:
-  last_updated: '2026-10-18T07:24:32.806Z'
+  last_updated: '2026-10-21T07:58:41.247Z'
   workflow_version: 3.0.0
   schema_version: 3.2.0
   collector_run:
     analysis_scope: incremental
-    workflow_run_id: '39107483483'
-    workflow_run_number: 362
-    workflow_run_url: https://github.com/camaraproject/project-administration/actions/runs/39107483483
-    source_sha: 37b3e925e29b36e0cf683dd358b35a8759027176
-    node_version: v24.21.0
-    npm_version: 11.19.0
+    workflow_run_id: '39565681054'
+    workflow_run_number: 365
+    workflow_run_url: https://github.com/camaraproject/project-administration/actions/runs/39565681054
+    source_sha: 4987c8ed1c8255b434d797e1cd753fec6b825497
+    node_version: v24.22.0
+    npm_version: 11.19.1
     dependencies:
       '@octokit/rest': 22.0.1
       js-yaml: 4.3.2
@@ -52,6 +52,21 @@ releases:
         api_version: 0.2.0-rc.1
         api_title: Application Endpoint Discovery
         commonalities: 0.8.0
+  - repository: ApplicationEndpointDiscovery
+    release_tag: r2.2
+    release_date: '2026-10-20T22:12:31Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/ApplicationEndpointDiscovery/releases/tag/r2.2
+    release_type: pre-release-rc
+    src_commit_sha: 650e517e3c12162c44ba4b285b5fb83fb564059b
+    dependencies:
+      commonalities_release: r4.4 (0.9.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: application-endpoint-discovery
+        api_version: 0.2.0-rc.2
+        api_title: Application Endpoint Discovery
+        commonalities: 0.9.0
   - repository: ApplicationEndpointRegistration
     release_tag: r1.1
     release_date: '2025-07-31T09:55:23Z'
@@ -90,6 +105,21 @@ releases:
         api_version: 0.2.0-rc.1
         api_title: Application Endpoints Registration
         commonalities: 0.8.0
+  - repository: ApplicationEndpointRegistration
+    release_tag: r2.2
+    release_date: '2026-10-20T22:11:21Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/ApplicationEndpointRegistration/releases/tag/r2.2
+    release_type: pre-release-rc
+    src_commit_sha: cc55f1ca635ce2be847c7498e03a7f9f1b25a9df
+    dependencies:
+      commonalities_release: r4.4 (0.9.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: application-endpoint-registration
+        api_version: 0.2.0-rc.2
+        api_title: Application Endpoints Registration
+        commonalities: 0.9.0
   - repository: ApplicationProfiles
     release_tag: r1.1
     release_date: '2025-07-29T16:08:11Z'
@@ -1602,6 +1632,7 @@ releases:
         api_version: 1.1.0-rc.2
         api_title: Device Swap
         commonalities: 0.8.0
+    superseded: true
   - repository: DeviceSwap
     release_tag: r4.2
     release_date: '2026-10-05T12:04:57Z'
@@ -1615,6 +1646,22 @@ releases:
     apis:
       - api_name: device-swap
         api_version: 1.1.0-rc.3
+        api_title: Device Swap
+        commonalities: 0.9.0
+    superseded: true
+  - repository: DeviceSwap
+    release_tag: r4.3
+    release_date: '2026-10-19T12:34:42Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/DeviceSwap/releases/tag/r4.3
+    release_type: public-release
+    src_commit_sha: 154ead56c72923108b97675c55261a04d5fb1c36
+    dependencies:
+      commonalities_release: r4.4 (0.9.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: device-swap
+        api_version: 1.1.0
         api_title: Device Swap
         commonalities: 0.9.0
   - repository: EdgeApplicationManagement
@@ -2474,6 +2521,22 @@ releases:
         api_version: 2.1.1-rc.2
         api_title: Number Verification
         commonalities: 0.9.0
+    superseded: true
+  - repository: NumberVerification
+    release_tag: r4.2
+    release_date: '2026-10-19T12:42:28Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/NumberVerification/releases/tag/r4.2
+    release_type: public-release
+    src_commit_sha: f7ae538acbfaa6208b164202cabbfcffaa3cf76f
+    dependencies:
+      commonalities_release: r4.4 (0.9.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: number-verification
+        api_version: 2.1.1
+        api_title: Number Verification
+        commonalities: 0.9.0
   - repository: OptimalEdgeDiscovery
     release_tag: r1.1
     release_date: '2025-07-30T16:41:18Z'
@@ -2608,6 +2671,7 @@ releases:
         api_version: 2.0.0-rc.1
         api_title: One Time Password SMS
         commonalities: 0.8.0
+    superseded: true
   - repository: OTPValidation
     release_tag: r4.2
     release_date: '2026-10-05T12:07:17Z'
@@ -2621,6 +2685,22 @@ releases:
     apis:
       - api_name: one-time-password-sms
         api_version: 2.0.0-rc.2
+        api_title: One Time Password SMS
+        commonalities: 0.9.0
+    superseded: true
+  - repository: OTPValidation
+    release_tag: r4.3
+    release_date: '2026-10-19T12:40:42Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/OTPValidation/releases/tag/r4.3
+    release_type: public-release
+    src_commit_sha: 86df7d030ce7f867db6e1eee633b4e8d5395030b
+    dependencies:
+      commonalities_release: r4.4 (0.9.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: one-time-password-sms
+        api_version: 2.0.0
         api_title: One Time Password SMS
         commonalities: 0.9.0
   - repository: PopulationDensityData
@@ -2810,6 +2890,21 @@ releases:
         api_version: 0.2.0-rc.1
         api_title: QoS Booking
         commonalities: 0.8.0
+  - repository: QoSProfiles
+    release_tag: r1.1
+    release_date: '2026-10-20T16:23:16Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/QoSProfiles/releases/tag/r1.1
+    release_type: pre-release-rc
+    src_commit_sha: 8ce8f4d68aad65ca988a50c5e8a8c09246a65ab2
+    dependencies:
+      commonalities_release: r4.4 (0.9.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: qos-profiles
+        api_version: 1.2.0-rc.4
+        api_title: QoS Profiles
+        commonalities: 0.9.0
   - repository: QualityOnDemand
     release_tag: r1.1
     release_date: '2024-08-09T13:30:59Z'
@@ -3340,6 +3435,25 @@ releases:
         api_version: 2.2.0-rc.3
         api_title: SIM Swap
         commonalities: 0.8.0
+  - repository: SimSwap
+    release_tag: r4.2
+    release_date: '2026-10-20T07:46:51Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/SimSwap/releases/tag/r4.2
+    release_type: pre-release-rc
+    src_commit_sha: 23566667b892ac259e48ee9a39ac35993fa9e2f3
+    dependencies:
+      commonalities_release: r4.4 (0.9.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: sim-swap-subscriptions
+        api_version: 0.4.0-rc.2
+        api_title: SIM Swap Subscriptions
+        commonalities: 0.9.0
+      - api_name: sim-swap
+        api_version: 2.2.0-rc.4
+        api_title: SIM Swap
+        commonalities: 0.9.0
   - repository: SubscriptionStatus
     release_tag: r1.1
     release_date: '2025-07-24T07:59:09Z'
@@ -3683,11 +3797,11 @@ repositories:
   - repository: ApplicationEndpointDiscovery
     github_url: https://github.com/camaraproject/ApplicationEndpointDiscovery
     latest_public_release: r1.2
-    newest_pre_release: r2.1
+    newest_pre_release: r2.2
   - repository: ApplicationEndpointRegistration
     github_url: https://github.com/camaraproject/ApplicationEndpointRegistration
     latest_public_release: r1.2
-    newest_pre_release: r2.1
+    newest_pre_release: r2.2
   - repository: ApplicationProfiles
     github_url: https://github.com/camaraproject/ApplicationProfiles
     latest_public_release: r1.2
@@ -3770,8 +3884,8 @@ repositories:
     newest_pre_release: null
   - repository: DeviceSwap
     github_url: https://github.com/camaraproject/DeviceSwap
-    latest_public_release: r3.2
-    newest_pre_release: r4.2
+    latest_public_release: r4.3
+    newest_pre_release: null
   - repository: DeviceVisitLocation
     github_url: https://github.com/camaraproject/DeviceVisitLocation
     latest_public_release: null
@@ -3863,16 +3977,16 @@ repositories:
     newest_pre_release: r3.1
   - repository: NumberVerification
     github_url: https://github.com/camaraproject/NumberVerification
-    latest_public_release: r3.2
-    newest_pre_release: r4.1
+    latest_public_release: r4.2
+    newest_pre_release: null
   - repository: OptimalEdgeDiscovery
     github_url: https://github.com/camaraproject/OptimalEdgeDiscovery
     latest_public_release: r1.2
     newest_pre_release: r2.1
   - repository: OTPValidation
     github_url: https://github.com/camaraproject/OTPValidation
-    latest_public_release: r3.2
-    newest_pre_release: r4.2
+    latest_public_release: r4.3
+    newest_pre_release: null
   - repository: PopulationDensityData
     github_url: https://github.com/camaraproject/PopulationDensityData
     latest_public_release: r3.2
@@ -3888,7 +4002,7 @@ repositories:
   - repository: QoSProfiles
     github_url: https://github.com/camaraproject/QoSProfiles
     latest_public_release: null
-    newest_pre_release: null
+    newest_pre_release: r1.1
   - repository: QualityOnDemand
     github_url: https://github.com/camaraproject/QualityOnDemand
     latest_public_release: r3.2
@@ -3917,7 +4031,7 @@ repositories:
   - repository: SimSwap
     github_url: https://github.com/camaraproject/SimSwap
     latest_public_release: r3.3
-    newest_pre_release: r4.1
+    newest_pre_release: r4.2
   - repository: SimSwapTimeFrame
     github_url: https://github.com/camaraproject/SimSwapTimeFrame
     latest_public_release: null
