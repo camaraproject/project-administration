@@ -1,34 +1,34 @@
 {
   "metadata": {
-    "generated": "2026-10-21T07:58:42.555Z",
+    "generated": "2026-10-22T07:55:24.156Z",
     "meta_release": "All",
     "source": "Release Collector v3",
     "landscape_version": "1.1.1"
   },
   "statistics": {
     "repositories_count": 54,
-    "api_versions_count": 239,
+    "api_versions_count": 243,
     "unique_api_names_count": 79,
     "unique_apis_count": 78,
     "api_version_maturity": {
       "stable": 32,
-      "initial": 140,
-      "rc": 67
+      "initial": 141,
+      "rc": 70
     },
     "unique_api_maturity": {
       "stable": 4,
-      "initial": 20,
-      "rc": 54
+      "initial": 21,
+      "rc": 53
     },
     "categories": {
       "Computing Services": 19,
-      "Communication Quality": 55,
+      "Communication Quality": 56,
       "Payments and Charging": 11,
       "Authentication and Fraud Prevention": 68,
       "Communication Services": 17,
       "Service Management": 2,
       "Device Information": 28,
-      "Location Services": 21
+      "Location Services": 24
     },
     "apis_with_previous_names": 5
   },
@@ -78,13 +78,8 @@
     "ApplicationProfiles": {
       "releases": [
         {
-          "tag": "r2.2",
-          "date": "2026-10-17T05:51:38Z",
-          "apis_count": 1
-        },
-        {
-          "tag": "r2.1",
-          "date": "2026-08-19T23:33:53Z",
+          "tag": "r2.3",
+          "date": "2026-10-22T02:36:24Z",
           "apis_count": 1
         },
         {
@@ -93,7 +88,7 @@
           "apis_count": 1
         }
       ],
-      "total_apis": 3,
+      "total_apis": 2,
       "unique_apis_count": 1
     },
     "BlockchainPublicAddress": {
@@ -204,6 +199,11 @@
     "ConnectivityInsights": {
       "releases": [
         {
+          "tag": "r4.2",
+          "date": "2026-10-21T16:23:37Z",
+          "apis_count": 2
+        },
+        {
           "tag": "r4.1",
           "date": "2026-08-20T22:39:16Z",
           "apis_count": 2
@@ -224,7 +224,7 @@
           "apis_count": 3
         }
       ],
-      "total_apis": 10,
+      "total_apis": 12,
       "unique_apis_count": 3
     },
     "ConsentInfo": {
@@ -356,6 +356,11 @@
     "DeviceLocation": {
       "releases": [
         {
+          "tag": "r4.2",
+          "date": "2026-10-21T11:35:15Z",
+          "apis_count": 3
+        },
+        {
           "tag": "r4.1",
           "date": "2026-09-01T08:31:47Z",
           "apis_count": 3
@@ -376,7 +381,7 @@
           "apis_count": 3
         }
       ],
-      "total_apis": 12,
+      "total_apis": 15,
       "unique_apis_count": 3
     },
     "DeviceMediaStreamingRate": {
@@ -1308,41 +1313,12 @@
     },
     {
       "repository": "ApplicationProfiles",
-      "release_tag": "r2.1",
-      "release_date": "2026-08-19T23:33:53Z",
+      "release_tag": "r2.3",
+      "release_date": "2026-10-22T02:36:24Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/ApplicationProfiles/releases/tag/r2.1",
-      "release_type": "pre-release-rc",
-      "src_commit_sha": "308e84d5b8eb923cf6fdd837e6a66780c0988b33",
-      "dependencies": {
-        "commonalities_release": "r4.3 (0.8.0)",
-        "identity_consent_management_release": "r4.2 (0.5.0)"
-      },
-      "apis": [
-        {
-          "api_name": "application-profiles",
-          "api_version": "0.6.0-rc.1",
-          "api_title": "Connectivity Insights - Application Profiles",
-          "commonalities": "0.8.0",
-          "maturity": "initial",
-          "portfolio_category": "Communication Quality",
-          "website_url": "https://camaraproject.org/application-profiles/",
-          "tooltip": "Share information about applications relevant for network related decision making",
-          "display_name": "Connectivity Insights - Application Profiles",
-          "published": true,
-          "canonical_name": "application-profiles",
-          "first_release": "Fall24"
-        }
-      ]
-    },
-    {
-      "repository": "ApplicationProfiles",
-      "release_tag": "r2.2",
-      "release_date": "2026-10-17T05:51:38Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/ApplicationProfiles/releases/tag/r2.2",
-      "release_type": "pre-release-rc",
-      "src_commit_sha": "b3511ecc381cbd0c32d2f4f7dd0c17261d0a28d3",
+      "github_url": "https://github.com/camaraproject/ApplicationProfiles/releases/tag/r2.3",
+      "release_type": "public-release",
+      "src_commit_sha": "55c75069e698a39ec03ade779b139c6cc17f7d55",
       "dependencies": {
         "commonalities_release": "r4.4 (0.9.0)",
         "identity_consent_management_release": "r4.2 (0.5.0)"
@@ -1350,7 +1326,7 @@
       "apis": [
         {
           "api_name": "application-profiles",
-          "api_version": "0.6.0-rc.2",
+          "api_version": "0.6.0",
           "api_title": "Connectivity Insights - Application Profiles",
           "commonalities": "0.9.0",
           "maturity": "initial",
@@ -2046,6 +2022,49 @@
           "api_version": "0.7.0-rc.1",
           "api_title": "Connectivity Insights",
           "commonalities": "0.8.0",
+          "maturity": "initial",
+          "portfolio_category": "Communication Quality",
+          "website_url": "https://camaraproject.org/connectivity-insights/",
+          "tooltip": "Get information if the QoS threshold has breached",
+          "display_name": "Connectivity Insights",
+          "published": true,
+          "canonical_name": "connectivity-insights",
+          "first_release": "Fall24"
+        }
+      ]
+    },
+    {
+      "repository": "ConnectivityInsights",
+      "release_tag": "r4.2",
+      "release_date": "2026-10-21T16:23:37Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/ConnectivityInsights/releases/tag/r4.2",
+      "release_type": "pre-release-rc",
+      "src_commit_sha": "d940f483382af4d650ef810014f77a267bf32014",
+      "dependencies": {
+        "commonalities_release": "r4.4 (0.9.0)",
+        "identity_consent_management_release": "r4.2 (0.5.0)"
+      },
+      "apis": [
+        {
+          "api_name": "connectivity-insights-subscriptions",
+          "api_version": "0.7.0-rc.2",
+          "api_title": "Connectivity Insights Subscriptions",
+          "commonalities": "0.9.0",
+          "maturity": "initial",
+          "portfolio_category": "Communication Quality",
+          "website_url": "https://camaraproject.org/connectivity-insights-subscriptions/",
+          "tooltip": "Alerts the consumers if and when the QoS threshold has breached",
+          "display_name": "Connectivity Insights Subscriptions",
+          "published": true,
+          "canonical_name": "connectivity-insights-subscriptions",
+          "first_release": "Fall24"
+        },
+        {
+          "api_name": "connectivity-insights",
+          "api_version": "0.7.0-rc.2",
+          "api_title": "Connectivity Insights",
+          "commonalities": "0.9.0",
           "maturity": "initial",
           "portfolio_category": "Communication Quality",
           "website_url": "https://camaraproject.org/connectivity-insights/",
@@ -2915,6 +2934,63 @@
           "api_version": "3.1.0-rc.2",
           "api_title": "Device Location Verification",
           "commonalities": "0.8.0",
+          "maturity": "stable",
+          "portfolio_category": "Location Services",
+          "website_url": "https://camaraproject.org/location-verification/",
+          "tooltip": "Check the location of a device",
+          "display_name": "Device Location Verification",
+          "published": true,
+          "canonical_name": "location-verification",
+          "first_release": "PreFall24"
+        }
+      ]
+    },
+    {
+      "repository": "DeviceLocation",
+      "release_tag": "r4.2",
+      "release_date": "2026-10-21T11:35:15Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/DeviceLocation/releases/tag/r4.2",
+      "release_type": "pre-release-rc",
+      "src_commit_sha": "3cbc848394c30bc8eeb1a3f9d1c4c755c9ac3da0",
+      "dependencies": {
+        "commonalities_release": "r4.4 (0.9.0)",
+        "identity_consent_management_release": "r4.2 (0.5.0)"
+      },
+      "apis": [
+        {
+          "api_name": "geofencing-subscriptions",
+          "api_version": "0.6.0-rc.2",
+          "api_title": "Device Geofencing Subscriptions",
+          "commonalities": "0.9.0",
+          "maturity": "initial",
+          "portfolio_category": "Location Services",
+          "website_url": "https://camaraproject.org/geofencing-subscriptions/",
+          "tooltip": "Get notifications if a device reaches an area",
+          "display_name": "Device Geofencing Subscriptions",
+          "published": true,
+          "canonical_name": "geofencing-subscriptions",
+          "first_release": "Fall24"
+        },
+        {
+          "api_name": "location-retrieval",
+          "api_version": "1.0.0-rc.2",
+          "api_title": "Device Location Retrieval",
+          "commonalities": "0.9.0",
+          "maturity": "stable",
+          "portfolio_category": "Location Services",
+          "website_url": "https://camaraproject.org/location-retrieval/",
+          "tooltip": "Provide the location of a device",
+          "display_name": "Device Location Retrieval",
+          "published": true,
+          "canonical_name": "location-retrieval",
+          "first_release": "PreFall24"
+        },
+        {
+          "api_name": "location-verification",
+          "api_version": "3.1.0-rc.3",
+          "api_title": "Device Location Verification",
+          "commonalities": "0.9.0",
           "maturity": "stable",
           "portfolio_category": "Location Services",
           "website_url": "https://camaraproject.org/location-verification/",
@@ -6599,27 +6675,7 @@
     },
     {
       "api_name": "application-profiles",
-      "api_version": "0.6.0-rc.1",
-      "api_title": "Connectivity Insights - Application Profiles",
-      "commonalities": "0.8.0",
-      "maturity": "initial",
-      "portfolio_category": "Communication Quality",
-      "website_url": "https://camaraproject.org/application-profiles/",
-      "tooltip": "Share information about applications relevant for network related decision making",
-      "display_name": "Connectivity Insights - Application Profiles",
-      "published": true,
-      "canonical_name": "application-profiles",
-      "first_release": "Fall24",
-      "repository": "ApplicationProfiles",
-      "release_tag": "r2.1",
-      "release_date": "2026-08-19T23:33:53Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/ApplicationProfiles/releases/tag/r2.1",
-      "release_type": "pre-release-rc"
-    },
-    {
-      "api_name": "application-profiles",
-      "api_version": "0.6.0-rc.2",
+      "api_version": "0.6.0",
       "api_title": "Connectivity Insights - Application Profiles",
       "commonalities": "0.9.0",
       "maturity": "initial",
@@ -6631,11 +6687,11 @@
       "canonical_name": "application-profiles",
       "first_release": "Fall24",
       "repository": "ApplicationProfiles",
-      "release_tag": "r2.2",
-      "release_date": "2026-10-17T05:51:38Z",
+      "release_tag": "r2.3",
+      "release_date": "2026-10-22T02:36:24Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/ApplicationProfiles/releases/tag/r2.2",
-      "release_type": "pre-release-rc"
+      "github_url": "https://github.com/camaraproject/ApplicationProfiles/releases/tag/r2.3",
+      "release_type": "public-release"
     },
     {
       "api_name": "blockchain-public-address",
@@ -7220,6 +7276,26 @@
       "release_type": "pre-release-rc"
     },
     {
+      "api_name": "connectivity-insights",
+      "api_version": "0.7.0-rc.2",
+      "api_title": "Connectivity Insights",
+      "commonalities": "0.9.0",
+      "maturity": "initial",
+      "portfolio_category": "Communication Quality",
+      "website_url": "https://camaraproject.org/connectivity-insights/",
+      "tooltip": "Get information if the QoS threshold has breached",
+      "display_name": "Connectivity Insights",
+      "published": true,
+      "canonical_name": "connectivity-insights",
+      "first_release": "Fall24",
+      "repository": "ConnectivityInsights",
+      "release_tag": "r4.2",
+      "release_date": "2026-10-21T16:23:37Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/ConnectivityInsights/releases/tag/r4.2",
+      "release_type": "pre-release-rc"
+    },
+    {
       "api_name": "connectivity-insights-subscriptions",
       "api_version": "0.4.0",
       "api_title": "Connectivity Insights Subscriptions",
@@ -7300,6 +7376,26 @@
       "release_date": "2026-08-20T22:39:16Z",
       "meta_release": "Independent",
       "github_url": "https://github.com/camaraproject/ConnectivityInsights/releases/tag/r4.1",
+      "release_type": "pre-release-rc"
+    },
+    {
+      "api_name": "connectivity-insights-subscriptions",
+      "api_version": "0.7.0-rc.2",
+      "api_title": "Connectivity Insights Subscriptions",
+      "commonalities": "0.9.0",
+      "maturity": "initial",
+      "portfolio_category": "Communication Quality",
+      "website_url": "https://camaraproject.org/connectivity-insights-subscriptions/",
+      "tooltip": "Alerts the consumers if and when the QoS threshold has breached",
+      "display_name": "Connectivity Insights Subscriptions",
+      "published": true,
+      "canonical_name": "connectivity-insights-subscriptions",
+      "first_release": "Fall24",
+      "repository": "ConnectivityInsights",
+      "release_tag": "r4.2",
+      "release_date": "2026-10-21T16:23:37Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/ConnectivityInsights/releases/tag/r4.2",
       "release_type": "pre-release-rc"
     },
     {
@@ -7977,6 +8073,26 @@
       "release_type": "pre-release-rc"
     },
     {
+      "api_name": "geofencing-subscriptions",
+      "api_version": "0.6.0-rc.2",
+      "api_title": "Device Geofencing Subscriptions",
+      "commonalities": "0.9.0",
+      "maturity": "initial",
+      "portfolio_category": "Location Services",
+      "website_url": "https://camaraproject.org/geofencing-subscriptions/",
+      "tooltip": "Get notifications if a device reaches an area",
+      "display_name": "Device Geofencing Subscriptions",
+      "published": true,
+      "canonical_name": "geofencing-subscriptions",
+      "first_release": "Fall24",
+      "repository": "DeviceLocation",
+      "release_tag": "r4.2",
+      "release_date": "2026-10-21T11:35:15Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/DeviceLocation/releases/tag/r4.2",
+      "release_type": "pre-release-rc"
+    },
+    {
       "api_name": "location-retrieval",
       "api_version": "0.3.0",
       "api_title": "Device Location Retrieval",
@@ -8060,6 +8176,26 @@
       "release_type": "pre-release-rc"
     },
     {
+      "api_name": "location-retrieval",
+      "api_version": "1.0.0-rc.2",
+      "api_title": "Device Location Retrieval",
+      "commonalities": "0.9.0",
+      "maturity": "stable",
+      "portfolio_category": "Location Services",
+      "website_url": "https://camaraproject.org/location-retrieval/",
+      "tooltip": "Provide the location of a device",
+      "display_name": "Device Location Retrieval",
+      "published": true,
+      "canonical_name": "location-retrieval",
+      "first_release": "PreFall24",
+      "repository": "DeviceLocation",
+      "release_tag": "r4.2",
+      "release_date": "2026-10-21T11:35:15Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/DeviceLocation/releases/tag/r4.2",
+      "release_type": "pre-release-rc"
+    },
+    {
       "api_name": "location-verification",
       "api_version": "1.0.0",
       "api_title": "Device Location Verification",
@@ -8140,6 +8276,26 @@
       "release_date": "2026-09-01T08:31:47Z",
       "meta_release": "Independent",
       "github_url": "https://github.com/camaraproject/DeviceLocation/releases/tag/r4.1",
+      "release_type": "pre-release-rc"
+    },
+    {
+      "api_name": "location-verification",
+      "api_version": "3.1.0-rc.3",
+      "api_title": "Device Location Verification",
+      "commonalities": "0.9.0",
+      "maturity": "stable",
+      "portfolio_category": "Location Services",
+      "website_url": "https://camaraproject.org/location-verification/",
+      "tooltip": "Check the location of a device",
+      "display_name": "Device Location Verification",
+      "published": true,
+      "canonical_name": "location-verification",
+      "first_release": "PreFall24",
+      "repository": "DeviceLocation",
+      "release_tag": "r4.2",
+      "release_date": "2026-10-21T11:35:15Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/DeviceLocation/releases/tag/r4.2",
       "release_type": "pre-release-rc"
     },
     {

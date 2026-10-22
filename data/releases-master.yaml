@@ -1,13 +1,13 @@
 metadata:
-  last_updated: '2026-10-21T07:58:41.247Z'
+  last_updated: '2026-10-22T07:55:22.530Z'
   workflow_version: 3.0.0
   schema_version: 3.2.0
   collector_run:
     analysis_scope: incremental
-    workflow_run_id: '39565681054'
-    workflow_run_number: 365
-    workflow_run_url: https://github.com/camaraproject/project-administration/actions/runs/39565681054
-    source_sha: 4987c8ed1c8255b434d797e1cd753fec6b825497
+    workflow_run_id: '39743792603'
+    workflow_run_number: 366
+    workflow_run_url: https://github.com/camaraproject/project-administration/actions/runs/39743792603
+    source_sha: a3ad5f98984023979cdbf19aec2db9bf78bf1858
     node_version: v24.22.0
     npm_version: 11.19.1
     dependencies:
@@ -158,6 +158,7 @@ releases:
         api_version: 0.6.0-rc.1
         api_title: Connectivity Insights - Application Profiles
         commonalities: 0.8.0
+    superseded: true
   - repository: ApplicationProfiles
     release_tag: r2.2
     release_date: '2026-10-17T05:51:38Z'
@@ -171,6 +172,22 @@ releases:
     apis:
       - api_name: application-profiles
         api_version: 0.6.0-rc.2
+        api_title: Connectivity Insights - Application Profiles
+        commonalities: 0.9.0
+    superseded: true
+  - repository: ApplicationProfiles
+    release_tag: r2.3
+    release_date: '2026-10-22T02:36:24Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/ApplicationProfiles/releases/tag/r2.3
+    release_type: public-release
+    src_commit_sha: 55c75069e698a39ec03ade779b139c6cc17f7d55
+    dependencies:
+      commonalities_release: r4.4 (0.9.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: application-profiles
+        api_version: 0.6.0
         api_title: Connectivity Insights - Application Profiles
         commonalities: 0.9.0
   - repository: BlockchainPublicAddress
@@ -710,6 +727,25 @@ releases:
         api_version: 0.7.0-rc.1
         api_title: Connectivity Insights
         commonalities: 0.8.0
+  - repository: ConnectivityInsights
+    release_tag: r4.2
+    release_date: '2026-10-21T16:23:37Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/ConnectivityInsights/releases/tag/r4.2
+    release_type: pre-release-rc
+    src_commit_sha: d940f483382af4d650ef810014f77a267bf32014
+    dependencies:
+      commonalities_release: r4.4 (0.9.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: connectivity-insights-subscriptions
+        api_version: 0.7.0-rc.2
+        api_title: Connectivity Insights Subscriptions
+        commonalities: 0.9.0
+      - api_name: connectivity-insights
+        api_version: 0.7.0-rc.2
+        api_title: Connectivity Insights
+        commonalities: 0.9.0
   - repository: ConsentInfo
     release_tag: r1.1
     release_date: '2025-07-11T12:49:50Z'
@@ -1300,6 +1336,29 @@ releases:
         api_version: 3.1.0-rc.2
         api_title: Device Location Verification
         commonalities: 0.8.0
+  - repository: DeviceLocation
+    release_tag: r4.2
+    release_date: '2026-10-21T11:35:15Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/DeviceLocation/releases/tag/r4.2
+    release_type: pre-release-rc
+    src_commit_sha: 3cbc848394c30bc8eeb1a3f9d1c4c755c9ac3da0
+    dependencies:
+      commonalities_release: r4.4 (0.9.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: geofencing-subscriptions
+        api_version: 0.6.0-rc.2
+        api_title: Device Geofencing Subscriptions
+        commonalities: 0.9.0
+      - api_name: location-retrieval
+        api_version: 1.0.0-rc.2
+        api_title: Device Location Retrieval
+        commonalities: 0.9.0
+      - api_name: location-verification
+        api_version: 3.1.0-rc.3
+        api_title: Device Location Verification
+        commonalities: 0.9.0
   - repository: DeviceMediaStreamingRate
     release_tag: r1.1
     release_date: '2026-09-14T16:17:02Z'
@@ -3804,8 +3863,8 @@ repositories:
     newest_pre_release: r2.2
   - repository: ApplicationProfiles
     github_url: https://github.com/camaraproject/ApplicationProfiles
-    latest_public_release: r1.2
-    newest_pre_release: r2.2
+    latest_public_release: r2.3
+    newest_pre_release: null
   - repository: BlockchainPublicAddress
     github_url: https://github.com/camaraproject/BlockchainPublicAddress
     latest_public_release: r2.2
@@ -3833,7 +3892,7 @@ repositories:
   - repository: ConnectivityInsights
     github_url: https://github.com/camaraproject/ConnectivityInsights
     latest_public_release: r3.2
-    newest_pre_release: r4.1
+    newest_pre_release: r4.2
   - repository: ConsentInfo
     github_url: https://github.com/camaraproject/ConsentInfo
     latest_public_release: r2.3
@@ -3865,7 +3924,7 @@ repositories:
   - repository: DeviceLocation
     github_url: https://github.com/camaraproject/DeviceLocation
     latest_public_release: r3.2
-    newest_pre_release: r4.1
+    newest_pre_release: r4.2
   - repository: DeviceMediaStreamingRate
     github_url: https://github.com/camaraproject/DeviceMediaStreamingRate
     latest_public_release: null
