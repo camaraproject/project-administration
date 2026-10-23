@@ -1,15 +1,15 @@
 metadata:
-  last_updated: '2026-10-22T07:55:22.530Z'
+  last_updated: '2026-10-23T07:54:26.698Z'
   workflow_version: 3.0.0
   schema_version: 3.2.0
   collector_run:
     analysis_scope: incremental
-    workflow_run_id: '39743792603'
-    workflow_run_number: 366
-    workflow_run_url: https://github.com/camaraproject/project-administration/actions/runs/39743792603
-    source_sha: a3ad5f98984023979cdbf19aec2db9bf78bf1858
-    node_version: v24.22.0
-    npm_version: 11.19.1
+    workflow_run_id: '39920799999'
+    workflow_run_number: 367
+    workflow_run_url: https://github.com/camaraproject/project-administration/actions/runs/39920799999
+    source_sha: c899a53eccbaf47a706d97f1c0535e7fda36ed10
+    node_version: v24.21.0
+    npm_version: 11.19.0
     dependencies:
       '@octokit/rest': 22.0.1
       js-yaml: 4.3.2
@@ -4073,6 +4073,10 @@ repositories:
   - repository: RegionDeviceCount
     github_url: https://github.com/camaraproject/RegionDeviceCount
     latest_public_release: r2.2
+    newest_pre_release: null
+  - repository: ReleaseTest2
+    github_url: https://github.com/camaraproject/ReleaseTest2
+    latest_public_release: null
     newest_pre_release: null
   - repository: SessionInsights
     github_url: https://github.com/camaraproject/SessionInsights
