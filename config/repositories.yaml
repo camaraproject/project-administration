@@ -259,6 +259,10 @@ repositories:
     ruleset_class: api-repository
     single_codeowner: true
 
+  ReleaseTest2:
+    ruleset_class: api-repository
+    single_codeowner: true
+
   SessionInsights:
     ruleset_class: api-repository
 
