@@ -1,15 +1,15 @@
 metadata:
-  last_updated: '2026-10-22T07:55:22.530Z'
+  last_updated: '2026-10-24T07:34:57.299Z'
   workflow_version: 3.0.0
   schema_version: 3.2.0
   collector_run:
     analysis_scope: incremental
-    workflow_run_id: '39743792603'
-    workflow_run_number: 366
-    workflow_run_url: https://github.com/camaraproject/project-administration/actions/runs/39743792603
-    source_sha: a3ad5f98984023979cdbf19aec2db9bf78bf1858
-    node_version: v24.22.0
-    npm_version: 11.19.1
+    workflow_run_id: '40074621417'
+    workflow_run_number: 368
+    workflow_run_url: https://github.com/camaraproject/project-administration/actions/runs/40074621417
+    source_sha: c899a53eccbaf47a706d97f1c0535e7fda36ed10
+    node_version: v24.21.0
+    npm_version: 11.19.0
     dependencies:
       '@octokit/rest': 22.0.1
       js-yaml: 4.3.2
@@ -3172,6 +3172,149 @@ releases:
         api_version: 0.2.0
         api_title: Region Device Count
         commonalities: '0.6'
+  - repository: ReleaseTest2
+    release_tag: r1.1
+    release_date: '2026-10-23T12:23:32Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/ReleaseTest2/releases/tag/r1.1
+    release_type: pre-release-alpha
+    src_commit_sha: a8cbaeb656f35fab93ad1c2af737b5869294a604
+    dependencies:
+      commonalities_release: r4.3 (0.8.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
+    apis:
+      - api_name: sample-service
+        api_version: 0.1.0-alpha.1
+        api_title: Sample Service
+        commonalities: 0.8.0
+      - api_name: sample-service-subscriptions
+        api_version: 0.1.0-alpha.1
+        api_title: Sample Service Subscription Template
+        commonalities: 0.8.0
+      - api_name: sample-implicit-events
+        api_version: 0.1.0-alpha.1
+        api_title: Sample Implicit Events
+        commonalities: 0.8.0
+  - repository: ReleaseTest2
+    release_tag: r1.2
+    release_date: '2026-10-23T14:19:31Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/ReleaseTest2/releases/tag/r1.2
+    release_type: pre-release-alpha
+    src_commit_sha: 37ce6f0e6e5bd093286ffcdbd545860c92ad2b81
+    dependencies:
+      commonalities_release: r4.3 (0.8.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
+    apis:
+      - api_name: sample-service
+        api_version: 0.1.0-alpha.2
+        api_title: Sample Service
+        commonalities: 0.8.0
+      - api_name: sample-service-subscriptions
+        api_version: 0.1.0-alpha.2
+        api_title: Sample Service Subscription Template
+        commonalities: 0.8.0
+      - api_name: sample-implicit-events
+        api_version: 0.1.0-alpha.2
+        api_title: Sample Implicit Events
+        commonalities: 0.8.0
+  - repository: ReleaseTest2
+    release_tag: r1.3
+    release_date: '2026-10-23T16:26:55Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/ReleaseTest2/releases/tag/r1.3
+    release_type: pre-release-alpha
+    src_commit_sha: a60d9ed9845e2ce2b4a243265ffd32cb60a325a2
+    dependencies:
+      commonalities_release: r4.3 (0.8.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
+    apis:
+      - api_name: sample-service
+        api_version: 0.1.0-alpha.3
+        api_title: Sample Service
+        commonalities: 0.8.0
+      - api_name: sample-service-subscriptions
+        api_version: 0.1.0-alpha.3
+        api_title: Sample Service Subscription Template
+        commonalities: 0.8.0
+      - api_name: sample-implicit-events
+        api_version: 0.1.0-alpha.3
+        api_title: Sample Implicit Events
+        commonalities: 0.8.0
+  - repository: ReleaseTest2
+    release_tag: r1.4
+    release_date: '2026-10-23T19:11:14Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/ReleaseTest2/releases/tag/r1.4
+    release_type: pre-release-alpha
+    src_commit_sha: d3994791ef27c451e50968e94ddf2e945790f550
+    dependencies:
+      commonalities_release: r4.3 (0.8.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
+    apis:
+      - api_name: sample-service
+        api_version: 0.1.0-alpha.4
+        api_title: Sample Service
+        commonalities: 0.8.0
+      - api_name: sample-service-subscriptions
+        api_version: 0.1.0-alpha.4
+        api_title: Sample Service Subscription Template
+        commonalities: 0.8.0
+      - api_name: sample-implicit-events
+        api_version: 0.1.0-alpha.4
+        api_title: Sample Implicit Events
+        commonalities: 0.8.0
+  - repository: ReleaseTest2
+    release_tag: r1.5
+    release_date: '2026-10-24T06:58:45Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/ReleaseTest2/releases/tag/r1.5
+    release_type: pre-release-rc
+    src_commit_sha: 4191a6b6756b16b85e830457849614ea6832add6
+    dependencies:
+      commonalities_release: r4.4 (0.9.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
+    apis:
+      - api_name: sample-service
+        api_version: 0.1.0-rc.1
+        api_title: Sample Service
+        commonalities: 0.9.0
+      - api_name: sample-service-subscriptions
+        api_version: 0.1.0-rc.1
+        api_title: Sample Service Subscription Template
+        commonalities: 0.9.0
+      - api_name: sample-implicit-events
+        api_version: 0.1.0-rc.1
+        api_title: Sample Implicit Events
+        commonalities: 0.9.0
+  - repository: ReleaseTest2
+    release_tag: r1.6
+    release_date: '2026-10-24T07:24:37Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/ReleaseTest2/releases/tag/r1.6
+    release_type: public-release
+    src_commit_sha: 8ca7e29baf4d3622081d544dc3ac1cfb2dcf41f2
+    dependencies:
+      commonalities_release: r4.4 (0.9.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: sample-service
+        api_version: 0.1.0
+        api_title: Sample Service
+        commonalities: 0.9.0
+      - api_name: sample-service-subscriptions
+        api_version: 0.1.0
+        api_title: Sample Service Subscription Template
+        commonalities: 0.9.0
+      - api_name: sample-implicit-events
+        api_version: 0.1.0
+        api_title: Sample Implicit Events
+        commonalities: 0.9.0
   - repository: SessionInsights
     release_tag: r1.1
     release_date: '2026-05-07T09:55:28Z'
@@ -4073,6 +4216,10 @@ repositories:
   - repository: RegionDeviceCount
     github_url: https://github.com/camaraproject/RegionDeviceCount
     latest_public_release: r2.2
+    newest_pre_release: null
+  - repository: ReleaseTest2
+    github_url: https://github.com/camaraproject/ReleaseTest2
+    latest_public_release: r1.6
     newest_pre_release: null
   - repository: SessionInsights
     github_url: https://github.com/camaraproject/SessionInsights
