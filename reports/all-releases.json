@@ -1,23 +1,23 @@
 {
   "metadata": {
-    "generated": "2026-10-22T07:55:24.156Z",
+    "generated": "2026-10-25T07:48:01.308Z",
     "meta_release": "All",
     "source": "Release Collector v3",
     "landscape_version": "1.1.1"
   },
   "statistics": {
-    "repositories_count": 54,
-    "api_versions_count": 243,
-    "unique_api_names_count": 79,
-    "unique_apis_count": 78,
+    "repositories_count": 55,
+    "api_versions_count": 246,
+    "unique_api_names_count": 82,
+    "unique_apis_count": 81,
     "api_version_maturity": {
       "stable": 32,
-      "initial": 141,
+      "initial": 144,
       "rc": 70
     },
     "unique_api_maturity": {
       "stable": 4,
-      "initial": 21,
+      "initial": 24,
       "rc": 53
     },
     "categories": {
@@ -929,6 +929,17 @@
       ],
       "total_apis": 2,
       "unique_apis_count": 1
+    },
+    "ReleaseTest2": {
+      "releases": [
+        {
+          "tag": "r1.6",
+          "date": "2026-10-24T07:24:37Z",
+          "apis_count": 3
+        }
+      ],
+      "total_apis": 3,
+      "unique_apis_count": 3
     },
     "SessionInsights": {
       "releases": [
@@ -5523,6 +5534,63 @@
           "canonical_name": "region-device-count",
           "first_release": "Spring25",
           "isNew": false
+        }
+      ]
+    },
+    {
+      "repository": "ReleaseTest2",
+      "release_tag": "r1.6",
+      "release_date": "2026-10-24T07:24:37Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/ReleaseTest2/releases/tag/r1.6",
+      "release_type": "public-release",
+      "src_commit_sha": "8ca7e29baf4d3622081d544dc3ac1cfb2dcf41f2",
+      "dependencies": {
+        "commonalities_release": "r4.4 (0.9.0)",
+        "identity_consent_management_release": "r4.2 (0.5.0)"
+      },
+      "apis": [
+        {
+          "api_name": "sample-service",
+          "api_version": "0.1.0",
+          "api_title": "Sample Service",
+          "commonalities": "0.9.0",
+          "maturity": "initial",
+          "portfolio_category": null,
+          "website_url": null,
+          "tooltip": null,
+          "display_name": "Sample Service",
+          "published": true,
+          "canonical_name": "sample-service",
+          "first_release": "Sandbox"
+        },
+        {
+          "api_name": "sample-service-subscriptions",
+          "api_version": "0.1.0",
+          "api_title": "Sample Service Subscription Template",
+          "commonalities": "0.9.0",
+          "maturity": "initial",
+          "portfolio_category": null,
+          "website_url": null,
+          "tooltip": null,
+          "display_name": "Sample Service Subscription Template",
+          "published": true,
+          "canonical_name": "sample-service-subscriptions",
+          "first_release": "Sandbox"
+        },
+        {
+          "api_name": "sample-implicit-events",
+          "api_version": "0.1.0",
+          "api_title": "Sample Implicit Events",
+          "commonalities": "0.9.0",
+          "maturity": "initial",
+          "portfolio_category": null,
+          "website_url": null,
+          "tooltip": null,
+          "display_name": "Sample Implicit Events",
+          "published": true,
+          "canonical_name": "sample-implicit-events",
+          "first_release": "Sandbox"
         }
       ]
     },
@@ -10623,6 +10691,66 @@
       "release_date": "2025-09-15T08:06:27Z",
       "meta_release": "Fall25",
       "github_url": "https://github.com/camaraproject/RegionDeviceCount/releases/tag/r2.2",
+      "release_type": "public-release"
+    },
+    {
+      "api_name": "sample-implicit-events",
+      "api_version": "0.1.0",
+      "api_title": "Sample Implicit Events",
+      "commonalities": "0.9.0",
+      "maturity": "initial",
+      "portfolio_category": null,
+      "website_url": null,
+      "tooltip": null,
+      "display_name": "Sample Implicit Events",
+      "published": true,
+      "canonical_name": "sample-implicit-events",
+      "first_release": "Sandbox",
+      "repository": "ReleaseTest2",
+      "release_tag": "r1.6",
+      "release_date": "2026-10-24T07:24:37Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/ReleaseTest2/releases/tag/r1.6",
+      "release_type": "public-release"
+    },
+    {
+      "api_name": "sample-service",
+      "api_version": "0.1.0",
+      "api_title": "Sample Service",
+      "commonalities": "0.9.0",
+      "maturity": "initial",
+      "portfolio_category": null,
+      "website_url": null,
+      "tooltip": null,
+      "display_name": "Sample Service",
+      "published": true,
+      "canonical_name": "sample-service",
+      "first_release": "Sandbox",
+      "repository": "ReleaseTest2",
+      "release_tag": "r1.6",
+      "release_date": "2026-10-24T07:24:37Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/ReleaseTest2/releases/tag/r1.6",
+      "release_type": "public-release"
+    },
+    {
+      "api_name": "sample-service-subscriptions",
+      "api_version": "0.1.0",
+      "api_title": "Sample Service Subscription Template",
+      "commonalities": "0.9.0",
+      "maturity": "initial",
+      "portfolio_category": null,
+      "website_url": null,
+      "tooltip": null,
+      "display_name": "Sample Service Subscription Template",
+      "published": true,
+      "canonical_name": "sample-service-subscriptions",
+      "first_release": "Sandbox",
+      "repository": "ReleaseTest2",
+      "release_tag": "r1.6",
+      "release_date": "2026-10-24T07:24:37Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/ReleaseTest2/releases/tag/r1.6",
       "release_type": "public-release"
     },
     {
