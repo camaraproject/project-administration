@@ -1,15 +1,15 @@
 metadata:
-  last_updated: '2026-10-22T07:55:22.530Z'
+  last_updated: '2026-10-26T05:58:00.991Z'
   workflow_version: 3.0.0
   schema_version: 3.2.0
   collector_run:
-    analysis_scope: incremental
-    workflow_run_id: '39743792603'
-    workflow_run_number: 366
-    workflow_run_url: https://github.com/camaraproject/project-administration/actions/runs/39743792603
-    source_sha: a3ad5f98984023979cdbf19aec2db9bf78bf1858
-    node_version: v24.22.0
-    npm_version: 11.19.1
+    analysis_scope: full
+    workflow_run_id: '40276876669'
+    workflow_run_number: 370
+    workflow_run_url: https://github.com/camaraproject/project-administration/actions/runs/40276876669
+    source_sha: bea6655ee745c8d674d3f55fb770d4913f19b9e5
+    node_version: v24.21.0
+    npm_version: 11.19.0
     dependencies:
       '@octokit/rest': 22.0.1
       js-yaml: 4.3.2
@@ -153,12 +153,12 @@ releases:
     dependencies:
       commonalities_release: r4.3 (0.8.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: application-profiles
         api_version: 0.6.0-rc.1
         api_title: Connectivity Insights - Application Profiles
         commonalities: 0.8.0
-    superseded: true
   - repository: ApplicationProfiles
     release_tag: r2.2
     release_date: '2026-10-17T05:51:38Z'
@@ -169,12 +169,12 @@ releases:
     dependencies:
       commonalities_release: r4.4 (0.9.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: application-profiles
         api_version: 0.6.0-rc.2
         api_title: Connectivity Insights - Application Profiles
         commonalities: 0.9.0
-    superseded: true
   - repository: ApplicationProfiles
     release_tag: r2.3
     release_date: '2026-10-22T02:36:24Z'
@@ -1686,12 +1686,12 @@ releases:
     dependencies:
       commonalities_release: r4.3 (0.8.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: device-swap
         api_version: 1.1.0-rc.2
         api_title: Device Swap
         commonalities: 0.8.0
-    superseded: true
   - repository: DeviceSwap
     release_tag: r4.2
     release_date: '2026-10-05T12:04:57Z'
@@ -1702,12 +1702,12 @@ releases:
     dependencies:
       commonalities_release: r4.4 (0.9.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: device-swap
         api_version: 1.1.0-rc.3
         api_title: Device Swap
         commonalities: 0.9.0
-    superseded: true
   - repository: DeviceSwap
     release_tag: r4.3
     release_date: '2026-10-19T12:34:42Z'
@@ -2575,12 +2575,12 @@ releases:
     dependencies:
       commonalities_release: r4.4 (0.9.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: number-verification
         api_version: 2.1.1-rc.2
         api_title: Number Verification
         commonalities: 0.9.0
-    superseded: true
   - repository: NumberVerification
     release_tag: r4.2
     release_date: '2026-10-19T12:42:28Z'
@@ -2725,12 +2725,12 @@ releases:
     dependencies:
       commonalities_release: r4.3 (0.8.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: one-time-password-sms
         api_version: 2.0.0-rc.1
         api_title: One Time Password SMS
         commonalities: 0.8.0
-    superseded: true
   - repository: OTPValidation
     release_tag: r4.2
     release_date: '2026-10-05T12:07:17Z'
@@ -2741,12 +2741,12 @@ releases:
     dependencies:
       commonalities_release: r4.4 (0.9.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: one-time-password-sms
         api_version: 2.0.0-rc.2
         api_title: One Time Password SMS
         commonalities: 0.9.0
-    superseded: true
   - repository: OTPValidation
     release_tag: r4.3
     release_date: '2026-10-19T12:40:42Z'
@@ -3300,12 +3300,12 @@ releases:
     dependencies:
       commonalities_release: r4.3 (0.8.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: simple-edge-discovery
         api_version: 2.1.0-rc.2
         api_title: Simple Edge Discovery
         commonalities: 0.8.0
-    superseded: true
   - repository: SimpleEdgeDiscovery
     release_tag: r3.2
     release_date: '2026-09-11T15:03:54Z'
@@ -3316,12 +3316,12 @@ releases:
     dependencies:
       commonalities_release: r4.4 (0.9.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: simple-edge-discovery
         api_version: 2.1.0-rc.3
         api_title: Simple Edge Discovery
         commonalities: 0.9.0
-    superseded: true
   - repository: SimpleEdgeDiscovery
     release_tag: r3.3
     release_date: '2026-10-16T09:46:03Z'
