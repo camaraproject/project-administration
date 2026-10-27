@@ -1,19 +1,19 @@
 {
   "metadata": {
-    "generated": "2026-10-26T05:58:02.227Z",
+    "generated": "2026-10-27T08:21:33.885Z",
     "meta_release": "All",
     "source": "Release Collector v3",
     "landscape_version": "1.1.1"
   },
   "statistics": {
     "repositories_count": 54,
-    "api_versions_count": 243,
+    "api_versions_count": 246,
     "unique_api_names_count": 79,
     "unique_apis_count": 78,
     "api_version_maturity": {
       "stable": 32,
       "initial": 141,
-      "rc": 70
+      "rc": 73
     },
     "unique_api_maturity": {
       "stable": 4,
@@ -22,7 +22,7 @@
     },
     "categories": {
       "Computing Services": 19,
-      "Communication Quality": 56,
+      "Communication Quality": 59,
       "Payments and Charging": 11,
       "Authentication and Fraud Prevention": 68,
       "Communication Services": 17,
@@ -30,7 +30,7 @@
       "Device Information": 28,
       "Location Services": 24
     },
-    "apis_with_previous_names": 5
+    "apis_with_previous_names": 6
   },
   "repositories": {
     "ApplicationEndpointDiscovery": {
@@ -838,6 +838,11 @@
     "PredictiveConnectivityData": {
       "releases": [
         {
+          "tag": "r2.2",
+          "date": "2026-10-26T14:35:51Z",
+          "apis_count": 1
+        },
+        {
           "tag": "r2.1",
           "date": "2026-08-11T09:54:02Z",
           "apis_count": 1
@@ -848,7 +853,7 @@
           "apis_count": 1
         }
       ],
-      "total_apis": 2,
+      "total_apis": 3,
       "unique_apis_count": 1
     },
     "QoSBooking": {
@@ -881,6 +886,11 @@
     "QualityOnDemand": {
       "releases": [
         {
+          "tag": "r4.2",
+          "date": "2026-10-26T10:05:12Z",
+          "apis_count": 2
+        },
+        {
           "tag": "r4.1",
           "date": "2026-08-20T10:09:32Z",
           "apis_count": 3
@@ -906,7 +916,7 @@
           "apis_count": 3
         }
       ],
-      "total_apis": 15,
+      "total_apis": 17,
       "unique_apis_count": 3
     },
     "RegionDeviceCount": {
@@ -5064,6 +5074,35 @@
       ]
     },
     {
+      "repository": "PredictiveConnectivityData",
+      "release_tag": "r2.2",
+      "release_date": "2026-10-26T14:35:51Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/PredictiveConnectivityData/releases/tag/r2.2",
+      "release_type": "pre-release-rc",
+      "src_commit_sha": "717cd6ceebe33c7b8eb7c81dd4be878fcf865544",
+      "dependencies": {
+        "commonalities_release": "r4.4 (0.9.0)",
+        "identity_consent_management_release": "r4.2 (0.5.0)"
+      },
+      "apis": [
+        {
+          "api_name": "predictive-connectivity-data",
+          "api_version": "0.2.0-rc.2",
+          "api_title": "Predictive Connectivity Data",
+          "commonalities": "0.9.0",
+          "maturity": "initial",
+          "portfolio_category": "Communication Quality",
+          "website_url": "https://camaraproject.org/predictive-connectivity-data/",
+          "tooltip": "Provides information about the connectivity along a volume/area for a future date, time and height",
+          "display_name": "Predictive Connectivity Data",
+          "published": true,
+          "canonical_name": "predictive-connectivity-data",
+          "first_release": "Fall25"
+        }
+      ]
+    },
+    {
       "repository": "QoSBooking",
       "release_tag": "r1.2",
       "release_date": "2025-09-12T10:30:04Z",
@@ -5456,6 +5495,52 @@
           "api_version": "1.2.0-rc.3",
           "api_title": "Quality-On-Demand",
           "commonalities": "0.8.0",
+          "maturity": "stable",
+          "portfolio_category": "Communication Quality",
+          "website_url": "https://camaraproject.org/quality-on-demand/",
+          "tooltip": "Allows users to set mobile connection quality and get notifications",
+          "display_name": "Quality-On-Demand",
+          "published": true,
+          "canonical_name": "quality-on-demand",
+          "first_release": "PreFall24"
+        }
+      ]
+    },
+    {
+      "repository": "QualityOnDemand",
+      "release_tag": "r4.2",
+      "release_date": "2026-10-26T10:05:12Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/QualityOnDemand/releases/tag/r4.2",
+      "release_type": "pre-release-rc",
+      "src_commit_sha": "471aa355b569ae5c36f23230c7fd16a590740396",
+      "dependencies": {
+        "commonalities_release": "r4.4 (0.9.0)",
+        "identity_consent_management_release": "r4.2 (0.5.0)"
+      },
+      "apis": [
+        {
+          "api_name": "qos-provisioning",
+          "api_version": "0.4.0-rc.2",
+          "api_title": "QoS Provisioning",
+          "commonalities": "0.9.0",
+          "maturity": "initial",
+          "portfolio_category": "Communication Quality",
+          "website_url": "https://camaraproject.org/qod-provisioning/",
+          "tooltip": "Creating, getting, updating, removing a QoD provision for a device",
+          "display_name": "QoS Provisioning",
+          "published": true,
+          "canonical_name": "qos-provisioning",
+          "first_release": "Fall24",
+          "previous_names": [
+            "qod-provisioning"
+          ]
+        },
+        {
+          "api_name": "quality-on-demand",
+          "api_version": "1.2.0-rc.4",
+          "api_title": "Quality-On-Demand",
+          "commonalities": "0.9.0",
           "maturity": "stable",
           "portfolio_category": "Communication Quality",
           "website_url": "https://camaraproject.org/quality-on-demand/",
@@ -10155,6 +10240,26 @@
       "release_type": "pre-release-rc"
     },
     {
+      "api_name": "predictive-connectivity-data",
+      "api_version": "0.2.0-rc.2",
+      "api_title": "Predictive Connectivity Data",
+      "commonalities": "0.9.0",
+      "maturity": "initial",
+      "portfolio_category": "Communication Quality",
+      "website_url": "https://camaraproject.org/predictive-connectivity-data/",
+      "tooltip": "Provides information about the connectivity along a volume/area for a future date, time and height",
+      "display_name": "Predictive Connectivity Data",
+      "published": true,
+      "canonical_name": "predictive-connectivity-data",
+      "first_release": "Fall25",
+      "repository": "PredictiveConnectivityData",
+      "release_tag": "r2.2",
+      "release_date": "2026-10-26T14:35:51Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/PredictiveConnectivityData/releases/tag/r2.2",
+      "release_type": "pre-release-rc"
+    },
+    {
       "api_name": "qos-booking",
       "api_version": "0.1.0",
       "api_title": "QoS Booking",
@@ -10480,6 +10585,29 @@
       "release_type": "pre-release-rc"
     },
     {
+      "api_name": "qos-provisioning",
+      "api_version": "0.4.0-rc.2",
+      "api_title": "QoS Provisioning",
+      "commonalities": "0.9.0",
+      "maturity": "initial",
+      "portfolio_category": "Communication Quality",
+      "website_url": "https://camaraproject.org/qod-provisioning/",
+      "tooltip": "Creating, getting, updating, removing a QoD provision for a device",
+      "display_name": "QoS Provisioning",
+      "published": true,
+      "canonical_name": "qos-provisioning",
+      "first_release": "Fall24",
+      "previous_names": [
+        "qod-provisioning"
+      ],
+      "repository": "QualityOnDemand",
+      "release_tag": "r4.2",
+      "release_date": "2026-10-26T10:05:12Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/QualityOnDemand/releases/tag/r4.2",
+      "release_type": "pre-release-rc"
+    },
+    {
       "api_name": "quality-on-demand",
       "api_version": "0.11.0",
       "api_title": "Quality-On-Demand",
@@ -10581,6 +10709,26 @@
       "release_date": "2026-08-20T10:09:32Z",
       "meta_release": "Independent",
       "github_url": "https://github.com/camaraproject/QualityOnDemand/releases/tag/r4.1",
+      "release_type": "pre-release-rc"
+    },
+    {
+      "api_name": "quality-on-demand",
+      "api_version": "1.2.0-rc.4",
+      "api_title": "Quality-On-Demand",
+      "commonalities": "0.9.0",
+      "maturity": "stable",
+      "portfolio_category": "Communication Quality",
+      "website_url": "https://camaraproject.org/quality-on-demand/",
+      "tooltip": "Allows users to set mobile connection quality and get notifications",
+      "display_name": "Quality-On-Demand",
+      "published": true,
+      "canonical_name": "quality-on-demand",
+      "first_release": "PreFall24",
+      "repository": "QualityOnDemand",
+      "release_tag": "r4.2",
+      "release_date": "2026-10-26T10:05:12Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/QualityOnDemand/releases/tag/r4.2",
       "release_type": "pre-release-rc"
     },
     {

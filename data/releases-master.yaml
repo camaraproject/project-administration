@@ -1,13 +1,13 @@
 metadata:
-  last_updated: '2026-10-26T05:58:00.991Z'
+  last_updated: '2026-10-27T08:21:32.104Z'
   workflow_version: 3.0.0
   schema_version: 3.2.0
   collector_run:
-    analysis_scope: full
-    workflow_run_id: '40276876669'
-    workflow_run_number: 370
-    workflow_run_url: https://github.com/camaraproject/project-administration/actions/runs/40276876669
-    source_sha: bea6655ee745c8d674d3f55fb770d4913f19b9e5
+    analysis_scope: incremental
+    workflow_run_id: '40472790230'
+    workflow_run_number: 372
+    workflow_run_url: https://github.com/camaraproject/project-administration/actions/runs/40472790230
+    source_sha: 09af597ec4f0a8c7b1958b4ef463d0d8e4304f09
     node_version: v24.21.0
     npm_version: 11.19.0
     dependencies:
@@ -2899,6 +2899,21 @@ releases:
         api_version: 0.2.0-rc.1
         api_title: Predictive Connectivity Data
         commonalities: 0.8.0
+  - repository: PredictiveConnectivityData
+    release_tag: r2.2
+    release_date: '2026-10-26T14:35:51Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/PredictiveConnectivityData/releases/tag/r2.2
+    release_type: pre-release-rc
+    src_commit_sha: 717cd6ceebe33c7b8eb7c81dd4be878fcf865544
+    dependencies:
+      commonalities_release: r4.4 (0.9.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: predictive-connectivity-data
+        api_version: 0.2.0-rc.2
+        api_title: Predictive Connectivity Data
+        commonalities: 0.9.0
   - repository: QoSBooking
     release_tag: r1.1
     release_date: '2025-07-17T16:26:18Z'
@@ -3123,6 +3138,25 @@ releases:
         api_version: 1.2.0-rc.3
         api_title: Quality-On-Demand
         commonalities: 0.8.0
+  - repository: QualityOnDemand
+    release_tag: r4.2
+    release_date: '2026-10-26T10:05:12Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/QualityOnDemand/releases/tag/r4.2
+    release_type: pre-release-rc
+    src_commit_sha: 471aa355b569ae5c36f23230c7fd16a590740396
+    dependencies:
+      commonalities_release: r4.4 (0.9.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: qos-provisioning
+        api_version: 0.4.0-rc.2
+        api_title: QoS Provisioning
+        commonalities: 0.9.0
+      - api_name: quality-on-demand
+        api_version: 1.2.0-rc.4
+        api_title: Quality-On-Demand
+        commonalities: 0.9.0
   - repository: RegionDeviceCount
     release_tag: r1.1
     release_date: '2025-02-13T09:46:14Z'
@@ -4053,7 +4087,7 @@ repositories:
   - repository: PredictiveConnectivityData
     github_url: https://github.com/camaraproject/PredictiveConnectivityData
     latest_public_release: r1.2
-    newest_pre_release: r2.1
+    newest_pre_release: r2.2
   - repository: QoSBooking
     github_url: https://github.com/camaraproject/QoSBooking
     latest_public_release: r1.2
@@ -4065,7 +4099,7 @@ repositories:
   - repository: QualityOnDemand
     github_url: https://github.com/camaraproject/QualityOnDemand
     latest_public_release: r3.2
-    newest_pre_release: r4.1
+    newest_pre_release: r4.2
   - repository: RainfallIntensity
     github_url: https://github.com/camaraproject/RainfallIntensity
     latest_public_release: null
