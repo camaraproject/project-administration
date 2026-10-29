@@ -1,19 +1,19 @@
 {
   "metadata": {
-    "generated": "2026-10-27T08:21:33.885Z",
+    "generated": "2026-10-29T08:52:47.024Z",
     "meta_release": "All",
     "source": "Release Collector v3",
     "landscape_version": "1.1.1"
   },
   "statistics": {
     "repositories_count": 54,
-    "api_versions_count": 246,
+    "api_versions_count": 248,
     "unique_api_names_count": 79,
     "unique_apis_count": 78,
     "api_version_maturity": {
       "stable": 32,
       "initial": 141,
-      "rc": 73
+      "rc": 75
     },
     "unique_api_maturity": {
       "stable": 4,
@@ -27,7 +27,7 @@
       "Authentication and Fraud Prevention": 68,
       "Communication Services": 17,
       "Service Management": 2,
-      "Device Information": 28,
+      "Device Information": 30,
       "Location Services": 24
     },
     "apis_with_previous_names": 6
@@ -414,6 +414,11 @@
     "DeviceRoamingStatus": {
       "releases": [
         {
+          "tag": "r2.2",
+          "date": "2026-10-28T13:53:54Z",
+          "apis_count": 2
+        },
+        {
           "tag": "r2.1",
           "date": "2026-08-07T09:58:54Z",
           "apis_count": 2
@@ -424,7 +429,7 @@
           "apis_count": 2
         }
       ],
-      "total_apis": 4,
+      "total_apis": 6,
       "unique_apis_count": 2
     },
     "DeviceStatus": {
@@ -3196,6 +3201,49 @@
           "api_version": "1.2.0-rc.3",
           "api_title": "Device Roaming Status",
           "commonalities": "0.8.0",
+          "maturity": "stable",
+          "portfolio_category": "Device Information",
+          "website_url": "https://camaraproject.org/device-roaming-status/",
+          "tooltip": "Check the roaming status of a device",
+          "display_name": "Device Roaming Status",
+          "published": true,
+          "canonical_name": "device-roaming-status",
+          "first_release": "PreFall24"
+        }
+      ]
+    },
+    {
+      "repository": "DeviceRoamingStatus",
+      "release_tag": "r2.2",
+      "release_date": "2026-10-28T13:53:54Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/DeviceRoamingStatus/releases/tag/r2.2",
+      "release_type": "pre-release-rc",
+      "src_commit_sha": "25ae41f591a808ecbac49172402e7cb38db6653c",
+      "dependencies": {
+        "commonalities_release": "r4.4 (0.9.0)",
+        "identity_consent_management_release": "r4.2 (0.5.0)"
+      },
+      "apis": [
+        {
+          "api_name": "device-roaming-status-subscriptions",
+          "api_version": "0.9.0-rc.2",
+          "api_title": "Device Roaming Status Subscriptions",
+          "commonalities": "0.9.0",
+          "maturity": "initial",
+          "portfolio_category": "Device Information",
+          "website_url": "https://camaraproject.org/device-roaming-status-subscriptions/",
+          "tooltip": "Get notifications if the roaming status of a device changes",
+          "display_name": "Device Roaming Status Subscriptions",
+          "published": true,
+          "canonical_name": "device-roaming-status-subscriptions",
+          "first_release": "Fall24"
+        },
+        {
+          "api_name": "device-roaming-status",
+          "api_version": "1.2.0-rc.4",
+          "api_title": "Device Roaming Status",
+          "commonalities": "0.9.0",
           "maturity": "stable",
           "portfolio_category": "Device Information",
           "website_url": "https://camaraproject.org/device-roaming-status/",
@@ -8527,6 +8575,26 @@
       "release_type": "pre-release-rc"
     },
     {
+      "api_name": "device-roaming-status",
+      "api_version": "1.2.0-rc.4",
+      "api_title": "Device Roaming Status",
+      "commonalities": "0.9.0",
+      "maturity": "stable",
+      "portfolio_category": "Device Information",
+      "website_url": "https://camaraproject.org/device-roaming-status/",
+      "tooltip": "Check the roaming status of a device",
+      "display_name": "Device Roaming Status",
+      "published": true,
+      "canonical_name": "device-roaming-status",
+      "first_release": "PreFall24",
+      "repository": "DeviceRoamingStatus",
+      "release_tag": "r2.2",
+      "release_date": "2026-10-28T13:53:54Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/DeviceRoamingStatus/releases/tag/r2.2",
+      "release_type": "pre-release-rc"
+    },
+    {
       "api_name": "device-roaming-status-subscriptions",
       "api_version": "0.8.0",
       "api_title": "Device Roaming Status Subscriptions",
@@ -8565,6 +8633,26 @@
       "release_date": "2026-08-07T09:58:54Z",
       "meta_release": "Independent",
       "github_url": "https://github.com/camaraproject/DeviceRoamingStatus/releases/tag/r2.1",
+      "release_type": "pre-release-rc"
+    },
+    {
+      "api_name": "device-roaming-status-subscriptions",
+      "api_version": "0.9.0-rc.2",
+      "api_title": "Device Roaming Status Subscriptions",
+      "commonalities": "0.9.0",
+      "maturity": "initial",
+      "portfolio_category": "Device Information",
+      "website_url": "https://camaraproject.org/device-roaming-status-subscriptions/",
+      "tooltip": "Get notifications if the roaming status of a device changes",
+      "display_name": "Device Roaming Status Subscriptions",
+      "published": true,
+      "canonical_name": "device-roaming-status-subscriptions",
+      "first_release": "Fall24",
+      "repository": "DeviceRoamingStatus",
+      "release_tag": "r2.2",
+      "release_date": "2026-10-28T13:53:54Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/DeviceRoamingStatus/releases/tag/r2.2",
       "release_type": "pre-release-rc"
     },
     {
