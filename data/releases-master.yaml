@@ -1,15 +1,15 @@
 metadata:
-  last_updated: '2026-10-27T08:21:32.104Z'
+  last_updated: '2026-10-29T08:52:45.425Z'
   workflow_version: 3.0.0
   schema_version: 3.2.0
   collector_run:
     analysis_scope: incremental
-    workflow_run_id: '40472790230'
-    workflow_run_number: 372
-    workflow_run_url: https://github.com/camaraproject/project-administration/actions/runs/40472790230
-    source_sha: 09af597ec4f0a8c7b1958b4ef463d0d8e4304f09
-    node_version: v24.21.0
-    npm_version: 11.19.0
+    workflow_run_id: '40845182989'
+    workflow_run_number: 374
+    workflow_run_url: https://github.com/camaraproject/project-administration/actions/runs/40845182989
+    source_sha: 624868c39d088752592f8329cb5bd2eff77489d8
+    node_version: v24.22.1
+    npm_version: 11.19.1
     dependencies:
       '@octokit/rest': 22.0.1
       js-yaml: 4.3.2
@@ -1474,6 +1474,25 @@ releases:
         api_version: 1.2.0-rc.3
         api_title: Device Roaming Status
         commonalities: 0.8.0
+  - repository: DeviceRoamingStatus
+    release_tag: r2.2
+    release_date: '2026-10-28T13:53:54Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/DeviceRoamingStatus/releases/tag/r2.2
+    release_type: pre-release-rc
+    src_commit_sha: 25ae41f591a808ecbac49172402e7cb38db6653c
+    dependencies:
+      commonalities_release: r4.4 (0.9.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: device-roaming-status-subscriptions
+        api_version: 0.9.0-rc.2
+        api_title: Device Roaming Status Subscriptions
+        commonalities: 0.9.0
+      - api_name: device-roaming-status
+        api_version: 1.2.0-rc.4
+        api_title: Device Roaming Status
+        commonalities: 0.9.0
   - repository: DeviceStatus
     release_tag: r1.1
     release_date: '2024-08-02T06:43:41Z'
@@ -3970,7 +3989,7 @@ repositories:
   - repository: DeviceRoamingStatus
     github_url: https://github.com/camaraproject/DeviceRoamingStatus
     latest_public_release: r1.2
-    newest_pre_release: r2.1
+    newest_pre_release: r2.2
   - repository: DeviceStatus
     github_url: https://github.com/camaraproject/DeviceStatus
     latest_public_release: r2.2
