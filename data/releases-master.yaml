@@ -1,13 +1,13 @@
 metadata:
-  last_updated: '2026-10-29T08:52:45.425Z'
+  last_updated: '2026-10-30T08:57:12.829Z'
   workflow_version: 3.0.0
   schema_version: 3.2.0
   collector_run:
     analysis_scope: incremental
-    workflow_run_id: '40845182989'
-    workflow_run_number: 374
-    workflow_run_url: https://github.com/camaraproject/project-administration/actions/runs/40845182989
-    source_sha: 624868c39d088752592f8329cb5bd2eff77489d8
+    workflow_run_id: '41029721717'
+    workflow_run_number: 375
+    workflow_run_url: https://github.com/camaraproject/project-administration/actions/runs/41029721717
+    source_sha: 8ecd879705417a0cec75507bc014fdcddf1d3a5e
     node_version: v24.22.1
     npm_version: 11.19.1
     dependencies:
@@ -915,6 +915,21 @@ releases:
         api_version: 0.3.0-rc.1
         api_title: Customer Insights
         commonalities: 0.8.0
+  - repository: CustomerInsights
+    release_tag: r3.2
+    release_date: '2026-10-29T14:19:11Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/CustomerInsights/releases/tag/r3.2
+    release_type: pre-release-rc
+    src_commit_sha: 4aa3c7472fccc53e535cbd6d7ee1280a3a96e849
+    dependencies:
+      commonalities_release: r4.4 (0.9.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: customer-insights
+        api_version: 0.3.0-rc.2
+        api_title: Customer Insights
+        commonalities: 0.9.0
   - repository: DedicatedNetworks
     release_tag: r1.1
     release_date: '2025-07-21T11:45:44Z'
@@ -3547,6 +3562,7 @@ releases:
         api_version: 2.2.0-rc.3
         api_title: SIM Swap
         commonalities: 0.8.0
+    superseded: true
   - repository: SimSwap
     release_tag: r4.2
     release_date: '2026-10-20T07:46:51Z'
@@ -3564,6 +3580,26 @@ releases:
         commonalities: 0.9.0
       - api_name: sim-swap
         api_version: 2.2.0-rc.4
+        api_title: SIM Swap
+        commonalities: 0.9.0
+    superseded: true
+  - repository: SimSwap
+    release_tag: r4.3
+    release_date: '2026-10-30T08:13:57Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/SimSwap/releases/tag/r4.3
+    release_type: public-release
+    src_commit_sha: ea5d9fd41e933560514a5705ba84a0143c1c5ca3
+    dependencies:
+      commonalities_release: r4.4 (0.9.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: sim-swap-subscriptions
+        api_version: 0.4.0
+        api_title: SIM Swap Subscriptions
+        commonalities: 0.9.0
+      - api_name: sim-swap
+        api_version: 2.2.0
         api_title: SIM Swap
         commonalities: 0.9.0
   - repository: SubscriptionStatus
@@ -3957,7 +3993,7 @@ repositories:
   - repository: CustomerInsights
     github_url: https://github.com/camaraproject/CustomerInsights
     latest_public_release: r2.2
-    newest_pre_release: r3.1
+    newest_pre_release: r3.2
   - repository: DedicatedNetworks
     github_url: https://github.com/camaraproject/DedicatedNetworks
     latest_public_release: r1.2
@@ -4142,8 +4178,8 @@ repositories:
     newest_pre_release: null
   - repository: SimSwap
     github_url: https://github.com/camaraproject/SimSwap
-    latest_public_release: r3.3
-    newest_pre_release: r4.2
+    latest_public_release: r4.3
+    newest_pre_release: null
   - repository: SimSwapTimeFrame
     github_url: https://github.com/camaraproject/SimSwapTimeFrame
     latest_public_release: null
