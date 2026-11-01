@@ -1,19 +1,19 @@
 {
   "metadata": {
-    "generated": "2026-10-30T08:57:14.098Z",
+    "generated": "2026-10-31T08:49:19.641Z",
     "meta_release": "All",
     "source": "Release Collector v3",
     "landscape_version": "1.1.1"
   },
   "statistics": {
     "repositories_count": 54,
-    "api_versions_count": 247,
+    "api_versions_count": 249,
     "unique_api_names_count": 79,
     "unique_apis_count": 78,
     "api_version_maturity": {
       "stable": 33,
       "initial": 142,
-      "rc": 72
+      "rc": 74
     },
     "unique_api_maturity": {
       "stable": 5,
@@ -22,7 +22,7 @@
     },
     "categories": {
       "Computing Services": 19,
-      "Communication Quality": 59,
+      "Communication Quality": 61,
       "Payments and Charging": 11,
       "Authentication and Fraud Prevention": 67,
       "Communication Services": 17,
@@ -183,6 +183,11 @@
     "ConnectedNetworkType": {
       "releases": [
         {
+          "tag": "r2.2",
+          "date": "2026-10-30T16:02:17Z",
+          "apis_count": 2
+        },
+        {
           "tag": "r2.1",
           "date": "2026-08-11T15:01:59Z",
           "apis_count": 2
@@ -193,7 +198,7 @@
           "apis_count": 2
         }
       ],
-      "total_apis": 4,
+      "total_apis": 6,
       "unique_apis_count": 2
     },
     "ConnectivityInsights": {
@@ -1844,6 +1849,49 @@
           "api_version": "0.3.0-rc.1",
           "api_title": "Connected Network Type",
           "commonalities": "0.8.0",
+          "maturity": "initial",
+          "portfolio_category": "Communication Quality",
+          "website_url": "https://camaraproject.org/connected-network-type/",
+          "tooltip": "Query the device's connected network type",
+          "display_name": "Connected Network Type",
+          "published": true,
+          "canonical_name": "connected-network-type",
+          "first_release": "Spring25"
+        }
+      ]
+    },
+    {
+      "repository": "ConnectedNetworkType",
+      "release_tag": "r2.2",
+      "release_date": "2026-10-30T16:02:17Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/ConnectedNetworkType/releases/tag/r2.2",
+      "release_type": "pre-release-rc",
+      "src_commit_sha": "f38d31f3ca150b20171364a37da47bc568388538",
+      "dependencies": {
+        "commonalities_release": "r4.4 (0.9.0)",
+        "identity_consent_management_release": "r4.2 (0.5.0)"
+      },
+      "apis": [
+        {
+          "api_name": "connected-network-type-subscriptions",
+          "api_version": "0.3.0-rc.2",
+          "api_title": "Connected Network Type Subscriptions",
+          "commonalities": "0.9.0",
+          "maturity": "initial",
+          "portfolio_category": "Communication Quality",
+          "website_url": "https://camaraproject.org/connected-network-type-subscriptions/",
+          "tooltip": "Receive notifications when the connected network type changes",
+          "display_name": "Connected Network Type Subscriptions",
+          "published": true,
+          "canonical_name": "connected-network-type-subscriptions",
+          "first_release": "Spring25"
+        },
+        {
+          "api_name": "connected-network-type",
+          "api_version": "0.3.0-rc.2",
+          "api_title": "Connected Network Type",
+          "commonalities": "0.9.0",
           "maturity": "initial",
           "portfolio_category": "Communication Quality",
           "website_url": "https://camaraproject.org/connected-network-type/",
@@ -7229,6 +7277,26 @@
       "release_type": "pre-release-rc"
     },
     {
+      "api_name": "connected-network-type",
+      "api_version": "0.3.0-rc.2",
+      "api_title": "Connected Network Type",
+      "commonalities": "0.9.0",
+      "maturity": "initial",
+      "portfolio_category": "Communication Quality",
+      "website_url": "https://camaraproject.org/connected-network-type/",
+      "tooltip": "Query the device's connected network type",
+      "display_name": "Connected Network Type",
+      "published": true,
+      "canonical_name": "connected-network-type",
+      "first_release": "Spring25",
+      "repository": "ConnectedNetworkType",
+      "release_tag": "r2.2",
+      "release_date": "2026-10-30T16:02:17Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/ConnectedNetworkType/releases/tag/r2.2",
+      "release_type": "pre-release-rc"
+    },
+    {
       "api_name": "connected-network-type-subscriptions",
       "api_version": "0.2.0",
       "api_title": "Connected Network Type Subscriptions",
@@ -7267,6 +7335,26 @@
       "release_date": "2026-08-11T15:01:59Z",
       "meta_release": "Independent",
       "github_url": "https://github.com/camaraproject/ConnectedNetworkType/releases/tag/r2.1",
+      "release_type": "pre-release-rc"
+    },
+    {
+      "api_name": "connected-network-type-subscriptions",
+      "api_version": "0.3.0-rc.2",
+      "api_title": "Connected Network Type Subscriptions",
+      "commonalities": "0.9.0",
+      "maturity": "initial",
+      "portfolio_category": "Communication Quality",
+      "website_url": "https://camaraproject.org/connected-network-type-subscriptions/",
+      "tooltip": "Receive notifications when the connected network type changes",
+      "display_name": "Connected Network Type Subscriptions",
+      "published": true,
+      "canonical_name": "connected-network-type-subscriptions",
+      "first_release": "Spring25",
+      "repository": "ConnectedNetworkType",
+      "release_tag": "r2.2",
+      "release_date": "2026-10-30T16:02:17Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/ConnectedNetworkType/releases/tag/r2.2",
       "release_type": "pre-release-rc"
     },
     {

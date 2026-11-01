@@ -1,13 +1,13 @@
 metadata:
-  last_updated: '2026-10-30T08:57:12.829Z'
+  last_updated: '2026-10-31T08:49:18.348Z'
   workflow_version: 3.0.0
   schema_version: 3.2.0
   collector_run:
     analysis_scope: incremental
-    workflow_run_id: '41029721717'
-    workflow_run_number: 375
-    workflow_run_url: https://github.com/camaraproject/project-administration/actions/runs/41029721717
-    source_sha: 8ecd879705417a0cec75507bc014fdcddf1d3a5e
+    workflow_run_id: '41186082564'
+    workflow_run_number: 376
+    workflow_run_url: https://github.com/camaraproject/project-administration/actions/runs/41186082564
+    source_sha: 36e597e139c14ca5d717c37ad211095340d2feb1
     node_version: v24.22.1
     npm_version: 11.19.1
     dependencies:
@@ -599,6 +599,25 @@ releases:
         api_version: 0.3.0-rc.1
         api_title: Connected Network Type
         commonalities: 0.8.0
+  - repository: ConnectedNetworkType
+    release_tag: r2.2
+    release_date: '2026-10-30T16:02:17Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/ConnectedNetworkType/releases/tag/r2.2
+    release_type: pre-release-rc
+    src_commit_sha: f38d31f3ca150b20171364a37da47bc568388538
+    dependencies:
+      commonalities_release: r4.4 (0.9.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: connected-network-type-subscriptions
+        api_version: 0.3.0-rc.2
+        api_title: Connected Network Type Subscriptions
+        commonalities: 0.9.0
+      - api_name: connected-network-type
+        api_version: 0.3.0-rc.2
+        api_title: Connected Network Type
+        commonalities: 0.9.0
   - repository: ConnectivityInsights
     release_tag: r1.1
     release_date: '2024-08-23T16:54:17Z'
@@ -3977,7 +3996,7 @@ repositories:
   - repository: ConnectedNetworkType
     github_url: https://github.com/camaraproject/ConnectedNetworkType
     latest_public_release: r1.2
-    newest_pre_release: r2.1
+    newest_pre_release: r2.2
   - repository: ConnectivityInsights
     github_url: https://github.com/camaraproject/ConnectivityInsights
     latest_public_release: r3.2
