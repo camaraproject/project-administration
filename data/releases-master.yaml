@@ -1,13 +1,13 @@
 metadata:
-  last_updated: '2026-10-31T08:49:18.348Z'
+  last_updated: '2026-11-03T09:59:28.688Z'
   workflow_version: 3.0.0
   schema_version: 3.2.0
   collector_run:
     analysis_scope: incremental
-    workflow_run_id: '41186082564'
-    workflow_run_number: 376
-    workflow_run_url: https://github.com/camaraproject/project-administration/actions/runs/41186082564
-    source_sha: 36e597e139c14ca5d717c37ad211095340d2feb1
+    workflow_run_id: '41615317482'
+    workflow_run_number: 379
+    workflow_run_url: https://github.com/camaraproject/project-administration/actions/runs/41615317482
+    source_sha: 8913f6ed9cece228b08172b02f8c0c2d97bccd3f
     node_version: v24.22.1
     npm_version: 11.19.1
     dependencies:
@@ -1127,6 +1127,25 @@ releases:
         api_version: 0.2.0-rc.2
         api_title: Device Data Volume
         commonalities: 0.9.0
+  - repository: DeviceDataVolume
+    release_tag: r2.3
+    release_date: '2026-11-02T10:40:34Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/DeviceDataVolume/releases/tag/r2.3
+    release_type: pre-release-rc
+    src_commit_sha: d8e98cbd8dc3f4c49d508e5531865a5cf809516f
+    dependencies:
+      commonalities_release: r4.4 (0.9.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: device-data-volume-subscriptions
+        api_version: 0.2.0-rc.3
+        api_title: Device Data Volume Subscriptions
+        commonalities: 0.9.0
+      - api_name: device-data-volume
+        api_version: 0.2.0-rc.3
+        api_title: Device Data Volume
+        commonalities: 0.9.0
   - repository: DeviceIdentifier
     release_tag: r1.1
     release_date: '2024-10-15T08:39:48Z'
@@ -1228,6 +1247,21 @@ releases:
     apis:
       - api_name: device-identifier
         api_version: 0.4.0-rc.2
+        api_title: Device Identifier
+        commonalities: 0.9.0
+  - repository: DeviceIdentifier
+    release_tag: r3.4
+    release_date: '2026-11-02T11:55:05Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/DeviceIdentifier/releases/tag/r3.4
+    release_type: pre-release-rc
+    src_commit_sha: 11605ff4c21c6c90169c2c4b17da834e4bd93b00
+    dependencies:
+      commonalities_release: r4.4 (0.9.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: device-identifier
+        api_version: 0.4.0-rc.3
         api_title: Device Identifier
         commonalities: 0.9.0
   - repository: DeviceLocation
@@ -1458,6 +1492,25 @@ releases:
         api_version: 1.2.0-rc.3
         api_title: Device Reachability Status
         commonalities: 0.8.0
+  - repository: DeviceReachabilityStatus
+    release_tag: r2.2
+    release_date: '2026-11-02T20:32:14Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/DeviceReachabilityStatus/releases/tag/r2.2
+    release_type: pre-release-rc
+    src_commit_sha: 1cae79dcc5546e7afedb0197a0c57c9d81559af8
+    dependencies:
+      commonalities_release: r4.4 (0.9.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: device-reachability-status-subscriptions
+        api_version: 0.9.0-rc.2
+        api_title: Device Reachability Status Subscriptions
+        commonalities: 0.9.0
+      - api_name: device-reachability-status
+        api_version: 1.2.0-rc.4
+        api_title: Device Reachability Status
+        commonalities: 0.9.0
   - repository: DeviceRoamingStatus
     release_tag: r1.1
     release_date: '2025-07-17T15:49:44Z'
@@ -4024,11 +4077,11 @@ repositories:
   - repository: DeviceDataVolume
     github_url: https://github.com/camaraproject/DeviceDataVolume
     latest_public_release: r1.3
-    newest_pre_release: r2.2
+    newest_pre_release: r2.3
   - repository: DeviceIdentifier
     github_url: https://github.com/camaraproject/DeviceIdentifier
     latest_public_release: r2.2
-    newest_pre_release: r3.3
+    newest_pre_release: r3.4
   - repository: DeviceLocation
     github_url: https://github.com/camaraproject/DeviceLocation
     latest_public_release: r3.2
@@ -4040,7 +4093,7 @@ repositories:
   - repository: DeviceReachabilityStatus
     github_url: https://github.com/camaraproject/DeviceReachabilityStatus
     latest_public_release: r1.2
-    newest_pre_release: r2.1
+    newest_pre_release: r2.2
   - repository: DeviceRoamingStatus
     github_url: https://github.com/camaraproject/DeviceRoamingStatus
     latest_public_release: r1.2
