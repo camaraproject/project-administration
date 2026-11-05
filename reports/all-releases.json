@@ -1,19 +1,19 @@
 {
   "metadata": {
-    "generated": "2026-11-03T09:59:29.960Z",
+    "generated": "2026-11-05T06:45:26.963Z",
     "meta_release": "All",
     "source": "Release Collector v3",
     "landscape_version": "1.1.1"
   },
   "statistics": {
     "repositories_count": 54,
-    "api_versions_count": 254,
+    "api_versions_count": 258,
     "unique_api_names_count": 79,
     "unique_apis_count": 78,
     "api_version_maturity": {
       "stable": 33,
       "initial": 142,
-      "rc": 79
+      "rc": 83
     },
     "unique_api_maturity": {
       "stable": 5,
@@ -24,8 +24,8 @@
       "Computing Services": 19,
       "Communication Quality": 61,
       "Payments and Charging": 11,
-      "Authentication and Fraud Prevention": 68,
-      "Communication Services": 17,
+      "Authentication and Fraud Prevention": 70,
+      "Communication Services": 19,
       "Service Management": 2,
       "Device Information": 34,
       "Location Services": 24
@@ -626,6 +626,11 @@
     "KnowYourCustomerFill-in": {
       "releases": [
         {
+          "tag": "r2.2",
+          "date": "2026-11-04T08:27:08Z",
+          "apis_count": 1
+        },
+        {
           "tag": "r2.1",
           "date": "2026-09-01T05:11:26Z",
           "apis_count": 1
@@ -641,11 +646,16 @@
           "apis_count": 1
         }
       ],
-      "total_apis": 3,
+      "total_apis": 4,
       "unique_apis_count": 1
     },
     "KnowYourCustomerMatch": {
       "releases": [
+        {
+          "tag": "r2.2",
+          "date": "2026-11-04T07:47:40Z",
+          "apis_count": 1
+        },
         {
           "tag": "r2.1",
           "date": "2026-09-01T05:04:32Z",
@@ -657,7 +667,7 @@
           "apis_count": 1
         }
       ],
-      "total_apis": 2,
+      "total_apis": 3,
       "unique_apis_count": 1
     },
     "ModelAsAService": {
@@ -1114,6 +1124,11 @@
     "VerifiedCaller": {
       "releases": [
         {
+          "tag": "r2.3",
+          "date": "2026-11-04T05:59:09Z",
+          "apis_count": 2
+        },
+        {
           "tag": "r2.2",
           "date": "2026-09-10T13:07:52Z",
           "apis_count": 2
@@ -1129,7 +1144,7 @@
           "apis_count": 2
         }
       ],
-      "total_apis": 6,
+      "total_apis": 8,
       "unique_apis_count": 2
     },
     "WebRTC": {
@@ -4351,6 +4366,35 @@
       ]
     },
     {
+      "repository": "KnowYourCustomerFill-in",
+      "release_tag": "r2.2",
+      "release_date": "2026-11-04T08:27:08Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/KnowYourCustomerFill-in/releases/tag/r2.2",
+      "release_type": "pre-release-rc",
+      "src_commit_sha": "88bd0a765729744c74201977e8f37a4ea7682435",
+      "dependencies": {
+        "commonalities_release": "r4.4 (0.9.0)",
+        "identity_consent_management_release": "r4.2 (0.5.0)"
+      },
+      "apis": [
+        {
+          "api_name": "kyc-fill-in",
+          "api_version": "0.5.0-rc.2",
+          "api_title": "Know Your Customer Fill-in",
+          "commonalities": "0.9.0",
+          "maturity": "initial",
+          "portfolio_category": "Authentication and Fraud Prevention",
+          "website_url": "https://camaraproject.org/know-your-customer-fill-in/",
+          "tooltip": "Fill in web dialogues using operator data",
+          "display_name": "Know Your Customer Fill-in",
+          "published": true,
+          "canonical_name": "kyc-fill-in",
+          "first_release": "PreFall24"
+        }
+      ]
+    },
+    {
       "repository": "KnowYourCustomerMatch",
       "release_tag": "r1.2",
       "release_date": "2025-09-14T03:35:29Z",
@@ -4394,6 +4438,35 @@
           "api_title": "Know Your Customer Match",
           "commonalities": "0.8.0",
           "maturity": "initial",
+          "portfolio_category": "Authentication and Fraud Prevention",
+          "website_url": "https://camaraproject.org/know-your-customer-match/",
+          "tooltip": "Allows service providers to validate user information with operators",
+          "display_name": "Know Your Customer Match",
+          "published": true,
+          "canonical_name": "kyc-match",
+          "first_release": "PreFall24"
+        }
+      ]
+    },
+    {
+      "repository": "KnowYourCustomerMatch",
+      "release_tag": "r2.2",
+      "release_date": "2026-11-04T07:47:40Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/KnowYourCustomerMatch/releases/tag/r2.2",
+      "release_type": "pre-release-rc",
+      "src_commit_sha": "b8a8d602e9cbf57d8a6112e418f04609e0e2f3d6",
+      "dependencies": {
+        "commonalities_release": "r4.4 (0.9.0)",
+        "identity_consent_management_release": "r4.2 (0.5.0)"
+      },
+      "apis": [
+        {
+          "api_name": "kyc-match",
+          "api_version": "1.0.0-rc.1",
+          "api_title": "Know Your Customer Match",
+          "commonalities": "0.9.0",
+          "maturity": "stable",
           "portfolio_category": "Authentication and Fraud Prevention",
           "website_url": "https://camaraproject.org/know-your-customer-match/",
           "tooltip": "Allows service providers to validate user information with operators",
@@ -6647,6 +6720,49 @@
           "api_version": "0.2.0-rc.1",
           "api_title": "Verified Caller",
           "commonalities": "0.8.0",
+          "maturity": "initial",
+          "portfolio_category": "Communication Services",
+          "website_url": "https://camaraproject.org/verified-caller/",
+          "tooltip": "Show certified information on the phone before a call is answered",
+          "display_name": "Verified Caller",
+          "published": true,
+          "canonical_name": "verified-caller",
+          "first_release": "Fall25"
+        }
+      ]
+    },
+    {
+      "repository": "VerifiedCaller",
+      "release_tag": "r2.3",
+      "release_date": "2026-11-04T05:59:09Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/VerifiedCaller/releases/tag/r2.3",
+      "release_type": "pre-release-rc",
+      "src_commit_sha": "4a55bb40b0034dd0f3863fa4f8f494b83eea8b89",
+      "dependencies": {
+        "commonalities_release": "r4.4 (0.9.0)",
+        "identity_consent_management_release": "r4.2 (0.5.0)"
+      },
+      "apis": [
+        {
+          "api_name": "brand-registration",
+          "api_version": "0.2.0-rc.2",
+          "api_title": "Brand Registration",
+          "commonalities": "0.9.0",
+          "maturity": "initial",
+          "portfolio_category": "Communication Services",
+          "website_url": "https://camaraproject.org/brand-registration/",
+          "tooltip": "Register brand for verified communications",
+          "display_name": "Brand Registration",
+          "published": true,
+          "canonical_name": "brand-registration",
+          "first_release": "Fall25"
+        },
+        {
+          "api_name": "verified-caller",
+          "api_version": "0.2.0-rc.2",
+          "api_title": "Verified Caller",
+          "commonalities": "0.9.0",
           "maturity": "initial",
           "portfolio_category": "Communication Services",
           "website_url": "https://camaraproject.org/verified-caller/",
@@ -9829,6 +9945,26 @@
       "release_type": "pre-release-rc"
     },
     {
+      "api_name": "kyc-fill-in",
+      "api_version": "0.5.0-rc.2",
+      "api_title": "Know Your Customer Fill-in",
+      "commonalities": "0.9.0",
+      "maturity": "initial",
+      "portfolio_category": "Authentication and Fraud Prevention",
+      "website_url": "https://camaraproject.org/know-your-customer-fill-in/",
+      "tooltip": "Fill in web dialogues using operator data",
+      "display_name": "Know Your Customer Fill-in",
+      "published": true,
+      "canonical_name": "kyc-fill-in",
+      "first_release": "PreFall24",
+      "repository": "KnowYourCustomerFill-in",
+      "release_tag": "r2.2",
+      "release_date": "2026-11-04T08:27:08Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/KnowYourCustomerFill-in/releases/tag/r2.2",
+      "release_type": "pre-release-rc"
+    },
+    {
       "api_name": "kyc-match",
       "api_version": "0.4.0",
       "api_title": "Know Your Customer Match",
@@ -9867,6 +10003,26 @@
       "release_date": "2026-09-01T05:04:32Z",
       "meta_release": "Independent",
       "github_url": "https://github.com/camaraproject/KnowYourCustomerMatch/releases/tag/r2.1",
+      "release_type": "pre-release-rc"
+    },
+    {
+      "api_name": "kyc-match",
+      "api_version": "1.0.0-rc.1",
+      "api_title": "Know Your Customer Match",
+      "commonalities": "0.9.0",
+      "maturity": "stable",
+      "portfolio_category": "Authentication and Fraud Prevention",
+      "website_url": "https://camaraproject.org/know-your-customer-match/",
+      "tooltip": "Allows service providers to validate user information with operators",
+      "display_name": "Know Your Customer Match",
+      "published": true,
+      "canonical_name": "kyc-match",
+      "first_release": "PreFall24",
+      "repository": "KnowYourCustomerMatch",
+      "release_tag": "r2.2",
+      "release_date": "2026-11-04T07:47:40Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/KnowYourCustomerMatch/releases/tag/r2.2",
       "release_type": "pre-release-rc"
     },
     {
@@ -11826,6 +11982,26 @@
       "release_type": "pre-release-rc"
     },
     {
+      "api_name": "brand-registration",
+      "api_version": "0.2.0-rc.2",
+      "api_title": "Brand Registration",
+      "commonalities": "0.9.0",
+      "maturity": "initial",
+      "portfolio_category": "Communication Services",
+      "website_url": "https://camaraproject.org/brand-registration/",
+      "tooltip": "Register brand for verified communications",
+      "display_name": "Brand Registration",
+      "published": true,
+      "canonical_name": "brand-registration",
+      "first_release": "Fall25",
+      "repository": "VerifiedCaller",
+      "release_tag": "r2.3",
+      "release_date": "2026-11-04T05:59:09Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/VerifiedCaller/releases/tag/r2.3",
+      "release_type": "pre-release-rc"
+    },
+    {
       "api_name": "verified-caller",
       "api_version": "0.1.0",
       "api_title": "Verified Caller",
@@ -11884,6 +12060,26 @@
       "release_date": "2026-09-10T13:07:52Z",
       "meta_release": "Independent",
       "github_url": "https://github.com/camaraproject/VerifiedCaller/releases/tag/r2.2",
+      "release_type": "pre-release-rc"
+    },
+    {
+      "api_name": "verified-caller",
+      "api_version": "0.2.0-rc.2",
+      "api_title": "Verified Caller",
+      "commonalities": "0.9.0",
+      "maturity": "initial",
+      "portfolio_category": "Communication Services",
+      "website_url": "https://camaraproject.org/verified-caller/",
+      "tooltip": "Show certified information on the phone before a call is answered",
+      "display_name": "Verified Caller",
+      "published": true,
+      "canonical_name": "verified-caller",
+      "first_release": "Fall25",
+      "repository": "VerifiedCaller",
+      "release_tag": "r2.3",
+      "release_date": "2026-11-04T05:59:09Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/VerifiedCaller/releases/tag/r2.3",
       "release_type": "pre-release-rc"
     },
     {
