@@ -1,14 +1,14 @@
 metadata:
-  last_updated: '2026-11-03T09:59:28.688Z'
+  last_updated: '2026-11-05T06:45:25.547Z'
   workflow_version: 3.0.0
   schema_version: 3.2.0
   collector_run:
     analysis_scope: incremental
-    workflow_run_id: '41615317482'
-    workflow_run_number: 379
-    workflow_run_url: https://github.com/camaraproject/project-administration/actions/runs/41615317482
-    source_sha: 8913f6ed9cece228b08172b02f8c0c2d97bccd3f
-    node_version: v24.22.1
+    workflow_run_id: '41982423636'
+    workflow_run_number: 381
+    workflow_run_url: https://github.com/camaraproject/project-administration/actions/runs/41982423636
+    source_sha: 95c6351d14196ac9279832f10bc61ab014d1b99d
+    node_version: v24.22.2
     npm_version: 11.19.1
     dependencies:
       '@octokit/rest': 22.0.1
@@ -2190,6 +2190,21 @@ releases:
         api_version: 0.5.0-rc.1
         api_title: Know Your Customer Fill-in
         commonalities: 0.8.0
+  - repository: KnowYourCustomerFill-in
+    release_tag: r2.2
+    release_date: '2026-11-04T08:27:08Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/KnowYourCustomerFill-in/releases/tag/r2.2
+    release_type: pre-release-rc
+    src_commit_sha: 88bd0a765729744c74201977e8f37a4ea7682435
+    dependencies:
+      commonalities_release: r4.4 (0.9.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: kyc-fill-in
+        api_version: 0.5.0-rc.2
+        api_title: Know Your Customer Fill-in
+        commonalities: 0.9.0
   - repository: KnowYourCustomerMatch
     release_tag: r1.1
     release_date: '2025-07-22T09:51:48Z'
@@ -2228,6 +2243,21 @@ releases:
         api_version: 0.5.0-rc.1
         api_title: Know Your Customer Match
         commonalities: 0.8.0
+  - repository: KnowYourCustomerMatch
+    release_tag: r2.2
+    release_date: '2026-11-04T07:47:40Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/KnowYourCustomerMatch/releases/tag/r2.2
+    release_type: pre-release-rc
+    src_commit_sha: b8a8d602e9cbf57d8a6112e418f04609e0e2f3d6
+    dependencies:
+      commonalities_release: r4.4 (0.9.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: kyc-match
+        api_version: 1.0.0-rc.1
+        api_title: Know Your Customer Match
+        commonalities: 0.9.0
   - repository: ModelAsAService
     release_tag: r1.1
     release_date: '2025-07-24T10:54:35Z'
@@ -3908,6 +3938,25 @@ releases:
         api_version: 0.2.0-rc.1
         api_title: Verified Caller
         commonalities: 0.8.0
+  - repository: VerifiedCaller
+    release_tag: r2.3
+    release_date: '2026-11-04T05:59:09Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/VerifiedCaller/releases/tag/r2.3
+    release_type: pre-release-rc
+    src_commit_sha: 4a55bb40b0034dd0f3863fa4f8f494b83eea8b89
+    dependencies:
+      commonalities_release: r4.4 (0.9.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: brand-registration
+        api_version: 0.2.0-rc.2
+        api_title: Brand Registration
+        commonalities: 0.9.0
+      - api_name: verified-caller
+        api_version: 0.2.0-rc.2
+        api_title: Verified Caller
+        commonalities: 0.9.0
   - repository: WebRTC
     release_tag: r1.1
     release_date: '2025-02-17T11:57:15Z'
@@ -4158,11 +4207,11 @@ repositories:
   - repository: KnowYourCustomerFill-in
     github_url: https://github.com/camaraproject/KnowYourCustomerFill-in
     latest_public_release: r1.3
-    newest_pre_release: r2.1
+    newest_pre_release: r2.2
   - repository: KnowYourCustomerMatch
     github_url: https://github.com/camaraproject/KnowYourCustomerMatch
     latest_public_release: r1.2
-    newest_pre_release: r2.1
+    newest_pre_release: r2.2
   - repository: ModelAsAService
     github_url: https://github.com/camaraproject/ModelAsAService
     latest_public_release: r1.2
@@ -4280,7 +4329,7 @@ repositories:
   - repository: VerifiedCaller
     github_url: https://github.com/camaraproject/VerifiedCaller
     latest_public_release: r1.3
-    newest_pre_release: r2.2
+    newest_pre_release: r2.3
   - repository: VoiceNotification
     github_url: https://github.com/camaraproject/VoiceNotification
     latest_public_release: null
