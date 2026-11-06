@@ -1,13 +1,13 @@
 metadata:
-  last_updated: '2026-11-05T06:45:25.547Z'
+  last_updated: '2026-11-06T09:48:26.600Z'
   workflow_version: 3.0.0
   schema_version: 3.2.0
   collector_run:
     analysis_scope: incremental
-    workflow_run_id: '41982423636'
-    workflow_run_number: 381
-    workflow_run_url: https://github.com/camaraproject/project-administration/actions/runs/41982423636
-    source_sha: 95c6351d14196ac9279832f10bc61ab014d1b99d
+    workflow_run_id: '42197649411'
+    workflow_run_number: 383
+    workflow_run_url: https://github.com/camaraproject/project-administration/actions/runs/42197649411
+    source_sha: b79d6eea6dcc60883ecf00d84830d354d233e816
     node_version: v24.22.2
     npm_version: 11.19.1
     dependencies:
@@ -2320,6 +2320,29 @@ releases:
         api_version: 0.2.0-rc.1
         api_title: Q&A Assistant - Service
         commonalities: 0.8.0
+  - repository: ModelAsAService
+    release_tag: r2.2
+    release_date: '2026-11-06T01:18:38Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/ModelAsAService/releases/tag/r2.2
+    release_type: pre-release-rc
+    src_commit_sha: f2a7cdf65000fb5bd7ed94c26b4f04af42e934b3
+    dependencies:
+      commonalities_release: r4.4 (0.9.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: knowledge-base
+        api_version: 0.2.0-rc.2
+        api_title: Knowledge Base
+        commonalities: 0.9.0
+      - api_name: qa-assistant-manage
+        api_version: 0.2.0-rc.2
+        api_title: Q&A Assistant - Manage
+        commonalities: 0.9.0
+      - api_name: qa-assistant-service
+        api_version: 0.2.0-rc.2
+        api_title: Q&A Assistant - Service
+        commonalities: 0.9.0
   - repository: MostFrequentLocation
     release_tag: r1.1
     release_date: '2024-12-11T09:41:11Z'
@@ -2770,6 +2793,21 @@ releases:
         api_version: 0.2.0-rc.1
         api_title: Optimal Edge Discovery
         commonalities: 0.8.0
+  - repository: OptimalEdgeDiscovery
+    release_tag: r2.2
+    release_date: '2026-11-05T16:40:10Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/OptimalEdgeDiscovery/releases/tag/r2.2
+    release_type: pre-release-rc
+    src_commit_sha: 4859df2a4b36441140e71aa76d316f114ab38eb0
+    dependencies:
+      commonalities_release: r4.4 (0.9.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: optimal-edge-discovery
+        api_version: 0.2.0-rc.2
+        api_title: Optimal Edge Discovery
+        commonalities: 0.9.0
   - repository: OTPValidation
     release_tag: r1.1
     release_date: '2024-08-08T10:14:37Z'
@@ -2982,6 +3020,7 @@ releases:
         api_version: 1.0.0-rc.1
         api_title: Population Density Data
         commonalities: 0.8.0
+    superseded: true
   - repository: PopulationDensityData
     release_tag: r4.2
     release_date: '2026-10-08T14:04:38Z'
@@ -2995,6 +3034,22 @@ releases:
     apis:
       - api_name: population-density-data
         api_version: 1.0.0-rc.2
+        api_title: Population Density Data
+        commonalities: 0.9.0
+    superseded: true
+  - repository: PopulationDensityData
+    release_tag: r4.3
+    release_date: '2026-11-06T09:02:33Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/PopulationDensityData/releases/tag/r4.3
+    release_type: public-release
+    src_commit_sha: e0fc6051de8adeff6e00acb7049c02b704aacd29
+    dependencies:
+      commonalities_release: r4.4 (0.9.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: population-density-data
+        api_version: 1.0.0
         api_title: Population Density Data
         commonalities: 0.9.0
   - repository: PredictiveConnectivityData
@@ -3818,6 +3873,21 @@ releases:
         api_version: 0.3.0-rc.1
         api_title: KYC Tenure
         commonalities: 0.8.0
+  - repository: Tenure
+    release_tag: r3.3
+    release_date: '2026-11-06T08:56:59Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/Tenure/releases/tag/r3.3
+    release_type: pre-release-rc
+    src_commit_sha: 2de731ab95d17feb49c4cd0d459ad0e493a15ff1
+    dependencies:
+      commonalities_release: r4.4 (0.9.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: kyc-tenure
+        api_version: 0.3.0-rc.2
+        api_title: KYC Tenure
+        commonalities: 0.9.0
   - repository: TrafficInfluence
     release_tag: r1.1
     release_date: '2025-06-10T15:04:41Z'
@@ -4215,7 +4285,7 @@ repositories:
   - repository: ModelAsAService
     github_url: https://github.com/camaraproject/ModelAsAService
     latest_public_release: r1.2
-    newest_pre_release: r2.1
+    newest_pre_release: r2.2
   - repository: MostFrequentLocation
     github_url: https://github.com/camaraproject/MostFrequentLocation
     latest_public_release: r2.2
@@ -4251,15 +4321,15 @@ repositories:
   - repository: OptimalEdgeDiscovery
     github_url: https://github.com/camaraproject/OptimalEdgeDiscovery
     latest_public_release: r1.2
-    newest_pre_release: r2.1
+    newest_pre_release: r2.2
   - repository: OTPValidation
     github_url: https://github.com/camaraproject/OTPValidation
     latest_public_release: r4.3
     newest_pre_release: null
   - repository: PopulationDensityData
     github_url: https://github.com/camaraproject/PopulationDensityData
-    latest_public_release: r3.2
-    newest_pre_release: r4.2
+    latest_public_release: r4.3
+    newest_pre_release: null
   - repository: PredictiveConnectivityData
     github_url: https://github.com/camaraproject/PredictiveConnectivityData
     latest_public_release: r1.2
@@ -4321,7 +4391,7 @@ repositories:
   - repository: Tenure
     github_url: https://github.com/camaraproject/Tenure
     latest_public_release: r2.2
-    newest_pre_release: r3.2
+    newest_pre_release: r3.3
   - repository: TrafficInfluence
     github_url: https://github.com/camaraproject/TrafficInfluence
     latest_public_release: r1.3
