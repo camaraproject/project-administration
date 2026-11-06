@@ -1,34 +1,34 @@
 {
   "metadata": {
-    "generated": "2026-11-05T06:45:26.963Z",
+    "generated": "2026-11-06T09:48:28.296Z",
     "meta_release": "All",
     "source": "Release Collector v3",
     "landscape_version": "1.1.1"
   },
   "statistics": {
     "repositories_count": 54,
-    "api_versions_count": 258,
+    "api_versions_count": 262,
     "unique_api_names_count": 79,
     "unique_apis_count": 78,
     "api_version_maturity": {
-      "stable": 33,
+      "stable": 34,
       "initial": 142,
-      "rc": 83
+      "rc": 86
     },
     "unique_api_maturity": {
-      "stable": 5,
+      "stable": 6,
       "initial": 22,
-      "rc": 51
+      "rc": 50
     },
     "categories": {
-      "Computing Services": 19,
+      "Computing Services": 23,
       "Communication Quality": 61,
       "Payments and Charging": 11,
-      "Authentication and Fraud Prevention": 70,
+      "Authentication and Fraud Prevention": 71,
       "Communication Services": 19,
       "Service Management": 2,
       "Device Information": 34,
-      "Location Services": 24
+      "Location Services": 23
     },
     "apis_with_previous_names": 6
   },
@@ -673,6 +673,11 @@
     "ModelAsAService": {
       "releases": [
         {
+          "tag": "r2.2",
+          "date": "2026-11-06T01:18:38Z",
+          "apis_count": 3
+        },
+        {
           "tag": "r2.1",
           "date": "2026-07-28T01:55:13Z",
           "apis_count": 3
@@ -683,7 +688,7 @@
           "apis_count": 3
         }
       ],
-      "total_apis": 6,
+      "total_apis": 9,
       "unique_apis_count": 3
     },
     "MostFrequentLocation": {
@@ -805,6 +810,11 @@
     "OptimalEdgeDiscovery": {
       "releases": [
         {
+          "tag": "r2.2",
+          "date": "2026-11-05T16:40:10Z",
+          "apis_count": 1
+        },
+        {
           "tag": "r2.1",
           "date": "2026-09-10T20:04:23Z",
           "apis_count": 1
@@ -815,7 +825,7 @@
           "apis_count": 1
         }
       ],
-      "total_apis": 2,
+      "total_apis": 3,
       "unique_apis_count": 1
     },
     "OTPValidation": {
@@ -847,13 +857,8 @@
     "PopulationDensityData": {
       "releases": [
         {
-          "tag": "r4.2",
-          "date": "2026-10-08T14:04:38Z",
-          "apis_count": 1
-        },
-        {
-          "tag": "r4.1",
-          "date": "2026-08-11T10:11:52Z",
+          "tag": "r4.3",
+          "date": "2026-11-06T09:02:33Z",
           "apis_count": 1
         },
         {
@@ -872,7 +877,7 @@
           "apis_count": 1
         }
       ],
-      "total_apis": 5,
+      "total_apis": 4,
       "unique_apis_count": 1
     },
     "PredictiveConnectivityData": {
@@ -1087,6 +1092,11 @@
     "Tenure": {
       "releases": [
         {
+          "tag": "r3.3",
+          "date": "2026-11-06T08:56:59Z",
+          "apis_count": 1
+        },
+        {
           "tag": "r3.2",
           "date": "2026-08-11T08:25:04Z",
           "apis_count": 1
@@ -1107,7 +1117,7 @@
           "apis_count": 1
         }
       ],
-      "total_apis": 4,
+      "total_apis": 5,
       "unique_apis_count": 1
     },
     "TrafficInfluence": {
@@ -4590,6 +4600,63 @@
       ]
     },
     {
+      "repository": "ModelAsAService",
+      "release_tag": "r2.2",
+      "release_date": "2026-11-06T01:18:38Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/ModelAsAService/releases/tag/r2.2",
+      "release_type": "pre-release-rc",
+      "src_commit_sha": "f2a7cdf65000fb5bd7ed94c26b4f04af42e934b3",
+      "dependencies": {
+        "commonalities_release": "r4.4 (0.9.0)",
+        "identity_consent_management_release": "r4.2 (0.5.0)"
+      },
+      "apis": [
+        {
+          "api_name": "knowledge-base",
+          "api_version": "0.2.0-rc.2",
+          "api_title": "Knowledge Base",
+          "commonalities": "0.9.0",
+          "maturity": "initial",
+          "portfolio_category": "Computing Services",
+          "website_url": "https://camaraproject.org/model-as-a-service/",
+          "tooltip": "Build and manage personalized knowledge bases",
+          "display_name": "Knowledge Base",
+          "published": true,
+          "canonical_name": "knowledge-base",
+          "first_release": "Fall25"
+        },
+        {
+          "api_name": "qa-assistant-manage",
+          "api_version": "0.2.0-rc.2",
+          "api_title": "Q&A Assistant - Manage",
+          "commonalities": "0.9.0",
+          "maturity": "initial",
+          "portfolio_category": "Computing Services",
+          "website_url": "https://camaraproject.org/model-as-a-service/",
+          "tooltip": "Quickly construct unique Q&A assistant applications",
+          "display_name": "Q&A Assistant - Manage",
+          "published": true,
+          "canonical_name": "qa-assistant-manage",
+          "first_release": "Fall25"
+        },
+        {
+          "api_name": "qa-assistant-service",
+          "api_version": "0.2.0-rc.2",
+          "api_title": "Q&A Assistant - Service",
+          "commonalities": "0.9.0",
+          "maturity": "initial",
+          "portfolio_category": "Computing Services",
+          "website_url": "https://camaraproject.org/model-as-a-service/",
+          "tooltip": "Provide Q&A services to the users of the application",
+          "display_name": "Q&A Assistant - Service",
+          "published": true,
+          "canonical_name": "qa-assistant-service",
+          "first_release": "Fall25"
+        }
+      ]
+    },
+    {
       "repository": "MostFrequentLocation",
       "release_tag": "r1.2",
       "release_date": "2025-01-30T15:13:30Z",
@@ -5111,6 +5178,35 @@
       ]
     },
     {
+      "repository": "OptimalEdgeDiscovery",
+      "release_tag": "r2.2",
+      "release_date": "2026-11-05T16:40:10Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/OptimalEdgeDiscovery/releases/tag/r2.2",
+      "release_type": "pre-release-rc",
+      "src_commit_sha": "4859df2a4b36441140e71aa76d316f114ab38eb0",
+      "dependencies": {
+        "commonalities_release": "r4.4 (0.9.0)",
+        "identity_consent_management_release": "r4.2 (0.5.0)"
+      },
+      "apis": [
+        {
+          "api_name": "optimal-edge-discovery",
+          "api_version": "0.2.0-rc.2",
+          "api_title": "Optimal Edge Discovery",
+          "commonalities": "0.9.0",
+          "maturity": "initial",
+          "portfolio_category": "Computing Services",
+          "website_url": "https://camaraproject.org/optimal-edge-discovery/",
+          "tooltip": "Find optimal edge computing locations",
+          "display_name": "Optimal Edge Discovery",
+          "published": true,
+          "canonical_name": "optimal-edge-discovery",
+          "first_release": "Fall25"
+        }
+      ]
+    },
+    {
       "repository": "OTPValidation",
       "release_tag": "r1.2",
       "release_date": "2024-09-09T08:52:34Z",
@@ -5291,41 +5387,12 @@
     },
     {
       "repository": "PopulationDensityData",
-      "release_tag": "r4.1",
-      "release_date": "2026-08-11T10:11:52Z",
+      "release_tag": "r4.3",
+      "release_date": "2026-11-06T09:02:33Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/PopulationDensityData/releases/tag/r4.1",
-      "release_type": "pre-release-rc",
-      "src_commit_sha": "faa2511f5d4b5decf7bbceacbbed986c001a4163",
-      "dependencies": {
-        "commonalities_release": "r4.3 (0.8.0)",
-        "identity_consent_management_release": "r4.2 (0.5.0)"
-      },
-      "apis": [
-        {
-          "api_name": "population-density-data",
-          "api_version": "1.0.0-rc.1",
-          "api_title": "Population Density Data",
-          "commonalities": "0.8.0",
-          "maturity": "stable",
-          "portfolio_category": "Location Services",
-          "website_url": "https://camaraproject.org/population-density-data/",
-          "tooltip": "Get dynamic population density data in a specific area for a future date & time",
-          "display_name": "Population Density Data",
-          "published": true,
-          "canonical_name": "population-density-data",
-          "first_release": "Fall24"
-        }
-      ]
-    },
-    {
-      "repository": "PopulationDensityData",
-      "release_tag": "r4.2",
-      "release_date": "2026-10-08T14:04:38Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/PopulationDensityData/releases/tag/r4.2",
-      "release_type": "pre-release-rc",
-      "src_commit_sha": "cfd33fd6fda89c131f9b9010675500443d276d72",
+      "github_url": "https://github.com/camaraproject/PopulationDensityData/releases/tag/r4.3",
+      "release_type": "public-release",
+      "src_commit_sha": "e0fc6051de8adeff6e00acb7049c02b704aacd29",
       "dependencies": {
         "commonalities_release": "r4.4 (0.9.0)",
         "identity_consent_management_release": "r4.2 (0.5.0)"
@@ -5333,7 +5400,7 @@
       "apis": [
         {
           "api_name": "population-density-data",
-          "api_version": "1.0.0-rc.2",
+          "api_version": "1.0.0",
           "api_title": "Population Density Data",
           "commonalities": "0.9.0",
           "maturity": "stable",
@@ -6569,6 +6636,35 @@
           "api_version": "0.3.0-rc.1",
           "api_title": "KYC Tenure",
           "commonalities": "0.8.0",
+          "maturity": "initial",
+          "portfolio_category": "Authentication and Fraud Prevention",
+          "website_url": "https://camaraproject.org/know-your-customer-tenure/",
+          "tooltip": "Verifying the length of tenure for a mobile user who is bound to a mobile number with their current mobile operator",
+          "display_name": "KYC Tenure",
+          "published": true,
+          "canonical_name": "kyc-tenure",
+          "first_release": "Spring25"
+        }
+      ]
+    },
+    {
+      "repository": "Tenure",
+      "release_tag": "r3.3",
+      "release_date": "2026-11-06T08:56:59Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/Tenure/releases/tag/r3.3",
+      "release_type": "pre-release-rc",
+      "src_commit_sha": "2de731ab95d17feb49c4cd0d459ad0e493a15ff1",
+      "dependencies": {
+        "commonalities_release": "r4.4 (0.9.0)",
+        "identity_consent_management_release": "r4.2 (0.5.0)"
+      },
+      "apis": [
+        {
+          "api_name": "kyc-tenure",
+          "api_version": "0.3.0-rc.2",
+          "api_title": "KYC Tenure",
+          "commonalities": "0.9.0",
           "maturity": "initial",
           "portfolio_category": "Authentication and Fraud Prevention",
           "website_url": "https://camaraproject.org/know-your-customer-tenure/",
@@ -10067,6 +10163,26 @@
       "release_type": "pre-release-rc"
     },
     {
+      "api_name": "knowledge-base",
+      "api_version": "0.2.0-rc.2",
+      "api_title": "Knowledge Base",
+      "commonalities": "0.9.0",
+      "maturity": "initial",
+      "portfolio_category": "Computing Services",
+      "website_url": "https://camaraproject.org/model-as-a-service/",
+      "tooltip": "Build and manage personalized knowledge bases",
+      "display_name": "Knowledge Base",
+      "published": true,
+      "canonical_name": "knowledge-base",
+      "first_release": "Fall25",
+      "repository": "ModelAsAService",
+      "release_tag": "r2.2",
+      "release_date": "2026-11-06T01:18:38Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/ModelAsAService/releases/tag/r2.2",
+      "release_type": "pre-release-rc"
+    },
+    {
       "api_name": "qa-assistant-manage",
       "api_version": "0.1.0",
       "api_title": "Q&A Assistant - Manage",
@@ -10108,6 +10224,26 @@
       "release_type": "pre-release-rc"
     },
     {
+      "api_name": "qa-assistant-manage",
+      "api_version": "0.2.0-rc.2",
+      "api_title": "Q&A Assistant - Manage",
+      "commonalities": "0.9.0",
+      "maturity": "initial",
+      "portfolio_category": "Computing Services",
+      "website_url": "https://camaraproject.org/model-as-a-service/",
+      "tooltip": "Quickly construct unique Q&A assistant applications",
+      "display_name": "Q&A Assistant - Manage",
+      "published": true,
+      "canonical_name": "qa-assistant-manage",
+      "first_release": "Fall25",
+      "repository": "ModelAsAService",
+      "release_tag": "r2.2",
+      "release_date": "2026-11-06T01:18:38Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/ModelAsAService/releases/tag/r2.2",
+      "release_type": "pre-release-rc"
+    },
+    {
       "api_name": "qa-assistant-service",
       "api_version": "0.1.0",
       "api_title": "Q&A Assistant - Service",
@@ -10146,6 +10282,26 @@
       "release_date": "2026-07-28T01:55:13Z",
       "meta_release": "Independent",
       "github_url": "https://github.com/camaraproject/ModelAsAService/releases/tag/r2.1",
+      "release_type": "pre-release-rc"
+    },
+    {
+      "api_name": "qa-assistant-service",
+      "api_version": "0.2.0-rc.2",
+      "api_title": "Q&A Assistant - Service",
+      "commonalities": "0.9.0",
+      "maturity": "initial",
+      "portfolio_category": "Computing Services",
+      "website_url": "https://camaraproject.org/model-as-a-service/",
+      "tooltip": "Provide Q&A services to the users of the application",
+      "display_name": "Q&A Assistant - Service",
+      "published": true,
+      "canonical_name": "qa-assistant-service",
+      "first_release": "Fall25",
+      "repository": "ModelAsAService",
+      "release_tag": "r2.2",
+      "release_date": "2026-11-06T01:18:38Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/ModelAsAService/releases/tag/r2.2",
       "release_type": "pre-release-rc"
     },
     {
@@ -10581,6 +10737,26 @@
       "release_type": "pre-release-rc"
     },
     {
+      "api_name": "optimal-edge-discovery",
+      "api_version": "0.2.0-rc.2",
+      "api_title": "Optimal Edge Discovery",
+      "commonalities": "0.9.0",
+      "maturity": "initial",
+      "portfolio_category": "Computing Services",
+      "website_url": "https://camaraproject.org/optimal-edge-discovery/",
+      "tooltip": "Find optimal edge computing locations",
+      "display_name": "Optimal Edge Discovery",
+      "published": true,
+      "canonical_name": "optimal-edge-discovery",
+      "first_release": "Fall25",
+      "repository": "OptimalEdgeDiscovery",
+      "release_tag": "r2.2",
+      "release_date": "2026-11-05T16:40:10Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/OptimalEdgeDiscovery/releases/tag/r2.2",
+      "release_type": "pre-release-rc"
+    },
+    {
       "api_name": "one-time-password-sms",
       "api_version": "1.0.0",
       "api_title": "One Time Password SMS",
@@ -10728,27 +10904,7 @@
     },
     {
       "api_name": "population-density-data",
-      "api_version": "1.0.0-rc.1",
-      "api_title": "Population Density Data",
-      "commonalities": "0.8.0",
-      "maturity": "stable",
-      "portfolio_category": "Location Services",
-      "website_url": "https://camaraproject.org/population-density-data/",
-      "tooltip": "Get dynamic population density data in a specific area for a future date & time",
-      "display_name": "Population Density Data",
-      "published": true,
-      "canonical_name": "population-density-data",
-      "first_release": "Fall24",
-      "repository": "PopulationDensityData",
-      "release_tag": "r4.1",
-      "release_date": "2026-08-11T10:11:52Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/PopulationDensityData/releases/tag/r4.1",
-      "release_type": "pre-release-rc"
-    },
-    {
-      "api_name": "population-density-data",
-      "api_version": "1.0.0-rc.2",
+      "api_version": "1.0.0",
       "api_title": "Population Density Data",
       "commonalities": "0.9.0",
       "maturity": "stable",
@@ -10760,11 +10916,11 @@
       "canonical_name": "population-density-data",
       "first_release": "Fall24",
       "repository": "PopulationDensityData",
-      "release_tag": "r4.2",
-      "release_date": "2026-10-08T14:04:38Z",
+      "release_tag": "r4.3",
+      "release_date": "2026-11-06T09:02:33Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/PopulationDensityData/releases/tag/r4.2",
-      "release_type": "pre-release-rc"
+      "github_url": "https://github.com/camaraproject/PopulationDensityData/releases/tag/r4.3",
+      "release_type": "public-release"
     },
     {
       "api_name": "predictive-connectivity-data",
@@ -11897,6 +12053,26 @@
       "release_date": "2026-08-11T08:25:04Z",
       "meta_release": "Independent",
       "github_url": "https://github.com/camaraproject/Tenure/releases/tag/r3.2",
+      "release_type": "pre-release-rc"
+    },
+    {
+      "api_name": "kyc-tenure",
+      "api_version": "0.3.0-rc.2",
+      "api_title": "KYC Tenure",
+      "commonalities": "0.9.0",
+      "maturity": "initial",
+      "portfolio_category": "Authentication and Fraud Prevention",
+      "website_url": "https://camaraproject.org/know-your-customer-tenure/",
+      "tooltip": "Verifying the length of tenure for a mobile user who is bound to a mobile number with their current mobile operator",
+      "display_name": "KYC Tenure",
+      "published": true,
+      "canonical_name": "kyc-tenure",
+      "first_release": "Spring25",
+      "repository": "Tenure",
+      "release_tag": "r3.3",
+      "release_date": "2026-11-06T08:56:59Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/Tenure/releases/tag/r3.3",
       "release_type": "pre-release-rc"
     },
     {
