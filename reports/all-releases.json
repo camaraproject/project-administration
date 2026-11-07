@@ -1,30 +1,30 @@
 {
   "metadata": {
-    "generated": "2026-11-06T09:48:28.296Z",
+    "generated": "2026-11-07T09:11:38.174Z",
     "meta_release": "All",
     "source": "Release Collector v3",
     "landscape_version": "1.1.1"
   },
   "statistics": {
     "repositories_count": 54,
-    "api_versions_count": 262,
+    "api_versions_count": 260,
     "unique_api_names_count": 79,
     "unique_apis_count": 78,
     "api_version_maturity": {
       "stable": 34,
       "initial": 142,
-      "rc": 86
+      "rc": 84
     },
     "unique_api_maturity": {
       "stable": 6,
-      "initial": 22,
-      "rc": 50
+      "initial": 23,
+      "rc": 49
     },
     "categories": {
       "Computing Services": 23,
       "Communication Quality": 61,
       "Payments and Charging": 11,
-      "Authentication and Fraud Prevention": 71,
+      "Authentication and Fraud Prevention": 69,
       "Communication Services": 19,
       "Service Management": 2,
       "Device Information": 34,
@@ -1092,18 +1092,8 @@
     "Tenure": {
       "releases": [
         {
-          "tag": "r3.3",
-          "date": "2026-11-06T08:56:59Z",
-          "apis_count": 1
-        },
-        {
-          "tag": "r3.2",
-          "date": "2026-08-11T08:25:04Z",
-          "apis_count": 1
-        },
-        {
-          "tag": "r3.1",
-          "date": "2026-06-23T12:07:05Z",
+          "tag": "r3.4",
+          "date": "2026-11-06T15:24:11Z",
           "apis_count": 1
         },
         {
@@ -1117,7 +1107,7 @@
           "apis_count": 1
         }
       ],
-      "total_apis": 5,
+      "total_apis": 3,
       "unique_apis_count": 1
     },
     "TrafficInfluence": {
@@ -6591,70 +6581,12 @@
     },
     {
       "repository": "Tenure",
-      "release_tag": "r3.1",
-      "release_date": "2026-06-23T12:07:05Z",
+      "release_tag": "r3.4",
+      "release_date": "2026-11-06T15:24:11Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/Tenure/releases/tag/r3.1",
-      "release_type": "pre-release-alpha",
-      "src_commit_sha": "2030fccc2fb320c2338b3acd42526f2a5cc5fffd",
-      "dependencies": {
-        "commonalities_release": "r4.3 (0.8.0)",
-        "identity_consent_management_release": "r4.2 (0.5.0)"
-      },
-      "apis": [
-        {
-          "api_name": "kyc-tenure",
-          "api_version": "0.3.0-alpha.1",
-          "api_title": "KYC Tenure",
-          "commonalities": "0.8.0",
-          "maturity": "initial",
-          "portfolio_category": "Authentication and Fraud Prevention",
-          "website_url": "https://camaraproject.org/know-your-customer-tenure/",
-          "tooltip": "Verifying the length of tenure for a mobile user who is bound to a mobile number with their current mobile operator",
-          "display_name": "KYC Tenure",
-          "published": true,
-          "canonical_name": "kyc-tenure",
-          "first_release": "Spring25"
-        }
-      ]
-    },
-    {
-      "repository": "Tenure",
-      "release_tag": "r3.2",
-      "release_date": "2026-08-11T08:25:04Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/Tenure/releases/tag/r3.2",
-      "release_type": "pre-release-rc",
-      "src_commit_sha": "91eea01c3cf00eaf960ba67c062efa526a402469",
-      "dependencies": {
-        "commonalities_release": "r4.3 (0.8.0)",
-        "identity_consent_management_release": "r4.2 (0.5.0)"
-      },
-      "apis": [
-        {
-          "api_name": "kyc-tenure",
-          "api_version": "0.3.0-rc.1",
-          "api_title": "KYC Tenure",
-          "commonalities": "0.8.0",
-          "maturity": "initial",
-          "portfolio_category": "Authentication and Fraud Prevention",
-          "website_url": "https://camaraproject.org/know-your-customer-tenure/",
-          "tooltip": "Verifying the length of tenure for a mobile user who is bound to a mobile number with their current mobile operator",
-          "display_name": "KYC Tenure",
-          "published": true,
-          "canonical_name": "kyc-tenure",
-          "first_release": "Spring25"
-        }
-      ]
-    },
-    {
-      "repository": "Tenure",
-      "release_tag": "r3.3",
-      "release_date": "2026-11-06T08:56:59Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/Tenure/releases/tag/r3.3",
-      "release_type": "pre-release-rc",
-      "src_commit_sha": "2de731ab95d17feb49c4cd0d459ad0e493a15ff1",
+      "github_url": "https://github.com/camaraproject/Tenure/releases/tag/r3.4",
+      "release_type": "public-release",
+      "src_commit_sha": "56d4ad8e7d2fc66a247dac8682aa910f33df7fd4",
       "dependencies": {
         "commonalities_release": "r4.4 (0.9.0)",
         "identity_consent_management_release": "r4.2 (0.5.0)"
@@ -6662,7 +6594,7 @@
       "apis": [
         {
           "api_name": "kyc-tenure",
-          "api_version": "0.3.0-rc.2",
+          "api_version": "0.3.0",
           "api_title": "KYC Tenure",
           "commonalities": "0.9.0",
           "maturity": "initial",
@@ -12017,47 +11949,7 @@
     },
     {
       "api_name": "kyc-tenure",
-      "api_version": "0.3.0-alpha.1",
-      "api_title": "KYC Tenure",
-      "commonalities": "0.8.0",
-      "maturity": "initial",
-      "portfolio_category": "Authentication and Fraud Prevention",
-      "website_url": "https://camaraproject.org/know-your-customer-tenure/",
-      "tooltip": "Verifying the length of tenure for a mobile user who is bound to a mobile number with their current mobile operator",
-      "display_name": "KYC Tenure",
-      "published": true,
-      "canonical_name": "kyc-tenure",
-      "first_release": "Spring25",
-      "repository": "Tenure",
-      "release_tag": "r3.1",
-      "release_date": "2026-06-23T12:07:05Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/Tenure/releases/tag/r3.1",
-      "release_type": "pre-release-alpha"
-    },
-    {
-      "api_name": "kyc-tenure",
-      "api_version": "0.3.0-rc.1",
-      "api_title": "KYC Tenure",
-      "commonalities": "0.8.0",
-      "maturity": "initial",
-      "portfolio_category": "Authentication and Fraud Prevention",
-      "website_url": "https://camaraproject.org/know-your-customer-tenure/",
-      "tooltip": "Verifying the length of tenure for a mobile user who is bound to a mobile number with their current mobile operator",
-      "display_name": "KYC Tenure",
-      "published": true,
-      "canonical_name": "kyc-tenure",
-      "first_release": "Spring25",
-      "repository": "Tenure",
-      "release_tag": "r3.2",
-      "release_date": "2026-08-11T08:25:04Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/Tenure/releases/tag/r3.2",
-      "release_type": "pre-release-rc"
-    },
-    {
-      "api_name": "kyc-tenure",
-      "api_version": "0.3.0-rc.2",
+      "api_version": "0.3.0",
       "api_title": "KYC Tenure",
       "commonalities": "0.9.0",
       "maturity": "initial",
@@ -12069,11 +11961,11 @@
       "canonical_name": "kyc-tenure",
       "first_release": "Spring25",
       "repository": "Tenure",
-      "release_tag": "r3.3",
-      "release_date": "2026-11-06T08:56:59Z",
+      "release_tag": "r3.4",
+      "release_date": "2026-11-06T15:24:11Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/Tenure/releases/tag/r3.3",
-      "release_type": "pre-release-rc"
+      "github_url": "https://github.com/camaraproject/Tenure/releases/tag/r3.4",
+      "release_type": "public-release"
     },
     {
       "api_name": "traffic-influence",
