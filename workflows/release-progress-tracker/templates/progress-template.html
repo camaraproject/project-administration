@@ -360,18 +360,6 @@ tr.historical-row:hover td {
             <input type="text" id="filterSearch" placeholder="API or repo name..." onkeyup="applyFilters()">
           </div>
           <div class="filter-group">
-            <label for="filterState">State:</label>
-            <select id="filterState" onchange="applyFilters()">
-              <option value="">All</option>
-              <option value="published">Published</option>
-              <option value="draft_ready">Draft Ready</option>
-              <option value="snapshot_active">Snapshot</option>
-              <option value="planned">Planned</option>
-              <option value="not_planned">Not Planned</option>
-              <option value="historical">Historical</option>
-            </select>
-          </div>
-          <div class="filter-group">
             <label for="filterMaturity">Maturity:</label>
             <select id="filterMaturity" onchange="applyFilters()">
               <option value="">All</option>
@@ -382,6 +370,12 @@ tr.historical-row:hover td {
           <div class="filter-group">
             <label for="filterReleaseType">Type:</label>
             <select id="filterReleaseType" onchange="applyFilters()">
+              <option value="">All</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="filterState">State:</label>
+            <select id="filterState" onchange="applyFilters()">
               <option value="">All</option>
             </select>
           </div>
@@ -446,16 +440,6 @@ tr.historical-row:hover td {
               <input type="text" id="reviewSearch" placeholder="Repo, API, tag or reviewer..." onkeyup="applyReviewFilters()">
             </div>
             <div class="filter-group">
-              <label for="reviewStateFilter">State:</label>
-              <select id="reviewStateFilter" onchange="applyReviewFilters()">
-                <option value="">All</option>
-                <option value="snapshot_active">Snapshot</option>
-                <option value="planned">Planned</option>
-                <option value="draft_ready">Draft Ready</option>
-                <option value="published">Published</option>
-              </select>
-            </div>
-            <div class="filter-group">
               <label for="reviewTrackFilter">Track:</label>
               <select id="reviewTrackFilter" onchange="applyReviewFilters()">
                 <option value="">All</option>
@@ -464,6 +448,12 @@ tr.historical-row:hover td {
             <div class="filter-group">
               <label for="reviewReleaseTypeFilter">Type:</label>
               <select id="reviewReleaseTypeFilter" onchange="applyReviewFilters()">
+                <option value="">All</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <label for="reviewStateFilter">State:</label>
+              <select id="reviewStateFilter" onchange="applyReviewFilters()">
                 <option value="">All</option>
               </select>
             </div>
@@ -673,23 +663,48 @@ tr.historical-row:hover td {
       ['maintenance', 'Maintenance'],
     ];
 
+    const PROGRESS_STATE_OPTIONS = [
+      ['published', 'Published'],
+      ['draft_ready', 'Draft Ready'],
+      ['snapshot_active', 'Snapshot'],
+      ['planned', 'Planned'],
+      ['not_planned', 'Not Planned'],
+      ['historical', 'Historical'],
+    ];
+
+    const REVIEW_STATE_OPTIONS = [
+      ['snapshot_active', 'Snapshot'],
+      ['planned', 'Planned'],
+      ['draft_ready', 'Draft Ready'],
+      ['published', 'Published'],
+    ];
+
     /**
-     * Populate a Type filter <select> with the three groups and their row counts,
-     * preserving selection. All groups are always listed, also at (0).
+     * Populate a filter <select> from a fixed [value, label] list, each with the
+     * number of `rows` it matches (keyOf(row) === value), preserving selection.
+     * Every option is always listed, also at (0), so the dropdown keeps its shape.
      */
-    function buildReleaseTypeOptions(selectId, rows) {
+    function buildCountedOptions(selectId, options, rows, keyOf) {
       const select = document.getElementById(selectId);
       const previous = select.value;
       const counts = {};
       rows.forEach(r => {
-        const g = releaseTypeGroup(r.target_release_type);
-        if (g) counts[g] = (counts[g] || 0) + 1;
+        const key = keyOf(r);
+        if (key) counts[key] = (counts[key] || 0) + 1;
       });
       select.innerHTML = '<option value="">All</option>' +
-        RELEASE_TYPE_OPTIONS
+        options
           .map(([value, label]) => `<option value="${value}">${label} (${counts[value] || 0})</option>`)
           .join('');
       select.value = previous;
+    }
+
+    function buildReleaseTypeOptions(selectId, rows) {
+      buildCountedOptions(selectId, RELEASE_TYPE_OPTIONS, rows, r => releaseTypeGroup(r.target_release_type));
+    }
+
+    function buildStateOptions(selectId, options, rows) {
+      buildCountedOptions(selectId, options, rows, r => r.state);
     }
 
     /**
@@ -1161,7 +1176,7 @@ tr.historical-row:hover td {
     }
 
     /**
-     * Does a row pass the Release Progress filters? `skip` ('type') leaves one
+     * Does a row pass the Release Progress filters? `skip` ('type' or 'state') leaves one
      * filter out, so its option counts can reflect all the other filters.
      */
     function progressRowMatches(row, f, skip) {
@@ -1172,7 +1187,7 @@ tr.historical-row:hover td {
         if (!haystack.includes(f.search)) return false;
       }
 
-      if (f.state && row.state !== f.state) return false;
+      if (skip !== 'state' && f.state && row.state !== f.state) return false;
 
       if (currentTrackFilter) {
         if (currentTrackFilter === 'independent') {
@@ -1197,6 +1212,7 @@ tr.historical-row:hover td {
       const f = progressFilterState();
       filteredRows = allRows.filter(row => progressRowMatches(row, f));
       buildReleaseTypeOptions('filterReleaseType', allRows.filter(row => progressRowMatches(row, f, 'type')));
+      buildStateOptions('filterState', PROGRESS_STATE_OPTIONS, allRows.filter(row => progressRowMatches(row, f, 'state')));
 
       updateTrackPillStates(currentTrackFilter);
       updateHeader(currentTrackFilter);
@@ -1828,11 +1844,11 @@ tr.historical-row:hover td {
     }
 
     /**
-     * Does a row pass the Review Queue filters? `skip` ('track' or 'type') leaves
+     * Does a row pass the Review Queue filters? `skip` ('track', 'type' or 'state') leaves
      * one filter out, so its option counts can reflect all the other filters.
      */
     function reviewRowMatches(row, f, skip) {
-      if (f.state && row.state !== f.state) return false;
+      if (skip !== 'state' && f.state && row.state !== f.state) return false;
       if (skip !== 'track' && f.track && reviewTrackKey(row) !== f.track) return false;
       if (f.commonalities && getCommonalities(row) !== f.commonalities) return false;
       if (skip !== 'type' && f.releaseType && releaseTypeGroup(row.target_release_type) !== f.releaseType) return false;
@@ -1853,6 +1869,7 @@ tr.historical-row:hover td {
       reviewFilteredRows = reviewAllRows.filter(row => reviewRowMatches(row, f));
       buildReviewTrackOptions(reviewAllRows.filter(row => reviewRowMatches(row, f, 'track')));
       buildReleaseTypeOptions('reviewReleaseTypeFilter', reviewAllRows.filter(row => reviewRowMatches(row, f, 'type')));
+      buildStateOptions('reviewStateFilter', REVIEW_STATE_OPTIONS, reviewAllRows.filter(row => reviewRowMatches(row, f, 'state')));
 
       renderReviewTable(reviewFilteredRows);
       updateReviewSortIndicators(reviewSort.column);
@@ -1945,6 +1962,7 @@ tr.historical-row:hover td {
       // Before parseUrlParams: setting a <select> value with no matching option is a no-op.
       buildCommonalitiesOptions('filterCommonalities', allRows);
       buildReleaseTypeOptions('filterReleaseType', allRows);
+      buildStateOptions('filterState', PROGRESS_STATE_OPTIONS, allRows);
 
       parseUrlParams();
 
