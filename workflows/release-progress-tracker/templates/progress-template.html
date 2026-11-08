@@ -380,6 +380,12 @@ tr.historical-row:hover td {
             </select>
           </div>
           <div class="filter-group">
+            <label for="filterReleaseType">Type:</label>
+            <select id="filterReleaseType" onchange="applyFilters()">
+              <option value="">All</option>
+            </select>
+          </div>
+          <div class="filter-group">
             <label for="filterCommonalities">Commonalities:</label>
             <select id="filterCommonalities" onchange="applyFilters()">
               <option value="">All</option>
@@ -452,6 +458,12 @@ tr.historical-row:hover td {
             <div class="filter-group">
               <label for="reviewTrackFilter">Track:</label>
               <select id="reviewTrackFilter" onchange="applyReviewFilters()">
+                <option value="">All</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <label for="reviewReleaseTypeFilter">Type:</label>
+              <select id="reviewReleaseTypeFilter" onchange="applyReviewFilters()">
                 <option value="">All</option>
               </select>
             </div>
@@ -640,6 +652,43 @@ tr.historical-row:hover td {
       select.innerHTML = '<option value="">All</option>' +
         commonalitiesValues(rows)
           .map(v => `<option value="${v}">${v}</option>`).join('');
+      select.value = previous;
+    }
+
+    /**
+     * Group a target_release_type: 'pre-release' (alpha, rc), 'public', 'maintenance',
+     * or '' (none, null/historical, unknown).
+     */
+    function releaseTypeGroup(type) {
+      const t = (type || '').toLowerCase();
+      if (t.includes('maintenance')) return 'maintenance';
+      if (t.includes('alpha') || t.includes('rc') || t.startsWith('pre-release')) return 'pre-release';
+      if (t.includes('public')) return 'public';
+      return '';
+    }
+
+    const RELEASE_TYPE_OPTIONS = [
+      ['pre-release', 'Pre-release'],
+      ['public', 'Public'],
+      ['maintenance', 'Maintenance'],
+    ];
+
+    /**
+     * Populate a Type filter <select> with the three groups and their row counts,
+     * preserving selection. All groups are always listed, also at (0).
+     */
+    function buildReleaseTypeOptions(selectId, rows) {
+      const select = document.getElementById(selectId);
+      const previous = select.value;
+      const counts = {};
+      rows.forEach(r => {
+        const g = releaseTypeGroup(r.target_release_type);
+        if (g) counts[g] = (counts[g] || 0) + 1;
+      });
+      select.innerHTML = '<option value="">All</option>' +
+        RELEASE_TYPE_OPTIONS
+          .map(([value, label]) => `<option value="${value}">${label} (${counts[value] || 0})</option>`)
+          .join('');
       select.value = previous;
     }
 
@@ -1099,43 +1148,55 @@ tr.historical-row:hover td {
     /**
      * Apply all filters
      */
+    function progressFilterState() {
+      return {
+        search: document.getElementById('filterSearch').value.toLowerCase(),
+        state: document.getElementById('filterState').value,
+        maturity: document.getElementById('filterMaturity').value,
+        commonalities: document.getElementById('filterCommonalities').value,
+        releaseType: document.getElementById('filterReleaseType').value,
+        warnings: document.getElementById('filterWarnings').checked,
+        showHistory: document.getElementById('filterShowHistory').checked,
+      };
+    }
+
+    /**
+     * Does a row pass the Release Progress filters? `skip` ('type') leaves one
+     * filter out, so its option counts can reflect all the other filters.
+     */
+    function progressRowMatches(row, f, skip) {
+      if (!f.showHistory && row.state === 'historical') return false;
+
+      if (f.search) {
+        const haystack = (row.api_name + ' ' + row.repository).toLowerCase();
+        if (!haystack.includes(f.search)) return false;
+      }
+
+      if (f.state && row.state !== f.state) return false;
+
+      if (currentTrackFilter) {
+        if (currentTrackFilter === 'independent') {
+          if (row.release_track !== 'independent') return false;
+        } else {
+          if (row.meta_release !== currentTrackFilter) return false;
+        }
+      }
+
+      if (f.maturity && getMaturity(row.target_api_version) !== f.maturity) return false;
+
+      if (f.commonalities && getCommonalities(row) !== f.commonalities) return false;
+
+      if (skip !== 'type' && f.releaseType && releaseTypeGroup(row.target_release_type) !== f.releaseType) return false;
+
+      if (f.warnings && (!row.warnings || row.warnings.length === 0)) return false;
+
+      return true;
+    }
+
     function applyFilters() {
-      const searchFilter = document.getElementById('filterSearch').value.toLowerCase();
-      const stateFilter = document.getElementById('filterState').value;
-      const maturityFilter = document.getElementById('filterMaturity').value;
-      const commonalitiesFilter = document.getElementById('filterCommonalities').value;
-      const warningsFilter = document.getElementById('filterWarnings').checked;
-      const showHistoryFilter = document.getElementById('filterShowHistory').checked;
-
-      filteredRows = allRows.filter(row => {
-        if (!showHistoryFilter && row.state === 'historical') return false;
-
-        if (searchFilter) {
-          const haystack = (row.api_name + ' ' + row.repository).toLowerCase();
-          if (!haystack.includes(searchFilter)) return false;
-        }
-
-        if (stateFilter && row.state !== stateFilter) return false;
-
-        if (currentTrackFilter) {
-          if (currentTrackFilter === 'independent') {
-            if (row.release_track !== 'independent') return false;
-          } else {
-            if (row.meta_release !== currentTrackFilter) return false;
-          }
-        }
-
-        if (maturityFilter) {
-          const mat = getMaturity(row.target_api_version);
-          if (mat !== maturityFilter) return false;
-        }
-
-        if (commonalitiesFilter && getCommonalities(row) !== commonalitiesFilter) return false;
-
-        if (warningsFilter && (!row.warnings || row.warnings.length === 0)) return false;
-
-        return true;
-      });
+      const f = progressFilterState();
+      filteredRows = allRows.filter(row => progressRowMatches(row, f));
+      buildReleaseTypeOptions('filterReleaseType', allRows.filter(row => progressRowMatches(row, f, 'type')));
 
       updateTrackPillStates(currentTrackFilter);
       updateHeader(currentTrackFilter);
@@ -1283,6 +1344,7 @@ tr.historical-row:hover td {
       document.getElementById('filterState').value = '';
       document.getElementById('filterMaturity').value = '';
       document.getElementById('filterCommonalities').value = '';
+      document.getElementById('filterReleaseType').value = '';
       document.getElementById('filterWarnings').checked = false;
       document.getElementById('filterShowHistory').checked = true;
       currentTrackFilter = '';
@@ -1300,6 +1362,7 @@ tr.historical-row:hover td {
       if (params.has('release_track')) currentTrackFilter = params.get('release_track');
       if (params.has('maturity')) document.getElementById('filterMaturity').value = params.get('maturity');
       if (params.has('commonalities')) document.getElementById('filterCommonalities').value = params.get('commonalities');
+      if (params.has('release_type')) document.getElementById('filterReleaseType').value = params.get('release_type');
       if (params.get('warnings') === 'true') document.getElementById('filterWarnings').checked = true;
 
       if (params.has('sort')) {
@@ -1320,6 +1383,7 @@ tr.historical-row:hover td {
       const state = document.getElementById('filterState').value;
       const maturity = document.getElementById('filterMaturity').value;
       const commonalities = document.getElementById('filterCommonalities').value;
+      const releaseType = document.getElementById('filterReleaseType').value;
       const warnings = document.getElementById('filterWarnings').checked;
 
       if (search) params.set('search', search);
@@ -1327,6 +1391,7 @@ tr.historical-row:hover td {
       if (currentTrackFilter) params.set('release_track', currentTrackFilter);
       if (maturity) params.set('maturity', maturity);
       if (commonalities) params.set('commonalities', commonalities);
+      if (releaseType) params.set('release_type', releaseType);
       if (warnings) params.set('warnings', 'true');
       if (currentSort.column !== 4) params.set('sort', currentSort.column);
       if (!currentSort.ascending) params.set('order', 'desc');
@@ -1348,7 +1413,7 @@ tr.historical-row:hover td {
         'Commonalities',
         'Release State',
         'Last Published Tag', 'Last Published Version', 'Last Published Date',
-        'Release Track', 'Meta-Release',
+        'Release Track', 'Meta-Release', 'Release Type',
         '1st Alpha Tag', '1st Alpha Date', '1st RC Tag', '1st RC Date',
         '1st Public Tag', '1st Public Date',
         'Repository', 'Warnings'
@@ -1381,6 +1446,7 @@ tr.historical-row:hover td {
           lpApi ? (lp.release_date || '') : '',
           row.release_track,
           row.meta_release,
+          row.target_release_type,
           m1Api ? (m1.release_tag || '') : '',
           m1Api ? (m1.release_date || '') : '',
           m3Api ? (m3.release_tag || '') : '',
@@ -1488,11 +1554,13 @@ tr.historical-row:hover td {
       if (t.includes('alpha')) return 1;
       if (t.includes('rc')) return 2;
       if (t.includes('public')) return 3;
+      if (t.includes('maintenance')) return 4;
       return 9;
     }
 
     function shortType(type) {
       const t = (type || '').toLowerCase();
+      if (t.includes('maintenance')) return 'maint';
       if (t.includes('alpha')) return 'alpha';
       if (t.includes('rc')) return 'rc';
       if (t.includes('public') || t.includes('stable') || t.includes('initial')) return 'public';
@@ -1568,7 +1636,7 @@ tr.historical-row:hover td {
       const tag = row.target_release_tag || '—';
       const type = shortType(row.target_release_type);
       const typeSuffix = (type && type !== '—')
-        ? ` <span class="rq-type">(${ViewerLib.escapeHtml(type)})</span>` : '';
+        ? ` <span class="rq-type" title="${ViewerLib.escapeHtml(row.target_release_type || type)}">(${ViewerLib.escapeHtml(type)})</span>` : '';
       return `<div class="rq-track">${ViewerLib.escapeHtml(track)}</div>` +
              `<div class="rq-tagtype">${ViewerLib.escapeHtml(tag)}${typeSuffix}</div>`;
     }
@@ -1725,46 +1793,66 @@ tr.historical-row:hover td {
       counter.classList.remove('hidden');
     }
 
-    function buildReviewTrackOptions() {
+    /**
+     * Rebuild the Track <select>. All tracks in the data stay listed (at 0 if
+     * nothing matches); `countRows` are the rows that pass every other filter.
+     */
+    function buildReviewTrackOptions(countRows) {
       const select = document.getElementById('reviewTrackFilter');
+      const previous = select.value;
+      const present = new Set(reviewAllRows.map(reviewTrackKey));
       const counts = {};
-      reviewAllRows.forEach(r => {
+      countRows.forEach(r => {
         const key = reviewTrackKey(r);
         counts[key] = (counts[key] || 0) + 1;
       });
-      const ordered = TRACK_ORDER.filter(t => counts[t]);
-      const unknown = Object.keys(counts).filter(t => !TRACK_ORDER.includes(t));
-      [...unknown, ...ordered].forEach(name => {
-        const label = name === 'independent' ? 'Independent' : name;
-        const opt = document.createElement('option');
-        opt.value = name;
-        opt.textContent = `${label} (${counts[name]})`;
-        select.appendChild(opt);
-      });
+      const ordered = TRACK_ORDER.filter(t => present.has(t));
+      const unknown = [...present].filter(t => !TRACK_ORDER.includes(t));
+      select.innerHTML = '<option value="">All</option>' +
+        [...unknown, ...ordered].map(name => {
+          const label = name === 'independent' ? 'Independent' : name;
+          return `<option value="${ViewerLib.escapeHtml(name)}">${ViewerLib.escapeHtml(label)} (${counts[name] || 0})</option>`;
+        }).join('');
+      select.value = previous;
+    }
+
+    function reviewFilterState() {
+      return {
+        search: document.getElementById('reviewSearch').value.toLowerCase(),
+        state: document.getElementById('reviewStateFilter').value,
+        track: document.getElementById('reviewTrackFilter').value,
+        commonalities: document.getElementById('reviewCommonalitiesFilter').value,
+        releaseType: document.getElementById('reviewReleaseTypeFilter').value,
+        unassignedOnly: document.getElementById('reviewUnassigned').checked,
+      };
+    }
+
+    /**
+     * Does a row pass the Review Queue filters? `skip` ('track' or 'type') leaves
+     * one filter out, so its option counts can reflect all the other filters.
+     */
+    function reviewRowMatches(row, f, skip) {
+      if (f.state && row.state !== f.state) return false;
+      if (skip !== 'track' && f.track && reviewTrackKey(row) !== f.track) return false;
+      if (f.commonalities && getCommonalities(row) !== f.commonalities) return false;
+      if (skip !== 'type' && f.releaseType && releaseTypeGroup(row.target_release_type) !== f.releaseType) return false;
+      if (f.unassignedOnly && !(row.has_pr && row.assignees.length === 0)) return false;
+      if (f.search) {
+        const haystack = [
+          row.repository, row.target_release_tag,
+          row.apis.map(a => a.api_name).join(' '),
+          row.assignees.join(' '), row.last_reviewers.join(' '),
+        ].join(' ').toLowerCase();
+        if (!haystack.includes(f.search)) return false;
+      }
+      return true;
     }
 
     function applyReviewFilters() {
-      const q = document.getElementById('reviewSearch').value.toLowerCase();
-      const stateFilter = document.getElementById('reviewStateFilter').value;
-      const trackFilter = document.getElementById('reviewTrackFilter').value;
-      const commonalitiesFilter = document.getElementById('reviewCommonalitiesFilter').value;
-      const unassignedOnly = document.getElementById('reviewUnassigned').checked;
-
-      reviewFilteredRows = reviewAllRows.filter(row => {
-        if (stateFilter && row.state !== stateFilter) return false;
-        if (trackFilter && reviewTrackKey(row) !== trackFilter) return false;
-        if (commonalitiesFilter && getCommonalities(row) !== commonalitiesFilter) return false;
-        if (unassignedOnly && !(row.has_pr && row.assignees.length === 0)) return false;
-        if (q) {
-          const haystack = [
-            row.repository, row.target_release_tag,
-            row.apis.map(a => a.api_name).join(' '),
-            row.assignees.join(' '), row.last_reviewers.join(' '),
-          ].join(' ').toLowerCase();
-          if (!haystack.includes(q)) return false;
-        }
-        return true;
-      });
+      const f = reviewFilterState();
+      reviewFilteredRows = reviewAllRows.filter(row => reviewRowMatches(row, f));
+      buildReviewTrackOptions(reviewAllRows.filter(row => reviewRowMatches(row, f, 'track')));
+      buildReleaseTypeOptions('reviewReleaseTypeFilter', reviewAllRows.filter(row => reviewRowMatches(row, f, 'type')));
 
       renderReviewTable(reviewFilteredRows);
       updateReviewSortIndicators(reviewSort.column);
@@ -1775,6 +1863,7 @@ tr.historical-row:hover td {
       document.getElementById('reviewStateFilter').value = '';
       document.getElementById('reviewTrackFilter').value = '';
       document.getElementById('reviewCommonalitiesFilter').value = '';
+      document.getElementById('reviewReleaseTypeFilter').value = '';
       document.getElementById('reviewUnassigned').checked = false;
       applyReviewFilters();
     }
@@ -1855,6 +1944,7 @@ tr.historical-row:hover td {
 
       // Before parseUrlParams: setting a <select> value with no matching option is a no-op.
       buildCommonalitiesOptions('filterCommonalities', allRows);
+      buildReleaseTypeOptions('filterReleaseType', allRows);
 
       parseUrlParams();
 
@@ -1871,7 +1961,6 @@ tr.historical-row:hover td {
 
       // Review Queue view: built up-front, shown on tab switch.
       reviewAllRows = flattenReviewData(PROGRESS_DATA);
-      buildReviewTrackOptions();
       buildCommonalitiesOptions('reviewCommonalitiesFilter', reviewAllRows);
       applyReviewFilters();
     }

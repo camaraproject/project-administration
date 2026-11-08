@@ -171,3 +171,84 @@ def test_api_name_clip_budget_clears_prefix_collisions(viewer_html):
     budget = re.search(r"max-width:\s*(\d+)ch", name_rule.group(0))
     assert budget, "no ch-based max-width on .rq-api-name"
     assert int(budget.group(1)) > 26
+
+
+def test_release_type_filter_present_in_both_views(viewer_html):
+    assert 'id="filterReleaseType"' in viewer_html
+    assert 'id="reviewReleaseTypeFilter"' in viewer_html
+
+
+def test_release_type_filter_follows_maturity_in_progress_view(viewer_html):
+    assert viewer_html.index('id="filterMaturity"') < viewer_html.index('id="filterReleaseType"')
+    assert viewer_html.index('id="filterReleaseType"') < viewer_html.index('id="filterCommonalities"')
+
+
+def _function_body(html, name):
+    start = html.index(f"function {name}(")
+    return html[start : html.index("\n    }\n", start)]
+
+
+@pytest.mark.parametrize(
+    "func", ["applyFilters", "applyReviewFilters", "clearAllFilters", "clearReviewFilters"]
+)
+def test_release_type_filter_wired_into_apply_and_clear(viewer_html, func):
+    body = _function_body(viewer_html, func)
+    assert "ReleaseType" in body, func
+
+
+def test_release_type_group_maps_types_to_groups(viewer_html):
+    body = _function_body(viewer_html, "releaseTypeGroup")
+    for group in ("pre-release", "public", "maintenance"):
+        assert f"'{group}'" in body
+
+
+def test_release_type_filter_options_always_list_maintenance(viewer_html):
+    start = viewer_html.index("const RELEASE_TYPE_OPTIONS")
+    end = viewer_html.index("function buildReleaseTypeOptions")
+    assert "['maintenance', 'Maintenance']" in viewer_html[start:end]
+    # Options are built from the fixed list, not from the types present in the data.
+    assert "RELEASE_TYPE_OPTIONS" in _function_body(viewer_html, "buildReleaseTypeOptions")
+
+
+def test_release_type_url_param_on_progress_view_only(viewer_html):
+    assert "'release_type'" in _function_body(viewer_html, "parseUrlParams")
+    assert "'release_type'" in _function_body(viewer_html, "updateUrlParams")
+    review_start = viewer_html.index("function applyReviewFilters")
+    assert "'release_type'" not in viewer_html[review_start:]
+
+
+def test_maintenance_release_type_has_short_label_and_sort_order(viewer_html):
+    assert "'maint'" in _function_body(viewer_html, "shortType")
+    assert "maintenance" in _function_body(viewer_html, "typeOrder")
+
+
+def test_type_label_carries_full_type_as_title(viewer_html):
+    cell = _function_body(viewer_html, "renderTrackTypeTagCell")
+    assert "title=" in cell
+
+
+def test_progress_csv_has_release_type_after_meta_release(viewer_html):
+    body = _function_body(viewer_html, "exportCSV")
+    assert body.index("'Meta-Release'") < body.index("'Release Type'")
+    assert "row.target_release_type" in body
+
+
+def test_review_option_counts_follow_the_other_filters(viewer_html):
+    """Track and Type counts are recomputed on every filter change, each ignoring its own filter."""
+    body = _function_body(viewer_html, "applyReviewFilters")
+    assert "buildReviewTrackOptions(" in body
+    assert "buildReleaseTypeOptions('reviewReleaseTypeFilter'" in body
+    assert "'track'" in body
+    assert "'type'" in body
+
+
+def test_review_track_options_list_all_tracks_with_zero_counts(viewer_html):
+    """A track with no matching rows stays listed (at 0) so the dropdown keeps its shape."""
+    body = _function_body(viewer_html, "buildReviewTrackOptions")
+    assert "reviewAllRows" in body
+
+
+def test_progress_type_counts_follow_the_other_filters(viewer_html):
+    body = _function_body(viewer_html, "applyFilters")
+    assert "buildReleaseTypeOptions('filterReleaseType'" in body
+    assert "'type'" in body
