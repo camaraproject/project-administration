@@ -139,7 +139,6 @@ mappings:
     SessionInsights: "r2"
     SimSwap: "r4"
     SimpleEdgeDiscovery: "r3"
-    SubscriptionStatus: "r2"
     Tenure: "r3"
     VerifiedCaller: "r2"
     WebRTC: "r3"
