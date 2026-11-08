@@ -252,3 +252,32 @@ def test_progress_type_counts_follow_the_other_filters(viewer_html):
     body = _function_body(viewer_html, "applyFilters")
     assert "buildReleaseTypeOptions('filterReleaseType'" in body
     assert "'type'" in body
+
+
+def test_review_filters_ordered_track_type_state(viewer_html):
+    track = viewer_html.index('id="reviewTrackFilter"')
+    type_ = viewer_html.index('id="reviewReleaseTypeFilter"')
+    state = viewer_html.index('id="reviewStateFilter"')
+    assert track < type_ < state
+
+
+def test_progress_state_filter_follows_type_filter(viewer_html):
+    assert viewer_html.index('id="filterReleaseType"') < viewer_html.index('id="filterState"')
+
+
+def test_review_state_counts_follow_the_other_filters(viewer_html):
+    body = _function_body(viewer_html, "applyReviewFilters")
+    assert "buildStateOptions('reviewStateFilter'" in body
+    assert "'state'" in body
+
+
+def test_progress_state_counts_follow_the_other_filters(viewer_html):
+    body = _function_body(viewer_html, "applyFilters")
+    assert "buildStateOptions('filterState'" in body
+    assert "'state'" in body
+
+
+def test_state_options_are_built_from_fixed_lists(viewer_html):
+    """All states stay listed (at 0), so the dropdown keeps its shape."""
+    assert "const PROGRESS_STATE_OPTIONS" in viewer_html
+    assert "const REVIEW_STATE_OPTIONS" in viewer_html
