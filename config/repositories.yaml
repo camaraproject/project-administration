@@ -53,7 +53,7 @@ repositories:
     legacy_releases: true
 
   CommonalitiesTest:
-    ruleset_class: api-repository
+    ruleset_class: unmanaged
 
   ConnectedNetworkType:
     ruleset_class: api-repository
