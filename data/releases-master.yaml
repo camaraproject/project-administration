@@ -1,13 +1,13 @@
 metadata:
-  last_updated: '2026-11-09T05:53:19.601Z'
+  last_updated: '2026-11-09T08:48:21.717Z'
   workflow_version: 3.0.0
   schema_version: 3.2.0
   collector_run:
     analysis_scope: incremental
-    workflow_run_id: '42569751550'
-    workflow_run_number: 387
-    workflow_run_url: https://github.com/camaraproject/project-administration/actions/runs/42569751550
-    source_sha: 5abaa5e01af11b4f6ed4b74b8d51fc3397b549bb
+    workflow_run_id: '42588434890'
+    workflow_run_number: 388
+    workflow_run_url: https://github.com/camaraproject/project-administration/actions/runs/42588434890
+    source_sha: c381a020f20cd57533209f9741a68cc2ca009f15
     node_version: v24.22.2
     npm_version: 11.19.1
     dependencies:
@@ -352,6 +352,21 @@ releases:
         api_version: 0.5.0-rc.1
         api_title: Call Forwarding Signal
         commonalities: 0.8.0
+  - repository: CallForwardingSignal
+    release_tag: r4.2
+    release_date: '2026-11-09T07:27:32Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/CallForwardingSignal/releases/tag/r4.2
+    release_type: pre-release-rc
+    src_commit_sha: 381018a1532c5d5fef7a0103bf568a4688706348
+    dependencies:
+      commonalities_release: r4.4 (0.9.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: call-forwarding-signal
+        api_version: 0.5.0-rc.2
+        api_title: Call Forwarding Signal
+        commonalities: 0.9.0
   - repository: CarrierBillingCheckOut
     release_tag: r1.1
     release_date: '2024-08-13T13:15:38Z'
@@ -3182,6 +3197,25 @@ releases:
         api_version: 0.2.0-rc.1
         api_title: QoS Booking
         commonalities: 0.8.0
+  - repository: QoSBooking
+    release_tag: r2.2
+    release_date: '2026-11-09T06:57:32Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/QoSBooking/releases/tag/r2.2
+    release_type: pre-release-rc
+    src_commit_sha: 99411ce4669f0b4a2233883ed39242d9e3ef0985
+    dependencies:
+      commonalities_release: r4.4 (0.9.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: qos-booking-and-assignment
+        api_version: 0.2.0-rc.2
+        api_title: QoS Booking and Assignment
+        commonalities: 0.9.0
+      - api_name: qos-booking
+        api_version: 0.2.0-rc.2
+        api_title: QoS Booking
+        commonalities: 0.9.0
   - repository: QoSProfiles
     release_tag: r1.1
     release_date: '2026-10-20T16:23:16Z'
@@ -4197,7 +4231,7 @@ repositories:
   - repository: CallForwardingSignal
     github_url: https://github.com/camaraproject/CallForwardingSignal
     latest_public_release: r3.3
-    newest_pre_release: r4.1
+    newest_pre_release: r4.2
   - repository: CapabilitiesAndRuntimeRestrictions
     github_url: https://github.com/camaraproject/CapabilitiesAndRuntimeRestrictions
     latest_public_release: null
@@ -4382,7 +4416,7 @@ repositories:
   - repository: QoSBooking
     github_url: https://github.com/camaraproject/QoSBooking
     latest_public_release: r1.2
-    newest_pre_release: r2.1
+    newest_pre_release: r2.2
   - repository: QoSProfiles
     github_url: https://github.com/camaraproject/QoSProfiles
     latest_public_release: null
