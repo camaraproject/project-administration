@@ -1,13 +1,13 @@
 metadata:
-  last_updated: '2026-11-09T08:48:21.717Z'
+  last_updated: '2026-11-09T10:14:34.698Z'
   workflow_version: 3.0.0
   schema_version: 3.2.0
   collector_run:
     analysis_scope: incremental
-    workflow_run_id: '42588434890'
-    workflow_run_number: 388
-    workflow_run_url: https://github.com/camaraproject/project-administration/actions/runs/42588434890
-    source_sha: c381a020f20cd57533209f9741a68cc2ca009f15
+    workflow_run_id: '42599312280'
+    workflow_run_number: 389
+    workflow_run_url: https://github.com/camaraproject/project-administration/actions/runs/42599312280
+    source_sha: 678a603a41adb4c6f36b5c2b9f9519e8b7bdd3fa
     node_version: v24.22.2
     npm_version: 11.19.1
     dependencies:
@@ -2674,6 +2674,21 @@ releases:
         api_version: 0.3.0-rc.1
         api_title: Number Recycling
         commonalities: 0.8.0
+  - repository: NumberRecycling
+    release_tag: r3.2
+    release_date: '2026-11-09T09:05:29Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/NumberRecycling/releases/tag/r3.2
+    release_type: pre-release-rc
+    src_commit_sha: 011729d50f9923554d8ea6effe1632aabc304d15
+    dependencies:
+      commonalities_release: r4.4 (0.9.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: number-recycling
+        api_version: 0.3.0-rc.2
+        api_title: Number Recycling
+        commonalities: 0.9.0
   - repository: NumberVerification
     release_tag: r1.1
     release_date: '2024-08-16T17:25:41Z'
@@ -4392,7 +4407,7 @@ repositories:
   - repository: NumberRecycling
     github_url: https://github.com/camaraproject/NumberRecycling
     latest_public_release: r2.2
-    newest_pre_release: r3.1
+    newest_pre_release: r3.2
   - repository: NumberVerification
     github_url: https://github.com/camaraproject/NumberVerification
     latest_public_release: r4.2
