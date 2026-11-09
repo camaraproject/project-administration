@@ -1,19 +1,19 @@
 {
   "metadata": {
-    "generated": "2026-11-08T09:26:23.620Z",
+    "generated": "2026-11-09T05:53:21.351Z",
     "meta_release": "All",
     "source": "Release Collector v3",
     "landscape_version": "1.1.1"
   },
   "statistics": {
     "repositories_count": 54,
-    "api_versions_count": 260,
+    "api_versions_count": 264,
     "unique_api_names_count": 79,
     "unique_apis_count": 78,
     "api_version_maturity": {
       "stable": 34,
       "initial": 142,
-      "rc": 84
+      "rc": 88
     },
     "unique_api_maturity": {
       "stable": 6,
@@ -22,7 +22,7 @@
     },
     "categories": {
       "Computing Services": 23,
-      "Communication Quality": 61,
+      "Communication Quality": 64,
       "Payments and Charging": 11,
       "Authentication and Fraud Prevention": 69,
       "Communication Services": 19,
@@ -293,6 +293,11 @@
     "DedicatedNetworks": {
       "releases": [
         {
+          "tag": "r2.3",
+          "date": "2026-11-08T19:35:56Z",
+          "apis_count": 4
+        },
+        {
           "tag": "r2.2",
           "date": "2026-09-16T19:09:08Z",
           "apis_count": 4
@@ -308,7 +313,7 @@
           "apis_count": 3
         }
       ],
-      "total_apis": 11,
+      "total_apis": 15,
       "unique_apis_count": 4
     },
     "DeviceDataVolume": {
@@ -2571,6 +2576,77 @@
           "api_version": "0.1.0-rc.1",
           "api_title": "Dedicated Network - Areas",
           "commonalities": "0.8.0",
+          "maturity": "initial",
+          "portfolio_category": null,
+          "website_url": null,
+          "tooltip": null,
+          "display_name": "Dedicated Network - Areas",
+          "published": true,
+          "canonical_name": "dedicated-network-areas",
+          "first_release": "Sandbox"
+        }
+      ]
+    },
+    {
+      "repository": "DedicatedNetworks",
+      "release_tag": "r2.3",
+      "release_date": "2026-11-08T19:35:56Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/DedicatedNetworks/releases/tag/r2.3",
+      "release_type": "pre-release-rc",
+      "src_commit_sha": "800d8cc4101ba787dd8bbf82cbc573b4a78aca31",
+      "dependencies": {
+        "commonalities_release": "r4.4 (0.9.0)",
+        "identity_consent_management_release": "r4.2 (0.5.0)"
+      },
+      "apis": [
+        {
+          "api_name": "dedicated-network-accesses",
+          "api_version": "0.2.0-rc.2",
+          "api_title": "Dedicated Network - Accesses",
+          "commonalities": "0.9.0",
+          "maturity": "initial",
+          "portfolio_category": "Communication Quality",
+          "website_url": "https://camaraproject.org/dedicated-networks/#",
+          "tooltip": "Control access to dedicated networks",
+          "display_name": "Dedicated Network - Accesses",
+          "published": true,
+          "canonical_name": "dedicated-network-accesses",
+          "first_release": "Fall25"
+        },
+        {
+          "api_name": "dedicated-network-profiles",
+          "api_version": "0.2.0-rc.2",
+          "api_title": "Dedicated Network - Network Profiles",
+          "commonalities": "0.9.0",
+          "maturity": "initial",
+          "portfolio_category": "Communication Quality",
+          "website_url": "https://camaraproject.org/dedicated-networks/#",
+          "tooltip": "Configure dedicated network profiles",
+          "display_name": "Dedicated Network - Network Profiles",
+          "published": true,
+          "canonical_name": "dedicated-network-profiles",
+          "first_release": "Fall25"
+        },
+        {
+          "api_name": "dedicated-network",
+          "api_version": "0.2.0-rc.2",
+          "api_title": "Dedicated Network - Networks",
+          "commonalities": "0.9.0",
+          "maturity": "initial",
+          "portfolio_category": "Communication Quality",
+          "website_url": "https://camaraproject.org/dedicated-networks/#",
+          "tooltip": "Manage dedicated private networks",
+          "display_name": "Dedicated Network - Networks",
+          "published": true,
+          "canonical_name": "dedicated-network",
+          "first_release": "Fall25"
+        },
+        {
+          "api_name": "dedicated-network-areas",
+          "api_version": "0.1.0-rc.2",
+          "api_title": "Dedicated Network - Areas",
+          "commonalities": "0.9.0",
           "maturity": "initial",
           "portfolio_category": null,
           "website_url": null,
@@ -8105,6 +8181,26 @@
       "release_type": "pre-release-rc"
     },
     {
+      "api_name": "dedicated-network",
+      "api_version": "0.2.0-rc.2",
+      "api_title": "Dedicated Network - Networks",
+      "commonalities": "0.9.0",
+      "maturity": "initial",
+      "portfolio_category": "Communication Quality",
+      "website_url": "https://camaraproject.org/dedicated-networks/#",
+      "tooltip": "Manage dedicated private networks",
+      "display_name": "Dedicated Network - Networks",
+      "published": true,
+      "canonical_name": "dedicated-network",
+      "first_release": "Fall25",
+      "repository": "DedicatedNetworks",
+      "release_tag": "r2.3",
+      "release_date": "2026-11-08T19:35:56Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/DedicatedNetworks/releases/tag/r2.3",
+      "release_type": "pre-release-rc"
+    },
+    {
       "api_name": "dedicated-network-accesses",
       "api_version": "0.1.0",
       "api_title": "Dedicated Network - Accesses",
@@ -8163,6 +8259,26 @@
       "release_date": "2026-09-16T19:09:08Z",
       "meta_release": "Independent",
       "github_url": "https://github.com/camaraproject/DedicatedNetworks/releases/tag/r2.2",
+      "release_type": "pre-release-rc"
+    },
+    {
+      "api_name": "dedicated-network-accesses",
+      "api_version": "0.2.0-rc.2",
+      "api_title": "Dedicated Network - Accesses",
+      "commonalities": "0.9.0",
+      "maturity": "initial",
+      "portfolio_category": "Communication Quality",
+      "website_url": "https://camaraproject.org/dedicated-networks/#",
+      "tooltip": "Control access to dedicated networks",
+      "display_name": "Dedicated Network - Accesses",
+      "published": true,
+      "canonical_name": "dedicated-network-accesses",
+      "first_release": "Fall25",
+      "repository": "DedicatedNetworks",
+      "release_tag": "r2.3",
+      "release_date": "2026-11-08T19:35:56Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/DedicatedNetworks/releases/tag/r2.3",
       "release_type": "pre-release-rc"
     },
     {
@@ -8206,6 +8322,26 @@
       "release_type": "pre-release-rc"
     },
     {
+      "api_name": "dedicated-network-areas",
+      "api_version": "0.1.0-rc.2",
+      "api_title": "Dedicated Network - Areas",
+      "commonalities": "0.9.0",
+      "maturity": "initial",
+      "portfolio_category": null,
+      "website_url": null,
+      "tooltip": null,
+      "display_name": "Dedicated Network - Areas",
+      "published": true,
+      "canonical_name": "dedicated-network-areas",
+      "first_release": "Sandbox",
+      "repository": "DedicatedNetworks",
+      "release_tag": "r2.3",
+      "release_date": "2026-11-08T19:35:56Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/DedicatedNetworks/releases/tag/r2.3",
+      "release_type": "pre-release-rc"
+    },
+    {
       "api_name": "dedicated-network-profiles",
       "api_version": "0.1.0",
       "api_title": "Dedicated Network - Network Profiles",
@@ -8264,6 +8400,26 @@
       "release_date": "2026-09-16T19:09:08Z",
       "meta_release": "Independent",
       "github_url": "https://github.com/camaraproject/DedicatedNetworks/releases/tag/r2.2",
+      "release_type": "pre-release-rc"
+    },
+    {
+      "api_name": "dedicated-network-profiles",
+      "api_version": "0.2.0-rc.2",
+      "api_title": "Dedicated Network - Network Profiles",
+      "commonalities": "0.9.0",
+      "maturity": "initial",
+      "portfolio_category": "Communication Quality",
+      "website_url": "https://camaraproject.org/dedicated-networks/#",
+      "tooltip": "Configure dedicated network profiles",
+      "display_name": "Dedicated Network - Network Profiles",
+      "published": true,
+      "canonical_name": "dedicated-network-profiles",
+      "first_release": "Fall25",
+      "repository": "DedicatedNetworks",
+      "release_tag": "r2.3",
+      "release_date": "2026-11-08T19:35:56Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/DedicatedNetworks/releases/tag/r2.3",
       "release_type": "pre-release-rc"
     },
     {
