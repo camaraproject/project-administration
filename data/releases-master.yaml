@@ -1,13 +1,13 @@
 metadata:
-  last_updated: '2026-11-09T10:14:34.698Z'
+  last_updated: '2026-11-11T09:48:56.690Z'
   workflow_version: 3.0.0
   schema_version: 3.2.0
   collector_run:
     analysis_scope: incremental
-    workflow_run_id: '42599312280'
-    workflow_run_number: 389
-    workflow_run_url: https://github.com/camaraproject/project-administration/actions/runs/42599312280
-    source_sha: 678a603a41adb4c6f36b5c2b9f9519e8b7bdd3fa
+    workflow_run_id: '42998167868'
+    workflow_run_number: 391
+    workflow_run_url: https://github.com/camaraproject/project-administration/actions/runs/42998167868
+    source_sha: 23f87a590f4a56ba0b47327b27a543bc78e64b2d
     node_version: v24.22.2
     npm_version: 11.19.1
     dependencies:
@@ -949,6 +949,7 @@ releases:
         api_version: 0.3.0-rc.1
         api_title: Customer Insights
         commonalities: 0.8.0
+    superseded: true
   - repository: CustomerInsights
     release_tag: r3.2
     release_date: '2026-10-29T14:19:11Z'
@@ -962,6 +963,22 @@ releases:
     apis:
       - api_name: customer-insights
         api_version: 0.3.0-rc.2
+        api_title: Customer Insights
+        commonalities: 0.9.0
+    superseded: true
+  - repository: CustomerInsights
+    release_tag: r3.3
+    release_date: '2026-11-10T16:17:35Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/CustomerInsights/releases/tag/r3.3
+    release_type: public-release
+    src_commit_sha: 977a128c37c526b033d39490169e90fda1ed911f
+    dependencies:
+      commonalities_release: r4.4 (0.9.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: customer-insights
+        api_version: 0.3.0
         api_title: Customer Insights
         commonalities: 0.9.0
   - repository: DedicatedNetworks
@@ -4277,8 +4294,8 @@ repositories:
     newest_pre_release: null
   - repository: CustomerInsights
     github_url: https://github.com/camaraproject/CustomerInsights
-    latest_public_release: r2.2
-    newest_pre_release: r3.2
+    latest_public_release: r3.3
+    newest_pre_release: null
   - repository: DedicatedNetworks
     github_url: https://github.com/camaraproject/DedicatedNetworks
     latest_public_release: r1.2
