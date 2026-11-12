@@ -1,13 +1,13 @@
 metadata:
-  last_updated: '2026-11-11T09:48:56.690Z'
+  last_updated: '2026-11-12T10:13:25.082Z'
   workflow_version: 3.0.0
   schema_version: 3.2.0
   collector_run:
     analysis_scope: incremental
-    workflow_run_id: '42998167868'
-    workflow_run_number: 391
-    workflow_run_url: https://github.com/camaraproject/project-administration/actions/runs/42998167868
-    source_sha: 23f87a590f4a56ba0b47327b27a543bc78e64b2d
+    workflow_run_id: '43198257086'
+    workflow_run_number: 392
+    workflow_run_url: https://github.com/camaraproject/project-administration/actions/runs/43198257086
+    source_sha: d2ec6c3340c995e7047cfd459929ba9c6895712c
     node_version: v24.22.2
     npm_version: 11.19.1
     dependencies:
@@ -4243,6 +4243,29 @@ releases:
         api_version: 0.4.0-rc.1
         api_title: WebRTC Registration Service
         commonalities: 0.8.0
+  - repository: WebRTC
+    release_tag: r3.2
+    release_date: '2026-11-11T15:39:19Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/WebRTC/releases/tag/r3.2
+    release_type: pre-release-rc
+    src_commit_sha: 40a4021dd9f3809c37291df331812953a79894ec
+    dependencies:
+      commonalities_release: r4.4 (0.9.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: webrtc-call-handling
+        api_version: 0.4.0-rc.2
+        api_title: WebRTC Call Handling
+        commonalities: 0.9.0
+      - api_name: webrtc-events-subscriptions
+        api_version: 0.3.0-rc.2
+        api_title: WebRTC Events Subscriptions
+        commonalities: 0.9.0
+      - api_name: webrtc-registration
+        api_version: 0.4.0-rc.2
+        api_title: WebRTC Registration Service
+        commonalities: 0.9.0
 repositories:
   - repository: ApplicationEndpointDiscovery
     github_url: https://github.com/camaraproject/ApplicationEndpointDiscovery
@@ -4522,4 +4545,4 @@ repositories:
   - repository: WebRTC
     github_url: https://github.com/camaraproject/WebRTC
     latest_public_release: r2.2
-    newest_pre_release: r3.1
+    newest_pre_release: r3.2
