@@ -1,30 +1,30 @@
 {
   "metadata": {
-    "generated": "2026-11-09T10:14:36.212Z",
+    "generated": "2026-11-11T09:48:58.199Z",
     "meta_release": "All",
     "source": "Release Collector v3",
     "landscape_version": "1.1.1"
   },
   "statistics": {
     "repositories_count": 54,
-    "api_versions_count": 268,
+    "api_versions_count": 267,
     "unique_api_names_count": 79,
     "unique_apis_count": 78,
     "api_version_maturity": {
       "stable": 34,
-      "initial": 142,
-      "rc": 92
+      "initial": 143,
+      "rc": 90
     },
     "unique_api_maturity": {
       "stable": 6,
-      "initial": 23,
-      "rc": 49
+      "initial": 24,
+      "rc": 48
     },
     "categories": {
       "Computing Services": 23,
       "Communication Quality": 66,
       "Payments and Charging": 11,
-      "Authentication and Fraud Prevention": 71,
+      "Authentication and Fraud Prevention": 70,
       "Communication Services": 19,
       "Service Management": 2,
       "Device Information": 34,
@@ -267,13 +267,8 @@
     "CustomerInsights": {
       "releases": [
         {
-          "tag": "r3.2",
-          "date": "2026-10-29T14:19:11Z",
-          "apis_count": 1
-        },
-        {
-          "tag": "r3.1",
-          "date": "2026-07-23T16:06:40Z",
+          "tag": "r3.3",
+          "date": "2026-11-10T16:17:35Z",
           "apis_count": 1
         },
         {
@@ -292,7 +287,7 @@
           "apis_count": 1
         }
       ],
-      "total_apis": 5,
+      "total_apis": 4,
       "unique_apis_count": 1
     },
     "DedicatedNetworks": {
@@ -2378,41 +2373,12 @@
     },
     {
       "repository": "CustomerInsights",
-      "release_tag": "r3.1",
-      "release_date": "2026-07-23T16:06:40Z",
+      "release_tag": "r3.3",
+      "release_date": "2026-11-10T16:17:35Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/CustomerInsights/releases/tag/r3.1",
-      "release_type": "pre-release-rc",
-      "src_commit_sha": "44c1faeaf13f40d10defab1a3aaf330fa96470c1",
-      "dependencies": {
-        "commonalities_release": "r4.3 (0.8.0)",
-        "identity_consent_management_release": "r4.2 (0.5.0)"
-      },
-      "apis": [
-        {
-          "api_name": "customer-insights",
-          "api_version": "0.3.0-rc.1",
-          "api_title": "Customer Insights",
-          "commonalities": "0.8.0",
-          "maturity": "initial",
-          "portfolio_category": "Authentication and Fraud Prevention",
-          "website_url": "https://camaraproject.org/customer-insights/",
-          "tooltip": "Provides an index or scoring related to the user's credit profile",
-          "display_name": "Customer Insights",
-          "published": true,
-          "canonical_name": "customer-insights",
-          "first_release": "Spring25"
-        }
-      ]
-    },
-    {
-      "repository": "CustomerInsights",
-      "release_tag": "r3.2",
-      "release_date": "2026-10-29T14:19:11Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/CustomerInsights/releases/tag/r3.2",
-      "release_type": "pre-release-rc",
-      "src_commit_sha": "4aa3c7472fccc53e535cbd6d7ee1280a3a96e849",
+      "github_url": "https://github.com/camaraproject/CustomerInsights/releases/tag/r3.3",
+      "release_type": "public-release",
+      "src_commit_sha": "977a128c37c526b033d39490169e90fda1ed911f",
       "dependencies": {
         "commonalities_release": "r4.4 (0.9.0)",
         "identity_consent_management_release": "r4.2 (0.5.0)"
@@ -2420,7 +2386,7 @@
       "apis": [
         {
           "api_name": "customer-insights",
-          "api_version": "0.3.0-rc.2",
+          "api_version": "0.3.0",
           "api_title": "Customer Insights",
           "commonalities": "0.9.0",
           "maturity": "initial",
@@ -8217,27 +8183,7 @@
     },
     {
       "api_name": "customer-insights",
-      "api_version": "0.3.0-rc.1",
-      "api_title": "Customer Insights",
-      "commonalities": "0.8.0",
-      "maturity": "initial",
-      "portfolio_category": "Authentication and Fraud Prevention",
-      "website_url": "https://camaraproject.org/customer-insights/",
-      "tooltip": "Provides an index or scoring related to the user's credit profile",
-      "display_name": "Customer Insights",
-      "published": true,
-      "canonical_name": "customer-insights",
-      "first_release": "Spring25",
-      "repository": "CustomerInsights",
-      "release_tag": "r3.1",
-      "release_date": "2026-07-23T16:06:40Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/CustomerInsights/releases/tag/r3.1",
-      "release_type": "pre-release-rc"
-    },
-    {
-      "api_name": "customer-insights",
-      "api_version": "0.3.0-rc.2",
+      "api_version": "0.3.0",
       "api_title": "Customer Insights",
       "commonalities": "0.9.0",
       "maturity": "initial",
@@ -8249,11 +8195,11 @@
       "canonical_name": "customer-insights",
       "first_release": "Spring25",
       "repository": "CustomerInsights",
-      "release_tag": "r3.2",
-      "release_date": "2026-10-29T14:19:11Z",
+      "release_tag": "r3.3",
+      "release_date": "2026-11-10T16:17:35Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/CustomerInsights/releases/tag/r3.2",
-      "release_type": "pre-release-rc"
+      "github_url": "https://github.com/camaraproject/CustomerInsights/releases/tag/r3.3",
+      "release_type": "public-release"
     },
     {
       "api_name": "dedicated-network",
