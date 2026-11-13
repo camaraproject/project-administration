@@ -1,13 +1,13 @@
 metadata:
-  last_updated: '2026-11-12T10:13:25.082Z'
+  last_updated: '2026-11-13T09:56:15.082Z'
   workflow_version: 3.0.0
   schema_version: 3.2.0
   collector_run:
     analysis_scope: incremental
-    workflow_run_id: '43198257086'
-    workflow_run_number: 392
-    workflow_run_url: https://github.com/camaraproject/project-administration/actions/runs/43198257086
-    source_sha: d2ec6c3340c995e7047cfd459929ba9c6895712c
+    workflow_run_id: '43405104480'
+    workflow_run_number: 393
+    workflow_run_url: https://github.com/camaraproject/project-administration/actions/runs/43405104480
+    source_sha: 21295055fd04d447faaf17f4a8007f8028a380fa
     node_version: v24.22.2
     npm_version: 11.19.1
     dependencies:
@@ -1047,6 +1047,7 @@ releases:
         api_version: 0.1.0-alpha.1
         api_title: Dedicated Network - Areas
         commonalities: 0.6.1
+    superseded: true
   - repository: DedicatedNetworks
     release_tag: r2.2
     release_date: '2026-09-16T19:09:08Z'
@@ -1074,6 +1075,7 @@ releases:
         api_version: 0.1.0-rc.1
         api_title: Dedicated Network - Areas
         commonalities: 0.8.0
+    superseded: true
   - repository: DedicatedNetworks
     release_tag: r2.3
     release_date: '2026-11-08T19:35:56Z'
@@ -1099,6 +1101,34 @@ releases:
         commonalities: 0.9.0
       - api_name: dedicated-network-areas
         api_version: 0.1.0-rc.2
+        api_title: Dedicated Network - Areas
+        commonalities: 0.9.0
+    superseded: true
+  - repository: DedicatedNetworks
+    release_tag: r2.4
+    release_date: '2026-11-12T11:51:30Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/DedicatedNetworks/releases/tag/r2.4
+    release_type: public-release
+    src_commit_sha: 78437781c82a34edd6f5221a072390de59efee7c
+    dependencies:
+      commonalities_release: r4.4 (0.9.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: dedicated-network-accesses
+        api_version: 0.2.0
+        api_title: Dedicated Network - Accesses
+        commonalities: 0.9.0
+      - api_name: dedicated-network-profiles
+        api_version: 0.2.0
+        api_title: Dedicated Network - Network Profiles
+        commonalities: 0.9.0
+      - api_name: dedicated-network
+        api_version: 0.2.0
+        api_title: Dedicated Network - Networks
+        commonalities: 0.9.0
+      - api_name: dedicated-network-areas
+        api_version: 0.1.0
         api_title: Dedicated Network - Areas
         commonalities: 0.9.0
   - repository: DeviceDataVolume
@@ -4321,8 +4351,8 @@ repositories:
     newest_pre_release: null
   - repository: DedicatedNetworks
     github_url: https://github.com/camaraproject/DedicatedNetworks
-    latest_public_release: r1.2
-    newest_pre_release: r2.3
+    latest_public_release: r2.4
+    newest_pre_release: null
   - repository: DeviceAuthenticity
     github_url: https://github.com/camaraproject/DeviceAuthenticity
     latest_public_release: null
