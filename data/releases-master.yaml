@@ -1,13 +1,13 @@
 metadata:
-  last_updated: '2026-11-13T09:56:15.082Z'
+  last_updated: '2026-11-16T10:08:14.417Z'
   workflow_version: 3.0.0
   schema_version: 3.2.0
   collector_run:
     analysis_scope: incremental
-    workflow_run_id: '43405104480'
-    workflow_run_number: 393
-    workflow_run_url: https://github.com/camaraproject/project-administration/actions/runs/43405104480
-    source_sha: 21295055fd04d447faaf17f4a8007f8028a380fa
+    workflow_run_id: '43845859507'
+    workflow_run_number: 396
+    workflow_run_url: https://github.com/camaraproject/project-administration/actions/runs/43845859507
+    source_sha: b0fd19dce0561d8dc7693df174d3813ac923bd36
     node_version: v24.22.2
     npm_version: 11.19.1
     dependencies:
@@ -3293,6 +3293,22 @@ releases:
         api_version: 1.2.0-rc.4
         api_title: QoS Profiles
         commonalities: 0.9.0
+    superseded: true
+  - repository: QoSProfiles
+    release_tag: r1.2
+    release_date: '2026-11-15T18:30:14Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/QoSProfiles/releases/tag/r1.2
+    release_type: public-release
+    src_commit_sha: a6f5dfaa7eb321386c840fa105308dbcd25b88e6
+    dependencies:
+      commonalities_release: r4.4 (0.9.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: qos-profiles
+        api_version: 1.2.0
+        api_title: QoS Profiles
+        commonalities: 0.9.0
   - repository: QualityOnDemand
     release_tag: r1.1
     release_date: '2024-08-09T13:30:59Z'
@@ -4504,8 +4520,8 @@ repositories:
     newest_pre_release: r2.2
   - repository: QoSProfiles
     github_url: https://github.com/camaraproject/QoSProfiles
-    latest_public_release: null
-    newest_pre_release: r1.1
+    latest_public_release: r1.2
+    newest_pre_release: null
   - repository: QualityOnDemand
     github_url: https://github.com/camaraproject/QualityOnDemand
     latest_public_release: r3.2
