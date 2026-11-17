@@ -1,13 +1,13 @@
 metadata:
-  last_updated: '2026-11-16T10:08:14.417Z'
+  last_updated: '2026-11-16T19:36:21.253Z'
   workflow_version: 3.0.0
   schema_version: 3.2.0
   collector_run:
     analysis_scope: incremental
-    workflow_run_id: '43845859507'
-    workflow_run_number: 396
-    workflow_run_url: https://github.com/camaraproject/project-administration/actions/runs/43845859507
-    source_sha: b0fd19dce0561d8dc7693df174d3813ac923bd36
+    workflow_run_id: '43930318365'
+    workflow_run_number: 397
+    workflow_run_url: https://github.com/camaraproject/project-administration/actions/runs/43930318365
+    source_sha: 778eb5e6ac4ef19fcfeed7019a278c9088b2ce64
     node_version: v24.22.2
     npm_version: 11.19.1
     dependencies:
@@ -3194,6 +3194,7 @@ releases:
         api_version: 0.2.0-rc.1
         api_title: Predictive Connectivity Data
         commonalities: 0.8.0
+    superseded: true
   - repository: PredictiveConnectivityData
     release_tag: r2.2
     release_date: '2026-10-26T14:35:51Z'
@@ -3207,6 +3208,22 @@ releases:
     apis:
       - api_name: predictive-connectivity-data
         api_version: 0.2.0-rc.2
+        api_title: Predictive Connectivity Data
+        commonalities: 0.9.0
+    superseded: true
+  - repository: PredictiveConnectivityData
+    release_tag: r2.3
+    release_date: '2026-11-16T12:53:48Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/PredictiveConnectivityData/releases/tag/r2.3
+    release_type: public-release
+    src_commit_sha: 41506eaea1a5a9cd5c9751cde7468ce606f99d0a
+    dependencies:
+      commonalities_release: r4.4 (0.9.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: predictive-connectivity-data
+        api_version: 0.2.0
         api_title: Predictive Connectivity Data
         commonalities: 0.9.0
   - repository: QoSBooking
@@ -4512,8 +4529,8 @@ repositories:
     newest_pre_release: null
   - repository: PredictiveConnectivityData
     github_url: https://github.com/camaraproject/PredictiveConnectivityData
-    latest_public_release: r1.2
-    newest_pre_release: r2.2
+    latest_public_release: r2.3
+    newest_pre_release: null
   - repository: QoSBooking
     github_url: https://github.com/camaraproject/QoSBooking
     latest_public_release: r1.2
