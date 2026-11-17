@@ -125,8 +125,6 @@ mappings:
     KnowYourCustomerFill-in: "r2"
     KnowYourCustomerMatch: "r2"
     ModelAsAService: "r2"
-    NetworkAccessManagement: "r3"
-    NetworkInsights: "r2"
     NumberRecycling: "r3"
     NumberVerification: "r4"
     OTPValidation: "r4"
