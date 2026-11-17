@@ -1,30 +1,30 @@
 {
   "metadata": {
-    "generated": "2026-11-16T19:36:22.458Z",
+    "generated": "2026-11-17T11:04:09.907Z",
     "meta_release": "All",
     "source": "Release Collector v3",
     "landscape_version": "1.1.1"
   },
   "statistics": {
     "repositories_count": 54,
-    "api_versions_count": 261,
+    "api_versions_count": 260,
     "unique_api_names_count": 79,
     "unique_apis_count": 78,
     "api_version_maturity": {
       "stable": 35,
-      "initial": 144,
-      "rc": 82
+      "initial": 145,
+      "rc": 80
     },
     "unique_api_maturity": {
       "stable": 7,
-      "initial": 29,
-      "rc": 42
+      "initial": 30,
+      "rc": 41
     },
     "categories": {
       "Computing Services": 23,
       "Communication Quality": 59,
       "Payments and Charging": 11,
-      "Authentication and Fraud Prevention": 70,
+      "Authentication and Fraud Prevention": 69,
       "Communication Services": 21,
       "Service Management": 2,
       "Device Information": 34,
@@ -110,13 +110,8 @@
     "CallForwardingSignal": {
       "releases": [
         {
-          "tag": "r4.2",
-          "date": "2026-11-09T07:27:32Z",
-          "apis_count": 1
-        },
-        {
-          "tag": "r4.1",
-          "date": "2026-09-17T16:03:57Z",
+          "tag": "r4.3",
+          "date": "2026-11-17T10:55:13Z",
           "apis_count": 1
         },
         {
@@ -135,7 +130,7 @@
           "apis_count": 1
         }
       ],
-      "total_apis": 5,
+      "total_apis": 4,
       "unique_apis_count": 1
     },
     "CarrierBillingCheckOut": {
@@ -1537,41 +1532,12 @@
     },
     {
       "repository": "CallForwardingSignal",
-      "release_tag": "r4.1",
-      "release_date": "2026-09-17T16:03:57Z",
+      "release_tag": "r4.3",
+      "release_date": "2026-11-17T10:55:13Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/CallForwardingSignal/releases/tag/r4.1",
-      "release_type": "pre-release-rc",
-      "src_commit_sha": "418bb790669f54aa4e314ce7cf07e292c5f60705",
-      "dependencies": {
-        "commonalities_release": "r4.3 (0.8.0)",
-        "identity_consent_management_release": "r4.2 (0.5.0)"
-      },
-      "apis": [
-        {
-          "api_name": "call-forwarding-signal",
-          "api_version": "0.5.0-rc.1",
-          "api_title": "Call Forwarding Signal",
-          "commonalities": "0.8.0",
-          "maturity": "initial",
-          "portfolio_category": "Authentication and Fraud Prevention",
-          "website_url": "https://camaraproject.org/call-forwarding-signal/",
-          "tooltip": "Determine if a call forwarding service is enabled",
-          "display_name": "Call Forwarding Signal",
-          "published": true,
-          "canonical_name": "call-forwarding-signal",
-          "first_release": "Fall24"
-        }
-      ]
-    },
-    {
-      "repository": "CallForwardingSignal",
-      "release_tag": "r4.2",
-      "release_date": "2026-11-09T07:27:32Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/CallForwardingSignal/releases/tag/r4.2",
-      "release_type": "pre-release-rc",
-      "src_commit_sha": "381018a1532c5d5fef7a0103bf568a4688706348",
+      "github_url": "https://github.com/camaraproject/CallForwardingSignal/releases/tag/r4.3",
+      "release_type": "public-release",
+      "src_commit_sha": "4ca8c5f94c3d2b40b2a83a7bfe6c6dae386ef68a",
       "dependencies": {
         "commonalities_release": "r4.4 (0.9.0)",
         "identity_consent_management_release": "r4.2 (0.5.0)"
@@ -1579,7 +1545,7 @@
       "apis": [
         {
           "api_name": "call-forwarding-signal",
-          "api_version": "0.5.0-rc.2",
+          "api_version": "0.5.0",
           "api_title": "Call Forwarding Signal",
           "commonalities": "0.9.0",
           "maturity": "initial",
@@ -7296,27 +7262,7 @@
     },
     {
       "api_name": "call-forwarding-signal",
-      "api_version": "0.5.0-rc.1",
-      "api_title": "Call Forwarding Signal",
-      "commonalities": "0.8.0",
-      "maturity": "initial",
-      "portfolio_category": "Authentication and Fraud Prevention",
-      "website_url": "https://camaraproject.org/call-forwarding-signal/",
-      "tooltip": "Determine if a call forwarding service is enabled",
-      "display_name": "Call Forwarding Signal",
-      "published": true,
-      "canonical_name": "call-forwarding-signal",
-      "first_release": "Fall24",
-      "repository": "CallForwardingSignal",
-      "release_tag": "r4.1",
-      "release_date": "2026-09-17T16:03:57Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/CallForwardingSignal/releases/tag/r4.1",
-      "release_type": "pre-release-rc"
-    },
-    {
-      "api_name": "call-forwarding-signal",
-      "api_version": "0.5.0-rc.2",
+      "api_version": "0.5.0",
       "api_title": "Call Forwarding Signal",
       "commonalities": "0.9.0",
       "maturity": "initial",
@@ -7328,11 +7274,11 @@
       "canonical_name": "call-forwarding-signal",
       "first_release": "Fall24",
       "repository": "CallForwardingSignal",
-      "release_tag": "r4.2",
-      "release_date": "2026-11-09T07:27:32Z",
+      "release_tag": "r4.3",
+      "release_date": "2026-11-17T10:55:13Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/CallForwardingSignal/releases/tag/r4.2",
-      "release_type": "pre-release-rc"
+      "github_url": "https://github.com/camaraproject/CallForwardingSignal/releases/tag/r4.3",
+      "release_type": "public-release"
     },
     {
       "api_name": "carrier-billing",
