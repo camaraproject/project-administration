@@ -1,31 +1,31 @@
 {
   "metadata": {
-    "generated": "2026-11-17T11:04:09.907Z",
+    "generated": "2026-11-18T10:40:05.293Z",
     "meta_release": "All",
     "source": "Release Collector v3",
     "landscape_version": "1.1.1"
   },
   "statistics": {
     "repositories_count": 54,
-    "api_versions_count": 260,
+    "api_versions_count": 256,
     "unique_api_names_count": 79,
     "unique_apis_count": 78,
     "api_version_maturity": {
       "stable": 35,
-      "initial": 145,
-      "rc": 80
+      "initial": 149,
+      "rc": 72
     },
     "unique_api_maturity": {
       "stable": 7,
-      "initial": 30,
-      "rc": 41
+      "initial": 34,
+      "rc": 37
     },
     "categories": {
       "Computing Services": 23,
-      "Communication Quality": 59,
+      "Communication Quality": 57,
       "Payments and Charging": 11,
       "Authentication and Fraud Prevention": 69,
-      "Communication Services": 21,
+      "Communication Services": 20,
       "Service Management": 2,
       "Device Information": 34,
       "Location Services": 23
@@ -162,13 +162,8 @@
     "ClickToDial": {
       "releases": [
         {
-          "tag": "r2.2",
-          "date": "2026-09-15T02:34:18Z",
-          "apis_count": 1
-        },
-        {
-          "tag": "r2.1",
-          "date": "2026-07-15T03:28:17Z",
+          "tag": "r2.3",
+          "date": "2026-11-17T13:35:18Z",
           "apis_count": 1
         },
         {
@@ -177,7 +172,7 @@
           "apis_count": 1
         }
       ],
-      "total_apis": 3,
+      "total_apis": 2,
       "unique_apis_count": 1
     },
     "ConnectedNetworkType": {
@@ -894,13 +889,8 @@
     "QoSBooking": {
       "releases": [
         {
-          "tag": "r2.2",
-          "date": "2026-11-09T06:57:32Z",
-          "apis_count": 2
-        },
-        {
-          "tag": "r2.1",
-          "date": "2026-08-28T16:58:33Z",
+          "tag": "r2.3",
+          "date": "2026-11-18T01:11:20Z",
           "apis_count": 2
         },
         {
@@ -909,7 +899,7 @@
           "apis_count": 2
         }
       ],
-      "total_apis": 6,
+      "total_apis": 4,
       "unique_apis_count": 2
     },
     "QoSProfiles": {
@@ -983,13 +973,8 @@
     "SessionInsights": {
       "releases": [
         {
-          "tag": "r2.2",
-          "date": "2026-10-16T00:14:59Z",
-          "apis_count": 1
-        },
-        {
-          "tag": "r2.1",
-          "date": "2026-08-19T16:29:52Z",
+          "tag": "r2.3",
+          "date": "2026-11-17T23:38:48Z",
           "apis_count": 1
         },
         {
@@ -998,7 +983,7 @@
           "apis_count": 1
         }
       ],
-      "total_apis": 3,
+      "total_apis": 2,
       "unique_apis_count": 1
     },
     "SimpleEdgeDiscovery": {
@@ -1751,41 +1736,12 @@
     },
     {
       "repository": "ClickToDial",
-      "release_tag": "r2.1",
-      "release_date": "2026-07-15T03:28:17Z",
+      "release_tag": "r2.3",
+      "release_date": "2026-11-17T13:35:18Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/ClickToDial/releases/tag/r2.1",
-      "release_type": "pre-release-rc",
-      "src_commit_sha": "f5029cd4c59ce3434c5c8632c57cce1e2b7013f8",
-      "dependencies": {
-        "commonalities_release": "r4.3 (0.8.0)",
-        "identity_consent_management_release": "r4.2 (0.5.0)"
-      },
-      "apis": [
-        {
-          "api_name": "click-to-dial",
-          "api_version": "0.2.0-rc.1",
-          "api_title": "Click to Dial Service",
-          "commonalities": "0.8.0",
-          "maturity": "initial",
-          "portfolio_category": "Communication Services",
-          "website_url": "https://camaraproject.org/click-to-dial/",
-          "tooltip": "Establish web-based communication by clicking an object",
-          "display_name": "Click to Dial Service",
-          "published": true,
-          "canonical_name": "click-to-dial",
-          "first_release": "Spring26"
-        }
-      ]
-    },
-    {
-      "repository": "ClickToDial",
-      "release_tag": "r2.2",
-      "release_date": "2026-09-15T02:34:18Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/ClickToDial/releases/tag/r2.2",
-      "release_type": "pre-release-rc",
-      "src_commit_sha": "5bf44bfc783aa7f742c9cdab8c06a12c796a1b53",
+      "github_url": "https://github.com/camaraproject/ClickToDial/releases/tag/r2.3",
+      "release_type": "public-release",
+      "src_commit_sha": "8573430ec75ade0fc1c51a545dc01b60aad6d464",
       "dependencies": {
         "commonalities_release": "r4.4 (0.9.0)",
         "identity_consent_management_release": "r4.2 (0.5.0)"
@@ -1793,7 +1749,7 @@
       "apis": [
         {
           "api_name": "click-to-dial",
-          "api_version": "0.2.0-rc.2",
+          "api_version": "0.2.0",
           "api_title": "Click to Dial Service",
           "commonalities": "0.9.0",
           "maturity": "initial",
@@ -5429,55 +5385,12 @@
     },
     {
       "repository": "QoSBooking",
-      "release_tag": "r2.1",
-      "release_date": "2026-08-28T16:58:33Z",
+      "release_tag": "r2.3",
+      "release_date": "2026-11-18T01:11:20Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/QoSBooking/releases/tag/r2.1",
-      "release_type": "pre-release-rc",
-      "src_commit_sha": "c60335beceb0dae021bc8dfc803fdb6c15318b95",
-      "dependencies": {
-        "commonalities_release": "r4.3 (0.8.0)",
-        "identity_consent_management_release": "r4.2 (0.5.0)"
-      },
-      "apis": [
-        {
-          "api_name": "qos-booking-and-assignment",
-          "api_version": "0.2.0-rc.1",
-          "api_title": "QoS Booking and Assignment",
-          "commonalities": "0.8.0",
-          "maturity": "initial",
-          "portfolio_category": "Communication Quality",
-          "website_url": "https://camaraproject.org/qos-booking-and-assignment/",
-          "tooltip": "Request an assignment of a certain QoS Profile to a certain device",
-          "display_name": "QoS Booking and Assignment",
-          "published": true,
-          "canonical_name": "qos-booking-and-assignment",
-          "first_release": "Fall25"
-        },
-        {
-          "api_name": "qos-booking",
-          "api_version": "0.2.0-rc.1",
-          "api_title": "QoS Booking",
-          "commonalities": "0.8.0",
-          "maturity": "initial",
-          "portfolio_category": "Communication Quality",
-          "website_url": "https://camaraproject.org/qos-booking/",
-          "tooltip": "Request an assignment of a certain QoS Profile to a certain device",
-          "display_name": "QoS Booking",
-          "published": true,
-          "canonical_name": "qos-booking",
-          "first_release": "Fall25"
-        }
-      ]
-    },
-    {
-      "repository": "QoSBooking",
-      "release_tag": "r2.2",
-      "release_date": "2026-11-09T06:57:32Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/QoSBooking/releases/tag/r2.2",
-      "release_type": "pre-release-rc",
-      "src_commit_sha": "99411ce4669f0b4a2233883ed39242d9e3ef0985",
+      "github_url": "https://github.com/camaraproject/QoSBooking/releases/tag/r2.3",
+      "release_type": "public-release",
+      "src_commit_sha": "52445f57a24cad85c5b198ec318b3b47785912d9",
       "dependencies": {
         "commonalities_release": "r4.4 (0.9.0)",
         "identity_consent_management_release": "r4.2 (0.5.0)"
@@ -5485,7 +5398,7 @@
       "apis": [
         {
           "api_name": "qos-booking-and-assignment",
-          "api_version": "0.2.0-rc.2",
+          "api_version": "0.2.0",
           "api_title": "QoS Booking and Assignment",
           "commonalities": "0.9.0",
           "maturity": "initial",
@@ -5499,7 +5412,7 @@
         },
         {
           "api_name": "qos-booking",
-          "api_version": "0.2.0-rc.2",
+          "api_version": "0.2.0",
           "api_title": "QoS Booking",
           "commonalities": "0.9.0",
           "maturity": "initial",
@@ -5970,41 +5883,12 @@
     },
     {
       "repository": "SessionInsights",
-      "release_tag": "r2.1",
-      "release_date": "2026-08-19T16:29:52Z",
+      "release_tag": "r2.3",
+      "release_date": "2026-11-17T23:38:48Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/SessionInsights/releases/tag/r2.1",
-      "release_type": "pre-release-rc",
-      "src_commit_sha": "55f5c9c77d868bd294306158a01a75e2e1ea9c55",
-      "dependencies": {
-        "commonalities_release": "r4.3 (0.8.0)",
-        "identity_consent_management_release": "r4.2 (0.5.0)"
-      },
-      "apis": [
-        {
-          "api_name": "session-insights",
-          "api_version": "0.2.0-rc.1",
-          "api_title": "Session Insights",
-          "commonalities": "0.8.0",
-          "maturity": "initial",
-          "portfolio_category": null,
-          "website_url": null,
-          "tooltip": null,
-          "display_name": "Session Insights",
-          "published": true,
-          "canonical_name": "session-insights",
-          "first_release": "Sandbox"
-        }
-      ]
-    },
-    {
-      "repository": "SessionInsights",
-      "release_tag": "r2.2",
-      "release_date": "2026-10-16T00:14:59Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/SessionInsights/releases/tag/r2.2",
-      "release_type": "pre-release-rc",
-      "src_commit_sha": "5921d6da73b2ca39f592c987ab6e503938d9b019",
+      "github_url": "https://github.com/camaraproject/SessionInsights/releases/tag/r2.3",
+      "release_type": "public-release",
+      "src_commit_sha": "9c6ee06bef58ea3a2f84cd0fd3df1520ad1ef440",
       "dependencies": {
         "commonalities_release": "r4.4 (0.9.0)",
         "identity_consent_management_release": "r4.2 (0.5.0)"
@@ -6012,7 +5896,7 @@
       "apis": [
         {
           "api_name": "session-insights",
-          "api_version": "0.2.0-rc.2",
+          "api_version": "0.2.0",
           "api_title": "Session Insights",
           "commonalities": "0.9.0",
           "maturity": "initial",
@@ -7471,27 +7355,7 @@
     },
     {
       "api_name": "click-to-dial",
-      "api_version": "0.2.0-rc.1",
-      "api_title": "Click to Dial Service",
-      "commonalities": "0.8.0",
-      "maturity": "initial",
-      "portfolio_category": "Communication Services",
-      "website_url": "https://camaraproject.org/click-to-dial/",
-      "tooltip": "Establish web-based communication by clicking an object",
-      "display_name": "Click to Dial Service",
-      "published": true,
-      "canonical_name": "click-to-dial",
-      "first_release": "Spring26",
-      "repository": "ClickToDial",
-      "release_tag": "r2.1",
-      "release_date": "2026-07-15T03:28:17Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/ClickToDial/releases/tag/r2.1",
-      "release_type": "pre-release-rc"
-    },
-    {
-      "api_name": "click-to-dial",
-      "api_version": "0.2.0-rc.2",
+      "api_version": "0.2.0",
       "api_title": "Click to Dial Service",
       "commonalities": "0.9.0",
       "maturity": "initial",
@@ -7503,11 +7367,11 @@
       "canonical_name": "click-to-dial",
       "first_release": "Spring26",
       "repository": "ClickToDial",
-      "release_tag": "r2.2",
-      "release_date": "2026-09-15T02:34:18Z",
+      "release_tag": "r2.3",
+      "release_date": "2026-11-17T13:35:18Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/ClickToDial/releases/tag/r2.2",
-      "release_type": "pre-release-rc"
+      "github_url": "https://github.com/camaraproject/ClickToDial/releases/tag/r2.3",
+      "release_type": "public-release"
     },
     {
       "api_name": "connected-network-type",
@@ -10838,27 +10702,7 @@
     },
     {
       "api_name": "qos-booking",
-      "api_version": "0.2.0-rc.1",
-      "api_title": "QoS Booking",
-      "commonalities": "0.8.0",
-      "maturity": "initial",
-      "portfolio_category": "Communication Quality",
-      "website_url": "https://camaraproject.org/qos-booking/",
-      "tooltip": "Request an assignment of a certain QoS Profile to a certain device",
-      "display_name": "QoS Booking",
-      "published": true,
-      "canonical_name": "qos-booking",
-      "first_release": "Fall25",
-      "repository": "QoSBooking",
-      "release_tag": "r2.1",
-      "release_date": "2026-08-28T16:58:33Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/QoSBooking/releases/tag/r2.1",
-      "release_type": "pre-release-rc"
-    },
-    {
-      "api_name": "qos-booking",
-      "api_version": "0.2.0-rc.2",
+      "api_version": "0.2.0",
       "api_title": "QoS Booking",
       "commonalities": "0.9.0",
       "maturity": "initial",
@@ -10870,11 +10714,11 @@
       "canonical_name": "qos-booking",
       "first_release": "Fall25",
       "repository": "QoSBooking",
-      "release_tag": "r2.2",
-      "release_date": "2026-11-09T06:57:32Z",
+      "release_tag": "r2.3",
+      "release_date": "2026-11-18T01:11:20Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/QoSBooking/releases/tag/r2.2",
-      "release_type": "pre-release-rc"
+      "github_url": "https://github.com/camaraproject/QoSBooking/releases/tag/r2.3",
+      "release_type": "public-release"
     },
     {
       "api_name": "qos-booking-and-assignment",
@@ -10899,27 +10743,7 @@
     },
     {
       "api_name": "qos-booking-and-assignment",
-      "api_version": "0.2.0-rc.1",
-      "api_title": "QoS Booking and Assignment",
-      "commonalities": "0.8.0",
-      "maturity": "initial",
-      "portfolio_category": "Communication Quality",
-      "website_url": "https://camaraproject.org/qos-booking-and-assignment/",
-      "tooltip": "Request an assignment of a certain QoS Profile to a certain device",
-      "display_name": "QoS Booking and Assignment",
-      "published": true,
-      "canonical_name": "qos-booking-and-assignment",
-      "first_release": "Fall25",
-      "repository": "QoSBooking",
-      "release_tag": "r2.1",
-      "release_date": "2026-08-28T16:58:33Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/QoSBooking/releases/tag/r2.1",
-      "release_type": "pre-release-rc"
-    },
-    {
-      "api_name": "qos-booking-and-assignment",
-      "api_version": "0.2.0-rc.2",
+      "api_version": "0.2.0",
       "api_title": "QoS Booking and Assignment",
       "commonalities": "0.9.0",
       "maturity": "initial",
@@ -10931,11 +10755,11 @@
       "canonical_name": "qos-booking-and-assignment",
       "first_release": "Fall25",
       "repository": "QoSBooking",
-      "release_tag": "r2.2",
-      "release_date": "2026-11-09T06:57:32Z",
+      "release_tag": "r2.3",
+      "release_date": "2026-11-18T01:11:20Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/QoSBooking/releases/tag/r2.2",
-      "release_type": "pre-release-rc"
+      "github_url": "https://github.com/camaraproject/QoSBooking/releases/tag/r2.3",
+      "release_type": "public-release"
     },
     {
       "api_name": "qos-profiles",
@@ -11391,27 +11215,7 @@
     },
     {
       "api_name": "session-insights",
-      "api_version": "0.2.0-rc.1",
-      "api_title": "Session Insights",
-      "commonalities": "0.8.0",
-      "maturity": "initial",
-      "portfolio_category": null,
-      "website_url": null,
-      "tooltip": null,
-      "display_name": "Session Insights",
-      "published": true,
-      "canonical_name": "session-insights",
-      "first_release": "Sandbox",
-      "repository": "SessionInsights",
-      "release_tag": "r2.1",
-      "release_date": "2026-08-19T16:29:52Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/SessionInsights/releases/tag/r2.1",
-      "release_type": "pre-release-rc"
-    },
-    {
-      "api_name": "session-insights",
-      "api_version": "0.2.0-rc.2",
+      "api_version": "0.2.0",
       "api_title": "Session Insights",
       "commonalities": "0.9.0",
       "maturity": "initial",
@@ -11423,11 +11227,11 @@
       "canonical_name": "session-insights",
       "first_release": "Sandbox",
       "repository": "SessionInsights",
-      "release_tag": "r2.2",
-      "release_date": "2026-10-16T00:14:59Z",
+      "release_tag": "r2.3",
+      "release_date": "2026-11-17T23:38:48Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/SessionInsights/releases/tag/r2.2",
-      "release_type": "pre-release-rc"
+      "github_url": "https://github.com/camaraproject/SessionInsights/releases/tag/r2.3",
+      "release_type": "public-release"
     },
     {
       "api_name": "simple-edge-discovery",
