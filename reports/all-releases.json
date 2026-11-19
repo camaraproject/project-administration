@@ -1,48 +1,43 @@
 {
   "metadata": {
-    "generated": "2026-11-18T10:40:05.293Z",
+    "generated": "2026-11-19T10:44:02.214Z",
     "meta_release": "All",
     "source": "Release Collector v3",
     "landscape_version": "1.1.1"
   },
   "statistics": {
-    "repositories_count": 54,
-    "api_versions_count": 256,
-    "unique_api_names_count": 79,
-    "unique_apis_count": 78,
+    "repositories_count": 55,
+    "api_versions_count": 241,
+    "unique_api_names_count": 80,
+    "unique_apis_count": 79,
     "api_version_maturity": {
-      "stable": 35,
-      "initial": 149,
-      "rc": 72
+      "stable": 37,
+      "initial": 164,
+      "rc": 40
     },
     "unique_api_maturity": {
-      "stable": 7,
-      "initial": 34,
-      "rc": 37
+      "stable": 9,
+      "initial": 49,
+      "rc": 21
     },
     "categories": {
-      "Computing Services": 23,
-      "Communication Quality": 57,
+      "Computing Services": 20,
+      "Communication Quality": 50,
       "Payments and Charging": 11,
       "Authentication and Fraud Prevention": 69,
       "Communication Services": 20,
       "Service Management": 2,
-      "Device Information": 34,
+      "Device Information": 28,
       "Location Services": 23
     },
-    "apis_with_previous_names": 6
+    "apis_with_previous_names": 5
   },
   "repositories": {
     "ApplicationEndpointDiscovery": {
       "releases": [
         {
-          "tag": "r2.2",
-          "date": "2026-10-20T22:12:31Z",
-          "apis_count": 1
-        },
-        {
-          "tag": "r2.1",
-          "date": "2026-09-16T13:16:44Z",
+          "tag": "r2.3",
+          "date": "2026-11-18T22:26:18Z",
           "apis_count": 1
         },
         {
@@ -51,19 +46,14 @@
           "apis_count": 1
         }
       ],
-      "total_apis": 3,
+      "total_apis": 2,
       "unique_apis_count": 1
     },
     "ApplicationEndpointRegistration": {
       "releases": [
         {
-          "tag": "r2.2",
-          "date": "2026-10-20T22:11:21Z",
-          "apis_count": 1
-        },
-        {
-          "tag": "r2.1",
-          "date": "2026-08-20T02:02:26Z",
+          "tag": "r2.3",
+          "date": "2026-11-18T22:20:40Z",
           "apis_count": 1
         },
         {
@@ -72,7 +62,7 @@
           "apis_count": 1
         }
       ],
-      "total_apis": 3,
+      "total_apis": 2,
       "unique_apis_count": 1
     },
     "ApplicationProfiles": {
@@ -178,13 +168,8 @@
     "ConnectedNetworkType": {
       "releases": [
         {
-          "tag": "r2.2",
-          "date": "2026-10-30T16:02:17Z",
-          "apis_count": 2
-        },
-        {
-          "tag": "r2.1",
-          "date": "2026-08-11T15:01:59Z",
+          "tag": "r2.3",
+          "date": "2026-11-18T21:13:52Z",
           "apis_count": 2
         },
         {
@@ -193,19 +178,14 @@
           "apis_count": 2
         }
       ],
-      "total_apis": 6,
+      "total_apis": 4,
       "unique_apis_count": 2
     },
     "ConnectivityInsights": {
       "releases": [
         {
-          "tag": "r4.2",
-          "date": "2026-10-21T16:23:37Z",
-          "apis_count": 2
-        },
-        {
-          "tag": "r4.1",
-          "date": "2026-08-20T22:39:16Z",
+          "tag": "r4.3",
+          "date": "2026-11-18T21:26:46Z",
           "apis_count": 2
         },
         {
@@ -224,7 +204,7 @@
           "apis_count": 3
         }
       ],
-      "total_apis": 12,
+      "total_apis": 10,
       "unique_apis_count": 3
     },
     "ConsentInfo": {
@@ -299,18 +279,8 @@
     "DeviceDataVolume": {
       "releases": [
         {
-          "tag": "r2.3",
-          "date": "2026-11-02T10:40:34Z",
-          "apis_count": 2
-        },
-        {
-          "tag": "r2.2",
-          "date": "2026-10-14T12:57:33Z",
-          "apis_count": 2
-        },
-        {
-          "tag": "r2.1",
-          "date": "2026-09-16T12:46:52Z",
+          "tag": "r2.4",
+          "date": "2026-11-19T09:34:41Z",
           "apis_count": 2
         },
         {
@@ -319,7 +289,7 @@
           "apis_count": 2
         }
       ],
-      "total_apis": 8,
+      "total_apis": 4,
       "unique_apis_count": 2
     },
     "DeviceIdentifier": {
@@ -403,13 +373,8 @@
     "DeviceReachabilityStatus": {
       "releases": [
         {
-          "tag": "r2.2",
-          "date": "2026-11-02T20:32:14Z",
-          "apis_count": 2
-        },
-        {
-          "tag": "r2.1",
-          "date": "2026-08-07T10:35:15Z",
+          "tag": "r2.3",
+          "date": "2026-11-18T21:10:46Z",
           "apis_count": 2
         },
         {
@@ -418,7 +383,7 @@
           "apis_count": 2
         }
       ],
-      "total_apis": 6,
+      "total_apis": 4,
       "unique_apis_count": 2
     },
     "DeviceRoamingStatus": {
@@ -511,6 +476,17 @@
       "total_apis": 1,
       "unique_apis_count": 1
     },
+    "eSimRemoteManagement": {
+      "releases": [
+        {
+          "tag": "r1.1",
+          "date": "2026-11-19T01:24:35Z",
+          "apis_count": 1
+        }
+      ],
+      "total_apis": 1,
+      "unique_apis_count": 1
+    },
     "HomeDevicesQoD": {
       "releases": [
         {
@@ -558,8 +534,8 @@
     "IoTSIMFraudPrevention": {
       "releases": [
         {
-          "tag": "r2.1",
-          "date": "2026-10-15T06:41:16Z",
+          "tag": "r2.2",
+          "date": "2026-11-19T02:49:10Z",
           "apis_count": 2
         },
         {
@@ -595,6 +571,11 @@
     "KnowYourCustomerAgeVerification": {
       "releases": [
         {
+          "tag": "r2.2",
+          "date": "2026-11-19T09:06:50Z",
+          "apis_count": 1
+        },
+        {
           "tag": "r2.1",
           "date": "2026-09-01T05:15:38Z",
           "apis_count": 1
@@ -605,7 +586,7 @@
           "apis_count": 1
         }
       ],
-      "total_apis": 2,
+      "total_apis": 3,
       "unique_apis_count": 1
     },
     "KnowYourCustomerFill-in": {
@@ -738,13 +719,8 @@
     "NumberRecycling": {
       "releases": [
         {
-          "tag": "r3.2",
-          "date": "2026-11-09T09:05:29Z",
-          "apis_count": 1
-        },
-        {
-          "tag": "r3.1",
-          "date": "2026-09-03T19:08:44Z",
+          "tag": "r3.3",
+          "date": "2026-11-19T04:42:06Z",
           "apis_count": 1
         },
         {
@@ -763,7 +739,7 @@
           "apis_count": 1
         }
       ],
-      "total_apis": 5,
+      "total_apis": 4,
       "unique_apis_count": 1
     },
     "NumberVerification": {
@@ -800,13 +776,8 @@
     "OptimalEdgeDiscovery": {
       "releases": [
         {
-          "tag": "r2.2",
-          "date": "2026-11-05T16:40:10Z",
-          "apis_count": 1
-        },
-        {
-          "tag": "r2.1",
-          "date": "2026-09-10T20:04:23Z",
+          "tag": "r2.3",
+          "date": "2026-11-18T18:57:23Z",
           "apis_count": 1
         },
         {
@@ -815,7 +786,7 @@
           "apis_count": 1
         }
       ],
-      "total_apis": 3,
+      "total_apis": 2,
       "unique_apis_count": 1
     },
     "OTPValidation": {
@@ -916,14 +887,9 @@
     "QualityOnDemand": {
       "releases": [
         {
-          "tag": "r4.2",
-          "date": "2026-10-26T10:05:12Z",
+          "tag": "r4.3",
+          "date": "2026-11-19T07:57:56Z",
           "apis_count": 2
-        },
-        {
-          "tag": "r4.1",
-          "date": "2026-08-20T10:09:32Z",
-          "apis_count": 3
         },
         {
           "tag": "r3.2",
@@ -946,7 +912,7 @@
           "apis_count": 3
         }
       ],
-      "total_apis": 17,
+      "total_apis": 14,
       "unique_apis_count": 3
     },
     "RegionDeviceCount": {
@@ -1182,41 +1148,12 @@
     },
     {
       "repository": "ApplicationEndpointDiscovery",
-      "release_tag": "r2.1",
-      "release_date": "2026-09-16T13:16:44Z",
+      "release_tag": "r2.3",
+      "release_date": "2026-11-18T22:26:18Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/ApplicationEndpointDiscovery/releases/tag/r2.1",
-      "release_type": "pre-release-rc",
-      "src_commit_sha": "23a7d7fa720dc51c5406870b8fdf8c80f71c547d",
-      "dependencies": {
-        "commonalities_release": "r4.3 (0.8.0)",
-        "identity_consent_management_release": "r4.2 (0.5.0)"
-      },
-      "apis": [
-        {
-          "api_name": "application-endpoint-discovery",
-          "api_version": "0.2.0-rc.1",
-          "api_title": "Application Endpoint Discovery",
-          "commonalities": "0.8.0",
-          "maturity": "initial",
-          "portfolio_category": "Computing Services",
-          "website_url": "https://camaraproject.org/application-endpoint-discovery/",
-          "tooltip": "Locating the nearest edge cloud zone but also directly linking to the application endpoints",
-          "display_name": "Application Endpoint Discovery",
-          "published": true,
-          "canonical_name": "application-endpoint-discovery",
-          "first_release": "Fall25"
-        }
-      ]
-    },
-    {
-      "repository": "ApplicationEndpointDiscovery",
-      "release_tag": "r2.2",
-      "release_date": "2026-10-20T22:12:31Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/ApplicationEndpointDiscovery/releases/tag/r2.2",
-      "release_type": "pre-release-rc",
-      "src_commit_sha": "650e517e3c12162c44ba4b285b5fb83fb564059b",
+      "github_url": "https://github.com/camaraproject/ApplicationEndpointDiscovery/releases/tag/r2.3",
+      "release_type": "public-release",
+      "src_commit_sha": "992785026effb7dd2bb9e4756c90a5e5108e90b0",
       "dependencies": {
         "commonalities_release": "r4.4 (0.9.0)",
         "identity_consent_management_release": "r4.2 (0.5.0)"
@@ -1224,7 +1161,7 @@
       "apis": [
         {
           "api_name": "application-endpoint-discovery",
-          "api_version": "0.2.0-rc.2",
+          "api_version": "0.2.0",
           "api_title": "Application Endpoint Discovery",
           "commonalities": "0.9.0",
           "maturity": "initial",
@@ -1265,41 +1202,12 @@
     },
     {
       "repository": "ApplicationEndpointRegistration",
-      "release_tag": "r2.1",
-      "release_date": "2026-08-20T02:02:26Z",
+      "release_tag": "r2.3",
+      "release_date": "2026-11-18T22:20:40Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/ApplicationEndpointRegistration/releases/tag/r2.1",
-      "release_type": "pre-release-rc",
-      "src_commit_sha": "04795c6bc137f898a2ff663a573072e58e1f019f",
-      "dependencies": {
-        "commonalities_release": "r4.3 (0.8.0)",
-        "identity_consent_management_release": "r4.2 (0.5.0)"
-      },
-      "apis": [
-        {
-          "api_name": "application-endpoint-registration",
-          "api_version": "0.2.0-rc.1",
-          "api_title": "Application Endpoints Registration",
-          "commonalities": "0.8.0",
-          "maturity": "initial",
-          "portfolio_category": "Computing Services",
-          "website_url": "https://camaraproject.org/application-endpoint-registration/",
-          "tooltip": "Register application endpoints",
-          "display_name": "Application Endpoints Registration",
-          "published": true,
-          "canonical_name": "application-endpoint-registration",
-          "first_release": "Fall25"
-        }
-      ]
-    },
-    {
-      "repository": "ApplicationEndpointRegistration",
-      "release_tag": "r2.2",
-      "release_date": "2026-10-20T22:11:21Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/ApplicationEndpointRegistration/releases/tag/r2.2",
-      "release_type": "pre-release-rc",
-      "src_commit_sha": "cc55f1ca635ce2be847c7498e03a7f9f1b25a9df",
+      "github_url": "https://github.com/camaraproject/ApplicationEndpointRegistration/releases/tag/r2.3",
+      "release_type": "public-release",
+      "src_commit_sha": "84e05c297968c990d8c83cd6b17f045a1f6da864",
       "dependencies": {
         "commonalities_release": "r4.4 (0.9.0)",
         "identity_consent_management_release": "r4.2 (0.5.0)"
@@ -1307,7 +1215,7 @@
       "apis": [
         {
           "api_name": "application-endpoint-registration",
-          "api_version": "0.2.0-rc.2",
+          "api_version": "0.2.0",
           "api_title": "Application Endpoints Registration",
           "commonalities": "0.9.0",
           "maturity": "initial",
@@ -1805,55 +1713,12 @@
     },
     {
       "repository": "ConnectedNetworkType",
-      "release_tag": "r2.1",
-      "release_date": "2026-08-11T15:01:59Z",
+      "release_tag": "r2.3",
+      "release_date": "2026-11-18T21:13:52Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/ConnectedNetworkType/releases/tag/r2.1",
-      "release_type": "pre-release-rc",
-      "src_commit_sha": "8f05564fbf29825e58bfecf27811070524da5361",
-      "dependencies": {
-        "commonalities_release": "r4.3 (0.8.0)",
-        "identity_consent_management_release": "r4.2 (0.5.0)"
-      },
-      "apis": [
-        {
-          "api_name": "connected-network-type-subscriptions",
-          "api_version": "0.3.0-rc.1",
-          "api_title": "Connected Network Type Subscriptions",
-          "commonalities": "0.8.0",
-          "maturity": "initial",
-          "portfolio_category": "Communication Quality",
-          "website_url": "https://camaraproject.org/connected-network-type-subscriptions/",
-          "tooltip": "Receive notifications when the connected network type changes",
-          "display_name": "Connected Network Type Subscriptions",
-          "published": true,
-          "canonical_name": "connected-network-type-subscriptions",
-          "first_release": "Spring25"
-        },
-        {
-          "api_name": "connected-network-type",
-          "api_version": "0.3.0-rc.1",
-          "api_title": "Connected Network Type",
-          "commonalities": "0.8.0",
-          "maturity": "initial",
-          "portfolio_category": "Communication Quality",
-          "website_url": "https://camaraproject.org/connected-network-type/",
-          "tooltip": "Query the device's connected network type",
-          "display_name": "Connected Network Type",
-          "published": true,
-          "canonical_name": "connected-network-type",
-          "first_release": "Spring25"
-        }
-      ]
-    },
-    {
-      "repository": "ConnectedNetworkType",
-      "release_tag": "r2.2",
-      "release_date": "2026-10-30T16:02:17Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/ConnectedNetworkType/releases/tag/r2.2",
-      "release_type": "pre-release-rc",
-      "src_commit_sha": "f38d31f3ca150b20171364a37da47bc568388538",
+      "github_url": "https://github.com/camaraproject/ConnectedNetworkType/releases/tag/r2.3",
+      "release_type": "public-release",
+      "src_commit_sha": "5cbc26e398fdc724c12dded4205d6ee1d82a2006",
       "dependencies": {
         "commonalities_release": "r4.4 (0.9.0)",
         "identity_consent_management_release": "r4.2 (0.5.0)"
@@ -1861,7 +1726,7 @@
       "apis": [
         {
           "api_name": "connected-network-type-subscriptions",
-          "api_version": "0.3.0-rc.2",
+          "api_version": "0.3.0",
           "api_title": "Connected Network Type Subscriptions",
           "commonalities": "0.9.0",
           "maturity": "initial",
@@ -1875,7 +1740,7 @@
         },
         {
           "api_name": "connected-network-type",
-          "api_version": "0.3.0-rc.2",
+          "api_version": "0.3.0",
           "api_title": "Connected Network Type",
           "commonalities": "0.9.0",
           "maturity": "initial",
@@ -2041,55 +1906,12 @@
     },
     {
       "repository": "ConnectivityInsights",
-      "release_tag": "r4.1",
-      "release_date": "2026-08-20T22:39:16Z",
+      "release_tag": "r4.3",
+      "release_date": "2026-11-18T21:26:46Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/ConnectivityInsights/releases/tag/r4.1",
-      "release_type": "pre-release-rc",
-      "src_commit_sha": "7cf0e845627d5b76eb4381b09093ba2c808c4ea4",
-      "dependencies": {
-        "commonalities_release": "r4.3 (0.8.0)",
-        "identity_consent_management_release": "r4.2 (0.5.0)"
-      },
-      "apis": [
-        {
-          "api_name": "connectivity-insights-subscriptions",
-          "api_version": "0.7.0-rc.1",
-          "api_title": "Connectivity Insights Subscriptions",
-          "commonalities": "0.8.0",
-          "maturity": "initial",
-          "portfolio_category": "Communication Quality",
-          "website_url": "https://camaraproject.org/connectivity-insights-subscriptions/",
-          "tooltip": "Alerts the consumers if and when the QoS threshold has breached",
-          "display_name": "Connectivity Insights Subscriptions",
-          "published": true,
-          "canonical_name": "connectivity-insights-subscriptions",
-          "first_release": "Fall24"
-        },
-        {
-          "api_name": "connectivity-insights",
-          "api_version": "0.7.0-rc.1",
-          "api_title": "Connectivity Insights",
-          "commonalities": "0.8.0",
-          "maturity": "initial",
-          "portfolio_category": "Communication Quality",
-          "website_url": "https://camaraproject.org/connectivity-insights/",
-          "tooltip": "Get information if the QoS threshold has breached",
-          "display_name": "Connectivity Insights",
-          "published": true,
-          "canonical_name": "connectivity-insights",
-          "first_release": "Fall24"
-        }
-      ]
-    },
-    {
-      "repository": "ConnectivityInsights",
-      "release_tag": "r4.2",
-      "release_date": "2026-10-21T16:23:37Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/ConnectivityInsights/releases/tag/r4.2",
-      "release_type": "pre-release-rc",
-      "src_commit_sha": "d940f483382af4d650ef810014f77a267bf32014",
+      "github_url": "https://github.com/camaraproject/ConnectivityInsights/releases/tag/r4.3",
+      "release_type": "public-release",
+      "src_commit_sha": "c87cfece23ac354056c968cc0dc0d5743657a289",
       "dependencies": {
         "commonalities_release": "r4.4 (0.9.0)",
         "identity_consent_management_release": "r4.2 (0.5.0)"
@@ -2097,7 +1919,7 @@
       "apis": [
         {
           "api_name": "connectivity-insights-subscriptions",
-          "api_version": "0.7.0-rc.2",
+          "api_version": "0.7.0",
           "api_title": "Connectivity Insights Subscriptions",
           "commonalities": "0.9.0",
           "maturity": "initial",
@@ -2111,7 +1933,7 @@
         },
         {
           "api_name": "connectivity-insights",
-          "api_version": "0.7.0-rc.2",
+          "api_version": "0.7.0",
           "api_title": "Connectivity Insights",
           "commonalities": "0.9.0",
           "maturity": "initial",
@@ -2480,12 +2302,12 @@
     },
     {
       "repository": "DeviceDataVolume",
-      "release_tag": "r2.1",
-      "release_date": "2026-09-16T12:46:52Z",
+      "release_tag": "r2.4",
+      "release_date": "2026-11-19T09:34:41Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/DeviceDataVolume/releases/tag/r2.1",
-      "release_type": "pre-release-rc",
-      "src_commit_sha": "83f20e083da2cdd4a1d23f51ba76b0d4523d3426",
+      "github_url": "https://github.com/camaraproject/DeviceDataVolume/releases/tag/r2.4",
+      "release_type": "public-release",
+      "src_commit_sha": "19b786e79353dedfc1360b3c08c26e478ec81d24",
       "dependencies": {
         "commonalities_release": "r4.4 (0.9.0)",
         "identity_consent_management_release": "r4.2 (0.5.0)"
@@ -2493,7 +2315,7 @@
       "apis": [
         {
           "api_name": "device-data-volume-subscriptions",
-          "api_version": "0.2.0-rc.1",
+          "api_version": "0.2.0",
           "api_title": "Device Data Volume Subscriptions",
           "commonalities": "0.9.0",
           "maturity": "initial",
@@ -2507,93 +2329,7 @@
         },
         {
           "api_name": "device-data-volume",
-          "api_version": "0.2.0-rc.1",
-          "api_title": "Device Data Volume",
-          "commonalities": "0.9.0",
-          "maturity": "initial",
-          "portfolio_category": "Device Information",
-          "website_url": "https://camaraproject.org/device-data-volume/",
-          "tooltip": "Provide insights into the customer's data usage status",
-          "display_name": "Device Data Volume",
-          "published": true,
-          "canonical_name": "device-data-volume",
-          "first_release": "Fall25"
-        }
-      ]
-    },
-    {
-      "repository": "DeviceDataVolume",
-      "release_tag": "r2.2",
-      "release_date": "2026-10-14T12:57:33Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/DeviceDataVolume/releases/tag/r2.2",
-      "release_type": "pre-release-rc",
-      "src_commit_sha": "bae20e63134d22c6b56f0d6a342d9cbb71b4b7c2",
-      "dependencies": {
-        "commonalities_release": "r4.4 (0.9.0)",
-        "identity_consent_management_release": "r4.2 (0.5.0)"
-      },
-      "apis": [
-        {
-          "api_name": "device-data-volume-subscriptions",
-          "api_version": "0.2.0-rc.2",
-          "api_title": "Device Data Volume Subscriptions",
-          "commonalities": "0.9.0",
-          "maturity": "initial",
-          "portfolio_category": "Device Information",
-          "website_url": "https://camaraproject.org/device-data-volume-subscriptions/",
-          "tooltip": "Receive notifications regarding data volume usage thresholds",
-          "display_name": "Device Data Volume Subscriptions",
-          "published": true,
-          "canonical_name": "device-data-volume-subscriptions",
-          "first_release": "Fall25"
-        },
-        {
-          "api_name": "device-data-volume",
-          "api_version": "0.2.0-rc.2",
-          "api_title": "Device Data Volume",
-          "commonalities": "0.9.0",
-          "maturity": "initial",
-          "portfolio_category": "Device Information",
-          "website_url": "https://camaraproject.org/device-data-volume/",
-          "tooltip": "Provide insights into the customer's data usage status",
-          "display_name": "Device Data Volume",
-          "published": true,
-          "canonical_name": "device-data-volume",
-          "first_release": "Fall25"
-        }
-      ]
-    },
-    {
-      "repository": "DeviceDataVolume",
-      "release_tag": "r2.3",
-      "release_date": "2026-11-02T10:40:34Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/DeviceDataVolume/releases/tag/r2.3",
-      "release_type": "pre-release-rc",
-      "src_commit_sha": "d8e98cbd8dc3f4c49d508e5531865a5cf809516f",
-      "dependencies": {
-        "commonalities_release": "r4.4 (0.9.0)",
-        "identity_consent_management_release": "r4.2 (0.5.0)"
-      },
-      "apis": [
-        {
-          "api_name": "device-data-volume-subscriptions",
-          "api_version": "0.2.0-rc.3",
-          "api_title": "Device Data Volume Subscriptions",
-          "commonalities": "0.9.0",
-          "maturity": "initial",
-          "portfolio_category": "Device Information",
-          "website_url": "https://camaraproject.org/device-data-volume-subscriptions/",
-          "tooltip": "Receive notifications regarding data volume usage thresholds",
-          "display_name": "Device Data Volume Subscriptions",
-          "published": true,
-          "canonical_name": "device-data-volume-subscriptions",
-          "first_release": "Fall25"
-        },
-        {
-          "api_name": "device-data-volume",
-          "api_version": "0.2.0-rc.3",
+          "api_version": "0.2.0",
           "api_title": "Device Data Volume",
           "commonalities": "0.9.0",
           "maturity": "initial",
@@ -3123,55 +2859,12 @@
     },
     {
       "repository": "DeviceReachabilityStatus",
-      "release_tag": "r2.1",
-      "release_date": "2026-08-07T10:35:15Z",
+      "release_tag": "r2.3",
+      "release_date": "2026-11-18T21:10:46Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/DeviceReachabilityStatus/releases/tag/r2.1",
-      "release_type": "pre-release-rc",
-      "src_commit_sha": "0941f992d6d95412fd3fa39c6e0c8ceea7775b7c",
-      "dependencies": {
-        "commonalities_release": "r4.3 (0.8.0)",
-        "identity_consent_management_release": "r4.2 (0.5.0)"
-      },
-      "apis": [
-        {
-          "api_name": "device-reachability-status-subscriptions",
-          "api_version": "0.9.0-rc.1",
-          "api_title": "Device Reachability Status Subscriptions",
-          "commonalities": "0.8.0",
-          "maturity": "initial",
-          "portfolio_category": "Device Information",
-          "website_url": "https://camaraproject.org/device-reachability-status-subscriptions/",
-          "tooltip": "Get notifications if the network connection status of a device changes",
-          "display_name": "Device Reachability Status Subscriptions",
-          "published": true,
-          "canonical_name": "device-reachability-status-subscriptions",
-          "first_release": "Fall24"
-        },
-        {
-          "api_name": "device-reachability-status",
-          "api_version": "1.2.0-rc.3",
-          "api_title": "Device Reachability Status",
-          "commonalities": "0.8.0",
-          "maturity": "stable",
-          "portfolio_category": "Device Information",
-          "website_url": "https://camaraproject.org/device-reachability-status/",
-          "tooltip": "Check the network connection status of a device",
-          "display_name": "Device Reachability Status",
-          "published": true,
-          "canonical_name": "device-reachability-status",
-          "first_release": "PreFall24"
-        }
-      ]
-    },
-    {
-      "repository": "DeviceReachabilityStatus",
-      "release_tag": "r2.2",
-      "release_date": "2026-11-02T20:32:14Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/DeviceReachabilityStatus/releases/tag/r2.2",
-      "release_type": "pre-release-rc",
-      "src_commit_sha": "1cae79dcc5546e7afedb0197a0c57c9d81559af8",
+      "github_url": "https://github.com/camaraproject/DeviceReachabilityStatus/releases/tag/r2.3",
+      "release_type": "public-release",
+      "src_commit_sha": "05bb74a29e3868646afa47983b8204d70ad8df2c",
       "dependencies": {
         "commonalities_release": "r4.4 (0.9.0)",
         "identity_consent_management_release": "r4.2 (0.5.0)"
@@ -3179,7 +2872,7 @@
       "apis": [
         {
           "api_name": "device-reachability-status-subscriptions",
-          "api_version": "0.9.0-rc.2",
+          "api_version": "0.9.0",
           "api_title": "Device Reachability Status Subscriptions",
           "commonalities": "0.9.0",
           "maturity": "initial",
@@ -3193,7 +2886,7 @@
         },
         {
           "api_name": "device-reachability-status",
-          "api_version": "1.2.0-rc.4",
+          "api_version": "1.2.0",
           "api_title": "Device Reachability Status",
           "commonalities": "0.9.0",
           "maturity": "stable",
@@ -3731,6 +3424,35 @@
       ]
     },
     {
+      "repository": "eSimRemoteManagement",
+      "release_tag": "r1.1",
+      "release_date": "2026-11-19T01:24:35Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/eSimRemoteManagement/releases/tag/r1.1",
+      "release_type": "pre-release-alpha",
+      "src_commit_sha": "ea9f2b514f0c50d40cda7f61849f128bf55e29c5",
+      "dependencies": {
+        "commonalities_release": "r4.4 (0.9.0)",
+        "identity_consent_management_release": "r4.2 (0.5.0)"
+      },
+      "apis": [
+        {
+          "api_name": "esim-remote-management",
+          "api_version": "0.1.0-alpha.1",
+          "api_title": "Esim Remote Management",
+          "commonalities": "0.9.0",
+          "maturity": "initial",
+          "portfolio_category": null,
+          "website_url": null,
+          "tooltip": null,
+          "display_name": "Esim Remote Management",
+          "published": true,
+          "canonical_name": "esim-remote-management",
+          "first_release": "Sandbox"
+        }
+      ]
+    },
+    {
       "repository": "HomeDevicesQoD",
       "release_tag": "r1.2",
       "release_date": "2024-09-06T08:39:24Z",
@@ -3912,12 +3634,12 @@
     },
     {
       "repository": "IoTSIMFraudPrevention",
-      "release_tag": "r2.1",
-      "release_date": "2026-10-15T06:41:16Z",
+      "release_tag": "r2.2",
+      "release_date": "2026-11-19T02:49:10Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/IoTSIMFraudPrevention/releases/tag/r2.1",
-      "release_type": "pre-release-rc",
-      "src_commit_sha": "6c713c54f05146d3e64fd8035b3ddef0d329da26",
+      "github_url": "https://github.com/camaraproject/IoTSIMFraudPrevention/releases/tag/r2.2",
+      "release_type": "public-release",
+      "src_commit_sha": "4335f3a290cead988b99c30632b0bcb1c44aac2d",
       "dependencies": {
         "commonalities_release": "r4.4 (0.9.0)",
         "identity_consent_management_release": "r4.2 (0.5.0)"
@@ -3925,7 +3647,7 @@
       "apis": [
         {
           "api_name": "iot-sim-fraud-prevention",
-          "api_version": "0.2.0-rc.1",
+          "api_version": "0.2.0",
           "api_title": "IoT SIM Fraud Prevention",
           "commonalities": "0.9.0",
           "maturity": "initial",
@@ -3939,7 +3661,7 @@
         },
         {
           "api_name": "iot-sim-fraud-prevention-subscriptions",
-          "api_version": "0.2.0-rc.1",
+          "api_version": "0.2.0",
           "api_title": "IoT SIM Fraud Prevention Subscriptions",
           "commonalities": "0.9.0",
           "maturity": "initial",
@@ -4131,6 +3853,35 @@
           "api_version": "0.3.0-rc.1",
           "api_title": "Know Your Customer Age Verification",
           "commonalities": "0.8.0",
+          "maturity": "initial",
+          "portfolio_category": "Authentication and Fraud Prevention",
+          "website_url": "https://camaraproject.org/know-your-customer-age-verification/",
+          "tooltip": "Allows service providers to validate age information with operators",
+          "display_name": "Know Your Customer Age Verification",
+          "published": true,
+          "canonical_name": "kyc-age-verification",
+          "first_release": "Spring25"
+        }
+      ]
+    },
+    {
+      "repository": "KnowYourCustomerAgeVerification",
+      "release_tag": "r2.2",
+      "release_date": "2026-11-19T09:06:50Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/KnowYourCustomerAgeVerification/releases/tag/r2.2",
+      "release_type": "pre-release-rc",
+      "src_commit_sha": "08409828fdba3a6efd22061a115eb9f62cf7929a",
+      "dependencies": {
+        "commonalities_release": "r4.4 (0.9.0)",
+        "identity_consent_management_release": "r4.2 (0.5.0)"
+      },
+      "apis": [
+        {
+          "api_name": "kyc-age-verification",
+          "api_version": "0.3.0-rc.2",
+          "api_title": "Know Your Customer Age Verification",
+          "commonalities": "0.9.0",
           "maturity": "initial",
           "portfolio_category": "Authentication and Fraud Prevention",
           "website_url": "https://camaraproject.org/know-your-customer-age-verification/",
@@ -4813,41 +4564,12 @@
     },
     {
       "repository": "NumberRecycling",
-      "release_tag": "r3.1",
-      "release_date": "2026-09-03T19:08:44Z",
+      "release_tag": "r3.3",
+      "release_date": "2026-11-19T04:42:06Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/NumberRecycling/releases/tag/r3.1",
-      "release_type": "pre-release-rc",
-      "src_commit_sha": "4d69523a875a718c0bad51293e2cfdf6b71588a0",
-      "dependencies": {
-        "commonalities_release": "r4.3 (0.8.0)",
-        "identity_consent_management_release": "r4.2 (0.5.0)"
-      },
-      "apis": [
-        {
-          "api_name": "number-recycling",
-          "api_version": "0.3.0-rc.1",
-          "api_title": "Number Recycling",
-          "commonalities": "0.8.0",
-          "maturity": "initial",
-          "portfolio_category": "Authentication and Fraud Prevention",
-          "website_url": "https://camaraproject.org/number-recycling/",
-          "tooltip": "Check whether the subscriber of the phone number has changed",
-          "display_name": "Number Recycling",
-          "published": true,
-          "canonical_name": "number-recycling",
-          "first_release": "Spring25"
-        }
-      ]
-    },
-    {
-      "repository": "NumberRecycling",
-      "release_tag": "r3.2",
-      "release_date": "2026-11-09T09:05:29Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/NumberRecycling/releases/tag/r3.2",
-      "release_type": "pre-release-rc",
-      "src_commit_sha": "011729d50f9923554d8ea6effe1632aabc304d15",
+      "github_url": "https://github.com/camaraproject/NumberRecycling/releases/tag/r3.3",
+      "release_type": "public-release",
+      "src_commit_sha": "fb65d3c8e8f2302acf73a62e866987100af3b4cb",
       "dependencies": {
         "commonalities_release": "r4.4 (0.9.0)",
         "identity_consent_management_release": "r4.2 (0.5.0)"
@@ -4855,7 +4577,7 @@
       "apis": [
         {
           "api_name": "number-recycling",
-          "api_version": "0.3.0-rc.2",
+          "api_version": "0.3.0",
           "api_title": "Number Recycling",
           "commonalities": "0.9.0",
           "maturity": "initial",
@@ -5025,41 +4747,12 @@
     },
     {
       "repository": "OptimalEdgeDiscovery",
-      "release_tag": "r2.1",
-      "release_date": "2026-09-10T20:04:23Z",
+      "release_tag": "r2.3",
+      "release_date": "2026-11-18T18:57:23Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/OptimalEdgeDiscovery/releases/tag/r2.1",
-      "release_type": "pre-release-rc",
-      "src_commit_sha": "df47291e3ef8b0671f16ae5824d906a1ec0680a5",
-      "dependencies": {
-        "commonalities_release": "r4.3 (0.8.0)",
-        "identity_consent_management_release": "r4.2 (0.5.0)"
-      },
-      "apis": [
-        {
-          "api_name": "optimal-edge-discovery",
-          "api_version": "0.2.0-rc.1",
-          "api_title": "Optimal Edge Discovery",
-          "commonalities": "0.8.0",
-          "maturity": "initial",
-          "portfolio_category": "Computing Services",
-          "website_url": "https://camaraproject.org/optimal-edge-discovery/",
-          "tooltip": "Find optimal edge computing locations",
-          "display_name": "Optimal Edge Discovery",
-          "published": true,
-          "canonical_name": "optimal-edge-discovery",
-          "first_release": "Fall25"
-        }
-      ]
-    },
-    {
-      "repository": "OptimalEdgeDiscovery",
-      "release_tag": "r2.2",
-      "release_date": "2026-11-05T16:40:10Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/OptimalEdgeDiscovery/releases/tag/r2.2",
-      "release_type": "pre-release-rc",
-      "src_commit_sha": "4859df2a4b36441140e71aa76d316f114ab38eb0",
+      "github_url": "https://github.com/camaraproject/OptimalEdgeDiscovery/releases/tag/r2.3",
+      "release_type": "public-release",
+      "src_commit_sha": "3bfa16c317309d5877ef9f2e0fa5103c26d5eac0",
       "dependencies": {
         "commonalities_release": "r4.4 (0.9.0)",
         "identity_consent_management_release": "r4.2 (0.5.0)"
@@ -5067,7 +4760,7 @@
       "apis": [
         {
           "api_name": "optimal-edge-discovery",
-          "api_version": "0.2.0-rc.2",
+          "api_version": "0.2.0",
           "api_title": "Optimal Edge Discovery",
           "commonalities": "0.9.0",
           "maturity": "initial",
@@ -5689,72 +5382,12 @@
     },
     {
       "repository": "QualityOnDemand",
-      "release_tag": "r4.1",
-      "release_date": "2026-08-20T10:09:32Z",
+      "release_tag": "r4.3",
+      "release_date": "2026-11-19T07:57:56Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/QualityOnDemand/releases/tag/r4.1",
-      "release_type": "pre-release-rc",
-      "src_commit_sha": "61fc7f9bfdf51d5544d1b8227d2be8fb77239047",
-      "dependencies": {
-        "commonalities_release": "r4.3 (0.8.0)",
-        "identity_consent_management_release": "r4.2 (0.5.0)"
-      },
-      "apis": [
-        {
-          "api_name": "qos-profiles",
-          "api_version": "1.2.0-rc.3",
-          "api_title": "QoS Profiles",
-          "commonalities": "0.8.0",
-          "maturity": "stable",
-          "portfolio_category": "Communication Quality",
-          "website_url": "https://camaraproject.org/qos-profiles/",
-          "tooltip": "Provide the ability to set certain profile of QoS",
-          "display_name": "QoS Profiles",
-          "published": true,
-          "canonical_name": "qos-profiles",
-          "first_release": "PreFall24"
-        },
-        {
-          "api_name": "qos-provisioning",
-          "api_version": "0.4.0-rc.1",
-          "api_title": "QoS Provisioning",
-          "commonalities": "0.8.0",
-          "maturity": "initial",
-          "portfolio_category": "Communication Quality",
-          "website_url": "https://camaraproject.org/qod-provisioning/",
-          "tooltip": "Creating, getting, updating, removing a QoD provision for a device",
-          "display_name": "QoS Provisioning",
-          "published": true,
-          "canonical_name": "qos-provisioning",
-          "first_release": "Fall24",
-          "previous_names": [
-            "qod-provisioning"
-          ]
-        },
-        {
-          "api_name": "quality-on-demand",
-          "api_version": "1.2.0-rc.3",
-          "api_title": "Quality-On-Demand",
-          "commonalities": "0.8.0",
-          "maturity": "stable",
-          "portfolio_category": "Communication Quality",
-          "website_url": "https://camaraproject.org/quality-on-demand/",
-          "tooltip": "Allows users to set mobile connection quality and get notifications",
-          "display_name": "Quality-On-Demand",
-          "published": true,
-          "canonical_name": "quality-on-demand",
-          "first_release": "PreFall24"
-        }
-      ]
-    },
-    {
-      "repository": "QualityOnDemand",
-      "release_tag": "r4.2",
-      "release_date": "2026-10-26T10:05:12Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/QualityOnDemand/releases/tag/r4.2",
-      "release_type": "pre-release-rc",
-      "src_commit_sha": "471aa355b569ae5c36f23230c7fd16a590740396",
+      "github_url": "https://github.com/camaraproject/QualityOnDemand/releases/tag/r4.3",
+      "release_type": "public-release",
+      "src_commit_sha": "ff1efe1aa0208eb18024e9f4f592d65acd5f55be",
       "dependencies": {
         "commonalities_release": "r4.4 (0.9.0)",
         "identity_consent_management_release": "r4.2 (0.5.0)"
@@ -5762,7 +5395,7 @@
       "apis": [
         {
           "api_name": "qos-provisioning",
-          "api_version": "0.4.0-rc.2",
+          "api_version": "0.4.0",
           "api_title": "QoS Provisioning",
           "commonalities": "0.9.0",
           "maturity": "initial",
@@ -5779,7 +5412,7 @@
         },
         {
           "api_name": "quality-on-demand",
-          "api_version": "1.2.0-rc.4",
+          "api_version": "1.2.0",
           "api_title": "Quality-On-Demand",
           "commonalities": "0.9.0",
           "maturity": "stable",
@@ -6878,27 +6511,7 @@
     },
     {
       "api_name": "application-endpoint-discovery",
-      "api_version": "0.2.0-rc.1",
-      "api_title": "Application Endpoint Discovery",
-      "commonalities": "0.8.0",
-      "maturity": "initial",
-      "portfolio_category": "Computing Services",
-      "website_url": "https://camaraproject.org/application-endpoint-discovery/",
-      "tooltip": "Locating the nearest edge cloud zone but also directly linking to the application endpoints",
-      "display_name": "Application Endpoint Discovery",
-      "published": true,
-      "canonical_name": "application-endpoint-discovery",
-      "first_release": "Fall25",
-      "repository": "ApplicationEndpointDiscovery",
-      "release_tag": "r2.1",
-      "release_date": "2026-09-16T13:16:44Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/ApplicationEndpointDiscovery/releases/tag/r2.1",
-      "release_type": "pre-release-rc"
-    },
-    {
-      "api_name": "application-endpoint-discovery",
-      "api_version": "0.2.0-rc.2",
+      "api_version": "0.2.0",
       "api_title": "Application Endpoint Discovery",
       "commonalities": "0.9.0",
       "maturity": "initial",
@@ -6910,11 +6523,11 @@
       "canonical_name": "application-endpoint-discovery",
       "first_release": "Fall25",
       "repository": "ApplicationEndpointDiscovery",
-      "release_tag": "r2.2",
-      "release_date": "2026-10-20T22:12:31Z",
+      "release_tag": "r2.3",
+      "release_date": "2026-11-18T22:26:18Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/ApplicationEndpointDiscovery/releases/tag/r2.2",
-      "release_type": "pre-release-rc"
+      "github_url": "https://github.com/camaraproject/ApplicationEndpointDiscovery/releases/tag/r2.3",
+      "release_type": "public-release"
     },
     {
       "api_name": "application-endpoint-registration",
@@ -6939,27 +6552,7 @@
     },
     {
       "api_name": "application-endpoint-registration",
-      "api_version": "0.2.0-rc.1",
-      "api_title": "Application Endpoints Registration",
-      "commonalities": "0.8.0",
-      "maturity": "initial",
-      "portfolio_category": "Computing Services",
-      "website_url": "https://camaraproject.org/application-endpoint-registration/",
-      "tooltip": "Register application endpoints",
-      "display_name": "Application Endpoints Registration",
-      "published": true,
-      "canonical_name": "application-endpoint-registration",
-      "first_release": "Fall25",
-      "repository": "ApplicationEndpointRegistration",
-      "release_tag": "r2.1",
-      "release_date": "2026-08-20T02:02:26Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/ApplicationEndpointRegistration/releases/tag/r2.1",
-      "release_type": "pre-release-rc"
-    },
-    {
-      "api_name": "application-endpoint-registration",
-      "api_version": "0.2.0-rc.2",
+      "api_version": "0.2.0",
       "api_title": "Application Endpoints Registration",
       "commonalities": "0.9.0",
       "maturity": "initial",
@@ -6971,11 +6564,11 @@
       "canonical_name": "application-endpoint-registration",
       "first_release": "Fall25",
       "repository": "ApplicationEndpointRegistration",
-      "release_tag": "r2.2",
-      "release_date": "2026-10-20T22:11:21Z",
+      "release_tag": "r2.3",
+      "release_date": "2026-11-18T22:20:40Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/ApplicationEndpointRegistration/releases/tag/r2.2",
-      "release_type": "pre-release-rc"
+      "github_url": "https://github.com/camaraproject/ApplicationEndpointRegistration/releases/tag/r2.3",
+      "release_type": "public-release"
     },
     {
       "api_name": "application-profiles",
@@ -7396,27 +6989,7 @@
     },
     {
       "api_name": "connected-network-type",
-      "api_version": "0.3.0-rc.1",
-      "api_title": "Connected Network Type",
-      "commonalities": "0.8.0",
-      "maturity": "initial",
-      "portfolio_category": "Communication Quality",
-      "website_url": "https://camaraproject.org/connected-network-type/",
-      "tooltip": "Query the device's connected network type",
-      "display_name": "Connected Network Type",
-      "published": true,
-      "canonical_name": "connected-network-type",
-      "first_release": "Spring25",
-      "repository": "ConnectedNetworkType",
-      "release_tag": "r2.1",
-      "release_date": "2026-08-11T15:01:59Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/ConnectedNetworkType/releases/tag/r2.1",
-      "release_type": "pre-release-rc"
-    },
-    {
-      "api_name": "connected-network-type",
-      "api_version": "0.3.0-rc.2",
+      "api_version": "0.3.0",
       "api_title": "Connected Network Type",
       "commonalities": "0.9.0",
       "maturity": "initial",
@@ -7428,11 +7001,11 @@
       "canonical_name": "connected-network-type",
       "first_release": "Spring25",
       "repository": "ConnectedNetworkType",
-      "release_tag": "r2.2",
-      "release_date": "2026-10-30T16:02:17Z",
+      "release_tag": "r2.3",
+      "release_date": "2026-11-18T21:13:52Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/ConnectedNetworkType/releases/tag/r2.2",
-      "release_type": "pre-release-rc"
+      "github_url": "https://github.com/camaraproject/ConnectedNetworkType/releases/tag/r2.3",
+      "release_type": "public-release"
     },
     {
       "api_name": "connected-network-type-subscriptions",
@@ -7457,27 +7030,7 @@
     },
     {
       "api_name": "connected-network-type-subscriptions",
-      "api_version": "0.3.0-rc.1",
-      "api_title": "Connected Network Type Subscriptions",
-      "commonalities": "0.8.0",
-      "maturity": "initial",
-      "portfolio_category": "Communication Quality",
-      "website_url": "https://camaraproject.org/connected-network-type-subscriptions/",
-      "tooltip": "Receive notifications when the connected network type changes",
-      "display_name": "Connected Network Type Subscriptions",
-      "published": true,
-      "canonical_name": "connected-network-type-subscriptions",
-      "first_release": "Spring25",
-      "repository": "ConnectedNetworkType",
-      "release_tag": "r2.1",
-      "release_date": "2026-08-11T15:01:59Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/ConnectedNetworkType/releases/tag/r2.1",
-      "release_type": "pre-release-rc"
-    },
-    {
-      "api_name": "connected-network-type-subscriptions",
-      "api_version": "0.3.0-rc.2",
+      "api_version": "0.3.0",
       "api_title": "Connected Network Type Subscriptions",
       "commonalities": "0.9.0",
       "maturity": "initial",
@@ -7489,11 +7042,11 @@
       "canonical_name": "connected-network-type-subscriptions",
       "first_release": "Spring25",
       "repository": "ConnectedNetworkType",
-      "release_tag": "r2.2",
-      "release_date": "2026-10-30T16:02:17Z",
+      "release_tag": "r2.3",
+      "release_date": "2026-11-18T21:13:52Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/ConnectedNetworkType/releases/tag/r2.2",
-      "release_type": "pre-release-rc"
+      "github_url": "https://github.com/camaraproject/ConnectedNetworkType/releases/tag/r2.3",
+      "release_type": "public-release"
     },
     {
       "api_name": "application-profiles",
@@ -7602,27 +7155,7 @@
     },
     {
       "api_name": "connectivity-insights",
-      "api_version": "0.7.0-rc.1",
-      "api_title": "Connectivity Insights",
-      "commonalities": "0.8.0",
-      "maturity": "initial",
-      "portfolio_category": "Communication Quality",
-      "website_url": "https://camaraproject.org/connectivity-insights/",
-      "tooltip": "Get information if the QoS threshold has breached",
-      "display_name": "Connectivity Insights",
-      "published": true,
-      "canonical_name": "connectivity-insights",
-      "first_release": "Fall24",
-      "repository": "ConnectivityInsights",
-      "release_tag": "r4.1",
-      "release_date": "2026-08-20T22:39:16Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/ConnectivityInsights/releases/tag/r4.1",
-      "release_type": "pre-release-rc"
-    },
-    {
-      "api_name": "connectivity-insights",
-      "api_version": "0.7.0-rc.2",
+      "api_version": "0.7.0",
       "api_title": "Connectivity Insights",
       "commonalities": "0.9.0",
       "maturity": "initial",
@@ -7634,11 +7167,11 @@
       "canonical_name": "connectivity-insights",
       "first_release": "Fall24",
       "repository": "ConnectivityInsights",
-      "release_tag": "r4.2",
-      "release_date": "2026-10-21T16:23:37Z",
+      "release_tag": "r4.3",
+      "release_date": "2026-11-18T21:26:46Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/ConnectivityInsights/releases/tag/r4.2",
-      "release_type": "pre-release-rc"
+      "github_url": "https://github.com/camaraproject/ConnectivityInsights/releases/tag/r4.3",
+      "release_type": "public-release"
     },
     {
       "api_name": "connectivity-insights-subscriptions",
@@ -7705,27 +7238,7 @@
     },
     {
       "api_name": "connectivity-insights-subscriptions",
-      "api_version": "0.7.0-rc.1",
-      "api_title": "Connectivity Insights Subscriptions",
-      "commonalities": "0.8.0",
-      "maturity": "initial",
-      "portfolio_category": "Communication Quality",
-      "website_url": "https://camaraproject.org/connectivity-insights-subscriptions/",
-      "tooltip": "Alerts the consumers if and when the QoS threshold has breached",
-      "display_name": "Connectivity Insights Subscriptions",
-      "published": true,
-      "canonical_name": "connectivity-insights-subscriptions",
-      "first_release": "Fall24",
-      "repository": "ConnectivityInsights",
-      "release_tag": "r4.1",
-      "release_date": "2026-08-20T22:39:16Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/ConnectivityInsights/releases/tag/r4.1",
-      "release_type": "pre-release-rc"
-    },
-    {
-      "api_name": "connectivity-insights-subscriptions",
-      "api_version": "0.7.0-rc.2",
+      "api_version": "0.7.0",
       "api_title": "Connectivity Insights Subscriptions",
       "commonalities": "0.9.0",
       "maturity": "initial",
@@ -7737,11 +7250,11 @@
       "canonical_name": "connectivity-insights-subscriptions",
       "first_release": "Fall24",
       "repository": "ConnectivityInsights",
-      "release_tag": "r4.2",
-      "release_date": "2026-10-21T16:23:37Z",
+      "release_tag": "r4.3",
+      "release_date": "2026-11-18T21:26:46Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/ConnectivityInsights/releases/tag/r4.2",
-      "release_type": "pre-release-rc"
+      "github_url": "https://github.com/camaraproject/ConnectivityInsights/releases/tag/r4.3",
+      "release_type": "public-release"
     },
     {
       "api_name": "consent-info",
@@ -8053,7 +7566,7 @@
     },
     {
       "api_name": "device-data-volume",
-      "api_version": "0.2.0-rc.1",
+      "api_version": "0.2.0",
       "api_title": "Device Data Volume",
       "commonalities": "0.9.0",
       "maturity": "initial",
@@ -8065,51 +7578,11 @@
       "canonical_name": "device-data-volume",
       "first_release": "Fall25",
       "repository": "DeviceDataVolume",
-      "release_tag": "r2.1",
-      "release_date": "2026-09-16T12:46:52Z",
+      "release_tag": "r2.4",
+      "release_date": "2026-11-19T09:34:41Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/DeviceDataVolume/releases/tag/r2.1",
-      "release_type": "pre-release-rc"
-    },
-    {
-      "api_name": "device-data-volume",
-      "api_version": "0.2.0-rc.2",
-      "api_title": "Device Data Volume",
-      "commonalities": "0.9.0",
-      "maturity": "initial",
-      "portfolio_category": "Device Information",
-      "website_url": "https://camaraproject.org/device-data-volume/",
-      "tooltip": "Provide insights into the customer's data usage status",
-      "display_name": "Device Data Volume",
-      "published": true,
-      "canonical_name": "device-data-volume",
-      "first_release": "Fall25",
-      "repository": "DeviceDataVolume",
-      "release_tag": "r2.2",
-      "release_date": "2026-10-14T12:57:33Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/DeviceDataVolume/releases/tag/r2.2",
-      "release_type": "pre-release-rc"
-    },
-    {
-      "api_name": "device-data-volume",
-      "api_version": "0.2.0-rc.3",
-      "api_title": "Device Data Volume",
-      "commonalities": "0.9.0",
-      "maturity": "initial",
-      "portfolio_category": "Device Information",
-      "website_url": "https://camaraproject.org/device-data-volume/",
-      "tooltip": "Provide insights into the customer's data usage status",
-      "display_name": "Device Data Volume",
-      "published": true,
-      "canonical_name": "device-data-volume",
-      "first_release": "Fall25",
-      "repository": "DeviceDataVolume",
-      "release_tag": "r2.3",
-      "release_date": "2026-11-02T10:40:34Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/DeviceDataVolume/releases/tag/r2.3",
-      "release_type": "pre-release-rc"
+      "github_url": "https://github.com/camaraproject/DeviceDataVolume/releases/tag/r2.4",
+      "release_type": "public-release"
     },
     {
       "api_name": "device-data-volume-subscriptions",
@@ -8134,7 +7607,7 @@
     },
     {
       "api_name": "device-data-volume-subscriptions",
-      "api_version": "0.2.0-rc.1",
+      "api_version": "0.2.0",
       "api_title": "Device Data Volume Subscriptions",
       "commonalities": "0.9.0",
       "maturity": "initial",
@@ -8146,51 +7619,11 @@
       "canonical_name": "device-data-volume-subscriptions",
       "first_release": "Fall25",
       "repository": "DeviceDataVolume",
-      "release_tag": "r2.1",
-      "release_date": "2026-09-16T12:46:52Z",
+      "release_tag": "r2.4",
+      "release_date": "2026-11-19T09:34:41Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/DeviceDataVolume/releases/tag/r2.1",
-      "release_type": "pre-release-rc"
-    },
-    {
-      "api_name": "device-data-volume-subscriptions",
-      "api_version": "0.2.0-rc.2",
-      "api_title": "Device Data Volume Subscriptions",
-      "commonalities": "0.9.0",
-      "maturity": "initial",
-      "portfolio_category": "Device Information",
-      "website_url": "https://camaraproject.org/device-data-volume-subscriptions/",
-      "tooltip": "Receive notifications regarding data volume usage thresholds",
-      "display_name": "Device Data Volume Subscriptions",
-      "published": true,
-      "canonical_name": "device-data-volume-subscriptions",
-      "first_release": "Fall25",
-      "repository": "DeviceDataVolume",
-      "release_tag": "r2.2",
-      "release_date": "2026-10-14T12:57:33Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/DeviceDataVolume/releases/tag/r2.2",
-      "release_type": "pre-release-rc"
-    },
-    {
-      "api_name": "device-data-volume-subscriptions",
-      "api_version": "0.2.0-rc.3",
-      "api_title": "Device Data Volume Subscriptions",
-      "commonalities": "0.9.0",
-      "maturity": "initial",
-      "portfolio_category": "Device Information",
-      "website_url": "https://camaraproject.org/device-data-volume-subscriptions/",
-      "tooltip": "Receive notifications regarding data volume usage thresholds",
-      "display_name": "Device Data Volume Subscriptions",
-      "published": true,
-      "canonical_name": "device-data-volume-subscriptions",
-      "first_release": "Fall25",
-      "repository": "DeviceDataVolume",
-      "release_tag": "r2.3",
-      "release_date": "2026-11-02T10:40:34Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/DeviceDataVolume/releases/tag/r2.3",
-      "release_type": "pre-release-rc"
+      "github_url": "https://github.com/camaraproject/DeviceDataVolume/releases/tag/r2.4",
+      "release_type": "public-release"
     },
     {
       "api_name": "device-identifier",
@@ -8666,27 +8099,7 @@
     },
     {
       "api_name": "device-reachability-status",
-      "api_version": "1.2.0-rc.3",
-      "api_title": "Device Reachability Status",
-      "commonalities": "0.8.0",
-      "maturity": "stable",
-      "portfolio_category": "Device Information",
-      "website_url": "https://camaraproject.org/device-reachability-status/",
-      "tooltip": "Check the network connection status of a device",
-      "display_name": "Device Reachability Status",
-      "published": true,
-      "canonical_name": "device-reachability-status",
-      "first_release": "PreFall24",
-      "repository": "DeviceReachabilityStatus",
-      "release_tag": "r2.1",
-      "release_date": "2026-08-07T10:35:15Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/DeviceReachabilityStatus/releases/tag/r2.1",
-      "release_type": "pre-release-rc"
-    },
-    {
-      "api_name": "device-reachability-status",
-      "api_version": "1.2.0-rc.4",
+      "api_version": "1.2.0",
       "api_title": "Device Reachability Status",
       "commonalities": "0.9.0",
       "maturity": "stable",
@@ -8698,11 +8111,11 @@
       "canonical_name": "device-reachability-status",
       "first_release": "PreFall24",
       "repository": "DeviceReachabilityStatus",
-      "release_tag": "r2.2",
-      "release_date": "2026-11-02T20:32:14Z",
+      "release_tag": "r2.3",
+      "release_date": "2026-11-18T21:10:46Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/DeviceReachabilityStatus/releases/tag/r2.2",
-      "release_type": "pre-release-rc"
+      "github_url": "https://github.com/camaraproject/DeviceReachabilityStatus/releases/tag/r2.3",
+      "release_type": "public-release"
     },
     {
       "api_name": "device-reachability-status-subscriptions",
@@ -8727,27 +8140,7 @@
     },
     {
       "api_name": "device-reachability-status-subscriptions",
-      "api_version": "0.9.0-rc.1",
-      "api_title": "Device Reachability Status Subscriptions",
-      "commonalities": "0.8.0",
-      "maturity": "initial",
-      "portfolio_category": "Device Information",
-      "website_url": "https://camaraproject.org/device-reachability-status-subscriptions/",
-      "tooltip": "Get notifications if the network connection status of a device changes",
-      "display_name": "Device Reachability Status Subscriptions",
-      "published": true,
-      "canonical_name": "device-reachability-status-subscriptions",
-      "first_release": "Fall24",
-      "repository": "DeviceReachabilityStatus",
-      "release_tag": "r2.1",
-      "release_date": "2026-08-07T10:35:15Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/DeviceReachabilityStatus/releases/tag/r2.1",
-      "release_type": "pre-release-rc"
-    },
-    {
-      "api_name": "device-reachability-status-subscriptions",
-      "api_version": "0.9.0-rc.2",
+      "api_version": "0.9.0",
       "api_title": "Device Reachability Status Subscriptions",
       "commonalities": "0.9.0",
       "maturity": "initial",
@@ -8759,11 +8152,11 @@
       "canonical_name": "device-reachability-status-subscriptions",
       "first_release": "Fall24",
       "repository": "DeviceReachabilityStatus",
-      "release_tag": "r2.2",
-      "release_date": "2026-11-02T20:32:14Z",
+      "release_tag": "r2.3",
+      "release_date": "2026-11-18T21:10:46Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/DeviceReachabilityStatus/releases/tag/r2.2",
-      "release_type": "pre-release-rc"
+      "github_url": "https://github.com/camaraproject/DeviceReachabilityStatus/releases/tag/r2.3",
+      "release_type": "public-release"
     },
     {
       "api_name": "device-roaming-status",
@@ -9305,6 +8698,26 @@
       "release_type": "public-release"
     },
     {
+      "api_name": "esim-remote-management",
+      "api_version": "0.1.0-alpha.1",
+      "api_title": "Esim Remote Management",
+      "commonalities": "0.9.0",
+      "maturity": "initial",
+      "portfolio_category": null,
+      "website_url": null,
+      "tooltip": null,
+      "display_name": "Esim Remote Management",
+      "published": true,
+      "canonical_name": "esim-remote-management",
+      "first_release": "Sandbox",
+      "repository": "eSimRemoteManagement",
+      "release_tag": "r1.1",
+      "release_date": "2026-11-19T01:24:35Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/eSimRemoteManagement/releases/tag/r1.1",
+      "release_type": "pre-release-alpha"
+    },
+    {
       "api_name": "home-devices-qod",
       "api_version": "0.4.0",
       "api_title": "Home Devices QoD",
@@ -9428,7 +8841,7 @@
     },
     {
       "api_name": "iot-sim-fraud-prevention",
-      "api_version": "0.2.0-rc.1",
+      "api_version": "0.2.0",
       "api_title": "IoT SIM Fraud Prevention",
       "commonalities": "0.9.0",
       "maturity": "initial",
@@ -9440,11 +8853,11 @@
       "canonical_name": "iot-sim-fraud-prevention",
       "first_release": "Independent",
       "repository": "IoTSIMFraudPrevention",
-      "release_tag": "r2.1",
-      "release_date": "2026-10-15T06:41:16Z",
+      "release_tag": "r2.2",
+      "release_date": "2026-11-19T02:49:10Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/IoTSIMFraudPrevention/releases/tag/r2.1",
-      "release_type": "pre-release-rc"
+      "github_url": "https://github.com/camaraproject/IoTSIMFraudPrevention/releases/tag/r2.2",
+      "release_type": "public-release"
     },
     {
       "api_name": "iot-sim-fraud-prevention-subscriptions",
@@ -9468,7 +8881,7 @@
     },
     {
       "api_name": "iot-sim-fraud-prevention-subscriptions",
-      "api_version": "0.2.0-rc.1",
+      "api_version": "0.2.0",
       "api_title": "IoT SIM Fraud Prevention Subscriptions",
       "commonalities": "0.9.0",
       "maturity": "initial",
@@ -9480,11 +8893,11 @@
       "canonical_name": "iot-sim-fraud-prevention-subscriptions",
       "first_release": "Independent",
       "repository": "IoTSIMFraudPrevention",
-      "release_tag": "r2.1",
-      "release_date": "2026-10-15T06:41:16Z",
+      "release_tag": "r2.2",
+      "release_date": "2026-11-19T02:49:10Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/IoTSIMFraudPrevention/releases/tag/r2.1",
-      "release_type": "pre-release-rc"
+      "github_url": "https://github.com/camaraproject/IoTSIMFraudPrevention/releases/tag/r2.2",
+      "release_type": "public-release"
     },
     {
       "api_name": "kyc-age-verification",
@@ -9672,6 +9085,26 @@
       "release_date": "2026-09-01T05:15:38Z",
       "meta_release": "Independent",
       "github_url": "https://github.com/camaraproject/KnowYourCustomerAgeVerification/releases/tag/r2.1",
+      "release_type": "pre-release-rc"
+    },
+    {
+      "api_name": "kyc-age-verification",
+      "api_version": "0.3.0-rc.2",
+      "api_title": "Know Your Customer Age Verification",
+      "commonalities": "0.9.0",
+      "maturity": "initial",
+      "portfolio_category": "Authentication and Fraud Prevention",
+      "website_url": "https://camaraproject.org/know-your-customer-age-verification/",
+      "tooltip": "Allows service providers to validate age information with operators",
+      "display_name": "Know Your Customer Age Verification",
+      "published": true,
+      "canonical_name": "kyc-age-verification",
+      "first_release": "Spring25",
+      "repository": "KnowYourCustomerAgeVerification",
+      "release_tag": "r2.2",
+      "release_date": "2026-11-19T09:06:50Z",
+      "meta_release": "Independent",
+      "github_url": "https://github.com/camaraproject/KnowYourCustomerAgeVerification/releases/tag/r2.2",
       "release_type": "pre-release-rc"
     },
     {
@@ -10269,27 +9702,7 @@
     },
     {
       "api_name": "number-recycling",
-      "api_version": "0.3.0-rc.1",
-      "api_title": "Number Recycling",
-      "commonalities": "0.8.0",
-      "maturity": "initial",
-      "portfolio_category": "Authentication and Fraud Prevention",
-      "website_url": "https://camaraproject.org/number-recycling/",
-      "tooltip": "Check whether the subscriber of the phone number has changed",
-      "display_name": "Number Recycling",
-      "published": true,
-      "canonical_name": "number-recycling",
-      "first_release": "Spring25",
-      "repository": "NumberRecycling",
-      "release_tag": "r3.1",
-      "release_date": "2026-09-03T19:08:44Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/NumberRecycling/releases/tag/r3.1",
-      "release_type": "pre-release-rc"
-    },
-    {
-      "api_name": "number-recycling",
-      "api_version": "0.3.0-rc.2",
+      "api_version": "0.3.0",
       "api_title": "Number Recycling",
       "commonalities": "0.9.0",
       "maturity": "initial",
@@ -10301,11 +9714,11 @@
       "canonical_name": "number-recycling",
       "first_release": "Spring25",
       "repository": "NumberRecycling",
-      "release_tag": "r3.2",
-      "release_date": "2026-11-09T09:05:29Z",
+      "release_tag": "r3.3",
+      "release_date": "2026-11-19T04:42:06Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/NumberRecycling/releases/tag/r3.2",
-      "release_type": "pre-release-rc"
+      "github_url": "https://github.com/camaraproject/NumberRecycling/releases/tag/r3.3",
+      "release_type": "public-release"
     },
     {
       "api_name": "number-verification",
@@ -10434,27 +9847,7 @@
     },
     {
       "api_name": "optimal-edge-discovery",
-      "api_version": "0.2.0-rc.1",
-      "api_title": "Optimal Edge Discovery",
-      "commonalities": "0.8.0",
-      "maturity": "initial",
-      "portfolio_category": "Computing Services",
-      "website_url": "https://camaraproject.org/optimal-edge-discovery/",
-      "tooltip": "Find optimal edge computing locations",
-      "display_name": "Optimal Edge Discovery",
-      "published": true,
-      "canonical_name": "optimal-edge-discovery",
-      "first_release": "Fall25",
-      "repository": "OptimalEdgeDiscovery",
-      "release_tag": "r2.1",
-      "release_date": "2026-09-10T20:04:23Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/OptimalEdgeDiscovery/releases/tag/r2.1",
-      "release_type": "pre-release-rc"
-    },
-    {
-      "api_name": "optimal-edge-discovery",
-      "api_version": "0.2.0-rc.2",
+      "api_version": "0.2.0",
       "api_title": "Optimal Edge Discovery",
       "commonalities": "0.9.0",
       "maturity": "initial",
@@ -10466,11 +9859,11 @@
       "canonical_name": "optimal-edge-discovery",
       "first_release": "Fall25",
       "repository": "OptimalEdgeDiscovery",
-      "release_tag": "r2.2",
-      "release_date": "2026-11-05T16:40:10Z",
+      "release_tag": "r2.3",
+      "release_date": "2026-11-18T18:57:23Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/OptimalEdgeDiscovery/releases/tag/r2.2",
-      "release_type": "pre-release-rc"
+      "github_url": "https://github.com/camaraproject/OptimalEdgeDiscovery/releases/tag/r2.3",
+      "release_type": "public-release"
     },
     {
       "api_name": "one-time-password-sms",
@@ -10866,26 +10259,6 @@
       "release_type": "public-release"
     },
     {
-      "api_name": "qos-profiles",
-      "api_version": "1.2.0-rc.3",
-      "api_title": "QoS Profiles",
-      "commonalities": "0.8.0",
-      "maturity": "stable",
-      "portfolio_category": "Communication Quality",
-      "website_url": "https://camaraproject.org/qos-profiles/",
-      "tooltip": "Provide the ability to set certain profile of QoS",
-      "display_name": "QoS Profiles",
-      "published": true,
-      "canonical_name": "qos-profiles",
-      "first_release": "PreFall24",
-      "repository": "QualityOnDemand",
-      "release_tag": "r4.1",
-      "release_date": "2026-08-20T10:09:32Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/QualityOnDemand/releases/tag/r4.1",
-      "release_type": "pre-release-rc"
-    },
-    {
       "api_name": "qod-provisioning",
       "api_version": "0.1.0",
       "api_title": "QoD Provisioning API",
@@ -10983,30 +10356,7 @@
     },
     {
       "api_name": "qos-provisioning",
-      "api_version": "0.4.0-rc.1",
-      "api_title": "QoS Provisioning",
-      "commonalities": "0.8.0",
-      "maturity": "initial",
-      "portfolio_category": "Communication Quality",
-      "website_url": "https://camaraproject.org/qod-provisioning/",
-      "tooltip": "Creating, getting, updating, removing a QoD provision for a device",
-      "display_name": "QoS Provisioning",
-      "published": true,
-      "canonical_name": "qos-provisioning",
-      "first_release": "Fall24",
-      "previous_names": [
-        "qod-provisioning"
-      ],
-      "repository": "QualityOnDemand",
-      "release_tag": "r4.1",
-      "release_date": "2026-08-20T10:09:32Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/QualityOnDemand/releases/tag/r4.1",
-      "release_type": "pre-release-rc"
-    },
-    {
-      "api_name": "qos-provisioning",
-      "api_version": "0.4.0-rc.2",
+      "api_version": "0.4.0",
       "api_title": "QoS Provisioning",
       "commonalities": "0.9.0",
       "maturity": "initial",
@@ -11021,11 +10371,11 @@
         "qod-provisioning"
       ],
       "repository": "QualityOnDemand",
-      "release_tag": "r4.2",
-      "release_date": "2026-10-26T10:05:12Z",
+      "release_tag": "r4.3",
+      "release_date": "2026-11-19T07:57:56Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/QualityOnDemand/releases/tag/r4.2",
-      "release_type": "pre-release-rc"
+      "github_url": "https://github.com/camaraproject/QualityOnDemand/releases/tag/r4.3",
+      "release_type": "public-release"
     },
     {
       "api_name": "quality-on-demand",
@@ -11113,27 +10463,7 @@
     },
     {
       "api_name": "quality-on-demand",
-      "api_version": "1.2.0-rc.3",
-      "api_title": "Quality-On-Demand",
-      "commonalities": "0.8.0",
-      "maturity": "stable",
-      "portfolio_category": "Communication Quality",
-      "website_url": "https://camaraproject.org/quality-on-demand/",
-      "tooltip": "Allows users to set mobile connection quality and get notifications",
-      "display_name": "Quality-On-Demand",
-      "published": true,
-      "canonical_name": "quality-on-demand",
-      "first_release": "PreFall24",
-      "repository": "QualityOnDemand",
-      "release_tag": "r4.1",
-      "release_date": "2026-08-20T10:09:32Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/QualityOnDemand/releases/tag/r4.1",
-      "release_type": "pre-release-rc"
-    },
-    {
-      "api_name": "quality-on-demand",
-      "api_version": "1.2.0-rc.4",
+      "api_version": "1.2.0",
       "api_title": "Quality-On-Demand",
       "commonalities": "0.9.0",
       "maturity": "stable",
@@ -11145,11 +10475,11 @@
       "canonical_name": "quality-on-demand",
       "first_release": "PreFall24",
       "repository": "QualityOnDemand",
-      "release_tag": "r4.2",
-      "release_date": "2026-10-26T10:05:12Z",
+      "release_tag": "r4.3",
+      "release_date": "2026-11-19T07:57:56Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/QualityOnDemand/releases/tag/r4.2",
-      "release_type": "pre-release-rc"
+      "github_url": "https://github.com/camaraproject/QualityOnDemand/releases/tag/r4.3",
+      "release_type": "public-release"
     },
     {
       "api_name": "region-device-count",
