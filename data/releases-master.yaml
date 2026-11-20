@@ -1,13 +1,13 @@
 metadata:
-  last_updated: '2026-11-19T10:44:00.133Z'
+  last_updated: '2026-11-20T10:26:01.054Z'
   workflow_version: 3.0.0
   schema_version: 3.2.0
   collector_run:
     analysis_scope: incremental
-    workflow_run_id: '44508140044'
-    workflow_run_number: 400
-    workflow_run_url: https://github.com/camaraproject/project-administration/actions/runs/44508140044
-    source_sha: 477c3f40cb79bdc33b6567cd6055f4d5ad306829
+    workflow_run_id: '44718957092'
+    workflow_run_number: 401
+    workflow_run_url: https://github.com/camaraproject/project-administration/actions/runs/44718957092
+    source_sha: a848d5da6f24d44d13a86b915574578a656d6c0a
     node_version: v24.22.2
     npm_version: 11.19.1
     dependencies:
@@ -1440,6 +1440,7 @@ releases:
         api_version: 0.4.0-alpha.1
         api_title: Device Identifier
         commonalities: 0.8.0
+    superseded: true
   - repository: DeviceIdentifier
     release_tag: r3.2
     release_date: '2026-09-01T16:11:38Z'
@@ -1455,6 +1456,7 @@ releases:
         api_version: 0.4.0-rc.1
         api_title: Device Identifier
         commonalities: 0.8.0
+    superseded: true
   - repository: DeviceIdentifier
     release_tag: r3.3
     release_date: '2026-09-25T13:20:11Z'
@@ -1470,6 +1472,7 @@ releases:
         api_version: 0.4.0-rc.2
         api_title: Device Identifier
         commonalities: 0.9.0
+    superseded: true
   - repository: DeviceIdentifier
     release_tag: r3.4
     release_date: '2026-11-02T11:55:05Z'
@@ -1483,6 +1486,22 @@ releases:
     apis:
       - api_name: device-identifier
         api_version: 0.4.0-rc.3
+        api_title: Device Identifier
+        commonalities: 0.9.0
+    superseded: true
+  - repository: DeviceIdentifier
+    release_tag: r3.5
+    release_date: '2026-11-19T12:43:55Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/DeviceIdentifier/releases/tag/r3.5
+    release_type: public-release
+    src_commit_sha: ac2cdee8a5224b3f6146ddb9c551323cc6a96ab0
+    dependencies:
+      commonalities_release: r4.4 (0.9.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: device-identifier
+        api_version: 0.4.0
         api_title: Device Identifier
         commonalities: 0.9.0
   - repository: DeviceLocation
@@ -1803,6 +1822,7 @@ releases:
         api_version: 1.2.0-rc.3
         api_title: Device Roaming Status
         commonalities: 0.8.0
+    superseded: true
   - repository: DeviceRoamingStatus
     release_tag: r2.2
     release_date: '2026-10-28T13:53:54Z'
@@ -1820,6 +1840,26 @@ releases:
         commonalities: 0.9.0
       - api_name: device-roaming-status
         api_version: 1.2.0-rc.4
+        api_title: Device Roaming Status
+        commonalities: 0.9.0
+    superseded: true
+  - repository: DeviceRoamingStatus
+    release_tag: r2.3
+    release_date: '2026-11-19T15:00:44Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/DeviceRoamingStatus/releases/tag/r2.3
+    release_type: public-release
+    src_commit_sha: 1ead7b53cf1738df2be47dfe475019ff2b7a7b7d
+    dependencies:
+      commonalities_release: r4.4 (0.9.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: device-roaming-status-subscriptions
+        api_version: 0.9.0
+        api_title: Device Roaming Status Subscriptions
+        commonalities: 0.9.0
+      - api_name: device-roaming-status
+        api_version: 1.2.0
         api_title: Device Roaming Status
         commonalities: 0.9.0
   - repository: DeviceStatus
@@ -2612,6 +2652,7 @@ releases:
         api_version: 0.2.0-rc.1
         api_title: Q&A Assistant - Service
         commonalities: 0.8.0
+    superseded: true
   - repository: ModelAsAService
     release_tag: r2.2
     release_date: '2026-11-06T01:18:38Z'
@@ -2633,6 +2674,30 @@ releases:
         commonalities: 0.9.0
       - api_name: qa-assistant-service
         api_version: 0.2.0-rc.2
+        api_title: Q&A Assistant - Service
+        commonalities: 0.9.0
+    superseded: true
+  - repository: ModelAsAService
+    release_tag: r2.3
+    release_date: '2026-11-20T01:26:37Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/ModelAsAService/releases/tag/r2.3
+    release_type: public-release
+    src_commit_sha: e61d1f944376d8296b5de8db53f50aecc447dcfd
+    dependencies:
+      commonalities_release: r4.4 (0.9.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: knowledge-base
+        api_version: 0.2.0
+        api_title: Knowledge Base
+        commonalities: 0.9.0
+      - api_name: qa-assistant-manage
+        api_version: 0.2.0
+        api_title: Q&A Assistant - Manage
+        commonalities: 0.9.0
+      - api_name: qa-assistant-service
+        api_version: 0.2.0
         api_title: Q&A Assistant - Service
         commonalities: 0.9.0
   - repository: MostFrequentLocation
@@ -4459,6 +4524,7 @@ releases:
         api_version: 0.2.0-alpha.1
         api_title: Verified Caller
         commonalities: 0.8.0
+    superseded: true
   - repository: VerifiedCaller
     release_tag: r2.2
     release_date: '2026-09-10T13:07:52Z'
@@ -4478,6 +4544,7 @@ releases:
         api_version: 0.2.0-rc.1
         api_title: Verified Caller
         commonalities: 0.8.0
+    superseded: true
   - repository: VerifiedCaller
     release_tag: r2.3
     release_date: '2026-11-04T05:59:09Z'
@@ -4495,6 +4562,26 @@ releases:
         commonalities: 0.9.0
       - api_name: verified-caller
         api_version: 0.2.0-rc.2
+        api_title: Verified Caller
+        commonalities: 0.9.0
+    superseded: true
+  - repository: VerifiedCaller
+    release_tag: r2.4
+    release_date: '2026-11-19T11:23:04Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/VerifiedCaller/releases/tag/r2.4
+    release_type: public-release
+    src_commit_sha: e16bffce3fd670bc05c21ec5edcfd084dbfe33a4
+    dependencies:
+      commonalities_release: r4.4 (0.9.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: brand-registration
+        api_version: 0.2.0
+        api_title: Brand Registration
+        commonalities: 0.9.0
+      - api_name: verified-caller
+        api_version: 0.2.0
         api_title: Verified Caller
         commonalities: 0.9.0
   - repository: WebRTC
@@ -4692,8 +4779,8 @@ repositories:
     newest_pre_release: null
   - repository: DeviceIdentifier
     github_url: https://github.com/camaraproject/DeviceIdentifier
-    latest_public_release: r2.2
-    newest_pre_release: r3.4
+    latest_public_release: r3.5
+    newest_pre_release: null
   - repository: DeviceLocation
     github_url: https://github.com/camaraproject/DeviceLocation
     latest_public_release: r3.2
@@ -4708,8 +4795,8 @@ repositories:
     newest_pre_release: null
   - repository: DeviceRoamingStatus
     github_url: https://github.com/camaraproject/DeviceRoamingStatus
-    latest_public_release: r1.2
-    newest_pre_release: r2.2
+    latest_public_release: r2.3
+    newest_pre_release: null
   - repository: DeviceStatus
     github_url: https://github.com/camaraproject/DeviceStatus
     latest_public_release: r2.2
@@ -4777,8 +4864,8 @@ repositories:
     newest_pre_release: r2.2
   - repository: ModelAsAService
     github_url: https://github.com/camaraproject/ModelAsAService
-    latest_public_release: r1.2
-    newest_pre_release: r2.2
+    latest_public_release: r2.3
+    newest_pre_release: null
   - repository: MostFrequentLocation
     github_url: https://github.com/camaraproject/MostFrequentLocation
     latest_public_release: r2.2
@@ -4891,8 +4978,8 @@ repositories:
     newest_pre_release: null
   - repository: VerifiedCaller
     github_url: https://github.com/camaraproject/VerifiedCaller
-    latest_public_release: r1.3
-    newest_pre_release: r2.3
+    latest_public_release: r2.4
+    newest_pre_release: null
   - repository: VoiceNotification
     github_url: https://github.com/camaraproject/VoiceNotification
     latest_public_release: null

@@ -1,33 +1,33 @@
 {
   "metadata": {
-    "generated": "2026-11-19T10:44:02.214Z",
+    "generated": "2026-11-20T10:26:02.839Z",
     "meta_release": "All",
     "source": "Release Collector v3",
     "landscape_version": "1.1.1"
   },
   "statistics": {
     "repositories_count": 55,
-    "api_versions_count": 241,
+    "api_versions_count": 229,
     "unique_api_names_count": 80,
     "unique_apis_count": 79,
     "api_version_maturity": {
-      "stable": 37,
-      "initial": 164,
-      "rc": 40
+      "stable": 38,
+      "initial": 168,
+      "rc": 23
     },
     "unique_api_maturity": {
-      "stable": 9,
-      "initial": 49,
-      "rc": 21
+      "stable": 10,
+      "initial": 56,
+      "rc": 13
     },
     "categories": {
-      "Computing Services": 20,
+      "Computing Services": 17,
       "Communication Quality": 50,
       "Payments and Charging": 11,
-      "Authentication and Fraud Prevention": 69,
-      "Communication Services": 20,
+      "Authentication and Fraud Prevention": 66,
+      "Communication Services": 16,
       "Service Management": 2,
-      "Device Information": 28,
+      "Device Information": 26,
       "Location Services": 23
     },
     "apis_with_previous_names": 5
@@ -295,23 +295,8 @@
     "DeviceIdentifier": {
       "releases": [
         {
-          "tag": "r3.4",
-          "date": "2026-11-02T11:55:05Z",
-          "apis_count": 1
-        },
-        {
-          "tag": "r3.3",
-          "date": "2026-09-25T13:20:11Z",
-          "apis_count": 1
-        },
-        {
-          "tag": "r3.2",
-          "date": "2026-09-01T16:11:38Z",
-          "apis_count": 1
-        },
-        {
-          "tag": "r3.1",
-          "date": "2026-06-11T09:59:39Z",
+          "tag": "r3.5",
+          "date": "2026-11-19T12:43:55Z",
           "apis_count": 1
         },
         {
@@ -325,7 +310,7 @@
           "apis_count": 1
         }
       ],
-      "total_apis": 6,
+      "total_apis": 3,
       "unique_apis_count": 1
     },
     "DeviceLocation": {
@@ -389,13 +374,8 @@
     "DeviceRoamingStatus": {
       "releases": [
         {
-          "tag": "r2.2",
-          "date": "2026-10-28T13:53:54Z",
-          "apis_count": 2
-        },
-        {
-          "tag": "r2.1",
-          "date": "2026-08-07T09:58:54Z",
+          "tag": "r2.3",
+          "date": "2026-11-19T15:00:44Z",
           "apis_count": 2
         },
         {
@@ -404,7 +384,7 @@
           "apis_count": 2
         }
       ],
-      "total_apis": 6,
+      "total_apis": 4,
       "unique_apis_count": 2
     },
     "DeviceStatus": {
@@ -639,13 +619,8 @@
     "ModelAsAService": {
       "releases": [
         {
-          "tag": "r2.2",
-          "date": "2026-11-06T01:18:38Z",
-          "apis_count": 3
-        },
-        {
-          "tag": "r2.1",
-          "date": "2026-07-28T01:55:13Z",
+          "tag": "r2.3",
+          "date": "2026-11-20T01:26:37Z",
           "apis_count": 3
         },
         {
@@ -654,7 +629,7 @@
           "apis_count": 3
         }
       ],
-      "total_apis": 9,
+      "total_apis": 6,
       "unique_apis_count": 3
     },
     "MostFrequentLocation": {
@@ -1070,18 +1045,8 @@
     "VerifiedCaller": {
       "releases": [
         {
-          "tag": "r2.3",
-          "date": "2026-11-04T05:59:09Z",
-          "apis_count": 2
-        },
-        {
-          "tag": "r2.2",
-          "date": "2026-09-10T13:07:52Z",
-          "apis_count": 2
-        },
-        {
-          "tag": "r2.1",
-          "date": "2026-06-30T06:06:19Z",
+          "tag": "r2.4",
+          "date": "2026-11-19T11:23:04Z",
           "apis_count": 2
         },
         {
@@ -1090,7 +1055,7 @@
           "apis_count": 2
         }
       ],
-      "total_apis": 8,
+      "total_apis": 4,
       "unique_apis_count": 2
     },
     "WebRTC": {
@@ -2395,70 +2360,12 @@
     },
     {
       "repository": "DeviceIdentifier",
-      "release_tag": "r3.1",
-      "release_date": "2026-06-11T09:59:39Z",
+      "release_tag": "r3.5",
+      "release_date": "2026-11-19T12:43:55Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/DeviceIdentifier/releases/tag/r3.1",
-      "release_type": "pre-release-alpha",
-      "src_commit_sha": "8b2e2951995408acfa10afbe6eb3edcd69851650",
-      "dependencies": {
-        "commonalities_release": "r4.3 (0.8.0)",
-        "identity_consent_management_release": "r4.2 (0.5.0)"
-      },
-      "apis": [
-        {
-          "api_name": "device-identifier",
-          "api_version": "0.4.0-alpha.1",
-          "api_title": "Device Identifier",
-          "commonalities": "0.8.0",
-          "maturity": "initial",
-          "portfolio_category": "Authentication and Fraud Prevention",
-          "website_url": "https://camaraproject.org/device-identifier/",
-          "tooltip": "Check the identity of the subscribers' device",
-          "display_name": "Device Identifier",
-          "published": true,
-          "canonical_name": "device-identifier",
-          "first_release": "Spring25"
-        }
-      ]
-    },
-    {
-      "repository": "DeviceIdentifier",
-      "release_tag": "r3.2",
-      "release_date": "2026-09-01T16:11:38Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/DeviceIdentifier/releases/tag/r3.2",
-      "release_type": "pre-release-rc",
-      "src_commit_sha": "5dcccd77e4b47b20aaf42b7e54affbf860f40c46",
-      "dependencies": {
-        "commonalities_release": "r4.3 (0.8.0)",
-        "identity_consent_management_release": "r4.2 (0.5.0)"
-      },
-      "apis": [
-        {
-          "api_name": "device-identifier",
-          "api_version": "0.4.0-rc.1",
-          "api_title": "Device Identifier",
-          "commonalities": "0.8.0",
-          "maturity": "initial",
-          "portfolio_category": "Authentication and Fraud Prevention",
-          "website_url": "https://camaraproject.org/device-identifier/",
-          "tooltip": "Check the identity of the subscribers' device",
-          "display_name": "Device Identifier",
-          "published": true,
-          "canonical_name": "device-identifier",
-          "first_release": "Spring25"
-        }
-      ]
-    },
-    {
-      "repository": "DeviceIdentifier",
-      "release_tag": "r3.3",
-      "release_date": "2026-09-25T13:20:11Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/DeviceIdentifier/releases/tag/r3.3",
-      "release_type": "pre-release-rc",
-      "src_commit_sha": "f591baf08b6f6e027dc9f71048dfad0a4cc8c85c",
+      "github_url": "https://github.com/camaraproject/DeviceIdentifier/releases/tag/r3.5",
+      "release_type": "public-release",
+      "src_commit_sha": "ac2cdee8a5224b3f6146ddb9c551323cc6a96ab0",
       "dependencies": {
         "commonalities_release": "r4.4 (0.9.0)",
         "identity_consent_management_release": "r4.2 (0.5.0)"
@@ -2466,36 +2373,7 @@
       "apis": [
         {
           "api_name": "device-identifier",
-          "api_version": "0.4.0-rc.2",
-          "api_title": "Device Identifier",
-          "commonalities": "0.9.0",
-          "maturity": "initial",
-          "portfolio_category": "Authentication and Fraud Prevention",
-          "website_url": "https://camaraproject.org/device-identifier/",
-          "tooltip": "Check the identity of the subscribers' device",
-          "display_name": "Device Identifier",
-          "published": true,
-          "canonical_name": "device-identifier",
-          "first_release": "Spring25"
-        }
-      ]
-    },
-    {
-      "repository": "DeviceIdentifier",
-      "release_tag": "r3.4",
-      "release_date": "2026-11-02T11:55:05Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/DeviceIdentifier/releases/tag/r3.4",
-      "release_type": "pre-release-rc",
-      "src_commit_sha": "11605ff4c21c6c90169c2c4b17da834e4bd93b00",
-      "dependencies": {
-        "commonalities_release": "r4.4 (0.9.0)",
-        "identity_consent_management_release": "r4.2 (0.5.0)"
-      },
-      "apis": [
-        {
-          "api_name": "device-identifier",
-          "api_version": "0.4.0-rc.3",
+          "api_version": "0.4.0",
           "api_title": "Device Identifier",
           "commonalities": "0.9.0",
           "maturity": "initial",
@@ -2942,55 +2820,12 @@
     },
     {
       "repository": "DeviceRoamingStatus",
-      "release_tag": "r2.1",
-      "release_date": "2026-08-07T09:58:54Z",
+      "release_tag": "r2.3",
+      "release_date": "2026-11-19T15:00:44Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/DeviceRoamingStatus/releases/tag/r2.1",
-      "release_type": "pre-release-rc",
-      "src_commit_sha": "9be6fb27d6397086db4405fbd28c49f6314a6574",
-      "dependencies": {
-        "commonalities_release": "r4.3 (0.8.0)",
-        "identity_consent_management_release": "r4.2 (0.5.0)"
-      },
-      "apis": [
-        {
-          "api_name": "device-roaming-status-subscriptions",
-          "api_version": "0.9.0-rc.1",
-          "api_title": "Device Roaming Status Subscriptions",
-          "commonalities": "0.8.0",
-          "maturity": "initial",
-          "portfolio_category": "Device Information",
-          "website_url": "https://camaraproject.org/device-roaming-status-subscriptions/",
-          "tooltip": "Get notifications if the roaming status of a device changes",
-          "display_name": "Device Roaming Status Subscriptions",
-          "published": true,
-          "canonical_name": "device-roaming-status-subscriptions",
-          "first_release": "Fall24"
-        },
-        {
-          "api_name": "device-roaming-status",
-          "api_version": "1.2.0-rc.3",
-          "api_title": "Device Roaming Status",
-          "commonalities": "0.8.0",
-          "maturity": "stable",
-          "portfolio_category": "Device Information",
-          "website_url": "https://camaraproject.org/device-roaming-status/",
-          "tooltip": "Check the roaming status of a device",
-          "display_name": "Device Roaming Status",
-          "published": true,
-          "canonical_name": "device-roaming-status",
-          "first_release": "PreFall24"
-        }
-      ]
-    },
-    {
-      "repository": "DeviceRoamingStatus",
-      "release_tag": "r2.2",
-      "release_date": "2026-10-28T13:53:54Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/DeviceRoamingStatus/releases/tag/r2.2",
-      "release_type": "pre-release-rc",
-      "src_commit_sha": "25ae41f591a808ecbac49172402e7cb38db6653c",
+      "github_url": "https://github.com/camaraproject/DeviceRoamingStatus/releases/tag/r2.3",
+      "release_type": "public-release",
+      "src_commit_sha": "1ead7b53cf1738df2be47dfe475019ff2b7a7b7d",
       "dependencies": {
         "commonalities_release": "r4.4 (0.9.0)",
         "identity_consent_management_release": "r4.2 (0.5.0)"
@@ -2998,7 +2833,7 @@
       "apis": [
         {
           "api_name": "device-roaming-status-subscriptions",
-          "api_version": "0.9.0-rc.2",
+          "api_version": "0.9.0",
           "api_title": "Device Roaming Status Subscriptions",
           "commonalities": "0.9.0",
           "maturity": "initial",
@@ -3012,7 +2847,7 @@
         },
         {
           "api_name": "device-roaming-status",
-          "api_version": "1.2.0-rc.4",
+          "api_version": "1.2.0",
           "api_title": "Device Roaming Status",
           "commonalities": "0.9.0",
           "maturity": "stable",
@@ -4141,69 +3976,12 @@
     },
     {
       "repository": "ModelAsAService",
-      "release_tag": "r2.1",
-      "release_date": "2026-07-28T01:55:13Z",
+      "release_tag": "r2.3",
+      "release_date": "2026-11-20T01:26:37Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/ModelAsAService/releases/tag/r2.1",
-      "release_type": "pre-release-rc",
-      "src_commit_sha": "11d2f0400c021cd14ec429181aa00db1ff0c5448",
-      "dependencies": {
-        "commonalities_release": "r4.3 (0.8.0)",
-        "identity_consent_management_release": "r4.2 (0.5.0)"
-      },
-      "apis": [
-        {
-          "api_name": "knowledge-base",
-          "api_version": "0.2.0-rc.1",
-          "api_title": "Knowledge Base",
-          "commonalities": "0.8.0",
-          "maturity": "initial",
-          "portfolio_category": "Computing Services",
-          "website_url": "https://camaraproject.org/model-as-a-service/",
-          "tooltip": "Build and manage personalized knowledge bases",
-          "display_name": "Knowledge Base",
-          "published": true,
-          "canonical_name": "knowledge-base",
-          "first_release": "Fall25"
-        },
-        {
-          "api_name": "qa-assistant-manage",
-          "api_version": "0.2.0-rc.1",
-          "api_title": "Q&A Assistant - Manage",
-          "commonalities": "0.8.0",
-          "maturity": "initial",
-          "portfolio_category": "Computing Services",
-          "website_url": "https://camaraproject.org/model-as-a-service/",
-          "tooltip": "Quickly construct unique Q&A assistant applications",
-          "display_name": "Q&A Assistant - Manage",
-          "published": true,
-          "canonical_name": "qa-assistant-manage",
-          "first_release": "Fall25"
-        },
-        {
-          "api_name": "qa-assistant-service",
-          "api_version": "0.2.0-rc.1",
-          "api_title": "Q&A Assistant - Service",
-          "commonalities": "0.8.0",
-          "maturity": "initial",
-          "portfolio_category": "Computing Services",
-          "website_url": "https://camaraproject.org/model-as-a-service/",
-          "tooltip": "Provide Q&A services to the users of the application",
-          "display_name": "Q&A Assistant - Service",
-          "published": true,
-          "canonical_name": "qa-assistant-service",
-          "first_release": "Fall25"
-        }
-      ]
-    },
-    {
-      "repository": "ModelAsAService",
-      "release_tag": "r2.2",
-      "release_date": "2026-11-06T01:18:38Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/ModelAsAService/releases/tag/r2.2",
-      "release_type": "pre-release-rc",
-      "src_commit_sha": "f2a7cdf65000fb5bd7ed94c26b4f04af42e934b3",
+      "github_url": "https://github.com/camaraproject/ModelAsAService/releases/tag/r2.3",
+      "release_type": "public-release",
+      "src_commit_sha": "e61d1f944376d8296b5de8db53f50aecc447dcfd",
       "dependencies": {
         "commonalities_release": "r4.4 (0.9.0)",
         "identity_consent_management_release": "r4.2 (0.5.0)"
@@ -4211,7 +3989,7 @@
       "apis": [
         {
           "api_name": "knowledge-base",
-          "api_version": "0.2.0-rc.2",
+          "api_version": "0.2.0",
           "api_title": "Knowledge Base",
           "commonalities": "0.9.0",
           "maturity": "initial",
@@ -4225,7 +4003,7 @@
         },
         {
           "api_name": "qa-assistant-manage",
-          "api_version": "0.2.0-rc.2",
+          "api_version": "0.2.0",
           "api_title": "Q&A Assistant - Manage",
           "commonalities": "0.9.0",
           "maturity": "initial",
@@ -4239,7 +4017,7 @@
         },
         {
           "api_name": "qa-assistant-service",
-          "api_version": "0.2.0-rc.2",
+          "api_version": "0.2.0",
           "api_title": "Q&A Assistant - Service",
           "commonalities": "0.9.0",
           "maturity": "initial",
@@ -6135,98 +5913,12 @@
     },
     {
       "repository": "VerifiedCaller",
-      "release_tag": "r2.1",
-      "release_date": "2026-06-30T06:06:19Z",
+      "release_tag": "r2.4",
+      "release_date": "2026-11-19T11:23:04Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/VerifiedCaller/releases/tag/r2.1",
-      "release_type": "pre-release-alpha",
-      "src_commit_sha": "f41f6799a9b64fc33f811aea2b33c0efaa529c86",
-      "dependencies": {
-        "commonalities_release": "r4.3 (0.8.0)",
-        "identity_consent_management_release": "r4.2 (0.5.0)"
-      },
-      "apis": [
-        {
-          "api_name": "brand-registration",
-          "api_version": "0.2.0-alpha.1",
-          "api_title": "Brand Registration",
-          "commonalities": "0.8.0",
-          "maturity": "initial",
-          "portfolio_category": "Communication Services",
-          "website_url": "https://camaraproject.org/brand-registration/",
-          "tooltip": "Register brand for verified communications",
-          "display_name": "Brand Registration",
-          "published": true,
-          "canonical_name": "brand-registration",
-          "first_release": "Fall25"
-        },
-        {
-          "api_name": "verified-caller",
-          "api_version": "0.2.0-alpha.1",
-          "api_title": "Verified Caller",
-          "commonalities": "0.8.0",
-          "maturity": "initial",
-          "portfolio_category": "Communication Services",
-          "website_url": "https://camaraproject.org/verified-caller/",
-          "tooltip": "Show certified information on the phone before a call is answered",
-          "display_name": "Verified Caller",
-          "published": true,
-          "canonical_name": "verified-caller",
-          "first_release": "Fall25"
-        }
-      ]
-    },
-    {
-      "repository": "VerifiedCaller",
-      "release_tag": "r2.2",
-      "release_date": "2026-09-10T13:07:52Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/VerifiedCaller/releases/tag/r2.2",
-      "release_type": "pre-release-rc",
-      "src_commit_sha": "e81b70fcfcb8e289daffb9e1667eac404b9aa097",
-      "dependencies": {
-        "commonalities_release": "r4.3 (0.8.0)",
-        "identity_consent_management_release": "r4.2 (0.5.0)"
-      },
-      "apis": [
-        {
-          "api_name": "brand-registration",
-          "api_version": "0.2.0-rc.1",
-          "api_title": "Brand Registration",
-          "commonalities": "0.8.0",
-          "maturity": "initial",
-          "portfolio_category": "Communication Services",
-          "website_url": "https://camaraproject.org/brand-registration/",
-          "tooltip": "Register brand for verified communications",
-          "display_name": "Brand Registration",
-          "published": true,
-          "canonical_name": "brand-registration",
-          "first_release": "Fall25"
-        },
-        {
-          "api_name": "verified-caller",
-          "api_version": "0.2.0-rc.1",
-          "api_title": "Verified Caller",
-          "commonalities": "0.8.0",
-          "maturity": "initial",
-          "portfolio_category": "Communication Services",
-          "website_url": "https://camaraproject.org/verified-caller/",
-          "tooltip": "Show certified information on the phone before a call is answered",
-          "display_name": "Verified Caller",
-          "published": true,
-          "canonical_name": "verified-caller",
-          "first_release": "Fall25"
-        }
-      ]
-    },
-    {
-      "repository": "VerifiedCaller",
-      "release_tag": "r2.3",
-      "release_date": "2026-11-04T05:59:09Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/VerifiedCaller/releases/tag/r2.3",
-      "release_type": "pre-release-rc",
-      "src_commit_sha": "4a55bb40b0034dd0f3863fa4f8f494b83eea8b89",
+      "github_url": "https://github.com/camaraproject/VerifiedCaller/releases/tag/r2.4",
+      "release_type": "public-release",
+      "src_commit_sha": "e16bffce3fd670bc05c21ec5edcfd084dbfe33a4",
       "dependencies": {
         "commonalities_release": "r4.4 (0.9.0)",
         "identity_consent_management_release": "r4.2 (0.5.0)"
@@ -6234,7 +5926,7 @@
       "apis": [
         {
           "api_name": "brand-registration",
-          "api_version": "0.2.0-rc.2",
+          "api_version": "0.2.0",
           "api_title": "Brand Registration",
           "commonalities": "0.9.0",
           "maturity": "initial",
@@ -6248,7 +5940,7 @@
         },
         {
           "api_name": "verified-caller",
-          "api_version": "0.2.0-rc.2",
+          "api_version": "0.2.0",
           "api_title": "Verified Caller",
           "commonalities": "0.9.0",
           "maturity": "initial",
@@ -7669,47 +7361,7 @@
     },
     {
       "api_name": "device-identifier",
-      "api_version": "0.4.0-alpha.1",
-      "api_title": "Device Identifier",
-      "commonalities": "0.8.0",
-      "maturity": "initial",
-      "portfolio_category": "Authentication and Fraud Prevention",
-      "website_url": "https://camaraproject.org/device-identifier/",
-      "tooltip": "Check the identity of the subscribers' device",
-      "display_name": "Device Identifier",
-      "published": true,
-      "canonical_name": "device-identifier",
-      "first_release": "Spring25",
-      "repository": "DeviceIdentifier",
-      "release_tag": "r3.1",
-      "release_date": "2026-06-11T09:59:39Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/DeviceIdentifier/releases/tag/r3.1",
-      "release_type": "pre-release-alpha"
-    },
-    {
-      "api_name": "device-identifier",
-      "api_version": "0.4.0-rc.1",
-      "api_title": "Device Identifier",
-      "commonalities": "0.8.0",
-      "maturity": "initial",
-      "portfolio_category": "Authentication and Fraud Prevention",
-      "website_url": "https://camaraproject.org/device-identifier/",
-      "tooltip": "Check the identity of the subscribers' device",
-      "display_name": "Device Identifier",
-      "published": true,
-      "canonical_name": "device-identifier",
-      "first_release": "Spring25",
-      "repository": "DeviceIdentifier",
-      "release_tag": "r3.2",
-      "release_date": "2026-09-01T16:11:38Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/DeviceIdentifier/releases/tag/r3.2",
-      "release_type": "pre-release-rc"
-    },
-    {
-      "api_name": "device-identifier",
-      "api_version": "0.4.0-rc.2",
+      "api_version": "0.4.0",
       "api_title": "Device Identifier",
       "commonalities": "0.9.0",
       "maturity": "initial",
@@ -7721,31 +7373,11 @@
       "canonical_name": "device-identifier",
       "first_release": "Spring25",
       "repository": "DeviceIdentifier",
-      "release_tag": "r3.3",
-      "release_date": "2026-09-25T13:20:11Z",
+      "release_tag": "r3.5",
+      "release_date": "2026-11-19T12:43:55Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/DeviceIdentifier/releases/tag/r3.3",
-      "release_type": "pre-release-rc"
-    },
-    {
-      "api_name": "device-identifier",
-      "api_version": "0.4.0-rc.3",
-      "api_title": "Device Identifier",
-      "commonalities": "0.9.0",
-      "maturity": "initial",
-      "portfolio_category": "Authentication and Fraud Prevention",
-      "website_url": "https://camaraproject.org/device-identifier/",
-      "tooltip": "Check the identity of the subscribers' device",
-      "display_name": "Device Identifier",
-      "published": true,
-      "canonical_name": "device-identifier",
-      "first_release": "Spring25",
-      "repository": "DeviceIdentifier",
-      "release_tag": "r3.4",
-      "release_date": "2026-11-02T11:55:05Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/DeviceIdentifier/releases/tag/r3.4",
-      "release_type": "pre-release-rc"
+      "github_url": "https://github.com/camaraproject/DeviceIdentifier/releases/tag/r3.5",
+      "release_type": "public-release"
     },
     {
       "api_name": "geofencing-subscriptions",
@@ -8181,27 +7813,7 @@
     },
     {
       "api_name": "device-roaming-status",
-      "api_version": "1.2.0-rc.3",
-      "api_title": "Device Roaming Status",
-      "commonalities": "0.8.0",
-      "maturity": "stable",
-      "portfolio_category": "Device Information",
-      "website_url": "https://camaraproject.org/device-roaming-status/",
-      "tooltip": "Check the roaming status of a device",
-      "display_name": "Device Roaming Status",
-      "published": true,
-      "canonical_name": "device-roaming-status",
-      "first_release": "PreFall24",
-      "repository": "DeviceRoamingStatus",
-      "release_tag": "r2.1",
-      "release_date": "2026-08-07T09:58:54Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/DeviceRoamingStatus/releases/tag/r2.1",
-      "release_type": "pre-release-rc"
-    },
-    {
-      "api_name": "device-roaming-status",
-      "api_version": "1.2.0-rc.4",
+      "api_version": "1.2.0",
       "api_title": "Device Roaming Status",
       "commonalities": "0.9.0",
       "maturity": "stable",
@@ -8213,11 +7825,11 @@
       "canonical_name": "device-roaming-status",
       "first_release": "PreFall24",
       "repository": "DeviceRoamingStatus",
-      "release_tag": "r2.2",
-      "release_date": "2026-10-28T13:53:54Z",
+      "release_tag": "r2.3",
+      "release_date": "2026-11-19T15:00:44Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/DeviceRoamingStatus/releases/tag/r2.2",
-      "release_type": "pre-release-rc"
+      "github_url": "https://github.com/camaraproject/DeviceRoamingStatus/releases/tag/r2.3",
+      "release_type": "public-release"
     },
     {
       "api_name": "device-roaming-status-subscriptions",
@@ -8242,27 +7854,7 @@
     },
     {
       "api_name": "device-roaming-status-subscriptions",
-      "api_version": "0.9.0-rc.1",
-      "api_title": "Device Roaming Status Subscriptions",
-      "commonalities": "0.8.0",
-      "maturity": "initial",
-      "portfolio_category": "Device Information",
-      "website_url": "https://camaraproject.org/device-roaming-status-subscriptions/",
-      "tooltip": "Get notifications if the roaming status of a device changes",
-      "display_name": "Device Roaming Status Subscriptions",
-      "published": true,
-      "canonical_name": "device-roaming-status-subscriptions",
-      "first_release": "Fall24",
-      "repository": "DeviceRoamingStatus",
-      "release_tag": "r2.1",
-      "release_date": "2026-08-07T09:58:54Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/DeviceRoamingStatus/releases/tag/r2.1",
-      "release_type": "pre-release-rc"
-    },
-    {
-      "api_name": "device-roaming-status-subscriptions",
-      "api_version": "0.9.0-rc.2",
+      "api_version": "0.9.0",
       "api_title": "Device Roaming Status Subscriptions",
       "commonalities": "0.9.0",
       "maturity": "initial",
@@ -8274,11 +7866,11 @@
       "canonical_name": "device-roaming-status-subscriptions",
       "first_release": "Fall24",
       "repository": "DeviceRoamingStatus",
-      "release_tag": "r2.2",
-      "release_date": "2026-10-28T13:53:54Z",
+      "release_tag": "r2.3",
+      "release_date": "2026-11-19T15:00:44Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/DeviceRoamingStatus/releases/tag/r2.2",
-      "release_type": "pre-release-rc"
+      "github_url": "https://github.com/camaraproject/DeviceRoamingStatus/releases/tag/r2.3",
+      "release_type": "public-release"
     },
     {
       "api_name": "connected-network-type",
@@ -9273,27 +8865,7 @@
     },
     {
       "api_name": "knowledge-base",
-      "api_version": "0.2.0-rc.1",
-      "api_title": "Knowledge Base",
-      "commonalities": "0.8.0",
-      "maturity": "initial",
-      "portfolio_category": "Computing Services",
-      "website_url": "https://camaraproject.org/model-as-a-service/",
-      "tooltip": "Build and manage personalized knowledge bases",
-      "display_name": "Knowledge Base",
-      "published": true,
-      "canonical_name": "knowledge-base",
-      "first_release": "Fall25",
-      "repository": "ModelAsAService",
-      "release_tag": "r2.1",
-      "release_date": "2026-07-28T01:55:13Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/ModelAsAService/releases/tag/r2.1",
-      "release_type": "pre-release-rc"
-    },
-    {
-      "api_name": "knowledge-base",
-      "api_version": "0.2.0-rc.2",
+      "api_version": "0.2.0",
       "api_title": "Knowledge Base",
       "commonalities": "0.9.0",
       "maturity": "initial",
@@ -9305,11 +8877,11 @@
       "canonical_name": "knowledge-base",
       "first_release": "Fall25",
       "repository": "ModelAsAService",
-      "release_tag": "r2.2",
-      "release_date": "2026-11-06T01:18:38Z",
+      "release_tag": "r2.3",
+      "release_date": "2026-11-20T01:26:37Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/ModelAsAService/releases/tag/r2.2",
-      "release_type": "pre-release-rc"
+      "github_url": "https://github.com/camaraproject/ModelAsAService/releases/tag/r2.3",
+      "release_type": "public-release"
     },
     {
       "api_name": "qa-assistant-manage",
@@ -9334,27 +8906,7 @@
     },
     {
       "api_name": "qa-assistant-manage",
-      "api_version": "0.2.0-rc.1",
-      "api_title": "Q&A Assistant - Manage",
-      "commonalities": "0.8.0",
-      "maturity": "initial",
-      "portfolio_category": "Computing Services",
-      "website_url": "https://camaraproject.org/model-as-a-service/",
-      "tooltip": "Quickly construct unique Q&A assistant applications",
-      "display_name": "Q&A Assistant - Manage",
-      "published": true,
-      "canonical_name": "qa-assistant-manage",
-      "first_release": "Fall25",
-      "repository": "ModelAsAService",
-      "release_tag": "r2.1",
-      "release_date": "2026-07-28T01:55:13Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/ModelAsAService/releases/tag/r2.1",
-      "release_type": "pre-release-rc"
-    },
-    {
-      "api_name": "qa-assistant-manage",
-      "api_version": "0.2.0-rc.2",
+      "api_version": "0.2.0",
       "api_title": "Q&A Assistant - Manage",
       "commonalities": "0.9.0",
       "maturity": "initial",
@@ -9366,11 +8918,11 @@
       "canonical_name": "qa-assistant-manage",
       "first_release": "Fall25",
       "repository": "ModelAsAService",
-      "release_tag": "r2.2",
-      "release_date": "2026-11-06T01:18:38Z",
+      "release_tag": "r2.3",
+      "release_date": "2026-11-20T01:26:37Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/ModelAsAService/releases/tag/r2.2",
-      "release_type": "pre-release-rc"
+      "github_url": "https://github.com/camaraproject/ModelAsAService/releases/tag/r2.3",
+      "release_type": "public-release"
     },
     {
       "api_name": "qa-assistant-service",
@@ -9395,27 +8947,7 @@
     },
     {
       "api_name": "qa-assistant-service",
-      "api_version": "0.2.0-rc.1",
-      "api_title": "Q&A Assistant - Service",
-      "commonalities": "0.8.0",
-      "maturity": "initial",
-      "portfolio_category": "Computing Services",
-      "website_url": "https://camaraproject.org/model-as-a-service/",
-      "tooltip": "Provide Q&A services to the users of the application",
-      "display_name": "Q&A Assistant - Service",
-      "published": true,
-      "canonical_name": "qa-assistant-service",
-      "first_release": "Fall25",
-      "repository": "ModelAsAService",
-      "release_tag": "r2.1",
-      "release_date": "2026-07-28T01:55:13Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/ModelAsAService/releases/tag/r2.1",
-      "release_type": "pre-release-rc"
-    },
-    {
-      "api_name": "qa-assistant-service",
-      "api_version": "0.2.0-rc.2",
+      "api_version": "0.2.0",
       "api_title": "Q&A Assistant - Service",
       "commonalities": "0.9.0",
       "maturity": "initial",
@@ -9427,11 +8959,11 @@
       "canonical_name": "qa-assistant-service",
       "first_release": "Fall25",
       "repository": "ModelAsAService",
-      "release_tag": "r2.2",
-      "release_date": "2026-11-06T01:18:38Z",
+      "release_tag": "r2.3",
+      "release_date": "2026-11-20T01:26:37Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/ModelAsAService/releases/tag/r2.2",
-      "release_type": "pre-release-rc"
+      "github_url": "https://github.com/camaraproject/ModelAsAService/releases/tag/r2.3",
+      "release_type": "public-release"
     },
     {
       "api_name": "most-frequent-location",
@@ -11085,47 +10617,7 @@
     },
     {
       "api_name": "brand-registration",
-      "api_version": "0.2.0-alpha.1",
-      "api_title": "Brand Registration",
-      "commonalities": "0.8.0",
-      "maturity": "initial",
-      "portfolio_category": "Communication Services",
-      "website_url": "https://camaraproject.org/brand-registration/",
-      "tooltip": "Register brand for verified communications",
-      "display_name": "Brand Registration",
-      "published": true,
-      "canonical_name": "brand-registration",
-      "first_release": "Fall25",
-      "repository": "VerifiedCaller",
-      "release_tag": "r2.1",
-      "release_date": "2026-06-30T06:06:19Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/VerifiedCaller/releases/tag/r2.1",
-      "release_type": "pre-release-alpha"
-    },
-    {
-      "api_name": "brand-registration",
-      "api_version": "0.2.0-rc.1",
-      "api_title": "Brand Registration",
-      "commonalities": "0.8.0",
-      "maturity": "initial",
-      "portfolio_category": "Communication Services",
-      "website_url": "https://camaraproject.org/brand-registration/",
-      "tooltip": "Register brand for verified communications",
-      "display_name": "Brand Registration",
-      "published": true,
-      "canonical_name": "brand-registration",
-      "first_release": "Fall25",
-      "repository": "VerifiedCaller",
-      "release_tag": "r2.2",
-      "release_date": "2026-09-10T13:07:52Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/VerifiedCaller/releases/tag/r2.2",
-      "release_type": "pre-release-rc"
-    },
-    {
-      "api_name": "brand-registration",
-      "api_version": "0.2.0-rc.2",
+      "api_version": "0.2.0",
       "api_title": "Brand Registration",
       "commonalities": "0.9.0",
       "maturity": "initial",
@@ -11137,11 +10629,11 @@
       "canonical_name": "brand-registration",
       "first_release": "Fall25",
       "repository": "VerifiedCaller",
-      "release_tag": "r2.3",
-      "release_date": "2026-11-04T05:59:09Z",
+      "release_tag": "r2.4",
+      "release_date": "2026-11-19T11:23:04Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/VerifiedCaller/releases/tag/r2.3",
-      "release_type": "pre-release-rc"
+      "github_url": "https://github.com/camaraproject/VerifiedCaller/releases/tag/r2.4",
+      "release_type": "public-release"
     },
     {
       "api_name": "verified-caller",
@@ -11166,47 +10658,7 @@
     },
     {
       "api_name": "verified-caller",
-      "api_version": "0.2.0-alpha.1",
-      "api_title": "Verified Caller",
-      "commonalities": "0.8.0",
-      "maturity": "initial",
-      "portfolio_category": "Communication Services",
-      "website_url": "https://camaraproject.org/verified-caller/",
-      "tooltip": "Show certified information on the phone before a call is answered",
-      "display_name": "Verified Caller",
-      "published": true,
-      "canonical_name": "verified-caller",
-      "first_release": "Fall25",
-      "repository": "VerifiedCaller",
-      "release_tag": "r2.1",
-      "release_date": "2026-06-30T06:06:19Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/VerifiedCaller/releases/tag/r2.1",
-      "release_type": "pre-release-alpha"
-    },
-    {
-      "api_name": "verified-caller",
-      "api_version": "0.2.0-rc.1",
-      "api_title": "Verified Caller",
-      "commonalities": "0.8.0",
-      "maturity": "initial",
-      "portfolio_category": "Communication Services",
-      "website_url": "https://camaraproject.org/verified-caller/",
-      "tooltip": "Show certified information on the phone before a call is answered",
-      "display_name": "Verified Caller",
-      "published": true,
-      "canonical_name": "verified-caller",
-      "first_release": "Fall25",
-      "repository": "VerifiedCaller",
-      "release_tag": "r2.2",
-      "release_date": "2026-09-10T13:07:52Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/VerifiedCaller/releases/tag/r2.2",
-      "release_type": "pre-release-rc"
-    },
-    {
-      "api_name": "verified-caller",
-      "api_version": "0.2.0-rc.2",
+      "api_version": "0.2.0",
       "api_title": "Verified Caller",
       "commonalities": "0.9.0",
       "maturity": "initial",
@@ -11218,11 +10670,11 @@
       "canonical_name": "verified-caller",
       "first_release": "Fall25",
       "repository": "VerifiedCaller",
-      "release_tag": "r2.3",
-      "release_date": "2026-11-04T05:59:09Z",
+      "release_tag": "r2.4",
+      "release_date": "2026-11-19T11:23:04Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/VerifiedCaller/releases/tag/r2.3",
-      "release_type": "pre-release-rc"
+      "github_url": "https://github.com/camaraproject/VerifiedCaller/releases/tag/r2.4",
+      "release_type": "public-release"
     },
     {
       "api_name": "webrtc-call-handling",
