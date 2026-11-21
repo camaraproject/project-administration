@@ -6,10 +6,10 @@
 # steps) with the target repository on a STABLE branch. Idempotent: reruns
 # force-push updates to the same branch and PR, no churn of fresh PRs.
 #
-# Behaviour vs. the adjacent campaign-finalize-per-repo action:
+# Behaviour:
 # - Stable branch + stable PR title (caller-provided; no date / run-id suffix)
-# - No "existing PR → skip" — a stale PR on the stable branch is UPDATED
-#   via force-push, not superseded with a new one
+# - A stale PR on the stable branch is UPDATED via force-push, not
+#   superseded with a new one
 # - Non-bot commits on the stable branch abort the run (safety guard)
 # - When the template matches main (no diff), any open PR on the stable
 #   branch is closed with a comment — the repo is in sync
@@ -27,7 +27,7 @@ inputs:
     description: 'Repository slug (org/repo)'
     required: true
   campaign_data:
-    description: 'JSON with campaign-specific data (same schema as finalize action)'
+    description: 'JSON with campaign-specific data'
     required: false
     default: '{}'
   pr_title:
