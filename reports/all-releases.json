@@ -1,34 +1,34 @@
 {
   "metadata": {
-    "generated": "2026-11-20T10:26:02.839Z",
+    "generated": "2026-11-21T10:08:53.358Z",
     "meta_release": "All",
     "source": "Release Collector v3",
     "landscape_version": "1.1.1"
   },
   "statistics": {
     "repositories_count": 55,
-    "api_versions_count": 229,
+    "api_versions_count": 220,
     "unique_api_names_count": 80,
     "unique_apis_count": 79,
     "api_version_maturity": {
-      "stable": 38,
-      "initial": 168,
-      "rc": 23
+      "stable": 41,
+      "initial": 174,
+      "rc": 5
     },
     "unique_api_maturity": {
-      "stable": 10,
-      "initial": 56,
-      "rc": 13
+      "stable": 13,
+      "initial": 62,
+      "rc": 4
     },
     "categories": {
       "Computing Services": 17,
       "Communication Quality": 50,
       "Payments and Charging": 11,
-      "Authentication and Fraud Prevention": 66,
-      "Communication Services": 16,
+      "Authentication and Fraud Prevention": 63,
+      "Communication Services": 14,
       "Service Management": 2,
       "Device Information": 26,
-      "Location Services": 23
+      "Location Services": 20
     },
     "apis_with_previous_names": 5
   },
@@ -316,13 +316,8 @@
     "DeviceLocation": {
       "releases": [
         {
-          "tag": "r4.2",
-          "date": "2026-10-21T11:35:15Z",
-          "apis_count": 3
-        },
-        {
-          "tag": "r4.1",
-          "date": "2026-09-01T08:31:47Z",
+          "tag": "r4.3",
+          "date": "2026-11-20T14:55:17Z",
           "apis_count": 3
         },
         {
@@ -341,7 +336,7 @@
           "apis_count": 3
         }
       ],
-      "total_apis": 15,
+      "total_apis": 12,
       "unique_apis_count": 3
     },
     "DeviceMediaStreamingRate": {
@@ -551,13 +546,8 @@
     "KnowYourCustomerAgeVerification": {
       "releases": [
         {
-          "tag": "r2.2",
-          "date": "2026-11-19T09:06:50Z",
-          "apis_count": 1
-        },
-        {
-          "tag": "r2.1",
-          "date": "2026-09-01T05:15:38Z",
+          "tag": "r2.3",
+          "date": "2026-11-20T10:45:06Z",
           "apis_count": 1
         },
         {
@@ -566,19 +556,14 @@
           "apis_count": 1
         }
       ],
-      "total_apis": 3,
+      "total_apis": 2,
       "unique_apis_count": 1
     },
     "KnowYourCustomerFill-in": {
       "releases": [
         {
-          "tag": "r2.2",
-          "date": "2026-11-04T08:27:08Z",
-          "apis_count": 1
-        },
-        {
-          "tag": "r2.1",
-          "date": "2026-09-01T05:11:26Z",
+          "tag": "r2.3",
+          "date": "2026-11-20T11:17:19Z",
           "apis_count": 1
         },
         {
@@ -592,19 +577,14 @@
           "apis_count": 1
         }
       ],
-      "total_apis": 4,
+      "total_apis": 3,
       "unique_apis_count": 1
     },
     "KnowYourCustomerMatch": {
       "releases": [
         {
-          "tag": "r2.2",
-          "date": "2026-11-04T07:47:40Z",
-          "apis_count": 1
-        },
-        {
-          "tag": "r2.1",
-          "date": "2026-09-01T05:04:32Z",
+          "tag": "r2.3",
+          "date": "2026-11-20T11:06:00Z",
           "apis_count": 1
         },
         {
@@ -613,7 +593,7 @@
           "apis_count": 1
         }
       ],
-      "total_apis": 3,
+      "total_apis": 2,
       "unique_apis_count": 1
     },
     "ModelAsAService": {
@@ -1061,13 +1041,8 @@
     "WebRTC": {
       "releases": [
         {
-          "tag": "r3.2",
-          "date": "2026-11-11T15:39:19Z",
-          "apis_count": 3
-        },
-        {
-          "tag": "r3.1",
-          "date": "2026-09-25T10:57:02Z",
+          "tag": "r3.3",
+          "date": "2026-11-21T09:19:55Z",
           "apis_count": 3
         },
         {
@@ -1081,7 +1056,7 @@
           "apis_count": 3
         }
       ],
-      "total_apis": 12,
+      "total_apis": 9,
       "unique_apis_count": 4
     }
   },
@@ -2554,69 +2529,12 @@
     },
     {
       "repository": "DeviceLocation",
-      "release_tag": "r4.1",
-      "release_date": "2026-09-01T08:31:47Z",
+      "release_tag": "r4.3",
+      "release_date": "2026-11-20T14:55:17Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/DeviceLocation/releases/tag/r4.1",
-      "release_type": "pre-release-rc",
-      "src_commit_sha": "baf86c823cb723e866c7348459999aea83f999ce",
-      "dependencies": {
-        "commonalities_release": "r4.3 (0.8.0)",
-        "identity_consent_management_release": "r4.2 (0.5.0)"
-      },
-      "apis": [
-        {
-          "api_name": "geofencing-subscriptions",
-          "api_version": "0.6.0-rc.1",
-          "api_title": "Device Geofencing Subscriptions",
-          "commonalities": "0.8.0",
-          "maturity": "initial",
-          "portfolio_category": "Location Services",
-          "website_url": "https://camaraproject.org/geofencing-subscriptions/",
-          "tooltip": "Get notifications if a device reaches an area",
-          "display_name": "Device Geofencing Subscriptions",
-          "published": true,
-          "canonical_name": "geofencing-subscriptions",
-          "first_release": "Fall24"
-        },
-        {
-          "api_name": "location-retrieval",
-          "api_version": "1.0.0-rc.1",
-          "api_title": "Device Location Retrieval",
-          "commonalities": "0.8.0",
-          "maturity": "stable",
-          "portfolio_category": "Location Services",
-          "website_url": "https://camaraproject.org/location-retrieval/",
-          "tooltip": "Provide the location of a device",
-          "display_name": "Device Location Retrieval",
-          "published": true,
-          "canonical_name": "location-retrieval",
-          "first_release": "PreFall24"
-        },
-        {
-          "api_name": "location-verification",
-          "api_version": "3.1.0-rc.2",
-          "api_title": "Device Location Verification",
-          "commonalities": "0.8.0",
-          "maturity": "stable",
-          "portfolio_category": "Location Services",
-          "website_url": "https://camaraproject.org/location-verification/",
-          "tooltip": "Check the location of a device",
-          "display_name": "Device Location Verification",
-          "published": true,
-          "canonical_name": "location-verification",
-          "first_release": "PreFall24"
-        }
-      ]
-    },
-    {
-      "repository": "DeviceLocation",
-      "release_tag": "r4.2",
-      "release_date": "2026-10-21T11:35:15Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/DeviceLocation/releases/tag/r4.2",
-      "release_type": "pre-release-rc",
-      "src_commit_sha": "3cbc848394c30bc8eeb1a3f9d1c4c755c9ac3da0",
+      "github_url": "https://github.com/camaraproject/DeviceLocation/releases/tag/r4.3",
+      "release_type": "public-release",
+      "src_commit_sha": "938c694ebe5f2a7680dd5342c91960431d683bd4",
       "dependencies": {
         "commonalities_release": "r4.4 (0.9.0)",
         "identity_consent_management_release": "r4.2 (0.5.0)"
@@ -2624,7 +2542,7 @@
       "apis": [
         {
           "api_name": "geofencing-subscriptions",
-          "api_version": "0.6.0-rc.2",
+          "api_version": "0.6.0",
           "api_title": "Device Geofencing Subscriptions",
           "commonalities": "0.9.0",
           "maturity": "initial",
@@ -2638,7 +2556,7 @@
         },
         {
           "api_name": "location-retrieval",
-          "api_version": "1.0.0-rc.2",
+          "api_version": "1.0.0",
           "api_title": "Device Location Retrieval",
           "commonalities": "0.9.0",
           "maturity": "stable",
@@ -2652,7 +2570,7 @@
         },
         {
           "api_name": "location-verification",
-          "api_version": "3.1.0-rc.3",
+          "api_version": "3.1.0",
           "api_title": "Device Location Verification",
           "commonalities": "0.9.0",
           "maturity": "stable",
@@ -3672,41 +3590,12 @@
     },
     {
       "repository": "KnowYourCustomerAgeVerification",
-      "release_tag": "r2.1",
-      "release_date": "2026-09-01T05:15:38Z",
+      "release_tag": "r2.3",
+      "release_date": "2026-11-20T10:45:06Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/KnowYourCustomerAgeVerification/releases/tag/r2.1",
-      "release_type": "pre-release-rc",
-      "src_commit_sha": "f1d12f34fb16543390b072409aebe06af27a972a",
-      "dependencies": {
-        "commonalities_release": "r4.3 (0.8.0)",
-        "identity_consent_management_release": "r4.2 (0.5.0)"
-      },
-      "apis": [
-        {
-          "api_name": "kyc-age-verification",
-          "api_version": "0.3.0-rc.1",
-          "api_title": "Know Your Customer Age Verification",
-          "commonalities": "0.8.0",
-          "maturity": "initial",
-          "portfolio_category": "Authentication and Fraud Prevention",
-          "website_url": "https://camaraproject.org/know-your-customer-age-verification/",
-          "tooltip": "Allows service providers to validate age information with operators",
-          "display_name": "Know Your Customer Age Verification",
-          "published": true,
-          "canonical_name": "kyc-age-verification",
-          "first_release": "Spring25"
-        }
-      ]
-    },
-    {
-      "repository": "KnowYourCustomerAgeVerification",
-      "release_tag": "r2.2",
-      "release_date": "2026-11-19T09:06:50Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/KnowYourCustomerAgeVerification/releases/tag/r2.2",
-      "release_type": "pre-release-rc",
-      "src_commit_sha": "08409828fdba3a6efd22061a115eb9f62cf7929a",
+      "github_url": "https://github.com/camaraproject/KnowYourCustomerAgeVerification/releases/tag/r2.3",
+      "release_type": "public-release",
+      "src_commit_sha": "3b4d114b3a212dca2bf5cfe72f1e0f187c29a4d6",
       "dependencies": {
         "commonalities_release": "r4.4 (0.9.0)",
         "identity_consent_management_release": "r4.2 (0.5.0)"
@@ -3714,7 +3603,7 @@
       "apis": [
         {
           "api_name": "kyc-age-verification",
-          "api_version": "0.3.0-rc.2",
+          "api_version": "0.3.0",
           "api_title": "Know Your Customer Age Verification",
           "commonalities": "0.9.0",
           "maturity": "initial",
@@ -3780,41 +3669,12 @@
     },
     {
       "repository": "KnowYourCustomerFill-in",
-      "release_tag": "r2.1",
-      "release_date": "2026-09-01T05:11:26Z",
+      "release_tag": "r2.3",
+      "release_date": "2026-11-20T11:17:19Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/KnowYourCustomerFill-in/releases/tag/r2.1",
-      "release_type": "pre-release-rc",
-      "src_commit_sha": "9579a5e809d8b1fe1547a3e03ad45837eb2c19d3",
-      "dependencies": {
-        "commonalities_release": "r4.3 (0.8.0)",
-        "identity_consent_management_release": "r4.2 (0.5.0)"
-      },
-      "apis": [
-        {
-          "api_name": "kyc-fill-in",
-          "api_version": "0.5.0-rc.1",
-          "api_title": "Know Your Customer Fill-in",
-          "commonalities": "0.8.0",
-          "maturity": "initial",
-          "portfolio_category": "Authentication and Fraud Prevention",
-          "website_url": "https://camaraproject.org/know-your-customer-fill-in/",
-          "tooltip": "Fill in web dialogues using operator data",
-          "display_name": "Know Your Customer Fill-in",
-          "published": true,
-          "canonical_name": "kyc-fill-in",
-          "first_release": "PreFall24"
-        }
-      ]
-    },
-    {
-      "repository": "KnowYourCustomerFill-in",
-      "release_tag": "r2.2",
-      "release_date": "2026-11-04T08:27:08Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/KnowYourCustomerFill-in/releases/tag/r2.2",
-      "release_type": "pre-release-rc",
-      "src_commit_sha": "88bd0a765729744c74201977e8f37a4ea7682435",
+      "github_url": "https://github.com/camaraproject/KnowYourCustomerFill-in/releases/tag/r2.3",
+      "release_type": "public-release",
+      "src_commit_sha": "d245a60405d934649c0cd097d0915a3f39bfea98",
       "dependencies": {
         "commonalities_release": "r4.4 (0.9.0)",
         "identity_consent_management_release": "r4.2 (0.5.0)"
@@ -3822,7 +3682,7 @@
       "apis": [
         {
           "api_name": "kyc-fill-in",
-          "api_version": "0.5.0-rc.2",
+          "api_version": "0.5.0",
           "api_title": "Know Your Customer Fill-in",
           "commonalities": "0.9.0",
           "maturity": "initial",
@@ -3863,41 +3723,12 @@
     },
     {
       "repository": "KnowYourCustomerMatch",
-      "release_tag": "r2.1",
-      "release_date": "2026-09-01T05:04:32Z",
+      "release_tag": "r2.3",
+      "release_date": "2026-11-20T11:06:00Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/KnowYourCustomerMatch/releases/tag/r2.1",
-      "release_type": "pre-release-rc",
-      "src_commit_sha": "6e7c2418dbec252740a5ab0ccaf404b8f6d26024",
-      "dependencies": {
-        "commonalities_release": "r4.3 (0.8.0)",
-        "identity_consent_management_release": "r4.2 (0.5.0)"
-      },
-      "apis": [
-        {
-          "api_name": "kyc-match",
-          "api_version": "0.5.0-rc.1",
-          "api_title": "Know Your Customer Match",
-          "commonalities": "0.8.0",
-          "maturity": "initial",
-          "portfolio_category": "Authentication and Fraud Prevention",
-          "website_url": "https://camaraproject.org/know-your-customer-match/",
-          "tooltip": "Allows service providers to validate user information with operators",
-          "display_name": "Know Your Customer Match",
-          "published": true,
-          "canonical_name": "kyc-match",
-          "first_release": "PreFall24"
-        }
-      ]
-    },
-    {
-      "repository": "KnowYourCustomerMatch",
-      "release_tag": "r2.2",
-      "release_date": "2026-11-04T07:47:40Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/KnowYourCustomerMatch/releases/tag/r2.2",
-      "release_type": "pre-release-rc",
-      "src_commit_sha": "b8a8d602e9cbf57d8a6112e418f04609e0e2f3d6",
+      "github_url": "https://github.com/camaraproject/KnowYourCustomerMatch/releases/tag/r2.3",
+      "release_type": "public-release",
+      "src_commit_sha": "c9f90dcc7754450828c96c686c564dcdf897aa4e",
       "dependencies": {
         "commonalities_release": "r4.4 (0.9.0)",
         "identity_consent_management_release": "r4.2 (0.5.0)"
@@ -3905,7 +3736,7 @@
       "apis": [
         {
           "api_name": "kyc-match",
-          "api_version": "1.0.0-rc.1",
+          "api_version": "1.0.0",
           "api_title": "Know Your Customer Match",
           "commonalities": "0.9.0",
           "maturity": "stable",
@@ -6066,69 +5897,12 @@
     },
     {
       "repository": "WebRTC",
-      "release_tag": "r3.1",
-      "release_date": "2026-09-25T10:57:02Z",
+      "release_tag": "r3.3",
+      "release_date": "2026-11-21T09:19:55Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/WebRTC/releases/tag/r3.1",
-      "release_type": "pre-release-rc",
-      "src_commit_sha": "8eaef812eca5e0abcdda013ae23a92221c4c5f74",
-      "dependencies": {
-        "commonalities_release": "r4.3 (0.8.0)",
-        "identity_consent_management_release": "r4.2 (0.5.0)"
-      },
-      "apis": [
-        {
-          "api_name": "webrtc-call-handling",
-          "api_version": "0.4.0-rc.1",
-          "api_title": "WebRTC Call Handling",
-          "commonalities": "0.8.0",
-          "maturity": "initial",
-          "portfolio_category": "Communication Services",
-          "website_url": "https://camaraproject.org/webrtc-apis/",
-          "tooltip": "Create, recover, update and terminate 1-1 voice and video sessions",
-          "display_name": "WebRTC Call Handling",
-          "published": true,
-          "canonical_name": "webrtc-call-handling",
-          "first_release": "Spring25"
-        },
-        {
-          "api_name": "webrtc-events-subscriptions",
-          "api_version": "0.3.0-rc.1",
-          "api_title": "WebRTC Events Subscriptions",
-          "commonalities": "0.8.0",
-          "maturity": "initial",
-          "portfolio_category": null,
-          "website_url": null,
-          "tooltip": null,
-          "display_name": "WebRTC Events Subscriptions",
-          "published": true,
-          "canonical_name": "webrtc-events-subscriptions",
-          "first_release": "Sandbox"
-        },
-        {
-          "api_name": "webrtc-registration",
-          "api_version": "0.4.0-rc.1",
-          "api_title": "WebRTC Registration Service",
-          "commonalities": "0.8.0",
-          "maturity": "initial",
-          "portfolio_category": "Communication Services",
-          "website_url": "https://camaraproject.org/webrtc-apis/",
-          "tooltip": "Manage registration and connectivity (RACM) towards MNO's IMS Network",
-          "display_name": "WebRTC Registration Service",
-          "published": true,
-          "canonical_name": "webrtc-registration",
-          "first_release": "Spring25"
-        }
-      ]
-    },
-    {
-      "repository": "WebRTC",
-      "release_tag": "r3.2",
-      "release_date": "2026-11-11T15:39:19Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/WebRTC/releases/tag/r3.2",
-      "release_type": "pre-release-rc",
-      "src_commit_sha": "40a4021dd9f3809c37291df331812953a79894ec",
+      "github_url": "https://github.com/camaraproject/WebRTC/releases/tag/r3.3",
+      "release_type": "public-release",
+      "src_commit_sha": "deaf6eba162e89ccc309c8b811f8a6ab58ab9831",
       "dependencies": {
         "commonalities_release": "r4.4 (0.9.0)",
         "identity_consent_management_release": "r4.2 (0.5.0)"
@@ -6136,7 +5910,7 @@
       "apis": [
         {
           "api_name": "webrtc-call-handling",
-          "api_version": "0.4.0-rc.2",
+          "api_version": "0.4.0",
           "api_title": "WebRTC Call Handling",
           "commonalities": "0.9.0",
           "maturity": "initial",
@@ -6150,7 +5924,7 @@
         },
         {
           "api_name": "webrtc-events-subscriptions",
-          "api_version": "0.3.0-rc.2",
+          "api_version": "0.3.0",
           "api_title": "WebRTC Events Subscriptions",
           "commonalities": "0.9.0",
           "maturity": "initial",
@@ -6164,7 +5938,7 @@
         },
         {
           "api_name": "webrtc-registration",
-          "api_version": "0.4.0-rc.2",
+          "api_version": "0.4.0",
           "api_title": "WebRTC Registration Service",
           "commonalities": "0.9.0",
           "maturity": "initial",
@@ -7444,27 +7218,7 @@
     },
     {
       "api_name": "geofencing-subscriptions",
-      "api_version": "0.6.0-rc.1",
-      "api_title": "Device Geofencing Subscriptions",
-      "commonalities": "0.8.0",
-      "maturity": "initial",
-      "portfolio_category": "Location Services",
-      "website_url": "https://camaraproject.org/geofencing-subscriptions/",
-      "tooltip": "Get notifications if a device reaches an area",
-      "display_name": "Device Geofencing Subscriptions",
-      "published": true,
-      "canonical_name": "geofencing-subscriptions",
-      "first_release": "Fall24",
-      "repository": "DeviceLocation",
-      "release_tag": "r4.1",
-      "release_date": "2026-09-01T08:31:47Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/DeviceLocation/releases/tag/r4.1",
-      "release_type": "pre-release-rc"
-    },
-    {
-      "api_name": "geofencing-subscriptions",
-      "api_version": "0.6.0-rc.2",
+      "api_version": "0.6.0",
       "api_title": "Device Geofencing Subscriptions",
       "commonalities": "0.9.0",
       "maturity": "initial",
@@ -7476,11 +7230,11 @@
       "canonical_name": "geofencing-subscriptions",
       "first_release": "Fall24",
       "repository": "DeviceLocation",
-      "release_tag": "r4.2",
-      "release_date": "2026-10-21T11:35:15Z",
+      "release_tag": "r4.3",
+      "release_date": "2026-11-20T14:55:17Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/DeviceLocation/releases/tag/r4.2",
-      "release_type": "pre-release-rc"
+      "github_url": "https://github.com/camaraproject/DeviceLocation/releases/tag/r4.3",
+      "release_type": "public-release"
     },
     {
       "api_name": "location-retrieval",
@@ -7547,27 +7301,7 @@
     },
     {
       "api_name": "location-retrieval",
-      "api_version": "1.0.0-rc.1",
-      "api_title": "Device Location Retrieval",
-      "commonalities": "0.8.0",
-      "maturity": "stable",
-      "portfolio_category": "Location Services",
-      "website_url": "https://camaraproject.org/location-retrieval/",
-      "tooltip": "Provide the location of a device",
-      "display_name": "Device Location Retrieval",
-      "published": true,
-      "canonical_name": "location-retrieval",
-      "first_release": "PreFall24",
-      "repository": "DeviceLocation",
-      "release_tag": "r4.1",
-      "release_date": "2026-09-01T08:31:47Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/DeviceLocation/releases/tag/r4.1",
-      "release_type": "pre-release-rc"
-    },
-    {
-      "api_name": "location-retrieval",
-      "api_version": "1.0.0-rc.2",
+      "api_version": "1.0.0",
       "api_title": "Device Location Retrieval",
       "commonalities": "0.9.0",
       "maturity": "stable",
@@ -7579,11 +7313,11 @@
       "canonical_name": "location-retrieval",
       "first_release": "PreFall24",
       "repository": "DeviceLocation",
-      "release_tag": "r4.2",
-      "release_date": "2026-10-21T11:35:15Z",
+      "release_tag": "r4.3",
+      "release_date": "2026-11-20T14:55:17Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/DeviceLocation/releases/tag/r4.2",
-      "release_type": "pre-release-rc"
+      "github_url": "https://github.com/camaraproject/DeviceLocation/releases/tag/r4.3",
+      "release_type": "public-release"
     },
     {
       "api_name": "location-verification",
@@ -7650,27 +7384,7 @@
     },
     {
       "api_name": "location-verification",
-      "api_version": "3.1.0-rc.2",
-      "api_title": "Device Location Verification",
-      "commonalities": "0.8.0",
-      "maturity": "stable",
-      "portfolio_category": "Location Services",
-      "website_url": "https://camaraproject.org/location-verification/",
-      "tooltip": "Check the location of a device",
-      "display_name": "Device Location Verification",
-      "published": true,
-      "canonical_name": "location-verification",
-      "first_release": "PreFall24",
-      "repository": "DeviceLocation",
-      "release_tag": "r4.1",
-      "release_date": "2026-09-01T08:31:47Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/DeviceLocation/releases/tag/r4.1",
-      "release_type": "pre-release-rc"
-    },
-    {
-      "api_name": "location-verification",
-      "api_version": "3.1.0-rc.3",
+      "api_version": "3.1.0",
       "api_title": "Device Location Verification",
       "commonalities": "0.9.0",
       "maturity": "stable",
@@ -7682,11 +7396,11 @@
       "canonical_name": "location-verification",
       "first_release": "PreFall24",
       "repository": "DeviceLocation",
-      "release_tag": "r4.2",
-      "release_date": "2026-10-21T11:35:15Z",
+      "release_tag": "r4.3",
+      "release_date": "2026-11-20T14:55:17Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/DeviceLocation/releases/tag/r4.2",
-      "release_type": "pre-release-rc"
+      "github_url": "https://github.com/camaraproject/DeviceLocation/releases/tag/r4.3",
+      "release_type": "public-release"
     },
     {
       "api_name": "media-streaming-rate",
@@ -8661,27 +8375,7 @@
     },
     {
       "api_name": "kyc-age-verification",
-      "api_version": "0.3.0-rc.1",
-      "api_title": "Know Your Customer Age Verification",
-      "commonalities": "0.8.0",
-      "maturity": "initial",
-      "portfolio_category": "Authentication and Fraud Prevention",
-      "website_url": "https://camaraproject.org/know-your-customer-age-verification/",
-      "tooltip": "Allows service providers to validate age information with operators",
-      "display_name": "Know Your Customer Age Verification",
-      "published": true,
-      "canonical_name": "kyc-age-verification",
-      "first_release": "Spring25",
-      "repository": "KnowYourCustomerAgeVerification",
-      "release_tag": "r2.1",
-      "release_date": "2026-09-01T05:15:38Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/KnowYourCustomerAgeVerification/releases/tag/r2.1",
-      "release_type": "pre-release-rc"
-    },
-    {
-      "api_name": "kyc-age-verification",
-      "api_version": "0.3.0-rc.2",
+      "api_version": "0.3.0",
       "api_title": "Know Your Customer Age Verification",
       "commonalities": "0.9.0",
       "maturity": "initial",
@@ -8693,11 +8387,11 @@
       "canonical_name": "kyc-age-verification",
       "first_release": "Spring25",
       "repository": "KnowYourCustomerAgeVerification",
-      "release_tag": "r2.2",
-      "release_date": "2026-11-19T09:06:50Z",
+      "release_tag": "r2.3",
+      "release_date": "2026-11-20T10:45:06Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/KnowYourCustomerAgeVerification/releases/tag/r2.2",
-      "release_type": "pre-release-rc"
+      "github_url": "https://github.com/camaraproject/KnowYourCustomerAgeVerification/releases/tag/r2.3",
+      "release_type": "public-release"
     },
     {
       "api_name": "kyc-fill-in",
@@ -8743,27 +8437,7 @@
     },
     {
       "api_name": "kyc-fill-in",
-      "api_version": "0.5.0-rc.1",
-      "api_title": "Know Your Customer Fill-in",
-      "commonalities": "0.8.0",
-      "maturity": "initial",
-      "portfolio_category": "Authentication and Fraud Prevention",
-      "website_url": "https://camaraproject.org/know-your-customer-fill-in/",
-      "tooltip": "Fill in web dialogues using operator data",
-      "display_name": "Know Your Customer Fill-in",
-      "published": true,
-      "canonical_name": "kyc-fill-in",
-      "first_release": "PreFall24",
-      "repository": "KnowYourCustomerFill-in",
-      "release_tag": "r2.1",
-      "release_date": "2026-09-01T05:11:26Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/KnowYourCustomerFill-in/releases/tag/r2.1",
-      "release_type": "pre-release-rc"
-    },
-    {
-      "api_name": "kyc-fill-in",
-      "api_version": "0.5.0-rc.2",
+      "api_version": "0.5.0",
       "api_title": "Know Your Customer Fill-in",
       "commonalities": "0.9.0",
       "maturity": "initial",
@@ -8775,11 +8449,11 @@
       "canonical_name": "kyc-fill-in",
       "first_release": "PreFall24",
       "repository": "KnowYourCustomerFill-in",
-      "release_tag": "r2.2",
-      "release_date": "2026-11-04T08:27:08Z",
+      "release_tag": "r2.3",
+      "release_date": "2026-11-20T11:17:19Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/KnowYourCustomerFill-in/releases/tag/r2.2",
-      "release_type": "pre-release-rc"
+      "github_url": "https://github.com/camaraproject/KnowYourCustomerFill-in/releases/tag/r2.3",
+      "release_type": "public-release"
     },
     {
       "api_name": "kyc-match",
@@ -8804,27 +8478,7 @@
     },
     {
       "api_name": "kyc-match",
-      "api_version": "0.5.0-rc.1",
-      "api_title": "Know Your Customer Match",
-      "commonalities": "0.8.0",
-      "maturity": "initial",
-      "portfolio_category": "Authentication and Fraud Prevention",
-      "website_url": "https://camaraproject.org/know-your-customer-match/",
-      "tooltip": "Allows service providers to validate user information with operators",
-      "display_name": "Know Your Customer Match",
-      "published": true,
-      "canonical_name": "kyc-match",
-      "first_release": "PreFall24",
-      "repository": "KnowYourCustomerMatch",
-      "release_tag": "r2.1",
-      "release_date": "2026-09-01T05:04:32Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/KnowYourCustomerMatch/releases/tag/r2.1",
-      "release_type": "pre-release-rc"
-    },
-    {
-      "api_name": "kyc-match",
-      "api_version": "1.0.0-rc.1",
+      "api_version": "1.0.0",
       "api_title": "Know Your Customer Match",
       "commonalities": "0.9.0",
       "maturity": "stable",
@@ -8836,11 +8490,11 @@
       "canonical_name": "kyc-match",
       "first_release": "PreFall24",
       "repository": "KnowYourCustomerMatch",
-      "release_tag": "r2.2",
-      "release_date": "2026-11-04T07:47:40Z",
+      "release_tag": "r2.3",
+      "release_date": "2026-11-20T11:06:00Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/KnowYourCustomerMatch/releases/tag/r2.2",
-      "release_type": "pre-release-rc"
+      "github_url": "https://github.com/camaraproject/KnowYourCustomerMatch/releases/tag/r2.3",
+      "release_type": "public-release"
     },
     {
       "api_name": "knowledge-base",
@@ -10720,27 +10374,7 @@
     },
     {
       "api_name": "webrtc-call-handling",
-      "api_version": "0.4.0-rc.1",
-      "api_title": "WebRTC Call Handling",
-      "commonalities": "0.8.0",
-      "maturity": "initial",
-      "portfolio_category": "Communication Services",
-      "website_url": "https://camaraproject.org/webrtc-apis/",
-      "tooltip": "Create, recover, update and terminate 1-1 voice and video sessions",
-      "display_name": "WebRTC Call Handling",
-      "published": true,
-      "canonical_name": "webrtc-call-handling",
-      "first_release": "Spring25",
-      "repository": "WebRTC",
-      "release_tag": "r3.1",
-      "release_date": "2026-09-25T10:57:02Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/WebRTC/releases/tag/r3.1",
-      "release_type": "pre-release-rc"
-    },
-    {
-      "api_name": "webrtc-call-handling",
-      "api_version": "0.4.0-rc.2",
+      "api_version": "0.4.0",
       "api_title": "WebRTC Call Handling",
       "commonalities": "0.9.0",
       "maturity": "initial",
@@ -10752,11 +10386,11 @@
       "canonical_name": "webrtc-call-handling",
       "first_release": "Spring25",
       "repository": "WebRTC",
-      "release_tag": "r3.2",
-      "release_date": "2026-11-11T15:39:19Z",
+      "release_tag": "r3.3",
+      "release_date": "2026-11-21T09:19:55Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/WebRTC/releases/tag/r3.2",
-      "release_type": "pre-release-rc"
+      "github_url": "https://github.com/camaraproject/WebRTC/releases/tag/r3.3",
+      "release_type": "public-release"
     },
     {
       "api_name": "webrtc-events",
@@ -10802,27 +10436,7 @@
     },
     {
       "api_name": "webrtc-events-subscriptions",
-      "api_version": "0.3.0-rc.1",
-      "api_title": "WebRTC Events Subscriptions",
-      "commonalities": "0.8.0",
-      "maturity": "initial",
-      "portfolio_category": null,
-      "website_url": null,
-      "tooltip": null,
-      "display_name": "WebRTC Events Subscriptions",
-      "published": true,
-      "canonical_name": "webrtc-events-subscriptions",
-      "first_release": "Sandbox",
-      "repository": "WebRTC",
-      "release_tag": "r3.1",
-      "release_date": "2026-09-25T10:57:02Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/WebRTC/releases/tag/r3.1",
-      "release_type": "pre-release-rc"
-    },
-    {
-      "api_name": "webrtc-events-subscriptions",
-      "api_version": "0.3.0-rc.2",
+      "api_version": "0.3.0",
       "api_title": "WebRTC Events Subscriptions",
       "commonalities": "0.9.0",
       "maturity": "initial",
@@ -10834,11 +10448,11 @@
       "canonical_name": "webrtc-events-subscriptions",
       "first_release": "Sandbox",
       "repository": "WebRTC",
-      "release_tag": "r3.2",
-      "release_date": "2026-11-11T15:39:19Z",
+      "release_tag": "r3.3",
+      "release_date": "2026-11-21T09:19:55Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/WebRTC/releases/tag/r3.2",
-      "release_type": "pre-release-rc"
+      "github_url": "https://github.com/camaraproject/WebRTC/releases/tag/r3.3",
+      "release_type": "public-release"
     },
     {
       "api_name": "webrtc-registration",
@@ -10884,27 +10498,7 @@
     },
     {
       "api_name": "webrtc-registration",
-      "api_version": "0.4.0-rc.1",
-      "api_title": "WebRTC Registration Service",
-      "commonalities": "0.8.0",
-      "maturity": "initial",
-      "portfolio_category": "Communication Services",
-      "website_url": "https://camaraproject.org/webrtc-apis/",
-      "tooltip": "Manage registration and connectivity (RACM) towards MNO's IMS Network",
-      "display_name": "WebRTC Registration Service",
-      "published": true,
-      "canonical_name": "webrtc-registration",
-      "first_release": "Spring25",
-      "repository": "WebRTC",
-      "release_tag": "r3.1",
-      "release_date": "2026-09-25T10:57:02Z",
-      "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/WebRTC/releases/tag/r3.1",
-      "release_type": "pre-release-rc"
-    },
-    {
-      "api_name": "webrtc-registration",
-      "api_version": "0.4.0-rc.2",
+      "api_version": "0.4.0",
       "api_title": "WebRTC Registration Service",
       "commonalities": "0.9.0",
       "maturity": "initial",
@@ -10916,11 +10510,11 @@
       "canonical_name": "webrtc-registration",
       "first_release": "Spring25",
       "repository": "WebRTC",
-      "release_tag": "r3.2",
-      "release_date": "2026-11-11T15:39:19Z",
+      "release_tag": "r3.3",
+      "release_date": "2026-11-21T09:19:55Z",
       "meta_release": "Independent",
-      "github_url": "https://github.com/camaraproject/WebRTC/releases/tag/r3.2",
-      "release_type": "pre-release-rc"
+      "github_url": "https://github.com/camaraproject/WebRTC/releases/tag/r3.3",
+      "release_type": "public-release"
     }
   ]
 }
