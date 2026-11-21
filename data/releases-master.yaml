@@ -1,14 +1,14 @@
 metadata:
-  last_updated: '2026-11-20T10:26:01.054Z'
+  last_updated: '2026-11-21T10:08:52.135Z'
   workflow_version: 3.0.0
   schema_version: 3.2.0
   collector_run:
     analysis_scope: incremental
-    workflow_run_id: '44718957092'
-    workflow_run_number: 401
-    workflow_run_url: https://github.com/camaraproject/project-administration/actions/runs/44718957092
-    source_sha: a848d5da6f24d44d13a86b915574578a656d6c0a
-    node_version: v24.22.2
+    workflow_run_id: '44892841151'
+    workflow_run_number: 402
+    workflow_run_url: https://github.com/camaraproject/project-administration/actions/runs/44892841151
+    source_sha: e13ba6a8bc12eff204776fff5ccb5ddfe5c546eb
+    node_version: v24.22.3
     npm_version: 11.19.1
     dependencies:
       '@octokit/rest': 22.0.1
@@ -1644,6 +1644,7 @@ releases:
         api_version: 3.1.0-rc.2
         api_title: Device Location Verification
         commonalities: 0.8.0
+    superseded: true
   - repository: DeviceLocation
     release_tag: r4.2
     release_date: '2026-10-21T11:35:15Z'
@@ -1665,6 +1666,30 @@ releases:
         commonalities: 0.9.0
       - api_name: location-verification
         api_version: 3.1.0-rc.3
+        api_title: Device Location Verification
+        commonalities: 0.9.0
+    superseded: true
+  - repository: DeviceLocation
+    release_tag: r4.3
+    release_date: '2026-11-20T14:55:17Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/DeviceLocation/releases/tag/r4.3
+    release_type: public-release
+    src_commit_sha: 938c694ebe5f2a7680dd5342c91960431d683bd4
+    dependencies:
+      commonalities_release: r4.4 (0.9.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: geofencing-subscriptions
+        api_version: 0.6.0
+        api_title: Device Geofencing Subscriptions
+        commonalities: 0.9.0
+      - api_name: location-retrieval
+        api_version: 1.0.0
+        api_title: Device Location Retrieval
+        commonalities: 0.9.0
+      - api_name: location-verification
+        api_version: 3.1.0
         api_title: Device Location Verification
         commonalities: 0.9.0
   - repository: DeviceMediaStreamingRate
@@ -2458,6 +2483,7 @@ releases:
         api_version: 0.3.0-rc.1
         api_title: Know Your Customer Age Verification
         commonalities: 0.8.0
+    superseded: true
   - repository: KnowYourCustomerAgeVerification
     release_tag: r2.2
     release_date: '2026-11-19T09:06:50Z'
@@ -2471,6 +2497,22 @@ releases:
     apis:
       - api_name: kyc-age-verification
         api_version: 0.3.0-rc.2
+        api_title: Know Your Customer Age Verification
+        commonalities: 0.9.0
+    superseded: true
+  - repository: KnowYourCustomerAgeVerification
+    release_tag: r2.3
+    release_date: '2026-11-20T10:45:06Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/KnowYourCustomerAgeVerification/releases/tag/r2.3
+    release_type: public-release
+    src_commit_sha: 3b4d114b3a212dca2bf5cfe72f1e0f187c29a4d6
+    dependencies:
+      commonalities_release: r4.4 (0.9.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: kyc-age-verification
+        api_version: 0.3.0
         api_title: Know Your Customer Age Verification
         commonalities: 0.9.0
   - repository: KnowYourCustomerFill-in
@@ -2522,6 +2564,7 @@ releases:
         api_version: 0.5.0-rc.1
         api_title: Know Your Customer Fill-in
         commonalities: 0.8.0
+    superseded: true
   - repository: KnowYourCustomerFill-in
     release_tag: r2.2
     release_date: '2026-11-04T08:27:08Z'
@@ -2535,6 +2578,22 @@ releases:
     apis:
       - api_name: kyc-fill-in
         api_version: 0.5.0-rc.2
+        api_title: Know Your Customer Fill-in
+        commonalities: 0.9.0
+    superseded: true
+  - repository: KnowYourCustomerFill-in
+    release_tag: r2.3
+    release_date: '2026-11-20T11:17:19Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/KnowYourCustomerFill-in/releases/tag/r2.3
+    release_type: public-release
+    src_commit_sha: d245a60405d934649c0cd097d0915a3f39bfea98
+    dependencies:
+      commonalities_release: r4.4 (0.9.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: kyc-fill-in
+        api_version: 0.5.0
         api_title: Know Your Customer Fill-in
         commonalities: 0.9.0
   - repository: KnowYourCustomerMatch
@@ -2575,6 +2634,7 @@ releases:
         api_version: 0.5.0-rc.1
         api_title: Know Your Customer Match
         commonalities: 0.8.0
+    superseded: true
   - repository: KnowYourCustomerMatch
     release_tag: r2.2
     release_date: '2026-11-04T07:47:40Z'
@@ -2588,6 +2648,22 @@ releases:
     apis:
       - api_name: kyc-match
         api_version: 1.0.0-rc.1
+        api_title: Know Your Customer Match
+        commonalities: 0.9.0
+    superseded: true
+  - repository: KnowYourCustomerMatch
+    release_tag: r2.3
+    release_date: '2026-11-20T11:06:00Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/KnowYourCustomerMatch/releases/tag/r2.3
+    release_type: public-release
+    src_commit_sha: c9f90dcc7754450828c96c686c564dcdf897aa4e
+    dependencies:
+      commonalities_release: r4.4 (0.9.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: kyc-match
+        api_version: 1.0.0
         api_title: Know Your Customer Match
         commonalities: 0.9.0
   - repository: ModelAsAService
@@ -4689,6 +4765,7 @@ releases:
         api_version: 0.4.0-rc.1
         api_title: WebRTC Registration Service
         commonalities: 0.8.0
+    superseded: true
   - repository: WebRTC
     release_tag: r3.2
     release_date: '2026-11-11T15:39:19Z'
@@ -4710,6 +4787,30 @@ releases:
         commonalities: 0.9.0
       - api_name: webrtc-registration
         api_version: 0.4.0-rc.2
+        api_title: WebRTC Registration Service
+        commonalities: 0.9.0
+    superseded: true
+  - repository: WebRTC
+    release_tag: r3.3
+    release_date: '2026-11-21T09:19:55Z'
+    meta_release: Independent
+    github_url: https://github.com/camaraproject/WebRTC/releases/tag/r3.3
+    release_type: public-release
+    src_commit_sha: deaf6eba162e89ccc309c8b811f8a6ab58ab9831
+    dependencies:
+      commonalities_release: r4.4 (0.9.0)
+      identity_consent_management_release: r4.2 (0.5.0)
+    apis:
+      - api_name: webrtc-call-handling
+        api_version: 0.4.0
+        api_title: WebRTC Call Handling
+        commonalities: 0.9.0
+      - api_name: webrtc-events-subscriptions
+        api_version: 0.3.0
+        api_title: WebRTC Events Subscriptions
+        commonalities: 0.9.0
+      - api_name: webrtc-registration
+        api_version: 0.4.0
         api_title: WebRTC Registration Service
         commonalities: 0.9.0
 repositories:
@@ -4783,8 +4884,8 @@ repositories:
     newest_pre_release: null
   - repository: DeviceLocation
     github_url: https://github.com/camaraproject/DeviceLocation
-    latest_public_release: r3.2
-    newest_pre_release: r4.2
+    latest_public_release: r4.3
+    newest_pre_release: null
   - repository: DeviceMediaStreamingRate
     github_url: https://github.com/camaraproject/DeviceMediaStreamingRate
     latest_public_release: null
@@ -4852,16 +4953,16 @@ repositories:
     newest_pre_release: null
   - repository: KnowYourCustomerAgeVerification
     github_url: https://github.com/camaraproject/KnowYourCustomerAgeVerification
-    latest_public_release: r1.3
-    newest_pre_release: r2.2
+    latest_public_release: r2.3
+    newest_pre_release: null
   - repository: KnowYourCustomerFill-in
     github_url: https://github.com/camaraproject/KnowYourCustomerFill-in
-    latest_public_release: r1.3
-    newest_pre_release: r2.2
+    latest_public_release: r2.3
+    newest_pre_release: null
   - repository: KnowYourCustomerMatch
     github_url: https://github.com/camaraproject/KnowYourCustomerMatch
-    latest_public_release: r1.2
-    newest_pre_release: r2.2
+    latest_public_release: r2.3
+    newest_pre_release: null
   - repository: ModelAsAService
     github_url: https://github.com/camaraproject/ModelAsAService
     latest_public_release: r2.3
@@ -4990,5 +5091,5 @@ repositories:
     newest_pre_release: null
   - repository: WebRTC
     github_url: https://github.com/camaraproject/WebRTC
-    latest_public_release: r2.2
-    newest_pre_release: r3.2
+    latest_public_release: r3.3
+    newest_pre_release: null
