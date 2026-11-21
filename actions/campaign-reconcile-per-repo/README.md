@@ -1,9 +1,8 @@
 # campaign-reconcile-per-repo
 
-Per-repo finalization for **reconciliation** campaigns. Sibling to
-[`campaign-finalize-per-repo`](../campaign-finalize-per-repo/), focused on
-ongoing rollout of a canonical template (caller workflows, shared configs,
-etc.) to already-onboarded repositories.
+Per-repo finalization for **reconciliation** campaigns: ongoing rollout of a
+canonical template (caller workflows, shared configs, etc.) to
+already-onboarded repositories.
 
 ## Behaviour
 
@@ -35,19 +34,6 @@ template-propagation campaign.
 - This action compares the working tree against `main`, chooses the right
   outcome (create / update / close / no-op / abort), and records a
   per-repo artifact row.
-
-## Comparison with `campaign-finalize-per-repo`
-
-- **finalize** uses a run-id-unique branch per dispatch and a date-stamped
-  PR title (`... ($DATE-NNN)`). Skips any repo with an existing campaign
-  PR — a new dispatch creates a fresh branch next time.
-- **reconcile** uses a stable branch + stable PR title. Reruns
-  force-push updates to the same PR, or close it when the repo matches
-  the template. No PR churn.
-
-Keep using **finalize** for one-shot migrations (e.g. adding
-`release-plan.yaml` once per repo). Use **reconcile** for ongoing
-template maintenance (e.g. caller workflow bumps).
 
 ## Safety model
 

@@ -99,8 +99,7 @@ jobs:
             const include = (process.env.INCLUDE || '').split(',').map(s => s.trim()).filter(Boolean);
 
             // List all non-archived repositories in the organization
-            // (PRs cannot be created against archived repos — same filter as
-            // the sibling campaign-release-plan-rollout workflow)
+            // (PRs cannot be created against archived repos)
             let repos;
             try {
               const result = execSync(

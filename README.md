@@ -69,11 +69,8 @@ Goal-oriented, time-bound initiatives for coordinated changes across repositorie
 
 * **Location**: [campaigns/](campaigns/)
 * **Available campaigns**:
-  * [release-info/](campaigns/release-info/) - Updates "Release Information" sections in API repository READMEs (supports pre-releases and "no releases" categories)
-  * [api-version-wip-check/](campaigns/api-version-wip-check/) - Verifies wip versions in API files after releases
-  * [release-plan-rollout/](campaigns/release-plan-rollout/) - Adds release-plan.yaml to API repositories
   * [release-automation-onboarding/](campaigns/release-automation-onboarding/) - Onboards API repositories to the release automation (caller workflow, CHANGELOG directory, rulesets)
-* **Workflows**: `campaign-release-info.yml`, `campaign-api-version-wip-check.yml`, `campaign-release-plan-rollout.yml`, `campaign-release-automation-onboarding.yml`
+* **Workflows**: `campaign-release-automation-onboarding.yml`
 
 ### API Repository Creation
 
@@ -108,7 +105,7 @@ Scripts for administrative tasks that complement campaigns.
 Supporting GitHub Actions for campaigns and workflows.
 
 * **Location**: [actions/](actions/)
-* **Actions**: render-mustache, replace-delimited-content, ensure-delimited-section, campaign-finalize-per-repo, campaign-finalize-issue-per-repo, read-release-data, read-api-version-compliance
+* **Actions**: render-mustache, campaign-reconcile-per-repo
 
 ## Repository Structure
 
@@ -117,10 +114,7 @@ project-administration/
 ├── .github/workflows/           # Workflow entry points
 ├── actions/                     # Reusable GitHub Actions for campaigns
 ├── campaigns/                   # Goal-oriented initiatives
-│   ├── api-version-wip-check/   # API version compliance checks
-│   ├── release-automation-onboarding/ # Release automation setup
-│   ├── release-info/            # README release info updates
-│   └── release-plan-rollout/    # Release plan file generation
+│   └── release-automation-onboarding/ # Release automation setup
 ├── config/                      # Shared configuration files
 │   ├── api-landscape.yaml       # API portfolio metadata
 │   ├── meta-release-mappings.yaml
