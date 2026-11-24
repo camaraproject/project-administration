@@ -54,8 +54,9 @@ The workflow implements a clean separation of concerns:
 
 #### 5. `generate-viewers.js`
 - **Purpose**: Generates HTML viewers with embedded report data
+- **Input**: only report files; the meta-release list comes from `reports/all-releases.json` `metadata.meta_releases`. Exits non-zero if the list is missing or empty, or a listed report file is missing
 - **Used by**: GitHub workflow (Phase 5)
-- **Output**: HTML viewers in `viewers/` directory
+- **Output**: `meta-release.html` (all meta-releases, selected by URL parameter), `portfolio.html`, `internal.html`, `production-index.html`, `staging-index.html` in `viewers/`
 
 ### Utility Scripts
 

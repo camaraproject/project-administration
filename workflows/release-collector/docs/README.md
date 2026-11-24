@@ -5,7 +5,7 @@
 
 ## What This Workflow Does
 
-Automatically tracks all CAMARA API releases across repositories, categorizes them by meta-release (Fall24, Spring25, Fall25, Spring26), and generates browsable HTML reports showing API versions, maturity levels, and portfolio information.
+Automatically tracks all CAMARA API releases across repositories, categorizes them by meta-release (the ones listed in `config/meta-release-mappings.yaml`), and generates browsable HTML reports showing API versions, maturity levels, and portfolio information.
 
 **For Maintainers**: See [QUICKSTART.md](../QUICKSTART.md) for a 2-minute guide and [MAINTAINER-FAQ.md](../MAINTAINER-FAQ.md) for common questions.
 
@@ -238,23 +238,29 @@ data/
 
 reports/
 ├── all-releases.json             # Complete dataset (enriched)
-├── fall24.json                   # Fall 2024 meta-release
-├── spring25.json                 # Spring 2025 meta-release
-├── fall25.json                   # Fall 2025 meta-release
-└── spring26.json                 # Spring 2026 meta-release
+│                                 # metadata.meta_releases = the meta-releases below, in config order
+└── <meta-release>.json           # one report per `mappings` key (lowercase name)
 ```
 
 #### Deployed to Staging / Available in Artifacts (Not Committed)
 
 ```
 viewers/
-├── fall24.html                   # Fall 2024 viewer
-├── spring25.html                 # Spring 2025 viewer
-├── fall25.html                   # Fall 2025 viewer
-├── spring26.html                 # Spring 2026 viewer
+├── meta-release.html             # All meta-releases in one viewer (see parameters below)
 ├── portfolio.html                # Portfolio overview viewer (Alpha)
-└── internal.html                 # Internal admin viewer (Alpha)
+├── internal.html                 # Internal admin viewer (Alpha)
+├── production-index.html         # Generated index page, one link per meta-release
+└── staging-index.html            # Same for staging
 ```
+
+**Meta-release viewer parameters** (`meta-release.html`):
+- `meta-release=<Name>` (case-insensitive): meta-release to show. Without it, the newest (last in `config/meta-release-mappings.yaml`) is shown.
+- `selector=true|false`: show or hide the meta-release selector. Default: shown without `meta-release`, hidden with one. With `selector=false` an unknown name shows only a message.
+- Examples: `meta-release.html?selector=false` (always the newest, for embeds), `meta-release.html?meta-release=Fall25&selector=true` (starts at Fall25, allows browsing).
+
+The old per-meta-release URLs (`fall24.html`, `spring25.html`, `fall25.html`, `spring26.html`) are redirect stubs checked in under `workflows/release-collector/legacy/`. Later meta-releases get none.
+
+**Adding a meta-release**: add its key to `config/meta-release-mappings.yaml` (only once its release cycles have a public release, see the header of that file) and run the Release Collector with "full" scope. No script, template or workflow change is needed.
 
 **Note**: Viewers are generated but not committed to the repository (gitignored). They are available:
 - **Staging deployment** (Phase 3 - Active): Automatically deployed to GitHub Pages for preview, URLs in PR description

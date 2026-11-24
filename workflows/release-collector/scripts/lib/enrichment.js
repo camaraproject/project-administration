@@ -8,7 +8,6 @@
 const fs = require('fs');
 const path = require('path');
 const yaml = require('js-yaml');
-const META_RELEASES_WITH_IS_NEW = ['Fall24', 'Spring25', 'Fall25', 'Spring26'];
 
 /**
  * Load the API landscape configuration
@@ -72,9 +71,11 @@ function findEnrichment(apiName, landscape) {
  * @param {object} api - The API object from master metadata
  * @param {object} landscape - The loaded landscape data
  * @param {string} currentMetaRelease - Current meta-release being processed (for isNew)
+ * @param {string[]} metaReleases - Meta-releases (from config) for which isNew is set
  * @returns {object} Enriched API object
  */
-function enrichAPI(api, landscape, currentMetaRelease = null) {
+function enrichAPI(api, landscape, currentMetaRelease = null, metaReleases = []) {
+  const hasIsNew = Boolean(currentMetaRelease) && metaReleases.includes(currentMetaRelease);
   const enrichment = findEnrichment(api.api_name, landscape);
 
   // Determine API maturity based on api_version
@@ -100,7 +101,7 @@ function enrichAPI(api, landscape, currentMetaRelease = null) {
       canonical_name: api.api_name,
       first_release: 'Sandbox',  // Default for unknown APIs
       // Add isNew for meta-release reports
-      ...(currentMetaRelease && META_RELEASES_WITH_IS_NEW.includes(currentMetaRelease) ? {
+      ...(hasIsNew ? {
         isNew: false  // Default to false for unknown APIs
       } : {})
     };
@@ -108,8 +109,7 @@ function enrichAPI(api, landscape, currentMetaRelease = null) {
 
   // Determine isNew based on first_release and current meta-release
   let isNew = false;
-  if (currentMetaRelease && enrichment.first_release &&
-      META_RELEASES_WITH_IS_NEW.includes(currentMetaRelease)) {
+  if (hasIsNew && enrichment.first_release) {
     isNew = enrichment.first_release === currentMetaRelease;
   }
 
@@ -129,7 +129,7 @@ function enrichAPI(api, landscape, currentMetaRelease = null) {
     // Include previous names if this was matched via previous name
     ...(enrichment.previous_names ? { previous_names: enrichment.previous_names } : {}),
     // Add isNew for meta-release reports
-    ...(currentMetaRelease && META_RELEASES_WITH_IS_NEW.includes(currentMetaRelease) ? {
+    ...(hasIsNew ? {
       isNew: isNew
     } : {})
   };
@@ -140,9 +140,10 @@ function enrichAPI(api, landscape, currentMetaRelease = null) {
  * @param {object} masterData - The master metadata with releases
  * @param {object} landscape - The loaded landscape data
  * @param {string} currentMetaRelease - Current meta-release being processed (optional)
+ * @param {string[]} metaReleases - Meta-releases (from config) for which isNew is set
  * @returns {object} Enriched release data
  */
-function enrichReleaseData(masterData, landscape, currentMetaRelease = null) {
+function enrichReleaseData(masterData, landscape, currentMetaRelease = null, metaReleases = []) {
   if (!masterData || !masterData.releases) {
     return masterData;
   }
@@ -151,7 +152,7 @@ function enrichReleaseData(masterData, landscape, currentMetaRelease = null) {
     ...masterData,
     releases: masterData.releases.map(release => ({
       ...release,
-      apis: release.apis.map(api => enrichAPI(api, landscape, currentMetaRelease || release.meta_release))
+      apis: release.apis.map(api => enrichAPI(api, landscape, currentMetaRelease || release.meta_release, metaReleases))
     }))
   };
 }

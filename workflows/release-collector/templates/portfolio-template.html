@@ -349,13 +349,7 @@
         <table class="meta-release-table" id="metaReleaseTable">
           <thead>
             <tr>
-              <th onclick="sortMetaReleaseTable(0)">API <span class="sort-arrow"></span></th>
-              <th onclick="sortMetaReleaseTable(1)">Category <span class="sort-arrow"></span></th>
-              <th onclick="sortMetaReleaseTable(2)">Fall24 <span class="sort-arrow"></span></th>
-              <th onclick="sortMetaReleaseTable(3)">Spring25 <span class="sort-arrow"></span></th>
-              <th onclick="sortMetaReleaseTable(4)">Fall25 <span class="sort-arrow"></span></th>
-              <th onclick="sortMetaReleaseTable(5)">Spring26 <span class="sort-arrow"></span></th>
-              <th onclick="sortMetaReleaseTable(6)">First Release <span class="sort-arrow"></span></th>
+              <!-- Columns are built from the meta-release list in renderMetaReleaseHeader() -->
             </tr>
           </thead>
           <tbody id="metaReleaseTableBody">
@@ -363,7 +357,7 @@
         </table>
         <div class="footer-note"
           style="margin-top: 15px; padding: 10px; background: #f8f9fa; border-radius: 6px; font-size: 13px; color: #666;">
-          Note: This table shows only meta-releases (Fall24, Spring25, Fall25, Spring26). Independent releases are shown in API
+          Note: This table shows only meta-releases. Independent releases are shown in API
           Evolution and Repository views.
         </div>
       </div>
@@ -398,7 +392,8 @@
     let showOnlyLatestPatches = true; // Default: show only latest patches
 
     // Meta-release constants
-    const META_RELEASES = ['Fall24', 'Spring25', 'Fall25', 'Spring26'];
+    // Meta-release list (oldest first) written by the report generator from the mappings config
+    const META_RELEASES = RELEASE_DATA.metadata.meta_releases || [];
     const INDEPENDENT_RELEASE = 'Independent';
 
     /**
@@ -532,22 +527,11 @@
           category: firstAPI.portfolio_category || '-',
           website_url: firstAPI.website_url,
           first_release: firstAPI.first_release,
-          fall24: null,
-          spring25: null,
-          fall25: null,
-          spring26: null
+          byMetaRelease: {}
         };
 
         metaVersions.forEach(v => {
-          if (v.meta_release === 'Fall24') {
-            row.fall24 = { api_version: v.api_version, maturity: v.maturity, isNew: v.isNew };
-          } else if (v.meta_release === 'Spring25') {
-            row.spring25 = { api_version: v.api_version, maturity: v.maturity, isNew: v.isNew };
-          } else if (v.meta_release === 'Fall25') {
-            row.fall25 = { api_version: v.api_version, maturity: v.maturity, isNew: v.isNew };
-          } else if (v.meta_release === 'Spring26') {
-            row.spring26 = { api_version: v.api_version, maturity: v.maturity, isNew: v.isNew };
-          }
+          row.byMetaRelease[v.meta_release] = { api_version: v.api_version, maturity: v.maturity, isNew: v.isNew };
         });
 
         tableData.push(row);
@@ -776,7 +760,26 @@
     /**
      * Render meta-release table (excludes Independent)
      */
+    function renderMetaReleaseHeader() {
+      const headerRow = document.querySelector('#metaReleaseTable thead tr');
+      headerRow.innerHTML = '';
+      const columns = ['API', 'Category', ...META_RELEASES, 'First Release'];
+      columns.forEach((label, index) => {
+        const th = document.createElement('th');
+        th.onclick = () => sortMetaReleaseTable(index);
+        th.append(`${label} `);
+        const arrow = document.createElement('span');
+        arrow.className = 'sort-arrow';
+        th.appendChild(arrow);
+        headerRow.appendChild(th);
+      });
+    }
+
+    /**
+     * Render meta-release table (excludes Independent)
+     */
     function renderMetaReleaseTable() {
+      renderMetaReleaseHeader();
       const tableData = createMetaReleaseTableData(filteredData);
       const tbody = document.getElementById('metaReleaseTableBody');
       tbody.innerHTML = '';
@@ -799,57 +802,21 @@
           `<span class="category-badge">${row.category}</span>` : '-';
         tr.appendChild(categoryCell);
 
-        // Fall24
-        const fall24Cell = document.createElement('td');
-        fall24Cell.className = 'release-cell';
-        if (row.fall24) {
-          fall24Cell.innerHTML = `
-            <div class="version-badge">${row.fall24.api_version}</div>
-            ${ViewerLib.renderMaturityBadge(row.fall24.maturity)}
+        // One cell per meta-release, in list order
+        META_RELEASES.forEach(metaRelease => {
+          const cell = document.createElement('td');
+          cell.className = 'release-cell';
+          const entry = row.byMetaRelease[metaRelease];
+          if (entry) {
+            cell.innerHTML = `
+            <div class="version-badge">${entry.api_version}</div>
+            ${ViewerLib.renderMaturityBadge(entry.maturity)}
           `;
-        } else {
-          fall24Cell.innerHTML = '<span class="empty-cell">-</span>';
-        }
-        tr.appendChild(fall24Cell);
-
-        // Spring25
-        const spring25Cell = document.createElement('td');
-        spring25Cell.className = 'release-cell';
-        if (row.spring25) {
-          spring25Cell.innerHTML = `
-            <div class="version-badge">${row.spring25.api_version}</div>
-            ${ViewerLib.renderMaturityBadge(row.spring25.maturity)}
-          `;
-        } else {
-          spring25Cell.innerHTML = '<span class="empty-cell">-</span>';
-        }
-        tr.appendChild(spring25Cell);
-
-        // Fall25
-        const fall25Cell = document.createElement('td');
-        fall25Cell.className = 'release-cell';
-        if (row.fall25) {
-          fall25Cell.innerHTML = `
-            <div class="version-badge">${row.fall25.api_version}</div>
-            ${ViewerLib.renderMaturityBadge(row.fall25.maturity)}
-          `;
-        } else {
-          fall25Cell.innerHTML = '<span class="empty-cell">-</span>';
-        }
-        tr.appendChild(fall25Cell);
-
-        // Spring26
-        const spring26Cell = document.createElement('td');
-        spring26Cell.className = 'release-cell';
-        if (row.spring26) {
-          spring26Cell.innerHTML = `
-            <div class="version-badge">${row.spring26.api_version}</div>
-            ${ViewerLib.renderMaturityBadge(row.spring26.maturity)}
-          `;
-        } else {
-          spring26Cell.innerHTML = '<span class="empty-cell">-</span>';
-        }
-        tr.appendChild(spring26Cell);
+          } else {
+            cell.innerHTML = '<span class="empty-cell">-</span>';
+          }
+          tr.appendChild(cell);
+        });
 
         // First Release
         const firstReleaseCell = document.createElement('td');

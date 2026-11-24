@@ -666,10 +666,7 @@
             <label for="filterMetaRelease">Meta-Release:</label>
             <select id="filterMetaRelease" onchange="applyFilters()">
               <option value="">All</option>
-              <option value="Fall24">Fall24</option>
-              <option value="Spring25">Spring25</option>
-              <option value="Fall25">Fall25</option>
-              <option value="Spring26">Spring26</option>
+              <!-- Meta-release options are added by populateMetaReleaseFilter() -->
               <option value="Independent">Independent</option>
             </select>
           </div>
@@ -820,7 +817,21 @@
     }
 
     /**
-     * Initialize data
+     * Add one filter option per meta-release in the report's list
+     */
+    function populateMetaReleaseFilter() {
+      const select = document.getElementById('filterMetaRelease');
+      const independent = select.querySelector('option[value="Independent"]');
+      (RELEASE_DATA.metadata.meta_releases || []).forEach(name => {
+        const option = document.createElement('option');
+        option.value = name;
+        option.textContent = name;
+        select.insertBefore(option, independent);
+      });
+    }
+
+    /**
+     * Initialize data and render
      */
     function initializeData() {
       const flatApis = flattenAPIData(RELEASE_DATA);
@@ -1355,6 +1366,7 @@
     }
 
     // Initialize on page load
+    populateMetaReleaseFilter();
     initializeData();
     // Initialize theme toggle (separate scope for internal viewer)
     ViewerLib.initThemeToggle('internal');

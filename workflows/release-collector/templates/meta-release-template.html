@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CAMARA {{META_RELEASE}} Meta-release</title>
+  <title>CAMARA Meta-release</title>
   <style>
 {{VIEWER_STYLES}}
   </style>
@@ -23,6 +23,13 @@
     </div>
 
     <div class="content" id="content">
+      <div class="meta-release-selector" id="selectorBar" hidden>
+        <label for="metaReleaseSelect">Meta-release:</label>
+        <select id="metaReleaseSelect" onchange="onSelectMetaRelease(this.value)"></select>
+      </div>
+      <div class="viewer-message" id="viewerMessage" role="status" hidden></div>
+
+      <div id="viewerBody">
       <div class="category-pills" id="categoryPills">
         <div class="category-pill all-categories active" onclick="filterByCategory('')">
           All<span class="category-count" id="allCount">(0)</span>
@@ -107,15 +114,19 @@
       </table>
 
       <div id="footer-metadata" class="footer-metadata"></div>
+      </div>
     </div>
   </div>
 
+  <script type="application/json" id="viewer-data">{{VIEWER_DATA}}</script>
   <script>
     // Embedded shared library
 {{VIEWER_LIBRARY}}
 
-    // Embedded release data (fully enriched from workflow)
-    const RELEASE_DATA = {{RELEASE_DATA}};
+    // Embedded data: meta-release names (oldest first) and one report per name
+    const VIEWER_DATA = JSON.parse(document.getElementById('viewer-data').textContent);
+    // Report of the meta-release currently shown
+    let RELEASE_DATA = null;
 
     // Global state
     let currentData = null;
@@ -181,6 +192,81 @@
     }
 
     /**
+     * Show a message instead of data (text only, never markup)
+     */
+    function showMessage(text) {
+      const box = document.getElementById('viewerMessage');
+      box.textContent = text;
+      box.hidden = false;
+      document.getElementById('viewerBody').hidden = true;
+      document.getElementById('header-metadata').textContent = '';
+    }
+
+    /**
+     * Fill the selector and show it or not
+     */
+    function setupSelector(view) {
+      const select = document.getElementById('metaReleaseSelect');
+      select.innerHTML = '';
+      VIEWER_DATA.metaReleases.slice().reverse().forEach(name => {
+        const option = document.createElement('option');
+        option.value = name;
+        option.textContent = name;
+        select.appendChild(option);
+      });
+      if (view.metaRelease) {
+        select.value = view.metaRelease;
+      } else {
+        const placeholder = document.createElement('option');
+        placeholder.value = '';
+        placeholder.textContent = 'Select a meta-release';
+        select.insertBefore(placeholder, select.firstChild);
+        select.value = '';
+      }
+      document.getElementById('selectorBar').hidden = !view.showSelector;
+    }
+
+    /**
+     * Show one meta-release: swap the report, reset the filters, render
+     */
+    function showMetaRelease(name) {
+      RELEASE_DATA = VIEWER_DATA.reports[name];
+      document.title = `CAMARA ${name} Meta-release`;
+      document.getElementById('viewerMessage').hidden = true;
+      document.getElementById('viewerBody').hidden = false;
+      clearAllFilters(true);
+      initializeData();
+    }
+
+    /**
+     * Selector change: show the meta-release and put it into the URL, so a copied link opens the fixed view
+     */
+    function onSelectMetaRelease(name) {
+      if (!name || !VIEWER_DATA.reports[name]) return;
+      showMetaRelease(name);
+      const params = new URLSearchParams(window.location.search);
+      params.set('meta-release', name);
+      window.history.replaceState(null, '', `${window.location.pathname}?${params.toString()}`);
+    }
+
+    /**
+     * Resolve the URL parameters and show the result
+     */
+    function initializeView() {
+      const view = ViewerLib.resolveMetaReleaseView(window.location.search, VIEWER_DATA.metaReleases);
+      if (view.status === 'empty') {
+        showMessage('No meta-release data available.');
+        return;
+      }
+      setupSelector(view);
+      if (view.status === 'unknown') {
+        showMessage(`Unknown meta-release "${view.requested}".`);
+        return;
+      }
+      showMetaRelease(view.metaRelease);
+    }
+
+    /**
      * Initialize data and render
      */
     function initializeData() {
@@ -212,7 +298,7 @@
       `;
 
       const headerDiv = document.getElementById('header-metadata');
-      headerDiv.innerHTML = `API Status for ${metadata.meta_release} meta-release`;
+      headerDiv.textContent = `API Status for ${metadata.meta_release} meta-release`;
 
       populateRepositoryDropdown();
       populateVersionDropdown();
@@ -476,7 +562,7 @@
     /**
      * Clear all filters
      */
-    function clearAllFilters() {
+    function clearAllFilters(skipApply) {
       document.getElementById('filterApiName').value = '';
       document.getElementById('filterMaturity').value = '';
       document.getElementById('filterNew').value = '';
@@ -487,7 +573,7 @@
       selectedCategories = [];
       updatePillStates();
 
-      applyFilters();
+      if (!skipApply) applyFilters();
     }
 
     /**
@@ -610,7 +696,7 @@
 
     // Initialize on page load
     detectIframe();
-    initializeData();
+    initializeView();
     // Initialize theme toggle
     ViewerLib.initThemeToggle();
   </script>

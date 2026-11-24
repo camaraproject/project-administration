@@ -149,18 +149,18 @@ jobs:
 
           echo "Performing timestamp safety check..."
 
-          # Get main timestamp from reports
-          if [[ -f "reports/fall24.json" ]]; then
-            MAIN_TIMESTAMP=$(jq -r '.metadata.generated' reports/fall24.json)
+          # Get main timestamp from the all-releases report (the portfolio viewer embeds the same report)
+          if [[ -f "reports/all-releases.json" ]]; then
+            MAIN_TIMESTAMP=$(jq -r '.metadata.generated' reports/all-releases.json)
           else
-            echo "::error::reports/fall24.json not found. Run release-collector workflow first."
+            echo "::error::reports/all-releases.json not found. Run release-collector workflow first."
             exit 1
           fi
           echo "Main timestamp: $MAIN_TIMESTAMP"
           echo "main_timestamp=$MAIN_TIMESTAMP" >> $GITHUB_OUTPUT
 
           # Get staging timestamp from deployed HTML
-          STAGING_HTML=$(curl -sf "${{ env.STAGING_URL }}/fall24.html" || echo "")
+          STAGING_HTML=$(curl -sf "${{ env.STAGING_URL }}/portfolio.html" || echo "")
           if [[ -z "$STAGING_HTML" ]]; then
             echo "::warning::Could not fetch staging viewer. Assuming first deployment."
             echo "staging_timestamp=none" >> $GITHUB_OUTPUT
@@ -247,11 +247,9 @@ jobs:
           echo "Validating generated viewers..."
 
           REQUIRED_FILES=(
-            "viewers/fall24.html"
-            "viewers/spring25.html"
-            "viewers/fall25.html"
-            "viewers/spring26.html"
+            "viewers/meta-release.html"
             "viewers/portfolio.html"
+            "viewers/production-index.html"
           )
 
           MISSING=0
@@ -271,11 +269,6 @@ jobs:
           fi
 
           echo "All required files validated successfully"
-
-      - name: Prepare artifact
-        run: |
-          # Copy production-index.html to viewers for simpler artifact structure
-          cp workflows/release-collector/production-index.html viewers/production-index.html
 
       - name: Upload viewers artifact
         uses: actions/upload-artifact@v7
@@ -326,14 +319,15 @@ jobs:
           touch production-site/.nojekyll
 
           # Copy viewer files (artifact contains viewers/ directory contents)
-          cp artifact/fall24.html production-site/${{ env.PRODUCTION_PATH }}/
-          cp artifact/spring25.html production-site/${{ env.PRODUCTION_PATH }}/
-          cp artifact/fall25.html production-site/${{ env.PRODUCTION_PATH }}/
-          cp artifact/spring26.html production-site/${{ env.PRODUCTION_PATH }}/
+          # Fixed list: never artifact/*.html, which would also publish internal.html and the staging index
+          cp artifact/meta-release.html production-site/${{ env.PRODUCTION_PATH }}/
           cp artifact/portfolio.html production-site/${{ env.PRODUCTION_PATH }}/
 
-          # Copy production index as index.html
+          # Copy generated production index as index.html
           cp artifact/production-index.html production-site/${{ env.PRODUCTION_PATH }}/index.html
+
+          # Redirect stubs for the former per-meta-release viewer URLs (checked in, not generated)
+          cp workflows/release-collector/legacy/*.html production-site/${{ env.PRODUCTION_PATH }}/
 
           echo "Files copied to production-site/${{ env.PRODUCTION_PATH }}/"
           ls -la production-site/${{ env.PRODUCTION_PATH }}/
@@ -765,11 +759,9 @@ jobs:
             echo "| File | Description |" >> $GITHUB_STEP_SUMMARY
             echo "|------|-------------|" >> $GITHUB_STEP_SUMMARY
             echo "| index.html | Production entry page |" >> $GITHUB_STEP_SUMMARY
-            echo "| fall24.html | Fall 2024 meta-release viewer |" >> $GITHUB_STEP_SUMMARY
-            echo "| spring25.html | Spring 2025 meta-release viewer |" >> $GITHUB_STEP_SUMMARY
-            echo "| fall25.html | Fall 2025 meta-release viewer |" >> $GITHUB_STEP_SUMMARY
-            echo "| spring26.html | Spring 2026 meta-release viewer |" >> $GITHUB_STEP_SUMMARY
+            echo "| meta-release.html | Meta-release viewer (parameter meta-release) |" >> $GITHUB_STEP_SUMMARY
             echo "| portfolio.html | Portfolio overview |" >> $GITHUB_STEP_SUMMARY
+            echo "| legacy redirect stubs | Former per-meta-release URLs, redirect to meta-release.html |" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
           fi
 

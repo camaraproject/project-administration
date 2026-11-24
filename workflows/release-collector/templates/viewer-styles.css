@@ -862,3 +862,40 @@ td:nth-child(7) {
     /* Hide in mobile to save space */
   }
 }
+/* Meta-release viewer: selector bar and message */
+[hidden] {
+  display: none !important;
+}
+
+.meta-release-selector {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.meta-release-selector label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.meta-release-selector select {
+  padding: 6px 10px;
+  border: 2px solid var(--border-light);
+  border-radius: 6px;
+  font-size: 13px;
+  background-color: var(--bg-input);
+  color: var(--text-primary);
+  min-width: 140px;
+}
+
+.viewer-message {
+  padding: 20px;
+  margin-bottom: 15px;
+  border: 1px solid var(--border-accent-light);
+  border-radius: 10px;
+  background: var(--bg-filter);
+  color: var(--text-primary);
+  font-size: 14px;
+}
