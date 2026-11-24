@@ -1,13 +1,13 @@
 metadata:
-  last_updated: '2026-11-21T10:08:52.135Z'
+  last_updated: '2026-11-24T17:54:59.689Z'
   workflow_version: 3.0.0
   schema_version: 3.2.0
   collector_run:
-    analysis_scope: incremental
-    workflow_run_id: '44892841151'
-    workflow_run_number: 402
-    workflow_run_url: https://github.com/camaraproject/project-administration/actions/runs/44892841151
-    source_sha: e13ba6a8bc12eff204776fff5ccb5ddfe5c546eb
+    analysis_scope: full
+    workflow_run_id: '45453309734'
+    workflow_run_number: 407
+    workflow_run_url: https://github.com/camaraproject/project-administration/actions/runs/45453309734
+    source_sha: 0477f0220744b43db8d44249a54f24c4ced1a52e
     node_version: v24.22.3
     npm_version: 11.19.1
     dependencies:
@@ -40,39 +40,39 @@ releases:
   - repository: ApplicationEndpointDiscovery
     release_tag: r2.1
     release_date: '2026-09-16T13:16:44Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/ApplicationEndpointDiscovery/releases/tag/r2.1
     release_type: pre-release-rc
     src_commit_sha: 23a7d7fa720dc51c5406870b8fdf8c80f71c547d
     dependencies:
       commonalities_release: r4.3 (0.8.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: application-endpoint-discovery
         api_version: 0.2.0-rc.1
         api_title: Application Endpoint Discovery
         commonalities: 0.8.0
-    superseded: true
   - repository: ApplicationEndpointDiscovery
     release_tag: r2.2
     release_date: '2026-10-20T22:12:31Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/ApplicationEndpointDiscovery/releases/tag/r2.2
     release_type: pre-release-rc
     src_commit_sha: 650e517e3c12162c44ba4b285b5fb83fb564059b
     dependencies:
       commonalities_release: r4.4 (0.9.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: application-endpoint-discovery
         api_version: 0.2.0-rc.2
         api_title: Application Endpoint Discovery
         commonalities: 0.9.0
-    superseded: true
   - repository: ApplicationEndpointDiscovery
     release_tag: r2.3
     release_date: '2026-11-18T22:26:18Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/ApplicationEndpointDiscovery/releases/tag/r2.3
     release_type: public-release
     src_commit_sha: 992785026effb7dd2bb9e4756c90a5e5108e90b0
@@ -110,39 +110,39 @@ releases:
   - repository: ApplicationEndpointRegistration
     release_tag: r2.1
     release_date: '2026-08-20T02:02:26Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/ApplicationEndpointRegistration/releases/tag/r2.1
     release_type: pre-release-rc
     src_commit_sha: 04795c6bc137f898a2ff663a573072e58e1f019f
     dependencies:
       commonalities_release: r4.3 (0.8.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: application-endpoint-registration
         api_version: 0.2.0-rc.1
         api_title: Application Endpoints Registration
         commonalities: 0.8.0
-    superseded: true
   - repository: ApplicationEndpointRegistration
     release_tag: r2.2
     release_date: '2026-10-20T22:11:21Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/ApplicationEndpointRegistration/releases/tag/r2.2
     release_type: pre-release-rc
     src_commit_sha: cc55f1ca635ce2be847c7498e03a7f9f1b25a9df
     dependencies:
       commonalities_release: r4.4 (0.9.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: application-endpoint-registration
         api_version: 0.2.0-rc.2
         api_title: Application Endpoints Registration
         commonalities: 0.9.0
-    superseded: true
   - repository: ApplicationEndpointRegistration
     release_tag: r2.3
     release_date: '2026-11-18T22:20:40Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/ApplicationEndpointRegistration/releases/tag/r2.3
     release_type: public-release
     src_commit_sha: 84e05c297968c990d8c83cd6b17f045a1f6da864
@@ -180,7 +180,7 @@ releases:
   - repository: ApplicationProfiles
     release_tag: r2.1
     release_date: '2026-08-19T23:33:53Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/ApplicationProfiles/releases/tag/r2.1
     release_type: pre-release-rc
     src_commit_sha: 308e84d5b8eb923cf6fdd837e6a66780c0988b33
@@ -196,7 +196,7 @@ releases:
   - repository: ApplicationProfiles
     release_tag: r2.2
     release_date: '2026-10-17T05:51:38Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/ApplicationProfiles/releases/tag/r2.2
     release_type: pre-release-rc
     src_commit_sha: b3511ecc381cbd0c32d2f4f7dd0c17261d0a28d3
@@ -212,7 +212,7 @@ releases:
   - repository: ApplicationProfiles
     release_tag: r2.3
     release_date: '2026-10-22T02:36:24Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/ApplicationProfiles/releases/tag/r2.3
     release_type: public-release
     src_commit_sha: 55c75069e698a39ec03ade779b139c6cc17f7d55
@@ -374,39 +374,39 @@ releases:
   - repository: CallForwardingSignal
     release_tag: r4.1
     release_date: '2026-09-17T16:03:57Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/CallForwardingSignal/releases/tag/r4.1
     release_type: pre-release-rc
     src_commit_sha: 418bb790669f54aa4e314ce7cf07e292c5f60705
     dependencies:
       commonalities_release: r4.3 (0.8.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: call-forwarding-signal
         api_version: 0.5.0-rc.1
         api_title: Call Forwarding Signal
         commonalities: 0.8.0
-    superseded: true
   - repository: CallForwardingSignal
     release_tag: r4.2
     release_date: '2026-11-09T07:27:32Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/CallForwardingSignal/releases/tag/r4.2
     release_type: pre-release-rc
     src_commit_sha: 381018a1532c5d5fef7a0103bf568a4688706348
     dependencies:
       commonalities_release: r4.4 (0.9.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: call-forwarding-signal
         api_version: 0.5.0-rc.2
         api_title: Call Forwarding Signal
         commonalities: 0.9.0
-    superseded: true
   - repository: CallForwardingSignal
     release_tag: r4.3
     release_date: '2026-11-17T10:55:13Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/CallForwardingSignal/releases/tag/r4.3
     release_type: public-release
     src_commit_sha: 4ca8c5f94c3d2b40b2a83a7bfe6c6dae386ef68a
@@ -588,39 +588,39 @@ releases:
   - repository: ClickToDial
     release_tag: r2.1
     release_date: '2026-07-15T03:28:17Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/ClickToDial/releases/tag/r2.1
     release_type: pre-release-rc
     src_commit_sha: f5029cd4c59ce3434c5c8632c57cce1e2b7013f8
     dependencies:
       commonalities_release: r4.3 (0.8.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: click-to-dial
         api_version: 0.2.0-rc.1
         api_title: Click to Dial Service
         commonalities: 0.8.0
-    superseded: true
   - repository: ClickToDial
     release_tag: r2.2
     release_date: '2026-09-15T02:34:18Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/ClickToDial/releases/tag/r2.2
     release_type: pre-release-rc
     src_commit_sha: 5bf44bfc783aa7f742c9cdab8c06a12c796a1b53
     dependencies:
       commonalities_release: r4.4 (0.9.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: click-to-dial
         api_version: 0.2.0-rc.2
         api_title: Click to Dial Service
         commonalities: 0.9.0
-    superseded: true
   - repository: ClickToDial
     release_tag: r2.3
     release_date: '2026-11-17T13:35:18Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/ClickToDial/releases/tag/r2.3
     release_type: public-release
     src_commit_sha: 8573430ec75ade0fc1c51a545dc01b60aad6d464
@@ -666,13 +666,14 @@ releases:
   - repository: ConnectedNetworkType
     release_tag: r2.1
     release_date: '2026-08-11T15:01:59Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/ConnectedNetworkType/releases/tag/r2.1
     release_type: pre-release-rc
     src_commit_sha: 8f05564fbf29825e58bfecf27811070524da5361
     dependencies:
       commonalities_release: r4.3 (0.8.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: connected-network-type-subscriptions
         api_version: 0.3.0-rc.1
@@ -682,17 +683,17 @@ releases:
         api_version: 0.3.0-rc.1
         api_title: Connected Network Type
         commonalities: 0.8.0
-    superseded: true
   - repository: ConnectedNetworkType
     release_tag: r2.2
     release_date: '2026-10-30T16:02:17Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/ConnectedNetworkType/releases/tag/r2.2
     release_type: pre-release-rc
     src_commit_sha: f38d31f3ca150b20171364a37da47bc568388538
     dependencies:
       commonalities_release: r4.4 (0.9.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: connected-network-type-subscriptions
         api_version: 0.3.0-rc.2
@@ -702,11 +703,10 @@ releases:
         api_version: 0.3.0-rc.2
         api_title: Connected Network Type
         commonalities: 0.9.0
-    superseded: true
   - repository: ConnectedNetworkType
     release_tag: r2.3
     release_date: '2026-11-18T21:13:52Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/ConnectedNetworkType/releases/tag/r2.3
     release_type: public-release
     src_commit_sha: 5cbc26e398fdc724c12dded4205d6ee1d82a2006
@@ -834,13 +834,14 @@ releases:
   - repository: ConnectivityInsights
     release_tag: r4.1
     release_date: '2026-08-20T22:39:16Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/ConnectivityInsights/releases/tag/r4.1
     release_type: pre-release-rc
     src_commit_sha: 7cf0e845627d5b76eb4381b09093ba2c808c4ea4
     dependencies:
       commonalities_release: r4.3 (0.8.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: connectivity-insights-subscriptions
         api_version: 0.7.0-rc.1
@@ -850,17 +851,17 @@ releases:
         api_version: 0.7.0-rc.1
         api_title: Connectivity Insights
         commonalities: 0.8.0
-    superseded: true
   - repository: ConnectivityInsights
     release_tag: r4.2
     release_date: '2026-10-21T16:23:37Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/ConnectivityInsights/releases/tag/r4.2
     release_type: pre-release-rc
     src_commit_sha: d940f483382af4d650ef810014f77a267bf32014
     dependencies:
       commonalities_release: r4.4 (0.9.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: connectivity-insights-subscriptions
         api_version: 0.7.0-rc.2
@@ -870,11 +871,10 @@ releases:
         api_version: 0.7.0-rc.2
         api_title: Connectivity Insights
         commonalities: 0.9.0
-    superseded: true
   - repository: ConnectivityInsights
     release_tag: r4.3
     release_date: '2026-11-18T21:26:46Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/ConnectivityInsights/releases/tag/r4.3
     release_type: public-release
     src_commit_sha: c87cfece23ac354056c968cc0dc0d5743657a289
@@ -1047,39 +1047,39 @@ releases:
   - repository: CustomerInsights
     release_tag: r3.1
     release_date: '2026-07-23T16:06:40Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/CustomerInsights/releases/tag/r3.1
     release_type: pre-release-rc
     src_commit_sha: 44c1faeaf13f40d10defab1a3aaf330fa96470c1
     dependencies:
       commonalities_release: r4.3 (0.8.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: customer-insights
         api_version: 0.3.0-rc.1
         api_title: Customer Insights
         commonalities: 0.8.0
-    superseded: true
   - repository: CustomerInsights
     release_tag: r3.2
     release_date: '2026-10-29T14:19:11Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/CustomerInsights/releases/tag/r3.2
     release_type: pre-release-rc
     src_commit_sha: 4aa3c7472fccc53e535cbd6d7ee1280a3a96e849
     dependencies:
       commonalities_release: r4.4 (0.9.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: customer-insights
         api_version: 0.3.0-rc.2
         api_title: Customer Insights
         commonalities: 0.9.0
-    superseded: true
   - repository: CustomerInsights
     release_tag: r3.3
     release_date: '2026-11-10T16:17:35Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/CustomerInsights/releases/tag/r3.3
     release_type: public-release
     src_commit_sha: 977a128c37c526b033d39490169e90fda1ed911f
@@ -1133,13 +1133,14 @@ releases:
   - repository: DedicatedNetworks
     release_tag: r2.1
     release_date: '2026-05-26T09:40:59Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/DedicatedNetworks/releases/tag/r2.1
     release_type: pre-release-alpha
     src_commit_sha: 85f46685709380b2a615e12e28f2f6c85f13f245
     dependencies:
       commonalities_release: r3.4 (0.6.1)
       identity_consent_management_release: r3.3 (0.4.0)
+    superseded: true
     apis:
       - api_name: dedicated-network-accesses
         api_version: 0.2.0-alpha.1
@@ -1157,17 +1158,17 @@ releases:
         api_version: 0.1.0-alpha.1
         api_title: Dedicated Network - Areas
         commonalities: 0.6.1
-    superseded: true
   - repository: DedicatedNetworks
     release_tag: r2.2
     release_date: '2026-09-16T19:09:08Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/DedicatedNetworks/releases/tag/r2.2
     release_type: pre-release-rc
     src_commit_sha: 28c4b3f37779b8018d78ed0c8f5c0f03c020ed90
     dependencies:
       commonalities_release: r4.3 (0.8.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: dedicated-network-accesses
         api_version: 0.2.0-rc.1
@@ -1185,17 +1186,17 @@ releases:
         api_version: 0.1.0-rc.1
         api_title: Dedicated Network - Areas
         commonalities: 0.8.0
-    superseded: true
   - repository: DedicatedNetworks
     release_tag: r2.3
     release_date: '2026-11-08T19:35:56Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/DedicatedNetworks/releases/tag/r2.3
     release_type: pre-release-rc
     src_commit_sha: 800d8cc4101ba787dd8bbf82cbc573b4a78aca31
     dependencies:
       commonalities_release: r4.4 (0.9.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: dedicated-network-accesses
         api_version: 0.2.0-rc.2
@@ -1213,11 +1214,10 @@ releases:
         api_version: 0.1.0-rc.2
         api_title: Dedicated Network - Areas
         commonalities: 0.9.0
-    superseded: true
   - repository: DedicatedNetworks
     release_tag: r2.4
     release_date: '2026-11-12T11:51:30Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/DedicatedNetworks/releases/tag/r2.4
     release_type: public-release
     src_commit_sha: 78437781c82a34edd6f5221a072390de59efee7c
@@ -1291,13 +1291,14 @@ releases:
   - repository: DeviceDataVolume
     release_tag: r2.1
     release_date: '2026-09-16T12:46:52Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/DeviceDataVolume/releases/tag/r2.1
     release_type: pre-release-rc
     src_commit_sha: 83f20e083da2cdd4a1d23f51ba76b0d4523d3426
     dependencies:
       commonalities_release: r4.4 (0.9.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: device-data-volume-subscriptions
         api_version: 0.2.0-rc.1
@@ -1307,17 +1308,17 @@ releases:
         api_version: 0.2.0-rc.1
         api_title: Device Data Volume
         commonalities: 0.9.0
-    superseded: true
   - repository: DeviceDataVolume
     release_tag: r2.2
     release_date: '2026-10-14T12:57:33Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/DeviceDataVolume/releases/tag/r2.2
     release_type: pre-release-rc
     src_commit_sha: bae20e63134d22c6b56f0d6a342d9cbb71b4b7c2
     dependencies:
       commonalities_release: r4.4 (0.9.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: device-data-volume-subscriptions
         api_version: 0.2.0-rc.2
@@ -1327,17 +1328,17 @@ releases:
         api_version: 0.2.0-rc.2
         api_title: Device Data Volume
         commonalities: 0.9.0
-    superseded: true
   - repository: DeviceDataVolume
     release_tag: r2.3
     release_date: '2026-11-02T10:40:34Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/DeviceDataVolume/releases/tag/r2.3
     release_type: pre-release-rc
     src_commit_sha: d8e98cbd8dc3f4c49d508e5531865a5cf809516f
     dependencies:
       commonalities_release: r4.4 (0.9.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: device-data-volume-subscriptions
         api_version: 0.2.0-rc.3
@@ -1347,11 +1348,10 @@ releases:
         api_version: 0.2.0-rc.3
         api_title: Device Data Volume
         commonalities: 0.9.0
-    superseded: true
   - repository: DeviceDataVolume
     release_tag: r2.4
     release_date: '2026-11-19T09:34:41Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/DeviceDataVolume/releases/tag/r2.4
     release_type: public-release
     src_commit_sha: 19b786e79353dedfc1360b3c08c26e478ec81d24
@@ -1428,71 +1428,71 @@ releases:
   - repository: DeviceIdentifier
     release_tag: r3.1
     release_date: '2026-06-11T09:59:39Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/DeviceIdentifier/releases/tag/r3.1
     release_type: pre-release-alpha
     src_commit_sha: 8b2e2951995408acfa10afbe6eb3edcd69851650
     dependencies:
       commonalities_release: r4.3 (0.8.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: device-identifier
         api_version: 0.4.0-alpha.1
         api_title: Device Identifier
         commonalities: 0.8.0
-    superseded: true
   - repository: DeviceIdentifier
     release_tag: r3.2
     release_date: '2026-09-01T16:11:38Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/DeviceIdentifier/releases/tag/r3.2
     release_type: pre-release-rc
     src_commit_sha: 5dcccd77e4b47b20aaf42b7e54affbf860f40c46
     dependencies:
       commonalities_release: r4.3 (0.8.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: device-identifier
         api_version: 0.4.0-rc.1
         api_title: Device Identifier
         commonalities: 0.8.0
-    superseded: true
   - repository: DeviceIdentifier
     release_tag: r3.3
     release_date: '2026-09-25T13:20:11Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/DeviceIdentifier/releases/tag/r3.3
     release_type: pre-release-rc
     src_commit_sha: f591baf08b6f6e027dc9f71048dfad0a4cc8c85c
     dependencies:
       commonalities_release: r4.4 (0.9.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: device-identifier
         api_version: 0.4.0-rc.2
         api_title: Device Identifier
         commonalities: 0.9.0
-    superseded: true
   - repository: DeviceIdentifier
     release_tag: r3.4
     release_date: '2026-11-02T11:55:05Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/DeviceIdentifier/releases/tag/r3.4
     release_type: pre-release-rc
     src_commit_sha: 11605ff4c21c6c90169c2c4b17da834e4bd93b00
     dependencies:
       commonalities_release: r4.4 (0.9.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: device-identifier
         api_version: 0.4.0-rc.3
         api_title: Device Identifier
         commonalities: 0.9.0
-    superseded: true
   - repository: DeviceIdentifier
     release_tag: r3.5
     release_date: '2026-11-19T12:43:55Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/DeviceIdentifier/releases/tag/r3.5
     release_type: public-release
     src_commit_sha: ac2cdee8a5224b3f6146ddb9c551323cc6a96ab0
@@ -1624,13 +1624,14 @@ releases:
   - repository: DeviceLocation
     release_tag: r4.1
     release_date: '2026-09-01T08:31:47Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/DeviceLocation/releases/tag/r4.1
     release_type: pre-release-rc
     src_commit_sha: baf86c823cb723e866c7348459999aea83f999ce
     dependencies:
       commonalities_release: r4.3 (0.8.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: geofencing-subscriptions
         api_version: 0.6.0-rc.1
@@ -1644,17 +1645,17 @@ releases:
         api_version: 3.1.0-rc.2
         api_title: Device Location Verification
         commonalities: 0.8.0
-    superseded: true
   - repository: DeviceLocation
     release_tag: r4.2
     release_date: '2026-10-21T11:35:15Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/DeviceLocation/releases/tag/r4.2
     release_type: pre-release-rc
     src_commit_sha: 3cbc848394c30bc8eeb1a3f9d1c4c755c9ac3da0
     dependencies:
       commonalities_release: r4.4 (0.9.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: geofencing-subscriptions
         api_version: 0.6.0-rc.2
@@ -1668,11 +1669,10 @@ releases:
         api_version: 3.1.0-rc.3
         api_title: Device Location Verification
         commonalities: 0.9.0
-    superseded: true
   - repository: DeviceLocation
     release_tag: r4.3
     release_date: '2026-11-20T14:55:17Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/DeviceLocation/releases/tag/r4.3
     release_type: public-release
     src_commit_sha: 938c694ebe5f2a7680dd5342c91960431d683bd4
@@ -1741,13 +1741,14 @@ releases:
   - repository: DeviceReachabilityStatus
     release_tag: r2.1
     release_date: '2026-08-07T10:35:15Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/DeviceReachabilityStatus/releases/tag/r2.1
     release_type: pre-release-rc
     src_commit_sha: 0941f992d6d95412fd3fa39c6e0c8ceea7775b7c
     dependencies:
       commonalities_release: r4.3 (0.8.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: device-reachability-status-subscriptions
         api_version: 0.9.0-rc.1
@@ -1757,17 +1758,17 @@ releases:
         api_version: 1.2.0-rc.3
         api_title: Device Reachability Status
         commonalities: 0.8.0
-    superseded: true
   - repository: DeviceReachabilityStatus
     release_tag: r2.2
     release_date: '2026-11-02T20:32:14Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/DeviceReachabilityStatus/releases/tag/r2.2
     release_type: pre-release-rc
     src_commit_sha: 1cae79dcc5546e7afedb0197a0c57c9d81559af8
     dependencies:
       commonalities_release: r4.4 (0.9.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: device-reachability-status-subscriptions
         api_version: 0.9.0-rc.2
@@ -1777,11 +1778,10 @@ releases:
         api_version: 1.2.0-rc.4
         api_title: Device Reachability Status
         commonalities: 0.9.0
-    superseded: true
   - repository: DeviceReachabilityStatus
     release_tag: r2.3
     release_date: '2026-11-18T21:10:46Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/DeviceReachabilityStatus/releases/tag/r2.3
     release_type: public-release
     src_commit_sha: 05bb74a29e3868646afa47983b8204d70ad8df2c
@@ -1831,13 +1831,14 @@ releases:
   - repository: DeviceRoamingStatus
     release_tag: r2.1
     release_date: '2026-08-07T09:58:54Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/DeviceRoamingStatus/releases/tag/r2.1
     release_type: pre-release-rc
     src_commit_sha: 9be6fb27d6397086db4405fbd28c49f6314a6574
     dependencies:
       commonalities_release: r4.3 (0.8.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: device-roaming-status-subscriptions
         api_version: 0.9.0-rc.1
@@ -1847,17 +1848,17 @@ releases:
         api_version: 1.2.0-rc.3
         api_title: Device Roaming Status
         commonalities: 0.8.0
-    superseded: true
   - repository: DeviceRoamingStatus
     release_tag: r2.2
     release_date: '2026-10-28T13:53:54Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/DeviceRoamingStatus/releases/tag/r2.2
     release_type: pre-release-rc
     src_commit_sha: 25ae41f591a808ecbac49172402e7cb38db6653c
     dependencies:
       commonalities_release: r4.4 (0.9.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: device-roaming-status-subscriptions
         api_version: 0.9.0-rc.2
@@ -1867,11 +1868,10 @@ releases:
         api_version: 1.2.0-rc.4
         api_title: Device Roaming Status
         commonalities: 0.9.0
-    superseded: true
   - repository: DeviceRoamingStatus
     release_tag: r2.3
     release_date: '2026-11-19T15:00:44Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/DeviceRoamingStatus/releases/tag/r2.3
     release_type: public-release
     src_commit_sha: 1ead7b53cf1738df2be47dfe475019ff2b7a7b7d
@@ -2092,7 +2092,7 @@ releases:
   - repository: DeviceSwap
     release_tag: r4.1
     release_date: '2026-09-17T08:26:11Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/DeviceSwap/releases/tag/r4.1
     release_type: pre-release-rc
     src_commit_sha: 579cee15b716d2d4c9f6a1be3a35411dece63d20
@@ -2108,7 +2108,7 @@ releases:
   - repository: DeviceSwap
     release_tag: r4.2
     release_date: '2026-10-05T12:04:57Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/DeviceSwap/releases/tag/r4.2
     release_type: pre-release-rc
     src_commit_sha: 836543d5e7d70e80e0c560ab36c080ef84b096e0
@@ -2124,7 +2124,7 @@ releases:
   - repository: DeviceSwap
     release_tag: r4.3
     release_date: '2026-10-19T12:34:42Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/DeviceSwap/releases/tag/r4.3
     release_type: public-release
     src_commit_sha: 154ead56c72923108b97675c55261a04d5fb1c36
@@ -2324,13 +2324,14 @@ releases:
   - repository: IoTSIMFraudPrevention
     release_tag: r2.1
     release_date: '2026-10-15T06:41:16Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/IoTSIMFraudPrevention/releases/tag/r2.1
     release_type: pre-release-rc
     src_commit_sha: 6c713c54f05146d3e64fd8035b3ddef0d329da26
     dependencies:
       commonalities_release: r4.4 (0.9.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: iot-sim-fraud-prevention
         api_version: 0.2.0-rc.1
@@ -2340,11 +2341,10 @@ releases:
         api_version: 0.2.0-rc.1
         api_title: IoT SIM Fraud Prevention Subscriptions
         commonalities: 0.9.0
-    superseded: true
   - repository: IoTSIMFraudPrevention
     release_tag: r2.2
     release_date: '2026-11-19T02:49:10Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/IoTSIMFraudPrevention/releases/tag/r2.2
     release_type: public-release
     src_commit_sha: 4335f3a290cead988b99c30632b0bcb1c44aac2d
@@ -2471,39 +2471,39 @@ releases:
   - repository: KnowYourCustomerAgeVerification
     release_tag: r2.1
     release_date: '2026-09-01T05:15:38Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/KnowYourCustomerAgeVerification/releases/tag/r2.1
     release_type: pre-release-rc
     src_commit_sha: f1d12f34fb16543390b072409aebe06af27a972a
     dependencies:
       commonalities_release: r4.3 (0.8.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: kyc-age-verification
         api_version: 0.3.0-rc.1
         api_title: Know Your Customer Age Verification
         commonalities: 0.8.0
-    superseded: true
   - repository: KnowYourCustomerAgeVerification
     release_tag: r2.2
     release_date: '2026-11-19T09:06:50Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/KnowYourCustomerAgeVerification/releases/tag/r2.2
     release_type: pre-release-rc
     src_commit_sha: 08409828fdba3a6efd22061a115eb9f62cf7929a
     dependencies:
       commonalities_release: r4.4 (0.9.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: kyc-age-verification
         api_version: 0.3.0-rc.2
         api_title: Know Your Customer Age Verification
         commonalities: 0.9.0
-    superseded: true
   - repository: KnowYourCustomerAgeVerification
     release_tag: r2.3
     release_date: '2026-11-20T10:45:06Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/KnowYourCustomerAgeVerification/releases/tag/r2.3
     release_type: public-release
     src_commit_sha: 3b4d114b3a212dca2bf5cfe72f1e0f187c29a4d6
@@ -2552,39 +2552,39 @@ releases:
   - repository: KnowYourCustomerFill-in
     release_tag: r2.1
     release_date: '2026-09-01T05:11:26Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/KnowYourCustomerFill-in/releases/tag/r2.1
     release_type: pre-release-rc
     src_commit_sha: 9579a5e809d8b1fe1547a3e03ad45837eb2c19d3
     dependencies:
       commonalities_release: r4.3 (0.8.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: kyc-fill-in
         api_version: 0.5.0-rc.1
         api_title: Know Your Customer Fill-in
         commonalities: 0.8.0
-    superseded: true
   - repository: KnowYourCustomerFill-in
     release_tag: r2.2
     release_date: '2026-11-04T08:27:08Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/KnowYourCustomerFill-in/releases/tag/r2.2
     release_type: pre-release-rc
     src_commit_sha: 88bd0a765729744c74201977e8f37a4ea7682435
     dependencies:
       commonalities_release: r4.4 (0.9.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: kyc-fill-in
         api_version: 0.5.0-rc.2
         api_title: Know Your Customer Fill-in
         commonalities: 0.9.0
-    superseded: true
   - repository: KnowYourCustomerFill-in
     release_tag: r2.3
     release_date: '2026-11-20T11:17:19Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/KnowYourCustomerFill-in/releases/tag/r2.3
     release_type: public-release
     src_commit_sha: d245a60405d934649c0cd097d0915a3f39bfea98
@@ -2622,39 +2622,39 @@ releases:
   - repository: KnowYourCustomerMatch
     release_tag: r2.1
     release_date: '2026-09-01T05:04:32Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/KnowYourCustomerMatch/releases/tag/r2.1
     release_type: pre-release-rc
     src_commit_sha: 6e7c2418dbec252740a5ab0ccaf404b8f6d26024
     dependencies:
       commonalities_release: r4.3 (0.8.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: kyc-match
         api_version: 0.5.0-rc.1
         api_title: Know Your Customer Match
         commonalities: 0.8.0
-    superseded: true
   - repository: KnowYourCustomerMatch
     release_tag: r2.2
     release_date: '2026-11-04T07:47:40Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/KnowYourCustomerMatch/releases/tag/r2.2
     release_type: pre-release-rc
     src_commit_sha: b8a8d602e9cbf57d8a6112e418f04609e0e2f3d6
     dependencies:
       commonalities_release: r4.4 (0.9.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: kyc-match
         api_version: 1.0.0-rc.1
         api_title: Know Your Customer Match
         commonalities: 0.9.0
-    superseded: true
   - repository: KnowYourCustomerMatch
     release_tag: r2.3
     release_date: '2026-11-20T11:06:00Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/KnowYourCustomerMatch/releases/tag/r2.3
     release_type: public-release
     src_commit_sha: c9f90dcc7754450828c96c686c564dcdf897aa4e
@@ -2708,13 +2708,14 @@ releases:
   - repository: ModelAsAService
     release_tag: r2.1
     release_date: '2026-07-28T01:55:13Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/ModelAsAService/releases/tag/r2.1
     release_type: pre-release-rc
     src_commit_sha: 11d2f0400c021cd14ec429181aa00db1ff0c5448
     dependencies:
       commonalities_release: r4.3 (0.8.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: knowledge-base
         api_version: 0.2.0-rc.1
@@ -2728,17 +2729,17 @@ releases:
         api_version: 0.2.0-rc.1
         api_title: Q&A Assistant - Service
         commonalities: 0.8.0
-    superseded: true
   - repository: ModelAsAService
     release_tag: r2.2
     release_date: '2026-11-06T01:18:38Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/ModelAsAService/releases/tag/r2.2
     release_type: pre-release-rc
     src_commit_sha: f2a7cdf65000fb5bd7ed94c26b4f04af42e934b3
     dependencies:
       commonalities_release: r4.4 (0.9.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: knowledge-base
         api_version: 0.2.0-rc.2
@@ -2752,11 +2753,10 @@ releases:
         api_version: 0.2.0-rc.2
         api_title: Q&A Assistant - Service
         commonalities: 0.9.0
-    superseded: true
   - repository: ModelAsAService
     release_tag: r2.3
     release_date: '2026-11-20T01:26:37Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/ModelAsAService/releases/tag/r2.3
     release_type: public-release
     src_commit_sha: e61d1f944376d8296b5de8db53f50aecc447dcfd
@@ -3053,39 +3053,39 @@ releases:
   - repository: NumberRecycling
     release_tag: r3.1
     release_date: '2026-09-03T19:08:44Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/NumberRecycling/releases/tag/r3.1
     release_type: pre-release-rc
     src_commit_sha: 4d69523a875a718c0bad51293e2cfdf6b71588a0
     dependencies:
       commonalities_release: r4.3 (0.8.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: number-recycling
         api_version: 0.3.0-rc.1
         api_title: Number Recycling
         commonalities: 0.8.0
-    superseded: true
   - repository: NumberRecycling
     release_tag: r3.2
     release_date: '2026-11-09T09:05:29Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/NumberRecycling/releases/tag/r3.2
     release_type: pre-release-rc
     src_commit_sha: 011729d50f9923554d8ea6effe1632aabc304d15
     dependencies:
       commonalities_release: r4.4 (0.9.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: number-recycling
         api_version: 0.3.0-rc.2
         api_title: Number Recycling
         commonalities: 0.9.0
-    superseded: true
   - repository: NumberRecycling
     release_tag: r3.3
     release_date: '2026-11-19T04:42:06Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/NumberRecycling/releases/tag/r3.3
     release_type: public-release
     src_commit_sha: fb65d3c8e8f2302acf73a62e866987100af3b4cb
@@ -3192,7 +3192,7 @@ releases:
   - repository: NumberVerification
     release_tag: r4.1
     release_date: '2026-09-27T06:07:10Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/NumberVerification/releases/tag/r4.1
     release_type: pre-release-rc
     src_commit_sha: baeb5e49444dc70de8f42b9cabaf94a5ef0f14fe
@@ -3208,7 +3208,7 @@ releases:
   - repository: NumberVerification
     release_tag: r4.2
     release_date: '2026-10-19T12:42:28Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/NumberVerification/releases/tag/r4.2
     release_type: public-release
     src_commit_sha: f7ae538acbfaa6208b164202cabbfcffaa3cf76f
@@ -3246,39 +3246,39 @@ releases:
   - repository: OptimalEdgeDiscovery
     release_tag: r2.1
     release_date: '2026-09-10T20:04:23Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/OptimalEdgeDiscovery/releases/tag/r2.1
     release_type: pre-release-rc
     src_commit_sha: df47291e3ef8b0671f16ae5824d906a1ec0680a5
     dependencies:
       commonalities_release: r4.3 (0.8.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: optimal-edge-discovery
         api_version: 0.2.0-rc.1
         api_title: Optimal Edge Discovery
         commonalities: 0.8.0
-    superseded: true
   - repository: OptimalEdgeDiscovery
     release_tag: r2.2
     release_date: '2026-11-05T16:40:10Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/OptimalEdgeDiscovery/releases/tag/r2.2
     release_type: pre-release-rc
     src_commit_sha: 4859df2a4b36441140e71aa76d316f114ab38eb0
     dependencies:
       commonalities_release: r4.4 (0.9.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: optimal-edge-discovery
         api_version: 0.2.0-rc.2
         api_title: Optimal Edge Discovery
         commonalities: 0.9.0
-    superseded: true
   - repository: OptimalEdgeDiscovery
     release_tag: r2.3
     release_date: '2026-11-18T18:57:23Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/OptimalEdgeDiscovery/releases/tag/r2.3
     release_type: public-release
     src_commit_sha: 3bfa16c317309d5877ef9f2e0fa5103c26d5eac0
@@ -3374,7 +3374,7 @@ releases:
   - repository: OTPValidation
     release_tag: r4.1
     release_date: '2026-09-15T13:33:35Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/OTPValidation/releases/tag/r4.1
     release_type: pre-release-rc
     src_commit_sha: e9b67298c7d0490327eb182f0f22f2502fbd11df
@@ -3390,7 +3390,7 @@ releases:
   - repository: OTPValidation
     release_tag: r4.2
     release_date: '2026-10-05T12:07:17Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/OTPValidation/releases/tag/r4.2
     release_type: pre-release-rc
     src_commit_sha: da68f8586e1424d52cd059861afdaf576dc7bbb1
@@ -3406,7 +3406,7 @@ releases:
   - repository: OTPValidation
     release_tag: r4.3
     release_date: '2026-10-19T12:40:42Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/OTPValidation/releases/tag/r4.3
     release_type: public-release
     src_commit_sha: 86df7d030ce7f867db6e1eee633b4e8d5395030b
@@ -3490,39 +3490,39 @@ releases:
   - repository: PopulationDensityData
     release_tag: r4.1
     release_date: '2026-08-11T10:11:52Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/PopulationDensityData/releases/tag/r4.1
     release_type: pre-release-rc
     src_commit_sha: faa2511f5d4b5decf7bbceacbbed986c001a4163
     dependencies:
       commonalities_release: r4.3 (0.8.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: population-density-data
         api_version: 1.0.0-rc.1
         api_title: Population Density Data
         commonalities: 0.8.0
-    superseded: true
   - repository: PopulationDensityData
     release_tag: r4.2
     release_date: '2026-10-08T14:04:38Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/PopulationDensityData/releases/tag/r4.2
     release_type: pre-release-rc
     src_commit_sha: cfd33fd6fda89c131f9b9010675500443d276d72
     dependencies:
       commonalities_release: r4.4 (0.9.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: population-density-data
         api_version: 1.0.0-rc.2
         api_title: Population Density Data
         commonalities: 0.9.0
-    superseded: true
   - repository: PopulationDensityData
     release_tag: r4.3
     release_date: '2026-11-06T09:02:33Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/PopulationDensityData/releases/tag/r4.3
     release_type: public-release
     src_commit_sha: e0fc6051de8adeff6e00acb7049c02b704aacd29
@@ -3560,39 +3560,39 @@ releases:
   - repository: PredictiveConnectivityData
     release_tag: r2.1
     release_date: '2026-08-11T09:54:02Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/PredictiveConnectivityData/releases/tag/r2.1
     release_type: pre-release-rc
     src_commit_sha: ecd8a33c2314f10bb56d1b210fa4e2d944d9ee1a
     dependencies:
       commonalities_release: r4.3 (0.8.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: predictive-connectivity-data
         api_version: 0.2.0-rc.1
         api_title: Predictive Connectivity Data
         commonalities: 0.8.0
-    superseded: true
   - repository: PredictiveConnectivityData
     release_tag: r2.2
     release_date: '2026-10-26T14:35:51Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/PredictiveConnectivityData/releases/tag/r2.2
     release_type: pre-release-rc
     src_commit_sha: 717cd6ceebe33c7b8eb7c81dd4be878fcf865544
     dependencies:
       commonalities_release: r4.4 (0.9.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: predictive-connectivity-data
         api_version: 0.2.0-rc.2
         api_title: Predictive Connectivity Data
         commonalities: 0.9.0
-    superseded: true
   - repository: PredictiveConnectivityData
     release_tag: r2.3
     release_date: '2026-11-16T12:53:48Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/PredictiveConnectivityData/releases/tag/r2.3
     release_type: public-release
     src_commit_sha: 41506eaea1a5a9cd5c9751cde7468ce606f99d0a
@@ -3638,13 +3638,14 @@ releases:
   - repository: QoSBooking
     release_tag: r2.1
     release_date: '2026-08-28T16:58:33Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/QoSBooking/releases/tag/r2.1
     release_type: pre-release-rc
     src_commit_sha: c60335beceb0dae021bc8dfc803fdb6c15318b95
     dependencies:
       commonalities_release: r4.3 (0.8.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: qos-booking-and-assignment
         api_version: 0.2.0-rc.1
@@ -3654,17 +3655,17 @@ releases:
         api_version: 0.2.0-rc.1
         api_title: QoS Booking
         commonalities: 0.8.0
-    superseded: true
   - repository: QoSBooking
     release_tag: r2.2
     release_date: '2026-11-09T06:57:32Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/QoSBooking/releases/tag/r2.2
     release_type: pre-release-rc
     src_commit_sha: 99411ce4669f0b4a2233883ed39242d9e3ef0985
     dependencies:
       commonalities_release: r4.4 (0.9.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: qos-booking-and-assignment
         api_version: 0.2.0-rc.2
@@ -3674,11 +3675,10 @@ releases:
         api_version: 0.2.0-rc.2
         api_title: QoS Booking
         commonalities: 0.9.0
-    superseded: true
   - repository: QoSBooking
     release_tag: r2.3
     release_date: '2026-11-18T01:11:20Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/QoSBooking/releases/tag/r2.3
     release_type: public-release
     src_commit_sha: 52445f57a24cad85c5b198ec318b3b47785912d9
@@ -3697,23 +3697,23 @@ releases:
   - repository: QoSProfiles
     release_tag: r1.1
     release_date: '2026-10-20T16:23:16Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/QoSProfiles/releases/tag/r1.1
     release_type: pre-release-rc
     src_commit_sha: 8ce8f4d68aad65ca988a50c5e8a8c09246a65ab2
     dependencies:
       commonalities_release: r4.4 (0.9.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: qos-profiles
         api_version: 1.2.0-rc.4
         api_title: QoS Profiles
         commonalities: 0.9.0
-    superseded: true
   - repository: QoSProfiles
     release_tag: r1.2
     release_date: '2026-11-15T18:30:14Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/QoSProfiles/releases/tag/r1.2
     release_type: public-release
     src_commit_sha: a6f5dfaa7eb321386c840fa105308dbcd25b88e6
@@ -3864,13 +3864,14 @@ releases:
   - repository: QualityOnDemand
     release_tag: r4.1
     release_date: '2026-08-20T10:09:32Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/QualityOnDemand/releases/tag/r4.1
     release_type: pre-release-rc
     src_commit_sha: 61fc7f9bfdf51d5544d1b8227d2be8fb77239047
     dependencies:
       commonalities_release: r4.3 (0.8.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: qos-profiles
         api_version: 1.2.0-rc.3
@@ -3884,17 +3885,17 @@ releases:
         api_version: 1.2.0-rc.3
         api_title: Quality-On-Demand
         commonalities: 0.8.0
-    superseded: true
   - repository: QualityOnDemand
     release_tag: r4.2
     release_date: '2026-10-26T10:05:12Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/QualityOnDemand/releases/tag/r4.2
     release_type: pre-release-rc
     src_commit_sha: 471aa355b569ae5c36f23230c7fd16a590740396
     dependencies:
       commonalities_release: r4.4 (0.9.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: qos-provisioning
         api_version: 0.4.0-rc.2
@@ -3904,11 +3905,10 @@ releases:
         api_version: 1.2.0-rc.4
         api_title: Quality-On-Demand
         commonalities: 0.9.0
-    superseded: true
   - repository: QualityOnDemand
     release_tag: r4.3
     release_date: '2026-11-19T07:57:56Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/QualityOnDemand/releases/tag/r4.3
     release_type: public-release
     src_commit_sha: ff1efe1aa0208eb18024e9f4f592d65acd5f55be
@@ -3991,39 +3991,39 @@ releases:
   - repository: SessionInsights
     release_tag: r2.1
     release_date: '2026-08-19T16:29:52Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/SessionInsights/releases/tag/r2.1
     release_type: pre-release-rc
     src_commit_sha: 55f5c9c77d868bd294306158a01a75e2e1ea9c55
     dependencies:
       commonalities_release: r4.3 (0.8.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: session-insights
         api_version: 0.2.0-rc.1
         api_title: Session Insights
         commonalities: 0.8.0
-    superseded: true
   - repository: SessionInsights
     release_tag: r2.2
     release_date: '2026-10-16T00:14:59Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/SessionInsights/releases/tag/r2.2
     release_type: pre-release-rc
     src_commit_sha: 5921d6da73b2ca39f592c987ab6e503938d9b019
     dependencies:
       commonalities_release: r4.4 (0.9.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: session-insights
         api_version: 0.2.0-rc.2
         api_title: Session Insights
         commonalities: 0.9.0
-    superseded: true
   - repository: SessionInsights
     release_tag: r2.3
     release_date: '2026-11-17T23:38:48Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/SessionInsights/releases/tag/r2.3
     release_type: public-release
     src_commit_sha: 9c6ee06bef58ea3a2f84cd0fd3df1520ad1ef440
@@ -4111,7 +4111,7 @@ releases:
   - repository: SimpleEdgeDiscovery
     release_tag: r3.1
     release_date: '2026-08-05T13:39:06Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/SimpleEdgeDiscovery/releases/tag/r3.1
     release_type: pre-release-rc
     src_commit_sha: bc38e3dd37616d3c9fa216cfc99f05b28629781b
@@ -4127,7 +4127,7 @@ releases:
   - repository: SimpleEdgeDiscovery
     release_tag: r3.2
     release_date: '2026-09-11T15:03:54Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/SimpleEdgeDiscovery/releases/tag/r3.2
     release_type: pre-release-rc
     src_commit_sha: caa7fe91a12fbc45968ac3f268aaa126c47412d6
@@ -4143,7 +4143,7 @@ releases:
   - repository: SimpleEdgeDiscovery
     release_tag: r3.3
     release_date: '2026-10-16T09:46:03Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/SimpleEdgeDiscovery/releases/tag/r3.3
     release_type: public-release
     src_commit_sha: 084c86574c89f842c8419bc0ebd90509f09390b0
@@ -4296,13 +4296,14 @@ releases:
   - repository: SimSwap
     release_tag: r4.1
     release_date: '2026-10-06T07:35:46Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/SimSwap/releases/tag/r4.1
     release_type: pre-release-rc
     src_commit_sha: 7b7e46e887daa160d98499043b422c5a7a17f297
     dependencies:
       commonalities_release: r4.3 (0.8.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: sim-swap-subscriptions
         api_version: 0.4.0-rc.1
@@ -4312,17 +4313,17 @@ releases:
         api_version: 2.2.0-rc.3
         api_title: SIM Swap
         commonalities: 0.8.0
-    superseded: true
   - repository: SimSwap
     release_tag: r4.2
     release_date: '2026-10-20T07:46:51Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/SimSwap/releases/tag/r4.2
     release_type: pre-release-rc
     src_commit_sha: 23566667b892ac259e48ee9a39ac35993fa9e2f3
     dependencies:
       commonalities_release: r4.4 (0.9.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: sim-swap-subscriptions
         api_version: 0.4.0-rc.2
@@ -4332,11 +4333,10 @@ releases:
         api_version: 2.2.0-rc.4
         api_title: SIM Swap
         commonalities: 0.9.0
-    superseded: true
   - repository: SimSwap
     release_tag: r4.3
     release_date: '2026-10-30T08:13:57Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/SimSwap/releases/tag/r4.3
     release_type: public-release
     src_commit_sha: ea5d9fd41e933560514a5705ba84a0143c1c5ca3
@@ -4439,55 +4439,55 @@ releases:
   - repository: Tenure
     release_tag: r3.1
     release_date: '2026-06-23T12:07:05Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/Tenure/releases/tag/r3.1
     release_type: pre-release-alpha
     src_commit_sha: 2030fccc2fb320c2338b3acd42526f2a5cc5fffd
     dependencies:
       commonalities_release: r4.3 (0.8.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: kyc-tenure
         api_version: 0.3.0-alpha.1
         api_title: KYC Tenure
         commonalities: 0.8.0
-    superseded: true
   - repository: Tenure
     release_tag: r3.2
     release_date: '2026-08-11T08:25:04Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/Tenure/releases/tag/r3.2
     release_type: pre-release-rc
     src_commit_sha: 91eea01c3cf00eaf960ba67c062efa526a402469
     dependencies:
       commonalities_release: r4.3 (0.8.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: kyc-tenure
         api_version: 0.3.0-rc.1
         api_title: KYC Tenure
         commonalities: 0.8.0
-    superseded: true
   - repository: Tenure
     release_tag: r3.3
     release_date: '2026-11-06T08:56:59Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/Tenure/releases/tag/r3.3
     release_type: pre-release-rc
     src_commit_sha: 2de731ab95d17feb49c4cd0d459ad0e493a15ff1
     dependencies:
       commonalities_release: r4.4 (0.9.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: kyc-tenure
         api_version: 0.3.0-rc.2
         api_title: KYC Tenure
         commonalities: 0.9.0
-    superseded: true
   - repository: Tenure
     release_tag: r3.4
     release_date: '2026-11-06T15:24:11Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/Tenure/releases/tag/r3.4
     release_type: public-release
     src_commit_sha: 56d4ad8e7d2fc66a247dac8682aa910f33df7fd4
@@ -4584,13 +4584,14 @@ releases:
   - repository: VerifiedCaller
     release_tag: r2.1
     release_date: '2026-06-30T06:06:19Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/VerifiedCaller/releases/tag/r2.1
     release_type: pre-release-alpha
     src_commit_sha: f41f6799a9b64fc33f811aea2b33c0efaa529c86
     dependencies:
       commonalities_release: r4.3 (0.8.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: brand-registration
         api_version: 0.2.0-alpha.1
@@ -4600,17 +4601,17 @@ releases:
         api_version: 0.2.0-alpha.1
         api_title: Verified Caller
         commonalities: 0.8.0
-    superseded: true
   - repository: VerifiedCaller
     release_tag: r2.2
     release_date: '2026-09-10T13:07:52Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/VerifiedCaller/releases/tag/r2.2
     release_type: pre-release-rc
     src_commit_sha: e81b70fcfcb8e289daffb9e1667eac404b9aa097
     dependencies:
       commonalities_release: r4.3 (0.8.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: brand-registration
         api_version: 0.2.0-rc.1
@@ -4620,17 +4621,17 @@ releases:
         api_version: 0.2.0-rc.1
         api_title: Verified Caller
         commonalities: 0.8.0
-    superseded: true
   - repository: VerifiedCaller
     release_tag: r2.3
     release_date: '2026-11-04T05:59:09Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/VerifiedCaller/releases/tag/r2.3
     release_type: pre-release-rc
     src_commit_sha: 4a55bb40b0034dd0f3863fa4f8f494b83eea8b89
     dependencies:
       commonalities_release: r4.4 (0.9.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: brand-registration
         api_version: 0.2.0-rc.2
@@ -4640,11 +4641,10 @@ releases:
         api_version: 0.2.0-rc.2
         api_title: Verified Caller
         commonalities: 0.9.0
-    superseded: true
   - repository: VerifiedCaller
     release_tag: r2.4
     release_date: '2026-11-19T11:23:04Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/VerifiedCaller/releases/tag/r2.4
     release_type: public-release
     src_commit_sha: e16bffce3fd670bc05c21ec5edcfd084dbfe33a4
@@ -4745,13 +4745,14 @@ releases:
   - repository: WebRTC
     release_tag: r3.1
     release_date: '2026-09-25T10:57:02Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/WebRTC/releases/tag/r3.1
     release_type: pre-release-rc
     src_commit_sha: 8eaef812eca5e0abcdda013ae23a92221c4c5f74
     dependencies:
       commonalities_release: r4.3 (0.8.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: webrtc-call-handling
         api_version: 0.4.0-rc.1
@@ -4765,17 +4766,17 @@ releases:
         api_version: 0.4.0-rc.1
         api_title: WebRTC Registration Service
         commonalities: 0.8.0
-    superseded: true
   - repository: WebRTC
     release_tag: r3.2
     release_date: '2026-11-11T15:39:19Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/WebRTC/releases/tag/r3.2
     release_type: pre-release-rc
     src_commit_sha: 40a4021dd9f3809c37291df331812953a79894ec
     dependencies:
       commonalities_release: r4.4 (0.9.0)
       identity_consent_management_release: r4.2 (0.5.0)
+    superseded: true
     apis:
       - api_name: webrtc-call-handling
         api_version: 0.4.0-rc.2
@@ -4789,11 +4790,10 @@ releases:
         api_version: 0.4.0-rc.2
         api_title: WebRTC Registration Service
         commonalities: 0.9.0
-    superseded: true
   - repository: WebRTC
     release_tag: r3.3
     release_date: '2026-11-21T09:19:55Z'
-    meta_release: Independent
+    meta_release: Sync26
     github_url: https://github.com/camaraproject/WebRTC/releases/tag/r3.3
     release_type: public-release
     src_commit_sha: deaf6eba162e89ccc309c8b811f8a6ab58ab9831
