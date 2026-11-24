@@ -1,9 +1,16 @@
 {
   "metadata": {
-    "generated": "2026-11-24T17:55:01.459Z",
+    "generated": "2026-11-24T21:56:59.423Z",
     "meta_release": "All",
     "source": "Release Collector v3",
-    "landscape_version": "1.1.1"
+    "landscape_version": "1.1.2",
+    "meta_releases": [
+      "Fall24",
+      "Spring25",
+      "Fall25",
+      "Spring26",
+      "Sync26"
+    ]
   },
   "statistics": {
     "repositories_count": 55,
@@ -22,11 +29,11 @@
     },
     "categories": {
       "Computing Services": 17,
-      "Communication Quality": 50,
+      "Communication Quality": 55,
       "Payments and Charging": 11,
       "Authentication and Fraud Prevention": 63,
-      "Communication Services": 14,
-      "Service Management": 2,
+      "Communication Services": 15,
+      "Service Management": 3,
       "Device Information": 26,
       "Location Services": 20
     },
@@ -1111,7 +1118,8 @@
           "display_name": "Application Endpoint Discovery",
           "published": true,
           "canonical_name": "application-endpoint-discovery",
-          "first_release": "Fall25"
+          "first_release": "Fall25",
+          "isNew": false
         }
       ]
     },
@@ -1165,7 +1173,8 @@
           "display_name": "Application Endpoints Registration",
           "published": true,
           "canonical_name": "application-endpoint-registration",
-          "first_release": "Fall25"
+          "first_release": "Fall25",
+          "isNew": false
         }
       ]
     },
@@ -1219,7 +1228,8 @@
           "display_name": "Connectivity Insights - Application Profiles",
           "published": true,
           "canonical_name": "application-profiles",
-          "first_release": "Fall24"
+          "first_release": "Fall24",
+          "isNew": false
         }
       ]
     },
@@ -1388,7 +1398,8 @@
           "display_name": "Call Forwarding Signal",
           "published": true,
           "canonical_name": "call-forwarding-signal",
-          "first_release": "Fall24"
+          "first_release": "Fall24",
+          "isNew": false
         }
       ]
     },
@@ -1607,7 +1618,8 @@
           "display_name": "Click to Dial Service",
           "published": true,
           "canonical_name": "click-to-dial",
-          "first_release": "Spring26"
+          "first_release": "Spring26",
+          "isNew": false
         }
       ]
     },
@@ -1676,7 +1688,8 @@
           "display_name": "Connected Network Type Subscriptions",
           "published": true,
           "canonical_name": "connected-network-type-subscriptions",
-          "first_release": "Spring25"
+          "first_release": "Spring25",
+          "isNew": false
         },
         {
           "api_name": "connected-network-type",
@@ -1690,7 +1703,8 @@
           "display_name": "Connected Network Type",
           "published": true,
           "canonical_name": "connected-network-type",
-          "first_release": "Spring25"
+          "first_release": "Spring25",
+          "isNew": false
         }
       ]
     },
@@ -1869,7 +1883,8 @@
           "display_name": "Connectivity Insights Subscriptions",
           "published": true,
           "canonical_name": "connectivity-insights-subscriptions",
-          "first_release": "Fall24"
+          "first_release": "Fall24",
+          "isNew": false
         },
         {
           "api_name": "connectivity-insights",
@@ -1883,7 +1898,8 @@
           "display_name": "Connectivity Insights",
           "published": true,
           "canonical_name": "connectivity-insights",
-          "first_release": "Fall24"
+          "first_release": "Fall24",
+          "isNew": false
         }
       ]
     },
@@ -1960,13 +1976,13 @@
           "api_title": "Consent Management",
           "commonalities": "0.8.0",
           "maturity": "initial",
-          "portfolio_category": null,
-          "website_url": null,
-          "tooltip": null,
+          "portfolio_category": "Service Management",
+          "website_url": "https://camaraproject.org/consent-management/",
+          "tooltip": "Create, update and retrieve user consents for accessing personal data via CAMARA APIs",
           "display_name": "Consent Management",
           "published": true,
           "canonical_name": "consent-management",
-          "first_release": "Sandbox"
+          "first_release": "Independent"
         }
       ]
     },
@@ -2070,7 +2086,8 @@
           "display_name": "Customer Insights",
           "published": true,
           "canonical_name": "customer-insights",
-          "first_release": "Spring25"
+          "first_release": "Spring25",
+          "isNew": false
         }
       ]
     },
@@ -2154,7 +2171,8 @@
           "display_name": "Dedicated Network - Accesses",
           "published": true,
           "canonical_name": "dedicated-network-accesses",
-          "first_release": "Fall25"
+          "first_release": "Fall25",
+          "isNew": false
         },
         {
           "api_name": "dedicated-network-profiles",
@@ -2168,7 +2186,8 @@
           "display_name": "Dedicated Network - Network Profiles",
           "published": true,
           "canonical_name": "dedicated-network-profiles",
-          "first_release": "Fall25"
+          "first_release": "Fall25",
+          "isNew": false
         },
         {
           "api_name": "dedicated-network",
@@ -2182,7 +2201,8 @@
           "display_name": "Dedicated Network - Networks",
           "published": true,
           "canonical_name": "dedicated-network",
-          "first_release": "Fall25"
+          "first_release": "Fall25",
+          "isNew": false
         },
         {
           "api_name": "dedicated-network-areas",
@@ -2190,13 +2210,14 @@
           "api_title": "Dedicated Network - Areas",
           "commonalities": "0.9.0",
           "maturity": "initial",
-          "portfolio_category": null,
-          "website_url": null,
-          "tooltip": null,
+          "portfolio_category": "Communication Quality",
+          "website_url": "https://camaraproject.org/dedicated-networks/",
+          "tooltip": "Discover the network service areas where a dedicated network can be provided",
           "display_name": "Dedicated Network - Areas",
           "published": true,
           "canonical_name": "dedicated-network-areas",
-          "first_release": "Sandbox"
+          "first_release": "Sync26",
+          "isNew": true
         }
       ]
     },
@@ -2265,7 +2286,8 @@
           "display_name": "Device Data Volume Subscriptions",
           "published": true,
           "canonical_name": "device-data-volume-subscriptions",
-          "first_release": "Fall25"
+          "first_release": "Fall25",
+          "isNew": false
         },
         {
           "api_name": "device-data-volume",
@@ -2279,7 +2301,8 @@
           "display_name": "Device Data Volume",
           "published": true,
           "canonical_name": "device-data-volume",
-          "first_release": "Fall25"
+          "first_release": "Fall25",
+          "isNew": false
         }
       ]
     },
@@ -2358,7 +2381,8 @@
           "display_name": "Device Identifier",
           "published": true,
           "canonical_name": "device-identifier",
-          "first_release": "Spring25"
+          "first_release": "Spring25",
+          "isNew": false
         }
       ]
     },
@@ -2552,7 +2576,8 @@
           "display_name": "Device Geofencing Subscriptions",
           "published": true,
           "canonical_name": "geofencing-subscriptions",
-          "first_release": "Fall24"
+          "first_release": "Fall24",
+          "isNew": false
         },
         {
           "api_name": "location-retrieval",
@@ -2566,7 +2591,8 @@
           "display_name": "Device Location Retrieval",
           "published": true,
           "canonical_name": "location-retrieval",
-          "first_release": "PreFall24"
+          "first_release": "PreFall24",
+          "isNew": false
         },
         {
           "api_name": "location-verification",
@@ -2580,7 +2606,8 @@
           "display_name": "Device Location Verification",
           "published": true,
           "canonical_name": "location-verification",
-          "first_release": "PreFall24"
+          "first_release": "PreFall24",
+          "isNew": false
         }
       ]
     },
@@ -2678,7 +2705,8 @@
           "display_name": "Device Reachability Status Subscriptions",
           "published": true,
           "canonical_name": "device-reachability-status-subscriptions",
-          "first_release": "Fall24"
+          "first_release": "Fall24",
+          "isNew": false
         },
         {
           "api_name": "device-reachability-status",
@@ -2692,7 +2720,8 @@
           "display_name": "Device Reachability Status",
           "published": true,
           "canonical_name": "device-reachability-status",
-          "first_release": "PreFall24"
+          "first_release": "PreFall24",
+          "isNew": false
         }
       ]
     },
@@ -2761,7 +2790,8 @@
           "display_name": "Device Roaming Status Subscriptions",
           "published": true,
           "canonical_name": "device-roaming-status-subscriptions",
-          "first_release": "Fall24"
+          "first_release": "Fall24",
+          "isNew": false
         },
         {
           "api_name": "device-roaming-status",
@@ -2775,7 +2805,8 @@
           "display_name": "Device Roaming Status",
           "published": true,
           "canonical_name": "device-roaming-status",
-          "first_release": "PreFall24"
+          "first_release": "PreFall24",
+          "isNew": false
         }
       ]
     },
@@ -3039,7 +3070,7 @@
           "display_name": "Device Swap",
           "published": true,
           "canonical_name": "device-swap",
-          "first_release": "Sandbox"
+          "first_release": "Independent"
         }
       ]
     },
@@ -3063,7 +3094,7 @@
           "display_name": "Device Swap",
           "published": true,
           "canonical_name": "device-swap",
-          "first_release": "Sandbox",
+          "first_release": "Independent",
           "isNew": false
         }
       ]
@@ -3088,7 +3119,7 @@
           "display_name": "Device Swap",
           "published": true,
           "canonical_name": "device-swap",
-          "first_release": "Sandbox",
+          "first_release": "Independent",
           "isNew": false
         }
       ]
@@ -3118,7 +3149,8 @@
           "display_name": "Device Swap",
           "published": true,
           "canonical_name": "device-swap",
-          "first_release": "Sandbox"
+          "first_release": "Independent",
+          "isNew": false
         }
       ]
     },
@@ -3410,7 +3442,8 @@
           "display_name": "IoT SIM Fraud Prevention",
           "published": true,
           "canonical_name": "iot-sim-fraud-prevention",
-          "first_release": "Independent"
+          "first_release": "Independent",
+          "isNew": false
         },
         {
           "api_name": "iot-sim-fraud-prevention-subscriptions",
@@ -3424,7 +3457,8 @@
           "display_name": "IoT SIM Fraud Prevention Subscriptions",
           "published": true,
           "canonical_name": "iot-sim-fraud-prevention-subscriptions",
-          "first_release": "Independent"
+          "first_release": "Independent",
+          "isNew": false
         }
       ]
     },
@@ -3613,7 +3647,8 @@
           "display_name": "Know Your Customer Age Verification",
           "published": true,
           "canonical_name": "kyc-age-verification",
-          "first_release": "Spring25"
+          "first_release": "Spring25",
+          "isNew": false
         }
       ]
     },
@@ -3692,7 +3727,8 @@
           "display_name": "Know Your Customer Fill-in",
           "published": true,
           "canonical_name": "kyc-fill-in",
-          "first_release": "PreFall24"
+          "first_release": "PreFall24",
+          "isNew": false
         }
       ]
     },
@@ -3746,7 +3782,8 @@
           "display_name": "Know Your Customer Match",
           "published": true,
           "canonical_name": "kyc-match",
-          "first_release": "PreFall24"
+          "first_release": "PreFall24",
+          "isNew": false
         }
       ]
     },
@@ -3830,7 +3867,8 @@
           "display_name": "Knowledge Base",
           "published": true,
           "canonical_name": "knowledge-base",
-          "first_release": "Fall25"
+          "first_release": "Fall25",
+          "isNew": false
         },
         {
           "api_name": "qa-assistant-manage",
@@ -3844,7 +3882,8 @@
           "display_name": "Q&A Assistant - Manage",
           "published": true,
           "canonical_name": "qa-assistant-manage",
-          "first_release": "Fall25"
+          "first_release": "Fall25",
+          "isNew": false
         },
         {
           "api_name": "qa-assistant-service",
@@ -3858,7 +3897,8 @@
           "display_name": "Q&A Assistant - Service",
           "published": true,
           "canonical_name": "qa-assistant-service",
-          "first_release": "Fall25"
+          "first_release": "Fall25",
+          "isNew": false
         }
       ]
     },
@@ -4002,13 +4042,13 @@
           "api_title": "Network Health Assessment",
           "commonalities": "0.8.0",
           "maturity": "initial",
-          "portfolio_category": null,
+          "portfolio_category": "Communication Quality",
           "website_url": null,
-          "tooltip": null,
+          "tooltip": "Query the health score of a network and its wireless, transmission and core components",
           "display_name": "Network Health Assessment",
           "published": true,
           "canonical_name": "network-health-assessment",
-          "first_release": "Sandbox"
+          "first_release": "Independent"
         },
         {
           "api_name": "network-traffic-analysis",
@@ -4016,13 +4056,13 @@
           "api_title": "Network Traffic Analysis",
           "commonalities": "0.8.0",
           "maturity": "initial",
-          "portfolio_category": null,
+          "portfolio_category": "Communication Quality",
           "website_url": null,
-          "tooltip": null,
+          "tooltip": "Analyze service traffic distribution and load across a network",
           "display_name": "Network Traffic Analysis",
           "published": true,
           "canonical_name": "network-traffic-analysis",
-          "first_release": "Sandbox"
+          "first_release": "Independent"
         }
       ]
     },
@@ -4196,7 +4236,8 @@
           "display_name": "Number Recycling",
           "published": true,
           "canonical_name": "number-recycling",
-          "first_release": "Spring25"
+          "first_release": "Spring25",
+          "isNew": false
         }
       ]
     },
@@ -4325,7 +4366,8 @@
           "display_name": "Number Verification",
           "published": true,
           "canonical_name": "number-verification",
-          "first_release": "PreFall24"
+          "first_release": "PreFall24",
+          "isNew": false
         }
       ]
     },
@@ -4379,7 +4421,8 @@
           "display_name": "Optimal Edge Discovery",
           "published": true,
           "canonical_name": "optimal-edge-discovery",
-          "first_release": "Fall25"
+          "first_release": "Fall25",
+          "isNew": false
         }
       ]
     },
@@ -4483,7 +4526,8 @@
           "display_name": "One Time Password SMS",
           "published": true,
           "canonical_name": "one-time-password-sms",
-          "first_release": "PreFall24"
+          "first_release": "PreFall24",
+          "isNew": false
         }
       ]
     },
@@ -4587,7 +4631,8 @@
           "display_name": "Population Density Data",
           "published": true,
           "canonical_name": "population-density-data",
-          "first_release": "Fall24"
+          "first_release": "Fall24",
+          "isNew": false
         }
       ]
     },
@@ -4641,7 +4686,8 @@
           "display_name": "Predictive Connectivity Data",
           "published": true,
           "canonical_name": "predictive-connectivity-data",
-          "first_release": "Fall25"
+          "first_release": "Fall25",
+          "isNew": false
         }
       ]
     },
@@ -4710,7 +4756,8 @@
           "display_name": "QoS Booking and Assignment",
           "published": true,
           "canonical_name": "qos-booking-and-assignment",
-          "first_release": "Fall25"
+          "first_release": "Fall25",
+          "isNew": false
         },
         {
           "api_name": "qos-booking",
@@ -4724,7 +4771,8 @@
           "display_name": "QoS Booking",
           "published": true,
           "canonical_name": "qos-booking",
-          "first_release": "Fall25"
+          "first_release": "Fall25",
+          "isNew": false
         }
       ]
     },
@@ -4753,7 +4801,8 @@
           "display_name": "QoS Profiles",
           "published": true,
           "canonical_name": "qos-profiles",
-          "first_release": "PreFall24"
+          "first_release": "PreFall24",
+          "isNew": false
         }
       ]
     },
@@ -5017,7 +5066,8 @@
           "first_release": "Fall24",
           "previous_names": [
             "qod-provisioning"
-          ]
+          ],
+          "isNew": false
         },
         {
           "api_name": "quality-on-demand",
@@ -5031,7 +5081,8 @@
           "display_name": "Quality-On-Demand",
           "published": true,
           "canonical_name": "quality-on-demand",
-          "first_release": "PreFall24"
+          "first_release": "PreFall24",
+          "isNew": false
         }
       ]
     },
@@ -5113,13 +5164,13 @@
           "api_title": "Session Insights",
           "commonalities": "0.6.1",
           "maturity": "initial",
-          "portfolio_category": null,
-          "website_url": null,
-          "tooltip": null,
+          "portfolio_category": "Communication Quality",
+          "website_url": "https://camaraproject.org/session-insights/",
+          "tooltip": "Monitor the quality of an ongoing application session with scores based on reported network metrics",
           "display_name": "Session Insights",
           "published": true,
           "canonical_name": "session-insights",
-          "first_release": "Sandbox"
+          "first_release": "Sync26"
         }
       ]
     },
@@ -5142,13 +5193,14 @@
           "api_title": "Session Insights",
           "commonalities": "0.9.0",
           "maturity": "initial",
-          "portfolio_category": null,
-          "website_url": null,
-          "tooltip": null,
+          "portfolio_category": "Communication Quality",
+          "website_url": "https://camaraproject.org/session-insights/",
+          "tooltip": "Monitor the quality of an ongoing application session with scores based on reported network metrics",
           "display_name": "Session Insights",
           "published": true,
           "canonical_name": "session-insights",
-          "first_release": "Sandbox"
+          "first_release": "Sync26",
+          "isNew": true
         }
       ]
     },
@@ -5257,7 +5309,8 @@
           "display_name": "Simple Edge Discovery",
           "published": true,
           "canonical_name": "simple-edge-discovery",
-          "first_release": "PreFall24"
+          "first_release": "PreFall24",
+          "isNew": false
         }
       ]
     },
@@ -5526,7 +5579,8 @@
           "display_name": "SIM Swap Subscriptions",
           "published": true,
           "canonical_name": "sim-swap-subscriptions",
-          "first_release": "Fall24"
+          "first_release": "Fall24",
+          "isNew": false
         },
         {
           "api_name": "sim-swap",
@@ -5540,7 +5594,8 @@
           "display_name": "SIM Swap",
           "published": true,
           "canonical_name": "sim-swap",
-          "first_release": "PreFall24"
+          "first_release": "PreFall24",
+          "isNew": false
         }
       ]
     },
@@ -5673,7 +5728,8 @@
           "display_name": "KYC Tenure",
           "published": true,
           "canonical_name": "kyc-tenure",
-          "first_release": "Spring25"
+          "first_release": "Spring25",
+          "isNew": false
         }
       ]
     },
@@ -5767,7 +5823,8 @@
           "display_name": "Brand Registration",
           "published": true,
           "canonical_name": "brand-registration",
-          "first_release": "Fall25"
+          "first_release": "Fall25",
+          "isNew": false
         },
         {
           "api_name": "verified-caller",
@@ -5781,7 +5838,8 @@
           "display_name": "Verified Caller",
           "published": true,
           "canonical_name": "verified-caller",
-          "first_release": "Fall25"
+          "first_release": "Fall25",
+          "isNew": false
         }
       ]
     },
@@ -5920,7 +5978,8 @@
           "display_name": "WebRTC Call Handling",
           "published": true,
           "canonical_name": "webrtc-call-handling",
-          "first_release": "Spring25"
+          "first_release": "Spring25",
+          "isNew": false
         },
         {
           "api_name": "webrtc-events-subscriptions",
@@ -5928,13 +5987,14 @@
           "api_title": "WebRTC Events Subscriptions",
           "commonalities": "0.9.0",
           "maturity": "initial",
-          "portfolio_category": null,
-          "website_url": null,
-          "tooltip": null,
+          "portfolio_category": "Communication Services",
+          "website_url": "https://camaraproject.org/webrtc-apis/",
+          "tooltip": "Subscribe to events about active session updates, new session requests and registration termination",
           "display_name": "WebRTC Events Subscriptions",
           "published": true,
           "canonical_name": "webrtc-events-subscriptions",
-          "first_release": "Sandbox"
+          "first_release": "Sync26",
+          "isNew": true
         },
         {
           "api_name": "webrtc-registration",
@@ -5948,7 +6008,8 @@
           "display_name": "WebRTC Registration Service",
           "published": true,
           "canonical_name": "webrtc-registration",
-          "first_release": "Spring25"
+          "first_release": "Spring25",
+          "isNew": false
         }
       ]
     }
@@ -5988,6 +6049,7 @@
       "published": true,
       "canonical_name": "application-endpoint-discovery",
       "first_release": "Fall25",
+      "isNew": false,
       "repository": "ApplicationEndpointDiscovery",
       "release_tag": "r2.3",
       "release_date": "2026-11-18T22:26:18Z",
@@ -6029,6 +6091,7 @@
       "published": true,
       "canonical_name": "application-endpoint-registration",
       "first_release": "Fall25",
+      "isNew": false,
       "repository": "ApplicationEndpointRegistration",
       "release_tag": "r2.3",
       "release_date": "2026-11-18T22:20:40Z",
@@ -6070,6 +6133,7 @@
       "published": true,
       "canonical_name": "application-profiles",
       "first_release": "Fall24",
+      "isNew": false,
       "repository": "ApplicationProfiles",
       "release_tag": "r2.3",
       "release_date": "2026-10-22T02:36:24Z",
@@ -6216,6 +6280,7 @@
       "published": true,
       "canonical_name": "call-forwarding-signal",
       "first_release": "Fall24",
+      "isNew": false,
       "repository": "CallForwardingSignal",
       "release_tag": "r4.3",
       "release_date": "2026-11-17T10:55:13Z",
@@ -6425,6 +6490,7 @@
       "published": true,
       "canonical_name": "click-to-dial",
       "first_release": "Spring26",
+      "isNew": false,
       "repository": "ClickToDial",
       "release_tag": "r2.3",
       "release_date": "2026-11-17T13:35:18Z",
@@ -6466,6 +6532,7 @@
       "published": true,
       "canonical_name": "connected-network-type",
       "first_release": "Spring25",
+      "isNew": false,
       "repository": "ConnectedNetworkType",
       "release_tag": "r2.3",
       "release_date": "2026-11-18T21:13:52Z",
@@ -6507,6 +6574,7 @@
       "published": true,
       "canonical_name": "connected-network-type-subscriptions",
       "first_release": "Spring25",
+      "isNew": false,
       "repository": "ConnectedNetworkType",
       "release_tag": "r2.3",
       "release_date": "2026-11-18T21:13:52Z",
@@ -6632,6 +6700,7 @@
       "published": true,
       "canonical_name": "connectivity-insights",
       "first_release": "Fall24",
+      "isNew": false,
       "repository": "ConnectivityInsights",
       "release_tag": "r4.3",
       "release_date": "2026-11-18T21:26:46Z",
@@ -6715,6 +6784,7 @@
       "published": true,
       "canonical_name": "connectivity-insights-subscriptions",
       "first_release": "Fall24",
+      "isNew": false,
       "repository": "ConnectivityInsights",
       "release_tag": "r4.3",
       "release_date": "2026-11-18T21:26:46Z",
@@ -6769,13 +6839,13 @@
       "api_title": "Consent Management",
       "commonalities": "0.8.0",
       "maturity": "initial",
-      "portfolio_category": null,
-      "website_url": null,
-      "tooltip": null,
+      "portfolio_category": "Service Management",
+      "website_url": "https://camaraproject.org/consent-management/",
+      "tooltip": "Create, update and retrieve user consents for accessing personal data via CAMARA APIs",
       "display_name": "Consent Management",
       "published": true,
       "canonical_name": "consent-management",
-      "first_release": "Sandbox",
+      "first_release": "Independent",
       "repository": "ConsentManagement",
       "release_tag": "r1.2",
       "release_date": "2026-07-31T07:19:13Z",
@@ -6859,6 +6929,7 @@
       "published": true,
       "canonical_name": "customer-insights",
       "first_release": "Spring25",
+      "isNew": false,
       "repository": "CustomerInsights",
       "release_tag": "r3.3",
       "release_date": "2026-11-10T16:17:35Z",
@@ -6900,6 +6971,7 @@
       "published": true,
       "canonical_name": "dedicated-network",
       "first_release": "Fall25",
+      "isNew": false,
       "repository": "DedicatedNetworks",
       "release_tag": "r2.4",
       "release_date": "2026-11-12T11:51:30Z",
@@ -6941,6 +7013,7 @@
       "published": true,
       "canonical_name": "dedicated-network-accesses",
       "first_release": "Fall25",
+      "isNew": false,
       "repository": "DedicatedNetworks",
       "release_tag": "r2.4",
       "release_date": "2026-11-12T11:51:30Z",
@@ -6954,13 +7027,14 @@
       "api_title": "Dedicated Network - Areas",
       "commonalities": "0.9.0",
       "maturity": "initial",
-      "portfolio_category": null,
-      "website_url": null,
-      "tooltip": null,
+      "portfolio_category": "Communication Quality",
+      "website_url": "https://camaraproject.org/dedicated-networks/",
+      "tooltip": "Discover the network service areas where a dedicated network can be provided",
       "display_name": "Dedicated Network - Areas",
       "published": true,
       "canonical_name": "dedicated-network-areas",
-      "first_release": "Sandbox",
+      "first_release": "Sync26",
+      "isNew": true,
       "repository": "DedicatedNetworks",
       "release_tag": "r2.4",
       "release_date": "2026-11-12T11:51:30Z",
@@ -7002,6 +7076,7 @@
       "published": true,
       "canonical_name": "dedicated-network-profiles",
       "first_release": "Fall25",
+      "isNew": false,
       "repository": "DedicatedNetworks",
       "release_tag": "r2.4",
       "release_date": "2026-11-12T11:51:30Z",
@@ -7043,6 +7118,7 @@
       "published": true,
       "canonical_name": "device-data-volume",
       "first_release": "Fall25",
+      "isNew": false,
       "repository": "DeviceDataVolume",
       "release_tag": "r2.4",
       "release_date": "2026-11-19T09:34:41Z",
@@ -7084,6 +7160,7 @@
       "published": true,
       "canonical_name": "device-data-volume-subscriptions",
       "first_release": "Fall25",
+      "isNew": false,
       "repository": "DeviceDataVolume",
       "release_tag": "r2.4",
       "release_date": "2026-11-19T09:34:41Z",
@@ -7146,6 +7223,7 @@
       "published": true,
       "canonical_name": "device-identifier",
       "first_release": "Spring25",
+      "isNew": false,
       "repository": "DeviceIdentifier",
       "release_tag": "r3.5",
       "release_date": "2026-11-19T12:43:55Z",
@@ -7229,6 +7307,7 @@
       "published": true,
       "canonical_name": "geofencing-subscriptions",
       "first_release": "Fall24",
+      "isNew": false,
       "repository": "DeviceLocation",
       "release_tag": "r4.3",
       "release_date": "2026-11-20T14:55:17Z",
@@ -7312,6 +7391,7 @@
       "published": true,
       "canonical_name": "location-retrieval",
       "first_release": "PreFall24",
+      "isNew": false,
       "repository": "DeviceLocation",
       "release_tag": "r4.3",
       "release_date": "2026-11-20T14:55:17Z",
@@ -7395,6 +7475,7 @@
       "published": true,
       "canonical_name": "location-verification",
       "first_release": "PreFall24",
+      "isNew": false,
       "repository": "DeviceLocation",
       "release_tag": "r4.3",
       "release_date": "2026-11-20T14:55:17Z",
@@ -7456,6 +7537,7 @@
       "published": true,
       "canonical_name": "device-reachability-status",
       "first_release": "PreFall24",
+      "isNew": false,
       "repository": "DeviceReachabilityStatus",
       "release_tag": "r2.3",
       "release_date": "2026-11-18T21:10:46Z",
@@ -7497,6 +7579,7 @@
       "published": true,
       "canonical_name": "device-reachability-status-subscriptions",
       "first_release": "Fall24",
+      "isNew": false,
       "repository": "DeviceReachabilityStatus",
       "release_tag": "r2.3",
       "release_date": "2026-11-18T21:10:46Z",
@@ -7538,6 +7621,7 @@
       "published": true,
       "canonical_name": "device-roaming-status",
       "first_release": "PreFall24",
+      "isNew": false,
       "repository": "DeviceRoamingStatus",
       "release_tag": "r2.3",
       "release_date": "2026-11-19T15:00:44Z",
@@ -7579,6 +7663,7 @@
       "published": true,
       "canonical_name": "device-roaming-status-subscriptions",
       "first_release": "Fall24",
+      "isNew": false,
       "repository": "DeviceRoamingStatus",
       "release_tag": "r2.3",
       "release_date": "2026-11-19T15:00:44Z",
@@ -7892,7 +7977,7 @@
       "display_name": "Device Swap",
       "published": true,
       "canonical_name": "device-swap",
-      "first_release": "Sandbox",
+      "first_release": "Independent",
       "repository": "DeviceSwap",
       "release_tag": "r1.2",
       "release_date": "2024-12-12T16:40:48Z",
@@ -7912,7 +7997,7 @@
       "display_name": "Device Swap",
       "published": true,
       "canonical_name": "device-swap",
-      "first_release": "Sandbox",
+      "first_release": "Independent",
       "isNew": false,
       "repository": "DeviceSwap",
       "release_tag": "r2.2",
@@ -7933,7 +8018,7 @@
       "display_name": "Device Swap",
       "published": true,
       "canonical_name": "device-swap",
-      "first_release": "Sandbox",
+      "first_release": "Independent",
       "isNew": false,
       "repository": "DeviceSwap",
       "release_tag": "r3.2",
@@ -7954,7 +8039,8 @@
       "display_name": "Device Swap",
       "published": true,
       "canonical_name": "device-swap",
-      "first_release": "Sandbox",
+      "first_release": "Independent",
+      "isNew": false,
       "repository": "DeviceSwap",
       "release_tag": "r4.3",
       "release_date": "2026-10-19T12:34:42Z",
@@ -8158,6 +8244,7 @@
       "published": true,
       "canonical_name": "iot-sim-fraud-prevention",
       "first_release": "Independent",
+      "isNew": false,
       "repository": "IoTSIMFraudPrevention",
       "release_tag": "r2.2",
       "release_date": "2026-11-19T02:49:10Z",
@@ -8198,6 +8285,7 @@
       "published": true,
       "canonical_name": "iot-sim-fraud-prevention-subscriptions",
       "first_release": "Independent",
+      "isNew": false,
       "repository": "IoTSIMFraudPrevention",
       "release_tag": "r2.2",
       "release_date": "2026-11-19T02:49:10Z",
@@ -8386,6 +8474,7 @@
       "published": true,
       "canonical_name": "kyc-age-verification",
       "first_release": "Spring25",
+      "isNew": false,
       "repository": "KnowYourCustomerAgeVerification",
       "release_tag": "r2.3",
       "release_date": "2026-11-20T10:45:06Z",
@@ -8448,6 +8537,7 @@
       "published": true,
       "canonical_name": "kyc-fill-in",
       "first_release": "PreFall24",
+      "isNew": false,
       "repository": "KnowYourCustomerFill-in",
       "release_tag": "r2.3",
       "release_date": "2026-11-20T11:17:19Z",
@@ -8489,6 +8579,7 @@
       "published": true,
       "canonical_name": "kyc-match",
       "first_release": "PreFall24",
+      "isNew": false,
       "repository": "KnowYourCustomerMatch",
       "release_tag": "r2.3",
       "release_date": "2026-11-20T11:06:00Z",
@@ -8530,6 +8621,7 @@
       "published": true,
       "canonical_name": "knowledge-base",
       "first_release": "Fall25",
+      "isNew": false,
       "repository": "ModelAsAService",
       "release_tag": "r2.3",
       "release_date": "2026-11-20T01:26:37Z",
@@ -8571,6 +8663,7 @@
       "published": true,
       "canonical_name": "qa-assistant-manage",
       "first_release": "Fall25",
+      "isNew": false,
       "repository": "ModelAsAService",
       "release_tag": "r2.3",
       "release_date": "2026-11-20T01:26:37Z",
@@ -8612,6 +8705,7 @@
       "published": true,
       "canonical_name": "qa-assistant-service",
       "first_release": "Fall25",
+      "isNew": false,
       "repository": "ModelAsAService",
       "release_tag": "r2.3",
       "release_date": "2026-11-20T01:26:37Z",
@@ -8726,13 +8820,13 @@
       "api_title": "Network Health Assessment",
       "commonalities": "0.8.0",
       "maturity": "initial",
-      "portfolio_category": null,
+      "portfolio_category": "Communication Quality",
       "website_url": null,
-      "tooltip": null,
+      "tooltip": "Query the health score of a network and its wireless, transmission and core components",
       "display_name": "Network Health Assessment",
       "published": true,
       "canonical_name": "network-health-assessment",
-      "first_release": "Sandbox",
+      "first_release": "Independent",
       "repository": "NetworkInsights",
       "release_tag": "r1.3",
       "release_date": "2026-06-25T00:45:46Z",
@@ -8746,13 +8840,13 @@
       "api_title": "Network Traffic Analysis",
       "commonalities": "0.8.0",
       "maturity": "initial",
-      "portfolio_category": null,
+      "portfolio_category": "Communication Quality",
       "website_url": null,
-      "tooltip": null,
+      "tooltip": "Analyze service traffic distribution and load across a network",
       "display_name": "Network Traffic Analysis",
       "published": true,
       "canonical_name": "network-traffic-analysis",
-      "first_release": "Sandbox",
+      "first_release": "Independent",
       "repository": "NetworkInsights",
       "release_tag": "r1.3",
       "release_date": "2026-06-25T00:45:46Z",
@@ -8899,6 +8993,7 @@
       "published": true,
       "canonical_name": "number-recycling",
       "first_release": "Spring25",
+      "isNew": false,
       "repository": "NumberRecycling",
       "release_tag": "r3.3",
       "release_date": "2026-11-19T04:42:06Z",
@@ -9003,6 +9098,7 @@
       "published": true,
       "canonical_name": "number-verification",
       "first_release": "PreFall24",
+      "isNew": false,
       "repository": "NumberVerification",
       "release_tag": "r4.2",
       "release_date": "2026-10-19T12:42:28Z",
@@ -9044,6 +9140,7 @@
       "published": true,
       "canonical_name": "optimal-edge-discovery",
       "first_release": "Fall25",
+      "isNew": false,
       "repository": "OptimalEdgeDiscovery",
       "release_tag": "r2.3",
       "release_date": "2026-11-18T18:57:23Z",
@@ -9127,6 +9224,7 @@
       "published": true,
       "canonical_name": "one-time-password-sms",
       "first_release": "PreFall24",
+      "isNew": false,
       "repository": "OTPValidation",
       "release_tag": "r4.3",
       "release_date": "2026-10-19T12:40:42Z",
@@ -9210,6 +9308,7 @@
       "published": true,
       "canonical_name": "population-density-data",
       "first_release": "Fall24",
+      "isNew": false,
       "repository": "PopulationDensityData",
       "release_tag": "r4.3",
       "release_date": "2026-11-06T09:02:33Z",
@@ -9251,6 +9350,7 @@
       "published": true,
       "canonical_name": "predictive-connectivity-data",
       "first_release": "Fall25",
+      "isNew": false,
       "repository": "PredictiveConnectivityData",
       "release_tag": "r2.3",
       "release_date": "2026-11-16T12:53:48Z",
@@ -9292,6 +9392,7 @@
       "published": true,
       "canonical_name": "qos-booking",
       "first_release": "Fall25",
+      "isNew": false,
       "repository": "QoSBooking",
       "release_tag": "r2.3",
       "release_date": "2026-11-18T01:11:20Z",
@@ -9333,6 +9434,7 @@
       "published": true,
       "canonical_name": "qos-booking-and-assignment",
       "first_release": "Fall25",
+      "isNew": false,
       "repository": "QoSBooking",
       "release_tag": "r2.3",
       "release_date": "2026-11-18T01:11:20Z",
@@ -9353,6 +9455,7 @@
       "published": true,
       "canonical_name": "qos-profiles",
       "first_release": "PreFall24",
+      "isNew": false,
       "repository": "QoSProfiles",
       "release_tag": "r1.2",
       "release_date": "2026-11-15T18:30:14Z",
@@ -9556,6 +9659,7 @@
       "previous_names": [
         "qod-provisioning"
       ],
+      "isNew": false,
       "repository": "QualityOnDemand",
       "release_tag": "r4.3",
       "release_date": "2026-11-19T07:57:56Z",
@@ -9660,6 +9764,7 @@
       "published": true,
       "canonical_name": "quality-on-demand",
       "first_release": "PreFall24",
+      "isNew": false,
       "repository": "QualityOnDemand",
       "release_tag": "r4.3",
       "release_date": "2026-11-19T07:57:56Z",
@@ -9715,13 +9820,13 @@
       "api_title": "Session Insights",
       "commonalities": "0.6.1",
       "maturity": "initial",
-      "portfolio_category": null,
-      "website_url": null,
-      "tooltip": null,
+      "portfolio_category": "Communication Quality",
+      "website_url": "https://camaraproject.org/session-insights/",
+      "tooltip": "Monitor the quality of an ongoing application session with scores based on reported network metrics",
       "display_name": "Session Insights",
       "published": true,
       "canonical_name": "session-insights",
-      "first_release": "Sandbox",
+      "first_release": "Sync26",
       "repository": "SessionInsights",
       "release_tag": "r1.1",
       "release_date": "2026-05-07T09:55:28Z",
@@ -9735,13 +9840,14 @@
       "api_title": "Session Insights",
       "commonalities": "0.9.0",
       "maturity": "initial",
-      "portfolio_category": null,
-      "website_url": null,
-      "tooltip": null,
+      "portfolio_category": "Communication Quality",
+      "website_url": "https://camaraproject.org/session-insights/",
+      "tooltip": "Monitor the quality of an ongoing application session with scores based on reported network metrics",
       "display_name": "Session Insights",
       "published": true,
       "canonical_name": "session-insights",
-      "first_release": "Sandbox",
+      "first_release": "Sync26",
+      "isNew": true,
       "repository": "SessionInsights",
       "release_tag": "r2.3",
       "release_date": "2026-11-17T23:38:48Z",
@@ -9825,6 +9931,7 @@
       "published": true,
       "canonical_name": "simple-edge-discovery",
       "first_release": "PreFall24",
+      "isNew": false,
       "repository": "SimpleEdgeDiscovery",
       "release_tag": "r3.3",
       "release_date": "2026-10-16T09:46:03Z",
@@ -9971,6 +10078,7 @@
       "published": true,
       "canonical_name": "sim-swap",
       "first_release": "PreFall24",
+      "isNew": false,
       "repository": "SimSwap",
       "release_tag": "r4.3",
       "release_date": "2026-10-30T08:13:57Z",
@@ -10117,6 +10225,7 @@
       "published": true,
       "canonical_name": "sim-swap-subscriptions",
       "first_release": "Fall24",
+      "isNew": false,
       "repository": "SimSwap",
       "release_tag": "r4.3",
       "release_date": "2026-10-30T08:13:57Z",
@@ -10220,6 +10329,7 @@
       "published": true,
       "canonical_name": "kyc-tenure",
       "first_release": "Spring25",
+      "isNew": false,
       "repository": "Tenure",
       "release_tag": "r3.4",
       "release_date": "2026-11-06T15:24:11Z",
@@ -10282,6 +10392,7 @@
       "published": true,
       "canonical_name": "brand-registration",
       "first_release": "Fall25",
+      "isNew": false,
       "repository": "VerifiedCaller",
       "release_tag": "r2.4",
       "release_date": "2026-11-19T11:23:04Z",
@@ -10323,6 +10434,7 @@
       "published": true,
       "canonical_name": "verified-caller",
       "first_release": "Fall25",
+      "isNew": false,
       "repository": "VerifiedCaller",
       "release_tag": "r2.4",
       "release_date": "2026-11-19T11:23:04Z",
@@ -10385,6 +10497,7 @@
       "published": true,
       "canonical_name": "webrtc-call-handling",
       "first_release": "Spring25",
+      "isNew": false,
       "repository": "WebRTC",
       "release_tag": "r3.3",
       "release_date": "2026-11-21T09:19:55Z",
@@ -10440,13 +10553,14 @@
       "api_title": "WebRTC Events Subscriptions",
       "commonalities": "0.9.0",
       "maturity": "initial",
-      "portfolio_category": null,
-      "website_url": null,
-      "tooltip": null,
+      "portfolio_category": "Communication Services",
+      "website_url": "https://camaraproject.org/webrtc-apis/",
+      "tooltip": "Subscribe to events about active session updates, new session requests and registration termination",
       "display_name": "WebRTC Events Subscriptions",
       "published": true,
       "canonical_name": "webrtc-events-subscriptions",
-      "first_release": "Sandbox",
+      "first_release": "Sync26",
+      "isNew": true,
       "repository": "WebRTC",
       "release_tag": "r3.3",
       "release_date": "2026-11-21T09:19:55Z",
@@ -10509,6 +10623,7 @@
       "published": true,
       "canonical_name": "webrtc-registration",
       "first_release": "Spring25",
+      "isNew": false,
       "repository": "WebRTC",
       "release_tag": "r3.3",
       "release_date": "2026-11-21T09:19:55Z",

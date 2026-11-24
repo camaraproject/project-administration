@@ -1,9 +1,9 @@
 {
   "metadata": {
-    "generated": "2026-11-24T17:55:01.473Z",
+    "generated": "2026-11-24T21:56:59.422Z",
     "meta_release": "Spring26",
     "source": "Release Collector v3",
-    "landscape_version": "1.1.1"
+    "landscape_version": "1.1.2"
   },
   "statistics": {
     "repositories_count": 2,

@@ -1,13 +1,13 @@
 metadata:
-  last_updated: '2026-11-24T17:54:59.689Z'
+  last_updated: '2026-11-24T21:56:57.905Z'
   workflow_version: 3.0.0
   schema_version: 3.2.0
   collector_run:
     analysis_scope: full
-    workflow_run_id: '45453309734'
-    workflow_run_number: 407
-    workflow_run_url: https://github.com/camaraproject/project-administration/actions/runs/45453309734
-    source_sha: 0477f0220744b43db8d44249a54f24c4ced1a52e
+    workflow_run_id: '45495671470'
+    workflow_run_number: 409
+    workflow_run_url: https://github.com/camaraproject/project-administration/actions/runs/45495671470
+    source_sha: fb13eebaab25b27e1d32a2a8cd44c405d6c5e1b0
     node_version: v24.22.3
     npm_version: 11.19.1
     dependencies:
