@@ -182,7 +182,7 @@ async function main() {
       const filepath = path.join(REPORTS_PATH, filename);
       fs.writeFileSync(filepath, JSON.stringify(report, null, 2));
       reported.push(metaRelease);
-      console.log(`  ✓ ${filename} - ${report.statistics.repositories_count} repos, ${report.statistics.apis_count} APIs`);
+      console.log(`  ✓ ${filename} - ${report.statistics.repositories_count} repos, ${report.statistics.unique_apis_count} APIs, ${report.statistics.api_versions_count} API versions`);
     } else {
       console.log(`  - ${metaRelease}: No releases found`);
     }
@@ -193,7 +193,7 @@ async function main() {
   allReport.metadata.meta_releases = reported;
   const allFilepath = path.join(REPORTS_PATH, 'all-releases.json');
   fs.writeFileSync(allFilepath, JSON.stringify(allReport, null, 2));
-  console.log(`  ✓ all-releases.json - ${allReport.statistics.repositories_count} repos, ${allReport.statistics.apis_count} APIs`);
+  console.log(`  ✓ all-releases.json - ${allReport.statistics.repositories_count} repos, ${allReport.statistics.unique_apis_count} APIs, ${allReport.statistics.api_versions_count} API versions`);
 
   // Show enrichment statistics
   if (landscape) {
