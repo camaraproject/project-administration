@@ -556,5 +556,44 @@ const ViewerLib = {
       .replace(/>/g, '&gt;')
       .replace(/"/g, '&quot;')
       .replace(/'/g, '&#039;');
+  },
+
+  /**
+   * Decide what the meta-release viewer shows for a URL query string.
+   * Parameters: `meta-release=<name>` (case-insensitive) and `selector=true|false`.
+   * - no meta-release value: newest (last in list); selector shown unless selector=false
+   * - known value: that meta-release; selector hidden unless selector=true
+   * - unknown value: no data; selector shown unless selector=false
+   * - empty list: status 'empty'
+   * @param {string} search - location.search (leading '?' optional)
+   * @param {string[]} metaReleases - Meta-release names, oldest first
+   * @returns {{status: 'ok'|'unknown'|'empty', metaRelease: string|null,
+   *            requested: string, showSelector: boolean}}
+   */
+  resolveMetaReleaseView: function (search, metaReleases) {
+    const params = new URLSearchParams(search || '');
+    const requested = (params.get('meta-release') || '').trim();
+    const selectorParam = params.get('selector');
+    const selector = selectorParam === 'true' ? true : selectorParam === 'false' ? false : null;
+    const list = metaReleases || [];
+
+    if (list.length === 0) {
+      return { status: 'empty', metaRelease: null, requested, showSelector: false };
+    }
+    if (!requested) {
+      return {
+        status: 'ok',
+        metaRelease: list[list.length - 1],
+        requested,
+        showSelector: selector !== false
+      };
+    }
+    const match = list.find(name => name.toLowerCase() === requested.toLowerCase());
+    if (!match) {
+      return { status: 'unknown', metaRelease: null, requested, showSelector: selector !== false };
+    }
+    return { status: 'ok', metaRelease: match, requested, showSelector: selector === true };
   }
 };
+
+if (typeof module !== 'undefined') module.exports = ViewerLib;

@@ -9,6 +9,17 @@
 # IMPORTANT: After editing this file, you MUST manually run the Release Collector
 # workflow with "full" analysis scope. Scheduled/incremental runs do NOT detect
 # config file changes.
+#
+# Adding a meta-release: add its key under `mappings` (oldest first; the last key is the
+# default view of the meta-release viewer). That is the only change needed: reports, viewers,
+# index pages and filters follow this file.
+#
+# Every key is published: it gets a viewer entry, an index link and a portfolio column.
+# Add a key only once its release cycles already have a public release for the meta-release,
+# typically after M4. A mapping PR can be prepared earlier, but is not merged (and the
+# Release Collector run with "full" scope not started) before that.
+#
+# Keys under `mappings` only. Anything else added to this file must sit outside `mappings`.
 # =========================================================================================
 
 mappings:

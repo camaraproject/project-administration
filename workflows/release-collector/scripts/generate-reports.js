@@ -5,7 +5,9 @@
  *
  * Generates JSON report files for each meta-release from the master metadata.
  * Applies runtime enrichment from API landscape data.
- * Creates separate files for Fall24, Spring25, Fall25, Spring26, PreFall24, Independent, etc.
+ * Writes one report per meta-release in config/meta-release-mappings.yaml (file order) plus
+ * all-releases.json, whose metadata.meta_releases lists the meta-releases that got a report.
+ * The viewer generator reads that list and never the config file.
  */
 
 const fs = require('fs');
@@ -22,12 +24,24 @@ const {
   createRepositorySummary
 } = require('./lib/enrichment');
 
-// Paths (relative to repository root)
-const REPO_ROOT = path.join(__dirname, '..', '..', '..');
+// Paths (relative to repository root; COLLECTOR_ROOT overrides it for tests)
+const REPO_ROOT = process.env.COLLECTOR_ROOT || path.join(__dirname, '..', '..', '..');
 const DATA_PATH = path.join(REPO_ROOT, 'data');
 const REPORTS_PATH = path.join(REPO_ROOT, 'reports');
 const MASTER_FILE = path.join(DATA_PATH, 'releases-master.yaml');
-const META_RELEASES = ['Fall24', 'Spring25', 'Fall25', 'Spring26'];
+const MAPPINGS_FILE = path.join(REPO_ROOT, 'config', 'meta-release-mappings.yaml');
+
+/**
+ * Meta-release names from the `mappings` keys, in file order
+ */
+function loadMetaReleases(mappingsFile = MAPPINGS_FILE) {
+  if (!fs.existsSync(mappingsFile)) {
+    console.error(`Meta-release mappings not found: ${mappingsFile}`);
+    process.exit(1);
+  }
+  const config = yaml.load(fs.readFileSync(mappingsFile, 'utf8'));
+  return Object.keys((config && config.mappings) || {});
+}
 
 /**
  * Load master metadata
@@ -123,8 +137,11 @@ async function main() {
     console.log('⚠️  No landscape data found - reports will not be enriched');
   }
 
+  const metaReleases = loadMetaReleases();
+  console.log(`Meta-releases from config (${metaReleases.length}): ${metaReleases.join(', ')}`);
+
   // Apply runtime enrichment to master data (without specific meta-release)
-  const enrichedMaster = landscape ? enrichReleaseData(master, landscape) : master;
+  const enrichedMaster = landscape ? enrichReleaseData(master, landscape, null, metaReleases) : master;
 
   // Filter out superseded releases (kept in master only for metadata generation)
   const activeReleases = enrichedMaster.releases.filter(r => !r.superseded);
@@ -143,14 +160,9 @@ async function main() {
   // Generate reports
   console.log('\nGenerating enriched reports...');
 
-  // 1. Generate ALL releases report (active releases only)
-  const allReport = generateEnrichedReport('All', activeReleases, landscape);
-  const allFilepath = path.join(REPORTS_PATH, 'all-releases.json');
-  fs.writeFileSync(allFilepath, JSON.stringify(allReport, null, 2));
-  console.log(`  ✓ all-releases.json - ${allReport.statistics.repositories_count} repos, ${allReport.statistics.apis_count} APIs`);
-
-  // 2. Generate reports for the public meta-releases only
-  for (const metaRelease of META_RELEASES) {
+  // 1. Generate reports for the meta-releases in the config (those with releases)
+  const reported = [];
+  for (const metaRelease of metaReleases) {
     if (grouped[metaRelease]) {
       // Re-enrich with specific meta-release for isNew calculation
       const metaReleaseData = landscape ?
@@ -169,11 +181,19 @@ async function main() {
       const filename = `${metaRelease.toLowerCase()}.json`;
       const filepath = path.join(REPORTS_PATH, filename);
       fs.writeFileSync(filepath, JSON.stringify(report, null, 2));
-      console.log(`  ✓ ${filename} - ${report.statistics.repositories_count} repos, ${report.statistics.apis_count} APIs`);
+      reported.push(metaRelease);
+      console.log(`  ✓ ${filename} - ${report.statistics.repositories_count} repos, ${report.statistics.unique_apis_count} APIs, ${report.statistics.api_versions_count} API versions`);
     } else {
       console.log(`  - ${metaRelease}: No releases found`);
     }
   }
+
+  // 2. Generate ALL releases report (active releases only), carrying the list of reported meta-releases
+  const allReport = generateEnrichedReport('All', activeReleases, landscape);
+  allReport.metadata.meta_releases = reported;
+  const allFilepath = path.join(REPORTS_PATH, 'all-releases.json');
+  fs.writeFileSync(allFilepath, JSON.stringify(allReport, null, 2));
+  console.log(`  ✓ all-releases.json - ${allReport.statistics.repositories_count} repos, ${allReport.statistics.unique_apis_count} APIs, ${allReport.statistics.api_versions_count} API versions`);
 
   // Show enrichment statistics
   if (landscape) {
@@ -207,7 +227,7 @@ if (require.main === module) {
 }
 
 module.exports = {
-  META_RELEASES,
+  loadMetaReleases,
   loadMaster,
   groupByMetaRelease,
   generateEnrichedReport

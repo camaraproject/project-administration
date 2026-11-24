@@ -4,7 +4,7 @@
 
 ## What This Does
 
-Automatically tracks all CAMARA API releases across repositories (including pre-releases), categorizes them by meta-release (Fall24, Spring25, Fall25, Spring26), and generates browsable HTML viewers. Also generates release-metadata files for each release.
+Automatically tracks all CAMARA API releases across repositories (including pre-releases), categorizes them by meta-release (listed in `config/meta-release-mappings.yaml`), and generates browsable HTML viewers. Also generates release-metadata files for each release.
 
 ## Scheduled Runs
 
@@ -83,7 +83,7 @@ After merging the PR, deploy viewers and upload release metadata to the public s
 
 3. **What Happens**
    - Viewers are published to: https://camaraproject.github.io/releases/
-   - Links: [Spring26](https://camaraproject.github.io/releases/spring26.html) | [Fall25](https://camaraproject.github.io/releases/fall25.html) | [Spring25](https://camaraproject.github.io/releases/spring25.html) | [Fall24](https://camaraproject.github.io/releases/fall24.html)
+   - Meta-release viewer: https://camaraproject.github.io/releases/meta-release.html (`?meta-release=<Name>` selects one, `?selector=false` hides the selector); the old per-meta-release URLs redirect to it
    - Release-metadata files (YAML/JSON) uploaded to each GitHub release as assets
    - Upload report artifact generated showing NEW/UPDATE/CURRENT status for each release
 
