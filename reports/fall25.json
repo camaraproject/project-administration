@@ -1,9 +1,9 @@
 {
   "metadata": {
-    "generated": "2026-11-24T17:55:01.472Z",
+    "generated": "2026-11-24T21:56:59.422Z",
     "meta_release": "Fall25",
     "source": "Release Collector v3",
-    "landscape_version": "1.1.1"
+    "landscape_version": "1.1.2"
   },
   "statistics": {
     "repositories_count": 40,
@@ -1075,7 +1075,7 @@
           "display_name": "Device Swap",
           "published": true,
           "canonical_name": "device-swap",
-          "first_release": "Sandbox",
+          "first_release": "Independent",
           "isNew": false
         }
       ]
@@ -2469,7 +2469,7 @@
       "display_name": "Device Swap",
       "published": true,
       "canonical_name": "device-swap",
-      "first_release": "Sandbox",
+      "first_release": "Independent",
       "isNew": false,
       "repository": "DeviceSwap",
       "release_tag": "r3.2",
