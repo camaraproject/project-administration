@@ -9,8 +9,8 @@
 # =========================================================================================
 
 metadata:
-  version: 1.1.1
-  last_updated: '2026-06-19'
+  version: 1.1.2
+  last_updated: '2026-11-24'
   description: CAMARA API landscape enrichment data
   allowed_categories:
   - Authentication and Fraud Prevention
@@ -39,7 +39,7 @@ apis:
     website_url: https://camaraproject.org/device-swap/
     tooltip: Check if the MSISDN has had a change of device in the last 30 days
     published: true
-    first_release: Sandbox 
+    first_release: Independent
   number-verification:
     category: Authentication and Fraud Prevention
     website_url: https://camaraproject.org/number-verification/
@@ -178,6 +178,12 @@ apis:
     tooltip: Receive events about updates of an active session or new sessions requests (incoming calls)
     published: true
     first_release: Spring25
+  webrtc-events-subscriptions:
+    category: Communication Services
+    website_url: https://camaraproject.org/webrtc-apis/
+    tooltip: Subscribe to events about active session updates, new session requests and registration termination
+    published: true
+    first_release: Sync26
   webrtc-registration:
     category: Communication Services
     website_url: https://camaraproject.org/webrtc-apis/
@@ -234,6 +240,12 @@ apis:
     tooltip: Alerts the consumers if and when the QoS threshold has breached
     published: true
     first_release: Fall24
+  session-insights:
+    category: Communication Quality
+    website_url: https://camaraproject.org/session-insights/
+    tooltip: Monitor the quality of an ongoing application session with scores based on reported network metrics
+    published: true
+    first_release: Sync26
   connected-network-type:
     category: Communication Quality
     website_url: https://camaraproject.org/connected-network-type/
@@ -258,6 +270,18 @@ apis:
     tooltip: Provides information about the connectivity along a volume/area for a future date, time and height
     published: true
     first_release: Fall25
+  network-health-assessment:
+    category: Communication Quality
+    website_url: null
+    tooltip: Query the health score of a network and its wireless, transmission and core components
+    published: true
+    first_release: Independent
+  network-traffic-analysis:
+    category: Communication Quality
+    website_url: null
+    tooltip: Analyze service traffic distribution and load across a network
+    published: true
+    first_release: Independent
   application-profiles:
     category: Communication Quality
     website_url: https://camaraproject.org/application-profiles/
@@ -294,6 +318,12 @@ apis:
     tooltip: Configure dedicated network profiles
     published: true
     first_release: Fall25
+  dedicated-network-areas:
+    category: Communication Quality
+    website_url: https://camaraproject.org/dedicated-networks/
+    tooltip: Discover the network service areas where a dedicated network can be provided
+    published: true
+    first_release: Sync26
   device-reachability-status:
     category: Device Information
     website_url: https://camaraproject.org/device-reachability-status/
@@ -408,6 +438,12 @@ apis:
     tooltip: Ensure that blockchain public address and mobile phone number belong to the same user
     published: true
     first_release: Fall25
+  consent-management:
+    category: Service Management
+    website_url: https://camaraproject.org/consent-management/
+    tooltip: Create, update and retrieve user consents for accessing personal data via CAMARA APIs
+    published: true
+    first_release: Independent
   consent-info:
     category: Service Management
     website_url: https://camaraproject.org/consent-info/
@@ -420,10 +456,10 @@ categories:
   api_count: 15
 - name: Communication Quality
   description: APIs for managing network quality and performance
-  api_count: 18
+  api_count: 22
 - name: Communication Services
   description: APIs for voice, video, and messaging services
-  api_count: 6
+  api_count: 7
 - name: Computing Services
   description: APIs for edge computing and AI services
   api_count: 8
@@ -438,4 +474,4 @@ categories:
   api_count: 4
 - name: Service Management
   description: APIs for service configuration and management
-  api_count: 1
+  api_count: 2
